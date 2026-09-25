@@ -3,6 +3,7 @@
 // las reglas de layout de Salient. Mismo contenido y orden que el vivo.
 import Base from '../../layouts/Base.astro';
 import Rows from '../../components/project/Rows.astro';
+import { PROJECTS } from '../../data/home';
 
 export function getStaticPaths() {
   const models = import.meta.glob('../../data/projects/*.json', { eager: true }) as Record<string, { default: any }>;
@@ -33,9 +34,10 @@ const firstText = (() => {
   return walk(model.rows);
 })();
 const description = model.description || firstText || '';
+const projectName = PROJECTS.find((p) => p.href === `/project/${slug}/`)?.title ?? model.title.split(/ [|-] /)[0];
 ---
 
-<Base title={model.title} description={description} background={PAGE_BG}>
+<Base title={model.title} description={description} background={PAGE_BG} breadcrumb={[{ name: projectName, path: `/project/${slug}/` }]}>
   <div class:list={['project', { 'project--header-space': headerSpace }]}>
     <Rows rows={model.rows} bg={PAGE_BG} slug={slug!} />
   </div>

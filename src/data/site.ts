@@ -7,6 +7,15 @@ export const SITE = {
   calendly: 'https://calendly.com/contacto-mattriz/30min',
   instagram: 'https://www.instagram.com/estudiomattriz/',
   linkedin: 'https://www.linkedin.com/company/estudio-mattriz/',
+  facebook: 'https://www.facebook.com/EstudioMattriz/',
+  // Teléfono publicado en los datos estructurados del vivo (AIOSEO).
+  telephone: '+573138433136',
+  description: 'Booking, payments and operations systems for service businesses',
+  // Verificación de Google Search Console (misma etiqueta del vivo; si se pierde, la propiedad deja de verificarse).
+  googleSiteVerification: '_FvgwI41e7TbXI0h41WHi0g1FLguvW6AkNjGC9iJGWY',
+  // Analítica del vivo: contenedor de Tag Manager y etiqueta de Google de Site Kit.
+  gtm: 'GTM-WWG3RJFC',
+  googleTag: 'GT-T5MFXVLQ',
 } as const;
 
 // Menú principal. En el vivo "How we work" apunta a "#how-we-work" también fuera

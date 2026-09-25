@@ -4,6 +4,8 @@
 //   POST /api/contact                   Formulario de contacto → Resend → contacto@mattriz.com.
 //   /work/spot-on/case-study.html       Se sirve en esa ruta exacta (sin el redirect de .html que haría
 //                                       html_handling), porque el caso de estudio circula con esa URL.
+//   /robots.txt                         En dominios que no son mattriz.com (el *.workers.dev de prueba)
+//                                       bloquea todo, para que Google no indexe una copia del sitio.
 //
 // Variables (Cloudflare → Worker → Settings → Variables and secrets):
 //   RESEND_API_KEY     secreto. Clave de Resend con el dominio mattriz.com verificado.
@@ -20,10 +22,15 @@ interface Env {
 }
 
 const CASE_STUDY = '/work/spot-on/case-study.html';
+const CANONICAL_HOST = 'mattriz.com';
 
 export default {
   async fetch(request: Request, env: Env): Promise<Response> {
     const url = new URL(request.url);
+
+    if (url.pathname === '/robots.txt' && url.hostname !== CANONICAL_HOST) {
+      return new Response('User-agent: *\nDisallow: /\n', { headers: { 'Content-Type': 'text/plain; charset=utf-8' } });
+    }
 
     if (url.pathname === CASE_STUDY) {
       // html_handling redirige /x.html a /x; pedimos /x internamente y respondemos en la URL original.

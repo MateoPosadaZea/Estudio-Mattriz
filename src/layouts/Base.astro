@@ -4,6 +4,7 @@ import Header from '../components/Header.astro';
 import MobileMenu from '../components/MobileMenu.astro';
 import SiteFooter from '../components/SiteFooter.astro';
 import ToTop from '../components/ToTop.astro';
+import Analytics from '../components/Analytics.astro';
 import { SITE } from '../data/site';
 
 interface Props {
@@ -14,11 +15,59 @@ interface Props {
   /** Imagen para redes; por defecto el logo, igual que el vivo. */
   ogImage?: string;
   noindex?: boolean;
+  /** Migas para los datos estructurados (sin contar "Home"). */
+  breadcrumb?: { name: string; path: string }[];
 }
 
-const { title, description, background = '#ffffff', ogImage = '/images/og-mattriz.png', noindex = false } = Astro.props;
+const { title, description, background = '#ffffff', ogImage = '/images/og-mattriz.png', noindex = false, breadcrumb = [] } = Astro.props;
 const canonical = new URL(Astro.url.pathname, SITE.url).href;
 const ogImageUrl = new URL(ogImage, SITE.url).href;
+const home = `${SITE.url}/`;
+
+// Datos estructurados equivalentes a los de AIOSEO en el vivo: Organization, WebSite, WebPage y BreadcrumbList.
+const crumbs = [{ name: 'Home', url: home }, ...breadcrumb.map((b) => ({ name: b.name, url: new URL(b.path, SITE.url).href }))];
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Organization',
+      '@id': `${home}#organization`,
+      name: 'Mattriz',
+      description: SITE.description,
+      url: home,
+      email: SITE.email,
+      telephone: SITE.telephone,
+      logo: { '@type': 'ImageObject', '@id': `${home}#organizationLogo`, url: `${SITE.url}/images/og-mattriz.png`, width: 512, height: 512 },
+      image: { '@id': `${home}#organizationLogo` },
+      sameAs: [SITE.facebook, SITE.instagram, SITE.linkedin],
+    },
+    {
+      '@type': 'WebSite',
+      '@id': `${home}#website`,
+      url: home,
+      name: 'Mattriz',
+      alternateName: 'Estudio Mattriz',
+      description: SITE.description,
+      inLanguage: 'en-US',
+      publisher: { '@id': `${home}#organization` },
+    },
+    {
+      '@type': 'WebPage',
+      '@id': `${canonical}#webpage`,
+      url: canonical,
+      name: title,
+      description,
+      inLanguage: 'en-US',
+      isPartOf: { '@id': `${home}#website` },
+      breadcrumb: { '@id': `${canonical}#breadcrumblist` },
+    },
+    {
+      '@type': 'BreadcrumbList',
+      '@id': `${canonical}#breadcrumblist`,
+      itemListElement: crumbs.map((c, i) => ({ '@type': 'ListItem', position: i + 1, name: c.name, item: c.url })),
+    },
+  ],
+};
 ---
 
 <!doctype html>
@@ -30,7 +79,14 @@ const ogImageUrl = new URL(ogImage, SITE.url).href;
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
-    {noindex && <meta name="robots" content="noindex, nofollow" />}
+    {
+      noindex ? (
+        <meta name="robots" content="noindex, nofollow" />
+      ) : (
+        <meta name="robots" content="max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+      )
+    }
+    <meta name="google-site-verification" content={SITE.googleSiteVerification} />
 
     <meta property="og:site_name" content="Mattriz" />
     <meta property="og:type" content="website" />
@@ -43,12 +99,15 @@ const ogImageUrl = new URL(ogImage, SITE.url).href;
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImageUrl} />
 
+    {!noindex && <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />}
+
     <link rel="icon" href="/favicon-32x32.png" sizes="32x32" />
     <link rel="icon" href="/favicon-192x192.png" sizes="192x192" />
     <link rel="apple-touch-icon" href="/favicon-180x180.png" />
 
     <link rel="preload" href="/fonts/Maison-Neue-Light.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="/fonts/Noe-Display.woff2" as="font" type="font/woff2" crossorigin />
+    <Analytics />
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to main content</a>

@@ -12,6 +12,6 @@
     "html_handling": "auto-trailing-slash",
     "not_found_handling": "404-page",
     // El resto de las rutas no pasa por el Worker (sin costo ni latencia extra).
-    "run_worker_first": ["/api/*", "/work/spot-on/case-study.html"]
+    "run_worker_first": ["/api/*", "/work/spot-on/case-study.html", "/robots.txt"]
   }
 }
