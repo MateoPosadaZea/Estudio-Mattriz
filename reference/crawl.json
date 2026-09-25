@@ -1,0 +1,4112 @@
+{
+  "sitemaps": [
+    "https://mattriz.com/sitemap_index.xml",
+    "https://mattriz.com/sitemap.xml",
+    "https://mattriz.com/page-sitemap.xml",
+    "https://mattriz.com/portfolio-sitemap.xml",
+    "https://mattriz.com/project-type-sitemap.xml"
+  ],
+  "canonical": [
+    {
+      "url": "https://mattriz.com/",
+      "status": 200,
+      "location": ""
+    },
+    {
+      "url": "https://www.mattriz.com/",
+      "status": 301,
+      "location": "https://mattriz.com/"
+    },
+    {
+      "url": "http://mattriz.com/",
+      "status": 403,
+      "location": ""
+    },
+    {
+      "url": "http://www.mattriz.com/",
+      "status": 403,
+      "location": ""
+    }
+  ],
+  "pages": [
+    {
+      "url": "https://mattriz.com/",
+      "status": 200,
+      "finalUrl": "https://mattriz.com/",
+      "slug": "home",
+      "inSitemap": true,
+      "title": "Mattriz | Booking & operations systems for service businesses",
+      "robots": "max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+      "description": "Mattriz builds booking, payment and operations systems for service businesses in the US and LATAM. One studio. One retainer.",
+      "canonical": "https://mattriz.com/",
+      "ogImage": "https://mattriz.com/wp-content/uploads/2022/11/cropped-Logotipo-Estudio-Mattriz-Redes-Negro_Mesa-de-trabajo-1-copia-7.png",
+      "ogTitle": "Mattriz | Booking & operations systems for service businesses",
+      "lang": "en-US",
+      "isWordPress": true,
+      "bodyClass": "home wp-singular page-template-default page page-id-4 wp-theme-salient material wpb-js-composer js-comp-ver-8.6.1 vc_responsive has-color-change-section-bg-color",
+      "h1": [
+        "Systems that work while you sleep."
+      ],
+      "fonts": [
+        {
+          "family": "noe-display",
+          "weight": "500",
+          "style": "normal",
+          "status": "loaded"
+        },
+        {
+          "family": "maison-neue-bold",
+          "weight": "700",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "maison-neue-light",
+          "weight": "300",
+          "style": "normal",
+          "status": "loaded"
+        },
+        {
+          "family": "maison-neue-book",
+          "weight": "normal",
+          "style": "normal",
+          "status": "loaded"
+        },
+        {
+          "family": "icomoon",
+          "weight": "400",
+          "style": "normal",
+          "status": "loaded"
+        },
+        {
+          "family": "Open Sans",
+          "weight": "300",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "Open Sans",
+          "weight": "400",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "Open Sans",
+          "weight": "600",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "Open Sans",
+          "weight": "700",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "nectarbrands",
+          "weight": "400",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "noe-display",
+          "weight": "500",
+          "style": "normal",
+          "status": "loaded"
+        },
+        {
+          "family": "maison-neue-bold",
+          "weight": "700",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "maison-neue-light",
+          "weight": "300",
+          "style": "normal",
+          "status": "loaded"
+        },
+        {
+          "family": "maison-neue-book",
+          "weight": "400",
+          "style": "normal",
+          "status": "loaded"
+        },
+        {
+          "family": "FontAwesome",
+          "weight": "400",
+          "style": "normal",
+          "status": "unloaded"
+        }
+      ],
+      "fontLinks": [
+        "https://mattriz.com/wp-content/themes/salient/css/fonts/icomoon.woff?v=1.7"
+      ]
+    },
+    {
+      "url": "https://mattriz.com/contact/",
+      "status": 200,
+      "finalUrl": "https://mattriz.com/contact/",
+      "slug": "contact",
+      "inSitemap": true,
+      "title": "Contact Mattriz Studio | Get a Project Quote",
+      "robots": "max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+      "description": "Contact Mattriz Studio for web design, branding, eCommerce, and SEO. Share your goals and get a clear quote + next steps within 24–48 hours.",
+      "canonical": "https://mattriz.com/contact/",
+      "ogImage": "https://mattriz.com/wp-content/uploads/2022/11/cropped-Logotipo-Estudio-Mattriz-Redes-Negro_Mesa-de-trabajo-1-copia-7.png",
+      "ogTitle": "Contact Mattriz Studio | Get a Project Quote",
+      "lang": "en-US",
+      "isWordPress": true,
+      "bodyClass": "wp-singular page-template-default page page-id-4772 wp-theme-salient material wpb-js-composer js-comp-ver-8.6.1 vc_responsive",
+      "h1": [
+        "Let’s talk about your project."
+      ],
+      "fonts": [
+        {
+          "family": "noe-display",
+          "weight": "500",
+          "style": "normal",
+          "status": "loaded"
+        },
+        {
+          "family": "maison-neue-bold",
+          "weight": "700",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "maison-neue-light",
+          "weight": "300",
+          "style": "normal",
+          "status": "loaded"
+        },
+        {
+          "family": "maison-neue-book",
+          "weight": "normal",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "icomoon",
+          "weight": "400",
+          "style": "normal",
+          "status": "loaded"
+        },
+        {
+          "family": "Open Sans",
+          "weight": "300",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "Open Sans",
+          "weight": "400",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "Open Sans",
+          "weight": "600",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "Open Sans",
+          "weight": "700",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "nectarbrands",
+          "weight": "400",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "noe-display",
+          "weight": "500",
+          "style": "normal",
+          "status": "loaded"
+        },
+        {
+          "family": "maison-neue-bold",
+          "weight": "700",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "maison-neue-light",
+          "weight": "300",
+          "style": "normal",
+          "status": "loaded"
+        },
+        {
+          "family": "maison-neue-book",
+          "weight": "400",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "FontAwesome",
+          "weight": "400",
+          "style": "normal",
+          "status": "unloaded"
+        }
+      ],
+      "fontLinks": [
+        "https://mattriz.com/wp-content/themes/salient/css/fonts/icomoon.woff?v=1.7"
+      ]
+    },
+    {
+      "url": "https://mattriz.com/work/",
+      "status": 403,
+      "finalUrl": "https://mattriz.com/work/",
+      "slug": "work",
+      "inSitemap": true,
+      "title": "403 Forbidden",
+      "robots": "",
+      "description": "",
+      "canonical": "",
+      "ogImage": "",
+      "ogTitle": "",
+      "lang": "",
+      "isWordPress": false,
+      "bodyClass": "",
+      "h1": [
+        "403"
+      ],
+      "fonts": [],
+      "fontLinks": []
+    },
+    {
+      "url": "https://mattriz.com/about/",
+      "status": 200,
+      "finalUrl": "https://mattriz.com/about/",
+      "slug": "about",
+      "inSitemap": true,
+      "title": "About Mattriz | Web Development, SEO & Automation",
+      "robots": "max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+      "description": "Mattriz is a web development studio building fast Webflow/WordPress sites with SEO & site speed, a clean CMS, and light automation. See client stories and outcomes.",
+      "canonical": "https://mattriz.com/about/",
+      "ogImage": "https://mattriz.com/wp-content/uploads/2022/11/cropped-Logotipo-Estudio-Mattriz-Redes-Negro_Mesa-de-trabajo-1-copia-7.png",
+      "ogTitle": "About Mattriz | Web Development, SEO & Automation",
+      "lang": "en-US",
+      "isWordPress": true,
+      "bodyClass": "wp-singular page-template-default page page-id-6 wp-theme-salient material wpb-js-composer js-comp-ver-8.6.1 vc_responsive",
+      "h1": [],
+      "fonts": [
+        {
+          "family": "noe-display",
+          "weight": "500",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "maison-neue-bold",
+          "weight": "700",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "maison-neue-light",
+          "weight": "300",
+          "style": "normal",
+          "status": "loaded"
+        },
+        {
+          "family": "maison-neue-book",
+          "weight": "normal",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "icomoon",
+          "weight": "400",
+          "style": "normal",
+          "status": "loaded"
+        },
+        {
+          "family": "Open Sans",
+          "weight": "300",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "Open Sans",
+          "weight": "400",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "Open Sans",
+          "weight": "600",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "Open Sans",
+          "weight": "700",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "nectarbrands",
+          "weight": "400",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "noe-display",
+          "weight": "500",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "maison-neue-bold",
+          "weight": "700",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "maison-neue-light",
+          "weight": "300",
+          "style": "normal",
+          "status": "loaded"
+        },
+        {
+          "family": "maison-neue-book",
+          "weight": "400",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "FontAwesome",
+          "weight": "400",
+          "style": "normal",
+          "status": "loaded"
+        }
+      ],
+      "fontLinks": [
+        "https://mattriz.com/wp-content/themes/salient/css/fonts/icomoon.woff?v=1.7"
+      ]
+    },
+    {
+      "url": "https://mattriz.com/finalizar-compra/",
+      "status": 200,
+      "finalUrl": "https://mattriz.com/finalizar-compra/",
+      "slug": "finalizar-compra",
+      "inSitemap": true,
+      "title": "Finalizar compra - Mattriz Studio",
+      "robots": "max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+      "description": "[woocommerce_checkout]",
+      "canonical": "https://mattriz.com/finalizar-compra/",
+      "ogImage": "https://mattriz.com/wp-content/uploads/2022/11/cropped-Logotipo-Estudio-Mattriz-Redes-Negro_Mesa-de-trabajo-1-copia-7.png",
+      "ogTitle": "Finalizar compra - Mattriz Studio",
+      "lang": "en-US",
+      "isWordPress": true,
+      "bodyClass": "wp-singular page-template-default page page-id-4148 wp-theme-salient material wpb-js-composer js-comp-ver-8.6.1 vc_responsive",
+      "h1": [],
+      "fonts": [
+        {
+          "family": "noe-display",
+          "weight": "500",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "maison-neue-bold",
+          "weight": "700",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "maison-neue-light",
+          "weight": "300",
+          "style": "normal",
+          "status": "loaded"
+        },
+        {
+          "family": "maison-neue-book",
+          "weight": "normal",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "icomoon",
+          "weight": "400",
+          "style": "normal",
+          "status": "loaded"
+        },
+        {
+          "family": "Open Sans",
+          "weight": "300",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "Open Sans",
+          "weight": "400",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "Open Sans",
+          "weight": "600",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "Open Sans",
+          "weight": "700",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "nectarbrands",
+          "weight": "400",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "noe-display",
+          "weight": "500",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "maison-neue-bold",
+          "weight": "700",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "maison-neue-light",
+          "weight": "300",
+          "style": "normal",
+          "status": "loaded"
+        },
+        {
+          "family": "maison-neue-book",
+          "weight": "400",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "FontAwesome",
+          "weight": "400",
+          "style": "normal",
+          "status": "unloaded"
+        }
+      ],
+      "fontLinks": [
+        "https://mattriz.com/wp-content/themes/salient/css/fonts/icomoon.woff?v=1.7"
+      ]
+    },
+    {
+      "url": "https://mattriz.com/carrito/",
+      "status": 200,
+      "finalUrl": "https://mattriz.com/carrito/",
+      "slug": "carrito",
+      "inSitemap": true,
+      "title": "Carrito - Mattriz Studio",
+      "robots": "max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+      "description": "[woocommerce_cart]",
+      "canonical": "https://mattriz.com/carrito/",
+      "ogImage": "https://mattriz.com/wp-content/uploads/2022/11/cropped-Logotipo-Estudio-Mattriz-Redes-Negro_Mesa-de-trabajo-1-copia-7.png",
+      "ogTitle": "Carrito - Mattriz Studio",
+      "lang": "en-US",
+      "isWordPress": true,
+      "bodyClass": "wp-singular page-template-default page page-id-4147 wp-theme-salient material wpb-js-composer js-comp-ver-8.6.1 vc_responsive",
+      "h1": [],
+      "fonts": [
+        {
+          "family": "noe-display",
+          "weight": "500",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "maison-neue-bold",
+          "weight": "700",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "maison-neue-light",
+          "weight": "300",
+          "style": "normal",
+          "status": "loaded"
+        },
+        {
+          "family": "maison-neue-book",
+          "weight": "normal",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "icomoon",
+          "weight": "400",
+          "style": "normal",
+          "status": "loaded"
+        },
+        {
+          "family": "Open Sans",
+          "weight": "300",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "Open Sans",
+          "weight": "400",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "Open Sans",
+          "weight": "600",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "Open Sans",
+          "weight": "700",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "nectarbrands",
+          "weight": "400",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "noe-display",
+          "weight": "500",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "maison-neue-bold",
+          "weight": "700",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "maison-neue-light",
+          "weight": "300",
+          "style": "normal",
+          "status": "loaded"
+        },
+        {
+          "family": "maison-neue-book",
+          "weight": "400",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "FontAwesome",
+          "weight": "400",
+          "style": "normal",
+          "status": "unloaded"
+        }
+      ],
+      "fontLinks": [
+        "https://mattriz.com/wp-content/themes/salient/css/fonts/icomoon.woff?v=1.7"
+      ]
+    },
+    {
+      "url": "https://mattriz.com/tienda/",
+      "status": 200,
+      "finalUrl": "https://mattriz.com/tienda/",
+      "slug": "tienda",
+      "inSitemap": true,
+      "title": "Tienda - Mattriz Studio",
+      "robots": "max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+      "description": "",
+      "canonical": "https://mattriz.com/tienda/",
+      "ogImage": "https://mattriz.com/wp-content/uploads/2022/11/cropped-Logotipo-Estudio-Mattriz-Redes-Negro_Mesa-de-trabajo-1-copia-7.png",
+      "ogTitle": "Tienda - Mattriz Studio",
+      "lang": "en-US",
+      "isWordPress": true,
+      "bodyClass": "wp-singular page-template-default page page-id-4146 wp-theme-salient material wpb-js-composer js-comp-ver-8.6.1 vc_responsive",
+      "h1": [],
+      "fonts": [
+        {
+          "family": "noe-display",
+          "weight": "500",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "maison-neue-bold",
+          "weight": "700",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "maison-neue-light",
+          "weight": "300",
+          "style": "normal",
+          "status": "loaded"
+        },
+        {
+          "family": "maison-neue-book",
+          "weight": "normal",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "icomoon",
+          "weight": "400",
+          "style": "normal",
+          "status": "loaded"
+        },
+        {
+          "family": "Open Sans",
+          "weight": "300",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "Open Sans",
+          "weight": "400",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "Open Sans",
+          "weight": "600",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "Open Sans",
+          "weight": "700",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "nectarbrands",
+          "weight": "400",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "noe-display",
+          "weight": "500",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "maison-neue-bold",
+          "weight": "700",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "maison-neue-light",
+          "weight": "300",
+          "style": "normal",
+          "status": "loaded"
+        },
+        {
+          "family": "maison-neue-book",
+          "weight": "400",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "FontAwesome",
+          "weight": "400",
+          "style": "normal",
+          "status": "unloaded"
+        }
+      ],
+      "fontLinks": [
+        "https://mattriz.com/wp-content/themes/salient/css/fonts/icomoon.woff?v=1.7"
+      ]
+    },
+    {
+      "url": "https://mattriz.com/project/civilus/",
+      "status": 200,
+      "finalUrl": "https://mattriz.com/project/civilus/",
+      "slug": "project_civilus",
+      "inSitemap": true,
+      "title": "Civilus | Brand identity & website | Mattriz Studio",
+      "robots": "max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+      "description": "Civilus – Brand identity and React website for an online structural-calculus platform, designed and developed by Mattriz Studio using Figma, HTML, CSS and JavaScript.",
+      "canonical": "https://mattriz.com/project/civilus/",
+      "ogImage": "https://mattriz.com/wp-content/uploads/2022/11/cropped-Logotipo-Estudio-Mattriz-Redes-Negro_Mesa-de-trabajo-1-copia-7.png",
+      "ogTitle": "Civilus | Brand identity & website | Mattriz Studio",
+      "lang": "en-US",
+      "isWordPress": true,
+      "bodyClass": "wp-singular portfolio-template-default single single-portfolio postid-4694 wp-theme-salient material remove-default-project-header wpb-js-composer js-comp-ver-8.6.1 vc_responsive litespeed_lazyloaded",
+      "h1": [],
+      "fonts": [
+        {
+          "family": "noe-display",
+          "weight": "500",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "maison-neue-bold",
+          "weight": "700",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "maison-neue-light",
+          "weight": "300",
+          "style": "normal",
+          "status": "loaded"
+        },
+        {
+          "family": "maison-neue-book",
+          "weight": "normal",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "icomoon",
+          "weight": "400",
+          "style": "normal",
+          "status": "loaded"
+        },
+        {
+          "family": "Open Sans",
+          "weight": "300",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "Open Sans",
+          "weight": "400",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "Open Sans",
+          "weight": "600",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "Open Sans",
+          "weight": "700",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "nectarbrands",
+          "weight": "400",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "noe-display",
+          "weight": "500",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "maison-neue-bold",
+          "weight": "700",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "maison-neue-light",
+          "weight": "300",
+          "style": "normal",
+          "status": "loaded"
+        },
+        {
+          "family": "maison-neue-book",
+          "weight": "400",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "FontAwesome",
+          "weight": "400",
+          "style": "normal",
+          "status": "unloaded"
+        }
+      ],
+      "fontLinks": [
+        "https://mattriz.com/wp-content/themes/salient/css/fonts/icomoon.woff?v=1.7"
+      ]
+    },
+    {
+      "url": "https://mattriz.com/project/spot-on-mobile-wash-detailing/",
+      "status": 200,
+      "finalUrl": "https://mattriz.com/project/spot-on-mobile-wash-detailing/",
+      "slug": "project_spot-on-mobile-wash-detailing",
+      "inSitemap": true,
+      "title": "Spot On Mobile Wash & Detailing - Mattriz Studio",
+      "robots": "max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+      "description": "Website redesign and service/price structure for a mobile detailing business in California.",
+      "canonical": "https://mattriz.com/project/spot-on-mobile-wash-detailing/",
+      "ogImage": "https://mattriz.com/wp-content/uploads/2022/11/cropped-Logotipo-Estudio-Mattriz-Redes-Negro_Mesa-de-trabajo-1-copia-7.png",
+      "ogTitle": "Spot On Mobile Wash & Detailing - Mattriz Studio",
+      "lang": "en-US",
+      "isWordPress": true,
+      "bodyClass": "wp-singular portfolio-template-default single single-portfolio postid-4644 wp-theme-salient material remove-default-project-header wpb-js-composer js-comp-ver-8.6.1 vc_responsive litespeed_lazyloaded",
+      "h1": [],
+      "fonts": [
+        {
+          "family": "noe-display",
+          "weight": "500",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "maison-neue-bold",
+          "weight": "700",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "maison-neue-light",
+          "weight": "300",
+          "style": "normal",
+          "status": "loaded"
+        },
+        {
+          "family": "maison-neue-book",
+          "weight": "normal",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "icomoon",
+          "weight": "400",
+          "style": "normal",
+          "status": "loaded"
+        },
+        {
+          "family": "Open Sans",
+          "weight": "300",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "Open Sans",
+          "weight": "400",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "Open Sans",
+          "weight": "600",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "Open Sans",
+          "weight": "700",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "nectarbrands",
+          "weight": "400",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "noe-display",
+          "weight": "500",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "maison-neue-bold",
+          "weight": "700",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "maison-neue-light",
+          "weight": "300",
+          "style": "normal",
+          "status": "loaded"
+        },
+        {
+          "family": "maison-neue-book",
+          "weight": "400",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "FontAwesome",
+          "weight": "400",
+          "style": "normal",
+          "status": "unloaded"
+        }
+      ],
+      "fontLinks": [
+        "https://mattriz.com/wp-content/themes/salient/css/fonts/icomoon.woff?v=1.7"
+      ]
+    },
+    {
+      "url": "https://mattriz.com/project/the-grid/",
+      "status": 200,
+      "finalUrl": "https://mattriz.com/project/the-grid/",
+      "slug": "project_the-grid",
+      "inSitemap": true,
+      "title": "The Grid Digital Twin Branding & Webflow | Mattriz Studio",
+      "robots": "max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+      "description": "Brand identity, visual system and Webflow website for The Grid, a digital twin & BIM consultancy. See how we built a bold, flexible design language.",
+      "canonical": "https://mattriz.com/project/the-grid/",
+      "ogImage": "https://mattriz.com/wp-content/uploads/2022/11/cropped-Logotipo-Estudio-Mattriz-Redes-Negro_Mesa-de-trabajo-1-copia-7.png",
+      "ogTitle": "The Grid Digital Twin Branding & Webflow | Mattriz Studio",
+      "lang": "en-US",
+      "isWordPress": true,
+      "bodyClass": "wp-singular portfolio-template-default single single-portfolio postid-4625 wp-theme-salient material remove-default-project-header wpb-js-composer js-comp-ver-8.6.1 vc_responsive litespeed_lazyloaded",
+      "h1": [],
+      "fonts": [
+        {
+          "family": "noe-display",
+          "weight": "500",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "maison-neue-bold",
+          "weight": "700",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "maison-neue-light",
+          "weight": "300",
+          "style": "normal",
+          "status": "loaded"
+        },
+        {
+          "family": "maison-neue-book",
+          "weight": "normal",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "icomoon",
+          "weight": "400",
+          "style": "normal",
+          "status": "loaded"
+        },
+        {
+          "family": "Open Sans",
+          "weight": "300",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "Open Sans",
+          "weight": "400",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "Open Sans",
+          "weight": "600",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "Open Sans",
+          "weight": "700",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "nectarbrands",
+          "weight": "400",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "noe-display",
+          "weight": "500",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "maison-neue-bold",
+          "weight": "700",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "maison-neue-light",
+          "weight": "300",
+          "style": "normal",
+          "status": "loaded"
+        },
+        {
+          "family": "maison-neue-book",
+          "weight": "400",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "FontAwesome",
+          "weight": "400",
+          "style": "normal",
+          "status": "unloaded"
+        }
+      ],
+      "fontLinks": [
+        "https://mattriz.com/wp-content/themes/salient/css/fonts/icomoon.woff?v=1.7"
+      ]
+    },
+    {
+      "url": "https://mattriz.com/project/luciana-cabanas/",
+      "status": 200,
+      "finalUrl": "https://mattriz.com/project/luciana-cabanas/",
+      "slug": "project_luciana-cabanas",
+      "inSitemap": true,
+      "title": "Luciana Cabañas - Mattriz Studio",
+      "robots": "max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+      "description": "",
+      "canonical": "https://mattriz.com/project/luciana-cabanas/",
+      "ogImage": "https://mattriz.com/wp-content/uploads/2022/11/cropped-Logotipo-Estudio-Mattriz-Redes-Negro_Mesa-de-trabajo-1-copia-7.png",
+      "ogTitle": "Luciana Cabañas - Mattriz Studio",
+      "lang": "en-US",
+      "isWordPress": true,
+      "bodyClass": "wp-singular portfolio-template-default single single-portfolio postid-304 wp-theme-salient material remove-default-project-header wpb-js-composer js-comp-ver-8.6.1 vc_responsive",
+      "h1": [],
+      "fonts": [
+        {
+          "family": "noe-display",
+          "weight": "500",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "maison-neue-bold",
+          "weight": "700",
+          "style": "normal",
+          "status": "loaded"
+        },
+        {
+          "family": "maison-neue-light",
+          "weight": "300",
+          "style": "normal",
+          "status": "loaded"
+        },
+        {
+          "family": "maison-neue-book",
+          "weight": "normal",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "icomoon",
+          "weight": "400",
+          "style": "normal",
+          "status": "loaded"
+        },
+        {
+          "family": "Open Sans",
+          "weight": "300",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "Open Sans",
+          "weight": "400",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "Open Sans",
+          "weight": "600",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "Open Sans",
+          "weight": "700",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "nectarbrands",
+          "weight": "400",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "noe-display",
+          "weight": "500",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "maison-neue-bold",
+          "weight": "700",
+          "style": "normal",
+          "status": "loaded"
+        },
+        {
+          "family": "maison-neue-light",
+          "weight": "300",
+          "style": "normal",
+          "status": "loaded"
+        },
+        {
+          "family": "maison-neue-book",
+          "weight": "400",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "FontAwesome",
+          "weight": "400",
+          "style": "normal",
+          "status": "unloaded"
+        }
+      ],
+      "fontLinks": [
+        "https://mattriz.com/wp-content/themes/salient/css/fonts/icomoon.woff?v=1.7"
+      ]
+    },
+    {
+      "url": "https://mattriz.com/project/aglvanstours/",
+      "status": 200,
+      "finalUrl": "https://mattriz.com/project/aglvanstours/",
+      "slug": "project_aglvanstours",
+      "inSitemap": true,
+      "title": "AGL Vans Tours - Mattriz Studio",
+      "robots": "max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+      "description": "",
+      "canonical": "https://mattriz.com/project/aglvanstours/",
+      "ogImage": "https://mattriz.com/wp-content/uploads/2022/11/cropped-Logotipo-Estudio-Mattriz-Redes-Negro_Mesa-de-trabajo-1-copia-7.png",
+      "ogTitle": "AGL Vans Tours - Mattriz Studio",
+      "lang": "en-US",
+      "isWordPress": true,
+      "bodyClass": "wp-singular portfolio-template-default single single-portfolio postid-136 wp-theme-salient material remove-default-project-header wpb-js-composer js-comp-ver-8.6.1 vc_responsive",
+      "h1": [],
+      "fonts": [
+        {
+          "family": "noe-display",
+          "weight": "500",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "maison-neue-bold",
+          "weight": "700",
+          "style": "normal",
+          "status": "loaded"
+        },
+        {
+          "family": "maison-neue-light",
+          "weight": "300",
+          "style": "normal",
+          "status": "loaded"
+        },
+        {
+          "family": "maison-neue-book",
+          "weight": "normal",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "icomoon",
+          "weight": "400",
+          "style": "normal",
+          "status": "loaded"
+        },
+        {
+          "family": "Open Sans",
+          "weight": "300",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "Open Sans",
+          "weight": "400",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "Open Sans",
+          "weight": "600",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "Open Sans",
+          "weight": "700",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "nectarbrands",
+          "weight": "400",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "noe-display",
+          "weight": "500",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "maison-neue-bold",
+          "weight": "700",
+          "style": "normal",
+          "status": "loaded"
+        },
+        {
+          "family": "maison-neue-light",
+          "weight": "300",
+          "style": "normal",
+          "status": "loaded"
+        },
+        {
+          "family": "maison-neue-book",
+          "weight": "400",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "FontAwesome",
+          "weight": "400",
+          "style": "normal",
+          "status": "unloaded"
+        }
+      ],
+      "fontLinks": [
+        "https://mattriz.com/wp-content/themes/salient/css/fonts/icomoon.woff?v=1.7"
+      ]
+    },
+    {
+      "url": "https://mattriz.com/project/let-it-go/",
+      "status": 200,
+      "finalUrl": "https://mattriz.com/project/let-it-go/",
+      "slug": "project_let-it-go",
+      "inSitemap": true,
+      "title": "Let it Go - Mattriz Studio",
+      "robots": "max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+      "description": "",
+      "canonical": "https://mattriz.com/project/let-it-go/",
+      "ogImage": "https://mattriz.com/wp-content/uploads/2022/11/cropped-Logotipo-Estudio-Mattriz-Redes-Negro_Mesa-de-trabajo-1-copia-7.png",
+      "ogTitle": "Let it Go - Mattriz Studio",
+      "lang": "en-US",
+      "isWordPress": true,
+      "bodyClass": "wp-singular portfolio-template-default single single-portfolio postid-144 wp-theme-salient material remove-default-project-header wpb-js-composer js-comp-ver-8.6.1 vc_responsive",
+      "h1": [],
+      "fonts": [
+        {
+          "family": "noe-display",
+          "weight": "500",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "maison-neue-bold",
+          "weight": "700",
+          "style": "normal",
+          "status": "loaded"
+        },
+        {
+          "family": "maison-neue-light",
+          "weight": "300",
+          "style": "normal",
+          "status": "loaded"
+        },
+        {
+          "family": "maison-neue-book",
+          "weight": "normal",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "icomoon",
+          "weight": "400",
+          "style": "normal",
+          "status": "loaded"
+        },
+        {
+          "family": "Open Sans",
+          "weight": "300",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "Open Sans",
+          "weight": "400",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "Open Sans",
+          "weight": "600",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "Open Sans",
+          "weight": "700",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "nectarbrands",
+          "weight": "400",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "noe-display",
+          "weight": "500",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "maison-neue-bold",
+          "weight": "700",
+          "style": "normal",
+          "status": "loaded"
+        },
+        {
+          "family": "maison-neue-light",
+          "weight": "300",
+          "style": "normal",
+          "status": "loaded"
+        },
+        {
+          "family": "maison-neue-book",
+          "weight": "400",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "FontAwesome",
+          "weight": "400",
+          "style": "normal",
+          "status": "unloaded"
+        }
+      ],
+      "fontLinks": [
+        "https://mattriz.com/wp-content/themes/salient/css/fonts/icomoon.woff?v=1.7"
+      ]
+    },
+    {
+      "url": "https://mattriz.com/project/posada-carcamo-abogados/",
+      "status": 200,
+      "finalUrl": "https://mattriz.com/project/posada-carcamo-abogados/",
+      "slug": "project_posada-carcamo-abogados",
+      "inSitemap": true,
+      "title": "Posada Carcamo Abogados - Mattriz Studio",
+      "robots": "max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+      "description": "",
+      "canonical": "https://mattriz.com/project/posada-carcamo-abogados/",
+      "ogImage": "https://mattriz.com/wp-content/uploads/2022/11/cropped-Logotipo-Estudio-Mattriz-Redes-Negro_Mesa-de-trabajo-1-copia-7.png",
+      "ogTitle": "Posada Carcamo Abogados - Mattriz Studio",
+      "lang": "en-US",
+      "isWordPress": true,
+      "bodyClass": "wp-singular portfolio-template-default single single-portfolio postid-4315 wp-theme-salient material remove-default-project-header wpb-js-composer js-comp-ver-8.6.1 vc_responsive",
+      "h1": [],
+      "fonts": [
+        {
+          "family": "noe-display",
+          "weight": "500",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "maison-neue-bold",
+          "weight": "700",
+          "style": "normal",
+          "status": "loaded"
+        },
+        {
+          "family": "maison-neue-light",
+          "weight": "300",
+          "style": "normal",
+          "status": "loaded"
+        },
+        {
+          "family": "maison-neue-book",
+          "weight": "normal",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "icomoon",
+          "weight": "400",
+          "style": "normal",
+          "status": "loaded"
+        },
+        {
+          "family": "Open Sans",
+          "weight": "300",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "Open Sans",
+          "weight": "400",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "Open Sans",
+          "weight": "600",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "Open Sans",
+          "weight": "700",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "nectarbrands",
+          "weight": "400",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "noe-display",
+          "weight": "500",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "maison-neue-bold",
+          "weight": "700",
+          "style": "normal",
+          "status": "loaded"
+        },
+        {
+          "family": "maison-neue-light",
+          "weight": "300",
+          "style": "normal",
+          "status": "loaded"
+        },
+        {
+          "family": "maison-neue-book",
+          "weight": "400",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "FontAwesome",
+          "weight": "400",
+          "style": "normal",
+          "status": "unloaded"
+        }
+      ],
+      "fontLinks": [
+        "https://mattriz.com/wp-content/themes/salient/css/fonts/icomoon.woff?v=1.7"
+      ]
+    },
+    {
+      "url": "https://mattriz.com/project-type/brand-identity/",
+      "status": 200,
+      "finalUrl": "https://mattriz.com/project-type/brand-identity/",
+      "slug": "project-type_brand-identity",
+      "inSitemap": true,
+      "title": "Brand Identity - Mattriz Studio",
+      "robots": "max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+      "description": "",
+      "canonical": "https://mattriz.com/project-type/brand-identity/",
+      "ogImage": "",
+      "ogTitle": "",
+      "lang": "en-US",
+      "isWordPress": true,
+      "bodyClass": "archive tax-project-type term-brand-identity term-38 wp-theme-salient material wpb-js-composer js-comp-ver-8.6.1 vc_responsive litespeed_lazyloaded",
+      "h1": [
+        "Brand Identity"
+      ],
+      "fonts": [
+        {
+          "family": "noe-display",
+          "weight": "500",
+          "style": "normal",
+          "status": "loaded"
+        },
+        {
+          "family": "maison-neue-bold",
+          "weight": "700",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "maison-neue-light",
+          "weight": "300",
+          "style": "normal",
+          "status": "loaded"
+        },
+        {
+          "family": "maison-neue-book",
+          "weight": "normal",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "icomoon",
+          "weight": "400",
+          "style": "normal",
+          "status": "loaded"
+        },
+        {
+          "family": "Open Sans",
+          "weight": "300",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "Open Sans",
+          "weight": "400",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "Open Sans",
+          "weight": "600",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "Open Sans",
+          "weight": "700",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "nectarbrands",
+          "weight": "400",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "noe-display",
+          "weight": "500",
+          "style": "normal",
+          "status": "loaded"
+        },
+        {
+          "family": "maison-neue-bold",
+          "weight": "700",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "maison-neue-light",
+          "weight": "300",
+          "style": "normal",
+          "status": "loaded"
+        },
+        {
+          "family": "maison-neue-book",
+          "weight": "400",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "FontAwesome",
+          "weight": "400",
+          "style": "normal",
+          "status": "unloaded"
+        }
+      ],
+      "fontLinks": [
+        "https://mattriz.com/wp-content/themes/salient/css/fonts/icomoon.woff?v=1.7"
+      ]
+    },
+    {
+      "url": "https://mattriz.com/project-type/web-development/",
+      "status": 200,
+      "finalUrl": "https://mattriz.com/project-type/web-development/",
+      "slug": "project-type_web-development",
+      "inSitemap": true,
+      "title": "Web Development - Mattriz Studio",
+      "robots": "max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+      "description": "",
+      "canonical": "https://mattriz.com/project-type/web-development/",
+      "ogImage": "",
+      "ogTitle": "",
+      "lang": "en-US",
+      "isWordPress": true,
+      "bodyClass": "archive tax-project-type term-web-development term-39 wp-theme-salient material wpb-js-composer js-comp-ver-8.6.1 vc_responsive litespeed_lazyloaded",
+      "h1": [
+        "Web Development"
+      ],
+      "fonts": [
+        {
+          "family": "noe-display",
+          "weight": "500",
+          "style": "normal",
+          "status": "loaded"
+        },
+        {
+          "family": "maison-neue-bold",
+          "weight": "700",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "maison-neue-light",
+          "weight": "300",
+          "style": "normal",
+          "status": "loaded"
+        },
+        {
+          "family": "maison-neue-book",
+          "weight": "normal",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "icomoon",
+          "weight": "400",
+          "style": "normal",
+          "status": "loaded"
+        },
+        {
+          "family": "Open Sans",
+          "weight": "300",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "Open Sans",
+          "weight": "400",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "Open Sans",
+          "weight": "600",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "Open Sans",
+          "weight": "700",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "nectarbrands",
+          "weight": "400",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "noe-display",
+          "weight": "500",
+          "style": "normal",
+          "status": "loaded"
+        },
+        {
+          "family": "maison-neue-bold",
+          "weight": "700",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "maison-neue-light",
+          "weight": "300",
+          "style": "normal",
+          "status": "loaded"
+        },
+        {
+          "family": "maison-neue-book",
+          "weight": "400",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "FontAwesome",
+          "weight": "400",
+          "style": "normal",
+          "status": "unloaded"
+        }
+      ],
+      "fontLinks": [
+        "https://mattriz.com/wp-content/themes/salient/css/fonts/icomoon.woff?v=1.7"
+      ]
+    },
+    {
+      "url": "https://mattriz.com/project-type/ui-ux-design/",
+      "status": 200,
+      "finalUrl": "https://mattriz.com/project-type/ui-ux-design/",
+      "slug": "project-type_ui-ux-design",
+      "inSitemap": true,
+      "title": "UI/UX Design - Mattriz Studio",
+      "robots": "max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+      "description": "",
+      "canonical": "https://mattriz.com/project-type/ui-ux-design/",
+      "ogImage": "",
+      "ogTitle": "",
+      "lang": "en-US",
+      "isWordPress": true,
+      "bodyClass": "archive tax-project-type term-ui-ux-design term-40 wp-theme-salient material wpb-js-composer js-comp-ver-8.6.1 vc_responsive litespeed_lazyloaded",
+      "h1": [
+        "UI/UX Design"
+      ],
+      "fonts": [
+        {
+          "family": "noe-display",
+          "weight": "500",
+          "style": "normal",
+          "status": "loaded"
+        },
+        {
+          "family": "maison-neue-bold",
+          "weight": "700",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "maison-neue-light",
+          "weight": "300",
+          "style": "normal",
+          "status": "loaded"
+        },
+        {
+          "family": "maison-neue-book",
+          "weight": "normal",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "icomoon",
+          "weight": "400",
+          "style": "normal",
+          "status": "loaded"
+        },
+        {
+          "family": "Open Sans",
+          "weight": "300",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "Open Sans",
+          "weight": "400",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "Open Sans",
+          "weight": "600",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "Open Sans",
+          "weight": "700",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "nectarbrands",
+          "weight": "400",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "noe-display",
+          "weight": "500",
+          "style": "normal",
+          "status": "loaded"
+        },
+        {
+          "family": "maison-neue-bold",
+          "weight": "700",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "maison-neue-light",
+          "weight": "300",
+          "style": "normal",
+          "status": "loaded"
+        },
+        {
+          "family": "maison-neue-book",
+          "weight": "400",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "FontAwesome",
+          "weight": "400",
+          "style": "normal",
+          "status": "unloaded"
+        }
+      ],
+      "fontLinks": [
+        "https://mattriz.com/wp-content/themes/salient/css/fonts/icomoon.woff?v=1.7"
+      ]
+    },
+    {
+      "url": "https://mattriz.com/project-type/seo-optimization/",
+      "status": 200,
+      "finalUrl": "https://mattriz.com/project-type/seo-optimization/",
+      "slug": "project-type_seo-optimization",
+      "inSitemap": true,
+      "title": "SEO Optimization - Mattriz Studio",
+      "robots": "max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+      "description": "",
+      "canonical": "https://mattriz.com/project-type/seo-optimization/",
+      "ogImage": "",
+      "ogTitle": "",
+      "lang": "en-US",
+      "isWordPress": true,
+      "bodyClass": "archive tax-project-type term-seo-optimization term-70 wp-theme-salient material wpb-js-composer js-comp-ver-8.6.1 vc_responsive litespeed_lazyloaded",
+      "h1": [
+        "SEO Optimization"
+      ],
+      "fonts": [
+        {
+          "family": "noe-display",
+          "weight": "500",
+          "style": "normal",
+          "status": "loaded"
+        },
+        {
+          "family": "maison-neue-bold",
+          "weight": "700",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "maison-neue-light",
+          "weight": "300",
+          "style": "normal",
+          "status": "loaded"
+        },
+        {
+          "family": "maison-neue-book",
+          "weight": "normal",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "icomoon",
+          "weight": "400",
+          "style": "normal",
+          "status": "loaded"
+        },
+        {
+          "family": "Open Sans",
+          "weight": "300",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "Open Sans",
+          "weight": "400",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "Open Sans",
+          "weight": "600",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "Open Sans",
+          "weight": "700",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "nectarbrands",
+          "weight": "400",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "noe-display",
+          "weight": "500",
+          "style": "normal",
+          "status": "loaded"
+        },
+        {
+          "family": "maison-neue-bold",
+          "weight": "700",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "maison-neue-light",
+          "weight": "300",
+          "style": "normal",
+          "status": "loaded"
+        },
+        {
+          "family": "maison-neue-book",
+          "weight": "400",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "FontAwesome",
+          "weight": "400",
+          "style": "normal",
+          "status": "unloaded"
+        }
+      ],
+      "fontLinks": [
+        "https://mattriz.com/wp-content/themes/salient/css/fonts/icomoon.woff?v=1.7"
+      ]
+    },
+    {
+      "url": "https://mattriz.com/work/spot-on/case-study.html",
+      "status": 200,
+      "finalUrl": "https://mattriz.com/work/spot-on/case-study.html",
+      "slug": "work_spot-on_case-study",
+      "inSitemap": false,
+      "title": "Spot On Mobile Detailing — Case Study · Mattriz Studio",
+      "robots": "noindex, nofollow",
+      "description": "",
+      "canonical": "",
+      "ogImage": "https://mattriz.com/work/spot-on/img/spot-on-hero.png",
+      "ogTitle": "Spot On Mobile Detailing — Case Study · Mattriz Studio",
+      "lang": "en",
+      "isWordPress": false,
+      "bodyClass": "",
+      "h1": [
+        "One mobile detailer,\none system that runs itself."
+      ],
+      "fonts": [
+        {
+          "family": "Inter",
+          "weight": "300",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "Inter",
+          "weight": "300",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "Inter",
+          "weight": "300",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "Inter",
+          "weight": "300",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "Inter",
+          "weight": "300",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "Inter",
+          "weight": "300",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "Inter",
+          "weight": "300",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "Inter",
+          "weight": "400",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "Inter",
+          "weight": "400",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "Inter",
+          "weight": "400",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "Inter",
+          "weight": "400",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "Inter",
+          "weight": "400",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "Inter",
+          "weight": "400",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "Inter",
+          "weight": "400",
+          "style": "normal",
+          "status": "loaded"
+        },
+        {
+          "family": "Inter",
+          "weight": "500",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "Inter",
+          "weight": "500",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "Inter",
+          "weight": "500",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "Inter",
+          "weight": "500",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "Inter",
+          "weight": "500",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "Inter",
+          "weight": "500",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "Inter",
+          "weight": "500",
+          "style": "normal",
+          "status": "loaded"
+        },
+        {
+          "family": "Inter",
+          "weight": "600",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "Inter",
+          "weight": "600",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "Inter",
+          "weight": "600",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "Inter",
+          "weight": "600",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "Inter",
+          "weight": "600",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "Inter",
+          "weight": "600",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "Inter",
+          "weight": "600",
+          "style": "normal",
+          "status": "loaded"
+        },
+        {
+          "family": "Inter",
+          "weight": "700",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "Inter",
+          "weight": "700",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "Inter",
+          "weight": "700",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "Inter",
+          "weight": "700",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "Inter",
+          "weight": "700",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "Inter",
+          "weight": "700",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "Inter",
+          "weight": "700",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "Playfair Display",
+          "weight": "400",
+          "style": "italic",
+          "status": "unloaded"
+        },
+        {
+          "family": "Playfair Display",
+          "weight": "400",
+          "style": "italic",
+          "status": "unloaded"
+        },
+        {
+          "family": "Playfair Display",
+          "weight": "400",
+          "style": "italic",
+          "status": "unloaded"
+        },
+        {
+          "family": "Playfair Display",
+          "weight": "400",
+          "style": "italic",
+          "status": "loaded"
+        },
+        {
+          "family": "Playfair Display",
+          "weight": "400",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "Playfair Display",
+          "weight": "400",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "Playfair Display",
+          "weight": "400",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "Playfair Display",
+          "weight": "400",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "Playfair Display",
+          "weight": "500",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "Playfair Display",
+          "weight": "500",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "Playfair Display",
+          "weight": "500",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "Playfair Display",
+          "weight": "500",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "Playfair Display",
+          "weight": "600",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "Playfair Display",
+          "weight": "600",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "Playfair Display",
+          "weight": "600",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "Playfair Display",
+          "weight": "600",
+          "style": "normal",
+          "status": "loaded"
+        },
+        {
+          "family": "Playfair Display",
+          "weight": "700",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "Playfair Display",
+          "weight": "700",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "Playfair Display",
+          "weight": "700",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "Playfair Display",
+          "weight": "700",
+          "style": "normal",
+          "status": "loaded"
+        },
+        {
+          "family": "Playfair Display",
+          "weight": "800",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "Playfair Display",
+          "weight": "800",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "Playfair Display",
+          "weight": "800",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "Playfair Display",
+          "weight": "800",
+          "style": "normal",
+          "status": "unloaded"
+        }
+      ],
+      "fontLinks": [
+        "https://fonts.googleapis.com/",
+        "https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap"
+      ]
+    },
+    {
+      "url": "https://mattriz.com/trabajos/",
+      "status": 404,
+      "finalUrl": "https://mattriz.com/trabajos/",
+      "slug": "trabajos",
+      "inSitemap": false,
+      "title": "Page not found – Mattriz Studio",
+      "robots": "noindex",
+      "description": "",
+      "canonical": "",
+      "ogImage": "",
+      "ogTitle": "",
+      "lang": "en-US",
+      "isWordPress": true,
+      "bodyClass": "error404 wp-theme-salient material wpb-js-composer js-comp-ver-8.6.1 vc_responsive",
+      "h1": [
+        "404"
+      ],
+      "fonts": [
+        {
+          "family": "noe-display",
+          "weight": "500",
+          "style": "normal",
+          "status": "loaded"
+        },
+        {
+          "family": "maison-neue-bold",
+          "weight": "700",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "maison-neue-light",
+          "weight": "300",
+          "style": "normal",
+          "status": "loaded"
+        },
+        {
+          "family": "maison-neue-book",
+          "weight": "normal",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "icomoon",
+          "weight": "400",
+          "style": "normal",
+          "status": "loaded"
+        },
+        {
+          "family": "Open Sans",
+          "weight": "300",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "Open Sans",
+          "weight": "400",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "Open Sans",
+          "weight": "600",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "Open Sans",
+          "weight": "700",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "nectarbrands",
+          "weight": "400",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "noe-display",
+          "weight": "500",
+          "style": "normal",
+          "status": "loaded"
+        },
+        {
+          "family": "maison-neue-bold",
+          "weight": "700",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "maison-neue-light",
+          "weight": "300",
+          "style": "normal",
+          "status": "loaded"
+        },
+        {
+          "family": "maison-neue-book",
+          "weight": "400",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "FontAwesome",
+          "weight": "400",
+          "style": "normal",
+          "status": "unloaded"
+        }
+      ],
+      "fontLinks": [
+        "https://mattriz.com/wp-content/themes/salient/css/fonts/icomoon.woff?v=1.7"
+      ]
+    },
+    {
+      "url": "https://mattriz.com/project/gravity-font/",
+      "status": 404,
+      "finalUrl": "https://mattriz.com/project/gravity-font/",
+      "slug": "project_gravity-font",
+      "inSitemap": false,
+      "title": "Page not found – Mattriz Studio",
+      "robots": "noindex",
+      "description": "",
+      "canonical": "",
+      "ogImage": "",
+      "ogTitle": "",
+      "lang": "en-US",
+      "isWordPress": true,
+      "bodyClass": "error404 wp-theme-salient material wpb-js-composer js-comp-ver-8.6.1 vc_responsive",
+      "h1": [
+        "404"
+      ],
+      "fonts": [
+        {
+          "family": "noe-display",
+          "weight": "500",
+          "style": "normal",
+          "status": "loaded"
+        },
+        {
+          "family": "maison-neue-bold",
+          "weight": "700",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "maison-neue-light",
+          "weight": "300",
+          "style": "normal",
+          "status": "loaded"
+        },
+        {
+          "family": "maison-neue-book",
+          "weight": "normal",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "icomoon",
+          "weight": "400",
+          "style": "normal",
+          "status": "loaded"
+        },
+        {
+          "family": "Open Sans",
+          "weight": "300",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "Open Sans",
+          "weight": "400",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "Open Sans",
+          "weight": "600",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "Open Sans",
+          "weight": "700",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "nectarbrands",
+          "weight": "400",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "noe-display",
+          "weight": "500",
+          "style": "normal",
+          "status": "loaded"
+        },
+        {
+          "family": "maison-neue-bold",
+          "weight": "700",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "maison-neue-light",
+          "weight": "300",
+          "style": "normal",
+          "status": "loaded"
+        },
+        {
+          "family": "maison-neue-book",
+          "weight": "400",
+          "style": "normal",
+          "status": "unloaded"
+        },
+        {
+          "family": "FontAwesome",
+          "weight": "400",
+          "style": "normal",
+          "status": "unloaded"
+        }
+      ],
+      "fontLinks": [
+        "https://mattriz.com/wp-content/themes/salient/css/fonts/icomoon.woff?v=1.7"
+      ]
+    }
+  ],
+  "css": {
+    "https://mattriz.com/wp-content/litespeed/css/0d8aa24ab868a17d2edd072ff660c48c.css?ver=13271": {
+      "file": "mattriz_com_0d8aa24ab868a17d2edd072ff660c48c.css",
+      "pages": [
+        "home",
+        "contact",
+        "about",
+        "finalizar-compra",
+        "carrito",
+        "tienda",
+        "project_civilus",
+        "project_spot-on-mobile-wash-detailing",
+        "project_the-grid",
+        "project_luciana-cabanas",
+        "project_aglvanstours",
+        "project_let-it-go",
+        "project_posada-carcamo-abogados",
+        "project-type_brand-identity",
+        "project-type_web-development",
+        "project-type_ui-ux-design",
+        "project-type_seo-optimization",
+        "trabajos",
+        "project_gravity-font"
+      ],
+      "bytes": 1812
+    },
+    "https://mattriz.com/wp-content/litespeed/css/ba4082e412439fe0ef377f9b2ae18d09.css?ver=f9505": {
+      "file": "mattriz_com_ba4082e412439fe0ef377f9b2ae18d09.css",
+      "pages": [
+        "home",
+        "contact",
+        "about",
+        "finalizar-compra",
+        "carrito",
+        "tienda",
+        "project_civilus",
+        "project_spot-on-mobile-wash-detailing",
+        "project_the-grid",
+        "project_luciana-cabanas",
+        "project_aglvanstours",
+        "project_let-it-go",
+        "project_posada-carcamo-abogados",
+        "project-type_brand-identity",
+        "project-type_web-development",
+        "project-type_ui-ux-design",
+        "project-type_seo-optimization",
+        "trabajos",
+        "project_gravity-font"
+      ],
+      "bytes": 21946
+    },
+    "https://mattriz.com/wp-content/litespeed/css/050995ebe4336a0c4b7b208939288ef9.css?ver=bd52f": {
+      "file": "mattriz_com_050995ebe4336a0c4b7b208939288ef9.css",
+      "pages": [
+        "home",
+        "project_civilus",
+        "project_spot-on-mobile-wash-detailing",
+        "project_the-grid",
+        "project-type_brand-identity",
+        "project-type_web-development",
+        "project-type_ui-ux-design",
+        "project-type_seo-optimization"
+      ],
+      "bytes": 49261
+    },
+    "https://mattriz.com/wp-content/litespeed/css/251050355d382e79553ff79ccacf1326.css?ver=19767": {
+      "file": "mattriz_com_251050355d382e79553ff79ccacf1326.css",
+      "pages": [
+        "home",
+        "contact",
+        "about",
+        "finalizar-compra",
+        "carrito",
+        "tienda",
+        "project_civilus",
+        "project_spot-on-mobile-wash-detailing",
+        "project_the-grid",
+        "project_luciana-cabanas",
+        "project_aglvanstours",
+        "project_let-it-go",
+        "project_posada-carcamo-abogados",
+        "project-type_brand-identity",
+        "project-type_web-development",
+        "project-type_ui-ux-design",
+        "project-type_seo-optimization",
+        "trabajos",
+        "project_gravity-font"
+      ],
+      "bytes": 1642
+    },
+    "https://mattriz.com/wp-content/litespeed/css/105e3d1a5f03af4b07f9a2a285980969.css?ver=38fe4": {
+      "file": "mattriz_com_105e3d1a5f03af4b07f9a2a285980969.css",
+      "pages": [
+        "home"
+      ],
+      "bytes": 3958
+    },
+    "https://mattriz.com/wp-content/litespeed/css/640ed14e1b7b6d3078f51f178394fe77.css?ver=a0734": {
+      "file": "mattriz_com_640ed14e1b7b6d3078f51f178394fe77.css",
+      "pages": [
+        "home",
+        "contact",
+        "about",
+        "finalizar-compra",
+        "carrito",
+        "tienda",
+        "project_civilus",
+        "project_spot-on-mobile-wash-detailing",
+        "project_the-grid",
+        "project_luciana-cabanas",
+        "project_aglvanstours",
+        "project_let-it-go",
+        "project_posada-carcamo-abogados",
+        "project-type_brand-identity",
+        "project-type_web-development",
+        "project-type_ui-ux-design",
+        "project-type_seo-optimization",
+        "trabajos",
+        "project_gravity-font"
+      ],
+      "bytes": 164474
+    },
+    "https://mattriz.com/wp-content/litespeed/css/c9724da4e3f6f17a99895b176f40f293.css?ver=d3816": {
+      "file": "mattriz_com_c9724da4e3f6f17a99895b176f40f293.css",
+      "pages": [
+        "home",
+        "project_civilus",
+        "project_spot-on-mobile-wash-detailing",
+        "project_the-grid",
+        "project-type_brand-identity",
+        "project-type_web-development",
+        "project-type_ui-ux-design",
+        "project-type_seo-optimization",
+        "trabajos",
+        "project_gravity-font"
+      ],
+      "bytes": 3881
+    },
+    "https://mattriz.com/wp-content/litespeed/css/2a7395cc05821c4b3f7dc050481a2367.css?ver=d8b73": {
+      "file": "mattriz_com_2a7395cc05821c4b3f7dc050481a2367.css",
+      "pages": [
+        "home"
+      ],
+      "bytes": 6289
+    },
+    "https://mattriz.com/wp-content/litespeed/css/18c465e67a4194cc75464545b5dae5fe.css?ver=24565": {
+      "file": "mattriz_com_18c465e67a4194cc75464545b5dae5fe.css",
+      "pages": [
+        "home"
+      ],
+      "bytes": 21634
+    },
+    "https://mattriz.com/wp-content/litespeed/css/5260f2a9aa31bc8a11679e2ba1de7616.css?ver=186aa": {
+      "file": "mattriz_com_5260f2a9aa31bc8a11679e2ba1de7616.css",
+      "pages": [
+        "home",
+        "contact",
+        "about",
+        "finalizar-compra",
+        "carrito",
+        "tienda",
+        "project_civilus",
+        "project_spot-on-mobile-wash-detailing",
+        "project_the-grid",
+        "project_luciana-cabanas",
+        "project_aglvanstours",
+        "project_let-it-go",
+        "project_posada-carcamo-abogados",
+        "project-type_brand-identity",
+        "project-type_web-development",
+        "project-type_ui-ux-design",
+        "project-type_seo-optimization",
+        "trabajos",
+        "project_gravity-font"
+      ],
+      "bytes": 3489
+    },
+    "https://mattriz.com/wp-content/litespeed/css/7b135242a5e9652c9d73690413ae7595.css?ver=501ab": {
+      "file": "mattriz_com_7b135242a5e9652c9d73690413ae7595.css",
+      "pages": [
+        "home",
+        "contact",
+        "about",
+        "finalizar-compra",
+        "carrito",
+        "tienda",
+        "project_civilus",
+        "project_spot-on-mobile-wash-detailing",
+        "project_the-grid",
+        "project_luciana-cabanas",
+        "project_aglvanstours",
+        "project_let-it-go",
+        "project_posada-carcamo-abogados",
+        "project-type_brand-identity",
+        "project-type_web-development",
+        "project-type_ui-ux-design",
+        "project-type_seo-optimization",
+        "trabajos",
+        "project_gravity-font"
+      ],
+      "bytes": 2506
+    },
+    "https://mattriz.com/wp-content/litespeed/css/4765f276c7cbe82fd0944e299bb8226b.css?ver=71dd9": {
+      "file": "mattriz_com_4765f276c7cbe82fd0944e299bb8226b.css",
+      "pages": [
+        "home",
+        "contact",
+        "about",
+        "finalizar-compra",
+        "carrito",
+        "tienda",
+        "project_civilus",
+        "project_spot-on-mobile-wash-detailing",
+        "project_the-grid",
+        "project_luciana-cabanas",
+        "project_aglvanstours",
+        "project_let-it-go",
+        "project_posada-carcamo-abogados",
+        "project-type_brand-identity",
+        "project-type_web-development",
+        "project-type_ui-ux-design",
+        "project-type_seo-optimization",
+        "trabajos",
+        "project_gravity-font"
+      ],
+      "bytes": 36249
+    },
+    "https://mattriz.com/wp-content/litespeed/css/a8abd2689c4410594fc434ebb7eab723.css?ver=d03a9": {
+      "file": "mattriz_com_a8abd2689c4410594fc434ebb7eab723.css",
+      "pages": [
+        "home"
+      ],
+      "bytes": 42401
+    },
+    "https://mattriz.com/wp-content/litespeed/css/c66c00628dad74a38a029ce053afe997.css?ver=26928": {
+      "file": "mattriz_com_c66c00628dad74a38a029ce053afe997.css",
+      "pages": [
+        "home",
+        "contact",
+        "about",
+        "finalizar-compra",
+        "carrito",
+        "tienda",
+        "project_civilus",
+        "project_spot-on-mobile-wash-detailing",
+        "project_the-grid",
+        "project_luciana-cabanas",
+        "project_aglvanstours",
+        "project_let-it-go",
+        "project_posada-carcamo-abogados",
+        "project-type_brand-identity",
+        "project-type_web-development",
+        "project-type_ui-ux-design",
+        "project-type_seo-optimization",
+        "trabajos",
+        "project_gravity-font"
+      ],
+      "bytes": 14991
+    },
+    "https://mattriz.com/wp-content/litespeed/css/ebb3de6adcb96436995b281ae5110e21.css?ver=cffda": {
+      "file": "mattriz_com_ebb3de6adcb96436995b281ae5110e21.css",
+      "pages": [
+        "home",
+        "contact",
+        "about",
+        "finalizar-compra",
+        "carrito",
+        "tienda",
+        "project_civilus",
+        "project_spot-on-mobile-wash-detailing",
+        "project_the-grid",
+        "project_luciana-cabanas",
+        "project_aglvanstours",
+        "project_let-it-go",
+        "project_posada-carcamo-abogados",
+        "project-type_brand-identity",
+        "project-type_web-development",
+        "project-type_ui-ux-design",
+        "project-type_seo-optimization",
+        "trabajos",
+        "project_gravity-font"
+      ],
+      "bytes": 55934
+    },
+    "https://mattriz.com/wp-content/litespeed/css/08f5401a5c8d25ca24a8d46f2742aab8.css?ver=5667c": {
+      "file": "mattriz_com_08f5401a5c8d25ca24a8d46f2742aab8.css",
+      "pages": [
+        "home",
+        "contact",
+        "about",
+        "finalizar-compra",
+        "carrito",
+        "tienda",
+        "project_civilus",
+        "project_spot-on-mobile-wash-detailing",
+        "project_the-grid",
+        "project_luciana-cabanas",
+        "project_aglvanstours",
+        "project_let-it-go",
+        "project_posada-carcamo-abogados",
+        "project-type_brand-identity",
+        "project-type_web-development",
+        "project-type_ui-ux-design",
+        "project-type_seo-optimization",
+        "trabajos",
+        "project_gravity-font"
+      ],
+      "bytes": 7314
+    },
+    "https://mattriz.com/wp-content/litespeed/css/1c6b7746d1eaba2c2e972aa50340c290.css?ver=9380b": {
+      "file": "mattriz_com_1c6b7746d1eaba2c2e972aa50340c290.css",
+      "pages": [
+        "home",
+        "contact",
+        "about",
+        "finalizar-compra",
+        "carrito",
+        "tienda",
+        "project_civilus",
+        "project_spot-on-mobile-wash-detailing",
+        "project_the-grid",
+        "project_luciana-cabanas",
+        "project_aglvanstours",
+        "project_let-it-go",
+        "project_posada-carcamo-abogados",
+        "project-type_brand-identity",
+        "project-type_web-development",
+        "project-type_ui-ux-design",
+        "project-type_seo-optimization",
+        "trabajos",
+        "project_gravity-font"
+      ],
+      "bytes": 23546
+    },
+    "https://mattriz.com/wp-content/litespeed/css/94701840aea4934a7f5ac3f3a0b82687.css?ver=0ff5a": {
+      "file": "mattriz_com_94701840aea4934a7f5ac3f3a0b82687.css",
+      "pages": [
+        "home",
+        "contact",
+        "about",
+        "finalizar-compra",
+        "carrito",
+        "tienda",
+        "project_civilus",
+        "project_spot-on-mobile-wash-detailing",
+        "project_the-grid",
+        "project_luciana-cabanas",
+        "project_aglvanstours",
+        "project_let-it-go",
+        "project_posada-carcamo-abogados",
+        "project-type_brand-identity",
+        "project-type_web-development",
+        "project-type_ui-ux-design",
+        "project-type_seo-optimization",
+        "trabajos",
+        "project_gravity-font"
+      ],
+      "bytes": 150722
+    },
+    "https://mattriz.com/wp-content/litespeed/css/5330742f18c6a6b920e700e979b7e0b5.css?ver=9868d": {
+      "file": "mattriz_com_5330742f18c6a6b920e700e979b7e0b5.css",
+      "pages": [
+        "home",
+        "contact",
+        "about",
+        "finalizar-compra",
+        "carrito",
+        "tienda",
+        "project_civilus",
+        "project_spot-on-mobile-wash-detailing",
+        "project_the-grid",
+        "project_luciana-cabanas",
+        "project_aglvanstours",
+        "project_let-it-go",
+        "project_posada-carcamo-abogados",
+        "project-type_brand-identity",
+        "project-type_web-development",
+        "project-type_ui-ux-design",
+        "project-type_seo-optimization",
+        "trabajos",
+        "project_gravity-font"
+      ],
+      "bytes": 32700
+    },
+    "https://mattriz.com/wp-content/litespeed/css/34867b9dba22ada15cd276d79283b079.css?ver=c6a8c": {
+      "file": "mattriz_com_34867b9dba22ada15cd276d79283b079.css",
+      "pages": [
+        "home",
+        "contact",
+        "about",
+        "finalizar-compra",
+        "carrito",
+        "tienda",
+        "project_civilus",
+        "project_spot-on-mobile-wash-detailing",
+        "project_the-grid",
+        "project_luciana-cabanas",
+        "project_aglvanstours",
+        "project_let-it-go",
+        "project_posada-carcamo-abogados",
+        "project-type_brand-identity",
+        "project-type_web-development",
+        "project-type_ui-ux-design",
+        "project-type_seo-optimization",
+        "trabajos",
+        "project_gravity-font"
+      ],
+      "bytes": 34877
+    },
+    "https://mattriz.com/wp-content/litespeed/css/8ea795582c1f2f75bc1f0a4f971f8259.css?ver=3f3bb": {
+      "file": "mattriz_com_8ea795582c1f2f75bc1f0a4f971f8259.css",
+      "pages": [
+        "home",
+        "contact",
+        "about",
+        "finalizar-compra",
+        "carrito",
+        "tienda",
+        "project_civilus",
+        "project_spot-on-mobile-wash-detailing",
+        "project_the-grid",
+        "project_luciana-cabanas",
+        "project_aglvanstours",
+        "project_let-it-go",
+        "project_posada-carcamo-abogados",
+        "project-type_brand-identity",
+        "project-type_web-development",
+        "project-type_ui-ux-design",
+        "project-type_seo-optimization",
+        "trabajos",
+        "project_gravity-font"
+      ],
+      "bytes": 220
+    },
+    "https://mattriz.com/wp-content/litespeed/css/2a7992edf170156f3fdf770e8f89c467.css?ver=9b92f": {
+      "file": "mattriz_com_2a7992edf170156f3fdf770e8f89c467.css",
+      "pages": [
+        "home",
+        "contact",
+        "about",
+        "finalizar-compra",
+        "carrito",
+        "tienda",
+        "project_civilus",
+        "project_spot-on-mobile-wash-detailing",
+        "project_the-grid",
+        "project_luciana-cabanas",
+        "project_aglvanstours",
+        "project_let-it-go",
+        "project_posada-carcamo-abogados",
+        "project-type_brand-identity",
+        "project-type_web-development",
+        "project-type_ui-ux-design",
+        "project-type_seo-optimization",
+        "trabajos",
+        "project_gravity-font"
+      ],
+      "bytes": 13876
+    },
+    "https://mattriz.com/wp-content/litespeed/css/4bee4304d2c0e90036cf965816deaa6d.css?ver=a735f": {
+      "file": "mattriz_com_4bee4304d2c0e90036cf965816deaa6d.css",
+      "pages": [
+        "home",
+        "contact",
+        "about",
+        "finalizar-compra",
+        "carrito",
+        "tienda",
+        "project_civilus",
+        "project_spot-on-mobile-wash-detailing",
+        "project_the-grid",
+        "project_luciana-cabanas",
+        "project_aglvanstours",
+        "project_let-it-go",
+        "project_posada-carcamo-abogados",
+        "project-type_brand-identity",
+        "project-type_web-development",
+        "project-type_ui-ux-design",
+        "project-type_seo-optimization",
+        "trabajos",
+        "project_gravity-font"
+      ],
+      "bytes": 7448
+    },
+    "https://mattriz.com/wp-content/litespeed/css/d31411367c6ad9e7167971cc5bb2757e.css?ver=b3417": {
+      "file": "mattriz_com_d31411367c6ad9e7167971cc5bb2757e.css",
+      "pages": [
+        "home",
+        "contact",
+        "about",
+        "finalizar-compra",
+        "carrito",
+        "tienda",
+        "project_civilus",
+        "project_spot-on-mobile-wash-detailing",
+        "project_the-grid",
+        "project_luciana-cabanas",
+        "project_aglvanstours",
+        "project_let-it-go",
+        "project_posada-carcamo-abogados",
+        "project-type_brand-identity",
+        "project-type_web-development",
+        "project-type_ui-ux-design",
+        "project-type_seo-optimization",
+        "trabajos",
+        "project_gravity-font"
+      ],
+      "bytes": 26409
+    },
+    "https://mattriz.com/wp-content/litespeed/css/b852c69418e4bed1584ee92c3a423b5c.css?ver=57df8": {
+      "file": "mattriz_com_b852c69418e4bed1584ee92c3a423b5c.css",
+      "pages": [
+        "home",
+        "contact",
+        "about",
+        "finalizar-compra",
+        "carrito",
+        "tienda",
+        "project_civilus",
+        "project_spot-on-mobile-wash-detailing",
+        "project_the-grid",
+        "project_luciana-cabanas",
+        "project_aglvanstours",
+        "project_let-it-go",
+        "project_posada-carcamo-abogados",
+        "project-type_brand-identity",
+        "project-type_web-development",
+        "project-type_ui-ux-design",
+        "project-type_seo-optimization",
+        "trabajos",
+        "project_gravity-font"
+      ],
+      "bytes": 12659
+    },
+    "https://mattriz.com/wp-content/litespeed/css/f590e7226d86e320fd4837baa6cf5ca5.css?ver=4d189": {
+      "file": "mattriz_com_f590e7226d86e320fd4837baa6cf5ca5.css",
+      "pages": [
+        "contact"
+      ],
+      "bytes": 120878
+    },
+    "https://mattriz.com/wp-content/litespeed/css/65c66b0e0f88fd16d6be79cb7db9b44a.css?ver=5d6f7": {
+      "file": "mattriz_com_65c66b0e0f88fd16d6be79cb7db9b44a.css",
+      "pages": [
+        "project_civilus",
+        "project_spot-on-mobile-wash-detailing",
+        "project_the-grid",
+        "project_luciana-cabanas",
+        "project_aglvanstours",
+        "project_let-it-go",
+        "project_posada-carcamo-abogados",
+        "project-type_brand-identity",
+        "project-type_web-development",
+        "project-type_ui-ux-design",
+        "project-type_seo-optimization"
+      ],
+      "bytes": 113548
+    },
+    "https://mattriz.com/wp-content/litespeed/css/70f61be1564c4407f80d7fd994b5bb1c.css?ver=88360": {
+      "file": "mattriz_com_70f61be1564c4407f80d7fd994b5bb1c.css",
+      "pages": [
+        "project_civilus",
+        "project_spot-on-mobile-wash-detailing",
+        "project_the-grid",
+        "project_luciana-cabanas",
+        "project_aglvanstours",
+        "project_let-it-go",
+        "project_posada-carcamo-abogados",
+        "project-type_brand-identity",
+        "project-type_web-development",
+        "project-type_ui-ux-design",
+        "project-type_seo-optimization"
+      ],
+      "bytes": 16755
+    },
+    "https://mattriz.com/wp-content/litespeed/css/83fb75700f0cc1abe3f506aab06245da.css?ver=741e0": {
+      "file": "mattriz_com_83fb75700f0cc1abe3f506aab06245da.css",
+      "pages": [
+        "project_civilus",
+        "project_spot-on-mobile-wash-detailing",
+        "project_the-grid",
+        "project_luciana-cabanas",
+        "project_aglvanstours",
+        "project_let-it-go",
+        "project_posada-carcamo-abogados"
+      ],
+      "bytes": 42255
+    },
+    "https://mattriz.com/wp-content/litespeed/css/0e425d630ce9a16b49048b837883b1b2.css?ver=b27fd": {
+      "file": "mattriz_com_0e425d630ce9a16b49048b837883b1b2.css",
+      "pages": [
+        "project_civilus",
+        "project_spot-on-mobile-wash-detailing",
+        "project_the-grid",
+        "project_luciana-cabanas",
+        "project_aglvanstours",
+        "project_let-it-go",
+        "project_posada-carcamo-abogados",
+        "project-type_brand-identity",
+        "project-type_web-development",
+        "project-type_ui-ux-design",
+        "project-type_seo-optimization"
+      ],
+      "bytes": 2157
+    },
+    "https://mattriz.com/wp-content/litespeed/css/979cb5de9447c2718127d904c8004425.css?ver=4f00a": {
+      "file": "mattriz_com_979cb5de9447c2718127d904c8004425.css",
+      "pages": [
+        "project_civilus",
+        "project_spot-on-mobile-wash-detailing",
+        "project_the-grid",
+        "project_luciana-cabanas",
+        "project_aglvanstours",
+        "project_let-it-go",
+        "project_posada-carcamo-abogados"
+      ],
+      "bytes": 37025
+    },
+    "https://mattriz.com/wp-content/litespeed/css/62f0c725ab93b1704d73c86cbb6b8ff9.css?ver=d79c4": {
+      "file": "mattriz_com_62f0c725ab93b1704d73c86cbb6b8ff9.css",
+      "pages": [
+        "project-type_brand-identity",
+        "project-type_web-development",
+        "project-type_ui-ux-design",
+        "project-type_seo-optimization"
+      ],
+      "bytes": 9825
+    },
+    "https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap": {
+      "file": "fonts_googleapis_com_css2",
+      "pages": [
+        "work_spot-on_case-study"
+      ],
+      "bytes": 2630
+    }
+  },
+  "fontsByPage": {
+    "home": {
+      "loaded": [
+        {
+          "family": "noe-display",
+          "weight": "500",
+          "style": "normal",
+          "status": "loaded"
+        },
+        {
+          "family": "maison-neue-light",
+          "weight": "300",
+          "style": "normal",
+          "status": "loaded"
+        },
+        {
+          "family": "maison-neue-book",
+          "weight": "normal",
+          "style": "normal",
+          "status": "loaded"
+        },
+        {
+          "family": "icomoon",
+          "weight": "400",
+          "style": "normal",
+          "status": "loaded"
+        },
+        {
+          "family": "noe-display",
+          "weight": "500",
+          "style": "normal",
+          "status": "loaded"
+        },
+        {
+          "family": "maison-neue-light",
+          "weight": "300",
+          "style": "normal",
+          "status": "loaded"
+        },
+        {
+          "family": "maison-neue-book",
+          "weight": "400",
+          "style": "normal",
+          "status": "loaded"
+        }
+      ],
+      "links": [
+        "https://mattriz.com/wp-content/themes/salient/css/fonts/icomoon.woff?v=1.7"
+      ]
+    },
+    "contact": {
+      "loaded": [
+        {
+          "family": "noe-display",
+          "weight": "500",
+          "style": "normal",
+          "status": "loaded"
+        },
+        {
+          "family": "maison-neue-light",
+          "weight": "300",
+          "style": "normal",
+          "status": "loaded"
+        },
+        {
+          "family": "icomoon",
+          "weight": "400",
+          "style": "normal",
+          "status": "loaded"
+        },
+        {
+          "family": "noe-display",
+          "weight": "500",
+          "style": "normal",
+          "status": "loaded"
+        },
+        {
+          "family": "maison-neue-light",
+          "weight": "300",
+          "style": "normal",
+          "status": "loaded"
+        }
+      ],
+      "links": [
+        "https://mattriz.com/wp-content/themes/salient/css/fonts/icomoon.woff?v=1.7"
+      ]
+    },
+    "work": {
+      "loaded": [],
+      "links": []
+    },
+    "about": {
+      "loaded": [
+        {
+          "family": "maison-neue-light",
+          "weight": "300",
+          "style": "normal",
+          "status": "loaded"
+        },
+        {
+          "family": "icomoon",
+          "weight": "400",
+          "style": "normal",
+          "status": "loaded"
+        },
+        {
+          "family": "maison-neue-light",
+          "weight": "300",
+          "style": "normal",
+          "status": "loaded"
+        },
+        {
+          "family": "FontAwesome",
+          "weight": "400",
+          "style": "normal",
+          "status": "loaded"
+        }
+      ],
+      "links": [
+        "https://mattriz.com/wp-content/themes/salient/css/fonts/icomoon.woff?v=1.7"
+      ]
+    },
+    "finalizar-compra": {
+      "loaded": [
+        {
+          "family": "maison-neue-light",
+          "weight": "300",
+          "style": "normal",
+          "status": "loaded"
+        },
+        {
+          "family": "icomoon",
+          "weight": "400",
+          "style": "normal",
+          "status": "loaded"
+        },
+        {
+          "family": "maison-neue-light",
+          "weight": "300",
+          "style": "normal",
+          "status": "loaded"
+        }
+      ],
+      "links": [
+        "https://mattriz.com/wp-content/themes/salient/css/fonts/icomoon.woff?v=1.7"
+      ]
+    },
+    "carrito": {
+      "loaded": [
+        {
+          "family": "maison-neue-light",
+          "weight": "300",
+          "style": "normal",
+          "status": "loaded"
+        },
+        {
+          "family": "icomoon",
+          "weight": "400",
+          "style": "normal",
+          "status": "loaded"
+        },
+        {
+          "family": "maison-neue-light",
+          "weight": "300",
+          "style": "normal",
+          "status": "loaded"
+        }
+      ],
+      "links": [
+        "https://mattriz.com/wp-content/themes/salient/css/fonts/icomoon.woff?v=1.7"
+      ]
+    },
+    "tienda": {
+      "loaded": [
+        {
+          "family": "maison-neue-light",
+          "weight": "300",
+          "style": "normal",
+          "status": "loaded"
+        },
+        {
+          "family": "icomoon",
+          "weight": "400",
+          "style": "normal",
+          "status": "loaded"
+        },
+        {
+          "family": "maison-neue-light",
+          "weight": "300",
+          "style": "normal",
+          "status": "loaded"
+        }
+      ],
+      "links": [
+        "https://mattriz.com/wp-content/themes/salient/css/fonts/icomoon.woff?v=1.7"
+      ]
+    },
+    "project_civilus": {
+      "loaded": [
+        {
+          "family": "maison-neue-light",
+          "weight": "300",
+          "style": "normal",
+          "status": "loaded"
+        },
+        {
+          "family": "icomoon",
+          "weight": "400",
+          "style": "normal",
+          "status": "loaded"
+        },
+        {
+          "family": "maison-neue-light",
+          "weight": "300",
+          "style": "normal",
+          "status": "loaded"
+        }
+      ],
+      "links": [
+        "https://mattriz.com/wp-content/themes/salient/css/fonts/icomoon.woff?v=1.7"
+      ]
+    },
+    "project_spot-on-mobile-wash-detailing": {
+      "loaded": [
+        {
+          "family": "maison-neue-light",
+          "weight": "300",
+          "style": "normal",
+          "status": "loaded"
+        },
+        {
+          "family": "icomoon",
+          "weight": "400",
+          "style": "normal",
+          "status": "loaded"
+        },
+        {
+          "family": "maison-neue-light",
+          "weight": "300",
+          "style": "normal",
+          "status": "loaded"
+        }
+      ],
+      "links": [
+        "https://mattriz.com/wp-content/themes/salient/css/fonts/icomoon.woff?v=1.7"
+      ]
+    },
+    "project_the-grid": {
+      "loaded": [
+        {
+          "family": "maison-neue-light",
+          "weight": "300",
+          "style": "normal",
+          "status": "loaded"
+        },
+        {
+          "family": "icomoon",
+          "weight": "400",
+          "style": "normal",
+          "status": "loaded"
+        },
+        {
+          "family": "maison-neue-light",
+          "weight": "300",
+          "style": "normal",
+          "status": "loaded"
+        }
+      ],
+      "links": [
+        "https://mattriz.com/wp-content/themes/salient/css/fonts/icomoon.woff?v=1.7"
+      ]
+    },
+    "project_luciana-cabanas": {
+      "loaded": [
+        {
+          "family": "maison-neue-bold",
+          "weight": "700",
+          "style": "normal",
+          "status": "loaded"
+        },
+        {
+          "family": "maison-neue-light",
+          "weight": "300",
+          "style": "normal",
+          "status": "loaded"
+        },
+        {
+          "family": "icomoon",
+          "weight": "400",
+          "style": "normal",
+          "status": "loaded"
+        },
+        {
+          "family": "maison-neue-bold",
+          "weight": "700",
+          "style": "normal",
+          "status": "loaded"
+        },
+        {
+          "family": "maison-neue-light",
+          "weight": "300",
+          "style": "normal",
+          "status": "loaded"
+        }
+      ],
+      "links": [
+        "https://mattriz.com/wp-content/themes/salient/css/fonts/icomoon.woff?v=1.7"
+      ]
+    },
+    "project_aglvanstours": {
+      "loaded": [
+        {
+          "family": "maison-neue-bold",
+          "weight": "700",
+          "style": "normal",
+          "status": "loaded"
+        },
+        {
+          "family": "maison-neue-light",
+          "weight": "300",
+          "style": "normal",
+          "status": "loaded"
+        },
+        {
+          "family": "icomoon",
+          "weight": "400",
+          "style": "normal",
+          "status": "loaded"
+        },
+        {
+          "family": "maison-neue-bold",
+          "weight": "700",
+          "style": "normal",
+          "status": "loaded"
+        },
+        {
+          "family": "maison-neue-light",
+          "weight": "300",
+          "style": "normal",
+          "status": "loaded"
+        }
+      ],
+      "links": [
+        "https://mattriz.com/wp-content/themes/salient/css/fonts/icomoon.woff?v=1.7"
+      ]
+    },
+    "project_let-it-go": {
+      "loaded": [
+        {
+          "family": "maison-neue-bold",
+          "weight": "700",
+          "style": "normal",
+          "status": "loaded"
+        },
+        {
+          "family": "maison-neue-light",
+          "weight": "300",
+          "style": "normal",
+          "status": "loaded"
+        },
+        {
+          "family": "icomoon",
+          "weight": "400",
+          "style": "normal",
+          "status": "loaded"
+        },
+        {
+          "family": "maison-neue-bold",
+          "weight": "700",
+          "style": "normal",
+          "status": "loaded"
+        },
+        {
+          "family": "maison-neue-light",
+          "weight": "300",
+          "style": "normal",
+          "status": "loaded"
+        }
+      ],
+      "links": [
+        "https://mattriz.com/wp-content/themes/salient/css/fonts/icomoon.woff?v=1.7"
+      ]
+    },
+    "project_posada-carcamo-abogados": {
+      "loaded": [
+        {
+          "family": "maison-neue-bold",
+          "weight": "700",
+          "style": "normal",
+          "status": "loaded"
+        },
+        {
+          "family": "maison-neue-light",
+          "weight": "300",
+          "style": "normal",
+          "status": "loaded"
+        },
+        {
+          "family": "icomoon",
+          "weight": "400",
+          "style": "normal",
+          "status": "loaded"
+        },
+        {
+          "family": "maison-neue-bold",
+          "weight": "700",
+          "style": "normal",
+          "status": "loaded"
+        },
+        {
+          "family": "maison-neue-light",
+          "weight": "300",
+          "style": "normal",
+          "status": "loaded"
+        }
+      ],
+      "links": [
+        "https://mattriz.com/wp-content/themes/salient/css/fonts/icomoon.woff?v=1.7"
+      ]
+    },
+    "project-type_brand-identity": {
+      "loaded": [
+        {
+          "family": "noe-display",
+          "weight": "500",
+          "style": "normal",
+          "status": "loaded"
+        },
+        {
+          "family": "maison-neue-light",
+          "weight": "300",
+          "style": "normal",
+          "status": "loaded"
+        },
+        {
+          "family": "icomoon",
+          "weight": "400",
+          "style": "normal",
+          "status": "loaded"
+        },
+        {
+          "family": "noe-display",
+          "weight": "500",
+          "style": "normal",
+          "status": "loaded"
+        },
+        {
+          "family": "maison-neue-light",
+          "weight": "300",
+          "style": "normal",
+          "status": "loaded"
+        }
+      ],
+      "links": [
+        "https://mattriz.com/wp-content/themes/salient/css/fonts/icomoon.woff?v=1.7"
+      ]
+    },
+    "project-type_web-development": {
+      "loaded": [
+        {
+          "family": "noe-display",
+          "weight": "500",
+          "style": "normal",
+          "status": "loaded"
+        },
+        {
+          "family": "maison-neue-light",
+          "weight": "300",
+          "style": "normal",
+          "status": "loaded"
+        },
+        {
+          "family": "icomoon",
+          "weight": "400",
+          "style": "normal",
+          "status": "loaded"
+        },
+        {
+          "family": "noe-display",
+          "weight": "500",
+          "style": "normal",
+          "status": "loaded"
+        },
+        {
+          "family": "maison-neue-light",
+          "weight": "300",
+          "style": "normal",
+          "status": "loaded"
+        }
+      ],
+      "links": [
+        "https://mattriz.com/wp-content/themes/salient/css/fonts/icomoon.woff?v=1.7"
+      ]
+    },
+    "project-type_ui-ux-design": {
+      "loaded": [
+        {
+          "family": "noe-display",
+          "weight": "500",
+          "style": "normal",
+          "status": "loaded"
+        },
+        {
+          "family": "maison-neue-light",
+          "weight": "300",
+          "style": "normal",
+          "status": "loaded"
+        },
+        {
+          "family": "icomoon",
+          "weight": "400",
+          "style": "normal",
+          "status": "loaded"
+        },
+        {
+          "family": "noe-display",
+          "weight": "500",
+          "style": "normal",
+          "status": "loaded"
+        },
+        {
+          "family": "maison-neue-light",
+          "weight": "300",
+          "style": "normal",
+          "status": "loaded"
+        }
+      ],
+      "links": [
+        "https://mattriz.com/wp-content/themes/salient/css/fonts/icomoon.woff?v=1.7"
+      ]
+    },
+    "project-type_seo-optimization": {
+      "loaded": [
+        {
+          "family": "noe-display",
+          "weight": "500",
+          "style": "normal",
+          "status": "loaded"
+        },
+        {
+          "family": "maison-neue-light",
+          "weight": "300",
+          "style": "normal",
+          "status": "loaded"
+        },
+        {
+          "family": "icomoon",
+          "weight": "400",
+          "style": "normal",
+          "status": "loaded"
+        },
+        {
+          "family": "noe-display",
+          "weight": "500",
+          "style": "normal",
+          "status": "loaded"
+        },
+        {
+          "family": "maison-neue-light",
+          "weight": "300",
+          "style": "normal",
+          "status": "loaded"
+        }
+      ],
+      "links": [
+        "https://mattriz.com/wp-content/themes/salient/css/fonts/icomoon.woff?v=1.7"
+      ]
+    },
+    "work_spot-on_case-study": {
+      "loaded": [
+        {
+          "family": "Inter",
+          "weight": "400",
+          "style": "normal",
+          "status": "loaded"
+        },
+        {
+          "family": "Inter",
+          "weight": "500",
+          "style": "normal",
+          "status": "loaded"
+        },
+        {
+          "family": "Inter",
+          "weight": "600",
+          "style": "normal",
+          "status": "loaded"
+        },
+        {
+          "family": "Playfair Display",
+          "weight": "400",
+          "style": "italic",
+          "status": "loaded"
+        },
+        {
+          "family": "Playfair Display",
+          "weight": "600",
+          "style": "normal",
+          "status": "loaded"
+        },
+        {
+          "family": "Playfair Display",
+          "weight": "700",
+          "style": "normal",
+          "status": "loaded"
+        }
+      ],
+      "links": [
+        "https://fonts.googleapis.com/",
+        "https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap"
+      ]
+    },
+    "trabajos": {
+      "loaded": [
+        {
+          "family": "noe-display",
+          "weight": "500",
+          "style": "normal",
+          "status": "loaded"
+        },
+        {
+          "family": "maison-neue-light",
+          "weight": "300",
+          "style": "normal",
+          "status": "loaded"
+        },
+        {
+          "family": "icomoon",
+          "weight": "400",
+          "style": "normal",
+          "status": "loaded"
+        },
+        {
+          "family": "noe-display",
+          "weight": "500",
+          "style": "normal",
+          "status": "loaded"
+        },
+        {
+          "family": "maison-neue-light",
+          "weight": "300",
+          "style": "normal",
+          "status": "loaded"
+        }
+      ],
+      "links": [
+        "https://mattriz.com/wp-content/themes/salient/css/fonts/icomoon.woff?v=1.7"
+      ]
+    },
+    "project_gravity-font": {
+      "loaded": [
+        {
+          "family": "noe-display",
+          "weight": "500",
+          "style": "normal",
+          "status": "loaded"
+        },
+        {
+          "family": "maison-neue-light",
+          "weight": "300",
+          "style": "normal",
+          "status": "loaded"
+        },
+        {
+          "family": "icomoon",
+          "weight": "400",
+          "style": "normal",
+          "status": "loaded"
+        },
+        {
+          "family": "noe-display",
+          "weight": "500",
+          "style": "normal",
+          "status": "loaded"
+        },
+        {
+          "family": "maison-neue-light",
+          "weight": "300",
+          "style": "normal",
+          "status": "loaded"
+        }
+      ],
+      "links": [
+        "https://mattriz.com/wp-content/themes/salient/css/fonts/icomoon.woff?v=1.7"
+      ]
+    }
+  },
+  "staticProbe": [
+    {
+      "url": "https://mattriz.com/work/",
+      "status": 403,
+      "type": "text/html",
+      "length": "",
+      "location": "",
+      "children": []
+    },
+    {
+      "url": "https://mattriz.com/work/spot-on/",
+      "status": 403,
+      "type": "text/html",
+      "length": "",
+      "location": "",
+      "children": []
+    },
+    {
+      "url": "https://mattriz.com/work/spot-on/img/",
+      "status": 403,
+      "type": "text/html",
+      "length": "",
+      "location": "",
+      "children": []
+    },
+    {
+      "url": "https://mattriz.com/propuestas/",
+      "status": 403,
+      "type": "text/html",
+      "length": "",
+      "location": "",
+      "children": []
+    }
+  ],
+  "spotImgs": [
+    "https://mattriz.com/work/spot-on/img/spot-on-hero.png",
+    "https://mattriz.com/work/spot-on/img/spot-on-booking.png",
+    "https://mattriz.com/work/spot-on/img/spot-on-calendar.png",
+    "https://mattriz.com/work/spot-on/img/spot-on-corporate.png"
+  ],
+  "discoveredFrom": {
+    "https://mattriz.com/": [
+      "home",
+      "contact",
+      "about",
+      "finalizar-compra",
+      "carrito",
+      "tienda",
+      "project_civilus",
+      "project_spot-on-mobile-wash-detailing",
+      "project_the-grid",
+      "project_luciana-cabanas",
+      "project_aglvanstours",
+      "project_let-it-go",
+      "project_posada-carcamo-abogados",
+      "project-type_brand-identity",
+      "project-type_web-development",
+      "project-type_ui-ux-design",
+      "project-type_seo-optimization",
+      "trabajos",
+      "project_gravity-font"
+    ],
+    "https://mattriz.com/contact/": [
+      "home",
+      "contact",
+      "about",
+      "finalizar-compra",
+      "carrito",
+      "tienda",
+      "project_civilus",
+      "project_spot-on-mobile-wash-detailing",
+      "project_the-grid",
+      "project_luciana-cabanas",
+      "project_aglvanstours",
+      "project_let-it-go",
+      "project_posada-carcamo-abogados",
+      "project-type_brand-identity",
+      "project-type_web-development",
+      "project-type_ui-ux-design",
+      "project-type_seo-optimization",
+      "trabajos",
+      "project_gravity-font"
+    ],
+    "https://mattriz.com/project/civilus/": [
+      "home",
+      "project_civilus",
+      "project_luciana-cabanas",
+      "project-type_brand-identity",
+      "project-type_web-development",
+      "project-type_ui-ux-design"
+    ],
+    "https://mattriz.com/project/spot-on-mobile-wash-detailing/": [
+      "home",
+      "project_civilus",
+      "project_spot-on-mobile-wash-detailing",
+      "project_the-grid",
+      "project-type_web-development",
+      "project-type_ui-ux-design",
+      "project-type_seo-optimization"
+    ],
+    "https://mattriz.com/project/the-grid/": [
+      "home",
+      "project_spot-on-mobile-wash-detailing",
+      "project_the-grid",
+      "project-type_brand-identity",
+      "project-type_web-development",
+      "project-type_ui-ux-design",
+      "project-type_seo-optimization"
+    ],
+    "https://mattriz.com/project/posada-carcamo-abogados/": [
+      "home",
+      "project_spot-on-mobile-wash-detailing",
+      "project_let-it-go",
+      "project_posada-carcamo-abogados",
+      "project-type_web-development",
+      "project-type_ui-ux-design"
+    ],
+    "https://mattriz.com/project/let-it-go/": [
+      "home",
+      "project_civilus",
+      "project_aglvanstours",
+      "project_let-it-go",
+      "project_posada-carcamo-abogados",
+      "project-type_brand-identity",
+      "project-type_ui-ux-design"
+    ],
+    "https://mattriz.com/project/aglvanstours/": [
+      "home",
+      "project_civilus",
+      "project_spot-on-mobile-wash-detailing",
+      "project_the-grid",
+      "project_luciana-cabanas",
+      "project_aglvanstours",
+      "project_let-it-go",
+      "project-type_web-development",
+      "project-type_ui-ux-design"
+    ],
+    "https://mattriz.com/project/luciana-cabanas/": [
+      "home",
+      "project_the-grid",
+      "project_luciana-cabanas",
+      "project_aglvanstours",
+      "project-type_brand-identity",
+      "project-type_web-development",
+      "project-type_ui-ux-design"
+    ],
+    "https://mattriz.com/project-type/brand-identity/": [
+      "home",
+      "project_civilus",
+      "project_spot-on-mobile-wash-detailing",
+      "project_the-grid",
+      "project-type_brand-identity"
+    ],
+    "https://mattriz.com/project-type/ui-ux-design/": [
+      "home",
+      "project_civilus",
+      "project_spot-on-mobile-wash-detailing",
+      "project_the-grid",
+      "project-type_ui-ux-design"
+    ],
+    "https://mattriz.com/project-type/web-development/": [
+      "home",
+      "project_civilus",
+      "project_spot-on-mobile-wash-detailing",
+      "project_the-grid",
+      "project-type_web-development"
+    ],
+    "https://mattriz.com/project-type/seo-optimization/": [
+      "home",
+      "project_civilus",
+      "project_spot-on-mobile-wash-detailing",
+      "project_the-grid",
+      "project-type_seo-optimization"
+    ],
+    "https://mattriz.com/about/": [
+      "about"
+    ],
+    "https://mattriz.com/trabajos/": [
+      "about",
+      "trabajos"
+    ],
+    "https://mattriz.com/finalizar-compra/": [
+      "finalizar-compra"
+    ],
+    "https://mattriz.com/carrito/": [
+      "carrito"
+    ],
+    "https://mattriz.com/tienda/": [
+      "tienda"
+    ],
+    "https://mattriz.com/project/gravity-font/": [
+      "project_posada-carcamo-abogados",
+      "project_gravity-font"
+    ],
+    "https://mattriz.com/wp-content/uploads/2014/11/Mockup3-scaled.jpg": [
+      "project-type_brand-identity",
+      "project-type_ui-ux-design"
+    ],
+    "https://mattriz.com/wp-content/uploads/2021/11/NIV0576-scaled.jpg": [
+      "project-type_brand-identity",
+      "project-type_web-development",
+      "project-type_ui-ux-design"
+    ],
+    "https://mattriz.com/wp-content/uploads/2022/12/Portrait3-scaled.jpg": [
+      "project-type_web-development",
+      "project-type_ui-ux-design"
+    ],
+    "https://mattriz.com/wp-content/uploads/2021/11/Mockup-scaled.jpg": [
+      "project-type_web-development",
+      "project-type_ui-ux-design"
+    ]
+  }
+}

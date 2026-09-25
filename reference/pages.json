@@ -1,0 +1,92 @@
+[
+  {
+    "url": "https://mattriz.com/",
+    "slug": "home",
+    "title": "Mattriz | Booking & operations systems for service businesses"
+  },
+  {
+    "url": "https://mattriz.com/contact/",
+    "slug": "contact",
+    "title": "Contact Mattriz Studio | Get a Project Quote"
+  },
+  {
+    "url": "https://mattriz.com/about/",
+    "slug": "about",
+    "title": "About Mattriz | Web Development, SEO & Automation"
+  },
+  {
+    "url": "https://mattriz.com/finalizar-compra/",
+    "slug": "finalizar-compra",
+    "title": "Finalizar compra - Mattriz Studio"
+  },
+  {
+    "url": "https://mattriz.com/carrito/",
+    "slug": "carrito",
+    "title": "Carrito - Mattriz Studio"
+  },
+  {
+    "url": "https://mattriz.com/tienda/",
+    "slug": "tienda",
+    "title": "Tienda - Mattriz Studio"
+  },
+  {
+    "url": "https://mattriz.com/project/civilus/",
+    "slug": "project_civilus",
+    "title": "Civilus | Brand identity & website | Mattriz Studio"
+  },
+  {
+    "url": "https://mattriz.com/project/spot-on-mobile-wash-detailing/",
+    "slug": "project_spot-on-mobile-wash-detailing",
+    "title": "Spot On Mobile Wash & Detailing - Mattriz Studio"
+  },
+  {
+    "url": "https://mattriz.com/project/the-grid/",
+    "slug": "project_the-grid",
+    "title": "The Grid Digital Twin Branding & Webflow | Mattriz Studio"
+  },
+  {
+    "url": "https://mattriz.com/project/luciana-cabanas/",
+    "slug": "project_luciana-cabanas",
+    "title": "Luciana Cabañas - Mattriz Studio"
+  },
+  {
+    "url": "https://mattriz.com/project/aglvanstours/",
+    "slug": "project_aglvanstours",
+    "title": "AGL Vans Tours - Mattriz Studio"
+  },
+  {
+    "url": "https://mattriz.com/project/let-it-go/",
+    "slug": "project_let-it-go",
+    "title": "Let it Go - Mattriz Studio"
+  },
+  {
+    "url": "https://mattriz.com/project/posada-carcamo-abogados/",
+    "slug": "project_posada-carcamo-abogados",
+    "title": "Posada Carcamo Abogados - Mattriz Studio"
+  },
+  {
+    "url": "https://mattriz.com/project-type/brand-identity/",
+    "slug": "project-type_brand-identity",
+    "title": "Brand Identity - Mattriz Studio"
+  },
+  {
+    "url": "https://mattriz.com/project-type/web-development/",
+    "slug": "project-type_web-development",
+    "title": "Web Development - Mattriz Studio"
+  },
+  {
+    "url": "https://mattriz.com/project-type/ui-ux-design/",
+    "slug": "project-type_ui-ux-design",
+    "title": "UI/UX Design - Mattriz Studio"
+  },
+  {
+    "url": "https://mattriz.com/project-type/seo-optimization/",
+    "slug": "project-type_seo-optimization",
+    "title": "SEO Optimization - Mattriz Studio"
+  },
+  {
+    "url": "https://mattriz.com/work/spot-on/case-study.html",
+    "slug": "work_spot-on_case-study",
+    "title": "Spot On Mobile Detailing — Case Study · Mattriz Studio"
+  }
+]
