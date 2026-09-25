@@ -10,3 +10,11 @@ Ideas que surgen durante el port y que **no** se implementan en él (brief, secc
 - **Copy viejo en About, marquesina, formulario y páginas de proyecto** ("Webflow & WordPress", "Brand Identity", "UI/UX Design"). Necesita copy aprobado.
 - **Contraste del bloque "One studio" y del hero de About** con el efecto de opacidad por scroll.
 - Del brief (sección 8): loader tipo máquina de escribir, sistema de movimiento estilo Locomotive, blog.
+
+## Detectadas en la Fase 2
+
+- **Video de Spot On de 14 MB** (`public/media/work/spot-on.mp4`). Se carga solo al pasar el mouse o al entrar en pantalla, pero conviene comprimirlo (el de Civilus pesa 250 KB).
+- **Cifras de las estadísticas a 14px en teléfono.** En el vivo el tamaño mínimo de 40px no se aplica en mobile; se portó igual. Probablemente es un error del theme.
+- **Carrusel de testimonios**: el vivo usa Flickity con física de arrastre; el port usa una transición CSS equivalente (0.8 s) y swipe simple.
+- **El hero anima antes que en el vivo** (allá espera ~1.6 s a que carguen los scripts del theme). Se dejó así: es la misma animación, sin la espera.
+- **Marquesina y bloque "What clients say" con copy viejo** (Webflow, WordPress, Shopify…), pendiente de copy aprobado.

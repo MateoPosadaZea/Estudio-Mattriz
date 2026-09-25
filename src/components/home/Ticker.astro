@@ -1,0 +1,87 @@
+---
+import { TICKER } from '../../data/home';
+---
+
+<!--
+  Marquesina doble. Vivo: 5 copias del texto por línea; cada copia se desplaza de 20 % a
+  120 % de su propio ancho en 30 s lineales, en bucle; la segunda línea en sentido contrario.
+-->
+<section class="ticker" aria-label="Services">
+  {
+    TICKER.map((text, row) => (
+      <div class:list={['ticker__row', row === 0 ? 'ticker__row--rtl' : 'ticker__row--ltr']}>
+        {Array.from({ length: 5 }, (_, i) => (
+          <p class="ticker__chunk" aria-hidden={i > 0 ? 'true' : undefined}>
+            {text}
+          </p>
+        ))}
+      </div>
+    ))
+  }
+</section>
+
+<style>
+  .ticker {
+    padding: 3vw 0;
+    background: var(--color-white);
+    color: var(--color-black);
+    overflow: hidden;
+  }
+
+  .ticker__row {
+    display: flex;
+    white-space: nowrap;
+  }
+
+  .ticker__row + .ticker__row {
+    margin-top: 24px;
+  }
+
+  .ticker__row--rtl {
+    justify-content: flex-end;
+  }
+
+  /* padding-right: el separador vacío del vivo (span.custom, 0.5em con 0.6em de padding). */
+  .ticker__chunk {
+    flex: none;
+    padding-right: 0.6em;
+    font-family: var(--font-sans-book);
+    font-size: 6vh;
+    line-height: 1;
+    font-weight: var(--fw-light);
+    letter-spacing: var(--ls-tight);
+  }
+
+  .ticker__row--rtl .ticker__chunk {
+    transform: translateX(20%);
+    animation: ticker-rtl 30s linear infinite;
+  }
+
+  .ticker__row--ltr .ticker__chunk {
+    transform: translateX(-20%);
+    animation: ticker-ltr 30s linear infinite;
+  }
+
+  @keyframes ticker-rtl {
+    from { transform: translateX(20%); }
+    to { transform: translateX(120%); }
+  }
+
+  @keyframes ticker-ltr {
+    from { transform: translateX(-20%); }
+    to { transform: translateX(-120%); }
+  }
+
+  @media (max-width: 690px) {
+    .ticker__chunk {
+      font-size: 28px;
+      line-height: 32px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .ticker__chunk {
+      animation: none !important;
+    }
+  }
+</style>

@@ -223,6 +223,71 @@ button {
   100% { stroke-dashoffset: 0; }
 }
 
+/* ---------- Animaciones de entrada (src/scripts/reveal.ts) ----------
+ * Solo con JS activo (html.js): sin JS el contenido se ve en su estado final.
+ */
+.split__word {
+  display: inline-block;
+  position: relative;
+  overflow: hidden;
+  vertical-align: bottom;
+}
+
+.split__inner {
+  display: inline-block;
+  position: relative;
+}
+
+html.js [data-split='words'] .split__inner {
+  transform: translateY(1.3em);
+  transition: transform 400ms cubic-bezier(0.165, 0.84, 0.44, 1); /* easeOutQuart */
+}
+
+html.js [data-split='letters'] .split__inner {
+  transform: translateY(1.3em);
+  transition: transform 1200ms cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+html.js [data-split].is-in .split__inner {
+  transform: none;
+}
+
+@media (max-width: 999px) {
+  html.js [data-split][data-desktop-only] .split__inner {
+    transform: none;
+    transition: none;
+  }
+}
+
+html.js [data-animate='fade-up'] {
+  opacity: 0;
+  transform: translateY(100px);
+  transition:
+    opacity 400ms cubic-bezier(0.165, 0.84, 0.44, 1),
+    transform 400ms cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+html.js [data-animate='draw'] {
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 1500ms cubic-bezier(0.18, 0.75, 0.25, 1);
+}
+
+html.js [data-animate='cards'] > * {
+  opacity: 0;
+  transform: translateY(80px);
+  transition:
+    transform 0.75s cubic-bezier(0.22, 0.61, 0.36, 1),
+    opacity 0.75s cubic-bezier(0.22, 0.61, 0.36, 1),
+    background-color 0.35s ease;
+}
+
+html.js [data-animate].is-in,
+html.js [data-animate='cards'].is-in > * {
+  opacity: 1;
+  transform: none;
+}
+
 /* ---------- Movimiento reducido ---------- */
 
 @media (prefers-reduced-motion: reduce) {

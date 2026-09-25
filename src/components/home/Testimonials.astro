@@ -1,0 +1,204 @@
+---
+import SplitText from '../SplitText.astro';
+import { TESTIMONIALS } from '../../data/home';
+---
+
+<section class="testimonials" aria-roledescription="carousel" aria-label="What clients say">
+  <SplitText as="h2" text="What clients say" class="testimonials__title" />
+
+  <div class="carousel" data-carousel>
+    <div class="carousel__track" data-carousel-track>
+      {
+        TESTIMONIALS.map((t) => (
+          <blockquote class="quote">
+            <p class="quote__text">{t.quote}</p>
+            <img class="quote__avatar" src={t.avatar} width="70" height="70" alt="" loading="lazy" decoding="async" />
+            <cite class="quote__name">{t.name}</cite>
+            <span class="quote__company">{t.company}</span>
+          </blockquote>
+        ))
+      }
+    </div>
+    <div class="carousel__nav">
+      <button type="button" class="carousel__btn" data-carousel-prev aria-label="Previous">
+        <svg viewBox="0 0 20 20" width="20" height="20" aria-hidden="true"><path d="M16 10 H4 M9 5 L4 10 L9 15" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" /></svg>
+      </button>
+      <button type="button" class="carousel__btn" data-carousel-next aria-label="Next">
+        <svg viewBox="0 0 20 20" width="20" height="20" aria-hidden="true"><path d="M4 10 H16 M11 5 L16 10 L11 15" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" /></svg>
+      </button>
+    </div>
+  </div>
+</section>
+
+<style>
+  .testimonials {
+    padding: calc(7vw + 50px) 0 6vw;
+    background: var(--color-black);
+    color: var(--color-white);
+    overflow: hidden;
+  }
+
+  .testimonials :global(.testimonials__title) {
+    text-align: center;
+    font-size: 6vh;
+    line-height: 1.1;
+    font-weight: var(--fw-light);
+    letter-spacing: var(--ls-tight);
+  }
+
+  .testimonials :global(.testimonials__title .split__word) {
+    line-height: inherit;
+  }
+
+  .carousel {
+    --slide: 33%;
+    position: relative;
+    margin-top: 66px;
+  }
+
+  @media (max-width: 1300px) {
+    .carousel { --slide: 50%; }
+  }
+
+  @media (max-width: 1000px) {
+    .carousel { --slide: 60%; }
+  }
+
+  @media (max-width: 690px) {
+    .carousel { --slide: 85%; }
+  }
+
+  /* Todas las tarjetas se apilan en el centro; el script las corre en múltiplos de su ancho. */
+  .carousel__track {
+    display: grid;
+    width: var(--slide);
+    margin: 0 auto;
+    touch-action: pan-y;
+  }
+
+  .quote {
+    grid-area: 1 / 1;
+    margin: 0 0 30px;
+    padding: 15px;
+    text-align: center;
+    opacity: 0.3;
+    transition:
+      transform 0.8s cubic-bezier(0.25, 1, 0.33, 1),
+      opacity 0.2s ease;
+  }
+
+  .quote.is-selected {
+    opacity: 1;
+  }
+
+  /* Vivo: texto a la izquierda, padding 50/50/50/100, radio 10, comilla grande al 40 %. */
+  .quote__text {
+    position: relative;
+    margin-bottom: 40px;
+    padding: 50px 50px 50px 100px;
+    border-radius: 10px;
+    text-align: left;
+    font-size: 17px;
+    line-height: 1.4;
+    transition: background-color 0.2s ease;
+  }
+
+  .quote__text::before {
+    content: '“';
+    position: absolute;
+    left: 29px;
+    top: 50px;
+    font-family: sans-serif;
+    font-size: 130px;
+    line-height: 115px;
+    opacity: 0.4;
+  }
+
+  .quote.is-selected .quote__text {
+    background-color: var(--color-black);
+  }
+
+  .quote.is-selected .quote__text::before {
+    color: rgba(0, 0, 0, 0.27);
+  }
+
+  .quote__avatar {
+    width: 70px;
+    height: 70px;
+    margin: 0 auto 17px;
+    border-radius: 100px;
+    object-fit: cover;
+  }
+
+  .quote__name,
+  .quote__company {
+    display: block;
+    font-size: 14px;
+    font-style: normal;
+    line-height: 24px;
+  }
+
+  .quote__company {
+    opacity: 0.6;
+  }
+
+  /* Vivo: las flechas quedan 12px bajo las tarjetas y suben 25px con transform. */
+  .carousel__nav {
+    display: flex;
+    justify-content: center;
+    transform: translateY(-25px);
+  }
+
+  /* Vivo: círculos blancos de 50px (40px en teléfono) con flecha negra. */
+  .carousel__btn {
+    display: grid;
+    place-items: center;
+    width: 50px;
+    height: 50px;
+    margin: 12px;
+    border-radius: var(--radius-round);
+    background: var(--color-white);
+    color: var(--color-black);
+  }
+
+  @media (max-width: 690px) {
+    .testimonials :global(.testimonials__title) {
+      font-size: 28px;
+      line-height: 1.2;
+    }
+
+    .carousel {
+      margin-top: 60px;
+    }
+
+    .carousel__nav {
+      transform: none;
+    }
+
+    .quote {
+      margin-bottom: 0;
+      font-size: 15px;
+      line-height: 24px;
+    }
+
+    .quote__text {
+      padding: 30px;
+      font-size: 14px;
+      line-height: 21px;
+    }
+
+    .quote__text::before {
+      display: none;
+    }
+
+    /* Vivo: el mismo botón de 50px escalado a 0.8. */
+    .carousel__btn {
+      margin: 6px;
+      transform: scale(0.8);
+    }
+  }
+</style>
+
+<script>
+  import '../../scripts/carousel';
+</script>

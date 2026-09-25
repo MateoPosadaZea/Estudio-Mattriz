@@ -22,9 +22,10 @@ const ogImageUrl = new URL(ogImage, SITE.url).href;
 ---
 
 <!doctype html>
-<html lang="en-US">
+<html lang="en-US" style={`--page-bg: ${background}`}>
   <head>
     <meta charset="utf-8" />
+    <script is:inline>document.documentElement.classList.add('js');</script>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
     <meta name="description" content={description} />
@@ -49,7 +50,7 @@ const ogImageUrl = new URL(ogImage, SITE.url).href;
     <link rel="preload" href="/fonts/Maison-Neue-Light.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="/fonts/Noe-Display.woff2" as="font" type="font/woff2" crossorigin />
   </head>
-  <body style={`--page-bg: ${background}`}>
+  <body>
     <a class="skip-link" href="#main">Skip to main content</a>
 
     <div class="page" data-page id="top">
@@ -83,6 +84,15 @@ const ogImageUrl = new URL(ogImage, SITE.url).href;
     background: var(--page-bg);
     transform-origin: 50% 50%;
     transition: transform var(--dur-panel) var(--ease-panel);
+  }
+
+  /* Secciones de cambio de color (src/scripts/color-change.ts): transición de 0.8 s. */
+  html.has-color-change body,
+  html.has-color-change .page {
+    transition:
+      background-color 0.8s,
+      color 0.8s,
+      transform var(--dur-panel) var(--ease-panel);
   }
 
   .page.is-locked {

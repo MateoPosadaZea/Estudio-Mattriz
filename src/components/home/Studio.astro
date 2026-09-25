@@ -1,0 +1,204 @@
+---
+import AnimatedGradient from '../AnimatedGradient.astro';
+import SplitText from '../SplitText.astro';
+import PillLink from '../PillLink.astro';
+import { STUDIO } from '../../data/home';
+import { SITE } from '../../data/site';
+---
+
+<!--
+  Bloque "One studio" + estadísticas. Es una sección de cambio de color:
+  cuando ocupa ≥ 40 % de la ventana, el fondo de la página pasa a negro (src/scripts/color-change.ts).
+-->
+<section class="studio" data-page-bg="#000000" data-page-text="#ffffff">
+  <div class="studio__main" id="how-we-work" data-scroll-opacity-group>
+    <AnimatedGradient color1="#000000" color2="#00FF7F" speed={1300} />
+    <div class="studio__column">
+      <SplitText as="h2" text={STUDIO.title} stagger scrollOpacity class="studio__title" />
+      <SplitText as="p" text={STUDIO.text} effect="none" scrollOpacity class="studio__text" />
+      <div class="studio__cta">
+        <PillLink href={SITE.calendly} external>{STUDIO.cta}</PillLink>
+      </div>
+    </div>
+  </div>
+
+  <div class="stats">
+    {
+      STUDIO.stats.map((s) => (
+        <div class="stats__item">
+          <p class="stats__badge">{s.label}</p>
+          <div class="stats__body">
+            <p class="stats__value">{s.value}</p>
+            <p class="stats__text">{s.text}</p>
+          </div>
+        </div>
+      ))
+    }
+  </div>
+</section>
+
+<style>
+  /* Capa negra al 20 % detrás del contenido (sobre el fondo de la página). */
+  .studio {
+    position: relative;
+    color: var(--page-text, var(--color-white));
+    transition: color 0.8s;
+  }
+
+  .studio::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.2);
+    pointer-events: none;
+  }
+
+  .studio__main {
+    position: relative;
+    overflow: hidden;
+    padding: 5vw 5% 0;
+  }
+
+  .studio__column {
+    position: relative;
+    z-index: 1;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.21);
+  }
+
+  /* Vivo: 4vw con interlineado 8vw, siempre blanco. */
+  /* Espaciados medidos en el vivo (1440): título → texto 105px, texto → botón 50px,
+     botón → fin de columna 30vh + 13px. */
+  .studio :global(.studio__title) {
+    padding-bottom: 25px; /* padding: un margen colapsaría con el del texto */
+    color: var(--color-white);
+    font-size: 4vw;
+    line-height: 8vw;
+    font-weight: var(--fw-light);
+    letter-spacing: var(--ls-tight);
+  }
+
+  .studio :global(.studio__title .split__word) {
+    line-height: inherit;
+  }
+
+  /* Vivo: 3.5vw (mínimo 32px); cada palabra con interlineado 1.2. */
+  .studio :global(.studio__text) {
+    margin-top: 80px;
+    margin-bottom: 7px;
+    font-size: max(3.5vw, 32px);
+    line-height: 1.1;
+    font-weight: var(--fw-light);
+    letter-spacing: var(--ls-tight);
+  }
+
+  .studio :global(.studio__text .split__word) {
+    line-height: 1.2;
+  }
+
+  .studio__cta {
+    padding: calc(2vh + 25px) 0 calc(30vh + 13px);
+  }
+
+  .stats {
+    position: relative;
+    display: flex;
+    gap: 7%;
+    padding: 3vw 5%;
+  }
+
+  .stats__item {
+    flex: 1;
+  }
+
+  .stats__badge {
+    display: inline-block;
+    padding: 0.5em 1em;
+    border-radius: 20px;
+    background: var(--color-white-12);
+    color: var(--color-white);
+    line-height: 1;
+    backdrop-filter: blur(12px);
+  }
+
+  .stats__body {
+    display: flex;
+    align-items: flex-start;
+    gap: 25px;
+    margin-top: 24px;
+  }
+
+  .stats__value {
+    font-size: max(3vw, 40px);
+    line-height: 1.2;
+    font-weight: var(--fw-light);
+    letter-spacing: var(--ls-tight);
+  }
+
+  .stats__text {
+    max-width: 280px;
+    font-size: clamp(16px, 1vw, 22px);
+    line-height: 1.4;
+  }
+
+  @media (max-width: 999px) {
+    .studio__main {
+      padding: 8.8vw 20px;
+    }
+
+    .studio__column {
+      border-bottom: 0;
+    }
+
+    .studio :global(.studio__title) {
+      font-size: 7vw;
+    }
+
+    .studio__cta {
+      padding: calc(20vh + 25px) 0 calc(20vh + 13px);
+    }
+
+    .stats {
+      padding: 3vw 20px;
+    }
+
+    .stats__body {
+      flex-direction: column;
+    }
+  }
+
+  @media (max-width: 690px) {
+    .studio :global(.studio__text) {
+      margin-top: 50px;
+    }
+
+    .studio :global(.studio__title) {
+      padding-bottom: 24px;
+    }
+
+    .studio__cta {
+      padding: 16px 0 calc(15vh + 23px);
+    }
+
+    .stats {
+      padding: 3vw 5%;
+    }
+
+    /* Vivo en teléfono: dos columnas y la tercera oculta; las cifras quedan a 14px. */
+    .stats__item:nth-child(3) {
+      display: none;
+    }
+
+    .stats__value {
+      font-size: 14px;
+      line-height: 32px;
+    }
+
+    .stats__text {
+      font-size: 14px;
+    }
+  }
+</style>
+
+<script>
+  import '../../scripts/scroll-opacity';
+</script>

@@ -109,3 +109,21 @@ Caso Spot On (`/work/spot-on/case-study.html`): HTML propio. Elementos `.reveal`
 - **Volver arriba:** botón circular fijo abajo a la derecha (`#to-top`).
 - **Carga de página:** `data-loading-animation="none"` (no hay loader).
 - **Cursor:** no hay cursor personalizado.
+
+## 10. Detalles medidos en la Fase 2 (leídos del JS/CSS de Salient)
+
+| Efecto | Parámetros exactos |
+|---|---|
+| Revelado letra por letra (H1 hero, números 01–05) | `translateY(1.3em) → 0`, 1200 ms `cubic-bezier(0.25, 1, 0.5, 1)`, escalonado `400 / nº de letras` (20–35 ms). H1: 150 ms de retraso y sin animación bajo 1000 px. |
+| Revelado por palabra (subtítulo del hero y títulos de sección) | `translateY(1.3em) → 0`, 400 ms `easeOutQuart`; con escalonado `500 / nº de palabras` (15–50 ms). |
+| Fade de columnas (servicios, "Selected Work") | `translateY(100px)` y opacidad 0 → 400 ms `easeOutQuart`. |
+| Divisores de servicios | `scaleX(0 → 1)` desde la izquierda, 1500 ms `cubic-bezier(.18, .75, .25, 1)`. |
+| Disparo de todas las entradas | Cuando el borde inferior del elemento entra en la ventana ("bottom-in-view"), una vez. |
+| **Cambio de color de fondo** | "One studio" (negro) y "Selected Work" desktop (blanco): cuando una ocupa ≥ 40 % de la ventana, el fondo y el texto de la página pasan a sus colores en 0.8 s. Por eso las capturas de página completa muestran "One studio" en gris: es la capa negra al 20 % sobre fondo blanco. |
+| Opacidad por scroll ("One studio") | Título y texto: cada palabra 0.2 → 1 en 450 ms, 150 ms entre palabras; avance `1 + (scrollY − (top + 5 % ventana)) / ventana`, multiplicado por una velocidad según el alto del bloque. |
+| Hover de filas "Selected Work" | Relleno negro `scaleY` desde abajo, 0.6 s `cubic-bezier(0.1, 0.75, 0.5, 1)`; título blanco y +14px; flecha −16px. |
+| Medio que sigue al cursor | 288×216, radio 10; centro en `ancho/2 + cursorX/2`, `cursorY − 3`; suavizado ~13 %/fotograma; aparece con opacidad y `clip-path inset(7% → 0)`. |
+| Tarjetas mobile | `translateY(80px)` y opacidad 0 → 0.75 s `cubic-bezier(.22, .61, .36, 1)`, 90 ms entre tarjetas. |
+| Carrusel de testimonios | Rotación automática cada 4 s; tarjeta activa opacidad 1, resto 0.3; ancho 33 % (≥1300), 50 %, 60 %, 85 % (<690). |
+| Marquesina | 5 copias por línea; cada una `translateX(20% → 120%)` (o `−20% → −120%`) en 30 s lineales. |
+| Títulos de servicio | Van dentro de `<strong>`: peso 600 sintético sobre Maison Neue Light. |

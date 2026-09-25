@@ -1,0 +1,44 @@
+---
+// Texto partido en palabras (o letras) para las animaciones de entrada de Salient.
+// El texto completo queda disponible para lectores de pantalla; las piezas van con aria-hidden.
+interface Props {
+  text: string;
+  as?: 'h1' | 'h2' | 'h3' | 'p';
+  /** letters: letra por letra · words: palabra por palabra · none: sin entrada */
+  effect?: 'letters' | 'words' | 'none';
+  /** Retraso inicial en ms (data-animation-delay del vivo). */
+  delay?: number;
+  stagger?: boolean;
+  /** No animar por debajo de 1000px (data-m-rm-animation del vivo). */
+  desktopOnly?: boolean;
+  /** Participa en la opacidad atada al scroll. */
+  scrollOpacity?: boolean;
+  class?: string;
+}
+
+const { text, as: Tag = 'p', effect = 'words', delay = 0, stagger = false, desktopOnly = false, scrollOpacity = false, class: className } = Astro.props;
+const words = text.split(' ');
+---
+
+<Tag
+  class:list={['split', className]}
+  data-split={effect === 'none' ? undefined : effect}
+  data-delay={delay || undefined}
+  data-stagger={stagger ? '' : undefined}
+  data-desktop-only={desktopOnly ? '' : undefined}
+  data-scroll-opacity={scrollOpacity ? '' : undefined}
+>
+  <span class="sr-only">{text}</span>
+  <span aria-hidden="true">
+    {
+      words.map((word, i) => (
+        <>
+          <span class="split__word">
+            {effect === 'letters' ? [...word].map((ch) => <span class="split__inner">{ch}</span>) : <span class="split__inner">{word}</span>}
+          </span>
+          {i < words.length - 1 && ' '}
+        </>
+      ))
+    }
+  </span>
+</Tag>
