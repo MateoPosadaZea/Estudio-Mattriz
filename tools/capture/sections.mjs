@@ -1,6 +1,6 @@
 // Posición y alto de las secciones principales, vivo vs nuevo, en 1440 y 390.
 // Uso: node sections.mjs <url-vivo> <url-nuevo>
-import { launch, scrollThrough } from './lib.mjs';
+import { launch, scrollThrough, gotoReal } from './lib.mjs';
 
 const [liveUrl, newUrl] = process.argv.slice(2);
 const LIVE = ['.wpb_row.top-level', '#services', 'section.nectar_section', '#how-we-work', 'section.nectar_section > .row_col_wrap_12 > .wpb_row:last-child, #fws_6ab129a5bc9ed', '#work', '.nectar-scrolling-text@parent', '.testimonial_slider@section', '#ajax-content-wrap .row > .wpb_row:not(.inner_row)@last'];
@@ -10,7 +10,7 @@ const NAMES = ['hero', 'services', 'studio (sección)', 'studio (main)', 'stats'
 const browser = await launch();
 async function measure(url, sels, size) {
   const page = await browser.newPage({ viewport: size });
-  await page.goto(url, { waitUntil: 'load', timeout: 90000 });
+  await gotoReal(page, url);
   await page.waitForTimeout(2000);
   await scrollThrough(page, 600, 80);
   await page.waitForTimeout(1000);

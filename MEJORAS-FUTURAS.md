@@ -18,3 +18,8 @@ Ideas que surgen durante el port y que **no** se implementan en él (brief, secc
 - **Carrusel de testimonios**: el vivo usa Flickity con física de arrastre; el port usa una transición CSS equivalente (0.8 s) y swipe simple.
 - **El hero anima antes que en el vivo** (allá espera ~1.6 s a que carguen los scripts del theme). Se dejó así: es la misma animación, sin la espera.
 - **Marquesina y bloque "What clients say" con copy viejo** (Webflow, WordPress, Shopify…), pendiente de copy aprobado.
+
+## Fase 3: About
+
+- En el vivo, el hero y "Our Services" de /about/ tienen texto oscuro (#0a0a0a / #3a3a3a) sobre fondo #0a0a0a y no se leen. En el sitio nuevo ese texto va en blanco (contraste AA, piso de calidad del brief). Mismo diseño y medidas.
+- "View our work" y "Explore our work" apuntaban a /trabajos/ (404). Ahora van a /#work.

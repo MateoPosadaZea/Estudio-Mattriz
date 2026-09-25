@@ -61,3 +61,16 @@ export async function scrollThrough(page, step = 300, delay = 250) {
 }
 
 export const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+
+// El vivo (LiteSpeed) a veces responde con una verificación anti-bot si hay muchas
+// visitas seguidas. Espera y recarga hasta que aparezca la página real.
+export async function gotoReal(page, url, options = {}) {
+  for (let attempt = 0; attempt < 4; attempt++) {
+    await page.goto(url, { waitUntil: 'load', timeout: 90000, ...options });
+    await page.waitForTimeout(1500);
+    const blocked = await page.evaluate(() => /not a robot|Bot Verification/i.test(document.body?.innerText || document.title));
+    if (!blocked) return;
+    await page.waitForTimeout(20000 * (attempt + 1));
+  }
+  throw new Error(`Verificación anti-bot persistente en ${url}`);
+}
