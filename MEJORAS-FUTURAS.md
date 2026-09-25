@@ -23,3 +23,10 @@ Ideas que surgen durante el port y que **no** se implementan en él (brief, secc
 
 - En el vivo, el hero y "Our Services" de /about/ tienen texto oscuro (#0a0a0a / #3a3a3a) sobre fondo #0a0a0a y no se leen. En el sitio nuevo ese texto va en blanco (contraste AA, piso de calidad del brief). Mismo diseño y medidas.
 - "View our work" y "Explore our work" apuntaban a /trabajos/ (404). Ahora van a /#work.
+
+## Fase 3: Contact
+
+- La etiqueta "Estimated budget (USD)" era gris #acacac sobre blanco (contraste 2.2:1). Ahora es negra como las demás.
+- El testimonio de Diego tenía dos rayas largas; van con comas.
+- El envío con JS muestra los mensajes del brief debajo del botón. Sin JS el formulario igual funciona (el Worker redirige a /contact/?sent=ok|error).
+- Turnstile va en modo "interaction-only" y se carga solo al empezar a llenar el formulario: no cambia el diseño ni pesa en la carga inicial.
