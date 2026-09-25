@@ -31,9 +31,12 @@ export function isPrivate(pathname) {
 }
 
 // En entornos con proxy de salida, Chromium no lee HTTPS_PROXY por sí solo.
+// Se usa el proxy solo para HTTPS: así el servidor local (http://localhost) va directo.
 export async function launch() {
   const proxy = process.env.HTTPS_PROXY || process.env.https_proxy;
-  return chromium.launch(proxy ? { proxy: { server: proxy } } : {});
+  if (!proxy) return chromium.launch();
+  const { host } = new URL(proxy);
+  return chromium.launch({ args: [`--proxy-server=https=${host}`] });
 }
 
 export function loadPages() {

@@ -41,27 +41,30 @@ Caso Spot On (`/work/spot-on/case-study.html`): HTML propio. Elementos `.reveal`
 
 - **Posición:** `fixed`, `top: 25px`. Píldora blanca con `border-radius: 50px`.
 - **Al hacer scroll:** **no cambia** de color, tamaño ni posición. Solo agrega la clase `scrolled-down`. No se oculta al bajar ni reaparece al subir.
-- **Al cargar:** tiene la clase `entrance-animation` del theme. La animación no se midió: revisar en `video/hero-carga-desktop.webm`.
+- **Al cargar:** fade de opacidad `0.01 → 1` en `1.5s ease` (`header_nav_entrance_animation`).
 - **Anclas:** `data-animated-anchors="true"`. Los enlaces "How we work", "Projects" y "Services" hacen scroll suave a `#how-we-work`, `#work` y `#services`.
 - Capturas: `interactions/header/*-scroll-*.png`.
 
 ## 4. Menú mobile (< 1000px)
 
-- **Botón:** "Menu" (texto) junto al botón "Let's talk" dentro de la píldora.
-- **Estilo:** `slide-out-from-right` en modo `material`. Panel de 332px de ancho que entra desde la derecha.
-- **Transición:** `transform 0.8s cubic-bezier(0.15, 0.2, 0.1, 1)`.
-- **Contenido:** Home, How we work, Projects, Services, Contact en `maison-neue-light` 42px blanco.
-- **Cierre:** botón "Close Menu" (X).
-- Capturas: `interactions/menu-mobile/1-cerrado.png`, `2-abierto.png`, `3-cerrado-de-nuevo.png`. Video: `interactions/video/menu-mobile.webm`.
+- **Botón:** círculo negro `#0a0a0a` de 40px con tres líneas blancas y sombra `0 10px 25px rgba(0,0,0,.13)`, a la derecha del botón "Let's talk" (83×53 px, texto 13px).
+- **Estilo "material" de Salient:** el panel negro queda **detrás** de la página. Al abrir, la página entera (header incluido) se encoge y se corre a la izquierda: `translateX(−304.7px) scale(0.84)` a 390px y `translateX(−389.1px) scale(0.835)` a 768px, con `transform 0.8s cubic-bezier(0.15, 0.2, 0.1, 1)`. Queda una franja de la página visible a la izquierda.
+- **Panel:** `min(85vw, 360px)` de ancho, padding `10vh 40px` (60px sobre 690px), enlaces centrados en vertical.
+- **Enlaces:** Home, How we work, Projects, Services, Contact en `maison-neue-light` 42px/42px, peso 300, −0.03em, 12px entre ítems. Entran desde la derecha (110px) más rápido que la página (~41 % a 60 ms, ~100 % a 400 ms). El ítem de la página actual va subrayado (1px).
+- **Cierre:** X blanca arriba a la derecha (centro a 30+20px del borde).
+- Capturas: `interactions/menu-mobile/abriendo-*ms.png`, `2-abierto.png`, `768-abierto.png`, `3-cerrado-de-nuevo.png`. Video: `interactions/video/menu-mobile.webm`.
 
 ## 5. Hover y foco
 
 | Elemento | Hover |
 |---|---|
-| Enlaces del menú y botón "Let's talk" | *Text reveal*: el texto sube (`translateY(-100%)`) y una copia entra desde abajo. `transform 0.55s cubic-bezier(0.25, 1, 0.33, 1)`. Sin cambio de color. |
+| Enlaces del menú y botón "Let's talk" | *Text reveal*: el texto sube (`translateY(-100%)`) y una copia entra desde abajo. `transform 0.55s cubic-bezier(0.25, 1, 0.33, 1)`. Sin cambio de color. En "Let's talk", además, el fondo crece a 1.065 (0.45s) y aparece una sombra `0 10px 25px rgba(0,0,0,.13)` a 1.07 (0.3s). |
 | Botón del hero ("See how we work") y del studio | La píldora con borde blanco se rellena de negro (`interactions/hover/link-hero-*.png`). |
 | Filas de Selected Work (desktop) | Fondo negro, texto blanco, flecha ↗ blanca. `color 0.3s`. |
-| Links del footer (Instagram, LinkedIn) | Subrayado permanente. Ver `interactions/hover/footer-link-*.png`. |
+| Links del footer (Instagram, LinkedIn) | Subrayado 1px al 80 % que se recoge hacia la derecha: `scaleX(0)`, origen derecho, `0.4s cubic-bezier(0.23, 0.46, 0.4, 1)`. |
+| "Book a free call" | *Text reveal* igual al menú. |
+| Email del footer | La flecha curva se redibuja (`stroke-dashoffset`) en `0.9s cubic-bezier(0.15, 0.75, 0.5, 1)`. |
+| Punto "Currently accepting new clients" | Halo que late: `scale(1→3)`, opacidad `0.6→0`, `2s cubic-bezier(0.2, 1, 0.2, 1)` infinito. |
 | Flechas del carrusel | `opacity/transform 0.45s cubic-bezier(0.25, 1, 0.33, 1)`. |
 
 **Foco con teclado:** el enlace "Skip to main content" y los links de contenido muestran el outline por defecto del navegador. **Los enlaces del menú y el botón "Let's talk" tienen `outline: none` (sin foco visible).** Eso incumple el piso de calidad del brief (sección 6).
