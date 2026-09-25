@@ -9,8 +9,10 @@ interface Props {
   rows: any[];
   bg: string;
   slug: string;
+  /** Cuántas filas de este nivel cargan sus imágenes de inmediato (las primeras de la página). */
+  eagerRows?: number;
 }
-const { rows, bg, slug } = Astro.props;
+const { rows, bg, slug, eagerRows = 0 } = Astro.props;
 
 const gutterOf = (row: any) => {
   if (row.classes.includes('column-margin-4pct')) return '4%';
@@ -21,7 +23,8 @@ const gutterOf = (row: any) => {
 ---
 
 {
-  rows.map((row) => {
+  rows.map((row, rowIndex) => {
+    const eager = rowIndex < eagerRows;
     const rowBg = row.bg || bg;
     const dark = isDark(rowBg);
     const gutter = gutterOf(row);
@@ -60,7 +63,7 @@ const gutterOf = (row: any) => {
         style={style}
       >
         {row.bgImage?.local && (
-          <img class="wp-row__bg" src={largest(row.bgImage.local)} srcset={srcset(row.bgImage.local)} sizes="100vw" alt="" loading="lazy" decoding="async" width={row.bgImage.local.width} height={row.bgImage.local.height} />
+          <img class="wp-row__bg" src={largest(row.bgImage.local)} srcset={srcset(row.bgImage.local)} sizes="100vw" alt="" loading={eager ? 'eager' : 'lazy'} decoding="async" width={row.bgImage.local.width} height={row.bgImage.local.height} />
         )}
         {row.bgVideo?.local && (
           <video class="wp-row__bg" data-src={`${row.bgVideo.local.dir}/${row.bgVideo.local.base}.mp4`} poster={`${row.bgVideo.local.dir}/${row.bgVideo.local.base}-poster.webp`} muted loop playsinline preload="none" aria-hidden="true" />
@@ -106,7 +109,7 @@ const gutterOf = (row: any) => {
                   {col.link && <a class="wp-col__link" href={col.link.replace('https://mattriz.com', '')} aria-hidden="true" tabindex="-1" />}
                   <div class="wp-col__inner">
                     {col.children.map((el: any) =>
-                      el.type === 'row' ? <Astro.self rows={[el]} bg={col.bg || rowBg} slug={slug} /> : <Element el={el} slug={slug} />,
+                      el.type === 'row' ? <Astro.self rows={[el]} bg={col.bg || rowBg} slug={slug} eagerRows={eager ? 1 : 0} /> : <Element el={el} slug={slug} eager={eager} />,
                     )}
                   </div>
                 </div>

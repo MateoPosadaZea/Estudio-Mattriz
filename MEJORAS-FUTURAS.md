@@ -45,3 +45,12 @@ Ideas que surgen durante el port y que **no** se implementan en él (brief, secc
 - El video de fondo de una fila de Luciana Cabañas da 404 en el vivo; la fila queda vacía igual que allá.
 - "Explore More": en el vivo las 3 tarjetas salen al azar; aquí son los 3 proyectos siguientes en el orden de la home.
 - El enlace "Proyecto Anterior: Gravity Font" apunta a una página que no existe (404 en el vivo); redirige a /#work.
+
+## Fase 4: SEO, analítica y rendimiento
+
+- Títulos y descripciones iguales al vivo. Los proyectos antiguos no tenían descripción en el vivo; aquí usan su primer párrafo.
+- Datos estructurados equivalentes a los de AIOSEO. Las migas decían "Inicio" (español); aquí "Home".
+- La etiqueta de verificación de Search Console se mantiene. Después del cutover conviene enviar /sitemap-index.xml en Search Console.
+- La analítica (GTM + etiqueta de Google) carga en la primera interacción o a los 4 s. Puede contar algo menos de rebotes instantáneos que antes.
+- El caso de estudio de Spot On se podría optimizar (fuentes locales, imágenes WebP) sin cambiar su aspecto.
+- Cutover: la redirección www → mattriz.com se configura como regla de Cloudflare (Redirect Rules) al apuntar el dominio.

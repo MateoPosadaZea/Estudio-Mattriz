@@ -9,8 +9,10 @@ import { fontVars, srcset, largest } from './tone';
 interface Props {
   el: any;
   slug: string;
+  /** Imágenes de las dos primeras filas: carga inmediata (suelen ser el LCP). */
+  eager?: boolean;
 }
-const { el, slug } = Astro.props;
+const { el, slug, eager = false } = Astro.props;
 
 const css = (style: Record<string, string> = {}) =>
   Object.entries(style)
@@ -20,10 +22,13 @@ const css = (style: Record<string, string> = {}) =>
 
 const local = (href: string | null) => (href ? href.replace(/^https:\/\/mattriz\.com/, '') || '/' : '#');
 const external = (href: string | null) => !!href && /^https?:\/\//.test(href) && !href.startsWith('https://mattriz.com');
+// h5/h6 de Salient son etiquetas ("Year", "The Challenge", "Services"), no títulos de sección: se dibujan
+// igual pero como párrafos, para no saltar niveles de encabezado (accesibilidad).
+const html = (el.html ?? '').replace(/<(\/?)h([56])>/g, (_: string, close: string, n: string) => (close ? '</p>' : `<p class="h${n}">`));
 const phone = (el.classes ?? []).map((c: string) => c.match(/^height_phone_(\d+px)$/)?.[1]).find(Boolean);
 ---
 
-{el.type === 'html' && <div class:list={['wp-text', { 'wp-text--sized': fontVars(el.classes), 'keep-last': el.keepLast }]} style={[fontVars(el.classes), css(el.style)].filter(Boolean).join(';')} set:html={el.html} />}
+{el.type === 'html' && <div class:list={['wp-text', { 'wp-text--sized': fontVars(el.classes), 'keep-last': el.keepLast }]} style={[fontVars(el.classes), css(el.style)].filter(Boolean).join(';')} set:html={html} />}
 
 {
   el.type === 'split' && (
@@ -42,8 +47,10 @@ const phone = (el.classes ?? []).map((c: string) => c.match(/^height_phone_(\d+p
         sizes={`(max-width: 999px) 100vw, min(${el.local.width}px, 100vw)`}
         width={el.local.width}
         height={el.local.height}
+        style={`width:${el.local.width}px;aspect-ratio:${el.local.width}/${el.local.height}`}
         alt={el.alt}
-        loading="lazy"
+        loading={eager ? 'eager' : 'lazy'}
+        fetchpriority={eager ? 'high' : undefined}
         decoding="async"
       />
     </div>
@@ -149,14 +156,14 @@ const phone = (el.classes ?? []).map((c: string) => c.match(/^height_phone_(\d+p
     line-height: 28px;
   }
 
-  .wp-text h5 {
+  .wp-text .h5 {
     font-size: 18px;
     font-weight: 400;
     line-height: 30px;
     letter-spacing: 0.05em;
   }
 
-  .wp-text h6 {
+  .wp-text .h6 {
     margin-bottom: 7px;
     font-size: 18px;
     font-weight: 600;
@@ -169,7 +176,7 @@ const phone = (el.classes ?? []).map((c: string) => c.match(/^height_phone_(\d+p
   }
 
   /* Salient: párrafos con 1.5em de espacio debajo, salvo el último. */
-  .wp-text p:not(:last-child) {
+  .wp-text p:not(:last-child):not(.h5):not(.h6) {
     padding-bottom: 1.5em;
   }
 
@@ -179,8 +186,7 @@ const phone = (el.classes ?? []).map((c: string) => c.match(/^height_phone_(\d+p
     padding: 0;
   }
 
-  .wp-text:not(.keep-last) > :is(ul, ol, p):last-child,
-  .wp-list > ul:last-child {
+  .wp-text:not(.keep-last) > :is(ul, ol, p):last-child {
     margin-bottom: 0;
   }
 
@@ -267,8 +273,8 @@ const phone = (el.classes ?? []).map((c: string) => c.match(/^height_phone_(\d+p
     line-height: 0;
   }
 
+  /* Tamaño natural limitado al ancho disponible; el aspect-ratio reserva el espacio antes de cargar. */
   .wp-img img {
-    width: auto;
     max-width: 100%;
     height: auto;
   }
@@ -417,7 +423,7 @@ const phone = (el.classes ?? []).map((c: string) => c.match(/^height_phone_(\d+p
       line-height: 26px;
     }
 
-    .wp-text h5 {
+    .wp-text .h5 {
       font-size: 17px;
       line-height: 27px;
     }

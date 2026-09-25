@@ -39,7 +39,7 @@ const projectName = PROJECTS.find((p) => p.href === `/project/${slug}/`)?.title 
 
 <Base title={model.title} description={description} background={PAGE_BG} breadcrumb={[{ name: projectName, path: `/project/${slug}/` }]}>
   <div class:list={['project', { 'project--header-space': headerSpace }]}>
-    <Rows rows={model.rows} bg={PAGE_BG} slug={slug!} />
+    <Rows rows={model.rows} bg={PAGE_BG} slug={slug!} eagerRows={2} />
   </div>
 </Base>
 
