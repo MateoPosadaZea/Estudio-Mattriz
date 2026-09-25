@@ -1,6 +1,6 @@
 # mattriz.com
 
-Sitio del estudio Mattriz: port de WordPress (Salient) a **Astro** estático, para desplegar en **Cloudflare Pages**. Paridad visual con el sitio vivo; ver el brief del proyecto y `reference/`.
+Sitio del estudio Mattriz: port de WordPress (Salient) a **Astro** estático, desplegado en **Cloudflare Workers** (assets estáticos, `wrangler.jsonc`). Paridad visual con el sitio vivo; ver el brief del proyecto y `reference/`.
 
 ```bash
 npm install
@@ -8,6 +8,8 @@ npm run dev       # http://localhost:4321
 npm run build     # genera dist/
 npm run preview   # sirve dist/
 ```
+
+Cloudflare (Workers Builds, conectado al repo): build `npm run build`, deploy `npx wrangler deploy`; las ramas que no son `main` suben una versión con URL de preview (`npx wrangler versions upload`).
 
 | Carpeta | Contenido |
 |---|---|

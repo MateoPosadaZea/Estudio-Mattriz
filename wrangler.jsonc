@@ -1,0 +1,12 @@
+// Despliegue en Cloudflare Workers con assets estáticos (build de Astro en dist/).
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "mattriz-web",
+  "compatibility_date": "2026-09-25",
+  "assets": {
+    "directory": "./dist",
+    // Mismo comportamiento que WordPress: /about/ con barra final, 404 propia.
+    "html_handling": "auto-trailing-slash",
+    "not_found_handling": "404-page"
+  }
+}
