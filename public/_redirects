@@ -1,0 +1,27 @@
+# Redirects de URLs viejas de WordPress (Cloudflare Workers static assets).
+# Tienda de WooCommerce (sin uso) → home
+/tienda /  301
+/tienda/ /  301
+/carrito /  301
+/carrito/ /  301
+/finalizar-compra /  301
+/finalizar-compra/ /  301
+
+# Archivos por tipo de proyecto → sección de proyectos de la home
+/project-type /#work 301
+/project-type/* /#work 301
+
+# Carpeta /work/ (en el vivo daba 403) y enlaces rotos del vivo → proyectos
+/work /#work 301
+/work/ /#work 301
+/trabajos /#work 301
+/trabajos/ /#work 301
+/project/gravity-font /#work 301
+/project/gravity-font/ /#work 301
+
+# Sitemaps de AIOSEO → sitemap de Astro
+/sitemap.xml /sitemap-index.xml 301
+/sitemap_index.xml /sitemap-index.xml 301
+/page-sitemap.xml /sitemap-index.xml 301
+/portfolio-sitemap.xml /sitemap-index.xml 301
+/project-type-sitemap.xml /sitemap-index.xml 301

@@ -30,3 +30,8 @@ Ideas que surgen durante el port y que **no** se implementan en él (brief, secc
 - El testimonio de Diego tenía dos rayas largas; van con comas.
 - El envío con JS muestra los mensajes del brief debajo del botón. Sin JS el formulario igual funciona (el Worker redirige a /contact/?sent=ok|error).
 - Turnstile va en modo "interaction-only" y se carga solo al empezar a llenar el formulario: no cambia el diseño ni pesa en la carga inicial.
+
+## Fase 3: 404 y redirects
+
+- La 404 del vivo tiene "404" y "Page Not Found" en #0a0a0a sobre #0a0a0a (invisibles). En el sitio nuevo van en blanco.
+- El caso de estudio de Spot On se copió tal cual (byte a byte), incluidas sus rayas largas en el título y el copy: el brief pide que la ruta siga funcionando, no reescribirlo. Si se quiere aplicar la regla sin rayas también ahí, es un cambio aparte.

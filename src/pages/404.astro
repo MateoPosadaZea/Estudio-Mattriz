@@ -1,0 +1,87 @@
+---
+import Base from '../layouts/Base.astro';
+---
+
+<Base title="Page not found – Mattriz Studio" description="This page doesn’t exist." background="#0a0a0a" noindex>
+  <!-- En el vivo "404" y "Page Not Found" son #0a0a0a sobre #0a0a0a (invisibles); aquí van en blanco. -->
+  <section class="error-404">
+    <h1>404</h1>
+    <h2>Page Not Found</h2>
+    <a class="error-404__button" href="/">
+      <span>Back Home</span>
+      <span class="error-404__icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="14" height="14"><path d="M5 12h13M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+      </span>
+    </a>
+  </section>
+</Base>
+
+<style>
+  /* Vivo: alto mínimo de 900px (100vh), padding 130px 0, contenedor de 1300px centrado. */
+  .error-404 {
+    min-height: 100vh;
+    padding: 130px var(--header-inset) 130px;
+    color: var(--color-white);
+    text-align: center;
+  }
+
+  h1 {
+    margin-bottom: 7px;
+    font-family: var(--font-display);
+    font-size: 250px;
+    font-weight: 700;
+    line-height: 250px;
+  }
+
+  h2 {
+    margin-bottom: 7px;
+    font-size: 54px;
+    font-weight: var(--fw-light);
+    line-height: 52px;
+    letter-spacing: var(--ls-tight);
+  }
+
+  .error-404__button {
+    display: inline-flex;
+    align-items: center;
+    gap: 20px;
+    margin: 50px 0 10px;
+    padding: 9px 10px 9px 28px;
+    border-radius: 200px;
+    background: var(--color-black);
+    color: var(--color-white);
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 20px;
+    transition: background-color 0.45s var(--ease-reveal);
+  }
+
+  .error-404__icon {
+    display: grid;
+    place-items: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.22);
+    transition: transform 0.45s var(--ease-reveal);
+  }
+
+  .error-404__button:hover .error-404__icon {
+    transform: translateX(4px);
+  }
+
+  @media (max-width: 690px) {
+    .error-404 {
+      padding: 8.8vw 23px;
+    }
+
+    h1 {
+      font-size: 150px;
+      line-height: 150px;
+    }
+
+    h2 {
+      font-size: 32px;
+    }
+  }
+</style>
