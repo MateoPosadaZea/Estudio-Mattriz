@@ -35,3 +35,13 @@ Ideas que surgen durante el port y que **no** se implementan en él (brief, secc
 
 - La 404 del vivo tiene "404" y "Page Not Found" en #0a0a0a sobre #0a0a0a (invisibles). En el sitio nuevo van en blanco.
 - El caso de estudio de Spot On se copió tal cual (byte a byte), incluidas sus rayas largas en el título y el copy: el brief pide que la ruta siga funcionando, no reescribirlo. Si se quiere aplicar la regla sin rayas también ahí, es un cambio aparte.
+
+## Fase 3: páginas de proyecto
+
+- Las 7 páginas se generan desde el HTML del vivo (tools/projects/extract.py) y se dibujan con las reglas de layout de Salient. Filas medidas contra el vivo en 1440 y 390: coinciden (±3px; Let it Go ±11px en 24.500px).
+- En el vivo hay mucho texto invisible: el reto ("The Challenge") de Civilus/The Grid/Spot On, las listas de servicios (blanco sobre blanco), "What we did" y el bloque Servicios/Resumen/Lo que hicimos de los proyectos antiguos (oscuro sobre #0a0a0a). En el sitio nuevo el color del texto se decide por el fondo real, así que todo se lee.
+- Videos recomprimidos a H.264 (máx. 1600px, sin audio): de ~500 MB a ~25 MB, todos bajo el límite de 25 MiB por archivo de Cloudflare. Imágenes en WebP con srcset (2000/1200/700).
+- Los proyectos antiguos (Posada, Let it Go, AGL, Luciana) están en español en el vivo y se dejaron igual. Pendiente decidir si se traducen (el brief pide copy en inglés).
+- El video de fondo de una fila de Luciana Cabañas da 404 en el vivo; la fila queda vacía igual que allá.
+- "Explore More": en el vivo las 3 tarjetas salen al azar; aquí son los 3 proyectos siguientes en el orden de la home.
+- El enlace "Proyecto Anterior: Gravity Font" apunta a una página que no existe (404 en el vivo); redirige a /#work.

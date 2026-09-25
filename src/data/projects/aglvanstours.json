@@ -1,0 +1,642 @@
+{
+ "title": "AGL Vans Tours - Mattriz Studio",
+ "description": "",
+ "ogImage": "https://mattriz.com/wp-content/uploads/2022/11/cropped-Logotipo-Estudio-Mattriz-Redes-Negro_Mesa-de-trabajo-1-copia-7.png",
+ "rows": [
+  {
+   "type": "row",
+   "inner": false,
+   "fullWidth": "section",
+   "bg": "#000000",
+   "bgImage": null,
+   "bgVideo": null,
+   "padTop": "calc(100vw * 0.08)",
+   "padBottom": "calc(100vw * 0.08)",
+   "classes": [],
+   "columnMargin": "90px",
+   "text": "dark",
+   "cols": [
+    {
+     "span": 8,
+     "xs": null,
+     "classes": [
+      "padding-1-percent"
+     ],
+     "animation": "fade-in-from-bottom",
+     "bg": null,
+     "radius": null,
+     "link": null,
+     "children": [
+      {
+       "type": "divider",
+       "height": "100px",
+       "line": false,
+       "lineStyle": {
+        "height": "100px"
+       },
+       "classes": [],
+       "dclasses": [
+        "divider"
+       ]
+      },
+      {
+       "type": "html",
+       "html": "<h2>Creación de sitio web para AGL Vans Tours, empresa líder en servicios de transporte.<br> </h2>",
+       "keepLast": true,
+       "classes": [],
+       "style": {}
+      },
+      {
+       "type": "cta",
+       "style_name": "see-through",
+       "href": "https://www.aglvans.com",
+       "target": "_blank",
+       "label": "Ver sitio web",
+       "tag": "h4",
+       "classes": [],
+       "style": {
+        "margin-bottom": "30px",
+        "--nectar-text-color": "#ffffff",
+        "--nectar-button-color": "var(--nectar-default)",
+        "--nectar-icon-gap": "10px"
+       },
+       "wrapStyle": {}
+      },
+      {
+       "type": "divider",
+       "height": "20px",
+       "line": false,
+       "lineStyle": {
+        "height": "20px"
+       },
+       "classes": [],
+       "dclasses": [
+        "divider"
+       ]
+      }
+     ]
+    },
+    {
+     "span": 4,
+     "xs": null,
+     "classes": [
+      "padding-1-percent"
+     ],
+     "animation": "fade-in-from-bottom",
+     "bg": null,
+     "radius": null,
+     "link": null,
+     "children": [
+      {
+       "type": "divider",
+       "height": "100px",
+       "line": false,
+       "lineStyle": {
+        "height": "100px"
+       },
+       "classes": [],
+       "dclasses": [
+        "divider"
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "type": "row",
+   "inner": false,
+   "fullWidth": "content",
+   "bg": null,
+   "bgImage": {
+    "src": "https://mattriz.com/wp-content/uploads/2021/11/Mockup-scaled.jpg",
+    "style": {
+     "background-image": "url(https://mattriz.com/wp-content/uploads/2021/11/Mockup-scaled.jpg)",
+     "background-position": "center center",
+     "background-repeat": "no-repeat"
+    },
+    "local": {
+     "base": "mockup-scaled",
+     "widths": [
+      1600,
+      1200,
+      700
+     ],
+     "width": 1600,
+     "height": 1200,
+     "dir": "/media/projects/aglvanstours"
+    }
+   },
+   "bgVideo": null,
+   "padTop": "0px",
+   "padBottom": "0px",
+   "classes": [
+    "vc_row-o-full-height",
+    "vc_row-o-columns-middle",
+    "vc_row-o-equal-height",
+    "vc_row-o-content-top"
+   ],
+   "columnMargin": "default",
+   "text": "light",
+   "cols": [
+    {
+     "span": 12,
+     "xs": null,
+     "classes": [
+      "no-extra-padding",
+      "el_spacing_0px"
+     ],
+     "animation": null,
+     "bg": null,
+     "radius": null,
+     "link": null,
+     "children": []
+    }
+   ]
+  },
+  {
+   "type": "row",
+   "inner": false,
+   "fullWidth": "section",
+   "bg": null,
+   "bgImage": null,
+   "bgVideo": null,
+   "padTop": "calc(100vw * 0.06)",
+   "padBottom": "calc(100vw * 0.10)",
+   "classes": [],
+   "columnMargin": "default",
+   "text": "dark",
+   "cols": [
+    {
+     "span": 3,
+     "xs": 6,
+     "classes": [
+      "no-extra-padding"
+     ],
+     "animation": null,
+     "bg": null,
+     "radius": null,
+     "link": null,
+     "children": [
+      {
+       "type": "divider",
+       "height": "1px",
+       "line": true,
+       "lineStyle": {
+        "margin-top": "12.5px",
+        "height": "1px",
+        "margin-bottom": "12.5px"
+       },
+       "classes": [],
+       "dclasses": [
+        "divider-border"
+       ]
+      },
+      {
+       "type": "html",
+       "html": "<p><b class=\"f-bold\">Servicios</b></p>",
+       "keepLast": true,
+       "classes": [
+        "vc_custom_1671035803117"
+       ],
+       "style": {
+        "margin-bottom": "5px"
+       }
+      },
+      {
+       "type": "list",
+       "icon": "none",
+       "spacing": "default",
+       "html": "Diseño UI/UX<br> Diseño Web"
+      }
+     ]
+    },
+    {
+     "span": 7,
+     "xs": 12,
+     "classes": [
+      "no-extra-padding"
+     ],
+     "animation": null,
+     "bg": null,
+     "radius": null,
+     "link": null,
+     "children": [
+      {
+       "type": "divider",
+       "height": "1px",
+       "line": true,
+       "lineStyle": {
+        "margin-top": "12.5px",
+        "height": "1px",
+        "margin-bottom": "12.5px"
+       },
+       "classes": [],
+       "dclasses": [
+        "divider-border"
+       ]
+      },
+      {
+       "type": "html",
+       "html": "<p><b class=\"f-bold\">Resumen del proyecto<br> </b></p>",
+       "keepLast": true,
+       "classes": [],
+       "style": {}
+      },
+      {
+       "type": "html",
+       "html": "<p>Nuestro cliente contaba con una identidad visual definida que nos sirvió bastante para el diseño y personalidad del sitio web, elegante y profesional. El objetivo es atraer más clientes dando a conocer los servicios que ofrecen.</p>",
+       "keepLast": true,
+       "classes": [
+        "vc_custom_1671836768624"
+       ],
+       "style": {
+        "margin-top": "10px"
+       }
+      },
+      {
+       "type": "divider",
+       "height": "1px",
+       "line": true,
+       "lineStyle": {
+        "margin-top": "10%",
+        "height": "1px",
+        "margin-bottom": "10%"
+       },
+       "classes": [],
+       "dclasses": [
+        "divider-border"
+       ]
+      },
+      {
+       "type": "html",
+       "html": "<p><b class=\"f-bold\">Lo que hicimos<br> </b></p>",
+       "keepLast": true,
+       "classes": [],
+       "style": {}
+      },
+      {
+       "type": "html",
+       "html": "<ol><li>Crear moodboard con referentes</li><li>Generar base de datos</li><li>Adquirir hosting y dominio</li><li>Diseño UI/UX del sitio web</li><li>Desarrollo del sitio web</li><li>Pruebas de usuario</li><li>Optimización de SEO</li><li>Lanzamiento</li></ol>",
+       "keepLast": false,
+       "classes": [
+        "vc_custom_1671636555451"
+       ],
+       "style": {
+        "margin-top": "10px"
+       }
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "type": "row",
+   "inner": false,
+   "fullWidth": "content",
+   "bg": null,
+   "bgImage": null,
+   "bgVideo": null,
+   "padTop": "calc(5vw)",
+   "padBottom": "calc(5vw)",
+   "classes": [
+    "vc_row-o-full-height",
+    "vc_row-o-columns-middle",
+    "vc_row-o-equal-height",
+    "vc_row-o-content-top",
+    "right_padding_10pct",
+    "left_padding_10pct"
+   ],
+   "columnMargin": "default",
+   "text": "dark",
+   "cols": [
+    {
+     "span": 12,
+     "xs": null,
+     "classes": [
+      "no-extra-padding"
+     ],
+     "animation": null,
+     "bg": null,
+     "radius": null,
+     "link": null,
+     "children": [
+      {
+       "type": "video",
+       "src": "https://mattriz.com/wp-content/uploads/2021/11/Grabacion-de-pantalla-2025-03-11-a-las-11.49.16 p.m.mp4",
+       "width": 1280,
+       "height": 720,
+       "radius": "none",
+       "poster": null,
+       "local": {
+        "base": "grabacion-de-pantalla-2025-03-11-a-las-11-49-16-p-m",
+        "width": 1600,
+        "height": 806,
+        "size": 5163301,
+        "dir": "/media/projects/aglvanstours"
+       }
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "type": "row",
+   "inner": false,
+   "fullWidth": "content",
+   "bg": null,
+   "bgImage": null,
+   "bgVideo": {
+    "src": "https://mattriz.com/wp-content/uploads/2021/11/bioseguridadagl.mov",
+    "local": {
+     "base": "bioseguridadagl",
+     "width": 1600,
+     "height": 824,
+     "size": 660777,
+     "dir": "/media/projects/aglvanstours"
+    }
+   },
+   "padTop": "0px",
+   "padBottom": "0px",
+   "classes": [
+    "vc_row-o-full-height",
+    "vc_row-o-columns-middle",
+    "vc_row-o-equal-height",
+    "vc_row-o-content-top"
+   ],
+   "columnMargin": "default",
+   "text": "dark",
+   "cols": [
+    {
+     "span": 12,
+     "xs": null,
+     "classes": [
+      "no-extra-padding"
+     ],
+     "animation": null,
+     "bg": null,
+     "radius": null,
+     "link": null,
+     "children": []
+    }
+   ]
+  },
+  {
+   "type": "row",
+   "inner": false,
+   "fullWidth": "content",
+   "bg": null,
+   "bgImage": null,
+   "bgVideo": {
+    "src": "https://mattriz.com/wp-content/uploads/2021/11/MockupAGL-1.mp4",
+    "local": {
+     "base": "mockupagl-1",
+     "width": 1600,
+     "height": 900,
+     "size": 254955,
+     "dir": "/media/projects/aglvanstours"
+    }
+   },
+   "padTop": "0px",
+   "padBottom": "0px",
+   "classes": [
+    "vc_row-o-full-height",
+    "vc_row-o-columns-middle",
+    "vc_row-o-equal-height",
+    "vc_row-o-content-top"
+   ],
+   "columnMargin": "default",
+   "text": "dark",
+   "cols": [
+    {
+     "span": 12,
+     "xs": null,
+     "classes": [
+      "no-extra-padding"
+     ],
+     "animation": null,
+     "bg": null,
+     "radius": null,
+     "link": null,
+     "children": []
+    }
+   ]
+  },
+  {
+   "type": "row",
+   "inner": false,
+   "fullWidth": "content",
+   "bg": "#7a95a8",
+   "bgImage": null,
+   "bgVideo": null,
+   "padTop": "0px",
+   "padBottom": "0px",
+   "classes": [
+    "vc_row-o-equal-height",
+    "vc_row-o-content-top"
+   ],
+   "columnMargin": "none",
+   "text": "light",
+   "cols": [
+    {
+     "span": 6,
+     "xs": null,
+     "classes": [
+      "padding-5-percent",
+      "el_spacing_5px"
+     ],
+     "animation": null,
+     "bg": null,
+     "radius": null,
+     "link": "https://mattriz.com/project/let-it-go/",
+     "children": [
+      {
+       "type": "divider",
+       "height": "35vh",
+       "line": false,
+       "lineStyle": {
+        "height": "35vh"
+       },
+       "classes": [
+        "height_phone_150px"
+       ],
+       "dclasses": [
+        "divider"
+       ]
+      },
+      {
+       "type": "row",
+       "inner": true,
+       "fullWidth": null,
+       "bg": null,
+       "bgImage": null,
+       "bgVideo": null,
+       "padTop": null,
+       "padBottom": null,
+       "classes": [],
+       "columnMargin": "default",
+       "text": "dark",
+       "cols": [
+        {
+         "span": 12,
+         "xs": null,
+         "classes": [
+          "child_column",
+          "no-extra-padding",
+          "el_spacing_0px"
+         ],
+         "animation": "fade-in-from-bottom",
+         "bg": null,
+         "radius": null,
+         "link": null,
+         "children": [
+          {
+           "type": "split",
+           "tag": "h2",
+           "text": "Let It Go",
+           "style": {
+            "font-size": "3vw",
+            "line-height": "3.3vw"
+           },
+           "classes": [
+            "font_size_3vw"
+           ]
+          },
+          {
+           "type": "cta",
+           "style_name": "underline",
+           "href": "https://mattriz.com/project/let-it-go/",
+           "target": null,
+           "label": "Proyecto Siguiente",
+           "tag": null,
+           "classes": [],
+           "style": {
+            "--nectar-text-color": "#ffffff",
+            "--nectar-button-color": "var(--nectar-default)",
+            "--nectar-icon-gap": "10px"
+           },
+           "wrapStyle": {}
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": "divider",
+       "height": "35vh",
+       "line": false,
+       "lineStyle": {
+        "height": "35vh"
+       },
+       "classes": [
+        "height_phone_150px"
+       ],
+       "dclasses": [
+        "divider"
+       ]
+      }
+     ]
+    },
+    {
+     "span": 6,
+     "xs": null,
+     "classes": [
+      "padding-5-percent",
+      "el_spacing_5px"
+     ],
+     "animation": null,
+     "bg": null,
+     "radius": null,
+     "link": "https://mattriz.com/project/luciana-cabanas/",
+     "children": [
+      {
+       "type": "divider",
+       "height": "35vh",
+       "line": false,
+       "lineStyle": {
+        "height": "35vh"
+       },
+       "classes": [
+        "height_phone_150px"
+       ],
+       "dclasses": [
+        "divider"
+       ]
+      },
+      {
+       "type": "row",
+       "inner": true,
+       "fullWidth": null,
+       "bg": null,
+       "bgImage": null,
+       "bgVideo": null,
+       "padTop": null,
+       "padBottom": null,
+       "classes": [],
+       "columnMargin": "default",
+       "text": "dark",
+       "cols": [
+        {
+         "span": 12,
+         "xs": null,
+         "classes": [
+          "child_column",
+          "no-extra-padding",
+          "el_spacing_0px"
+         ],
+         "animation": "fade-in-from-bottom",
+         "bg": null,
+         "radius": null,
+         "link": null,
+         "children": [
+          {
+           "type": "split",
+           "tag": "h2",
+           "text": "Luciana Cabañas",
+           "style": {
+            "font-size": "3vw",
+            "line-height": "3.3vw"
+           },
+           "classes": [
+            "font_size_3vw"
+           ]
+          },
+          {
+           "type": "cta",
+           "style_name": "underline",
+           "href": "https://mattriz.com/project/luciana-cabanas/",
+           "target": null,
+           "label": "Proyecto Anterior",
+           "tag": null,
+           "classes": [],
+           "style": {
+            "--nectar-text-color": "#ffffff",
+            "--nectar-button-color": "var(--nectar-default)",
+            "--nectar-icon-gap": "10px"
+           },
+           "wrapStyle": {}
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": "divider",
+       "height": "35vh",
+       "line": false,
+       "lineStyle": {
+        "height": "35vh"
+       },
+       "classes": [
+        "height_phone_150px"
+       ],
+       "dclasses": [
+        "divider"
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

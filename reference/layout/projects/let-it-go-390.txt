@@ -1,0 +1,73 @@
+ROW full-width-section has-row-bg-color first-section | x23 y0 w343 h679 pad 31.2px 0px mar 0px bg rgb(0, 0, 0)
+  COL has-animation padding-1-percent | x-22 y31 w433 h423 pad 0px 45px mar 0px 0px 90px
+    EL divider-wrap | x23 y35 w343 h100 pad 0px mar 0px ""
+    EL  | x23 y135 w343 h224 pad 0px mar 0px 0px 21px "Let It Go, aplicación móvil que busca ca" [H2 maison-neue-light 28px/32px w300 ls-0.84px rgb(10, 10, 10) mb10px]
+    EL nectar-cta alignment_tablet_default alignment_phone_default display_ta | x23 y380 w343 h44 pad 0px mar 0px 0px 30px "Ver prototipo" [H4 maison-neue-light 20px/26px w500 lsnormal rgb(255, 255, 255) mb8px]
+  COL has-animation padding-1-percent | x-22 y544 w433 h104 pad 0px 45px mar 0px
+    EL divider-wrap | x23 y548 w343 h100 pad 0px mar 0px ""
+ROW full-width-content parallax_section zindex-set mobile-disable-bg-image | x0 y679 w390 h900 pad 0px mar 0px 0px 0px -195px bg rgba(0, 0, 0, 0)
+  COL no-extra-padding column_position_static el_spacing_0px  | x31 y1006 w328 h246 pad 0px mar 0px
+    EL img-with-aniamtion-wrap  | x31 y1006 w328 h246 pad 0px mar 0px ""
+ROW full-width-section | x23 y1579 w343 h702 pad 23.4px 0px 39px mar 0px bg rgba(0, 0, 0, 0)
+  COL no-extra-padding  | x-2 y1603 w197 h94 pad 0px 25px mar 0px
+    EL divider-wrap | x23 y1615 w147 h1 pad 0px mar 0px ""
+    EL  | x23 y1629 w147 h21 pad 0px mar 0px 0px 5px "Servicios" [P maison-neue-light 14px/21px w400 lsnormal rgb(10, 10, 10) mb0px]
+  COL no-extra-padding  | x-2 y1697 w393 h546 pad 0px 25px mar 0px
+    EL divider-wrap | x23 y1709 w343 h1 pad 0px mar 0px ""
+    EL  | x23 y1723 w343 h21 pad 0px mar 0px 0px 21px "Resumen del proyecto" [P maison-neue-light 14px/21px w400 lsnormal rgb(10, 10, 10) mb0px]
+    EL  | x23 y1765 w343 h126 pad 0px mar 10px 0px 21px "Este proyecto nace de un intento por apo" [P maison-neue-light 14px/21px w400 lsnormal rgb(10, 10, 10) mb0px]
+    EL divider-wrap | x23 y1925 w343 h1 pad 0px mar 0px ""
+    EL  | x23 y1960 w343 h21 pad 0px mar 0px 0px 21px "Lo que hicimos" [P maison-neue-light 14px/21px w400 lsnormal rgb(10, 10, 10) mb0px]
+    EL  | x23 y2002 w343 h210 pad 0px mar 10px 0px 0px "Investigar de la problemática ambientalP" [LI maison-neue-light 14px/21px w400 lsnormal rgb(10, 10, 10) mb0px]
+ROW full-width-content has-row-bg-color | x0 y2281 w390 h4373 pad 0px 0px 39px mar 0px 0px 0px -195px bg rgb(236, 236, 248)
+  COL no-extra-padding  | x0 y2281 w390 h4334 pad 0px mar 0px
+    EL img-with-aniamtion-wrap center | x0 y2320 w390 h406 pad 0px mar 39px 0px 0px ""
+    EL img-with-aniamtion-wrap center | x0 y2726 w390 h267 pad 0px mar 0px ""
+    EL img-with-aniamtion-wrap center | x0 y2993 w390 h254 pad 0px mar 0px ""
+    EL img-with-aniamtion-wrap center | x0 y3247 w390 h147 pad 0px mar 0px ""
+    EL img-with-aniamtion-wrap center | x0 y3394 w390 h242 pad 0px mar 0px ""
+    EL img-with-aniamtion-wrap center | x0 y3636 w390 h267 pad 0px mar 0px ""
+    EL img-with-aniamtion-wrap center | x0 y3903 w390 h268 pad 0px mar 0px ""
+    EL img-with-aniamtion-wrap center | x0 y4171 w390 h206 pad 0px mar 0px ""
+    EL img-with-aniamtion-wrap center | x0 y4376 w390 h301 pad 0px mar 0px ""
+    EL img-with-aniamtion-wrap center | x0 y4677 w390 h287 pad 0px mar 0px ""
+    EL img-with-aniamtion-wrap center | x0 y4965 w390 h283 pad 0px mar 0px ""
+    EL img-with-aniamtion-wrap center | x0 y5248 w390 h268 pad 0px mar 0px ""
+    EL img-with-aniamtion-wrap center | x0 y5516 w390 h265 pad 0px mar 0px ""
+    EL img-with-aniamtion-wrap center | x0 y5780 w390 h267 pad 0px mar 0px ""
+    EL img-with-aniamtion-wrap center | x0 y6047 w390 h302 pad 0px mar 0px ""
+    EL img-with-aniamtion-wrap center | x0 y6349 w390 h266 pad 0px mar 0px ""
+ROW  top_margin_8pct bottom_margin_8pct | x23 y6681 w343 h2117 pad 0px mar 27.4531px 0px bg rgba(0, 0, 0, 0)
+  COL no-extra-padding  | x-2 y6681 w393 h690 pad 0px 25px mar 0px 0px 50px
+    EL img-with-aniamtion-wrap center | x23 y6698 w343 h673 pad 0px mar 17.1562px 0px 0px ""
+  COL centered-text no-extra-padding column_element_direction_desktop_horizo | x-2 y7421 w393 h644 pad 0px 25px mar 0px 0px 50px
+    EL img-with-aniamtion-wrap center | x23 y7439 w343 h627 pad 0px mar 17.1562px 0px 0px ""
+  COL no-extra-padding  | x-2 y8115 w393 h682 pad 0px 25px mar 0px
+    EL img-with-aniamtion-wrap center | x23 y8133 w343 h665 pad 0px mar 17.1562px 0px 0px ""
+ROW full-width-content | x0 y8825 w390 h900 pad 0px mar 0px 0px 0px -195px bg rgba(0, 0, 0, 0)
+  COL no-extra-padding  | x0 y9129 w390 h293 pad 0px mar 0px
+    EL img-with-aniamtion-wrap center | x0 y9129 w390 h293 pad 0px mar 0px ""
+ROW full-width-content | x0 y9725 w390 h900 pad 0px mar 0px 0px 0px -195px bg rgba(0, 0, 0, 0)
+  COL no-extra-padding  | x0 y10029 w390 h293 pad 0px mar 0px
+    EL img-with-aniamtion-wrap  custom-size | x0 y10029 w390 h293 pad 0px mar 0px ""
+ROW full-width-content | x0 y10625 w390 h900 pad 0px mar 0px 0px 0px -195px bg rgba(0, 0, 0, 0)
+  COL no-extra-padding  | x0 y10794 w390 h562 pad 0px mar 0px
+    EL img-with-aniamtion-wrap center | x0 y10794 w390 h562 pad 0px mar 0px ""
+ROW full-width-content | x0 y11525 w390 h900 pad 0px mar 0px 0px 0px -195px bg rgba(0, 0, 0, 0)
+  COL no-extra-padding  | x0 y11829 w390 h293 pad 0px mar 0px
+    EL img-with-aniamtion-wrap  | x0 y11829 w390 h293 pad 0px mar 0px ""
+ROW full-width-content has-row-bg-color | x0 y12425 w390 h880 pad 0px mar 0px 0px 0px -195px bg rgb(122, 149, 168)
+  COL padding-5-percent el_spacing_5px instance-13 | x0 y12425 w390 h440 pad 0px mar 0px
+    EL divider-wrap height_phone_150px  | x23 y12449 w343 h150 pad 0px mar 0px 0px 5px ""
+    ROW inner_row | x23 y12604 w343 h83 pad 0px mar 0px 0px 5px bg rgba(0, 0, 0, 0)
+      COL child_column has-animation no-extra-padding el_spacing_0px | x23 y12604 w343 h83 pad 0px mar 0px
+        EL nectar-split-heading font_size_3vw | x23 y12604 w343 h39 pad 0px mar 0px "Posada Cárcamo Abogados" [H2 maison-neue-light 28px/32px w300 ls-0.84px rgb(255, 255, 255) mb7px]
+        EL nectar-cta  alignment_tablet_default alignment_phone_default display_t | x23 y12643 w343 h44 pad 0px mar 0px "Proyecto Anterior" [SPAN maison-neue-light 14px/21px w500 lsnormal rgb(255, 255, 255) mb0px]
+    EL divider-wrap height_phone_150px  | x23 y12692 w343 h150 pad 0px mar 0px ""
+  COL padding-5-percent el_spacing_5px instance-15 | x0 y12865 w390 h440 pad 0px mar 0px
+    EL divider-wrap height_phone_150px  | x23 y12888 w343 h150 pad 0px mar 0px 0px 5px ""
+    ROW inner_row | x23 y13043 w343 h83 pad 0px mar 0px 0px 5px bg rgba(0, 0, 0, 0)
+      COL child_column has-animation no-extra-padding el_spacing_0px | x23 y13043 w343 h83 pad 0px mar 0px
+        EL nectar-split-heading font_size_3vw | x23 y13043 w343 h39 pad 0px mar 0px "AGL Vans Tour" [H2 maison-neue-light 28px/32px w300 ls-0.84px rgb(255, 255, 255) mb7px]
+        EL nectar-cta  alignment_tablet_default alignment_phone_default display_t | x23 y13082 w343 h44 pad 0px mar 0px "Proyecto Siguiente" [SPAN maison-neue-light 14px/21px w500 lsnormal rgb(255, 255, 255) mb0px]
+    EL divider-wrap height_phone_150px  | x23 y13131 w343 h150 pad 0px mar 0px ""

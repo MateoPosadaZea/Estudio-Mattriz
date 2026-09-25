@@ -1,0 +1,46 @@
+ROW full-width-section has-row-bg-color first-section | x70 y0 w1300 h582 pad 115.2px 0px mar 0px bg rgb(0, 0, 0)
+  COL has-animation padding-1-percent | x25 y115 w927 h352 pad 0px 45px mar 0px
+    EL divider-wrap | x70 y128 w837 h100 pad 0px mar 0px ""
+    EL  | x70 y228 w837 h156 pad 0px mar 0px 0px 25.5px "Desarrollo web para Posada Cárcamo, firm" [H2 maison-neue-light 46px/52px w300 ls-1.38px rgb(10, 10, 10) mb10px]
+    EL nectar-cta  alignment_tablet_default alignment_phone_default display_t | x70 y409 w837 h28 pad 0px mar 0px 0px 30px "Ver sitio web" [H4 maison-neue-light 22px/28px w500 lsnormal rgb(255, 255, 255) mb8px]
+  COL has-animation padding-1-percent | x952 y115 w463 h352 pad 0px 45px mar 0px
+    EL divider-wrap | x997 y128 w373 h100 pad 0px mar 0px ""
+ROW full-width-content  zindex-set nectar-overflow-hidden | x0 y582 w1440 h900 pad 0px mar 0px 0px 0px -720px bg rgba(0, 0, 0, 0) bgimg url("https://mattriz.com/wp-content/uploads/2022/12/JMB7973-scaled-1.jpg")
+  COL no-extra-padding column_position_static el_spacing_0px  | x0 y1032 w1440 h0 pad 0px mar 0px
+ROW full-width-section | x70 y1482 w1300 h794 pad 86.4px 0px 144px mar 0px bg rgba(0, 0, 0, 0)
+  COL no-extra-padding  | x45 y1569 w338 h564 pad 0px 25px mar 0px
+    EL divider-wrap | x70 y1581 w288 h1 pad 0px mar 0px ""
+    EL  | x70 y1595 w288 h26 pad 0px mar 0px 0px 5px "Servicios" [P maison-neue-light 17px/26px w400 lsnormal rgb(10, 10, 10) mb0px]
+  COL no-extra-padding  | x383 y1569 w788 h564 pad 0px 25px mar 0px
+    EL divider-wrap | x408 y1581 w738 h1 pad 0px mar 0px ""
+    EL  | x408 y1595 w738 h26 pad 0px mar 0px 0px 25.5px "Resumen del proyecto" [P maison-neue-light 17px/26px w400 lsnormal rgb(10, 10, 10) mb0px]
+    EL  | x408 y1646 w738 h78 pad 0px mar 10px 0px 25.5px "Nuestro cliente contaba con una identida" [P maison-neue-light 17px/26px w400 lsnormal rgb(10, 10, 10) mb0px]
+    EL divider-wrap | x408 y1798 w738 h1 pad 0px mar 0px ""
+    EL  | x408 y1873 w738 h26 pad 0px mar 0px 0px 25.5px "Lo que hicimos" [P maison-neue-light 17px/26px w400 lsnormal rgb(10, 10, 10) mb0px]
+    EL  | x408 y1924 w738 h208 pad 0px mar 10px 0px 0px "Crear moodboard con referentesGenerar ba" [LI maison-neue-light 17px/26px w400 lsnormal rgb(10, 10, 10) mb0px]
+ROW full-width-content has-row-bg-color | x0 y2276 w1440 h972 pad 72px 0px 0px mar 0px 0px 0px -720px bg rgb(255, 255, 255)
+  COL no-extra-padding  | x0 y2393 w1440 h810 pad 0px mar 0px
+    EL nectar_video_player_self_hosted | x0 y2393 w1440 h810 pad 0px mar 0px ""
+ROW full-width-content | x0 y3248 w1440 h3024 pad 0px mar 0px 0px 0px -720px bg rgba(0, 0, 0, 0)
+  COL no-extra-padding  | x0 y3248 w1440 h3024 pad 0px mar 0px
+    EL img-with-aniamtion-wrap  | x288 y3392 w864 h476 pad 0px mar 144px 288px ""
+    EL img-with-aniamtion-wrap  | x0 y4012 w1440 h1080 pad 0px mar 100px 0px ""
+    EL img-with-aniamtion-wrap  | x0 y5192 w1440 h1080 pad 0px mar 0px ""
+ROW full-width-content  top_margin_5pct | x0 y6337 w1440 h1080 pad 0px mar 65px 0px 0px -720px bg rgba(0, 0, 0, 0)
+  COL no-extra-padding  | x0 y6337 w1440 h1080 pad 0px mar 0px
+    EL img-with-aniamtion-wrap  | x0 y6337 w1440 h1080 pad 0px mar 0px ""
+ROW full-width-content has-row-bg-color | x0 y7417 w1440 h865 pad 0px mar 0px 0px 0px -720px bg rgb(122, 149, 168)
+  COL padding-5-percent el_spacing_5px instance-8 | x0 y7417 w720 h865 pad 0px mar 0px
+    EL divider-wrap height_phone_150px  | x72 y7489 w576 h315 pad 0px mar 0px 0px 5px ""
+    ROW inner_row | x72 y7809 w576 h81 pad 0px mar 0px 0px 5px bg rgba(0, 0, 0, 0)
+      COL child_column has-animation no-extra-padding el_spacing_0px | x72 y7809 w576 h81 pad 0px mar 0px
+        EL nectar-split-heading font_size_3vw | x72 y7809 w576 h55 pad 0px mar 0px "Gravity Font" [H2 maison-neue-light 43.2px/47.52px w300 ls-1.296px rgb(255, 255, 255) mb7px]
+        EL nectar-cta  alignment_tablet_default alignment_phone_default display_t | x72 y7864 w576 h26 pad 0px mar 0px "Proyecto Anterior" [SPAN maison-neue-light 14px/26px w500 lsnormal rgb(255, 255, 255) mb0px]
+    EL divider-wrap height_phone_150px  | x72 y7895 w576 h315 pad 0px mar 0px ""
+  COL padding-5-percent el_spacing_5px instance-10 | x720 y7417 w720 h865 pad 0px mar 0px
+    EL divider-wrap height_phone_150px  | x792 y7489 w576 h315 pad 0px mar 0px 0px 5px ""
+    ROW inner_row | x792 y7809 w576 h81 pad 0px mar 0px 0px 5px bg rgba(0, 0, 0, 0)
+      COL child_column has-animation no-extra-padding el_spacing_0px | x792 y7809 w576 h81 pad 0px mar 0px
+        EL nectar-split-heading font_size_3vw | x792 y7809 w576 h55 pad 0px mar 0px "Let It Go" [H2 maison-neue-light 43.2px/47.52px w300 ls-1.296px rgb(255, 255, 255) mb7px]
+        EL nectar-cta  alignment_tablet_default alignment_phone_default display_t | x792 y7864 w576 h26 pad 0px mar 0px "Proyecto Siguiente" [SPAN maison-neue-light 14px/26px w500 lsnormal rgb(255, 255, 255) mb0px]
+    EL divider-wrap height_phone_150px  | x792 y7895 w576 h315 pad 0px mar 0px ""

@@ -1,0 +1,962 @@
+{
+ "title": "Luciana Cabañas - Mattriz Studio",
+ "description": "",
+ "ogImage": "https://mattriz.com/wp-content/uploads/2022/11/cropped-Logotipo-Estudio-Mattriz-Redes-Negro_Mesa-de-trabajo-1-copia-7.png",
+ "rows": [
+  {
+   "type": "row",
+   "inner": false,
+   "fullWidth": "section",
+   "bg": "#000000",
+   "bgImage": null,
+   "bgVideo": null,
+   "padTop": "calc(100vw * 0.08)",
+   "padBottom": "calc(100vw * 0.08)",
+   "classes": [],
+   "columnMargin": "90px",
+   "text": "dark",
+   "cols": [
+    {
+     "span": 8,
+     "xs": null,
+     "classes": [
+      "padding-1-percent"
+     ],
+     "animation": "fade-in-from-bottom",
+     "bg": null,
+     "radius": null,
+     "link": null,
+     "children": [
+      {
+       "type": "divider",
+       "height": "100px",
+       "line": false,
+       "lineStyle": {
+        "height": "100px"
+       },
+       "classes": [],
+       "dclasses": [
+        "divider"
+       ]
+      },
+      {
+       "type": "html",
+       "html": "<h2>Diseño de logotipo y sitio web para <a href=\"https://www.instagram.com/lucianacabanasguateque/?hl=es\" target=\"_blank\" rel=\"noopener\">@lucianacabanasguateque</a> 🍂🦜un lugar mágico ubicado en Guateque, Boyacá.<br> </h2>",
+       "keepLast": true,
+       "classes": [],
+       "style": {}
+      },
+      {
+       "type": "cta",
+       "style_name": "arrow-animation",
+       "href": "http://www.lucianacabanasboutique.com",
+       "target": null,
+       "label": "Ver sitio web",
+       "tag": "h4",
+       "classes": [],
+       "style": {
+        "margin-bottom": "30px",
+        "--nectar-text-color": "#ffffff",
+        "--nectar-button-color": "var(--nectar-default)",
+        "--nectar-icon-gap": "10px"
+       },
+       "wrapStyle": {}
+      }
+     ]
+    },
+    {
+     "span": 4,
+     "xs": null,
+     "classes": [
+      "padding-1-percent"
+     ],
+     "animation": "fade-in-from-bottom",
+     "bg": null,
+     "radius": null,
+     "link": null,
+     "children": [
+      {
+       "type": "divider",
+       "height": "100px",
+       "line": false,
+       "lineStyle": {
+        "height": "100px"
+       },
+       "classes": [],
+       "dclasses": [
+        "divider"
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "type": "row",
+   "inner": false,
+   "fullWidth": "content",
+   "bg": null,
+   "bgImage": {
+    "src": "https://mattriz.com/wp-content/uploads/2021/11/NIV0576-scaled.jpg",
+    "style": {
+     "background-image": "url(https://mattriz.com/wp-content/uploads/2021/11/NIV0576-scaled.jpg)",
+     "background-position": "center center",
+     "background-repeat": "no-repeat",
+     "background-color": "#dedede"
+    },
+    "local": {
+     "base": "niv0576-scaled",
+     "widths": [
+      1600,
+      1200,
+      700
+     ],
+     "width": 1600,
+     "height": 1068,
+     "dir": "/media/projects/luciana-cabanas"
+    }
+   },
+   "bgVideo": null,
+   "padTop": "0px",
+   "padBottom": "0px",
+   "classes": [
+    "vc_row-o-full-height",
+    "vc_row-o-columns-middle",
+    "vc_row-o-equal-height",
+    "vc_row-o-content-top"
+   ],
+   "columnMargin": "default",
+   "text": "light",
+   "cols": [
+    {
+     "span": 12,
+     "xs": null,
+     "classes": [
+      "no-extra-padding",
+      "el_spacing_0px"
+     ],
+     "animation": null,
+     "bg": null,
+     "radius": null,
+     "link": null,
+     "children": []
+    }
+   ]
+  },
+  {
+   "type": "row",
+   "inner": false,
+   "fullWidth": "section",
+   "bg": null,
+   "bgImage": null,
+   "bgVideo": null,
+   "padTop": "calc(100vw * 0.06)",
+   "padBottom": "calc(100vw * 0.10)",
+   "classes": [],
+   "columnMargin": "default",
+   "text": "dark",
+   "cols": [
+    {
+     "span": 3,
+     "xs": 6,
+     "classes": [
+      "no-extra-padding"
+     ],
+     "animation": null,
+     "bg": null,
+     "radius": null,
+     "link": null,
+     "children": [
+      {
+       "type": "divider",
+       "height": "1px",
+       "line": true,
+       "lineStyle": {
+        "margin-top": "12.5px",
+        "height": "1px",
+        "margin-bottom": "12.5px"
+       },
+       "classes": [],
+       "dclasses": [
+        "divider-border"
+       ]
+      },
+      {
+       "type": "html",
+       "html": "<p><b class=\"f-bold\">Servicios</b></p>",
+       "keepLast": true,
+       "classes": [
+        "vc_custom_1671035803117"
+       ],
+       "style": {
+        "margin-bottom": "5px"
+       }
+      },
+      {
+       "type": "list",
+       "icon": "none",
+       "spacing": "default",
+       "html": "Diseño Gráfico<br> Diseño UI/UX<br> Diseño Web<br> Optimización de SEO"
+      }
+     ]
+    },
+    {
+     "span": 7,
+     "xs": 12,
+     "classes": [
+      "no-extra-padding"
+     ],
+     "animation": null,
+     "bg": null,
+     "radius": null,
+     "link": null,
+     "children": [
+      {
+       "type": "divider",
+       "height": "1px",
+       "line": true,
+       "lineStyle": {
+        "margin-top": "12.5px",
+        "height": "1px",
+        "margin-bottom": "12.5px"
+       },
+       "classes": [],
+       "dclasses": [
+        "divider-border"
+       ]
+      },
+      {
+       "type": "html",
+       "html": "<p><b class=\"f-bold\">Resumen del proyecto<br> </b></p>",
+       "keepLast": true,
+       "classes": [],
+       "style": {}
+      },
+      {
+       "type": "html",
+       "html": "<p>El afán por salir de la ciudad me llevó a estas cabañas que encontré en Airbnb, quedé fascinado con la arquitectura y la naturaleza del lugar. Resultó que el dueño quería rediseñar la imagen de su negocio y tener más presencia online.</p>",
+       "keepLast": true,
+       "classes": [
+        "vc_custom_1671214374889"
+       ],
+       "style": {
+        "margin-top": "10px"
+       }
+      },
+      {
+       "type": "divider",
+       "height": "1px",
+       "line": true,
+       "lineStyle": {
+        "margin-top": "10%",
+        "height": "1px",
+        "margin-bottom": "10%"
+       },
+       "classes": [],
+       "dclasses": [
+        "divider-border"
+       ]
+      },
+      {
+       "type": "html",
+       "html": "<p><b class=\"f-bold\">Lo que hicimos<br> </b></p>",
+       "keepLast": true,
+       "classes": [],
+       "style": {}
+      },
+      {
+       "type": "html",
+       "html": "<ol><li>Investigar y conocer la historia detrás del lugar</li><li>Generar base de datos</li><li>Bocetar</li><li>Diseñar el logotipo</li><li>Adquirir hosting y dominio</li><li>Diseño UI/UX del sitio web</li><li>Creación del sitio web</li><li>Programación HTML y CSS</li><li>Configuración de correo electrónico</li><li>Pruebas de usuario</li><li>Optimización de SEO</li><li>Lanzamiento</li></ol>",
+       "keepLast": true,
+       "classes": [
+        "vc_custom_1671214523569"
+       ],
+       "style": {
+        "margin-top": "10px"
+       }
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "type": "row",
+   "inner": false,
+   "fullWidth": "content",
+   "bg": "#bf9571",
+   "bgImage": null,
+   "bgVideo": null,
+   "padTop": "0px",
+   "padBottom": "0px",
+   "classes": [
+    "vc_row-o-equal-height",
+    "vc_row-o-content-top"
+   ],
+   "columnMargin": "default",
+   "text": "dark",
+   "cols": [
+    {
+     "span": 12,
+     "xs": null,
+     "classes": [
+      "no-extra-padding"
+     ],
+     "animation": null,
+     "bg": null,
+     "radius": null,
+     "link": null,
+     "children": [
+      {
+       "type": "img",
+       "src": "https://mattriz.com/wp-content/uploads/2021/11/mattrizpost5.jpg",
+       "width": 1080,
+       "height": 1080,
+       "alt": "",
+       "align": "center",
+       "maxWidth": "100%",
+       "custom": false,
+       "style": {
+        "margin-right": "30%",
+        "margin-left": "30%"
+       },
+       "local": {
+        "base": "mattrizpost5",
+        "widths": [
+         1080,
+         700
+        ],
+        "width": 1080,
+        "height": 1080,
+        "dir": "/media/projects/luciana-cabanas"
+       }
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "type": "row",
+   "inner": false,
+   "fullWidth": "content",
+   "bg": null,
+   "bgImage": null,
+   "bgVideo": null,
+   "padTop": "0px",
+   "padBottom": "0px",
+   "classes": [
+    "vc_row-o-full-height",
+    "vc_row-o-columns-middle",
+    "vc_row-o-equal-height",
+    "vc_row-o-content-top"
+   ],
+   "columnMargin": "default",
+   "text": "dark",
+   "cols": [
+    {
+     "span": 12,
+     "xs": null,
+     "classes": [
+      "no-extra-padding"
+     ],
+     "animation": null,
+     "bg": null,
+     "radius": null,
+     "link": null,
+     "children": [
+      {
+       "type": "video",
+       "src": "https://mattriz.com/wp-content/uploads/2021/11/lucianadesktop.mov",
+       "width": 1280,
+       "height": 720,
+       "radius": "none",
+       "poster": null,
+       "local": {
+        "base": "lucianadesktop",
+        "width": 1600,
+        "height": 778,
+        "size": 5535783,
+        "dir": "/media/projects/luciana-cabanas"
+       }
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "type": "row",
+   "inner": false,
+   "fullWidth": "content",
+   "bg": "#eeeeee",
+   "bgImage": null,
+   "bgVideo": {
+    "src": "https://mattriz.com/wp-content/uploads/2021/11/Grabacion-de-pantalla-2022-12-15-a-las-4.38.34-p.m..mov"
+   },
+   "padTop": "0px",
+   "padBottom": "0px",
+   "classes": [
+    "vc_row-o-full-height",
+    "vc_row-o-columns-middle",
+    "vc_row-o-equal-height",
+    "vc_row-o-content-top"
+   ],
+   "columnMargin": "default",
+   "text": "dark",
+   "cols": [
+    {
+     "span": 4,
+     "xs": null,
+     "classes": [
+      "no-extra-padding"
+     ],
+     "animation": null,
+     "bg": null,
+     "radius": null,
+     "link": null,
+     "children": [
+      {
+       "type": "img",
+       "src": "https://mattriz.com/wp-content/uploads/2021/11/LucianaMobileMockup-e1671216289376.jpg",
+       "width": 502,
+       "height": 1080,
+       "alt": "",
+       "align": "center",
+       "maxWidth": "100%",
+       "custom": false,
+       "style": {},
+       "local": {
+        "base": "lucianamobilemockup-e1671216289376",
+        "widths": [
+         502
+        ],
+        "width": 502,
+        "height": 1080,
+        "dir": "/media/projects/luciana-cabanas"
+       }
+      }
+     ]
+    },
+    {
+     "span": 4,
+     "xs": null,
+     "classes": [
+      "no-extra-padding"
+     ],
+     "animation": null,
+     "bg": null,
+     "radius": null,
+     "link": null,
+     "children": [
+      {
+       "type": "img",
+       "src": "https://mattriz.com/wp-content/uploads/2021/11/LucianaMobileMockup2-e1671216287443.jpg",
+       "width": 507,
+       "height": 1080,
+       "alt": "",
+       "align": "center",
+       "maxWidth": "100%",
+       "custom": false,
+       "style": {
+        "margin-top": "2%"
+       },
+       "local": {
+        "base": "lucianamobilemockup2-e1671216287443",
+        "widths": [
+         507
+        ],
+        "width": 507,
+        "height": 1080,
+        "dir": "/media/projects/luciana-cabanas"
+       }
+      }
+     ]
+    },
+    {
+     "span": 4,
+     "xs": null,
+     "classes": [
+      "no-extra-padding"
+     ],
+     "animation": null,
+     "bg": null,
+     "radius": null,
+     "link": null,
+     "children": [
+      {
+       "type": "img",
+       "src": "https://mattriz.com/wp-content/uploads/2021/11/LucianaMobileMockup3-e1671216304390.jpg",
+       "width": 486,
+       "height": 1080,
+       "alt": "",
+       "align": "center",
+       "maxWidth": "100%",
+       "custom": false,
+       "style": {},
+       "local": {
+        "base": "lucianamobilemockup3-e1671216304390",
+        "widths": [
+         486
+        ],
+        "width": 486,
+        "height": 1080,
+        "dir": "/media/projects/luciana-cabanas"
+       }
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "type": "row",
+   "inner": false,
+   "fullWidth": "content",
+   "bg": "#58230f",
+   "bgImage": null,
+   "bgVideo": null,
+   "padTop": "0px",
+   "padBottom": "0px",
+   "classes": [
+    "vc_row-o-full-height",
+    "vc_row-o-columns-middle",
+    "vc_row-o-equal-height",
+    "vc_row-o-content-top"
+   ],
+   "columnMargin": "default",
+   "text": "dark",
+   "cols": [
+    {
+     "span": 12,
+     "xs": null,
+     "classes": [
+      "no-extra-padding"
+     ],
+     "animation": null,
+     "bg": null,
+     "radius": null,
+     "link": null,
+     "children": [
+      {
+       "type": "divider",
+       "height": "150px",
+       "line": false,
+       "lineStyle": {
+        "height": "150px"
+       },
+       "classes": [],
+       "dclasses": [
+        "divider"
+       ]
+      },
+      {
+       "type": "img",
+       "src": "https://mattriz.com/wp-content/uploads/2021/11/mattrizpost6.jpg",
+       "width": 1080,
+       "height": 1080,
+       "alt": "",
+       "align": "center",
+       "maxWidth": "100%",
+       "custom": false,
+       "style": {},
+       "local": {
+        "base": "mattrizpost6",
+        "widths": [
+         1080,
+         700
+        ],
+        "width": 1080,
+        "height": 1080,
+        "dir": "/media/projects/luciana-cabanas"
+       }
+      },
+      {
+       "type": "divider",
+       "height": "150px",
+       "line": false,
+       "lineStyle": {
+        "height": "150px"
+       },
+       "classes": [],
+       "dclasses": [
+        "divider"
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "type": "row",
+   "inner": false,
+   "fullWidth": "content",
+   "bg": "#58230f",
+   "bgImage": null,
+   "bgVideo": null,
+   "padTop": "0px",
+   "padBottom": "0px",
+   "classes": [
+    "vc_row-o-full-height",
+    "vc_row-o-columns-middle",
+    "vc_row-o-equal-height",
+    "vc_row-o-content-top"
+   ],
+   "columnMargin": "default",
+   "text": "dark",
+   "cols": [
+    {
+     "span": 3,
+     "xs": null,
+     "classes": [
+      "no-extra-padding"
+     ],
+     "animation": null,
+     "bg": null,
+     "radius": null,
+     "link": null,
+     "children": [
+      {
+       "type": "divider",
+       "height": "150px",
+       "line": false,
+       "lineStyle": {
+        "height": "150px"
+       },
+       "classes": [],
+       "dclasses": [
+        "divider"
+       ]
+      }
+     ]
+    },
+    {
+     "span": 9,
+     "xs": null,
+     "classes": [
+      "no-extra-padding"
+     ],
+     "animation": null,
+     "bg": null,
+     "radius": null,
+     "link": null,
+     "children": [
+      {
+       "type": "img",
+       "src": "https://mattriz.com/wp-content/uploads/2021/11/Captura-de-Pantalla-2022-12-16-a-las-2.18.49-p.m..png",
+       "width": 1273,
+       "height": 937,
+       "alt": "",
+       "align": null,
+       "maxWidth": "100%",
+       "custom": false,
+       "style": {},
+       "local": {
+        "base": "captura-de-pantalla-2022-12-16-a-las-2-18-49-p-m",
+        "widths": [
+         1273,
+         1200,
+         700
+        ],
+        "width": 1273,
+        "height": 937,
+        "dir": "/media/projects/luciana-cabanas"
+       }
+      },
+      {
+       "type": "divider",
+       "height": "150px",
+       "line": false,
+       "lineStyle": {
+        "height": "150px"
+       },
+       "classes": [],
+       "dclasses": [
+        "divider"
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "type": "row",
+   "inner": false,
+   "fullWidth": "content",
+   "bg": "#58230f",
+   "bgImage": null,
+   "bgVideo": null,
+   "padTop": "0px",
+   "padBottom": "0px",
+   "classes": [
+    "vc_row-o-full-height",
+    "vc_row-o-columns-middle",
+    "vc_row-o-equal-height",
+    "vc_row-o-content-top"
+   ],
+   "columnMargin": "default",
+   "text": "dark",
+   "cols": [
+    {
+     "span": 12,
+     "xs": null,
+     "classes": [
+      "no-extra-padding"
+     ],
+     "animation": null,
+     "bg": null,
+     "radius": null,
+     "link": null,
+     "children": [
+      {
+       "type": "img",
+       "src": "https://mattriz.com/wp-content/uploads/2021/11/Captura-de-Pantalla-2022-12-16-a-las-1.58.37-p.m..png",
+       "width": 1307,
+       "height": 935,
+       "alt": "Luciana Cabañas Sitio Web - Mattriz",
+       "align": "right",
+       "maxWidth": "100%",
+       "custom": false,
+       "style": {},
+       "local": {
+        "base": "captura-de-pantalla-2022-12-16-a-las-1-58-37-p-m",
+        "widths": [
+         1307,
+         1200,
+         700
+        ],
+        "width": 1307,
+        "height": 935,
+        "dir": "/media/projects/luciana-cabanas"
+       }
+      },
+      {
+       "type": "divider",
+       "height": "150px",
+       "line": false,
+       "lineStyle": {
+        "height": "150px"
+       },
+       "classes": [],
+       "dclasses": [
+        "divider"
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "type": "row",
+   "inner": false,
+   "fullWidth": "content",
+   "bg": "#7a95a8",
+   "bgImage": null,
+   "bgVideo": null,
+   "padTop": "0px",
+   "padBottom": "0px",
+   "classes": [
+    "vc_row-o-equal-height",
+    "vc_row-o-content-top"
+   ],
+   "columnMargin": "none",
+   "text": "light",
+   "cols": [
+    {
+     "span": 6,
+     "xs": null,
+     "classes": [
+      "padding-5-percent",
+      "el_spacing_5px"
+     ],
+     "animation": null,
+     "bg": null,
+     "radius": null,
+     "link": "https://mattriz.com/project/aglvanstours/",
+     "children": [
+      {
+       "type": "divider",
+       "height": "35vh",
+       "line": false,
+       "lineStyle": {
+        "height": "35vh"
+       },
+       "classes": [
+        "height_phone_150px"
+       ],
+       "dclasses": [
+        "divider"
+       ]
+      },
+      {
+       "type": "row",
+       "inner": true,
+       "fullWidth": null,
+       "bg": null,
+       "bgImage": null,
+       "bgVideo": null,
+       "padTop": null,
+       "padBottom": null,
+       "classes": [],
+       "columnMargin": "default",
+       "text": "dark",
+       "cols": [
+        {
+         "span": 12,
+         "xs": null,
+         "classes": [
+          "child_column",
+          "no-extra-padding",
+          "el_spacing_0px"
+         ],
+         "animation": "fade-in-from-bottom",
+         "bg": null,
+         "radius": null,
+         "link": null,
+         "children": [
+          {
+           "type": "split",
+           "tag": "h2",
+           "text": "AGL Vans Tours",
+           "style": {
+            "font-size": "3vw",
+            "line-height": "3.3vw"
+           },
+           "classes": [
+            "font_size_3vw"
+           ]
+          },
+          {
+           "type": "cta",
+           "style_name": "underline",
+           "href": "https://mattriz.com/project/aglvanstours/",
+           "target": null,
+           "label": "Proyecto Anterior",
+           "tag": null,
+           "classes": [],
+           "style": {
+            "--nectar-text-color": "#ffffff",
+            "--nectar-button-color": "var(--nectar-default)",
+            "--nectar-icon-gap": "10px"
+           },
+           "wrapStyle": {}
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": "divider",
+       "height": "35vh",
+       "line": false,
+       "lineStyle": {
+        "height": "35vh"
+       },
+       "classes": [
+        "height_phone_150px"
+       ],
+       "dclasses": [
+        "divider"
+       ]
+      }
+     ]
+    },
+    {
+     "span": 6,
+     "xs": null,
+     "classes": [
+      "padding-5-percent",
+      "el_spacing_5px"
+     ],
+     "animation": null,
+     "bg": null,
+     "radius": null,
+     "link": "https://mattriz.com/project/civilus/",
+     "children": [
+      {
+       "type": "divider",
+       "height": "35vh",
+       "line": false,
+       "lineStyle": {
+        "height": "35vh"
+       },
+       "classes": [
+        "height_phone_150px"
+       ],
+       "dclasses": [
+        "divider"
+       ]
+      },
+      {
+       "type": "row",
+       "inner": true,
+       "fullWidth": null,
+       "bg": null,
+       "bgImage": null,
+       "bgVideo": null,
+       "padTop": null,
+       "padBottom": null,
+       "classes": [],
+       "columnMargin": "default",
+       "text": "dark",
+       "cols": [
+        {
+         "span": 12,
+         "xs": null,
+         "classes": [
+          "child_column",
+          "no-extra-padding",
+          "el_spacing_0px"
+         ],
+         "animation": "fade-in-from-bottom",
+         "bg": null,
+         "radius": null,
+         "link": null,
+         "children": [
+          {
+           "type": "split",
+           "tag": "h2",
+           "text": "Civilus",
+           "style": {
+            "font-size": "3vw",
+            "line-height": "3.3vw"
+           },
+           "classes": [
+            "font_size_3vw"
+           ]
+          },
+          {
+           "type": "cta",
+           "style_name": "underline",
+           "href": "https://mattriz.com/project/civilus/",
+           "target": null,
+           "label": "Proyecto Siguiente",
+           "tag": null,
+           "classes": [],
+           "style": {
+            "--nectar-text-color": "#ffffff",
+            "--nectar-button-color": "var(--nectar-default)",
+            "--nectar-icon-gap": "10px"
+           },
+           "wrapStyle": {}
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": "divider",
+       "height": "35vh",
+       "line": false,
+       "lineStyle": {
+        "height": "35vh"
+       },
+       "classes": [
+        "height_phone_150px"
+       ],
+       "dclasses": [
+        "divider"
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,1233 @@
+{
+ "title": "Let it Go - Mattriz Studio",
+ "description": "",
+ "ogImage": "https://mattriz.com/wp-content/uploads/2022/11/cropped-Logotipo-Estudio-Mattriz-Redes-Negro_Mesa-de-trabajo-1-copia-7.png",
+ "rows": [
+  {
+   "type": "row",
+   "inner": false,
+   "fullWidth": "section",
+   "bg": "#000000",
+   "bgImage": null,
+   "bgVideo": null,
+   "padTop": "calc(100vw * 0.08)",
+   "padBottom": "calc(100vw * 0.08)",
+   "classes": [],
+   "columnMargin": "90px",
+   "text": "dark",
+   "cols": [
+    {
+     "span": 8,
+     "xs": null,
+     "classes": [
+      "padding-1-percent"
+     ],
+     "animation": "fade-in-from-bottom",
+     "bg": null,
+     "radius": null,
+     "link": null,
+     "children": [
+      {
+       "type": "divider",
+       "height": "100px",
+       "line": false,
+       "lineStyle": {
+        "height": "100px"
+       },
+       "classes": [],
+       "dclasses": [
+        "divider"
+       ]
+      },
+      {
+       "type": "html",
+       "html": "<h2>Let It Go, aplicación móvil que busca cambiar hábitos de consumo en las personas para que intercambien y vendan la ropa y los libros que no usan.</h2>",
+       "keepLast": true,
+       "classes": [],
+       "style": {}
+      },
+      {
+       "type": "cta",
+       "style_name": "arrow-animation",
+       "href": "https://xd.adobe.com/view/11bab7f6-7c9b-451e-4b3d-4898d7a55edf-678b/?fullscreen&hints=off",
+       "target": null,
+       "label": "Ver prototipo",
+       "tag": "h4",
+       "classes": [],
+       "style": {
+        "margin-bottom": "30px",
+        "--nectar-text-color": "#ffffff",
+        "--nectar-button-color": "var(--nectar-default)",
+        "--nectar-icon-gap": "10px"
+       },
+       "wrapStyle": {}
+      }
+     ]
+    },
+    {
+     "span": 4,
+     "xs": null,
+     "classes": [
+      "padding-1-percent"
+     ],
+     "animation": "fade-in-from-bottom",
+     "bg": null,
+     "radius": null,
+     "link": null,
+     "children": [
+      {
+       "type": "divider",
+       "height": "100px",
+       "line": false,
+       "lineStyle": {
+        "height": "100px"
+       },
+       "classes": [],
+       "dclasses": [
+        "divider"
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "type": "row",
+   "inner": false,
+   "fullWidth": "content",
+   "bg": null,
+   "bgImage": null,
+   "bgVideo": null,
+   "padTop": "0px",
+   "padBottom": "0px",
+   "classes": [
+    "vc_row-o-full-height",
+    "vc_row-o-columns-middle",
+    "vc_row-o-equal-height",
+    "vc_row-o-content-top",
+    "right_padding_8pct",
+    "left_padding_8pct"
+   ],
+   "columnMargin": "default",
+   "text": "light",
+   "cols": [
+    {
+     "span": 12,
+     "xs": null,
+     "classes": [
+      "no-extra-padding",
+      "el_spacing_0px"
+     ],
+     "animation": null,
+     "bg": null,
+     "radius": null,
+     "link": null,
+     "children": [
+      {
+       "type": "img",
+       "src": "https://mattriz.com/wp-content/uploads/2014/11/Mockup3-scaled.jpg",
+       "width": 2560,
+       "height": 1920,
+       "alt": "",
+       "align": null,
+       "maxWidth": "100%",
+       "custom": false,
+       "style": {},
+       "local": {
+        "base": "mockup3-scaled",
+        "widths": [
+         1600,
+         1200,
+         700
+        ],
+        "width": 1600,
+        "height": 1200,
+        "dir": "/media/projects/let-it-go"
+       }
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "type": "row",
+   "inner": false,
+   "fullWidth": "section",
+   "bg": null,
+   "bgImage": null,
+   "bgVideo": null,
+   "padTop": "calc(100vw * 0.06)",
+   "padBottom": "calc(100vw * 0.10)",
+   "classes": [],
+   "columnMargin": "default",
+   "text": "dark",
+   "cols": [
+    {
+     "span": 3,
+     "xs": 6,
+     "classes": [
+      "no-extra-padding"
+     ],
+     "animation": null,
+     "bg": null,
+     "radius": null,
+     "link": null,
+     "children": [
+      {
+       "type": "divider",
+       "height": "1px",
+       "line": true,
+       "lineStyle": {
+        "margin-top": "12.5px",
+        "height": "1px",
+        "margin-bottom": "12.5px"
+       },
+       "classes": [],
+       "dclasses": [
+        "divider-border"
+       ]
+      },
+      {
+       "type": "html",
+       "html": "<p><b class=\"f-bold\">Servicios</b></p>",
+       "keepLast": true,
+       "classes": [
+        "vc_custom_1671035803117"
+       ],
+       "style": {
+        "margin-bottom": "5px"
+       }
+      },
+      {
+       "type": "list",
+       "icon": "none",
+       "spacing": "default",
+       "html": "Diseño Gráfico<br> Diseño UI/UX"
+      }
+     ]
+    },
+    {
+     "span": 7,
+     "xs": 12,
+     "classes": [
+      "no-extra-padding"
+     ],
+     "animation": null,
+     "bg": null,
+     "radius": null,
+     "link": null,
+     "children": [
+      {
+       "type": "divider",
+       "height": "1px",
+       "line": true,
+       "lineStyle": {
+        "margin-top": "12.5px",
+        "height": "1px",
+        "margin-bottom": "12.5px"
+       },
+       "classes": [],
+       "dclasses": [
+        "divider-border"
+       ]
+      },
+      {
+       "type": "html",
+       "html": "<p><b class=\"f-bold\">Resumen del proyecto<br> </b></p>",
+       "keepLast": true,
+       "classes": [],
+       "style": {}
+      },
+      {
+       "type": "html",
+       "html": "<p>Este proyecto nace de un intento por aportar a la sostenibilidad y al medio ambiente a través de una economía circular. Parte de la idea de ver la ropa y los libros que no usamos no como un desecho sino como un recurso que puede ser intercambiado y reutilizado por otra persona.</p>",
+       "keepLast": true,
+       "classes": [
+        "vc_custom_1671036017303"
+       ],
+       "style": {
+        "margin-top": "10px"
+       }
+      },
+      {
+       "type": "divider",
+       "height": "1px",
+       "line": true,
+       "lineStyle": {
+        "margin-top": "10%",
+        "height": "1px",
+        "margin-bottom": "10%"
+       },
+       "classes": [],
+       "dclasses": [
+        "divider-border"
+       ]
+      },
+      {
+       "type": "html",
+       "html": "<p><b class=\"f-bold\">Lo que hicimos<br> </b></p>",
+       "keepLast": true,
+       "classes": [],
+       "style": {}
+      },
+      {
+       "type": "html",
+       "html": "<ol><li>Investigar de la problemática ambiental</li><li>Plantear un problema de diseño</li><li>Precisar los objetivos de la aplicación</li><li>Definir el público objetivo</li><li>Estudiar el benchmarking</li><li>Creación de logotipo e identidad visual</li><li>Bocetos de la aplicación</li><li>Diseño UI/UX</li><li>Prototipo</li><li>Pruebas con usuarios</li></ol>",
+       "keepLast": true,
+       "classes": [
+        "vc_custom_1671039443393"
+       ],
+       "style": {
+        "margin-top": "10px"
+       }
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "type": "row",
+   "inner": false,
+   "fullWidth": "content",
+   "bg": "#ececf8",
+   "bgImage": null,
+   "bgVideo": null,
+   "padTop": "0px",
+   "padBottom": "calc(100vw * 0.10)",
+   "classes": [
+    "vc_row-o-equal-height",
+    "vc_row-o-content-top"
+   ],
+   "columnMargin": "default",
+   "text": "dark",
+   "cols": [
+    {
+     "span": 12,
+     "xs": null,
+     "classes": [
+      "no-extra-padding"
+     ],
+     "animation": null,
+     "bg": null,
+     "radius": null,
+     "link": null,
+     "children": [
+      {
+       "type": "img",
+       "src": "https://mattriz.com/wp-content/uploads/2021/11/Captura-de-Pantalla-2022-12-14-a-las-12.56.13-p.m..png",
+       "width": 931,
+       "height": 968,
+       "alt": "",
+       "align": "center",
+       "maxWidth": "100%",
+       "custom": false,
+       "style": {
+        "margin-top": "10%"
+       },
+       "local": {
+        "base": "captura-de-pantalla-2022-12-14-a-las-12-56-13-p-m",
+        "widths": [
+         931,
+         700
+        ],
+        "width": 931,
+        "height": 968,
+        "dir": "/media/projects/let-it-go"
+       }
+      },
+      {
+       "type": "img",
+       "src": "https://mattriz.com/wp-content/uploads/2021/11/Captura-de-pantalla-2025-03-11-a-las-11.29.56 p.m.png",
+       "width": 1394,
+       "height": 953,
+       "alt": "Let it go app ui/ux design",
+       "align": "center",
+       "maxWidth": "100%",
+       "custom": false,
+       "style": {},
+       "local": {
+        "base": "captura-de-pantalla-2025-03-11-a-las-11-29-56-p-m",
+        "widths": [
+         1394,
+         1200,
+         700
+        ],
+        "width": 1394,
+        "height": 953,
+        "dir": "/media/projects/let-it-go"
+       }
+      },
+      {
+       "type": "img",
+       "src": "https://mattriz.com/wp-content/uploads/2021/11/Captura-de-pantalla-2025-03-11-a-las-11.30.57 p.m.png",
+       "width": 1396,
+       "height": 910,
+       "alt": "Let it go app UI/UX",
+       "align": "center",
+       "maxWidth": "100%",
+       "custom": false,
+       "style": {},
+       "local": {
+        "base": "captura-de-pantalla-2025-03-11-a-las-11-30-57-p-m",
+        "widths": [
+         1396,
+         1200,
+         700
+        ],
+        "width": 1396,
+        "height": 910,
+        "dir": "/media/projects/let-it-go"
+       }
+      },
+      {
+       "type": "img",
+       "src": "https://mattriz.com/wp-content/uploads/2021/11/Captura-de-pantalla-2025-03-11-a-las-11.31.47 p.m.png",
+       "width": 1395,
+       "height": 527,
+       "alt": "Let it go app UI/UX",
+       "align": "center",
+       "maxWidth": "100%",
+       "custom": false,
+       "style": {},
+       "local": {
+        "base": "captura-de-pantalla-2025-03-11-a-las-11-31-47-p-m",
+        "widths": [
+         1395,
+         1200,
+         700
+        ],
+        "width": 1395,
+        "height": 527,
+        "dir": "/media/projects/let-it-go"
+       }
+      },
+      {
+       "type": "img",
+       "src": "https://mattriz.com/wp-content/uploads/2021/11/Captura-de-pantalla-2025-03-11-a-las-11.32.18 p.m.png",
+       "width": 1396,
+       "height": 866,
+       "alt": "Let it go app UI/UX",
+       "align": "center",
+       "maxWidth": "100%",
+       "custom": false,
+       "style": {},
+       "local": {
+        "base": "captura-de-pantalla-2025-03-11-a-las-11-32-18-p-m",
+        "widths": [
+         1396,
+         1200,
+         700
+        ],
+        "width": 1396,
+        "height": 866,
+        "dir": "/media/projects/let-it-go"
+       }
+      },
+      {
+       "type": "img",
+       "src": "https://mattriz.com/wp-content/uploads/2021/11/Captura-de-pantalla-2025-03-11-a-las-11.32.52 p.m.png",
+       "width": 1392,
+       "height": 954,
+       "alt": "Let it go app UI/UX",
+       "align": "center",
+       "maxWidth": "100%",
+       "custom": false,
+       "style": {},
+       "local": {
+        "base": "captura-de-pantalla-2025-03-11-a-las-11-32-52-p-m",
+        "widths": [
+         1392,
+         1200,
+         700
+        ],
+        "width": 1392,
+        "height": 954,
+        "dir": "/media/projects/let-it-go"
+       }
+      },
+      {
+       "type": "img",
+       "src": "https://mattriz.com/wp-content/uploads/2021/11/Captura-de-Pantalla-2022-12-14-a-las-10.20.08-a.m..png",
+       "width": 1251,
+       "height": 859,
+       "alt": "Let it go app UI/UX",
+       "align": "center",
+       "maxWidth": "100%",
+       "custom": false,
+       "style": {},
+       "local": {
+        "base": "captura-de-pantalla-2022-12-14-a-las-10-20-08-a-m",
+        "widths": [
+         1251,
+         1200,
+         700
+        ],
+        "width": 1251,
+        "height": 859,
+        "dir": "/media/projects/let-it-go"
+       }
+      },
+      {
+       "type": "img",
+       "src": "https://mattriz.com/wp-content/uploads/2021/11/Captura-de-pantalla-2025-03-11-a-las-11.34.10 p.m.png",
+       "width": 1396,
+       "height": 736,
+       "alt": "Let it go app UI/UX",
+       "align": "center",
+       "maxWidth": "100%",
+       "custom": false,
+       "style": {},
+       "local": {
+        "base": "captura-de-pantalla-2025-03-11-a-las-11-34-10-p-m",
+        "widths": [
+         1396,
+         1200,
+         700
+        ],
+        "width": 1396,
+        "height": 736,
+        "dir": "/media/projects/let-it-go"
+       }
+      },
+      {
+       "type": "img",
+       "src": "https://mattriz.com/wp-content/uploads/2021/11/Captura-de-Pantalla-2022-12-14-a-las-10.17.06-a.m..png",
+       "width": 1252,
+       "height": 967,
+       "alt": "Let it go app UI/UX",
+       "align": "center",
+       "maxWidth": "100%",
+       "custom": false,
+       "style": {},
+       "local": {
+        "base": "captura-de-pantalla-2022-12-14-a-las-10-17-06-a-m",
+        "widths": [
+         1252,
+         1200,
+         700
+        ],
+        "width": 1252,
+        "height": 967,
+        "dir": "/media/projects/let-it-go"
+       }
+      },
+      {
+       "type": "img",
+       "src": "https://mattriz.com/wp-content/uploads/2021/11/Captura-de-Pantalla-2022-12-14-a-las-10.02.53-a.m..png",
+       "width": 1250,
+       "height": 921,
+       "alt": "",
+       "align": "center",
+       "maxWidth": "100%",
+       "custom": false,
+       "style": {},
+       "local": {
+        "base": "captura-de-pantalla-2022-12-14-a-las-10-02-53-a-m",
+        "widths": [
+         1250,
+         1200,
+         700
+        ],
+        "width": 1250,
+        "height": 921,
+        "dir": "/media/projects/let-it-go"
+       }
+      },
+      {
+       "type": "img",
+       "src": "https://mattriz.com/wp-content/uploads/2021/11/Captura-de-Pantalla-2022-12-14-a-las-10.03.22-a.m..png",
+       "width": 1251,
+       "height": 907,
+       "alt": "",
+       "align": "center",
+       "maxWidth": "100%",
+       "custom": false,
+       "style": {},
+       "local": {
+        "base": "captura-de-pantalla-2022-12-14-a-las-10-03-22-a-m",
+        "widths": [
+         1251,
+         1200,
+         700
+        ],
+        "width": 1251,
+        "height": 907,
+        "dir": "/media/projects/let-it-go"
+       }
+      },
+      {
+       "type": "img",
+       "src": "https://mattriz.com/wp-content/uploads/2021/11/Captura-de-Pantalla-2022-12-14-a-las-10.16.29-a.m..png",
+       "width": 1251,
+       "height": 860,
+       "alt": "",
+       "align": "center",
+       "maxWidth": "100%",
+       "custom": false,
+       "style": {},
+       "local": {
+        "base": "captura-de-pantalla-2022-12-14-a-las-10-16-29-a-m",
+        "widths": [
+         1251,
+         1200,
+         700
+        ],
+        "width": 1251,
+        "height": 860,
+        "dir": "/media/projects/let-it-go"
+       }
+      },
+      {
+       "type": "img",
+       "src": "https://mattriz.com/wp-content/uploads/2021/11/Captura-de-pantalla-2025-03-11-a-las-11.35.45 p.m.png",
+       "width": 1396,
+       "height": 947,
+       "alt": "Let it go app UI/UX",
+       "align": "center",
+       "maxWidth": "100%",
+       "custom": false,
+       "style": {},
+       "local": {
+        "base": "captura-de-pantalla-2025-03-11-a-las-11-35-45-p-m",
+        "widths": [
+         1396,
+         1200,
+         700
+        ],
+        "width": 1396,
+        "height": 947,
+        "dir": "/media/projects/let-it-go"
+       }
+      },
+      {
+       "type": "img",
+       "src": "https://mattriz.com/wp-content/uploads/2021/11/Captura-de-pantalla-2025-03-11-a-las-11.36.25 p.m.png",
+       "width": 1393,
+       "height": 952,
+       "alt": "Let it go app UI/UX",
+       "align": "center",
+       "maxWidth": "100%",
+       "custom": false,
+       "style": {},
+       "local": {
+        "base": "captura-de-pantalla-2025-03-11-a-las-11-36-25-p-m",
+        "widths": [
+         1393,
+         1200,
+         700
+        ],
+        "width": 1393,
+        "height": 952,
+        "dir": "/media/projects/let-it-go"
+       }
+      },
+      {
+       "type": "img",
+       "src": "https://mattriz.com/wp-content/uploads/2021/11/Captura-de-Pantalla-2022-12-14-a-las-10.26.24-a.m.-1.png",
+       "width": 1251,
+       "height": 967,
+       "alt": "",
+       "align": "center",
+       "maxWidth": "100%",
+       "custom": false,
+       "style": {},
+       "local": {
+        "base": "captura-de-pantalla-2022-12-14-a-las-10-26-24-a-m-1",
+        "widths": [
+         1251,
+         1200,
+         700
+        ],
+        "width": 1251,
+        "height": 967,
+        "dir": "/media/projects/let-it-go"
+       }
+      },
+      {
+       "type": "img",
+       "src": "https://mattriz.com/wp-content/uploads/2021/11/Captura-de-pantalla-2025-03-11-a-las-11.37.14 p.m.png",
+       "width": 1395,
+       "height": 951,
+       "alt": "Let it go app UI/UX",
+       "align": "center",
+       "maxWidth": "100%",
+       "custom": false,
+       "style": {},
+       "local": {
+        "base": "captura-de-pantalla-2025-03-11-a-las-11-37-14-p-m",
+        "widths": [
+         1395,
+         1200,
+         700
+        ],
+        "width": 1395,
+        "height": 951,
+        "dir": "/media/projects/let-it-go"
+       }
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "type": "row",
+   "inner": false,
+   "fullWidth": null,
+   "bg": null,
+   "bgImage": null,
+   "bgVideo": null,
+   "padTop": "0px",
+   "padBottom": "0px",
+   "classes": [
+    "top_margin_8pct",
+    "bottom_margin_8pct"
+   ],
+   "columnMargin": "default",
+   "text": "dark",
+   "cols": [
+    {
+     "span": 4,
+     "xs": null,
+     "classes": [
+      "no-extra-padding"
+     ],
+     "animation": null,
+     "bg": null,
+     "radius": null,
+     "link": null,
+     "children": [
+      {
+       "type": "img",
+       "src": "https://mattriz.com/wp-content/uploads/2021/11/Captura-de-Pantalla-2022-12-15-a-las-7.24.18-p.m..png",
+       "width": 494,
+       "height": 969,
+       "alt": "",
+       "align": "center",
+       "maxWidth": "100%",
+       "custom": false,
+       "style": {
+        "margin-top": "5%"
+       },
+       "local": {
+        "base": "captura-de-pantalla-2022-12-15-a-las-7-24-18-p-m",
+        "widths": [
+         494
+        ],
+        "width": 494,
+        "height": 969,
+        "dir": "/media/projects/let-it-go"
+       }
+      }
+     ]
+    },
+    {
+     "span": 4,
+     "xs": null,
+     "classes": [
+      "centered-text",
+      "no-extra-padding"
+     ],
+     "animation": null,
+     "bg": null,
+     "radius": null,
+     "link": null,
+     "children": [
+      {
+       "type": "img",
+       "src": "https://mattriz.com/wp-content/uploads/2021/11/Captura-de-Pantalla-2022-12-14-a-las-11.24.02-a.m..png",
+       "width": 530,
+       "height": 968,
+       "alt": "",
+       "align": "center",
+       "maxWidth": "100%",
+       "custom": false,
+       "style": {
+        "margin-top": "5%"
+       },
+       "local": {
+        "base": "captura-de-pantalla-2022-12-14-a-las-11-24-02-a-m",
+        "widths": [
+         530
+        ],
+        "width": 530,
+        "height": 968,
+        "dir": "/media/projects/let-it-go"
+       }
+      }
+     ]
+    },
+    {
+     "span": 4,
+     "xs": null,
+     "classes": [
+      "no-extra-padding"
+     ],
+     "animation": null,
+     "bg": null,
+     "radius": null,
+     "link": null,
+     "children": [
+      {
+       "type": "img",
+       "src": "https://mattriz.com/wp-content/uploads/2021/11/Captura-de-Pantalla-2022-12-15-a-las-7.14.02-p.m..png",
+       "width": 500,
+       "height": 969,
+       "alt": "",
+       "align": "center",
+       "maxWidth": "100%",
+       "custom": false,
+       "style": {
+        "margin-top": "5%"
+       },
+       "local": {
+        "base": "captura-de-pantalla-2022-12-15-a-las-7-14-02-p-m",
+        "widths": [
+         500
+        ],
+        "width": 500,
+        "height": 969,
+        "dir": "/media/projects/let-it-go"
+       }
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "type": "row",
+   "inner": false,
+   "fullWidth": "content",
+   "bg": null,
+   "bgImage": null,
+   "bgVideo": null,
+   "padTop": "0px",
+   "padBottom": "0px",
+   "classes": [
+    "vc_row-o-full-height",
+    "vc_row-o-columns-middle",
+    "vc_row-o-equal-height",
+    "vc_row-o-content-top"
+   ],
+   "columnMargin": "default",
+   "text": "dark",
+   "cols": [
+    {
+     "span": 12,
+     "xs": null,
+     "classes": [
+      "no-extra-padding"
+     ],
+     "animation": null,
+     "bg": null,
+     "radius": null,
+     "link": null,
+     "children": [
+      {
+       "type": "img",
+       "src": "https://mattriz.com/wp-content/uploads/2014/11/Mockup1-scaled.jpg",
+       "width": 2560,
+       "height": 1920,
+       "alt": "",
+       "align": "center",
+       "maxWidth": "100%",
+       "custom": false,
+       "style": {},
+       "local": {
+        "base": "mockup1-scaled",
+        "widths": [
+         1600,
+         1200,
+         700
+        ],
+        "width": 1600,
+        "height": 1200,
+        "dir": "/media/projects/let-it-go"
+       }
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "type": "row",
+   "inner": false,
+   "fullWidth": "content",
+   "bg": null,
+   "bgImage": null,
+   "bgVideo": null,
+   "padTop": "0px",
+   "padBottom": "0px",
+   "classes": [
+    "vc_row-o-full-height",
+    "vc_row-o-columns-middle",
+    "vc_row-o-equal-height",
+    "vc_row-o-content-top"
+   ],
+   "columnMargin": "default",
+   "text": "dark",
+   "cols": [
+    {
+     "span": 12,
+     "xs": null,
+     "classes": [
+      "no-extra-padding"
+     ],
+     "animation": null,
+     "bg": null,
+     "radius": null,
+     "link": null,
+     "children": [
+      {
+       "type": "img",
+       "src": "https://mattriz.com/wp-content/uploads/2014/11/Mockup2-scaled.jpg",
+       "width": 2560,
+       "height": 1920,
+       "alt": "",
+       "align": null,
+       "maxWidth": "100%",
+       "custom": true,
+       "style": {},
+       "local": {
+        "base": "mockup2-scaled",
+        "widths": [
+         1600,
+         1200,
+         700
+        ],
+        "width": 1600,
+        "height": 1200,
+        "dir": "/media/projects/let-it-go"
+       }
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "type": "row",
+   "inner": false,
+   "fullWidth": "content",
+   "bg": null,
+   "bgImage": null,
+   "bgVideo": null,
+   "padTop": "0px",
+   "padBottom": "0px",
+   "classes": [
+    "vc_row-o-full-height",
+    "vc_row-o-columns-middle",
+    "vc_row-o-equal-height",
+    "vc_row-o-content-top"
+   ],
+   "columnMargin": "default",
+   "text": "dark",
+   "cols": [
+    {
+     "span": 12,
+     "xs": null,
+     "classes": [
+      "no-extra-padding"
+     ],
+     "animation": null,
+     "bg": null,
+     "radius": null,
+     "link": null,
+     "children": [
+      {
+       "type": "img",
+       "src": "https://mattriz.com/wp-content/uploads/2014/11/Pantallas-scaled.jpg",
+       "width": 1778,
+       "height": 2560,
+       "alt": "",
+       "align": "center",
+       "maxWidth": "100%",
+       "custom": false,
+       "style": {},
+       "local": {
+        "base": "pantallas-scaled",
+        "widths": [
+         1600,
+         1200,
+         700
+        ],
+        "width": 1600,
+        "height": 2304,
+        "dir": "/media/projects/let-it-go"
+       }
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "type": "row",
+   "inner": false,
+   "fullWidth": "content",
+   "bg": null,
+   "bgImage": null,
+   "bgVideo": null,
+   "padTop": "0px",
+   "padBottom": "0px",
+   "classes": [
+    "vc_row-o-full-height",
+    "vc_row-o-columns-middle",
+    "vc_row-o-equal-height",
+    "vc_row-o-content-top"
+   ],
+   "columnMargin": "default",
+   "text": "dark",
+   "cols": [
+    {
+     "span": 12,
+     "xs": null,
+     "classes": [
+      "no-extra-padding"
+     ],
+     "animation": null,
+     "bg": null,
+     "radius": null,
+     "link": null,
+     "children": [
+      {
+       "type": "img",
+       "src": "https://mattriz.com/wp-content/uploads/2014/11/GifINTRO.gif",
+       "width": 1400,
+       "height": 1050,
+       "alt": "",
+       "align": null,
+       "maxWidth": "100%",
+       "custom": false,
+       "style": {},
+       "local": {
+        "base": "gifintro",
+        "widths": [
+         1400,
+         1200,
+         700
+        ],
+        "width": 1400,
+        "height": 1050,
+        "dir": "/media/projects/let-it-go"
+       }
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "type": "row",
+   "inner": false,
+   "fullWidth": "content",
+   "bg": "#7a95a8",
+   "bgImage": null,
+   "bgVideo": null,
+   "padTop": "0px",
+   "padBottom": "0px",
+   "classes": [
+    "vc_row-o-equal-height",
+    "vc_row-o-content-top"
+   ],
+   "columnMargin": "none",
+   "text": "light",
+   "cols": [
+    {
+     "span": 6,
+     "xs": null,
+     "classes": [
+      "padding-5-percent",
+      "el_spacing_5px"
+     ],
+     "animation": null,
+     "bg": null,
+     "radius": null,
+     "link": "https://mattriz.com/project/posada-carcamo-abogados/",
+     "children": [
+      {
+       "type": "divider",
+       "height": "35vh",
+       "line": false,
+       "lineStyle": {
+        "height": "35vh"
+       },
+       "classes": [
+        "height_phone_150px"
+       ],
+       "dclasses": [
+        "divider"
+       ]
+      },
+      {
+       "type": "row",
+       "inner": true,
+       "fullWidth": null,
+       "bg": null,
+       "bgImage": null,
+       "bgVideo": null,
+       "padTop": null,
+       "padBottom": null,
+       "classes": [],
+       "columnMargin": "default",
+       "text": "dark",
+       "cols": [
+        {
+         "span": 12,
+         "xs": null,
+         "classes": [
+          "child_column",
+          "no-extra-padding",
+          "el_spacing_0px"
+         ],
+         "animation": "fade-in-from-bottom",
+         "bg": null,
+         "radius": null,
+         "link": null,
+         "children": [
+          {
+           "type": "split",
+           "tag": "h2",
+           "text": "Posada Cárcamo Abogados",
+           "style": {
+            "font-size": "3vw",
+            "line-height": "3.3vw"
+           },
+           "classes": [
+            "font_size_3vw"
+           ]
+          },
+          {
+           "type": "cta",
+           "style_name": "underline",
+           "href": "https://mattriz.com/project/posada-carcamo-abogados/",
+           "target": null,
+           "label": "Proyecto Anterior",
+           "tag": null,
+           "classes": [],
+           "style": {
+            "--nectar-text-color": "#ffffff",
+            "--nectar-button-color": "var(--nectar-default)",
+            "--nectar-icon-gap": "10px"
+           },
+           "wrapStyle": {}
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": "divider",
+       "height": "35vh",
+       "line": false,
+       "lineStyle": {
+        "height": "35vh"
+       },
+       "classes": [
+        "height_phone_150px"
+       ],
+       "dclasses": [
+        "divider"
+       ]
+      }
+     ]
+    },
+    {
+     "span": 6,
+     "xs": null,
+     "classes": [
+      "padding-5-percent",
+      "el_spacing_5px"
+     ],
+     "animation": null,
+     "bg": null,
+     "radius": null,
+     "link": "https://mattriz.com/project/aglvanstours/",
+     "children": [
+      {
+       "type": "divider",
+       "height": "35vh",
+       "line": false,
+       "lineStyle": {
+        "height": "35vh"
+       },
+       "classes": [
+        "height_phone_150px"
+       ],
+       "dclasses": [
+        "divider"
+       ]
+      },
+      {
+       "type": "row",
+       "inner": true,
+       "fullWidth": null,
+       "bg": null,
+       "bgImage": null,
+       "bgVideo": null,
+       "padTop": null,
+       "padBottom": null,
+       "classes": [],
+       "columnMargin": "default",
+       "text": "dark",
+       "cols": [
+        {
+         "span": 12,
+         "xs": null,
+         "classes": [
+          "child_column",
+          "no-extra-padding",
+          "el_spacing_0px"
+         ],
+         "animation": "fade-in-from-bottom",
+         "bg": null,
+         "radius": null,
+         "link": null,
+         "children": [
+          {
+           "type": "split",
+           "tag": "h2",
+           "text": "AGL Vans Tour",
+           "style": {
+            "font-size": "3vw",
+            "line-height": "3.3vw"
+           },
+           "classes": [
+            "font_size_3vw"
+           ]
+          },
+          {
+           "type": "cta",
+           "style_name": "underline",
+           "href": "https://mattriz.com/project/aglvanstours/",
+           "target": null,
+           "label": "Proyecto Siguiente",
+           "tag": null,
+           "classes": [],
+           "style": {
+            "--nectar-text-color": "#ffffff",
+            "--nectar-button-color": "var(--nectar-default)",
+            "--nectar-icon-gap": "10px"
+           },
+           "wrapStyle": {}
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": "divider",
+       "height": "35vh",
+       "line": false,
+       "lineStyle": {
+        "height": "35vh"
+       },
+       "classes": [
+        "height_phone_150px"
+       ],
+       "dclasses": [
+        "divider"
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

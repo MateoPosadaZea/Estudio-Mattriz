@@ -1,0 +1,452 @@
+---
+// Un elemento de WPBakery: texto, título partido, imagen, video, divisor, botón, categorías, marquesina.
+import SplitText from '../SplitText.astro';
+import LineButton from '../LineButton.astro';
+import ScrollingText from './ScrollingText.astro';
+import ExploreGrid from './ExploreGrid.astro';
+import { fontVars, srcset, largest } from './tone';
+
+interface Props {
+  el: any;
+  slug: string;
+}
+const { el, slug } = Astro.props;
+
+const css = (style: Record<string, string> = {}) =>
+  Object.entries(style)
+    .filter(([k]) => !k.startsWith('--nectar') && k !== 'color')
+    .map(([k, v]) => `${k}:${v}`)
+    .join(';');
+
+const local = (href: string | null) => (href ? href.replace(/^https:\/\/mattriz\.com/, '') || '/' : '#');
+const external = (href: string | null) => !!href && /^https?:\/\//.test(href) && !href.startsWith('https://mattriz.com');
+const phone = (el.classes ?? []).map((c: string) => c.match(/^height_phone_(\d+px)$/)?.[1]).find(Boolean);
+---
+
+{el.type === 'html' && <div class:list={['wp-text', { 'wp-text--sized': fontVars(el.classes), 'keep-last': el.keepLast }]} style={[fontVars(el.classes), css(el.style)].filter(Boolean).join(';')} set:html={el.html} />}
+
+{
+  el.type === 'split' && (
+    <div class="wp-split" style={[fontVars(el.classes), el.classes.includes('font_line_height_1-2') ? '' : '--lh:1.1'].filter(Boolean).join(';')}>
+      <SplitText as={el.tag} text={el.text} effect="words" stagger />
+    </div>
+  )
+}
+
+{
+  el.type === 'img' && el.local && (
+    <div class:list={['wp-img', el.align && `wp-img--${el.align}`]} style={css(el.style)}>
+      <img
+        src={largest(el.local)}
+        srcset={srcset(el.local)}
+        sizes={`(max-width: 999px) 100vw, min(${el.local.width}px, 100vw)`}
+        width={el.local.width}
+        height={el.local.height}
+        alt={el.alt}
+        loading="lazy"
+        decoding="async"
+      />
+    </div>
+  )
+}
+
+{
+  el.type === 'video' && el.local && (
+    <div class="wp-video" style={el.radius && el.radius !== 'none' ? `--radius:${el.radius}` : ''}>
+      <video
+        data-src={`${el.local.dir}/${el.local.base}.mp4`}
+        poster={`${el.local.dir}/${el.local.base}-poster.webp`}
+        width={el.local.width}
+        height={el.local.height}
+        muted
+        loop
+        playsinline
+        preload="none"
+        aria-hidden="true"
+      />
+    </div>
+  )
+}
+
+{
+  el.type === 'divider' &&
+    (el.line ? (
+      <div class="wp-divider wp-divider--line" style={css(el.lineStyle)} />
+    ) : (
+      <div class="wp-divider" style={`--h:${el.height ?? '0px'};${phone ? `--h-p:${phone}` : ''}`} />
+    ))
+}
+
+{
+  el.type === 'cta' && el.style_name === 'underline' && (
+    <p class:list={['wp-cta-underline', { 'wp-cta-underline--rem': el.classes.includes('font_size_desktop_1rem') }]} style={css(el.style)}>
+      <a class="u-link" href={local(el.href)} target={external(el.href) ? '_blank' : undefined} rel={external(el.href) ? 'noopener' : undefined}>
+        {el.label}
+      </a>
+    </p>
+  )
+}
+
+{
+  el.type === 'cta' && el.style_name === 'see-through' && (
+    <div class="wp-cta-circle" style={css(el.style)}>
+      <a href={local(el.href)} target={external(el.href) ? '_blank' : undefined} rel={external(el.href) ? 'noopener' : undefined}>
+        <span>{el.label}</span>
+        <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+          <circle cx="12" cy="12" r="11" fill="none" stroke="currentColor" stroke-width="1.2" />
+          <path d="M10.5 8l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+      </a>
+    </div>
+  )
+}
+
+{
+  el.type === 'cta' && el.style_name === 'arrow-animation' && (
+    <div class:list={['wp-cta-arrow', { 'wp-cta-arrow--plain': !el.classes.includes('border_thickness_1px') }]} style={css(el.style)}>
+      <LineButton href={local(el.href)} variant={el.classes.includes('border_color_636363') ? 'dark' : 'light'}>
+        {el.label}
+      </LineButton>
+    </div>
+  )
+}
+
+{
+  el.type === 'meta' && (
+    <p class:list={['wp-meta', { 'wp-meta--right': el.classes.includes('alignment_right_desktop') }]}>
+      {el.items.map((it: any) => (it.href ? <a href={`/#work`}>{it.label}</a> : <span>{it.label}</span>))}
+    </p>
+  )
+}
+
+{el.type === 'scrolling' && <ScrollingText text={el.text} />}
+
+{el.type === 'postgrid' && <ExploreGrid current={slug} />}
+
+{el.type === 'list' && <div class="wp-list" data-icon={el.icon} data-spacing={el.spacing} set:html={el.html} />}
+
+{el.type === 'badge' && <p class="wp-badge">{el.text}</p>}
+
+<style is:global>
+  /* Tipografía de los proyectos (Salient): h2 46/52 light, h4 22/28, h5 18/30 con tracking, h6 18/28 600. */
+  .wp-text h1,
+  .wp-text h2 {
+    margin-bottom: 10px;
+    font-size: 46px;
+    font-weight: var(--fw-light);
+    line-height: 52px;
+    letter-spacing: var(--ls-tight);
+  }
+
+  .wp-text h3 {
+    font-weight: 500;
+  }
+
+  .wp-text h4 {
+    margin-bottom: 8px;
+    font-size: 22px;
+    font-weight: 500;
+    line-height: 28px;
+  }
+
+  .wp-text h5 {
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 30px;
+    letter-spacing: 0.05em;
+  }
+
+  .wp-text h6 {
+    margin-bottom: 7px;
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 28px;
+  }
+
+  .wp-text p,
+  .wp-text li {
+    font-size: inherit;
+  }
+
+  /* Salient: párrafos con 1.5em de espacio debajo, salvo el último. */
+  .wp-text p:not(:last-child) {
+    padding-bottom: 1.5em;
+  }
+
+  .wp-text ul,
+  .wp-text ol {
+    margin: 0 0 30px;
+    padding: 0;
+  }
+
+  .wp-text:not(.keep-last) > :is(ul, ol, p):last-child,
+  .wp-list > ul:last-child {
+    margin-bottom: 0;
+  }
+
+  .f-bold {
+    font-family: var(--font-sans-bold);
+    font-weight: 700;
+  }
+
+  .wp-text ol {
+    padding-left: 1.2em;
+    list-style: decimal;
+  }
+
+  .wp-text ul li {
+    padding-left: 15px;
+  }
+
+  .wp-text a {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  /* Textos con tamaño propio (font_size_desktop/tablet/phone/max y font_line_height). */
+  .wp-text--sized,
+  .wp-text--sized > * {
+    font-size: min(var(--fs-d, 1em), var(--fs-max, 9999px));
+    line-height: var(--lh, inherit);
+  }
+
+  .wp-text:not(.wp-text--sized)[style*='--lh'] > * {
+    line-height: var(--lh);
+  }
+
+  .wp-split .split {
+    font-size: 3vw;
+    font-weight: var(--fw-light);
+    line-height: var(--lh, 1.1);
+    letter-spacing: var(--ls-tight);
+  }
+
+  .wp-split h2 {
+    margin-bottom: 7px;
+  }
+
+  .wp-split .split__word {
+    line-height: inherit;
+  }
+
+  /* Listas nectar-fancy-ul: punto a la izquierda (15px) o sin ícono; espaciado default o 15px con alto de línea 1.3. */
+  .wp-list ul {
+    margin: 0 0 30px;
+    padding: 0;
+  }
+
+  .wp-list li {
+    position: relative;
+    padding-left: 15px;
+  }
+
+  .wp-list[data-icon='dot'] li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: calc(0.5lh - 2px);
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: currentColor;
+  }
+
+  .wp-list[data-icon='none'] li {
+    padding-left: 0;
+  }
+
+  .wp-list[data-spacing='15px'] {
+    line-height: 1.3em;
+  }
+
+  .wp-list[data-spacing='15px'] li:not(:last-child) {
+    margin-bottom: 15px;
+  }
+
+  .wp-img {
+    line-height: 0;
+  }
+
+  .wp-img img {
+    width: auto;
+    max-width: 100%;
+    height: auto;
+  }
+
+  .wp-img--center {
+    text-align: center;
+  }
+
+  .wp-img--center img {
+    margin: 0 auto;
+  }
+
+  .wp-img--right img {
+    margin-left: auto;
+  }
+
+  .wp-video video {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    border-radius: var(--radius, 0);
+  }
+
+  .wp-divider {
+    height: var(--h);
+  }
+
+  .wp-divider--line {
+    background: currentColor;
+    opacity: 0.2;
+  }
+
+  .wp-cta-underline {
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 26px;
+  }
+
+  /* Vivo: el enlace "View Website" del reto va a 1rem (16px/24px). */
+  .wp-cta-underline--rem {
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  .wp-cta-circle {
+    height: 28px;
+  }
+
+  .wp-cta-circle a {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 22px;
+    font-weight: 500;
+    line-height: 28px;
+  }
+
+  .wp-cta-circle svg {
+    transition: transform 0.3s var(--ease-reveal);
+  }
+
+  .wp-cta-circle a:hover svg {
+    transform: translateX(4px);
+  }
+
+  .wp-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    font-size: 17px;
+    line-height: 17px;
+  }
+
+  .wp-meta--right {
+    justify-content: flex-end;
+  }
+
+  .wp-meta span {
+    padding: 0.3em 0.7em;
+    font-size: 14px;
+    line-height: 14px;
+  }
+
+  /* Categorías con enlace (columna fija): 17px. Sin enlace (cabecera del caso): 14px. */
+  .wp-meta a,
+  .wp-meta span {
+    white-space: nowrap;
+    padding: 0.4em 0.8em;
+    border: 1px solid currentColor;
+    border-radius: 100px;
+    transition:
+      background-color 0.3s,
+      color 0.3s;
+  }
+
+  .wp-meta a:hover {
+    background: currentColor;
+  }
+
+  .wp-meta a:hover {
+    background: var(--color-ink);
+    border-color: var(--color-ink);
+    color: var(--color-white);
+  }
+
+  .tone-light .wp-meta a:hover {
+    background: var(--color-white);
+    border-color: var(--color-white);
+    color: var(--color-ink);
+  }
+
+  .wp-badge {
+    display: inline-block;
+    padding: 0.5em 1em;
+    border-radius: 20px;
+    background: var(--color-white);
+    color: var(--color-black);
+    line-height: 1;
+  }
+
+  @media (min-width: 691px) and (max-width: 999px) {
+    .wp-text--sized,
+    .wp-text--sized > * {
+      font-size: var(--fs-t, var(--fs-d, inherit));
+    }
+  }
+
+  @media (max-width: 999px) {
+    .wp-meta--right {
+      justify-content: flex-start;
+    }
+  }
+
+  @media (max-width: 690px) {
+    .wp-text h1,
+    .wp-text h2,
+    .wp-split .split {
+      font-size: 28px;
+      line-height: 32px;
+    }
+
+    .wp-text h4 {
+      font-size: 20px;
+      line-height: 26px;
+    }
+
+    .wp-text h5 {
+      font-size: 17px;
+      line-height: 27px;
+    }
+
+    .wp-text--sized,
+    .wp-text--sized > * {
+      font-size: var(--fs-p, var(--fs-t, var(--fs-d, inherit)));
+    }
+
+    .wp-divider {
+      height: var(--h-p, var(--h));
+    }
+
+    .wp-meta {
+      font-size: 14px;
+      line-height: 14px;
+    }
+
+    .wp-list[data-spacing='15px'] {
+      line-height: inherit;
+    }
+
+    .wp-cta-underline {
+      min-height: 44px;
+      line-height: 21px;
+    }
+
+    .wp-cta-circle {
+      height: 44px;
+    }
+  }
+</style>

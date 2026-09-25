@@ -1,0 +1,71 @@
+ROW full-width-section has-row-bg-color first-section | x23 y95 w343 h413 pad 42px 0px mar 0px bg rgb(255, 255, 255)
+  COL no-extra-padding el_spacing_0px  | x-2 y137 w393 h329 pad 0px 25px mar 0px
+    ROW inner_row  right_padding_20pct right_padding_tablet_0px | x23 y137 w343 h183 pad 20.5781px 0px mar 0px bg rgba(0, 0, 0, 0)
+      COL child_column no-extra-padding  | x-2 y158 w393 h141 pad 0px 25px mar 0px
+        EL nectar-split-heading font_size_3vw font_size_max_104px font_line_heigh | x23 y158 w343 h134 pad 0px mar 0px "Visual identity and website for an onlin" [H2 maison-neue-light 28px/33.6px w300 ls-0.84px rgb(10, 10, 10) mb7px]
+    ROW inner_row | x23 y320 w343 h146 pad 0px mar 0px bg rgba(0, 0, 0, 0)
+      COL child_column no-extra-padding el_spacing_0px one-fourths clear-both | x-2 y320 w197 h56 pad 0px 25px mar 0px
+        EL  | x23 y320 w147 h28 pad 0px mar 0px "Year" [H6 maison-neue-light 18px/28px w600 lsnormal rgb(10, 10, 10) mb7px]
+        EL nectar-responsive-text nectar-link-underline-effect | x23 y355 w147 h21 pad 0px mar 0px "2023" [P maison-neue-light 14px/21px w400 lsnormal rgb(10, 10, 10) mb0px]
+      COL child_column no-extra-padding el_spacing_0px one-fourths right-edge | x195 y320 w197 h56 pad 0px 25px mar 0px
+        EL  | x220 y320 w147 h28 pad 0px mar 0px "Client" [H6 maison-neue-light 18px/28px w600 lsnormal rgb(10, 10, 10) mb7px]
+        EL nectar-responsive-text nectar-link-underline-effect | x220 y355 w147 h21 pad 0px mar 0px "Civilus" [P maison-neue-light 14px/21px w400 lsnormal rgb(10, 10, 10) mb0px]
+      COL child_column no-extra-padding top_margin_tablet_30px  | x-2 y406 w393 h60 pad 0px 25px mar 30px 0px 0px
+        EL nectar-meta-category-el  alignment_right_desktop alignment_default_tab | x23 y406 w343 h60 pad 0px mar 0px "Brand IdentityUI/UX DesignWeb Developmen" [SPAN maison-neue-light 14px/14px w400 lsnormal rgb(10, 10, 10) mb0px]
+ROW full-width-content has-row-bg-color | x0 y508 w390 h219 pad 0px mar 0px 0px 0px -195px bg rgb(0, 0, 0)
+  COL no-extra-padding  | x0 y508 w390 h219 pad 0px mar 0px
+    EL nectar_video_player_self_hosted | x0 y508 w390 h219 pad 0px mar 0px ""
+ROW full-width-section | x23 y727 w343 h493 pad 23.4px 0px mar 0px bg rgba(0, 0, 0, 0)
+  COL no-extra-padding  | x-2 y751 w393 h446 pad 0px 25px mar 0px
+    ROW inner_row | x23 y751 w343 h446 pad 0px mar 0px bg rgba(0, 0, 0, 0)
+      COL child_column no-extra-padding el_spacing_0px  | x-2 y751 w393 h35 pad 0px 25px mar 0px 0px 50px
+        EL  | x23 y751 w343 h28 pad 0px mar 0px "The Challenge" [H6 maison-neue-light 18px/28px w600 lsnormal rgb(10, 10, 10) mb7px]
+      COL child_column el_spacing_30px right_padding_desktop_15pct right_padding | x-2 y836 w393 h361 pad 0px 25px mar 0px
+        EL nectar-responsive-text font_size_desktop_1em font_size_tablet_1em font | x23 y836 w343 h267 pad 0px mar 0px 0px 30px "Create a clear, modern identity for Civi" [P maison-neue-light 14px/22.4px w400 lsnormal rgb(10, 10, 10) mb0px]
+        EL nectar-cta  alignment_tablet_default alignment_phone_default display_t | x23 y1153 w343 h44 pad 0px mar 50px 0px 0px "View Website" [P maison-neue-light 14px/21px w400 lsnormal rgb(10, 10, 10) mb0px]
+ROW full-width-section has-row-bg-color  column-margin-4pct | x23 y1220 w343 h5589 pad 39px 0px mar 0px bg rgb(255, 255, 255)
+  COL nectar-sticky-column-css has-animation no-extra-padding el_spacing_30p | x-2 y1259 w393 h2300 pad 0px 25px mar 0px 0px 50px
+    EL nectar-responsive-text font_size_max_54px font_size_desktop_3vw font_s | x23 y1259 w343 h37 pad 0px mar 0px 0px 30px "Civilus" [H3 maison-neue-light 34px/37.4px w500 lsnormal rgb(10, 10, 10) mb0px]
+    ROW inner_row | x23 y1327 w343 h128 pad 0px mar 0px 0px 30px bg rgba(0, 0, 0, 0)
+      COL child_column no-extra-padding el_spacing_5px  | x-2 y1327 w197 h128 pad 0px 25px mar 0px
+        EL nectar-responsive-text font_line_height_1-2 nectar-link-underline-effe | x23 y1327 w147 h27 pad 0px mar 0px 0px 5px "What we did" [H5 maison-neue-light 17px/27px w400 ls0.85px rgb(255, 255, 255) mb0px]
+        EL nectar-meta-category-el  alignment_left_desktop alignment_default_tabl | x23 y1359 w147 h96 pad 0px mar 0px "Brand IdentityUI/UX DesignWeb Developmen" [A maison-neue-light 14px/14px w400 lsnormal rgb(10, 10, 10) mb0px]
+      COL child_column no-extra-padding el_spacing_5px  | x195 y1327 w197 h128 pad 0px 25px mar 0px
+        EL nectar-responsive-text font_line_height_1-2 nectar-link-underline-effe | x220 y1327 w147 h27 pad 0px mar 0px 0px 5px "Industry" [H5 maison-neue-light 17px/27px w400 ls0.85px rgb(10, 10, 10) mb0px]
+        EL nectar-responsive-text nectar-link-underline-effect | x220 y1359 w147 h63 pad 0px mar 0px "Civil engineering · Structural analysis " [P maison-neue-light 14px/21px w400 lsnormal rgb(10, 10, 10) mb0px]
+    ROW inner_row | x23 y1484 w343 h2075 pad 0px mar 0px bg rgba(0, 0, 0, 0)
+      COL child_column no-extra-padding el_spacing_10px  | x-2 y1484 w393 h2075 pad 0px 25px mar 0px
+        EL nectar-responsive-text font_line_height_1-2 nectar-link-underline-effe | x23 y1484 w343 h27 pad 0px mar 0px 0px 10px "Approach" [H5 maison-neue-light 17px/27px w400 ls0.85px rgb(10, 10, 10) mb0px]
+        EL nectar-responsive-text nectar-link-underline-effect | x23 y1521 w343 h336 pad 0px mar 0px 0px 10px "We built a compact brand system using Ad" [P maison-neue-light 14px/21px w400 lsnormal rgb(10, 10, 10) mb0px]
+        EL divider-wrap | x23 y1867 w343 h25 pad 0px mar 0px 0px 10px ""
+        EL nectar-responsive-text font_line_height_1-2 nectar-link-underline-effe | x23 y1902 w343 h27 pad 0px mar 0px 0px 10px "Services" [H5 maison-neue-light 17px/27px w400 ls0.85px rgb(0, 0, 0) mb0px]
+        EL divider-wrap | x23 y2074 w343 h25 pad 0px mar 0px 0px 10px ""
+        EL nectar-responsive-text font_line_height_1-2 nectar-link-underline-effe | x23 y2109 w343 h27 pad 0px mar 0px 0px 10px "What We Do" [H5 maison-neue-light 17px/27px w400 ls0.85px rgb(10, 10, 10) mb0px]
+        EL divider-wrap | x23 y2707 w343 h25 pad 0px mar 0px 0px 10px ""
+        EL nectar-responsive-text font_line_height_1-2 nectar-link-underline-effe | x23 y2742 w343 h27 pad 0px mar 0px 0px 10px "Stack" [H5 maison-neue-light 17px/27px w400 ls0.85px rgb(10, 10, 10) mb0px]
+        EL divider-wrap | x23 y2956 w343 h25 pad 0px mar 0px 0px 10px ""
+        EL nectar-responsive-text font_line_height_1-2 nectar-link-underline-effe | x23 y2991 w343 h27 pad 0px mar 0px 0px 10px "Timeline" [H5 maison-neue-light 17px/27px w400 ls0.85px rgb(10, 10, 10) mb0px]
+        EL nectar-responsive-text nectar-link-underline-effect | x23 y3028 w343 h21 pad 0px mar 0px 0px 10px "6–8 weeks from brand refresh to live web" [P maison-neue-light 14px/21px w400 lsnormal rgb(10, 10, 10) mb0px]
+        EL divider-wrap | x23 y3059 w343 h25 pad 0px mar 0px 0px 10px ""
+        EL nectar-responsive-text font_line_height_1-2 nectar-link-underline-effe | x23 y3094 w343 h27 pad 0px mar 0px 0px 10px "Impact" [H5 maison-neue-light 17px/27px w400 ls0.85px rgb(10, 10, 10) mb0px]
+        EL nectar-responsive-text nectar-link-underline-effect | x23 y3131 w343 h105 pad 0px mar 0px 0px 10px "A cohesive brand and responsive site tha" [P maison-neue-light 14px/21px w400 lsnormal rgb(10, 10, 10) mb0px]
+        EL divider-wrap | x23 y3246 w343 h25 pad 0px mar 0px 0px 10px ""
+        EL nectar-responsive-text font_line_height_1-2 nectar-link-underline-effe | x23 y3281 w343 h27 pad 0px mar 0px 0px 10px "Deliverables" [H5 maison-neue-light 17px/27px w400 ls0.85px rgb(10, 10, 10) mb0px]
+        EL nectar-cta hover_color_000000 text_hover_color_ffffff border_color_a8a | x23 y3515 w343 h44 pad 0px mar 50px 0px 0px "View website" [H6 maison-neue-light 18px/28px w600 lsnormal rgb(0, 0, 0) mb0px]
+  COL has-animation no-extra-padding el_spacing_20px | x-2 y3609 w393 h3161 pad 0px 25px mar 0px
+    EL nectar_video_player_self_hosted | x23 y3609 w343 h193 pad 0px mar 0px 0px 20px ""
+    EL img-with-aniamtion-wrap  | x23 y3822 w343 h343 pad 0px mar 0px 0px 20px ""
+    EL nectar_video_player_self_hosted | x23 y4186 w343 h193 pad 0px mar 0px 0px 20px ""
+    EL img-with-aniamtion-wrap  | x23 y4399 w343 h343 pad 0px mar 0px 0px 20px ""
+    EL img-with-aniamtion-wrap  | x23 y4762 w343 h343 pad 0px mar 0px 0px 20px ""
+    EL img-with-aniamtion-wrap  | x23 y5125 w343 h343 pad 0px mar 0px 0px 20px ""
+    EL nectar_video_player_self_hosted | x23 y5488 w343 h193 pad 0px mar 0px 0px 20px ""
+    EL img-with-aniamtion-wrap  | x23 y5701 w343 h343 pad 0px mar 0px 0px 20px ""
+    EL img-with-aniamtion-wrap  | x23 y6064 w343 h343 pad 0px mar 0px 0px 20px ""
+    EL img-with-aniamtion-wrap  | x23 y6428 w343 h343 pad 0px mar 0px ""
+ROW full-width-section has-row-bg-color | x23 y6810 w343 h1277 pad 10px 0px 100px mar 0px bg rgb(0, 0, 0)
+  COL no-extra-padding el_spacing_0px  | x-2 y6820 w393 h1167 pad 0px 25px mar 0px
+    ROW inner_row | x23 y6820 w343 h77 pad 17.1562px 0px mar 0px bg rgba(0, 0, 0, 0)
+      COL child_column no-extra-padding  | x-2 y6837 w393 h43 pad 0px 25px mar 0px
+        EL nectar-scrolling-text font_size_6vw font_size_mobile_10vw custom_color | x23 y6837 w343 h43 pad 0px mar 0px "Explore MoreExplore MoreExplore MoreExpl" [H2 maison-neue-light 39px/42.9px w300 ls-1.17px rgb(255, 255, 255) mb0px]
+    EL nectar-post-grid-wrap text-color-light spacing-10px finished-animating | x23 y6897 w343 h1090 pad 0px mar 0px "AllBrand IdentitySEO OptimizationUI/UX D" [A maison-neue-light 14px/14px w400 lsnormal rgb(10, 10, 10) mb10px]

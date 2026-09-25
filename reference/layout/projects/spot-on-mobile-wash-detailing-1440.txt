@@ -1,0 +1,70 @@
+ROW full-width-section has-row-bg-color first-section | x70 y95 w1300 h456 pad 51px 0px mar 0px bg rgb(255, 255, 255)
+  COL no-extra-padding el_spacing_0px  | x45 y146 w1350 h354 pad 0px 25px mar 0px
+    ROW inner_row  right_padding_20pct right_padding_tablet_0px | x70 y146 w1300 h267 pad 78px 0px mar 0px bg rgba(0, 0, 0, 0)
+      COL child_column no-extra-padding  | x45 y224 w1090 h111 pad 0px 25px mar 0px
+        EL nectar-split-heading font_size_3vw font_size_max_104px font_line_heigh | x70 y224 w1040 h104 pad 0px mar 0px "Website redesign and service/price struc" [H2 maison-neue-light 43.2px/51.84px w300 ls-1.296px rgb(0, 0, 0) mb7px]
+    ROW inner_row | x70 y413 w1300 h87 pad 0px mar 0px bg rgba(0, 0, 0, 0)
+      COL child_column no-extra-padding el_spacing_0px one-fourths clear-both | x45 y413 w338 h87 pad 0px 25px mar 0px
+        EL  | x70 y439 w288 h28 pad 0px mar 0px "Year" [H6 maison-neue-light 18px/28px w600 lsnormal rgb(255, 255, 255) mb7px]
+        EL nectar-responsive-text nectar-link-underline-effect | x70 y474 w288 h26 pad 0px mar 0px "2025" [P maison-neue-light 17px/26px w400 lsnormal rgb(0, 0, 0) mb0px]
+      COL child_column no-extra-padding el_spacing_0px one-fourths right-edge | x383 y413 w338 h87 pad 0px 25px mar 0px
+        EL  | x408 y413 w288 h28 pad 0px mar 0px "Client" [H6 maison-neue-light 18px/28px w600 lsnormal rgb(255, 255, 255) mb7px]
+        EL nectar-responsive-text nectar-link-underline-effect | x408 y448 w288 h52 pad 0px mar 0px "Spot On Mobile Car Wash & Detailing" [P maison-neue-light 17px/26px w400 lsnormal rgb(0, 0, 0) mb0px]
+      COL child_column no-extra-padding top_margin_tablet_30px  | x720 y413 w675 h87 pad 0px 25px mar 0px
+        EL nectar-meta-category-el  alignment_right_desktop alignment_default_tab | x745 y475 w625 h25 pad 0px mar 0px "SEO OptimizationUI/UX DesignWeb Developm" [SPAN maison-neue-light 14px/14px w400 lsnormal rgb(0, 0, 0) mb0px]
+ROW full-width-content has-row-bg-color | x0 y551 w1440 h810 pad 0px mar 0px 0px 0px -720px bg rgb(255, 255, 255)
+  COL no-extra-padding  | x0 y551 w1440 h810 pad 0px mar 0px
+    EL nectar_video_player_self_hosted | x0 y551 w1440 h810 pad 0px mar 0px ""
+ROW full-width-section | x70 y1361 w1300 h772 pad 86.4px 0px mar 0px bg rgba(0, 0, 0, 0)
+  COL no-extra-padding  | x45 y1447 w1350 h599 pad 0px 25px mar 0px
+    ROW inner_row | x70 y1447 w1300 h599 pad 0px mar 0px bg rgba(0, 0, 0, 0)
+      COL child_column no-extra-padding el_spacing_0px  | x45 y1447 w450 h599 pad 0px 25px mar 0px
+        EL  | x70 y1447 w400 h28 pad 0px mar 0px "The Challenge" [H6 maison-neue-light 18px/28px w600 lsnormal rgb(10, 10, 10) mb7px]
+      COL child_column el_spacing_30px right_padding_desktop_15pct right_padding | x495 y1447 w900 h599 pad 0px 25px mar 0px
+        EL nectar-responsive-text font_size_desktop_1em font_size_tablet_1em font | x520 y1447 w723 h525 pad 0px mar 0px 0px 30px "Booking challenge: the old site didn’t g" [P maison-neue-light 25.5px/40.8px w400 lsnormal rgb(10, 10, 10) mb0px]
+        EL nectar-cta  alignment_tablet_default alignment_phone_default display_t | x520 y2022 w723 h24 pad 0px mar 50px 0px 0px "View Website" [P maison-neue-light 16px/24px w400 lsnormal rgb(10, 10, 10) mb0px]
+ROW full-width-section  bottom_margin_10pct column-margin-4pct top_padding | x70 y2133 w1300 h3188 pad 0px 0px 144px mar 0px 0px 130px bg rgba(0, 0, 0, 0)
+  COL nectar-sticky-column-css has-animation no-extra-padding el_spacing_30p | x44 y2133 w451 h3044 pad 0px 27.0312px mar 0px
+    EL nectar-responsive-text font_size_max_54px font_size_desktop_3vw font_s | x71 y2133 w397 h95 pad 0px mar 0px 0px 30px "Spot On Mobile Wash & Detailing" [H3 maison-neue-light 43.2px/47.52px w500 lsnormal rgb(10, 10, 10) mb0px]
+    ROW inner_row | x71 y2258 w397 h147 pad 0px mar 0px 0px 30px bg rgba(0, 0, 0, 0)
+      COL child_column no-extra-padding el_spacing_5px  | x46 y2258 w223 h147 pad 0px 25px mar 0px
+        EL nectar-responsive-text font_line_height_1-2 nectar-link-underline-effe | x71 y2258 w173 h30 pad 0px mar 0px 0px 5px "What we did" [H5 maison-neue-light 18px/30px w400 ls0.9px rgb(10, 10, 10) mb0px]
+        EL nectar-meta-category-el  alignment_left_desktop alignment_default_tabl | x71 y2293 w173 h112 pad 0px mar 0px "SEO OptimizationUI/UX DesignWeb Developm" [SPAN maison-neue-light 17px/17px w400 lsnormal rgb(10, 10, 10) mb0px]
+      COL child_column no-extra-padding el_spacing_5px  | x269 y2258 w223 h147 pad 0px 25px mar 0px
+        EL nectar-responsive-text font_line_height_1-2 nectar-link-underline-effe | x294 y2258 w173 h30 pad 0px mar 0px 0px 5px "Industry" [H5 maison-neue-light 18px/30px w400 ls0.9px rgb(10, 10, 10) mb0px]
+        EL nectar-responsive-text nectar-link-underline-effect | x294 y2293 w173 h52 pad 0px mar 0px "Automotive services · Local B2C" [P maison-neue-light 17px/26px w400 lsnormal rgb(10, 10, 10) mb0px]
+    ROW inner_row | x71 y2435 w397 h2303 pad 0px mar 0px bg rgba(0, 0, 0, 0)
+      COL child_column no-extra-padding el_spacing_10px  | x46 y2435 w447 h2303 pad 0px 25px mar 0px
+        EL nectar-responsive-text font_line_height_1-2 nectar-link-underline-effe | x71 y2435 w397 h30 pad 0px mar 0px 0px 10px "Approach" [H5 maison-neue-light 18px/30px w400 ls0.9px rgb(10, 10, 10) mb0px]
+        EL nectar-responsive-text nectar-link-underline-effect | x71 y2475 w397 h182 pad 0px mar 0px 0px 10px "Simple layout, clear hierarchy, primary " [P maison-neue-light 17px/26px w400 lsnormal rgb(10, 10, 10) mb0px]
+        EL divider-wrap | x71 y2667 w397 h25 pad 0px mar 0px 0px 10px ""
+        EL nectar-responsive-text font_line_height_1-2 nectar-link-underline-effe | x71 y2702 w397 h30 pad 0px mar 0px 0px 10px "Services" [H5 maison-neue-light 18px/30px w400 ls0.9px rgb(10, 10, 10) mb0px]
+        EL divider-wrap | x71 y3006 w397 h25 pad 0px mar 0px 0px 10px ""
+        EL nectar-responsive-text font_line_height_1-2 nectar-link-underline-effe | x71 y3041 w397 h30 pad 0px mar 0px 0px 10px "What We Do" [H5 maison-neue-light 18px/30px w400 ls0.9px rgb(10, 10, 10) mb0px]
+        EL divider-wrap | x71 y3665 w397 h25 pad 0px mar 0px 0px 10px ""
+        EL nectar-responsive-text font_line_height_1-2 nectar-link-underline-effe | x71 y3700 w397 h30 pad 0px mar 0px 0px 10px "Stack" [H5 maison-neue-light 18px/30px w400 ls0.9px rgb(10, 10, 10) mb0px]
+        EL divider-wrap | x71 y3978 w397 h25 pad 0px mar 0px 0px 10px ""
+        EL nectar-responsive-text font_line_height_1-2 nectar-link-underline-effe | x71 y4013 w397 h30 pad 0px mar 0px 0px 10px "Timeline" [H5 maison-neue-light 18px/30px w400 ls0.9px rgb(10, 10, 10) mb0px]
+        EL nectar-responsive-text nectar-link-underline-effect | x71 y4053 w397 h26 pad 0px mar 0px 0px 10px "3–5 weeks" [P maison-neue-light 17px/26px w400 lsnormal rgb(10, 10, 10) mb0px]
+        EL divider-wrap | x71 y4089 w397 h25 pad 0px mar 0px 0px 10px ""
+        EL nectar-responsive-text font_line_height_1-2 nectar-link-underline-effe | x71 y4124 w397 h30 pad 0px mar 0px 0px 10px "Impact" [H5 maison-neue-light 18px/30px w400 ls0.9px rgb(10, 10, 10) mb0px]
+        EL divider-wrap | x71 y4376 w397 h25 pad 0px mar 0px 0px 10px ""
+        EL nectar-responsive-text font_line_height_1-2 nectar-link-underline-effe | x71 y4411 w397 h30 pad 0px mar 0px 0px 10px "Deliverables" [H5 maison-neue-light 18px/30px w400 ls0.9px rgb(10, 10, 10) mb0px]
+        EL nectar-cta hover_color_000000 text_hover_color_ffffff border_color_636 | x71 y4709 w397 h28 pad 0px mar 50px 0px 0px "View website" [H6 maison-neue-light 18px/28px w600 lsnormal rgb(58, 58, 58) mb0px]
+  COL has-animation no-extra-padding el_spacing_20px | x495 y2133 w901 h3044 pad 0px 27.0312px mar 0px
+    EL nectar_video_player_self_hosted | x522 y2133 w847 h477 pad 0px mar 0px 0px 20px ""
+    EL img-with-aniamtion-wrap  | x522 y2629 w847 h463 pad 0px mar 0px 0px 20px ""
+    EL img-with-aniamtion-wrap  | x522 y3113 w847 h451 pad 0px mar 0px 0px 20px ""
+    EL nectar_video_player_self_hosted | x522 y3583 w847 h477 pad 0px mar 0px 0px 20px ""
+    ROW inner_row | x522 y4080 w847 h600 pad 0px mar 0px 0px 20px bg rgba(0, 0, 0, 0)
+      COL child_column  | x497 y4080 w449 h600 pad 0px 25px mar 0px
+        EL divider-wrap height_phone_400px  | x522 y4080 w399 h400 pad 0px mar 0px ""
+      COL child_column no-extra-padding  | x945 y4080 w449 h600 pad 0px 25px mar 0px
+        EL divider-wrap height_phone_400px  | x970 y4080 w399 h600 pad 0px mar 0px ""
+    EL nectar_video_player_self_hosted | x522 y4700 w847 h477 pad 0px mar 0px ""
+ROW full-width-section has-row-bg-color | x70 y5450 w1300 h766 pad 10px 0px 100px mar 0px bg rgb(0, 0, 0)
+  COL no-extra-padding el_spacing_0px  | x45 y5460 w1350 h656 pad 0px 25px mar 0px
+    ROW inner_row | x70 y5460 w1300 h216 pad 65px 0px mar 0px bg rgba(0, 0, 0, 0)
+      COL child_column no-extra-padding  | x45 y5525 w1350 h86 pad 0px 25px mar 0px
+        EL nectar-scrolling-text font_size_6vw font_size_mobile_10vw custom_color | x70 y5525 w1300 h86 pad 0px mar 0px "Explore MoreExplore MoreExplore MoreExpl" [H2 maison-neue-light 86.4px/86.4px w300 ls-2.592px rgb(255, 255, 255) mb0px]
+    EL nectar-post-grid-wrap text-color-light spacing-10px finished-animating | x70 y5677 w1300 h440 pad 0px mar 0px "AllBrand IdentitySEO OptimizationUI/UX D" [A maison-neue-light 17px/17px w400 lsnormal rgb(10, 10, 10) mb10px]

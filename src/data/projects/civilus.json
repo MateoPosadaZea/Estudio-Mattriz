@@ -1,0 +1,1012 @@
+{
+ "title": "Civilus | Brand identity & website | Mattriz Studio",
+ "description": "Civilus – Brand identity and React website for an online structural-calculus platform, designed and developed by Mattriz Studio using Figma, HTML, CSS and JavaScript.",
+ "ogImage": "https://mattriz.com/wp-content/uploads/2022/11/cropped-Logotipo-Estudio-Mattriz-Redes-Negro_Mesa-de-trabajo-1-copia-7.png",
+ "rows": [
+  {
+   "type": "row",
+   "inner": false,
+   "fullWidth": "section",
+   "bg": "#ffffff",
+   "bgImage": null,
+   "bgVideo": null,
+   "padTop": "3em",
+   "padBottom": "3em",
+   "classes": [],
+   "columnMargin": "default",
+   "text": "dark",
+   "cols": [
+    {
+     "span": 12,
+     "xs": null,
+     "classes": [
+      "no-extra-padding",
+      "el_spacing_0px"
+     ],
+     "animation": null,
+     "bg": null,
+     "radius": null,
+     "link": null,
+     "children": [
+      {
+       "type": "row",
+       "inner": true,
+       "fullWidth": null,
+       "bg": null,
+       "bgImage": null,
+       "bgVideo": null,
+       "padTop": "6%",
+       "padBottom": "6%",
+       "classes": [
+        "right_padding_20pct",
+        "right_padding_tablet_0px"
+       ],
+       "columnMargin": "default",
+       "text": "dark",
+       "cols": [
+        {
+         "span": 12,
+         "xs": null,
+         "classes": [
+          "child_column",
+          "no-extra-padding"
+         ],
+         "animation": null,
+         "bg": null,
+         "radius": null,
+         "link": null,
+         "children": [
+          {
+           "type": "split",
+           "tag": "h2",
+           "text": "Visual identity and website for an online structural-calculus platform.",
+           "style": {
+            "font-size": "3vw",
+            "line-height": "3.3vw"
+           },
+           "classes": [
+            "font_size_3vw",
+            "font_size_max_104px",
+            "font_line_height_1-2"
+           ]
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": "row",
+       "inner": true,
+       "fullWidth": null,
+       "bg": null,
+       "bgImage": null,
+       "bgVideo": null,
+       "padTop": null,
+       "padBottom": null,
+       "classes": [
+        "vc_row-o-equal-height",
+        "vc_row-o-content-bottom"
+       ],
+       "columnMargin": "default",
+       "text": "dark",
+       "cols": [
+        {
+         "span": 3,
+         "xs": 6,
+         "classes": [
+          "child_column",
+          "no-extra-padding",
+          "el_spacing_0px",
+          "one-fourths"
+         ],
+         "animation": null,
+         "bg": null,
+         "radius": null,
+         "link": null,
+         "children": [
+          {
+           "type": "html",
+           "html": "<h6>Year</h6>",
+           "keepLast": true,
+           "classes": [],
+           "style": {}
+          },
+          {
+           "type": "html",
+           "html": "<p>2023</p>",
+           "keepLast": false,
+           "classes": [],
+           "style": {}
+          }
+         ]
+        },
+        {
+         "span": 3,
+         "xs": 6,
+         "classes": [
+          "child_column",
+          "no-extra-padding",
+          "el_spacing_0px",
+          "one-fourths"
+         ],
+         "animation": null,
+         "bg": null,
+         "radius": null,
+         "link": null,
+         "children": [
+          {
+           "type": "html",
+           "html": "<h6>Client</h6>",
+           "keepLast": true,
+           "classes": [],
+           "style": {}
+          },
+          {
+           "type": "html",
+           "html": "<p>Civilus</p>",
+           "keepLast": false,
+           "classes": [],
+           "style": {}
+          }
+         ]
+        },
+        {
+         "span": 6,
+         "xs": null,
+         "classes": [
+          "child_column",
+          "no-extra-padding",
+          "top_margin_tablet_30px"
+         ],
+         "animation": null,
+         "bg": null,
+         "radius": null,
+         "link": null,
+         "children": [
+          {
+           "type": "meta",
+           "items": [
+            {
+             "label": "Brand Identity",
+             "href": null
+            },
+            {
+             "label": "UI/UX Design",
+             "href": null
+            },
+            {
+             "label": "Web Development",
+             "href": null
+            }
+           ],
+           "classes": [
+            "alignment_right_desktop",
+            "alignment_default_tablet",
+            "alignment_default_phone",
+            "direction-horizontal",
+            "style-outline"
+           ]
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "type": "row",
+   "inner": false,
+   "fullWidth": "content",
+   "bg": "#000000",
+   "bgImage": null,
+   "bgVideo": null,
+   "padTop": "0px",
+   "padBottom": "0px",
+   "classes": [
+    "vc_row-o-equal-height",
+    "vc_row-o-content-top"
+   ],
+   "columnMargin": "default",
+   "text": "light",
+   "cols": [
+    {
+     "span": 12,
+     "xs": null,
+     "classes": [
+      "no-extra-padding"
+     ],
+     "animation": null,
+     "bg": null,
+     "radius": null,
+     "link": null,
+     "children": [
+      {
+       "type": "video",
+       "src": "https://mattriz.com/wp-content/uploads/2023/01/Screen-Recording-2023-01-10-at-10.51.52-PM.mov",
+       "width": 1280,
+       "height": 720,
+       "radius": "none",
+       "poster": null,
+       "local": {
+        "base": "screen-recording-2023-01-10-at-10-51-52-pm",
+        "width": 1600,
+        "height": 876,
+        "size": 804284,
+        "dir": "/media/projects/civilus"
+       }
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "type": "row",
+   "inner": false,
+   "fullWidth": "section",
+   "bg": null,
+   "bgImage": null,
+   "bgVideo": null,
+   "padTop": "calc(100vw * 0.06)",
+   "padBottom": "calc(100vw * 0.06)",
+   "classes": [],
+   "columnMargin": "default",
+   "text": "dark",
+   "cols": [
+    {
+     "span": 12,
+     "xs": null,
+     "classes": [
+      "no-extra-padding"
+     ],
+     "animation": null,
+     "bg": null,
+     "radius": null,
+     "link": null,
+     "children": [
+      {
+       "type": "row",
+       "inner": true,
+       "fullWidth": null,
+       "bg": null,
+       "bgImage": null,
+       "bgVideo": null,
+       "padTop": null,
+       "padBottom": null,
+       "classes": [],
+       "columnMargin": "default",
+       "text": "dark",
+       "cols": [
+        {
+         "span": 4,
+         "xs": null,
+         "classes": [
+          "child_column",
+          "no-extra-padding",
+          "el_spacing_0px"
+         ],
+         "animation": null,
+         "bg": null,
+         "radius": null,
+         "link": null,
+         "children": [
+          {
+           "type": "html",
+           "html": "<h6>The Challenge</h6>",
+           "keepLast": true,
+           "classes": [],
+           "style": {}
+          }
+         ]
+        },
+        {
+         "span": 8,
+         "xs": null,
+         "classes": [
+          "child_column",
+          "el_spacing_30px",
+          "right_padding_desktop_15pct",
+          "right_padding_tablet_0px"
+         ],
+         "animation": null,
+         "bg": null,
+         "radius": null,
+         "link": null,
+         "children": [
+          {
+           "type": "html",
+           "html": "<p>Create a clear, modern identity for Civilus, a startup that offers free online tools for structural calculations, so it feels reliable for students, teachers, and professional engineers. The brand needed to stand out in a technical space while remaining friendly and approachable.</p><p>The identity had to communicate precision, innovation, and trust, reinforce Civilus as a go-to platform for structural problem-solving, and scale consistently across web, pitch decks, social media, and product UI.</p>",
+           "keepLast": false,
+           "classes": [
+            "font_size_desktop_1em",
+            "font_size_tablet_1em",
+            "font_line_height_1-6"
+           ],
+           "style": {}
+          },
+          {
+           "type": "cta",
+           "style_name": "underline",
+           "href": "https://civilus.co/",
+           "target": "_blank",
+           "label": "View Website",
+           "tag": null,
+           "classes": [
+            "font_size_desktop_1rem"
+           ],
+           "style": {
+            "margin-top": "50px",
+            "--nectar-button-color": "var(--nectar-default)",
+            "--nectar-icon-gap": "10px"
+           },
+           "wrapStyle": {}
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "type": "row",
+   "inner": false,
+   "fullWidth": "section",
+   "bg": "#ffffff",
+   "bgImage": null,
+   "bgVideo": null,
+   "padTop": "calc(100vw * 0.10)",
+   "padBottom": "calc(100vw * 0.10)",
+   "classes": [
+    "column-margin-4pct"
+   ],
+   "columnMargin": "custom",
+   "text": "dark",
+   "cols": [
+    {
+     "span": 4,
+     "xs": null,
+     "classes": [
+      "nectar-sticky-column-css",
+      "no-extra-padding",
+      "el_spacing_30px"
+     ],
+     "animation": "fade-in",
+     "bg": null,
+     "radius": null,
+     "link": null,
+     "children": [
+      {
+       "type": "html",
+       "html": "<h3>Civilus</h3>",
+       "keepLast": false,
+       "classes": [
+        "font_size_max_54px",
+        "font_size_desktop_3vw",
+        "font_size_tablet_5vw",
+        "font_size_phone_34px",
+        "font_line_height_1-1"
+       ],
+       "style": {}
+      },
+      {
+       "type": "row",
+       "inner": true,
+       "fullWidth": null,
+       "bg": null,
+       "bgImage": null,
+       "bgVideo": null,
+       "padTop": null,
+       "padBottom": null,
+       "classes": [],
+       "columnMargin": "default",
+       "text": "dark",
+       "cols": [
+        {
+         "span": 6,
+         "xs": 6,
+         "classes": [
+          "child_column",
+          "no-extra-padding",
+          "el_spacing_5px"
+         ],
+         "animation": null,
+         "bg": null,
+         "radius": null,
+         "link": null,
+         "children": [
+          {
+           "type": "html",
+           "html": "<h5><strong>What we did</strong></h5>",
+           "keepLast": false,
+           "classes": [
+            "font_line_height_1-2"
+           ],
+           "style": {}
+          },
+          {
+           "type": "meta",
+           "items": [
+            {
+             "label": "Brand Identity",
+             "href": "https://mattriz.com/project-type/brand-identity/"
+            },
+            {
+             "label": "UI/UX Design",
+             "href": "https://mattriz.com/project-type/ui-ux-design/"
+            },
+            {
+             "label": "Web Development",
+             "href": "https://mattriz.com/project-type/web-development/"
+            }
+           ],
+           "classes": [
+            "alignment_left_desktop",
+            "alignment_default_tablet",
+            "alignment_default_phone",
+            "direction-horizontal",
+            "style-outline"
+           ]
+          }
+         ]
+        },
+        {
+         "span": 6,
+         "xs": 6,
+         "classes": [
+          "child_column",
+          "no-extra-padding",
+          "el_spacing_5px"
+         ],
+         "animation": null,
+         "bg": null,
+         "radius": null,
+         "link": null,
+         "children": [
+          {
+           "type": "html",
+           "html": "<h5><strong>Industry</strong></h5>",
+           "keepLast": false,
+           "classes": [
+            "font_line_height_1-2"
+           ],
+           "style": {}
+          },
+          {
+           "type": "html",
+           "html": "<p>Civil engineering · Structural analysis · EdTech / SaaS</p>",
+           "keepLast": false,
+           "classes": [],
+           "style": {}
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": "row",
+       "inner": true,
+       "fullWidth": null,
+       "bg": null,
+       "bgImage": null,
+       "bgVideo": null,
+       "padTop": null,
+       "padBottom": null,
+       "classes": [],
+       "columnMargin": "default",
+       "text": "dark",
+       "cols": [
+        {
+         "span": 12,
+         "xs": null,
+         "classes": [
+          "child_column",
+          "no-extra-padding",
+          "el_spacing_10px"
+         ],
+         "animation": null,
+         "bg": null,
+         "radius": null,
+         "link": null,
+         "children": [
+          {
+           "type": "html",
+           "html": "<h5><strong>Approach</strong></h5>",
+           "keepLast": false,
+           "classes": [
+            "font_line_height_1-2"
+           ],
+           "style": {}
+          },
+          {
+           "type": "html",
+           "html": "<p>We built a compact brand system using Adobe Creative Cloud, with a geometric logotype and symbol inspired by structural sections and beams. The visual language balances technical precision with a friendly tone through a clean icon set and a focused color palette.</p><p>For the website, we designed the interface in Figma and translated it into a responsive front-end using React, HTML, CSS, and JavaScript. Working closely with a developer friend, we used GitHub for version control (branches, commits, pull requests) and deployed the site on Netlify, including domain connection and basic configuration. The result is a fast, simple experience that leads users straight into the Cross Section and Beam Solver tools.</p>",
+           "keepLast": false,
+           "classes": [],
+           "style": {}
+          },
+          {
+           "type": "divider",
+           "height": "25px",
+           "line": false,
+           "lineStyle": {
+            "height": "25px"
+           },
+           "classes": [],
+           "dclasses": [
+            "divider"
+           ]
+          },
+          {
+           "type": "html",
+           "html": "<h5><strong>Services</strong></h5>",
+           "keepLast": false,
+           "classes": [
+            "font_line_height_1-2"
+           ],
+           "style": {}
+          },
+          {
+           "type": "list",
+           "icon": "dot",
+           "spacing": "default",
+           "html": "<ul><li><p>Brand system</p></li><li><p>Guidelines</p></li><li><p>UI kit</p></li><li><p>Web design and front-end development</p></li><li><p>Netlify deployment and domain setup</p></li></ul>"
+          },
+          {
+           "type": "divider",
+           "height": "25px",
+           "line": false,
+           "lineStyle": {
+            "height": "25px"
+           },
+           "classes": [],
+           "dclasses": [
+            "divider"
+           ]
+          },
+          {
+           "type": "html",
+           "html": "<h5><strong>What We Do</strong></h5>",
+           "keepLast": false,
+           "classes": [
+            "font_line_height_1-2"
+           ],
+           "style": {}
+          },
+          {
+           "type": "list",
+           "icon": "dot",
+           "spacing": "15px",
+           "html": "<ul><li><p><strong>Brand strategy &amp; key messaging:</strong> Defined Civilus as an accessible, online companion for structural calculations, with messaging focused on speed, reliability, and ease of use.</p></li><li><p><strong>Brand guidelines:</strong> Usage rules for logo, color, and imagery to keep the brand consistent across the website, decks, and social channels.</p></li><li><p><strong>Identity system:</strong> Logotype and icon for use on the site header, favicons, and social avatars.</p></li><li><p><strong>Color system:</strong> Technical yet approachable palette with strong contrast for UI, charts, and call-to-action states.</p></li><li><p><strong>Typography system:</strong> Google Fonts stack optimized for legibility in dense numerical interfaces and small UI labels.</p></li><li><p><strong>UI kit:</strong> Buttons, inputs, cards, tables, and layout components designed for reusability across new tools and pages.</p></li><li><p><strong>Website:</strong> Landing page, tools overview, and contact form designed and coded for a smooth path from explanation to calculation.</p></li></ul>"
+          },
+          {
+           "type": "divider",
+           "height": "25px",
+           "line": false,
+           "lineStyle": {
+            "height": "25px"
+           },
+           "classes": [],
+           "dclasses": [
+            "divider"
+           ]
+          },
+          {
+           "type": "html",
+           "html": "<h5><strong>Stack</strong></h5>",
+           "keepLast": false,
+           "classes": [
+            "font_line_height_1-2"
+           ],
+           "style": {}
+          },
+          {
+           "type": "list",
+           "icon": "dot",
+           "spacing": "default",
+           "html": "<ul><li><p>Adobe Creative Cloud (Illustrator / Photoshop)</p></li><li><p>Figma</p></li><li><p>Google Fonts</p></li><li><p>VS Code</p></li><li><p>React · HTML · CSS · JavaScript</p></li><li><p>GitHub (version control)</p></li><li><p>Netlify (build &amp; hosting)</p></li></ul>"
+          },
+          {
+           "type": "divider",
+           "height": "25px",
+           "line": false,
+           "lineStyle": {
+            "height": "25px"
+           },
+           "classes": [],
+           "dclasses": [
+            "divider"
+           ]
+          },
+          {
+           "type": "html",
+           "html": "<h5><strong>Timeline</strong></h5>",
+           "keepLast": false,
+           "classes": [
+            "font_line_height_1-2"
+           ],
+           "style": {}
+          },
+          {
+           "type": "html",
+           "html": "<p>6–8 weeks from brand refresh to live website</p>",
+           "keepLast": false,
+           "classes": [],
+           "style": {}
+          },
+          {
+           "type": "divider",
+           "height": "25px",
+           "line": false,
+           "lineStyle": {
+            "height": "25px"
+           },
+           "classes": [],
+           "dclasses": [
+            "divider"
+           ]
+          },
+          {
+           "type": "html",
+           "html": "<h5><strong>Impact</strong></h5>",
+           "keepLast": false,
+           "classes": [
+            "font_line_height_1-2"
+           ],
+           "style": {}
+          },
+          {
+           "type": "html",
+           "html": "<p>A cohesive brand and responsive site that make Civilus technical tools feel approachable and trustworthy, helping students and professionals quickly understand the value of the platform and start solving structural problems online.</p>",
+           "keepLast": false,
+           "classes": [],
+           "style": {}
+          },
+          {
+           "type": "divider",
+           "height": "25px",
+           "line": false,
+           "lineStyle": {
+            "height": "25px"
+           },
+           "classes": [],
+           "dclasses": [
+            "divider"
+           ]
+          },
+          {
+           "type": "html",
+           "html": "<h5><strong>Deliverables</strong></h5>",
+           "keepLast": false,
+           "classes": [
+            "font_line_height_1-2"
+           ],
+           "style": {}
+          },
+          {
+           "type": "list",
+           "icon": "dot",
+           "spacing": "default",
+           "html": "<ul><li><p>Brand mini-manual (PDF)</p></li><li><p>Logo and icon files (SVG/PNG)</p></li><li><p>Color and typography specs</p></li><li><p>UI components library (Figma)</p></li><li><p>Responsive landing page and tools UI</p></li><li><p>Netlify deployment, domain connection, and basic configuration</p></li></ul>"
+          },
+          {
+           "type": "cta",
+           "style_name": "arrow-animation",
+           "href": "https://civilus.co/",
+           "target": "_blank",
+           "label": "View website",
+           "tag": "h6",
+           "classes": [
+            "hover_color_000000",
+            "text_hover_color_ffffff",
+            "border_color_a8a8a8",
+            "hover_border_color_000000",
+            "border_thickness_1px",
+            "border_radius_100px"
+           ],
+           "style": {
+            "margin-top": "50px",
+            "--nectar-text-color": "#000000",
+            "--nectar-button-color": "var(--nectar-default)",
+            "--nectar-button-color-hover": "#000000",
+            "--nectar-text-color-hover": "#ffffff",
+            "--nectar-icon-gap": "10px"
+           },
+           "wrapStyle": {
+            "padding-top": "15px",
+            "padding-right": "40px",
+            "padding-bottom": "15px",
+            "padding-left": "40px"
+           }
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "span": 8,
+     "xs": null,
+     "classes": [
+      "no-extra-padding",
+      "el_spacing_20px"
+     ],
+     "animation": "fade-in",
+     "bg": null,
+     "radius": null,
+     "link": null,
+     "children": [
+      {
+       "type": "video",
+       "src": "https://mattriz.com/wp-content/uploads/2021/11/Logotype.mp4",
+       "width": 1280,
+       "height": 720,
+       "radius": "20px",
+       "poster": null,
+       "local": {
+        "base": "logotype",
+        "width": 1080,
+        "height": 1080,
+        "size": 16010,
+        "dir": "/media/projects/civilus"
+       }
+      },
+      {
+       "type": "img",
+       "src": "https://mattriz.com/wp-content/uploads/2023/01/Instagram-post-223.png",
+       "width": 1080,
+       "height": 1080,
+       "alt": "Civilus Logotype - Estudio Mattriz",
+       "align": null,
+       "maxWidth": "100%",
+       "custom": false,
+       "style": {},
+       "local": {
+        "base": "instagram-post-223",
+        "widths": [
+         1080,
+         700
+        ],
+        "width": 1080,
+        "height": 1080,
+        "dir": "/media/projects/civilus"
+       }
+      },
+      {
+       "type": "video",
+       "src": "https://mattriz.com/wp-content/uploads/2023/01/Screen-Recording-2023-01-10-at-10.51.52-PM.mov",
+       "width": 1280,
+       "height": 720,
+       "radius": "20px",
+       "poster": null,
+       "local": {
+        "base": "screen-recording-2023-01-10-at-10-51-52-pm",
+        "width": 1600,
+        "height": 876,
+        "size": 804284,
+        "dir": "/media/projects/civilus"
+       }
+      },
+      {
+       "type": "img",
+       "src": "https://mattriz.com/wp-content/uploads/2023/01/Instagram-post-116.jpg",
+       "width": 2160,
+       "height": 2160,
+       "alt": "Civilus Website - Estudio Mattriz",
+       "align": null,
+       "maxWidth": "100%",
+       "custom": false,
+       "style": {},
+       "local": {
+        "base": "instagram-post-116",
+        "widths": [
+         1600,
+         1200,
+         700
+        ],
+        "width": 1600,
+        "height": 1600,
+        "dir": "/media/projects/civilus"
+       }
+      },
+      {
+       "type": "img",
+       "src": "https://mattriz.com/wp-content/uploads/2023/01/Instagram-post-148.png",
+       "width": 1080,
+       "height": 1080,
+       "alt": "Civilus Website - Estudio Mattriz",
+       "align": null,
+       "maxWidth": "100%",
+       "custom": false,
+       "style": {},
+       "local": {
+        "base": "instagram-post-148",
+        "widths": [
+         1080,
+         700
+        ],
+        "width": 1080,
+        "height": 1080,
+        "dir": "/media/projects/civilus"
+       }
+      },
+      {
+       "type": "img",
+       "src": "https://mattriz.com/wp-content/uploads/2023/01/Instagram-post-146.jpg",
+       "width": 2160,
+       "height": 2160,
+       "alt": "Civilus Website - Estudio Mattriz",
+       "align": null,
+       "maxWidth": "100%",
+       "custom": false,
+       "style": {},
+       "local": {
+        "base": "instagram-post-146",
+        "widths": [
+         1600,
+         1200,
+         700
+        ],
+        "width": 1600,
+        "height": 1600,
+        "dir": "/media/projects/civilus"
+       }
+      },
+      {
+       "type": "video",
+       "src": "https://mattriz.com/wp-content/uploads/2023/01/VIDEO_CIVILUS_MOBILE.mp4",
+       "width": 1280,
+       "height": 720,
+       "radius": "20px",
+       "poster": null,
+       "local": {
+        "base": "video-civilus-mobile",
+        "width": 1600,
+        "height": 1200,
+        "size": 2220287,
+        "dir": "/media/projects/civilus"
+       }
+      },
+      {
+       "type": "img",
+       "src": "https://mattriz.com/wp-content/uploads/2023/01/Instagram-post-188.png",
+       "width": 1080,
+       "height": 1080,
+       "alt": "Civilus Website - Estudio Mattriz",
+       "align": null,
+       "maxWidth": "100%",
+       "custom": false,
+       "style": {},
+       "local": {
+        "base": "instagram-post-188",
+        "widths": [
+         1080,
+         700
+        ],
+        "width": 1080,
+        "height": 1080,
+        "dir": "/media/projects/civilus"
+       }
+      },
+      {
+       "type": "img",
+       "src": "https://mattriz.com/wp-content/uploads/2023/01/Instagram-post-232.jpg",
+       "width": 2160,
+       "height": 2160,
+       "alt": "Civilus Website - Estudio Mattriz",
+       "align": null,
+       "maxWidth": "100%",
+       "custom": false,
+       "style": {},
+       "local": {
+        "base": "instagram-post-232",
+        "widths": [
+         1600,
+         1200,
+         700
+        ],
+        "width": 1600,
+        "height": 1600,
+        "dir": "/media/projects/civilus"
+       }
+      },
+      {
+       "type": "img",
+       "src": "https://mattriz.com/wp-content/uploads/2023/01/Instagram-post-124.png",
+       "width": 1080,
+       "height": 1080,
+       "alt": "Civilus Website - Estudio Mattriz",
+       "align": null,
+       "maxWidth": "100%",
+       "custom": false,
+       "style": {},
+       "local": {
+        "base": "instagram-post-124",
+        "widths": [
+         1080,
+         700
+        ],
+        "width": 1080,
+        "height": 1080,
+        "dir": "/media/projects/civilus"
+       }
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "type": "row",
+   "inner": false,
+   "fullWidth": "section",
+   "bg": "#000000",
+   "bgImage": null,
+   "bgVideo": null,
+   "padTop": "10px",
+   "padBottom": "100px",
+   "classes": [],
+   "columnMargin": "default",
+   "text": "dark",
+   "cols": [
+    {
+     "span": 12,
+     "xs": null,
+     "classes": [
+      "no-extra-padding",
+      "el_spacing_0px"
+     ],
+     "animation": null,
+     "bg": null,
+     "radius": null,
+     "link": null,
+     "children": [
+      {
+       "type": "row",
+       "inner": true,
+       "fullWidth": null,
+       "bg": null,
+       "bgImage": null,
+       "bgVideo": null,
+       "padTop": "5%",
+       "padBottom": "5%",
+       "classes": [],
+       "columnMargin": "default",
+       "text": "dark",
+       "cols": [
+        {
+         "span": 12,
+         "xs": null,
+         "classes": [
+          "child_column",
+          "no-extra-padding"
+         ],
+         "animation": null,
+         "bg": null,
+         "radius": null,
+         "link": null,
+         "children": [
+          {
+           "type": "scrolling",
+           "text": "Explore More",
+           "classes": [
+            "font_size_6vw",
+            "font_size_mobile_10vw",
+            "text_space_medium"
+           ]
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": "postgrid"
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}
