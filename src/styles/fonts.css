@@ -1,0 +1,32 @@
+/*
+ * Mismas declaraciones que el sitio vivo (plugin Use Any Font).
+ * Cada familia tiene una sola cara: los pesos que pida el CSS se resuelven
+ * sobre esa cara, igual que hoy (incluida la negrita sintética del H1).
+ * Licencia web confirmada por Mateo (2026-09-25).
+ */
+@font-face {
+  font-family: 'noe-display';
+  src: url('/fonts/Noe-Display.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'maison-neue-light';
+  src: url('/fonts/Maison-Neue-Light.woff2') format('woff2');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'maison-neue-book';
+  src: url('/fonts/Maison-Neue-Book.woff2') format('woff2');
+  font-display: swap;
+}
+@font-face {
+  font-family: 'maison-neue-bold';
+  src: url('/fonts/Maison-Neue-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}

@@ -1,9 +1,7 @@
 /*
  * Tokens de diseño extraídos del sitio vivo mattriz.com (Fase 0, 2026-09-25).
  * Fuente de verdad: reference/TOKENS.md y reference/tokens.json.
- *
- * PENDIENTE (decisión abierta): las fuentes Noe Display y Maison Neue son comerciales.
- * Los @font-face no se incluyen hasta confirmar la licencia web.
+ * Las @font-face están en fonts.css.
  */
 
 :root {
@@ -75,7 +73,12 @@
   /* Movimiento (medido; ver reference/INTERACCIONES.md) */
   --ease-reveal: cubic-bezier(0.25, 1, 0.33, 1);
   --ease-panel: cubic-bezier(0.15, 0.2, 0.1, 1);
+  --ease-underline: cubic-bezier(0.23, 0.46, 0.4, 1);
+  --ease-arrow: cubic-bezier(0.15, 0.75, 0.5, 1);
+  --ease-pulse: cubic-bezier(0.2, 1, 0.2, 1);
   --dur-text-reveal: 0.55s;
   --dur-panel: 0.8s;
+  --dur-underline: 0.4s;
+  --dur-arrow: 0.9s;
   --dur-color: 0.2s;
 }
