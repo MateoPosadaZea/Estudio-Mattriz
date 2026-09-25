@@ -1,0 +1,48 @@
+<!-- Botón "volver arriba". Vivo: 29px, fijo abajo a la derecha, solo desde 1000px. -->
+<a class="to-top" href="#top" aria-label="Back to top" data-to-top>
+  <svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true">
+    <path d="M2 8 L6 4 L10 8" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+  </svg>
+</a>
+
+<style>
+  .to-top {
+    position: fixed;
+    right: 17px;
+    bottom: 0;
+    z-index: 90;
+    display: grid;
+    place-items: center;
+    width: 29px;
+    height: 29px;
+    border-radius: var(--radius-round);
+    background: var(--color-to-top-bg);
+    color: var(--color-white);
+    transform: translateY(31px);
+    transition: transform 0.3s cubic-bezier(0.55, 0, 0.1, 1);
+  }
+
+  .to-top.is-visible {
+    transform: translateY(-14.5px);
+  }
+
+  @media (max-width: 999px) {
+    .to-top {
+      display: none;
+    }
+  }
+</style>
+
+<script>
+  const button = document.querySelector<HTMLElement>('[data-to-top]');
+  if (button) {
+    const update = () => button.classList.toggle('is-visible', window.scrollY > 350);
+    update();
+    window.addEventListener('scroll', update, { passive: true });
+    button.addEventListener('click', (event) => {
+      event.preventDefault();
+      const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' });
+    });
+  }
+</script>

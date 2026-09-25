@@ -1,0 +1,118 @@
+---
+import { NAV } from '../data/site';
+
+const path = Astro.url.pathname;
+---
+
+<!--
+  Menú mobile estilo "material" de Salient: el panel queda detrás de la página
+  y la página se encoge y se corre a la izquierda para descubrirlo.
+  La lógica está en src/scripts/menu.ts.
+-->
+<div class="mobile-menu" id="mobile-menu" role="dialog" aria-modal="true" aria-label="Menu" hidden>
+  <button class="mobile-menu__close" type="button" data-menu-close>
+    <span class="sr-only">Close Menu</span>
+  </button>
+  <ul class="mobile-menu__list">
+    {
+      NAV.map((item) => (
+        <li>
+          <a href={item.href} aria-current={item.href === path ? 'page' : undefined}>
+            {item.label}
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</div>
+
+<style>
+  /* Vivo: panel de min(85vw, 360px), padding 10vh 40px (60px sobre 690px). */
+  .mobile-menu {
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: min(85vw, 360px);
+    height: 100vh;
+    height: 100dvh;
+    padding: 10vh 60px;
+    color: var(--color-white);
+  }
+
+  .mobile-menu[hidden] {
+    display: none;
+  }
+
+  @media (max-width: 690px) {
+    .mobile-menu {
+      padding: 10vh 40px;
+    }
+  }
+
+  .mobile-menu__close {
+    position: absolute;
+    top: 30px;
+    right: 30px;
+    width: 40px;
+    height: 40px;
+  }
+
+  .mobile-menu__close::before,
+  .mobile-menu__close::after {
+    content: '';
+    position: absolute;
+    left: 12px;
+    top: 19.25px;
+    width: 16px;
+    height: 1.5px;
+    background: currentColor;
+    transform: rotate(45deg);
+  }
+
+  .mobile-menu__close::after {
+    transform: rotate(-45deg);
+  }
+
+  /* Vivo: 42px/42px, peso 300, −0.03em; 12px entre ítems. Entran desde la derecha. */
+  .mobile-menu__list li {
+    margin-bottom: 12px;
+    transform: translateX(110px);
+    transition: transform 0.6s cubic-bezier(0.2, 1, 0.2, 1);
+  }
+
+  .mobile-menu.is-open .mobile-menu__list li {
+    transform: none;
+  }
+
+  .mobile-menu__list a {
+    position: relative;
+    display: inline-block;
+    font-size: 42px;
+    line-height: 42px;
+    font-weight: var(--fw-light);
+    letter-spacing: var(--ls-tight);
+  }
+
+  /* Subrayado del ítem actual y al pasar el mouse. */
+  .mobile-menu__list a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -1px;
+    width: 100%;
+    height: 1px;
+    background: currentColor;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s cubic-bezier(0.25, 0, 0.4, 1);
+  }
+
+  .mobile-menu__list a[aria-current='page']::after,
+  .mobile-menu__list a:hover::after {
+    transform: scaleX(1);
+  }
+</style>

@@ -1,0 +1,175 @@
+---
+import AnimatedGradient from './AnimatedGradient.astro';
+import { SITE } from '../data/site';
+
+const year = new Date().getFullYear();
+---
+
+<!-- CTA final + footer. Es la misma sección en todas las páginas del vivo. -->
+<footer class="site-footer">
+  <AnimatedGradient color1="#00ff7f" speed={250} />
+
+  <div class="site-footer__inner">
+    <p class="site-footer__status">
+      <span class="pulse" aria-hidden="true"></span>
+      Currently accepting new clients
+    </p>
+
+    <p class="site-footer__cta">
+      <a href={SITE.calendly} target="_blank" rel="noopener">
+        <span class="reveal">
+          <span class="reveal__text" data-text="Book a free call">Book a free call</span>
+        </span>
+      </a>
+    </p>
+
+    <ul class="site-footer__social">
+      <li><a class="u-link" href={SITE.instagram} target="_blank" rel="noopener">Instagram</a></li>
+      <li><a class="u-link" href={SITE.linkedin} target="_blank" rel="noopener">LinkedIn</a></li>
+    </ul>
+
+    <div class="site-footer__bottom">
+      <p class="site-footer__copy">© <span data-year>{year}</span>. Mattriz Studio.</p>
+      <a class="arrow-link site-footer__mail" href={`mailto:${SITE.email}`}>
+        <span>{SITE.email}</span>
+        <svg viewBox="0 0 22 22" aria-hidden="true">
+          <g transform="matrix(1,0,0,-1,12,11)">
+            <g transform="matrix(1,0,0,-1,-1,3)">
+              <path class="line" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round" d="M 7 3.3 L -3.2 3.3 C -5 3.3 -6.5 1.8 -6.5 0 L -6.5 -2.5"></path>
+            </g>
+            <g transform="matrix(1,0,0,-1,4,-0.5)">
+              <path class="arrow" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round" d="M -2.5 5 C -2.5 5 2.5 0 2.5 0"></path>
+              <path class="arrow" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round" d="M -2.5 -5 C -2.5 -5 2.5 0 2.5 0"></path>
+            </g>
+          </g>
+        </svg>
+      </a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // El año se fija en el build; esto lo mantiene al día aunque no haya deploy en enero.
+  document.querySelectorAll('[data-year]').forEach((el) => (el.textContent = String(new Date().getFullYear())));
+</script>
+
+<style>
+  .site-footer {
+    position: relative;
+    overflow: hidden;
+    background: var(--color-black);
+    color: var(--color-white);
+  }
+
+  /* Mismo ancho de contenido que el header: 70px de margen lateral. */
+  .site-footer__inner {
+    position: relative;
+    z-index: 1;
+    width: calc(100% - 2 * var(--header-inset));
+    margin: 0 auto;
+    padding: 108px 0 30px;
+    text-align: center;
+  }
+
+  .site-footer__status {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  /* Punto verde que late. Vivo: 8px #55c91c; halo 2s cubic-bezier(.2,1,.2,1) infinito. */
+  .pulse {
+    position: relative;
+    width: 8px;
+    height: 8px;
+    border-radius: var(--radius-round);
+    background: var(--color-status-green);
+  }
+
+  .pulse::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background: inherit;
+    animation: pulse 2s var(--ease-pulse) infinite;
+  }
+
+  @keyframes pulse {
+    from { opacity: 0.6; transform: scale(1); }
+    to { opacity: 0; transform: scale(3); }
+  }
+
+  /* Vivo: 4vw (máx. 130px), peso 300, −0.03em. */
+  .site-footer__cta {
+    margin-top: 20px;
+    font-size: min(var(--fs-cta-title), 130px);
+    line-height: var(--lh-tight);
+    font-weight: var(--fw-light);
+    letter-spacing: var(--ls-tight);
+  }
+
+  .site-footer__cta {
+    display: flex;
+    justify-content: center;
+  }
+
+  .site-footer__social {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 27px;
+  }
+
+  .site-footer__bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-top: calc(3vw + 39px);
+    padding: 0 40px 0 30px;
+  }
+
+  .site-footer__copy {
+    line-height: 17px;
+  }
+
+  @media (max-width: 690px) {
+    .site-footer__inner {
+      width: 88%;
+      padding-top: 66px;
+    }
+
+    .site-footer__cta {
+      font-size: 10vw;
+    }
+
+    /* Vivo: enlaces con 8px de padding y 44px de alto mínimo (área táctil). */
+    .site-footer__cta a,
+    .site-footer__social a,
+    .site-footer__mail {
+      min-height: 44px;
+      padding: 8px 0;
+    }
+
+    .site-footer__bottom {
+      align-items: center;
+    }
+
+    .site-footer__social {
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      margin-top: 26px;
+    }
+
+    .site-footer__bottom {
+      flex-direction: column;
+      gap: 10px;
+      padding: 0;
+    }
+
+    .site-footer__copy {
+      line-height: inherit;
+    }
+  }
+</style>

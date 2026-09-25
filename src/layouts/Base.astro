@@ -1,0 +1,105 @@
+---
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import MobileMenu from '../components/MobileMenu.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import ToTop from '../components/ToTop.astro';
+import { SITE } from '../data/site';
+
+interface Props {
+  title: string;
+  description: string;
+  /** Fondo de la página (en Salient se define por página). */
+  background?: string;
+  /** Imagen para redes; por defecto el logo, igual que el vivo. */
+  ogImage?: string;
+  noindex?: boolean;
+}
+
+const { title, description, background = '#ffffff', ogImage = '/images/og-mattriz.png', noindex = false } = Astro.props;
+const canonical = new URL(Astro.url.pathname, SITE.url).href;
+const ogImageUrl = new URL(ogImage, SITE.url).href;
+---
+
+<!doctype html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    {noindex && <meta name="robots" content="noindex, nofollow" />}
+
+    <meta property="og:site_name" content="Mattriz" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImageUrl} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageUrl} />
+
+    <link rel="icon" href="/favicon-32x32.png" sizes="32x32" />
+    <link rel="icon" href="/favicon-192x192.png" sizes="192x192" />
+    <link rel="apple-touch-icon" href="/favicon-180x180.png" />
+
+    <link rel="preload" href="/fonts/Maison-Neue-Light.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/Noe-Display.woff2" as="font" type="font/woff2" crossorigin />
+  </head>
+  <body style={`--page-bg: ${background}`}>
+    <a class="skip-link" href="#main">Skip to main content</a>
+
+    <div class="page" data-page id="top">
+      <Header />
+      <div class="page__inner" data-page-inner>
+        <main id="main">
+          <slot />
+        </main>
+        <SiteFooter />
+      </div>
+    </div>
+
+    <MobileMenu />
+    <ToTop />
+
+    <script>
+      import '../scripts/menu';
+    </script>
+  </body>
+</html>
+
+<style is:global>
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* La página va por encima del panel del menú mobile, que queda detrás. */
+  .page {
+    position: relative;
+    z-index: 1;
+    background: var(--page-bg);
+    transform-origin: 50% 50%;
+    transition: transform var(--dur-panel) var(--ease-panel);
+  }
+
+  .page.is-locked {
+    position: fixed;
+    inset: 0;
+    overflow: hidden;
+  }
+
+  /* Con el menú abierto se ve el negro detrás de la página. */
+  html.menu-open,
+  html.menu-open body {
+    overflow: hidden;
+    background: var(--color-black);
+  }
+
+  /* Las anclas no quedan tapadas por el header fijo. */
+  [id] {
+    scroll-margin-top: calc(var(--header-top) + var(--header-height));
+  }
+</style>

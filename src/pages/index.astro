@@ -1,0 +1,26 @@
+---
+import Base from '../layouts/Base.astro';
+---
+
+<!-- Fase 1: solo layout base. El contenido de la home llega en la Fase 2. -->
+<Base
+  title="Mattriz | Booking & operations systems for service businesses"
+  description="Mattriz builds booking, payment and operations systems for service businesses in the US and LATAM. One studio. One retainer."
+  background="#000000"
+>
+  <section class="placeholder">
+    <p>Fase 1: layout base (header y footer).<br />El contenido de la home llega en la Fase 2.</p>
+  </section>
+</Base>
+
+<style>
+  .placeholder {
+    display: grid;
+    place-items: center;
+    min-height: 100vh;
+    padding: 140px 8%;
+    background: var(--color-black);
+    color: var(--color-white);
+    text-align: center;
+  }
+</style>
