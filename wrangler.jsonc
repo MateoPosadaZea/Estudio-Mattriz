@@ -1,7 +1,7 @@
 // Despliegue en Cloudflare Workers con assets estáticos (build de Astro en dist/).
 {
   "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "mattriz-web",
+  "name": "mattriz-studio",
   "compatibility_date": "2026-09-25",
   "assets": {
     "directory": "./dist",
