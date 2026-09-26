@@ -62,6 +62,9 @@ Hecho:
 - Transición entre páginas con View Transitions nativas (CSS).
 - Casos de estudio en diseño editorial para The Grid y Spot On (caso nuevo de 2026), en EN/ES.
 
+Regla tipográfica v2: Noe Display solo para títulos, nombres cortos, cifras y la palabra del
+footer; todo texto corrido (párrafos, citas, descripciones) va en Maison.
+
 Siguiente, a decidir:
 - Pasar al diseño nuevo los otros 5 proyectos (Civilus, Posada Carcamo, Let it Go, AGL Vans Tours, Luciana Cabañas).
 - Scroll suave con inercia (Lenis, ~3 KB): sería la primera dependencia de la v2 y hay que medir Lighthouse.
