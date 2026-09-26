@@ -4,8 +4,8 @@ import type { Lang } from '../i18n';
 // Copy: brief sección 4 donde se solapa con el vivo (sin rayas largas); el resto, tal cual el vivo.
 
 export const HERO = {
-  title: 'Systems that work while you sleep.',
-  subtitle: "We don't sell pretty websites. We build the booking, payment and operations systems service businesses run on.",
+  title: 'Websites and systems, built in weeks.',
+  subtitle: 'We design, build and run the digital side of your business, so it works while you sleep.',
   cta: { label: 'See how we work', href: '#how-we-work' },
 };
 
@@ -171,8 +171,8 @@ export const TESTIMONIALS = [
 
 export const HOME_ES = {
   HERO: {
-    title: 'Sistemas que trabajan mientras duermes.',
-    subtitle: 'No vendemos sitios bonitos. Construimos los sistemas de reservas, pagos y operación con los que funcionan los negocios de servicios.',
+    title: 'Sitios y sistemas, listos en semanas.',
+    subtitle: 'Diseñamos, construimos y mantenemos la parte digital de tu negocio, para que funcione mientras duermes.',
     cta: { label: 'Mira cómo trabajamos', href: '#how-we-work' },
   },
   SERVICES: {
