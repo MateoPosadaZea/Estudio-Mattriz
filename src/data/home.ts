@@ -67,6 +67,12 @@ const PHOTO_SIZES: [number, number][] = [[900, 604], [600, 403], [400, 269]];
 // Mismo orden que el vivo (por fecha, más reciente primero).
 export const PROJECTS: Project[] = [
   {
+    title: 'Santo & Seña',
+    href: '/project/santo-y-sena/',
+    categories: ['UI/UX Design', 'Web Development', 'SEO Optimization'],
+    video: '/media/work/santo-y-sena.mp4',
+  },
+  {
     title: 'Civilus',
     href: '/project/civilus/',
     categories: ['Brand Identity', 'UI/UX Design', 'Web Development'],
