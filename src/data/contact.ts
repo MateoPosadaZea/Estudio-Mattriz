@@ -12,7 +12,7 @@ export const CONTACT = {
   success: 'Thanks. We’ll get back to you within one business day.',
   error: 'Something went wrong and your message wasn’t sent. Write to us directly at contacto@mattriz.com.',
   metaTitle: 'Contact Mattriz Studio | Get a Project Quote',
-  metaDescription: 'Contact Mattriz Studio for web design, branding, eCommerce, and SEO. Share your goals and get a clear quote + next steps within 24–48 hours.',
+  metaDescription: 'Contact Mattriz Studio about booking, payment and operations systems for your service business. Tell us about your project and we’ll reply within one business day.',
   breadcrumb: 'Contact',
   fields: {
     name: 'Name',
@@ -53,7 +53,7 @@ export const CONTACT_ES = {
     success: 'Gracias. Te respondemos en un día hábil.',
     error: 'Algo salió mal y tu mensaje no se envió. Escríbenos directamente a contacto@mattriz.com.',
     metaTitle: 'Contacta a Mattriz Studio | Pide una cotización',
-    metaDescription: 'Contacta a Mattriz Studio para diseño web, branding, eCommerce y SEO. Cuéntanos tus objetivos y recibe una cotización clara y los siguientes pasos en 24 a 48 horas.',
+    metaDescription: 'Contacta a Mattriz Studio para sistemas de reservas, pagos y operación para tu negocio de servicios. Cuéntanos tu proyecto y te respondemos en un día hábil.',
     breadcrumb: 'Contacto',
     fields: {
       name: 'Nombre',
