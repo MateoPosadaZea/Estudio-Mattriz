@@ -2,7 +2,10 @@
 import AnimatedGradient from '../AnimatedGradient.astro';
 import SplitText from '../SplitText.astro';
 import PillLink from '../PillLink.astro';
-import { STUDIO } from '../../data/home';
+import { home } from '../../data/home';
+import { langOf } from '../../i18n';
+
+const { STUDIO } = home(langOf(Astro.url));
 import { SITE } from '../../data/site';
 ---
 

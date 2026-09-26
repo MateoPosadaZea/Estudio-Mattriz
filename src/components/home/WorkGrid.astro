@@ -1,9 +1,12 @@
 ---
 import SplitText from '../SplitText.astro';
-import { PROJECTS, CATEGORIES, categorySlug } from '../../data/home';
+import { PROJECTS, CATEGORIES, categorySlug, home } from '../../data/home';
+import { langOf, localize, category } from '../../i18n';
 
-// En el vivo, las categorías de cada tarjeta enlazan a /project-type/…
-const typeHref = (c: string) => `/project-type/${categorySlug(c)}/`;
+const lang = langOf(Astro.url);
+const { LABELS } = home(lang);
+// En el vivo, las categorías de cada tarjeta enlazan a /project-type/… (redirige a la sección de proyectos).
+const typeHref = (c: string) => (lang === 'es' ? '/es/#work' : `/project-type/${categorySlug(c)}/`);
 ---
 
 <!--
@@ -12,17 +15,17 @@ const typeHref = (c: string) => `/project-type/${categorySlug(c)}/`;
 -->
 <section class="work-grid">
   <div class="work-grid__head" data-animate="fade-up">
-    <SplitText as="h2" text="Selected Work" class="work-grid__title" />
+    <SplitText as="h2" text={LABELS.selectedWork} class="work-grid__title" />
   </div>
 
   <div class="work-grid__filters">
     <button type="button" class="work-grid__filter-toggle" aria-expanded="false" aria-controls="work-filters" data-filter-toggle>
       <span aria-hidden="true" class="work-grid__plus"></span>
-      Filter
+      {LABELS.filter}
     </button>
     <div class="work-grid__filter-list" id="work-filters" data-filter-list hidden>
-      <button type="button" data-filter="all" aria-pressed="true">All</button>
-      {CATEGORIES.map((c) => <button type="button" data-filter={categorySlug(c)} aria-pressed="false">{c}</button>)}
+      <button type="button" data-filter="all" aria-pressed="true">{LABELS.all}</button>
+      {CATEGORIES.map((c) => <button type="button" data-filter={categorySlug(c)} aria-pressed="false">{category(c, lang)}</button>)}
     </div>
   </div>
 
@@ -40,10 +43,10 @@ const typeHref = (c: string) => `/project-type/${categorySlug(c)}/`;
           </div>
           <div class="work-card__content">
             <h3 class="work-card__title">
-              <a href={p.href}>{p.title}</a>
+              <a href={localize(p.href, lang)}>{p.title}</a>
             </h3>
             <p class="work-card__cats">
-              {p.categories.map((c) => <a href={typeHref(c)}>{c}</a>)}
+              {p.categories.map((c) => <a href={typeHref(c)}>{category(c, lang)}</a>)}
             </p>
           </div>
         </li>
@@ -52,7 +55,7 @@ const typeHref = (c: string) => `/project-type/${categorySlug(c)}/`;
   </ul>
 
   <div class="work-grid__more">
-    <button type="button" class="work-grid__more-btn" data-load-more>Load More</button>
+    <button type="button" class="work-grid__more-btn" data-load-more>{LABELS.loadMore}</button>
   </div>
 </section>
 

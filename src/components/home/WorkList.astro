@@ -1,6 +1,10 @@
 ---
 import SplitText from '../SplitText.astro';
-import { PROJECTS } from '../../data/home';
+import { PROJECTS, home } from '../../data/home';
+import { langOf, localize } from '../../i18n';
+
+const lang = langOf(Astro.url);
+const { LABELS } = home(lang);
 ---
 
 <!--
@@ -10,14 +14,14 @@ import { PROJECTS } from '../../data/home';
 -->
 <section class="work-list" data-page-bg="#FFFFFF" data-page-text="#0a0a0a">
   <div class="work-list__head" data-animate="fade-up">
-    <SplitText as="h2" text="Selected Work" class="work-list__title" />
+    <SplitText as="h2" text={LABELS.selectedWork} class="work-list__title" />
   </div>
 
   <ul class="work-list__items" data-follow-list>
     {
       PROJECTS.map((p) => (
         <li class="work-row" data-follow-item>
-          <a href={p.href}>
+          <a href={localize(p.href, lang)}>
             <span class="work-row__title">{p.title}</span>
             <svg class="work-row__arrow" width="20" height="20" viewBox="60 58 140 140" fill="currentColor" aria-hidden="true">
               <path d="M198,64V168a6,6,0,0,1-12,0V78.48L68.24,196.24a6,6,0,0,1-8.48-8.48L177.52,70H88a6,6,0,0,1,0-12H192A6,6,0,0,1,198,64Z" />

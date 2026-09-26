@@ -1,7 +1,11 @@
 ---
 import { NAV } from '../data/site';
+import { langOf, localize, alternate, ui } from '../i18n';
 
 const path = Astro.url.pathname;
+const lang = langOf(Astro.url);
+const t = ui(lang);
+const other = lang === 'es' ? 'en' : 'es';
 ---
 
 <!--
@@ -9,21 +13,22 @@ const path = Astro.url.pathname;
   y la página se encoge y se corre a la izquierda para descubrirlo.
   La lógica está en src/scripts/menu.ts.
 -->
-<div class="mobile-menu" id="mobile-menu" role="dialog" aria-modal="true" aria-label="Menu" hidden>
+<div class="mobile-menu" id="mobile-menu" role="dialog" aria-modal="true" aria-label={t.menu} hidden>
   <button class="mobile-menu__close" type="button" data-menu-close>
-    <span class="sr-only">Close Menu</span>
+    <span class="sr-only">{t.closeMenu}</span>
   </button>
   <ul class="mobile-menu__list">
     {
-      NAV.map((item) => (
+      NAV.map((item, i) => (
         <li>
-          <a href={item.href} aria-current={item.href === path ? 'page' : undefined}>
-            {item.label}
+          <a href={localize(item.href, lang)} aria-current={localize(item.href, lang) === path ? 'page' : undefined}>
+            {t.nav[i]}
           </a>
         </li>
       ))
     }
   </ul>
+  <a class="mobile-menu__lang u-link" href={alternate(Astro.url, other)} hreflang={other} lang={other}>{t.switchLong}</a>
 </div>
 
 <style>
@@ -109,6 +114,13 @@ const path = Astro.url.pathname;
     transform: scaleX(0);
     transform-origin: left;
     transition: transform 0.3s cubic-bezier(0.25, 0, 0.4, 1);
+  }
+
+  .mobile-menu__lang {
+    align-self: flex-start;
+    margin-top: 28px;
+    font-size: 16px;
+    line-height: 1.6;
   }
 
   .mobile-menu__list a[aria-current='page']::after,

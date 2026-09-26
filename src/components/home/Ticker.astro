@@ -1,12 +1,15 @@
 ---
-import { TICKER } from '../../data/home';
+import { home } from '../../data/home';
+import { langOf } from '../../i18n';
+
+const { TICKER, LABELS } = home(langOf(Astro.url));
 ---
 
 <!--
   Marquesina doble. Vivo: 5 copias del texto por línea; cada copia se desplaza de 20 % a
   120 % de su propio ancho en 30 s lineales, en bucle; la segunda línea en sentido contrario.
 -->
-<section class="ticker" aria-label="Services">
+<section class="ticker" aria-label={LABELS.ticker}>
   {
     TICKER.map((text, row) => (
       <div class:list={['ticker__row', row === 0 ? 'ticker__row--rtl' : 'ticker__row--ltr']}>

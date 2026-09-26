@@ -1,0 +1,36 @@
+---
+import Base from '../layouts/Base.astro';
+import Hero from '../components/home/Hero.astro';
+import Services from '../components/home/Services.astro';
+import Studio from '../components/home/Studio.astro';
+import WorkList from '../components/home/WorkList.astro';
+import WorkGrid from '../components/home/WorkGrid.astro';
+import Ticker from '../components/home/Ticker.astro';
+import Testimonials from '../components/home/Testimonials.astro';
+import { home } from '../data/home';
+import { langOf } from '../i18n';
+
+const { LABELS } = home(langOf(Astro.url));
+---
+
+<Base
+  title={LABELS.metaTitle}
+  description={LABELS.metaDescription}
+  background="#000000"
+>
+  <Hero />
+  <Services />
+  <Studio />
+  <!-- Una sola ancla #work para las dos versiones (lista en desktop, tarjetas en mobile). -->
+  <div id="work">
+    <WorkList />
+    <WorkGrid />
+  </div>
+  <Ticker />
+  <Testimonials />
+</Base>
+
+<script>
+  import '../scripts/reveal';
+  import '../scripts/color-change';
+</script>

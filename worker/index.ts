@@ -49,18 +49,22 @@ export default {
 
 async function handleContact(request: Request, env: Env): Promise<Response> {
   const wantsJson = (request.headers.get('Accept') || '').includes('application/json');
-  const reply = (ok: boolean, status = ok ? 200 : 400) =>
-    wantsJson
+  let form: FormData | null = null;
+  // Sin JS se vuelve a la página de contacto del idioma del formulario (/contact/ o /es/contact/).
+  const reply = (ok: boolean, status = ok ? 200 : 400) => {
+    const page = form?.get('lang') === 'es' ? '/es/contact/' : '/contact/';
+    return wantsJson
       ? Response.json({ ok }, { status })
-      : Response.redirect(new URL(`/contact/?sent=${ok ? 'ok' : 'error'}`, request.url).toString(), 303);
+      : Response.redirect(new URL(`${page}?sent=${ok ? 'ok' : 'error'}`, request.url).toString(), 303);
+  };
 
-  let form: FormData;
   try {
     form = await request.formData();
   } catch {
     return reply(false);
   }
-  const get = (k: string) => String(form.get(k) ?? '').trim();
+  const data = form;
+  const get = (k: string) => String(data.get(k) ?? '').trim();
 
   // Honeypot: un bot llenó el campo oculto. Se responde como éxito y no se envía nada.
   if (get('website')) return reply(true);
@@ -70,7 +74,7 @@ async function handleContact(request: Request, env: Env): Promise<Response> {
   const phone = get('phone').slice(0, 100);
   const details = get('details').slice(0, 5000);
   const budget = get('budget').slice(0, 100);
-  const services = form.getAll('services').map((s) => String(s).slice(0, 100)).slice(0, 10);
+  const services = data.getAll('services').map((s) => String(s).slice(0, 100)).slice(0, 10);
 
   if (!name || !details || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return reply(false);
 
@@ -107,7 +111,7 @@ async function handleContact(request: Request, env: Env): Promise<Response> {
       from: env.CONTACT_FROM || 'Mattriz website <forms@mattriz.com>',
       to: [env.CONTACT_TO || 'contacto@mattriz.com'],
       reply_to: email,
-      subject: `New project inquiry: ${name}`,
+      subject: `${get('lang') === 'es' ? 'Nueva solicitud de proyecto (ES)' : 'New project inquiry'}: ${name}`,
       text,
       html,
     }),

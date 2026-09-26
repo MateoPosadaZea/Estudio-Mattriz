@@ -1,10 +1,13 @@
 ---
 import SplitText from '../SplitText.astro';
-import { TESTIMONIALS } from '../../data/home';
+import { home } from '../../data/home';
+import { langOf } from '../../i18n';
+
+const { TESTIMONIALS, LABELS } = home(langOf(Astro.url));
 ---
 
-<section class="testimonials" aria-roledescription="carousel" aria-label="What clients say">
-  <SplitText as="h2" text="What clients say" class="testimonials__title" />
+<section class="testimonials" aria-roledescription="carousel" aria-label={LABELS.testimonials}>
+  <SplitText as="h2" text={LABELS.testimonials} class="testimonials__title" />
 
   <div class="carousel" data-carousel>
     <div class="carousel__track" data-carousel-track>
@@ -20,10 +23,10 @@ import { TESTIMONIALS } from '../../data/home';
       }
     </div>
     <div class="carousel__nav">
-      <button type="button" class="carousel__btn" data-carousel-prev aria-label="Previous">
+      <button type="button" class="carousel__btn" data-carousel-prev aria-label={LABELS.previous}>
         <svg viewBox="0 0 20 20" width="20" height="20" aria-hidden="true"><path d="M16 10 H4 M9 5 L4 10 L9 15" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" /></svg>
       </button>
-      <button type="button" class="carousel__btn" data-carousel-next aria-label="Next">
+      <button type="button" class="carousel__btn" data-carousel-next aria-label={LABELS.next}>
         <svg viewBox="0 0 20 20" width="20" height="20" aria-hidden="true"><path d="M4 10 H16 M11 5 L16 10 L11 15" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" /></svg>
       </button>
     </div>

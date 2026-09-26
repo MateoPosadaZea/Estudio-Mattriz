@@ -1,0 +1,357 @@
+---
+import Base from '../layouts/Base.astro';
+import SplitText from '../components/SplitText.astro';
+import LineButton from '../components/LineButton.astro';
+import { about } from '../data/about';
+import { langOf, localize } from '../i18n';
+
+const lang = langOf(Astro.url);
+const { ABOUT_HERO, ABOUT_SERVICES, TEAM, LABELS } = about(lang);
+
+const ICONS: Record<string, string> = {
+  linkedin: 'M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9.5h4V21H3zM9.5 9.5h3.8v1.6h.05c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.78 2.65 4.78 6.1V21h-4v-5.1c0-1.22-.02-2.78-1.7-2.78-1.7 0-1.96 1.33-1.96 2.7V21h-4z',
+  instagram: 'M12 7.2a4.8 4.8 0 1 0 0 9.6 4.8 4.8 0 0 0 0-9.6zm0 7.9a3.1 3.1 0 1 1 0-6.2 3.1 3.1 0 0 1 0 6.2zM17 5.8a1.1 1.1 0 1 0 0 2.2 1.1 1.1 0 0 0 0-2.2zM20.9 7.3c-.1-1.5-.4-2.9-1.5-4-1.1-1.1-2.5-1.4-4-1.5-1.6-.1-6.3-.1-7.9 0-1.5.1-2.9.4-4 1.5S2.1 5.8 2 7.3c-.1 1.6-.1 6.3 0 7.9.1 1.5.4 2.9 1.5 4s2.5 1.4 4 1.5c1.6.1 6.3.1 7.9 0 1.5-.1 2.9-.4 4-1.5s1.4-2.5 1.5-4c.1-1.6.1-6.3 0-7.9zM18.9 17c-.3.8-1 1.5-1.8 1.8-1.3.5-4.3.4-5.6.4s-4.4.1-5.6-.4a3.2 3.2 0 0 1-1.8-1.8c-.5-1.3-.4-4.3-.4-5.6s-.1-4.4.4-5.6c.3-.8 1-1.5 1.8-1.8 1.3-.5 4.3-.4 5.6-.4s4.4-.1 5.6.4c.8.3 1.5 1 1.8 1.8.5 1.3.4 4.3.4 5.6s.1 4.4-.4 5.6z',
+};
+---
+
+<Base
+  breadcrumb={[{ name: LABELS.breadcrumb, path: localize('/about/', lang) }]}
+  title={LABELS.metaTitle}
+  description={LABELS.metaDescription}
+  background="#0a0a0a"
+>
+  <!--
+    En el vivo, el hero y "Our Services" tienen texto oscuro sobre fondo #0a0a0a y no se leen.
+    Aquí el texto va en blanco (contraste AA, brief sección 6); el resto del diseño es el mismo.
+  -->
+  <section class="about-hero">
+    <div class="about-hero__title">
+      <SplitText as="h1" text={ABOUT_HERO.title} effect="letters" desktopOnly stagger />
+    </div>
+    <div class="about-hero__side">
+      <p>{ABOUT_HERO.text}</p>
+      <LineButton href={localize('/#work', lang)} variant="dark">{ABOUT_HERO.cta}</LineButton>
+    </div>
+  </section>
+
+  <section class="about-services">
+    <h2 class="about-services__title">{LABELS.services}</h2>
+    <div class="about-services__grid">
+      {
+        ABOUT_SERVICES.map((s, i) => (
+          <div class="about-services__item" data-animate="fade-up-slight" style={`transition-delay: ${(i % 2) * 100}ms`}>
+            <p class="about-services__num">{String(i + 1).padStart(2, '0')}</p>
+            <h3>{s.title}</h3>
+            <p>{s.text}</p>
+          </div>
+        ))
+      }
+    </div>
+  </section>
+
+  <section class="team" id="team">
+    <div class="team__intro" data-animate="fade-up">
+      <h2>{TEAM.title}</h2>
+      <p>{TEAM.text}</p>
+      <LineButton href={localize('/#work', lang)} class="team__cta">{TEAM.cta}</LineButton>
+    </div>
+    <div class="team__members">
+      {
+        TEAM.members.map((m) => (
+          <div class="member">
+            <img
+              src={`/media/team/${m.photo}-500x500.png`}
+              srcset={`/media/team/${m.photo}-350x350.png 350w, /media/team/${m.photo}-500x500.png 500w, /media/team/${m.photo}.png 800w`}
+              sizes="(max-width: 690px) 90vw, 25vw"
+              width="800"
+              height="800"
+              alt={m.name}
+              loading="lazy"
+              decoding="async"
+            />
+            <h3>{m.name}</h3>
+            <p>{m.role}</p>
+            <ul class="member__links">
+              {m.links.map((l) => (
+                <li>
+                  <a href={l.href} target="_blank" rel="noopener" aria-label={`${m.name} ${LABELS.on} ${l.type === 'linkedin' ? 'LinkedIn' : 'Instagram'}`}>
+                    <svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><path d={ICONS[l.type]} fill="currentColor" /></svg>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))
+      }
+    </div>
+  </section>
+</Base>
+
+<style>
+  /* Hero. Vivo: padding 8vw/10vw y 6 % lateral; título 4vw (máx. 800px) y columna de 25 %. */
+  .about-hero {
+    display: flex;
+    align-items: center;
+    /* El vivo suma el alto del header al padding de la primera fila. */
+    padding: calc(8vw + var(--header-top) + var(--header-height)) 6% 10vw;
+    color: var(--color-white);
+  }
+
+  .about-hero__title {
+    flex: 0 0 75%;
+  }
+
+  .about-hero__title :global(h1) {
+    max-width: 800px;
+    margin-bottom: 7px;
+    font-size: 4vw;
+    line-height: 1.1;
+    font-weight: var(--fw-light);
+    letter-spacing: var(--ls-tight);
+  }
+
+  .about-hero__title :global(.split__word) {
+    line-height: inherit;
+  }
+
+  .about-hero__side {
+    flex: 1;
+  }
+
+  .about-hero__side p {
+    margin-bottom: 50px;
+    font-size: 1.1vw;
+    line-height: 1.7;
+  }
+
+  /* Servicios. Vivo: 3 % lateral, 10vw vertical; título 3vw a la izquierda, 2×2 a la derecha. */
+  .about-services {
+    display: flex;
+    padding: 10vw 3%;
+    color: var(--color-white);
+  }
+
+  .about-services__title {
+    flex: 0 0 33.333%;
+    padding: 0 25px 0 66px;
+    font-size: min(3vw, 90px);
+    line-height: 1;
+    font-weight: 500;
+  }
+
+  .about-services__grid {
+    flex: 1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 100px 60px;
+    padding: 0 68px 0 41px;
+  }
+
+  .about-services__num {
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 28px;
+  }
+
+  .about-services__item h3 {
+    margin: 5px 0 35px;
+    font-size: 22px;
+    font-weight: 500;
+    line-height: 28px;
+  }
+
+  html.js [data-animate='fade-up-slight'] {
+    opacity: 0;
+    transform: translateY(50px);
+    transition:
+      opacity 400ms cubic-bezier(0.165, 0.84, 0.44, 1),
+      transform 400ms cubic-bezier(0.165, 0.84, 0.44, 1);
+  }
+
+  html.js [data-animate='fade-up-slight'].is-in {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* Equipo. Vivo: fondo negro, 10vw / 6 %; texto a la izquierda (1/3), fotos a la derecha. */
+  .team {
+    display: flex;
+    padding: 10vw 6%;
+    background: var(--color-black);
+    color: var(--color-white);
+  }
+
+  .team__intro {
+    flex: 0 0 33.333%;
+    align-self: flex-start;
+  }
+
+  .team__intro h2 {
+    font-size: 3vw;
+    line-height: 1.1;
+    font-weight: var(--fw-light);
+    letter-spacing: var(--ls-tight);
+    margin-bottom: 23px;
+  }
+
+  .team__intro p {
+    font-size: 1.1vw;
+    line-height: 1.7;
+  }
+
+  .team__intro :global(.team__cta) {
+    margin-top: 50px;
+  }
+
+  .team__members {
+    flex: 1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    padding-left: 6vw;
+  }
+
+  .member img {
+    width: 100%;
+    height: auto;
+    margin-bottom: 30px;
+  }
+
+  .member h3 {
+    margin-bottom: 36px;
+    font-size: 25px;
+    font-weight: 500;
+    line-height: 30px;
+  }
+
+  .member p {
+    font-size: 1.1vw;
+    line-height: 1.7;
+  }
+
+  .member__links {
+    display: flex;
+    gap: 22px;
+    margin: 13px 0 21px;
+  }
+
+  /* Vivo: círculo de 44.5px con borde blanco; en hover se rellena de blanco y el ícono pasa a negro. */
+  .member__links a {
+    display: grid;
+    place-items: center;
+    width: 43px;
+    height: 43px;
+    border: 1px solid var(--color-white);
+    border-radius: 50%;
+    transition:
+      background-color 0.3s,
+      color 0.3s;
+  }
+
+  .member__links a:hover {
+    background: var(--color-white);
+    color: var(--color-black);
+  }
+
+  @media (max-width: 999px) {
+    .about-hero,
+    .about-services,
+    .team {
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    .about-hero__title :global(h1) {
+      font-size: 28px;
+      line-height: 32px;
+    }
+
+    /* Vivo: el h2 partido en letras mide 5px más que sus líneas. */
+    .about-hero__title {
+      margin-bottom: 25px;
+    }
+
+    .about-services__grid {
+      gap: 0;
+      padding: 0;
+    }
+
+    .about-services__item {
+      margin-bottom: 50px;
+    }
+
+    .about-services__item:last-child {
+      margin-bottom: 0;
+    }
+
+    .about-hero__side p,
+    .team__intro p,
+    .member p {
+      font-size: 16px;
+    }
+
+    .about-services__title {
+      margin-bottom: 50px;
+      font-size: 7vw;
+    }
+
+    .team__intro h2 {
+      font-size: 28px;
+      line-height: 32px;
+    }
+
+    .team__members {
+      padding: 40px 0 0;
+    }
+  }
+
+  @media (max-width: 690px) {
+    .about-hero {
+      padding: calc(22vw + var(--header-top) + var(--header-height-mobile)) 23px 39px;
+    }
+
+    .about-services {
+      padding: 10vw 3%;
+    }
+
+    .about-services__title {
+      padding: 0 22px;
+    }
+
+    .about-services__grid,
+    .team__members {
+      grid-template-columns: 1fr;
+    }
+
+    .about-services__item {
+      padding: 0 22px;
+    }
+
+    .about-services__item h3 {
+      font-size: 20px;
+      line-height: 26px;
+    }
+
+    .member h3 {
+      margin-bottom: 8px;
+      font-size: 17px;
+      line-height: 20px;
+    }
+
+    .member__links {
+      margin-top: 41px;
+    }
+
+    .team {
+      padding-top: 34px;
+    }
+
+    .member__links {
+      margin-bottom: 0;
+    }
+  }
+</style>
+
+<script>
+  import '../scripts/reveal';
+</script>

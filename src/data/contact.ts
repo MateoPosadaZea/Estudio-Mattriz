@@ -1,3 +1,5 @@
+import type { Lang } from '../i18n';
+
 // Contenido de /contact/: mismos campos del formulario WPForms del vivo.
 // Testimonio de Diego: rayas largas reemplazadas por comas (regla de marca).
 
@@ -9,6 +11,21 @@ export const CONTACT = {
   // Mensajes del brief (sección 4).
   success: 'Thanks. We’ll get back to you within one business day.',
   error: 'Something went wrong and your message wasn’t sent. Write to us directly at contacto@mattriz.com.',
+  metaTitle: 'Contact Mattriz Studio | Get a Project Quote',
+  metaDescription: 'Contact Mattriz Studio for web design, branding, eCommerce, and SEO. Share your goals and get a clear quote + next steps within 24–48 hours.',
+  breadcrumb: 'Contact',
+  fields: {
+    name: 'Name',
+    namePh: 'Full Name',
+    email: 'Email',
+    emailPh: 'Email Address',
+    phone: 'Phone / Whatsapp (optional)',
+    help: 'How can we help you?',
+    helpNote: 'Select all that apply.',
+    budget: 'Estimated budget (USD)',
+    details: 'More details about your project',
+    detailsPh: 'What are you building? Timeline? Links? Goals?',
+  },
 };
 
 export const CONTACT_CASE = {
@@ -23,3 +40,43 @@ export const CONTACT_CASE = {
   role: 'CEO at Spot On Mobile California',
   link: { label: 'Go to live project', href: 'https://mobilespotoncalifornia.com/' },
 };
+
+// ---------------------------------------------------------------------------
+// Español (/es/contact/). Los valores enviados en el correo también van en español.
+
+export const CONTACT_ES = {
+  CONTACT: {
+    title: 'Hablemos de tu proyecto.',
+    services: ['Diseño web', 'Ecommerce', 'SEO', 'Automatización de procesos', 'Branding'],
+    budgets: ['No estoy seguro / quiero orientación', '$500–$1,000', '$1,000–$2,500', '$2,500–$5,000', '$5,000–$10,000', '$10,000+'],
+    submit: 'Pedir una propuesta',
+    success: 'Gracias. Te respondemos en un día hábil.',
+    error: 'Algo salió mal y tu mensaje no se envió. Escríbenos directamente a contacto@mattriz.com.',
+    metaTitle: 'Contacta a Mattriz Studio | Pide una cotización',
+    metaDescription: 'Contacta a Mattriz Studio para diseño web, branding, eCommerce y SEO. Cuéntanos tus objetivos y recibe una cotización clara y los siguientes pasos en 24 a 48 horas.',
+    breadcrumb: 'Contacto',
+    fields: {
+      name: 'Nombre',
+      namePh: 'Nombre completo',
+      email: 'Correo',
+      emailPh: 'Correo electrónico',
+      phone: 'Teléfono / WhatsApp (opcional)',
+      help: '¿Cómo podemos ayudarte?',
+      helpNote: 'Selecciona todas las que apliquen.',
+      budget: 'Presupuesto estimado (USD)',
+      details: 'Más detalles de tu proyecto',
+      detailsPh: '¿Qué estás construyendo? ¿Plazos? ¿Enlaces? ¿Objetivos?',
+    },
+  },
+  CONTACT_CASE: {
+    ...CONTACT_CASE,
+    quote: [
+      'Tuve la oportunidad de trabajar con Mattriz en el sitio web de mi negocio y la experiencia superó nuestras expectativas. Desde el principio recibimos comentarios muy positivos, incluso de personas que trabajan en grandes empresas de tecnología aquí en Estados Unidos.',
+      'Decidimos confiar en esta empresa no tanto por su costo, que es competitivo y en muchos casos incluso mejor que el de empresas locales en California, sino por la calidad y el profesionalismo que demostraron desde el principio.',
+    ],
+    role: 'CEO de Spot On Mobile California',
+    link: { ...CONTACT_CASE.link, label: 'Ver el proyecto en vivo' },
+  },
+};
+
+export const contact = (lang: Lang) => (lang === 'es' ? CONTACT_ES : { CONTACT, CONTACT_CASE });

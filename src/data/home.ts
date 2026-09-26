@@ -1,3 +1,5 @@
+import type { Lang } from '../i18n';
+
 // Contenido de la home.
 // Copy: brief sección 4 donde se solapa con el vivo (sin rayas largas); el resto, tal cual el vivo.
 
@@ -146,3 +148,111 @@ export const TESTIMONIALS = [
     avatar: '/media/testimonials/nicolas-galvis.jpg',
   },
 ];
+
+// ---------------------------------------------------------------------------
+// Español (/es/). Traducción del copy de arriba; mismas reglas: sin rayas largas.
+
+
+export const HOME_ES = {
+  HERO: {
+    title: 'Sistemas que trabajan mientras duermes.',
+    subtitle: 'No vendemos sitios bonitos. Construimos los sistemas de reservas, pagos y operación con los que funcionan los negocios de servicios.',
+    cta: { label: 'Mira cómo trabajamos', href: '#how-we-work' },
+  },
+  SERVICES: {
+    title: 'Lo que construimos',
+    items: [
+      {
+        title: 'Sistemas de reservas y operación',
+        text: 'Plataformas de reservas a la medida, con cupos, listas de espera, reembolsos y seguimientos que se gestionan solos.',
+      },
+      {
+        title: 'Integración de pagos',
+        text: 'Square, Stripe, Wompi. Integrados a la operación, no pegados encima.',
+      },
+      {
+        title: 'Paneles de administración a la medida',
+        text: 'Herramientas que tu equipo sí usa, construidas alrededor de cómo funciona tu negocio.',
+      },
+      {
+        title: 'Automatización y seguimiento',
+        text: 'Confirmaciones, recordatorios, seguimiento después del servicio y recolección de reseñas. Se configura una vez y funciona siempre.',
+      },
+      {
+        title: 'Sitios web que convierten',
+        text: 'Sitios de marketing que se convierten en sistemas de reservas, no en folletos.',
+      },
+    ],
+  },
+  STUDIO: {
+    title: 'Un estudio. Sistemas reales.',
+    text: 'Mattriz es un estudio de sistemas con sede en Bogotá que trabaja con negocios de servicios en Estados Unidos y Latinoamérica. El sitio web es solo la parte que se ve. Detrás hay motores de reservas, flujos de pago y operaciones que resisten una pregunta directa.',
+    cta: 'Hablemos de tu proyecto',
+    stats: [
+      { label: 'Construir', value: '5+', text: 'Años diseñando y construyendo sistemas digitales para negocios reales.' },
+      { label: 'Mantener', value: '3', text: 'Clientes activos a la vez, por decisión, no por accidente.' },
+      { label: 'Crecer', value: '100%', text: 'Trabajamos por retainer mensual. No hacemos proyectos sueltos.' },
+    ],
+  },
+  TICKER: [
+    'Construimos sistemas digitales que rinden  ·  Webflow  ·  WordPress  ·  Shopify  ·  WooCommerce   ·',
+    'Desarrollo web  ·  UI/UX  ·  E-commerce  ·  SEO  ·  Automatización  ·  Analítica  ·  Retainers   ·',
+  ],
+  TESTIMONIALS: [
+    {
+      quote: 'Destacamos el desarrollo, el lanzamiento y el mantenimiento continuo de nuestra tienda en línea. Trabajan rápido y siempre están dispuestos a ayudar. Los recomendaría sin dudarlo.',
+      name: 'José Suárez',
+      company: 'My Doll Hair',
+      avatar: '/media/testimonials/jose-suarez.jpg',
+    },
+    {
+      quote: 'Les confiamos nuestro sitio web y toda la parte visual de la empresa, y el resultado fue espectacular. Los recomiendo totalmente.',
+      name: 'Carlos Posada',
+      company: 'Posada Cárcamo Abogados',
+      avatar: '/media/testimonials/carlos-posada.jpg',
+    },
+    {
+      quote: 'Diseñaron y desarrollaron nuestro sitio web. Nos impresionó su capacidad para resolver los problemas técnicos a medida que surgían, y lo proactivos y creativos que son.',
+      name: 'Daniela Barrios',
+      company: 'Closet Up',
+      avatar: '/media/testimonials/daniela-barrios.jpg',
+    },
+    {
+      quote: 'Diseñaron el sitio web de nuestra empresa familiar y solo tenemos cosas buenas que decir de la experiencia de construirlo junto a su equipo.',
+      name: 'Nicolás Galvis',
+      company: 'AGL Vans Tours',
+      avatar: '/media/testimonials/nicolas-galvis.jpg',
+    },
+  ],
+};
+
+// Textos sueltos de las secciones de la home.
+export const HOME_LABELS = {
+  en: {
+    metaTitle: 'Mattriz | Booking & operations systems for service businesses',
+    metaDescription: 'Mattriz builds booking, payment and operations systems for service businesses in the US and LATAM. One studio. One retainer.',
+    selectedWork: 'Selected Work',
+    filter: 'Filter',
+    all: 'All',
+    loadMore: 'Load More',
+    testimonials: 'What clients say',
+    previous: 'Previous',
+    next: 'Next',
+    ticker: 'Services',
+  },
+  es: {
+    metaTitle: 'Mattriz | Sistemas de reservas y operación para negocios de servicios',
+    metaDescription: 'Mattriz construye sistemas de reservas, pagos y operación para negocios de servicios en Estados Unidos y Latinoamérica. Un estudio. Un retainer.',
+    selectedWork: 'Proyectos seleccionados',
+    filter: 'Filtrar',
+    all: 'Todos',
+    loadMore: 'Ver más',
+    testimonials: 'Lo que dicen nuestros clientes',
+    previous: 'Anterior',
+    next: 'Siguiente',
+    ticker: 'Servicios',
+  },
+};
+
+export const home = (lang: Lang) =>
+  lang === 'es' ? { ...HOME_ES, LABELS: HOME_LABELS.es } : { HERO, SERVICES, STUDIO, TICKER, TESTIMONIALS, LABELS: HOME_LABELS.en };

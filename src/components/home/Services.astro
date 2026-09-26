@@ -1,6 +1,9 @@
 ---
 import SplitText from '../SplitText.astro';
-import { SERVICES } from '../../data/home';
+import { home } from '../../data/home';
+import { langOf } from '../../i18n';
+
+const { SERVICES } = home(langOf(Astro.url));
 
 // Vivo: el padding derecho de la columna de texto varía por ítem (5 % o 15 % del ancho;
 // en teléfono el de 5 % queda en 24px).

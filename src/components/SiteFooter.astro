@@ -1,6 +1,9 @@
 ---
 import AnimatedGradient from './AnimatedGradient.astro';
 import { SITE } from '../data/site';
+import { langOf, ui } from '../i18n';
+
+const t = ui(langOf(Astro.url));
 
 const year = new Date().getFullYear();
 ---
@@ -12,13 +15,13 @@ const year = new Date().getFullYear();
   <div class="site-footer__inner">
     <p class="site-footer__status">
       <span class="pulse" aria-hidden="true"></span>
-      Currently accepting new clients
+      {t.accepting}
     </p>
 
     <p class="site-footer__cta">
       <a href={SITE.calendly} target="_blank" rel="noopener">
         <span class="reveal">
-          <span class="reveal__text" data-text="Book a free call">Book a free call</span>
+          <span class="reveal__text" data-text={t.bookCall}>{t.bookCall}</span>
         </span>
       </a>
     </p>
