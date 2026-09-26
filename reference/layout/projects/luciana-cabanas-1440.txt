@@ -1,0 +1,63 @@
+ROW full-width-section has-row-bg-color first-section | x70 y0 w1300 h582 pad 115.2px 0px mar 0px bg rgb(0, 0, 0)
+  COL has-animation padding-1-percent | x25 y115 w927 h352 pad 0px 45px mar 0px
+    EL divider-wrap | x70 y128 w837 h100 pad 0px mar 0px ""
+    EL  | x70 y228 w837 h156 pad 0px mar 0px 0px 25.5px "Diseño de logotipo y sitio web para @luc" [H2 maison-neue-light 46px/52px w300 ls-1.38px rgb(10, 10, 10) mb10px]
+    EL nectar-cta alignment_tablet_default alignment_phone_default display_ta | x70 y409 w837 h28 pad 0px mar 0px 0px 30px "Ver sitio web" [H4 maison-neue-light 22px/28px w500 lsnormal rgb(255, 255, 255) mb8px]
+  COL has-animation padding-1-percent | x952 y115 w463 h352 pad 0px 45px mar 0px
+    EL divider-wrap | x997 y128 w373 h100 pad 0px mar 0px ""
+ROW full-width-content  zindex-set nectar-overflow-hidden | x0 y582 w1440 h900 pad 0px mar 0px 0px 0px -720px bg rgba(0, 0, 0, 0) bgimg url("https://mattriz.com/wp-content/uploads/2021/11/NIV0576-scaled.jpg")
+  COL no-extra-padding column_position_static el_spacing_0px  | x0 y1032 w1440 h0 pad 0px mar 0px
+ROW full-width-section | x70 y1482 w1300 h928 pad 86.4px 0px 144px mar 0px bg rgba(0, 0, 0, 0)
+  COL no-extra-padding  | x45 y1569 w338 h698 pad 0px 25px mar 0px
+    EL divider-wrap | x70 y1581 w288 h1 pad 0px mar 0px ""
+    EL  | x70 y1595 w288 h26 pad 0px mar 0px 0px 5px "Servicios" [P maison-neue-light 17px/26px w400 lsnormal rgb(10, 10, 10) mb0px]
+  COL no-extra-padding  | x383 y1569 w788 h698 pad 0px 25px mar 0px
+    EL divider-wrap | x408 y1581 w738 h1 pad 0px mar 0px ""
+    EL  | x408 y1595 w738 h26 pad 0px mar 0px 0px 25.5px "Resumen del proyecto" [P maison-neue-light 17px/26px w400 lsnormal rgb(10, 10, 10) mb0px]
+    EL  | x408 y1646 w738 h78 pad 0px mar 10px 0px 25.5px "El afán por salir de la ciudad me llevó " [P maison-neue-light 17px/26px w400 lsnormal rgb(10, 10, 10) mb0px]
+    EL divider-wrap | x408 y1798 w738 h1 pad 0px mar 0px ""
+    EL  | x408 y1873 w738 h26 pad 0px mar 0px 0px 25.5px "Lo que hicimos" [P maison-neue-light 17px/26px w400 lsnormal rgb(10, 10, 10) mb0px]
+    EL  | x408 y1924 w738 h312 pad 0px mar 10px 0px 0px "Investigar y conocer la historia detrás " [LI maison-neue-light 17px/26px w400 lsnormal rgb(10, 10, 10) mb0px]
+ROW full-width-content has-row-bg-color | x0 y2410 w1440 h576 pad 0px mar 0px 0px 0px -720px bg rgb(191, 149, 113)
+  COL no-extra-padding  | x0 y2410 w1440 h576 pad 0px mar 0px
+    EL img-with-aniamtion-wrap center | x432 y2410 w576 h576 pad 0px mar 0px 432px ""
+ROW full-width-content | x0 y2986 w1440 h900 pad 0px mar 0px 0px 0px -720px bg rgba(0, 0, 0, 0)
+  COL no-extra-padding  | x0 y3031 w1440 h810 pad 0px mar 0px
+    EL nectar_video_player_self_hosted | x0 y3031 w1440 h810 pad 0px mar 0px ""
+ROW full-width-content has-row-bg-color | x0 y3886 w1440 h1067 pad 0px mar 0px 0px 0px -720px bg rgb(238, 238, 238)
+  COL no-extra-padding  | x0 y3886 w480 h1067 pad 0px mar 0px
+    EL img-with-aniamtion-wrap center | x0 y3886 w480 h1033 pad 0px mar 0px ""
+  COL no-extra-padding  | x480 y3886 w480 h1067 pad 0px mar 0px
+    EL img-with-aniamtion-wrap center | x480 y3896 w480 h1022 pad 0px mar 9.59375px 0px 0px ""
+  COL no-extra-padding  | x960 y3886 w480 h1067 pad 0px mar 0px
+    EL img-with-aniamtion-wrap center | x960 y3886 w480 h1067 pad 0px mar 0px ""
+ROW full-width-content has-row-bg-color | x0 y4953 w1440 h1380 pad 0px mar 0px 0px 0px -720px bg rgb(88, 35, 15)
+  COL no-extra-padding  | x0 y4953 w1440 h1380 pad 0px mar 0px
+    EL divider-wrap | x0 y4953 w1440 h150 pad 0px mar 0px ""
+    EL img-with-aniamtion-wrap center | x0 y5103 w1440 h1080 pad 0px mar 0px ""
+    EL divider-wrap | x0 y6183 w1440 h150 pad 0px mar 0px ""
+ROW full-width-content has-row-bg-color | x0 y6333 w1440 h945 pad 0px mar 0px 0px 0px -720px bg rgb(88, 35, 15)
+  COL no-extra-padding  | x0 y6333 w360 h945 pad 0px mar 0px
+    EL divider-wrap | x0 y6333 w360 h150 pad 0px mar 0px ""
+  COL no-extra-padding  | x360 y6333 w1080 h945 pad 0px mar 0px
+    EL img-with-aniamtion-wrap  | x360 y6333 w1080 h795 pad 0px mar 0px ""
+    EL divider-wrap | x360 y7128 w1080 h150 pad 0px mar 0px ""
+ROW full-width-content has-row-bg-color | x0 y7278 w1440 h1085 pad 0px mar 0px 0px 0px -720px bg rgb(88, 35, 15)
+  COL no-extra-padding  | x0 y7278 w1440 h1085 pad 0px mar 0px
+    EL img-with-aniamtion-wrap right | x0 y7278 w1440 h935 pad 0px mar 0px ""
+    EL divider-wrap | x0 y8213 w1440 h150 pad 0px mar 0px ""
+ROW full-width-content has-row-bg-color | x0 y8363 w1440 h865 pad 0px mar 0px 0px 0px -720px bg rgb(122, 149, 168)
+  COL padding-5-percent el_spacing_5px instance-14 | x0 y8363 w720 h865 pad 0px mar 0px
+    EL divider-wrap height_phone_150px  | x72 y8435 w576 h315 pad 0px mar 0px 0px 5px ""
+    ROW inner_row | x72 y8755 w576 h81 pad 0px mar 0px 0px 5px bg rgba(0, 0, 0, 0)
+      COL child_column has-animation no-extra-padding el_spacing_0px | x72 y8755 w576 h81 pad 0px mar 0px
+        EL nectar-split-heading font_size_3vw | x72 y8755 w576 h55 pad 0px mar 0px "AGL Vans Tours" [H2 maison-neue-light 43.2px/47.52px w300 ls-1.296px rgb(255, 255, 255) mb7px]
+        EL nectar-cta  alignment_tablet_default alignment_phone_default display_t | x72 y8809 w576 h26 pad 0px mar 0px "Proyecto Anterior" [SPAN maison-neue-light 14px/26px w500 lsnormal rgb(255, 255, 255) mb0px]
+    EL divider-wrap height_phone_150px  | x72 y8840 w576 h315 pad 0px mar 0px ""
+  COL padding-5-percent el_spacing_5px instance-16 | x720 y8363 w720 h865 pad 0px mar 0px
+    EL divider-wrap height_phone_150px  | x792 y8435 w576 h315 pad 0px mar 0px 0px 5px ""
+    ROW inner_row | x792 y8755 w576 h81 pad 0px mar 0px 0px 5px bg rgba(0, 0, 0, 0)
+      COL child_column has-animation no-extra-padding el_spacing_0px | x792 y8755 w576 h81 pad 0px mar 0px
+        EL nectar-split-heading font_size_3vw | x792 y8755 w576 h55 pad 0px mar 0px "Civilus" [H2 maison-neue-light 43.2px/47.52px w300 ls-1.296px rgb(255, 255, 255) mb7px]
+        EL nectar-cta  alignment_tablet_default alignment_phone_default display_t | x792 y8809 w576 h26 pad 0px mar 0px "Proyecto Siguiente" [SPAN maison-neue-light 14px/26px w500 lsnormal rgb(255, 255, 255) mb0px]
+    EL divider-wrap height_phone_150px  | x792 y8840 w576 h315 pad 0px mar 0px ""

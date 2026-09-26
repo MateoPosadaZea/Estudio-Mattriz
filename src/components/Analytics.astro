@@ -1,0 +1,46 @@
+---
+// Analítica: las mismas dos etiquetas del vivo (Tag Manager y la etiqueta de Google de Site Kit).
+// Se cargan en la primera interacción (scroll, toque, tecla, mouse) o 4 s después de cargar la página,
+// lo que pase primero: así no compiten con la carga inicial (Lighthouse ≥ 95 del brief).
+// Solo en el dominio real: en el *.workers.dev de prueba y en local no se envían datos.
+import { SITE } from '../data/site';
+---
+
+<script is:inline define:vars={{ gtm: SITE.gtm, tag: SITE.googleTag }}>
+  (function () {
+    if (location.hostname !== 'mattriz.com') return;
+    var w = window;
+    w.dataLayer = w.dataLayer || [];
+    w.gtag = function () {
+      w.dataLayer.push(arguments);
+    };
+    w.gtag('js', new Date());
+    w.gtag('set', 'linker', { domains: ['mattriz.com'] });
+    w.gtag('config', tag);
+    w.dataLayer.push({ 'gtm.start': Date.now(), event: 'gtm.js' });
+
+    var loaded = false;
+    var events = ['scroll', 'pointerdown', 'keydown', 'touchstart', 'mousemove'];
+    function add(src) {
+      var s = document.createElement('script');
+      s.async = true;
+      s.src = src;
+      document.head.appendChild(s);
+    }
+    function load() {
+      if (loaded) return;
+      loaded = true;
+      events.forEach(function (e) {
+        w.removeEventListener(e, load);
+      });
+      add('https://www.googletagmanager.com/gtm.js?id=' + gtm);
+      add('https://www.googletagmanager.com/gtag/js?id=' + tag);
+    }
+    events.forEach(function (e) {
+      w.addEventListener(e, load, { once: true, passive: true });
+    });
+    w.addEventListener('load', function () {
+      setTimeout(load, 4000);
+    });
+  })();
+</script>

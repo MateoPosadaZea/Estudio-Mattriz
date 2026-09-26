@@ -1,0 +1,102 @@
+---
+// v2: pantalla de carga (referencia: locomotive.ca). En blanco: contador 0 → 100 en Noe Display,
+// línea negra de progreso y salida con cortina hacia arriba. Solo en la primera página de la sesión.
+//
+// Nunca bloquea el sitio:
+// - La clase html.is-loading la pone un script en <head> (Base.astro); sin JS no hay loader.
+// - Con prefers-reduced-motion no aparece.
+// - Si el script de abajo falla, el de <head> quita la clase a los 4 s.
+// Mientras está, las entradas del hero quedan en pausa y arrancan cuando sube la cortina.
+---
+
+<div class="loader" aria-hidden="true" data-loader>
+  <img class="loader__logo" src="/images/logo-mattriz.png" width="433" height="354" alt="" />
+  <p class="loader__name">Mattriz Studio</p>
+  <p class="loader__count"><span data-loader-count>0</span></p>
+  <span class="loader__bar"><span data-loader-bar></span></span>
+</div>
+
+<script>
+  import '../scripts/loader';
+</script>
+
+<style is:global>
+  .loader {
+    display: none;
+  }
+
+  html.is-loading .loader,
+  .loader.is-leaving {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    display: block;
+    background: var(--color-white);
+    color: var(--color-black);
+  }
+
+  html.is-loading {
+    overflow: hidden;
+  }
+
+  /* Las entradas del hero esperan a que se vaya el loader. */
+  html.is-loading .case-mask > span,
+  html.is-loading .case-in {
+    animation-play-state: paused;
+  }
+
+  .loader.is-leaving {
+    transform: translateY(-100%);
+    transition: transform 0.9s cubic-bezier(0.7, 0, 0.2, 1);
+  }
+
+  .loader__logo {
+    position: absolute;
+    top: 32px;
+    left: clamp(20px, 5vw, 80px);
+    width: auto;
+    height: 30px;
+  }
+
+  .loader__name {
+    position: absolute;
+    top: 36px;
+    right: clamp(20px, 5vw, 80px);
+    font-size: 15px;
+    color: rgba(10, 10, 10, 0.6);
+  }
+
+  .loader__count {
+    position: absolute;
+    left: clamp(20px, 5vw, 80px);
+    bottom: clamp(40px, 6vw, 88px);
+    font-family: var(--font-display);
+    font-size: clamp(96px, 22vw, 380px);
+    line-height: 0.8;
+    letter-spacing: -0.04em;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .loader__count::after {
+    content: '%';
+    font-size: 0.3em;
+    margin-left: 0.05em;
+  }
+
+  .loader__bar {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 3px;
+    background: rgba(10, 10, 10, 0.12);
+  }
+
+  .loader__bar span {
+    display: block;
+    height: 100%;
+    background: var(--color-black);
+    transform: scaleX(0);
+    transform-origin: left;
+  }
+</style>

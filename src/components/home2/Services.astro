@@ -1,0 +1,171 @@
+---
+// v2: "What we build" con el diseño de filas de la v1 (pedido de Mateo): título y texto a la
+// izquierda en Maison, número grande y ligero a la derecha, líneas blancas entre filas.
+// Al hacer scroll cada fila se despliega: la línea se dibuja, el número sube desde su máscara
+// y el texto aparece (src/scripts/rows.ts).
+import { home } from '../../data/home';
+import { langOf, ui } from '../../i18n';
+
+const lang = langOf(Astro.url);
+const { SERVICES } = home(lang);
+const t = ui(lang);
+---
+
+<section class="h-section" id="services">
+  <p class="h-label" data-case-reveal><span>(01)</span> {t.nav[3]}</p>
+  <h2 class="h-heading" data-case-reveal>{SERVICES.title}</h2>
+  <ol class="h-services">
+    {
+      SERVICES.items.map((item, i) => (
+        <li data-row>
+          <div class="h-services__body">
+            <h3 class="h-services__title">{item.title}</h3>
+            <p class="h-services__text">{item.text}</p>
+          </div>
+          <span class="h-services__n" aria-hidden="true">
+            <span>{String(i + 1).padStart(2, '0')}</span>
+          </span>
+        </li>
+      ))
+    }
+  </ol>
+</section>
+
+<script>
+  import '../../scripts/rows';
+</script>
+
+<style>
+  /* Fila de la v1: texto en 2/3 del ancho, número alineado a la derecha. */
+  .h-services li {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    padding: 22.5px 0;
+  }
+
+  .h-services__body {
+    flex: 0 0 66.6667%;
+    padding-right: max(5vw, 23px);
+  }
+
+  /* Líneas blancas de 1px: arriba de cada fila y abajo de la última. Se dibujan de izquierda a derecha. */
+  .h-services li::before,
+  .h-services li:last-child::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    height: 1px;
+    background: var(--fg);
+    transform-origin: left;
+  }
+
+  .h-services li:last-child::after {
+    top: auto;
+    bottom: 0;
+  }
+
+  :global(html.js) .h-services li::before,
+  :global(html.js) .h-services li:last-child::after {
+    transform: scaleX(0);
+    transition: transform 1.5s cubic-bezier(0.65, 0, 0.35, 1);
+  }
+
+  :global(html.js) .h-services li:last-child::after {
+    transition-delay: 0.35s;
+  }
+
+  :global(html.js) .h-services li.is-in::before,
+  :global(html.js) .h-services li.is-in:last-child::after {
+    transform: none;
+  }
+
+  /* Número: sube desde su máscara. */
+  .h-services__n {
+    flex: 1;
+    display: block;
+    overflow: hidden;
+    text-align: right;
+    font-size: 7vw;
+    font-weight: var(--fw-light);
+    line-height: 1;
+    letter-spacing: var(--ls-tight);
+  }
+
+  .h-services__n > span {
+    display: inline-block;
+  }
+
+  :global(html.js) .h-services__n > span {
+    transform: translateY(110%);
+    transition: transform 1.2s cubic-bezier(0.2, 1, 0.3, 1) 0.2s;
+  }
+
+  :global(html.js) .h-services li.is-in .h-services__n > span {
+    transform: none;
+  }
+
+  /* Título y texto: suben y aparecen, uno detrás del otro. */
+  .h-services__title {
+    margin-bottom: 10px;
+    font-size: max(2vw, 28px);
+    line-height: max(2.2vw, 32px);
+    font-weight: 600;
+    letter-spacing: var(--ls-tight);
+  }
+
+  :global(html.js) .h-services__title,
+  :global(html.js) .h-services__text {
+    opacity: 0;
+    transform: translateY(24px);
+    transition:
+      opacity 0.9s cubic-bezier(0.2, 1, 0.3, 1),
+      transform 1.1s cubic-bezier(0.2, 1, 0.3, 1);
+  }
+
+  :global(html.js) .h-services__title {
+    transition-delay: 0.3s;
+  }
+
+  :global(html.js) .h-services__text {
+    transition-delay: 0.45s;
+  }
+
+  :global(html.js) .h-services li.is-in .h-services__title,
+  :global(html.js) .h-services li.is-in .h-services__text {
+    opacity: 1;
+    transform: none;
+  }
+
+  @media (max-width: 999px) {
+    .h-services__n {
+      font-size: 70px;
+    }
+  }
+
+  @media (max-width: 690px) {
+    .h-services__body {
+      flex-basis: 75%;
+      padding-right: 0;
+    }
+
+    .h-services__n {
+      font-size: 12vw;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    :global(html.js) .h-services li::before,
+    :global(html.js) .h-services li:last-child::after,
+    :global(html.js) .h-services__n > span,
+    :global(html.js) .h-services__title,
+    :global(html.js) .h-services__text {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+  }
+</style>

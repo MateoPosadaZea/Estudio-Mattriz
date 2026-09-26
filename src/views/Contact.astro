@@ -1,0 +1,110 @@
+---
+// v2: contacto en negro. A la izquierda el formulario escrito como frase (el mismo del footer, que en
+// esta página no se repite); a la derecha los proyectos con sus testimonios, en carrusel, con el de
+// Diego (Spot On) primero. Envía a /api/contact (Worker con Resend + Turnstile + honeypot).
+import Base from '../layouts/Base.astro';
+import FooterForm from '../components/FooterForm.astro';
+import Testimonials from '../components/home2/Testimonials.astro';
+import { contact } from '../data/contact';
+import { home } from '../data/home';
+import { langOf, localize, ui } from '../i18n';
+
+const lang = langOf(Astro.url);
+const { CONTACT, CONTACT_CASE } = contact(lang);
+const { LABELS } = home(lang);
+const t = ui(lang);
+
+const lead = [{ quote: CONTACT_CASE.quote[0], name: CONTACT_CASE.name, company: CONTACT_CASE.badge }];
+---
+
+<Base
+  breadcrumb={[{ name: CONTACT.breadcrumb, path: localize('/contact/', lang) }]}
+  title={CONTACT.metaTitle}
+  description={CONTACT.metaDescription}
+  background="var(--bg)"
+  footerForm={false}
+>
+  <div class="home ct">
+    <section class="ct__form" aria-labelledby="ct-title">
+      <p class="ct__status case-in">
+        <span class="ct__pulse" aria-hidden="true"></span>{t.accepting}
+      </p>
+      <h1 class="ct__title" id="ct-title">
+        {
+          CONTACT.title.split(' ').map((w, i) => (
+            <span class="case-mask" aria-hidden="true">
+              <span style={`--d:${i * 70}ms`}>{w}</span>
+            </span>
+          ))
+        }
+        <span class="sr-only">{CONTACT.title}</span>
+      </h1>
+      <!-- Sin animación de entrada: es el contenido principal (LCP) y debe verse al instante. -->
+      <FooterForm />
+    </section>
+
+    <aside class="ct__proof case-in" style="--d:600ms">
+      <Testimonials bare lead={lead} label={LABELS.testimonials} />
+    </aside>
+  </div>
+</Base>
+
+<script>
+  import '../scripts/lazy-video';
+  import '../scripts/case';
+</script>
+
+<style>
+  .ct {
+    display: grid;
+    gap: clamp(56px, 8vw, 96px);
+    padding: calc(var(--header-top) + var(--header-height) + clamp(48px, 7vw, 112px)) var(--pad) clamp(80px, 10vw, 160px);
+  }
+
+  @media (min-width: 1100px) {
+    .ct {
+      grid-template-columns: 7fr 5fr;
+      gap: 6vw;
+      align-items: start;
+    }
+
+    .ct__proof {
+      position: sticky;
+      top: calc(var(--header-top) + var(--header-height) + 32px);
+    }
+  }
+
+  .ct__status {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: clamp(20px, 2.4vw, 32px);
+    font-size: 15px;
+    color: var(--muted);
+  }
+
+  .ct__pulse {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--color-status-green);
+  }
+
+  .ct__title {
+    margin-bottom: clamp(32px, 4vw, 56px);
+    font-family: var(--font-display);
+    font-size: clamp(48px, 6.4vw, 112px);
+    font-weight: 500;
+    line-height: 0.98;
+    letter-spacing: -0.03em;
+  }
+
+  /* La frase del formulario, un poco más chica que en el footer para que quepa en la columna. */
+  .ct__form :global(.ff__sentence) {
+    font-size: clamp(22px, 2.5vw, 40px);
+  }
+
+  .ct__proof :global(.h-t__controls) {
+    margin-top: 24px;
+  }
+</style>

@@ -1,0 +1,1170 @@
+{
+ "title": "The Grid Digital Twin Branding & Webflow | Mattriz Studio",
+ "description": "Brand identity, visual system and Webflow website for The Grid, a digital twin & BIM consultancy. See how we built a bold, flexible design language.",
+ "ogImage": "https://mattriz.com/wp-content/uploads/2022/11/cropped-Logotipo-Estudio-Mattriz-Redes-Negro_Mesa-de-trabajo-1-copia-7.png",
+ "rows": [
+  {
+   "type": "row",
+   "inner": false,
+   "fullWidth": "section",
+   "bg": "#000000",
+   "bgImage": null,
+   "bgVideo": null,
+   "padTop": "3em",
+   "padBottom": "3em",
+   "classes": [],
+   "columnMargin": "default",
+   "text": "light",
+   "cols": [
+    {
+     "span": 12,
+     "xs": null,
+     "classes": [
+      "no-extra-padding",
+      "el_spacing_0px"
+     ],
+     "animation": null,
+     "bg": null,
+     "radius": null,
+     "link": null,
+     "children": [
+      {
+       "type": "row",
+       "inner": true,
+       "fullWidth": null,
+       "bg": null,
+       "bgImage": null,
+       "bgVideo": null,
+       "padTop": "6%",
+       "padBottom": "6%",
+       "classes": [
+        "right_padding_20pct",
+        "right_padding_tablet_0px"
+       ],
+       "columnMargin": "default",
+       "text": "dark",
+       "cols": [
+        {
+         "span": 12,
+         "xs": null,
+         "classes": [
+          "child_column",
+          "no-extra-padding"
+         ],
+         "animation": null,
+         "bg": null,
+         "radius": null,
+         "link": null,
+         "children": [
+          {
+           "type": "split",
+           "tag": "h2",
+           "text": "Visual identity and website for a construction digital‑twin consultancy.",
+           "style": {
+            "font-size": "3vw",
+            "line-height": "3.3vw"
+           },
+           "classes": [
+            "font_size_3vw",
+            "font_size_max_104px",
+            "font_line_height_1-2"
+           ]
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": "row",
+       "inner": true,
+       "fullWidth": null,
+       "bg": null,
+       "bgImage": null,
+       "bgVideo": null,
+       "padTop": null,
+       "padBottom": null,
+       "classes": [
+        "vc_row-o-equal-height",
+        "vc_row-o-content-bottom"
+       ],
+       "columnMargin": "default",
+       "text": "dark",
+       "cols": [
+        {
+         "span": 3,
+         "xs": 6,
+         "classes": [
+          "child_column",
+          "no-extra-padding",
+          "el_spacing_0px",
+          "one-fourths"
+         ],
+         "animation": null,
+         "bg": null,
+         "radius": null,
+         "link": null,
+         "children": [
+          {
+           "type": "html",
+           "html": "<h6>Year</h6>",
+           "keepLast": true,
+           "classes": [],
+           "style": {}
+          },
+          {
+           "type": "html",
+           "html": "<p>2025</p>",
+           "keepLast": false,
+           "classes": [],
+           "style": {}
+          }
+         ]
+        },
+        {
+         "span": 3,
+         "xs": 6,
+         "classes": [
+          "child_column",
+          "no-extra-padding",
+          "el_spacing_0px",
+          "one-fourths"
+         ],
+         "animation": null,
+         "bg": null,
+         "radius": null,
+         "link": null,
+         "children": [
+          {
+           "type": "html",
+           "html": "<h6>Client</h6>",
+           "keepLast": true,
+           "classes": [],
+           "style": {}
+          },
+          {
+           "type": "html",
+           "html": "<p>The Grid</p>",
+           "keepLast": false,
+           "classes": [],
+           "style": {}
+          }
+         ]
+        },
+        {
+         "span": 6,
+         "xs": null,
+         "classes": [
+          "child_column",
+          "no-extra-padding",
+          "top_margin_tablet_30px"
+         ],
+         "animation": null,
+         "bg": null,
+         "radius": null,
+         "link": null,
+         "children": [
+          {
+           "type": "meta",
+           "items": [
+            {
+             "label": "Brand Identity",
+             "href": null
+            },
+            {
+             "label": "SEO Optimization",
+             "href": null
+            },
+            {
+             "label": "UI/UX Design",
+             "href": null
+            },
+            {
+             "label": "Web Development",
+             "href": null
+            }
+           ],
+           "classes": [
+            "alignment_right_desktop",
+            "alignment_default_tablet",
+            "alignment_default_phone",
+            "direction-horizontal",
+            "style-outline"
+           ]
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "type": "row",
+   "inner": false,
+   "fullWidth": "content",
+   "bg": "#000000",
+   "bgImage": null,
+   "bgVideo": null,
+   "padTop": "0px",
+   "padBottom": "0px",
+   "classes": [
+    "vc_row-o-equal-height",
+    "vc_row-o-content-top"
+   ],
+   "columnMargin": "default",
+   "text": "light",
+   "cols": [
+    {
+     "span": 12,
+     "xs": null,
+     "classes": [
+      "no-extra-padding"
+     ],
+     "animation": null,
+     "bg": null,
+     "radius": null,
+     "link": null,
+     "children": [
+      {
+       "type": "img",
+       "src": "https://mattriz.com/wp-content/uploads/2025/10/iPhone-14-Pro-PSD_.png",
+       "width": 1920,
+       "height": 1440,
+       "alt": "",
+       "align": null,
+       "maxWidth": "100%",
+       "custom": false,
+       "style": {},
+       "local": {
+        "base": "iphone-14-pro-psd",
+        "widths": [
+         1600,
+         1200,
+         700
+        ],
+        "width": 1600,
+        "height": 1200,
+        "dir": "/media/projects/the-grid"
+       }
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "type": "row",
+   "inner": false,
+   "fullWidth": "section",
+   "bg": null,
+   "bgImage": null,
+   "bgVideo": null,
+   "padTop": "calc(100vw * 0.06)",
+   "padBottom": "calc(100vw * 0.06)",
+   "classes": [],
+   "columnMargin": "default",
+   "text": "dark",
+   "cols": [
+    {
+     "span": 12,
+     "xs": null,
+     "classes": [
+      "no-extra-padding"
+     ],
+     "animation": null,
+     "bg": null,
+     "radius": null,
+     "link": null,
+     "children": [
+      {
+       "type": "row",
+       "inner": true,
+       "fullWidth": null,
+       "bg": null,
+       "bgImage": null,
+       "bgVideo": null,
+       "padTop": null,
+       "padBottom": null,
+       "classes": [],
+       "columnMargin": "default",
+       "text": "dark",
+       "cols": [
+        {
+         "span": 4,
+         "xs": null,
+         "classes": [
+          "child_column",
+          "no-extra-padding",
+          "el_spacing_0px"
+         ],
+         "animation": null,
+         "bg": null,
+         "radius": null,
+         "link": null,
+         "children": [
+          {
+           "type": "html",
+           "html": "<h6>The Challenge</h6>",
+           "keepLast": true,
+           "classes": [],
+           "style": {}
+          }
+         ]
+        },
+        {
+         "span": 8,
+         "xs": null,
+         "classes": [
+          "child_column",
+          "el_spacing_30px",
+          "right_padding_desktop_15pct",
+          "right_padding_tablet_0px"
+         ],
+         "animation": null,
+         "bg": null,
+         "radius": null,
+         "link": null,
+         "children": [
+          {
+           "type": "html",
+           "html": "<p>Create a modern, clear, and relatable identity that positions The Grid as a leader in the digitization of the construction sector, bridging physical and digital worlds.</p><p>The brand must convey precision, innovation, and trust, aligned with its manifesto (data transforming the built environment), and scale across web, decks, social, and technical docs. Keywords: BIM, digital twins, workflow automation, IoT, real‑time data, multi‑stakeholder collaboration, applied research.</p>",
+           "keepLast": false,
+           "classes": [
+            "font_size_desktop_1em",
+            "font_size_tablet_1em",
+            "font_line_height_1-6"
+           ],
+           "style": {}
+          },
+          {
+           "type": "cta",
+           "style_name": "underline",
+           "href": "https://thegrid.es/",
+           "target": "_blank",
+           "label": "View Website",
+           "tag": null,
+           "classes": [
+            "font_size_desktop_1rem"
+           ],
+           "style": {
+            "margin-top": "50px",
+            "--nectar-button-color": "var(--nectar-default)",
+            "--nectar-icon-gap": "10px"
+           },
+           "wrapStyle": {}
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "type": "row",
+   "inner": false,
+   "fullWidth": "section",
+   "bg": "#000000",
+   "bgImage": null,
+   "bgVideo": null,
+   "padTop": "calc(5vw)",
+   "padBottom": "calc(5vw)",
+   "classes": [
+    "column-margin-4pct",
+    "top_padding_phone_10px"
+   ],
+   "columnMargin": "custom",
+   "text": "dark",
+   "cols": [
+    {
+     "span": 4,
+     "xs": null,
+     "classes": [
+      "nectar-sticky-column-css",
+      "no-extra-padding",
+      "el_spacing_30px"
+     ],
+     "animation": "fade-in",
+     "bg": null,
+     "radius": null,
+     "link": null,
+     "children": [
+      {
+       "type": "html",
+       "html": "<h3>The Grid</h3>",
+       "keepLast": false,
+       "classes": [
+        "font_size_max_54px",
+        "font_size_desktop_3vw",
+        "font_size_tablet_5vw",
+        "font_size_phone_34px",
+        "font_line_height_1-1"
+       ],
+       "style": {}
+      },
+      {
+       "type": "row",
+       "inner": true,
+       "fullWidth": null,
+       "bg": null,
+       "bgImage": null,
+       "bgVideo": null,
+       "padTop": null,
+       "padBottom": null,
+       "classes": [],
+       "columnMargin": "default",
+       "text": "dark",
+       "cols": [
+        {
+         "span": 6,
+         "xs": 6,
+         "classes": [
+          "child_column",
+          "no-extra-padding",
+          "el_spacing_5px"
+         ],
+         "animation": null,
+         "bg": null,
+         "radius": null,
+         "link": null,
+         "children": [
+          {
+           "type": "html",
+           "html": "<h5><strong>What we did</strong></h5>",
+           "keepLast": false,
+           "classes": [
+            "font_line_height_1-2"
+           ],
+           "style": {}
+          },
+          {
+           "type": "meta",
+           "items": [
+            {
+             "label": "Brand Identity",
+             "href": null
+            },
+            {
+             "label": "SEO Optimization",
+             "href": null
+            },
+            {
+             "label": "UI/UX Design",
+             "href": null
+            },
+            {
+             "label": "Web Development",
+             "href": null
+            }
+           ],
+           "classes": [
+            "alignment_left_desktop",
+            "alignment_default_tablet",
+            "alignment_default_phone",
+            "direction-horizontal",
+            "style-outline"
+           ]
+          }
+         ]
+        },
+        {
+         "span": 6,
+         "xs": 6,
+         "classes": [
+          "child_column",
+          "no-extra-padding",
+          "el_spacing_5px"
+         ],
+         "animation": null,
+         "bg": null,
+         "radius": null,
+         "link": null,
+         "children": [
+          {
+           "type": "html",
+           "html": "<h5><strong>Industry</strong></h5>",
+           "keepLast": false,
+           "classes": [
+            "font_line_height_1-2"
+           ],
+           "style": {}
+          },
+          {
+           "type": "html",
+           "html": "<p>Construction · Digital‑twin tech · B2B</p>",
+           "keepLast": false,
+           "classes": [],
+           "style": {}
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": "row",
+       "inner": true,
+       "fullWidth": null,
+       "bg": null,
+       "bgImage": null,
+       "bgVideo": null,
+       "padTop": null,
+       "padBottom": null,
+       "classes": [],
+       "columnMargin": "default",
+       "text": "dark",
+       "cols": [
+        {
+         "span": 12,
+         "xs": null,
+         "classes": [
+          "child_column",
+          "no-extra-padding",
+          "el_spacing_10px"
+         ],
+         "animation": null,
+         "bg": null,
+         "radius": null,
+         "link": null,
+         "children": [
+          {
+           "type": "html",
+           "html": "<h5><strong>Approach</strong></h5>",
+           "keepLast": false,
+           "classes": [
+            "font_line_height_1-2"
+           ],
+           "style": {}
+          },
+          {
+           "type": "html",
+           "html": "<p>We built a modular brand system (type Centra No.2 + Neue Haas Grotesk, electric blue with mint/black/white/light‑gray accents), clear safe‑zone rules and logo variants (horizontal logotype, isotype/imagotype) for flexibility.</p><p>We translated the identity into a fast, intuitive website (clear navigation, large‑scale visuals, subtle micro‑interactions, AA accessibility) that strengthens the connection to digital construction solutions.</p>",
+           "keepLast": false,
+           "classes": [],
+           "style": {}
+          },
+          {
+           "type": "divider",
+           "height": "25px",
+           "line": false,
+           "lineStyle": {
+            "height": "25px"
+           },
+           "classes": [],
+           "dclasses": [
+            "divider"
+           ]
+          },
+          {
+           "type": "html",
+           "html": "<h5><strong>Services</strong></h5>",
+           "keepLast": false,
+           "classes": [
+            "font_line_height_1-2"
+           ],
+           "style": {}
+          },
+          {
+           "type": "list",
+           "icon": "dot",
+           "spacing": "default",
+           "html": "<ul><li>Brand system</li><li>Guidelines</li><li>UI kit</li><li>Webflow development</li><li>Motion</li><li>AA accessibility.</li></ul>"
+          },
+          {
+           "type": "divider",
+           "height": "25px",
+           "line": false,
+           "lineStyle": {
+            "height": "25px"
+           },
+           "classes": [],
+           "dclasses": [
+            "divider"
+           ]
+          },
+          {
+           "type": "html",
+           "html": "<h5><strong>What We Do</strong></h5>",
+           "keepLast": false,
+           "classes": [
+            "font_line_height_1-2"
+           ],
+           "style": {}
+          },
+          {
+           "type": "list",
+           "icon": "dot",
+           "spacing": "15px",
+           "html": "<ul><li><strong>Brand strategy &amp; key messaging:</strong> positioning, promise, and a professional‑approachable tone.</li><li><strong>Brand guidelines:</strong> usage rules, do’s &amp; don’ts, safe‑zones, scales.</li><li><strong>Identity system: </strong>logotype and imagotype/isotype in positive/negative and mono.</li><li><strong>Color system:</strong> electric blue primary + mint/black/white/light‑gray; documented AA contrast.</li><li><strong>Typography:</strong> Centra No.2 + Neue Haas Grotesk; hierarchy, scales, spacing guidance.</li><li><strong>Layout system &amp; UI components:</strong> responsive grid, buttons, cards, navigation, states, subtle motion.</li><li><strong>Website (Webflow):</strong> clear site structure; key pages (home, services, cases, contact); CMS for case studies and services.</li><li><strong>Accessibility &amp; performance: </strong>AA criteria, best practices; LCP and visual stability goals.</li><li><strong>Technical on‑page SEO:</strong> metadata, headings, basic schema, sitemap and robots; copy guidance.</li><li><strong>Analytics &amp; measurement:</strong> GA4 and Google Search Console with key events/goals.</li></ul>"
+          },
+          {
+           "type": "divider",
+           "height": "25px",
+           "line": false,
+           "lineStyle": {
+            "height": "25px"
+           },
+           "classes": [],
+           "dclasses": [
+            "divider"
+           ]
+          },
+          {
+           "type": "html",
+           "html": "<h5><strong>Stack</strong></h5>",
+           "keepLast": false,
+           "classes": [
+            "font_line_height_1-2"
+           ],
+           "style": {}
+          },
+          {
+           "type": "list",
+           "icon": "dot",
+           "spacing": "default",
+           "html": "<ul><li>Figma</li><li>Adobe Illustrator</li><li>Webflow</li><li>Optional Lottie/JSON</li><li>Light GSAP.</li></ul>"
+          },
+          {
+           "type": "divider",
+           "height": "25px",
+           "line": false,
+           "lineStyle": {
+            "height": "25px"
+           },
+           "classes": [],
+           "dclasses": [
+            "divider"
+           ]
+          },
+          {
+           "type": "html",
+           "html": "<h5><strong>Timeline</strong></h5>",
+           "keepLast": false,
+           "classes": [
+            "font_line_height_1-2"
+           ],
+           "style": {}
+          },
+          {
+           "type": "html",
+           "html": "<p>4–6 weeks</p>",
+           "keepLast": false,
+           "classes": [],
+           "style": {}
+          },
+          {
+           "type": "divider",
+           "height": "25px",
+           "line": false,
+           "lineStyle": {
+            "height": "25px"
+           },
+           "classes": [],
+           "dclasses": [
+            "divider"
+           ]
+          },
+          {
+           "type": "html",
+           "html": "<h5><strong>Impact</strong></h5>",
+           "keepLast": false,
+           "classes": [
+            "font_line_height_1-2"
+           ],
+           "style": {}
+          },
+          {
+           "type": "html",
+           "html": "<p>Consistent brand and site ready for technical use‑cases, metrics, and B2B capture.</p>",
+           "keepLast": false,
+           "classes": [],
+           "style": {}
+          },
+          {
+           "type": "divider",
+           "height": "25px",
+           "line": false,
+           "lineStyle": {
+            "height": "25px"
+           },
+           "classes": [],
+           "dclasses": [
+            "divider"
+           ]
+          },
+          {
+           "type": "html",
+           "html": "<h5><strong>Deliverables</strong></h5>",
+           "keepLast": false,
+           "classes": [
+            "font_line_height_1-2"
+           ],
+           "style": {}
+          },
+          {
+           "type": "list",
+           "icon": "dot",
+           "spacing": "default",
+           "html": "<ul><li>Brand manual (PDF)</li><li>UI library</li><li>Homepage/key section</li><li>CMS webflow collections</li></ul>"
+          },
+          {
+           "type": "cta",
+           "style_name": "arrow-animation",
+           "href": "https://thegrid.es/",
+           "target": "_blank",
+           "label": "View website",
+           "tag": "h6",
+           "classes": [
+            "hover_color_000000",
+            "text_hover_color_ffffff",
+            "border_color_a8a8a8",
+            "hover_border_color_ffffff",
+            "border_thickness_1px",
+            "border_radius_100px"
+           ],
+           "style": {
+            "margin-top": "50px",
+            "--nectar-text-color": "#ffffff",
+            "--nectar-button-color": "var(--nectar-default)",
+            "--nectar-button-color-hover": "#000000",
+            "--nectar-text-color-hover": "#ffffff",
+            "--nectar-icon-gap": "10px"
+           },
+           "wrapStyle": {
+            "padding-top": "15px",
+            "padding-right": "40px",
+            "padding-bottom": "15px",
+            "padding-left": "40px"
+           }
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "span": 8,
+     "xs": null,
+     "classes": [
+      "no-extra-padding",
+      "el_spacing_20px"
+     ],
+     "animation": "fade-in",
+     "bg": null,
+     "radius": null,
+     "link": null,
+     "children": [
+      {
+       "type": "video",
+       "src": "https://mattriz.com/wp-content/uploads/2025/10/the-grid-intro.mp4",
+       "width": 1280,
+       "height": 720,
+       "radius": "20px",
+       "poster": "https://mattriz.com/wp-content/uploads/2025/10/Captura-de-pantalla-2025-12-04-a-las-11.15.24-p.m.png",
+       "local": {
+        "base": "the-grid-intro",
+        "width": 1080,
+        "height": 1080,
+        "size": 61397,
+        "dir": "/media/projects/the-grid"
+       }
+      },
+      {
+       "type": "img",
+       "src": "https://mattriz.com/wp-content/uploads/2025/10/Captura-de-pantalla-2025-12-05-a-las-5.21.14-p.m.png",
+       "width": 2068,
+       "height": 1162,
+       "alt": "",
+       "align": null,
+       "maxWidth": "100%",
+       "custom": false,
+       "style": {},
+       "local": {
+        "base": "captura-de-pantalla-2025-12-05-a-las-5-21-14-p-m",
+        "widths": [
+         1600,
+         1200,
+         700
+        ],
+        "width": 1600,
+        "height": 899,
+        "dir": "/media/projects/the-grid"
+       }
+      },
+      {
+       "type": "img",
+       "src": "https://mattriz.com/wp-content/uploads/2025/10/Captura-de-pantalla-2025-12-04-a-las-11.15.36-p.m.png",
+       "width": 2072,
+       "height": 1166,
+       "alt": "",
+       "align": null,
+       "maxWidth": "100%",
+       "custom": false,
+       "style": {},
+       "local": {
+        "base": "captura-de-pantalla-2025-12-04-a-las-11-15-36-p-m",
+        "widths": [
+         1600,
+         1200,
+         700
+        ],
+        "width": 1600,
+        "height": 900,
+        "dir": "/media/projects/the-grid"
+       }
+      },
+      {
+       "type": "img",
+       "src": "https://mattriz.com/wp-content/uploads/2025/10/Captura-de-pantalla-2025-12-05-a-las-5.21.32-p.m.png",
+       "width": 2072,
+       "height": 1162,
+       "alt": "",
+       "align": null,
+       "maxWidth": "100%",
+       "custom": false,
+       "style": {},
+       "local": {
+        "base": "captura-de-pantalla-2025-12-05-a-las-5-21-32-p-m",
+        "widths": [
+         1600,
+         1200,
+         700
+        ],
+        "width": 1600,
+        "height": 897,
+        "dir": "/media/projects/the-grid"
+       }
+      },
+      {
+       "type": "img",
+       "src": "https://mattriz.com/wp-content/uploads/2025/10/Captura-de-pantalla-2025-12-04-a-las-11.15.47-p.m.png",
+       "width": 2074,
+       "height": 1164,
+       "alt": "",
+       "align": null,
+       "maxWidth": "100%",
+       "custom": false,
+       "style": {},
+       "local": {
+        "base": "captura-de-pantalla-2025-12-04-a-las-11-15-47-p-m",
+        "widths": [
+         1600,
+         1200,
+         700
+        ],
+        "width": 1600,
+        "height": 898,
+        "dir": "/media/projects/the-grid"
+       }
+      },
+      {
+       "type": "video",
+       "src": "https://mattriz.com/wp-content/uploads/2025/10/Grabacion-de-pantalla-2025-12-05-a-las-5.32.06-p.m.mov",
+       "width": 1280,
+       "height": 720,
+       "radius": "20px",
+       "poster": null,
+       "local": {
+        "base": "grabacion-de-pantalla-2025-12-05-a-las-5-32-06-p-m",
+        "width": 1600,
+        "height": 930,
+        "size": 247459,
+        "dir": "/media/projects/the-grid"
+       }
+      },
+      {
+       "type": "img",
+       "src": "https://mattriz.com/wp-content/uploads/2025/10/Captura-de-pantalla-2025-12-04-a-las-11.15.59-p.m.png",
+       "width": 2074,
+       "height": 1162,
+       "alt": "",
+       "align": null,
+       "maxWidth": "100%",
+       "custom": false,
+       "style": {},
+       "local": {
+        "base": "captura-de-pantalla-2025-12-04-a-las-11-15-59-p-m",
+        "widths": [
+         1600,
+         1200,
+         700
+        ],
+        "width": 1600,
+        "height": 896,
+        "dir": "/media/projects/the-grid"
+       }
+      },
+      {
+       "type": "img",
+       "src": "https://mattriz.com/wp-content/uploads/2025/10/Captura-de-pantalla-2025-12-05-a-las-5.22.35-p.m.png",
+       "width": 2074,
+       "height": 1164,
+       "alt": "",
+       "align": null,
+       "maxWidth": "100%",
+       "custom": false,
+       "style": {},
+       "local": {
+        "base": "captura-de-pantalla-2025-12-05-a-las-5-22-35-p-m",
+        "widths": [
+         1600,
+         1200,
+         700
+        ],
+        "width": 1600,
+        "height": 898,
+        "dir": "/media/projects/the-grid"
+       }
+      },
+      {
+       "type": "img",
+       "src": "https://mattriz.com/wp-content/uploads/2025/10/app-icon.png",
+       "width": 2000,
+       "height": 1334,
+       "alt": "",
+       "align": null,
+       "maxWidth": "100%",
+       "custom": false,
+       "style": {},
+       "local": {
+        "base": "app-icon",
+        "widths": [
+         1600,
+         1200,
+         700
+        ],
+        "width": 1600,
+        "height": 1067,
+        "dir": "/media/projects/the-grid"
+       }
+      },
+      {
+       "type": "row",
+       "inner": true,
+       "fullWidth": null,
+       "bg": null,
+       "bgImage": null,
+       "bgVideo": null,
+       "padTop": null,
+       "padBottom": null,
+       "classes": [
+        "vc_row-o-equal-height"
+       ],
+       "columnMargin": "default",
+       "text": "dark",
+       "cols": [
+        {
+         "span": 6,
+         "xs": null,
+         "classes": [
+          "child_column",
+          "el_spacing_0px"
+         ],
+         "animation": null,
+         "bg": null,
+         "radius": "20px",
+         "link": null,
+         "children": [
+          {
+           "type": "divider",
+           "height": "620px",
+           "line": false,
+           "lineStyle": {
+            "height": "620px"
+           },
+           "classes": [
+            "height_phone_450px"
+           ],
+           "dclasses": [
+            "divider"
+           ]
+          }
+         ]
+        },
+        {
+         "span": 6,
+         "xs": null,
+         "classes": [
+          "child_column",
+          "no-extra-padding"
+         ],
+         "animation": null,
+         "bg": null,
+         "radius": null,
+         "link": null,
+         "children": [
+          {
+           "type": "divider",
+           "height": "620px",
+           "line": false,
+           "lineStyle": {
+            "height": "620px"
+           },
+           "classes": [
+            "height_phone_450px"
+           ],
+           "dclasses": [
+            "divider"
+           ]
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": "img",
+       "src": "https://mattriz.com/wp-content/uploads/2025/10/Captura-de-pantalla-2025-12-04-a-las-11.16.22-p.m.png",
+       "width": 2074,
+       "height": 1164,
+       "alt": "",
+       "align": null,
+       "maxWidth": "100%",
+       "custom": false,
+       "style": {},
+       "local": {
+        "base": "captura-de-pantalla-2025-12-04-a-las-11-16-22-p-m",
+        "widths": [
+         1600,
+         1200,
+         700
+        ],
+        "width": 1600,
+        "height": 898,
+        "dir": "/media/projects/the-grid"
+       }
+      },
+      {
+       "type": "video",
+       "src": "https://mattriz.com/wp-content/uploads/2025/10/the-grid-intro-1.mp4",
+       "width": 1280,
+       "height": 720,
+       "radius": "none",
+       "poster": null,
+       "local": {
+        "base": "the-grid-intro-1",
+        "width": 1600,
+        "height": 900,
+        "size": 5312929,
+        "dir": "/media/projects/the-grid"
+       }
+      },
+      {
+       "type": "img",
+       "src": "https://mattriz.com/wp-content/uploads/2025/10/Free_L_Mockups_MacBook_Air2.png",
+       "width": 1200,
+       "height": 900,
+       "alt": "",
+       "align": null,
+       "maxWidth": "100%",
+       "custom": false,
+       "style": {},
+       "local": {
+        "base": "free-l-mockups-macbook-air2",
+        "widths": [
+         1200,
+         700
+        ],
+        "width": 1200,
+        "height": 900,
+        "dir": "/media/projects/the-grid"
+       }
+      },
+      {
+       "type": "img",
+       "src": "https://mattriz.com/wp-content/uploads/2025/10/banner.png",
+       "width": 2000,
+       "height": 1500,
+       "alt": "",
+       "align": null,
+       "maxWidth": "100%",
+       "custom": false,
+       "style": {},
+       "local": {
+        "base": "banner",
+        "widths": [
+         1600,
+         1200,
+         700
+        ],
+        "width": 1600,
+        "height": 1200,
+        "dir": "/media/projects/the-grid"
+       }
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "type": "row",
+   "inner": false,
+   "fullWidth": "section",
+   "bg": "#000000",
+   "bgImage": null,
+   "bgVideo": null,
+   "padTop": "10px",
+   "padBottom": "100px",
+   "classes": [],
+   "columnMargin": "default",
+   "text": "dark",
+   "cols": [
+    {
+     "span": 12,
+     "xs": null,
+     "classes": [
+      "no-extra-padding",
+      "el_spacing_0px"
+     ],
+     "animation": null,
+     "bg": null,
+     "radius": null,
+     "link": null,
+     "children": [
+      {
+       "type": "row",
+       "inner": true,
+       "fullWidth": null,
+       "bg": null,
+       "bgImage": null,
+       "bgVideo": null,
+       "padTop": "5%",
+       "padBottom": "5%",
+       "classes": [],
+       "columnMargin": "default",
+       "text": "dark",
+       "cols": [
+        {
+         "span": 12,
+         "xs": null,
+         "classes": [
+          "child_column",
+          "no-extra-padding"
+         ],
+         "animation": null,
+         "bg": null,
+         "radius": null,
+         "link": null,
+         "children": [
+          {
+           "type": "scrolling",
+           "text": "Explore More",
+           "classes": [
+            "font_size_6vw",
+            "font_size_mobile_10vw",
+            "text_space_medium"
+           ]
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": "postgrid"
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

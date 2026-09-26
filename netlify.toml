@@ -1,0 +1,9 @@
+# Vista previa en Netlify (proyecto conectado desde la época de Webflow): compila Astro y publica dist/.
+# El despliegue real es Cloudflare (wrangler.jsonc); aquí no corren el formulario ni el Worker.
+# Excepción: el escáner (/api/scan) corre como función en netlify/functions/ para poder probarlo.
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[functions]
+  directory = "netlify/functions"

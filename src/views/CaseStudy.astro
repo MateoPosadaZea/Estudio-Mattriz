@@ -1,0 +1,1054 @@
+---
+// v2: caso de estudio con diseño editorial (referencia: locomotive.ca).
+// Dibuja un CaseDoc (src/components/case/doc.ts), que sale del modelo del proyecto
+// (fromModel, The Grid) o de un caso escrito a mano (src/data/cases/, Spot On).
+import Base from '../layouts/Base.astro';
+import CaseMedia from '../components/case/CaseMedia.astro';
+import { fromModel } from '../components/case/fromModel';
+import type { CaseDoc } from '../components/case/doc';
+import { fromLegacy } from '../components/case/fromLegacy';
+import { MODEL_CASES, MANUAL_CASES, LEGACY_CASES, CASE_UI } from '../data/cases';
+import { PROJECTS } from '../data/home';
+import { langOf, localize } from '../i18n';
+
+interface Props {
+  slug: string;
+  orig: any;
+  model: any;
+}
+
+const { slug, orig, model } = Astro.props;
+const lang = langOf(Astro.url);
+const doc: CaseDoc = MANUAL_CASES[slug]
+  ? MANUAL_CASES[slug](lang)
+  : LEGACY_CASES[slug]
+    ? fromLegacy(LEGACY_CASES[slug], orig, model, lang)
+    : fromModel(MODEL_CASES[slug], orig, model, lang);
+const t = CASE_UI[lang];
+const bg = doc.bg ?? (doc.theme === 'dark' ? '#0a0a0a' : '#ffffff');
+
+// Numeración de secciones: (01), (02)… en el orden en que aparecen.
+let n = 0;
+const numbered = new Map(doc.blocks.map((b) => [b, ['media', 'details', 'cta'].includes(b.kind) ? '' : `(${String(++n).padStart(2, '0')})`]));
+
+const idx = PROJECTS.findIndex((p) => p.href === `/project/${slug}/`);
+const next = PROJECTS[(idx + 1) % PROJECTS.length];
+
+const external = { target: '_blank', rel: 'noopener' };
+const host = doc.site ? new URL(doc.site).hostname.replace(/^www\./, '') : '';
+const sizes = { pair: '(max-width: 690px) 100vw, 50vw', trio: '(max-width: 690px) 100vw, 33vw', inset: '(max-width: 690px) 100vw, 60vw', full: '100vw', wide: '100vw' };
+---
+
+<Base title={doc.metaTitle} description={doc.description} ogImage={doc.ogImage} background={bg} breadcrumb={[{ name: doc.name, path: localize(`/project/${slug}/`, lang) }]}>
+  {
+    /* Si el principal es un video, su póster es el LCP: se pide con prioridad alta. */
+    doc.hero.type === 'video' && <link slot="head" rel="preload" as="image" fetchpriority="high" href={`${doc.hero.local.dir}/${doc.hero.local.base}-poster.webp`} />
+  }
+  <article class:list={['case', `case--${doc.theme}`]} style={`--accent:${doc.accent};--on-accent:${doc.onAccent}`} aria-label={`${doc.name}. ${doc.tagline}`}>
+    <header class="case-hero">
+      <p class="case-eyebrow case-in">
+        <span>{t.eyebrow}</span>{doc.year && <span>{doc.year}</span>}
+      </p>
+      <h1 class="case-title" aria-label={doc.name} style={`--len:${doc.name.length}`}>
+        {
+          doc.name.split(' ').map((w, i) => (
+            <span class="case-mask" aria-hidden="true">
+              <span style={`--d:${i * 90}ms`}>{w}</span>
+            </span>
+          ))
+        }
+      </h1>
+      <div class="case-hero__foot">
+        <div class="case-in" style="--d:450ms">
+          <p class="case-tagline">{doc.tagline}</p>
+          {doc.intro && <p class="case-intro">{doc.intro}</p>}
+        </div>
+        <dl class="case-facts case-in" style="--d:550ms">
+          {
+            doc.facts.map((f) => (
+              <div>
+                <dt>{f.label}</dt>
+                <dd>{f.chips ? <ul class="case-chips">{f.chips.map((c) => <li>{c}</li>)}</ul> : f.value}</dd>
+              </div>
+            ))
+          }
+        </dl>
+      </div>
+    </header>
+
+    <figure class="case-hero-media" data-case-grow>
+      <div class="case-hero-media__inner">
+        <CaseMedia item={doc.hero} sizes="100vw" eager />
+      </div>
+      {doc.hero.caption && <figcaption class="case-caption">{doc.hero.caption}</figcaption>}
+    </figure>
+
+    {
+      doc.blocks.map((b) =>
+        b.kind === 'media' ? (
+          <div class:list={['case-gallery', `case-gallery--${b.layout}`]}>
+            {b.items.map((item, i) => (
+              <figure class="case-figure" data-case-reveal style={b.layout === 'pair' && i === 1 ? '--offset:8vw' : undefined}>
+                <div class="case-figure__frame" data-parallax={b.parallax ? '' : undefined}>
+                  <CaseMedia item={item} sizes={sizes[b.layout]} />
+                </div>
+                {item.caption && <figcaption class="case-caption">{item.caption}</figcaption>}
+              </figure>
+            ))}
+          </div>
+        ) : b.kind === 'text' ? (
+          <section class="case-block">
+            <p class="case-label" data-case-reveal>
+              <span>{numbered.get(b)}</span> {b.label}
+            </p>
+            <div class="case-block__body">
+              {b.title && <h2 class="case-heading" data-case-reveal>{b.title}</h2>}
+              <div class:list={[b.style === 'statement' ? 'case-statement' : 'case-lead']} data-case-reveal set:html={b.html} />
+              {b.bullets && (
+                <ul class="case-bullets">
+                  {b.bullets.map((x) => (
+                    <li data-case-reveal>{x}</li>
+                  ))}
+                </ul>
+              )}
+              {b.link && (
+                <a class="case-link" href={b.link.href} {...external} data-case-reveal>
+                  {b.link.label} <span aria-hidden="true">↗</span>
+                </a>
+              )}
+            </div>
+          </section>
+        ) : b.kind === 'list' || b.kind === 'cards' ? (
+          <section class="case-block case-block--stack">
+            <p class="case-label" data-case-reveal>
+              <span>{numbered.get(b)}</span> {b.label}
+            </p>
+            {(b.title || b.intro) && (
+              <div class="case-block__head">
+                {b.title && <h2 class="case-heading" data-case-reveal>{b.title}</h2>}
+                {b.intro && <p class="case-lead" data-case-reveal>{b.intro}</p>}
+              </div>
+            )}
+            {b.kind === 'list' ? (
+              <ol class="case-list">
+                {b.items.map((it, i) => (
+                  <li data-case-reveal>
+                    <span class="case-list__n">{String(i + 1).padStart(2, '0')}</span>
+                    <span class="case-list__term">{it.term}</span>
+                    <span class="case-list__desc" set:html={it.desc} />
+                  </li>
+                ))}
+              </ol>
+            ) : (
+              <ul class="case-cards">
+                {b.items.map((it, i) => (
+                  <li data-case-reveal style={`transition-delay:${(i % 3) * 80}ms`}>
+                    <span class="case-cards__n">{String(i + 1).padStart(2, '0')}</span>
+                    <h3 class="case-cards__term">{it.term}</h3>
+                    <p class="case-cards__desc" set:html={it.desc} />
+                  </li>
+                ))}
+              </ul>
+            )}
+          </section>
+        ) : b.kind === 'stats' ? (
+          <section class="case-block">
+            <p class="case-label" data-case-reveal>
+              <span>{numbered.get(b)}</span> {b.label}
+            </p>
+            <div class="case-block__body">
+              {b.title && <h2 class="case-heading" data-case-reveal>{b.title}</h2>}
+              {b.intro && <p class="case-lead case-lead--gap" data-case-reveal>{b.intro}</p>}
+              <ul class="case-stats">
+                {b.stats.map((st) => (
+                  <li data-case-reveal>
+                    <span class="case-stats__value">{st.value}</span>
+                    <span class="case-stats__label">{st.label}</span>
+                  </li>
+                ))}
+              </ul>
+              {b.after && <div class="case-impact-list" data-case-reveal set:html={b.after} />}
+              {b.quote && (
+                <blockquote class="case-quote" data-case-reveal>
+                  <p>{b.quote}</p>
+                </blockquote>
+              )}
+            </div>
+          </section>
+        ) : b.kind === 'timeline' ? (
+          <section class="case-block case-block--stack">
+            <p class="case-label" data-case-reveal>
+              <span>{numbered.get(b)}</span> {b.label}
+            </p>
+            {b.title && (
+              <div class="case-block__head">
+                <h2 class="case-heading" data-case-reveal>{b.title}</h2>
+              </div>
+            )}
+            <ol class="case-timeline">
+              {b.items.map((it) => (
+                <li data-case-reveal>
+                  <span class="case-timeline__date">{it.date}</span>
+                  <span class="case-timeline__title">{it.title}</span>
+                  <span class="case-timeline__text">{it.text}</span>
+                </li>
+              ))}
+            </ol>
+          </section>
+        ) : b.kind === 'cta' ? (
+          <section class="case-cta">
+            <h2 class="case-cta__title" data-case-reveal>{b.title}</h2>
+            <p class="case-lead" data-case-reveal>{b.text}</p>
+            <a class="case-link" href={b.link.href} data-case-reveal>
+              {b.link.label} <span aria-hidden="true">→</span>
+            </a>
+          </section>
+        ) : (
+          <section class="case-details">
+            {b.cols.map((col) => (
+              <div class="case-details__col" data-case-reveal>
+                <h2 class="case-details__title">{col.title}</h2>
+                <div class="case-details__body" set:html={col.html} />
+              </div>
+            ))}
+          </section>
+        ),
+      )
+    }
+
+    {
+      doc.site && (
+        <section class="case-visit">
+          <a href={doc.site} {...external} class="case-visit__link">
+            <span class="case-visit__small">{doc.siteLabel ?? t.visit}</span>
+            <span class="case-visit__big" style={`--len:${host.length}`}>
+              {host} <span aria-hidden="true">↗</span>
+            </span>
+          </a>
+        </section>
+      )
+    }
+
+    {
+      next && (
+        <a class="case-next" href={localize(next.href, lang)}>
+          <span class="case-next__small">{t.next}</span>
+          <span class="case-next__name">{next.title}</span>
+          <span class="case-next__media" aria-hidden="true">
+            {next.video ? (
+              <video data-src={next.video} poster={next.video.replace(/\.mp4$/, '-poster.webp')} muted loop playsinline preload="none" />
+            ) : (
+              next.image && <img src={next.image.src} srcset={next.image.srcset} sizes="40vw" width={next.image.width} height={next.image.height} alt="" loading="lazy" decoding="async" />
+            )}
+          </span>
+        </a>
+      )
+    }
+  </article>
+</Base>
+
+<script>
+  import '../scripts/lazy-video';
+  import '../scripts/case';
+</script>
+
+<style>
+  .case {
+    --fg: var(--color-white);
+    --muted: rgba(255, 255, 255, 0.6);
+    --line: rgba(255, 255, 255, 0.2);
+    --pad: clamp(20px, 5vw, 80px);
+    --ease-out: cubic-bezier(0.2, 1, 0.3, 1);
+    color: var(--fg);
+    background: var(--page-bg);
+    overflow-x: clip;
+  }
+
+  .case--light {
+    --fg: var(--color-ink);
+    --muted: rgba(10, 10, 10, 0.68);
+    --line: rgba(10, 10, 10, 0.15);
+  }
+
+  /* ---------- Hero ---------- */
+
+  .case-hero {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    /* Deja asomar el video principal por debajo. */
+    min-height: 88vh;
+    min-height: 88svh;
+    padding: calc(var(--header-top) + var(--header-height) + 40px) var(--pad) clamp(32px, 5vw, 64px);
+  }
+
+  .case-eyebrow {
+    display: flex;
+    gap: 1.5em;
+    margin-bottom: 2vw;
+    font-size: 15px;
+    color: var(--muted);
+  }
+
+  .case-eyebrow span:first-child::before {
+    content: '';
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    margin-right: 10px;
+    border-radius: 50%;
+    background: var(--accent);
+    vertical-align: 1px;
+  }
+
+  .case--dark .case-eyebrow span:first-child::before {
+    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.35);
+  }
+
+  .case-title {
+    margin: 0 0 0 -0.05em;
+    font-family: var(--font-display);
+    /* Nombres largos más chicos para que quepan en unas dos líneas (--len = caracteres). */
+    font-size: clamp(40px, min(17vw, calc(250vw / var(--len, 10))), 300px);
+    font-weight: 500;
+    line-height: 0.9;
+    letter-spacing: -0.035em;
+  }
+
+  .case-hero__foot {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 32px;
+    margin-top: clamp(32px, 4vw, 64px);
+    padding-top: 24px;
+    border-top: 1px solid var(--line);
+  }
+
+  @media (min-width: 1000px) {
+    .case-hero__foot {
+      grid-template-columns: 5fr 7fr;
+      gap: 6vw;
+    }
+  }
+
+  .case-intro {
+    max-width: 34em;
+    margin-top: 20px;
+    font-size: 16px;
+    line-height: 1.55;
+    color: var(--muted);
+  }
+
+  .case-tagline {
+    max-width: 22em;
+    font-size: clamp(22px, 2.2vw, 34px);
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+  }
+
+  .case-facts {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px 32px;
+    font-size: 15px;
+    line-height: 1.5;
+  }
+
+  @media (min-width: 1000px) {
+    .case-facts {
+      grid-template-columns: 1fr 1fr 1.4fr;
+    }
+  }
+
+  .case-facts div:last-child {
+    grid-column: 1 / -1;
+  }
+
+  @media (min-width: 1000px) {
+    .case-facts div:last-child {
+      grid-column: auto;
+    }
+  }
+
+  .case-facts dd {
+    margin: 0;
+  }
+
+  .case-facts dt {
+    margin-bottom: 6px;
+    color: var(--muted);
+  }
+
+  .case-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .case-chips li {
+    padding: 3px 12px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-pill);
+    white-space: nowrap;
+  }
+
+  /* ---------- Media principal: crece hasta el ancho completo al hacer scroll ---------- */
+
+  .case-hero-media {
+    margin: 0;
+    padding: 0 var(--pad);
+  }
+
+  .case-hero-media__inner {
+    overflow: hidden;
+    border-radius: calc(16px * (1 - var(--grow, 0)));
+    transform: scale(calc(1 + var(--grow, 0) * var(--grow-max, 0)));
+    transform-origin: 50% 0;
+    will-change: transform;
+  }
+
+  /* ---------- Bloques de texto ---------- */
+
+  .case-block {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 24px;
+    padding: clamp(80px, 12vw, 200px) var(--pad);
+  }
+
+  @media (min-width: 1000px) {
+    .case-block {
+      grid-template-columns: 4fr 8fr;
+      gap: 4vw;
+    }
+
+    .case-block--stack {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .case-label {
+    font-size: 15px;
+    line-height: 1.5;
+    color: var(--muted);
+  }
+
+  .case-label span {
+    margin-right: 0.6em;
+    color: var(--fg);
+  }
+
+  .case-block__body {
+    max-width: 58rem;
+  }
+
+  .case-block__head {
+    display: grid;
+    gap: 24px;
+    max-width: 58rem;
+    margin-bottom: clamp(32px, 4vw, 56px);
+  }
+
+  @media (min-width: 1000px) {
+    .case-block--stack .case-block__head {
+      margin-left: calc(4 / 12 * 100%);
+    }
+  }
+
+  .case-heading {
+    margin-bottom: 28px;
+    font-family: var(--font-display);
+    font-size: clamp(34px, 4.4vw, 72px);
+    font-weight: 500;
+    line-height: 1.02;
+    letter-spacing: -0.025em;
+    text-wrap: balance;
+  }
+
+  .case-block__head .case-heading {
+    margin-bottom: 0;
+  }
+
+  .case-lead--gap {
+    margin-bottom: clamp(40px, 5vw, 72px);
+  }
+
+  /* Viñetas del problema: filas con línea, como una lista de síntomas. */
+  .case-bullets {
+    margin-top: 40px;
+    border-top: 1px solid var(--line);
+  }
+
+  .case-bullets li {
+    display: flex;
+    gap: 16px;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--line);
+    font-size: 16px;
+    line-height: 1.5;
+  }
+
+  .case-bullets li::before {
+    content: '';
+    flex: none;
+    width: 7px;
+    height: 7px;
+    margin-top: 0.6em;
+    border-radius: 50%;
+    background: var(--accent);
+  }
+
+  /* Tarjetas "What we built". */
+  .case-cards {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1px;
+    background: var(--line);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    overflow: hidden;
+  }
+
+  @media (min-width: 690px) {
+    .case-cards {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (min-width: 1000px) {
+    .case-cards {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+
+  .case-cards li {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    padding: clamp(24px, 2.4vw, 40px);
+    background: var(--page-bg);
+    transition-property: opacity, transform, background-color;
+  }
+
+  @media (hover: hover) {
+    .case-cards li:hover {
+      background: color-mix(in srgb, var(--page-bg), var(--fg) 5%);
+    }
+  }
+
+  .case-cards__n {
+    margin-bottom: clamp(24px, 4vw, 64px);
+    font-size: 14px;
+    color: var(--accent);
+  }
+
+  .case--light .case-cards__n {
+    color: var(--muted);
+  }
+
+  .case-cards__term {
+    font-family: var(--font-display);
+    font-size: clamp(22px, 1.8vw, 30px);
+    font-weight: 500;
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+  }
+
+  .case-cards__desc {
+    font-size: 15px;
+    line-height: 1.55;
+    color: var(--muted);
+  }
+
+  /* Cita del punto de quiebre: texto grande, con unas comillas en Noe encima (sin línea al lado). */
+  .case-quote {
+    margin: clamp(56px, 7vw, 112px) 0 0;
+    font-size: clamp(22px, 2.2vw, 34px);
+    font-weight: var(--fw-light);
+    line-height: 1.35;
+    letter-spacing: -0.015em;
+  }
+
+  .case-quote::before {
+    content: '“';
+    display: block;
+    height: 0.5em;
+    margin-bottom: 0.15em;
+    font-family: var(--font-display);
+    font-size: 3.2em;
+    line-height: 1;
+    color: var(--muted);
+  }
+
+  /* Cronología. */
+  .case-timeline {
+    border-top: 1px solid var(--line);
+  }
+
+  .case-timeline li {
+    display: grid;
+    grid-template-columns: 7.5em 1fr;
+    gap: 4px 16px;
+    padding: 22px 0;
+    border-bottom: 1px solid var(--line);
+    font-size: 16px;
+    line-height: 1.5;
+  }
+
+  @media (min-width: 1000px) {
+    .case-timeline li {
+      grid-template-columns: 4fr 3fr 5fr;
+      gap: 4vw;
+      align-items: baseline;
+      padding: 28px 0;
+    }
+  }
+
+  .case-timeline__date {
+    grid-row: span 2;
+    font-size: 15px;
+    color: var(--accent);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .case--light .case-timeline__date {
+    color: var(--muted);
+  }
+
+  @media (min-width: 1000px) {
+    .case-timeline__date {
+      grid-row: auto;
+    }
+  }
+
+  .case-timeline__title {
+    font-family: var(--font-display);
+    font-size: clamp(20px, 1.7vw, 28px);
+    line-height: 1.15;
+  }
+
+  .case-timeline__text {
+    color: var(--muted);
+  }
+
+  /* Llamado final. */
+  .case-cta {
+    display: grid;
+    gap: 28px;
+    justify-items: start;
+    padding: clamp(80px, 12vw, 200px) var(--pad);
+    border-top: 1px solid var(--line);
+  }
+
+  .case-cta__title {
+    max-width: 14em;
+    font-family: var(--font-display);
+    font-size: clamp(40px, 6.5vw, 112px);
+    font-weight: 500;
+    line-height: 0.98;
+    letter-spacing: -0.03em;
+    text-wrap: balance;
+  }
+
+  .case-cta .case-lead {
+    max-width: 34em;
+    color: var(--muted);
+  }
+
+  .case-cta .case-link {
+    margin-top: 12px;
+  }
+
+  .case-lead {
+    font-size: clamp(20px, 1.9vw, 30px);
+    line-height: 1.35;
+    letter-spacing: -0.015em;
+  }
+
+  .case-lead :global(p + p),
+  .case-statement :global(p + p) {
+    margin-top: 1em;
+  }
+
+  .case-lead :global(strong) {
+    font-family: var(--font-sans-book);
+    font-weight: normal;
+  }
+
+  /* Texto corrido en Maison (Noe Display solo para títulos, nombres cortos y cifras). */
+  .case-statement {
+    font-size: clamp(22px, 2.3vw, 36px);
+    line-height: 1.3;
+    letter-spacing: -0.02em;
+  }
+
+  .case-link {
+    display: inline-flex;
+    gap: 0.4em;
+    margin-top: 40px;
+    padding-bottom: 4px;
+    border-bottom: 1px solid currentColor;
+    font-size: 17px;
+  }
+
+  .case-link span {
+    transition: transform 0.4s var(--ease-out);
+  }
+
+  .case-link:hover span {
+    transform: translate(3px, -3px);
+  }
+
+  /* Lista numerada "What we do". */
+  .case-list {
+    border-top: 1px solid var(--line);
+  }
+
+  .case-list li {
+    display: grid;
+    grid-template-columns: 3em 1fr;
+    gap: 6px 16px;
+    padding: 22px 0;
+    border-bottom: 1px solid var(--line);
+    font-size: 16px;
+    line-height: 1.5;
+  }
+
+  @media (min-width: 1000px) {
+    .case-list li {
+      grid-template-columns: 4fr 3fr 5fr;
+      gap: 4vw;
+      align-items: baseline;
+      padding: 28px 0;
+    }
+  }
+
+  .case-list__n {
+    color: var(--muted);
+    font-size: 15px;
+  }
+
+  @media (min-width: 1000px) {
+    .case-list__n {
+      text-align: left;
+    }
+  }
+
+  .case-list__term {
+    font-family: var(--font-display);
+    font-size: clamp(22px, 2vw, 32px);
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+  }
+
+  .case-list__desc {
+    grid-column: 2;
+    color: var(--muted);
+  }
+
+  @media (min-width: 1000px) {
+    .case-list__desc {
+      grid-column: auto;
+    }
+  }
+
+  .case-list__desc:empty {
+    display: none;
+  }
+
+  /* Cifras destacadas. */
+  .case-stats {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 32px;
+    margin-bottom: 48px;
+  }
+
+  @media (min-width: 690px) {
+    .case-stats {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+
+  .case-stats li {
+    padding-top: 16px;
+    border-top: 1px solid var(--line);
+  }
+
+  .case-stats__value {
+    display: block;
+    font-family: var(--font-display);
+    font-size: clamp(44px, 3.8vw, 68px);
+    line-height: 1;
+    letter-spacing: -0.03em;
+  }
+
+  .case-stats__label {
+    display: block;
+    margin-top: 12px;
+    font-size: 15px;
+    line-height: 1.4;
+    color: var(--muted);
+  }
+
+  .case-impact-list :global(ul),
+  .case-details__body :global(ul) {
+    display: grid;
+    gap: 6px;
+  }
+
+  .case-impact-list {
+    font-size: 16px;
+    line-height: 1.5;
+    color: var(--muted);
+  }
+
+  .case-impact-list :global(li)::before,
+  .case-details__body :global(li)::before {
+    content: '';
+    display: inline-block;
+    width: 5px;
+    height: 5px;
+    margin: 0 10px 2px 0;
+    border-radius: 50%;
+    background: currentColor;
+  }
+
+  /* ---------- Galerías ---------- */
+
+  .case-gallery {
+    display: grid;
+    gap: clamp(12px, 1.5vw, 24px);
+    padding: 0 var(--pad);
+    margin-bottom: clamp(12px, 1.5vw, 24px);
+  }
+
+  .case-gallery--full {
+    padding: 0;
+  }
+
+  .case-gallery--pair {
+    align-items: start;
+  }
+
+  @media (min-width: 690px) {
+    .case-gallery--pair {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    /* La segunda pieza del par baja un poco: ritmo escalonado. */
+    .case-gallery--pair .case-figure:nth-child(2) {
+      margin-top: var(--offset, 0);
+    }
+  }
+
+  .case-gallery--trio {
+    align-items: start;
+  }
+
+  @media (min-width: 690px) {
+    .case-gallery--trio {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .case-gallery--trio .case-figure:nth-child(2) {
+      margin-top: 6vw;
+    }
+  }
+
+  .case-gallery--inset {
+    padding: clamp(40px, 8vw, 120px) var(--pad);
+    justify-items: center;
+  }
+
+  .case-gallery--inset .case-figure {
+    width: min(100%, 720px);
+  }
+
+  .case-figure {
+    margin: 0;
+  }
+
+  .case-figure__frame {
+    overflow: hidden;
+    border-radius: 12px;
+  }
+
+  .case-gallery--full .case-figure__frame {
+    border-radius: 0;
+  }
+
+  .case-caption {
+    max-width: 40em;
+    margin-top: 14px;
+    font-size: 14px;
+    line-height: 1.45;
+    color: var(--muted);
+  }
+
+  .case-hero-media .case-caption {
+    transform: translateY(var(--grow-shift, 0px));
+  }
+
+  .case-gallery--full .case-caption {
+    padding: 0 var(--pad);
+  }
+
+  /* ---------- Detalles ---------- */
+
+  .case-details {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 40px;
+    padding: clamp(80px, 12vw, 180px) var(--pad);
+    font-size: 16px;
+    line-height: 1.5;
+  }
+
+  @media (min-width: 690px) {
+    .case-details {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (min-width: 1000px) {
+    .case-details {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 4vw;
+    }
+  }
+
+  .case-details__col {
+    padding-top: 16px;
+    border-top: 1px solid var(--line);
+  }
+
+  .case-details__title {
+    margin-bottom: 16px;
+    font-size: 15px;
+    font-weight: inherit;
+    color: var(--muted);
+  }
+
+  /* ---------- Sitio en vivo ---------- */
+
+  .case-visit {
+    padding: 0 var(--pad) clamp(80px, 10vw, 160px);
+  }
+
+  .case-visit__link {
+    display: block;
+    padding-top: 24px;
+    border-top: 1px solid var(--line);
+  }
+
+  .case-visit__small {
+    display: block;
+    margin-bottom: 12px;
+    font-size: 15px;
+    color: var(--muted);
+  }
+
+  .case-visit__big {
+    display: inline-block;
+    font-family: var(--font-display);
+    /* Tamaño según el largo del dominio para que quepa en una línea. */
+    font-size: clamp(28px, min(8vw, calc(170vw / var(--len, 12))), 140px);
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    overflow-wrap: anywhere;
+    background: linear-gradient(currentColor, currentColor) 0 100% / 0 2px no-repeat;
+    transition: background-size 0.6s var(--ease-out);
+  }
+
+  .case-visit__big span {
+    display: inline-block;
+    transition: transform 0.6s var(--ease-out);
+  }
+
+  .case-visit__link:hover .case-visit__big {
+    background-size: 100% 2px;
+  }
+
+  .case-visit__link:hover .case-visit__big span {
+    transform: translate(0.08em, -0.08em);
+  }
+
+  /* ---------- Siguiente proyecto ---------- */
+
+  .case-next {
+    position: relative;
+    display: block;
+    overflow: hidden;
+    padding: clamp(60px, 10vw, 160px) var(--pad);
+    /* Negro en todos los casos: blanco y negro son los colores principales. */
+    background: #0a0a0a;
+    color: var(--color-white);
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+  }
+
+  .case-next__small {
+    position: relative;
+    z-index: 1;
+    display: block;
+    margin-bottom: 16px;
+    font-size: 15px;
+    color: rgba(255, 255, 255, 0.6);
+  }
+
+  .case-next__name {
+    position: relative;
+    z-index: 1;
+    display: block;
+    max-width: 12em;
+    font-family: var(--font-display);
+    font-size: clamp(52px, 10vw, 180px);
+    line-height: 0.95;
+    letter-spacing: -0.035em;
+  }
+
+  .case-next__media {
+    position: absolute;
+    right: var(--pad);
+    top: 50%;
+    width: min(36vw, 520px);
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    border-radius: 12px;
+    opacity: 0;
+    transform: translateY(-40%) scale(0.9) rotate(-3deg);
+    transition:
+      opacity 0.5s,
+      transform 0.8s var(--ease-out);
+  }
+
+  .case-next__media :global(video),
+  .case-next__media :global(img) {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  @media (hover: hover) and (min-width: 1000px) {
+    .case-next:hover .case-next__media {
+      opacity: 1;
+      transform: translateY(-50%) scale(1) rotate(0);
+    }
+  }
+
+  /* Entradas, máscara del título y parallax: src/styles/global.css (v2: editorial). */
+  html.js .case-figure[data-case-reveal] {
+    transform: translateY(80px);
+  }
+
+  html.js .case-figure[data-case-reveal].is-in {
+    transform: none;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html.js .case-figure[data-case-reveal],
+    .case-hero-media__inner {
+      transform: none;
+    }
+  }
+</style>

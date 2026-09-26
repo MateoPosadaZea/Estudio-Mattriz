@@ -1,0 +1,482 @@
+@import './tokens.css';
+@import './fonts.css';
+
+/* ---------- Base ---------- */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+  font-weight: 400;
+  color: var(--color-ink);
+  /* Fondo por página (Salient lo define por página): se pasa desde el layout. */
+  background-color: var(--page-bg, var(--color-white));
+  -webkit-font-smoothing: antialiased;
+}
+
+@media (max-width: 690px) {
+  body {
+    font-size: var(--fs-body-mobile);
+    line-height: var(--lh-body-mobile);
+  }
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Salto al contenido (existe en el vivo: "Skip to main content"). */
+.skip-link {
+  position: fixed;
+  top: 8px;
+  left: 8px;
+  z-index: 10000;
+  padding: 8px 16px;
+  background: var(--color-white);
+  color: var(--color-black);
+  border-radius: var(--radius-pill);
+  transform: translateY(-200%);
+}
+
+.skip-link:focus {
+  transform: none;
+}
+
+/*
+ * Foco visible (piso de calidad, brief sección 6). En el vivo el menú y el
+ * botón "Let's talk" tienen outline: none; aquí todos los interactivos lo tienen.
+ */
+:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 3px;
+}
+
+/* ---------- Efecto "text reveal" (menú, botones, "Book a free call") ----------
+ * El texto sube y una copia entra desde abajo.
+ * Vivo: transform 0.55s cubic-bezier(0.25, 1, 0.33, 1); la copia arranca
+ * un 20 % de su alto por debajo y termina alineada.
+ */
+.reveal {
+  display: block;
+  position: relative;
+  overflow: hidden;
+}
+
+.reveal__text {
+  display: block;
+  transition: transform var(--dur-text-reveal) var(--ease-reveal);
+}
+
+.reveal__text::after {
+  content: attr(data-text);
+  position: absolute;
+  left: 0;
+  top: 120%;
+  width: 100%;
+  transition: transform var(--dur-text-reveal) var(--ease-reveal);
+}
+
+:is(a, button):hover .reveal__text,
+:is(a, button):focus-visible .reveal__text {
+  transform: translateY(-100%);
+}
+
+:is(a, button):hover .reveal__text::after,
+:is(a, button):focus-visible .reveal__text::after {
+  transform: translateY(-20%);
+}
+
+/* Flecha de los botones: se mueve hacia donde apunta al pasar el mouse (→ por defecto). */
+.btn-arrow {
+  display: inline-block;
+  transition: transform 0.45s var(--ease-reveal);
+}
+
+:is(a, button):is(:hover, :focus-visible) .btn-arrow {
+  transform: translateX(4px);
+}
+
+:is(a, button):is(:hover, :focus-visible) .btn-arrow[data-dir='ne'] {
+  transform: translate(3px, -3px);
+}
+
+:is(a, button):is(:hover, :focus-visible) .btn-arrow[data-dir='up'] {
+  transform: translateY(-3px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn-arrow {
+    transition: none;
+  }
+}
+
+/* ---------- Enlace subrayado (Instagram, LinkedIn) ----------
+ * Vivo: línea de 1px al 80 %; al pasar el mouse se recoge hacia la derecha
+ * (scaleX 0, origen derecho) en 0.4s cubic-bezier(0.23, 0.46, 0.4, 1).
+ */
+.u-link {
+  position: relative;
+  display: inline-block;
+  transition: color 0.3s;
+}
+
+.u-link::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 2px;
+  border-bottom: 1px solid currentColor;
+  opacity: 0.8;
+  transform-origin: left;
+  transition: transform var(--dur-underline) var(--ease-underline);
+  pointer-events: none;
+}
+
+.u-link:hover::after {
+  transform: scaleX(0);
+  transform-origin: right;
+}
+
+/* ---------- Enlace con flecha curva (email del footer) ----------
+ * Vivo: al pasar el mouse la flecha se "redibuja" (stroke-dashoffset) en 0.9s.
+ */
+.arrow-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  transition: color 0.3s;
+}
+
+.arrow-link svg {
+  flex: none;
+  width: 20px;
+  height: 20px;
+}
+
+.arrow-link .line {
+  stroke-dasharray: 18px;
+}
+
+.arrow-link .arrow {
+  stroke-dasharray: 8px;
+}
+
+.arrow-link:hover svg {
+  animation: arrow-svg var(--dur-arrow) var(--ease-arrow) forwards;
+}
+
+.arrow-link:hover .line {
+  animation: arrow-line var(--dur-arrow) var(--ease-arrow) forwards;
+}
+
+.arrow-link:hover .arrow {
+  animation: arrow-head var(--dur-arrow) var(--ease-arrow) forwards;
+}
+
+@keyframes arrow-svg {
+  0%, 15% { opacity: 1; }
+  45%, 50% { transform: translateX(4px); opacity: 0; }
+  51% { transform: translateX(0); opacity: 1; }
+  100% { opacity: 1; }
+}
+
+@keyframes arrow-line {
+  0% { stroke-dashoffset: 0; }
+  50% { stroke-dashoffset: 18px; }
+  100% { stroke-dashoffset: 35px; }
+}
+
+@keyframes arrow-head {
+  0%, 15% { stroke-dashoffset: 0; }
+  50%, 70% { stroke-dashoffset: -8px; }
+  100% { stroke-dashoffset: 0; }
+}
+
+/* ---------- Animaciones de entrada (src/scripts/reveal.ts) ----------
+ * Solo con JS activo (html.js): sin JS el contenido se ve en su estado final.
+ */
+.split__word {
+  display: inline-block;
+  position: relative;
+  overflow: hidden;
+  vertical-align: bottom;
+}
+
+.split__inner {
+  display: inline-block;
+  position: relative;
+}
+
+html.js [data-split='words'] .split__inner {
+  transform: translateY(1.3em);
+  transition: transform 400ms cubic-bezier(0.165, 0.84, 0.44, 1); /* easeOutQuart */
+}
+
+html.js [data-split='letters'] .split__inner {
+  transform: translateY(1.3em);
+  transition: transform 1200ms cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+html.js [data-split].is-in .split__inner {
+  transform: none;
+}
+
+@media (max-width: 999px) {
+  html.js [data-split][data-desktop-only] .split__inner {
+    transform: none;
+    transition: none;
+  }
+}
+
+html.js [data-animate='fade-up'] {
+  opacity: 0;
+  transform: translateY(100px);
+  transition:
+    opacity 400ms cubic-bezier(0.165, 0.84, 0.44, 1),
+    transform 400ms cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+html.js [data-animate='draw'] {
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 1500ms cubic-bezier(0.18, 0.75, 0.25, 1);
+}
+
+html.js [data-animate='cards'] > * {
+  opacity: 0;
+  transform: translateY(80px);
+  transition:
+    transform 0.75s cubic-bezier(0.22, 0.61, 0.36, 1),
+    opacity 0.75s cubic-bezier(0.22, 0.61, 0.36, 1),
+    background-color 0.35s ease;
+}
+
+html.js [data-animate].is-in,
+html.js [data-animate='cards'].is-in > * {
+  opacity: 1;
+  transform: none;
+}
+
+/* ---------- v2: editorial (casos de estudio y home) ----------
+ * [data-case-reveal]  sube y aparece al entrar en pantalla (src/scripts/case.ts).
+ * .case-mask > span   palabra de un título gigante que sube desde su máscara (CSS, al cargar).
+ * .case-in            entrada del resto del hero (CSS, no espera al JS: no retrasa el LCP).
+ * [data-parallax]     el hijo se mueve dentro de su marco (case.ts pone --py).
+ */
+/* Listas numeradas propias (no las del contenido de WordPress, que conservan sus números). */
+.home ol,
+.case ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.case-mask {
+  display: inline-block;
+  overflow: hidden;
+  padding-bottom: 0.08em;
+  margin-right: 0.18em;
+  vertical-align: top;
+}
+
+.case-mask:last-child {
+  margin-right: 0;
+}
+
+.case-mask > span {
+  display: inline-block;
+}
+
+html.js .case-mask > span {
+  transform: translateY(110%);
+  animation: case-rise 1.2s cubic-bezier(0.2, 1, 0.3, 1) forwards;
+  animation-delay: calc(0.15s + var(--d, 0ms));
+}
+
+html.js .case-in {
+  animation: case-in 1s cubic-bezier(0.2, 1, 0.3, 1) both;
+  animation-delay: var(--d, 0ms);
+}
+
+@keyframes case-in {
+  from {
+    opacity: 0.01;
+    transform: translateY(30px);
+  }
+}
+
+@keyframes case-rise {
+  to {
+    transform: none;
+  }
+}
+
+html.js [data-case-reveal] {
+  opacity: 0;
+  transform: translateY(40px);
+  transition:
+    opacity 0.9s cubic-bezier(0.2, 1, 0.3, 1),
+    transform 1.1s cubic-bezier(0.2, 1, 0.3, 1);
+}
+
+html.js [data-case-reveal].is-in {
+  opacity: 1;
+  transform: none;
+}
+
+html.js [data-parallax] > * {
+  transform: translateY(var(--py, 0px)) scale(1.1);
+  will-change: transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html.js [data-case-reveal],
+  html.js .case-mask > span,
+  html.js .case-in,
+  html.js [data-parallax] > * {
+    opacity: 1;
+    transform: none;
+    transition: none;
+    animation: none;
+  }
+}
+
+/* ---------- v2: base de las páginas editoriales (home, escáner) ---------- */
+.home {
+  --pad: clamp(20px, 5vw, 80px);
+  color: var(--fg);
+  overflow-x: clip;
+}
+
+.home .h-section {
+  padding: clamp(80px, 12vw, 200px) var(--pad);
+}
+
+.home .h-label {
+  margin-bottom: 20px;
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--muted);
+}
+
+.home .h-label span {
+  margin-right: 0.6em;
+  color: var(--fg);
+}
+
+.home .h-heading {
+  max-width: 14em;
+  margin-bottom: clamp(40px, 5vw, 80px);
+  font-family: var(--font-display);
+  font-size: clamp(44px, 7vw, 128px);
+  font-weight: 500;
+  line-height: 0.98;
+  letter-spacing: -0.03em;
+  text-wrap: balance;
+}
+
+/* ---------- v2: transición entre páginas ----------
+ * View Transitions entre documentos (nativo, sin JS). La página que sale sube y se
+ * desvanece; la que entra sube desde abajo. Los navegadores sin soporte navegan normal.
+ */
+@view-transition {
+  navigation: auto;
+}
+
+::view-transition-old(root) {
+  animation: vt-out 0.4s cubic-bezier(0.7, 0, 0.2, 1) both;
+}
+
+::view-transition-new(root) {
+  animation: vt-in 0.8s cubic-bezier(0.2, 1, 0.3, 1) 0.1s both;
+}
+
+@keyframes vt-out {
+  to {
+    opacity: 0;
+    transform: translateY(-24px);
+  }
+}
+
+@keyframes vt-in {
+  from {
+    opacity: 0;
+    transform: translateY(48px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  @view-transition {
+    navigation: none;
+  }
+}
+
+/* ---------- Movimiento reducido ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

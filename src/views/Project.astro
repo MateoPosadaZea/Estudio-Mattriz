@@ -1,0 +1,61 @@
+---
+// Páginas de proyecto: modelo JSON por proyecto (tools/projects/extract.py + media.py) renderizado con
+// las reglas de layout de Salient. Mismo contenido y orden que el vivo.
+// Cada proyecto se muestra en su idioma original o traducido según la URL (/project/ o /es/project/).
+import Base from '../layouts/Base.astro';
+import Rows from '../components/project/Rows.astro';
+import CaseStudy from './CaseStudy.astro';
+import { isCase } from '../data/cases';
+import { PROJECTS } from '../data/home';
+import { langOf, localize } from '../i18n';
+import { localizeModel, type Dict } from '../components/project/translate';
+
+interface Props {
+  slug: string;
+  model: any;
+  dict?: Dict;
+}
+
+const lang = langOf(Astro.url);
+const { slug } = Astro.props;
+const model = localizeModel(Astro.props.model, Astro.props.dict, lang, slug);
+const PAGE_BG = '#0a0a0a';
+
+// Las páginas nuevas (Civilus, The Grid, Spot On) dejan espacio para el header; las antiguas
+// empiezan con el hero negro por debajo del header.
+const headerSpace = model.rows[0]?.padTop === '3em';
+
+const firstText = (() => {
+  const walk = (n: any): string | undefined => {
+    if (!n || typeof n !== 'object') return;
+    if (n.type === 'split') return n.text;
+    if (n.type === 'html' && /<h2>/.test(n.html)) return n.html.replace(/<[^>]+>/g, '').trim();
+    for (const v of Array.isArray(n) ? n : Object.values(n)) {
+      const t = walk(v);
+      if (t) return t;
+    }
+  };
+  return walk(model.rows);
+})();
+const description = model.description || firstText || '';
+const projectName = PROJECTS.find((p) => p.href === `/project/${slug}/`)?.title ?? model.title.split(/ [|-] /)[0];
+---
+
+{isCase(slug) ? <CaseStudy slug={slug} orig={Astro.props.model} model={model} /> : (
+<Base title={model.title} description={description} background={PAGE_BG} breadcrumb={[{ name: projectName, path: localize(`/project/${slug}/`, lang) }]}>
+  <div class:list={['project', { 'project--header-space': headerSpace }]}>
+    <Rows rows={model.rows} bg={PAGE_BG} slug={slug} eagerRows={2} />
+  </div>
+</Base>
+)}
+
+<style>
+  .project--header-space {
+    padding-top: calc(var(--header-top) + var(--header-height));
+  }
+</style>
+
+<script>
+  import '../scripts/reveal';
+  import '../scripts/lazy-video';
+</script>

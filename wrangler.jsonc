@@ -1,0 +1,17 @@
+// Despliegue en Cloudflare Workers: assets estáticos (build de Astro en dist/) + worker/index.ts
+// solo para el formulario y la ruta exacta del caso de estudio de Spot On.
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "mattriz-studio",
+  "main": "worker/index.ts",
+  "compatibility_date": "2026-09-25",
+  "assets": {
+    "directory": "./dist",
+    "binding": "ASSETS",
+    // Mismo comportamiento que WordPress: /about/ con barra final, 404 propia.
+    "html_handling": "auto-trailing-slash",
+    "not_found_handling": "404-page",
+    // El resto de las rutas no pasa por el Worker (sin costo ni latencia extra).
+    "run_worker_first": ["/api/*", "/work/spot-on/case-study.html", "/robots.txt"]
+  }
+}

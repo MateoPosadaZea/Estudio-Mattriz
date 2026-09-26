@@ -1,0 +1,232 @@
+---
+import ThemeToggle from './ThemeToggle.astro';
+import { NAV, SITE } from '../data/site';
+import { langOf, localize, alternate, ui } from '../i18n';
+
+const path = Astro.url.pathname;
+const lang = langOf(Astro.url);
+const t = ui(lang);
+const other = lang === 'es' ? 'en' : 'es';
+---
+
+<header class="site-header" data-site-header>
+  <div class="site-header__inner">
+    <!-- v2: por ahora solo la M, en escritorio y en móvil (pedido de Mateo). -->
+    <a class="site-header__logo" href={localize('/', lang)} aria-label="Mattriz Studio">
+      <img src="/images/logo-mattriz.png" width="433" height="354" alt="" />
+    </a>
+
+    <nav class="site-nav" aria-label={t.mainNav}>
+      <ul>
+        {
+          NAV.map((item, i) => (
+            <li>
+              <a href={localize(item.href, lang)} aria-current={localize(item.href, lang) === path ? 'page' : undefined}>
+                <span class="reveal">
+                  <span class="reveal__text" data-text={t.nav[i]}>
+                    {t.nav[i]}
+                  </span>
+                </span>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+
+    <!-- Cambio de idioma: la misma página en el otro idioma. -->
+    <a class="lang-switch" href={alternate(Astro.url, other)} hreflang={other} lang={other} aria-label={t.switchLabel}>
+      <span class="reveal">
+        <span class="reveal__text" data-text={t.switchShort}>{t.switchShort}</span>
+      </span>
+    </a>
+
+    <ThemeToggle class="site-header__theme" />
+
+    <a class="talk-button" href={SITE.calendly} target="_blank" rel="noopener">
+      <span class="reveal">
+        <span class="reveal__text" data-text={t.talk}>{t.talk}</span>
+      </span>
+    </a>
+
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-menu" data-menu-open>
+      <span class="sr-only">{t.menu}</span>
+      <span class="menu-toggle__lines" aria-hidden="true"><i></i><i></i><i></i></span>
+    </button>
+  </div>
+</header>
+
+
+<style>
+  /* Píldora blanca fija. Vivo: top 25px, alto 70px, radio 50px, 70px de margen lateral. */
+  .site-header {
+    position: fixed;
+    top: var(--header-top);
+    left: 0;
+    right: 0;
+    z-index: 100;
+    width: calc(100% - 2 * var(--header-inset));
+    max-width: var(--header-max-width);
+    height: var(--header-height);
+    margin: 0 auto;
+    padding: 0 25px;
+    background: var(--color-white);
+    border-radius: var(--header-radius);
+    color: var(--color-black);
+    animation: header-entrance 1.5s ease forwards;
+  }
+
+  @keyframes header-entrance {
+    from { opacity: 0.01; }
+    to { opacity: 1; }
+  }
+
+  .site-header__inner {
+    position: relative;
+    display: flex;
+    align-items: center;
+    height: 100%;
+  }
+
+  .site-header__logo {
+    display: inline-flex;
+    align-items: baseline;
+  }
+
+  .site-header__logo img {
+    width: auto;
+    height: 30px;
+  }
+
+  /* Menú centrado respecto a la píldora. */
+  .site-nav {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .site-nav ul {
+    display: flex;
+  }
+
+  .site-nav a {
+    display: block;
+    padding: 0 20px;
+    font-size: var(--fs-menu);
+    font-weight: var(--fw-menu);
+    line-height: 1.3;
+  }
+
+  /* Botón negro. Vivo: 116×49 px, 24px de padding, radio 200px.
+     Hover: el fondo crece a 1.065 (0.45s) y aparece una sombra a 1.07 (0.3s); el texto no escala. */
+  .lang-switch {
+    margin-left: auto;
+    padding: 0 24px;
+    font-size: var(--fs-menu);
+    font-weight: var(--fw-menu);
+    line-height: 1.3;
+  }
+
+  :global(.site-header__theme) {
+    margin-right: 10px;
+  }
+
+  .talk-button {
+    position: relative;
+    isolation: isolate;
+    display: inline-flex;
+    align-items: center;
+    height: 49px;
+    padding: 0 24px;
+    color: var(--color-white);
+    font-size: var(--fs-menu);
+    font-weight: var(--fw-menu);
+    line-height: 1.3;
+  }
+
+  .talk-button::before,
+  .talk-button::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    border-radius: var(--radius-round);
+  }
+
+  .talk-button::before {
+    background: var(--color-black);
+    transition: transform 0.45s var(--ease-reveal);
+  }
+
+  .talk-button::after {
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.13);
+    opacity: 0;
+    transition: opacity 0.3s, transform 0.3s;
+  }
+
+  .talk-button:hover::before {
+    transform: scale(1.065);
+  }
+
+  .talk-button:hover::after {
+    opacity: 1;
+    transform: scale(1.07);
+  }
+
+  .menu-toggle {
+    display: none;
+  }
+
+  /* Header compacto por debajo de 1000px (data-header-breakpoint del vivo). */
+  @media (max-width: 999px) {
+    .site-header {
+      width: var(--header-width-mobile);
+      height: var(--header-height-mobile);
+      padding: 0 22px;
+    }
+
+    .site-nav {
+      display: none;
+    }
+
+    /* v2: en móvil el header solo lleva logo y menú; idioma y "Let's talk" están dentro del menú. */
+    .lang-switch,
+    .talk-button,
+    .site-header__inner :global(.site-header__theme) {
+      display: none;
+    }
+
+    /* Círculo negro con tres líneas. Vivo: 40×40 px, #0a0a0a, sombra 0 10px 25px 13 %. */
+    .menu-toggle {
+      position: relative;
+      display: block;
+      flex: none;
+      width: 40px;
+      height: 40px;
+      margin-left: auto;
+      background: var(--color-ink);
+      border-radius: 100px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.13);
+    }
+
+    .menu-toggle__lines {
+      position: absolute;
+      left: 11.5px;
+      top: 14px;
+    }
+
+    .menu-toggle__lines i {
+      display: block;
+      width: 17px;
+      height: 1.5px;
+      margin-bottom: 3.5px;
+      background: var(--color-white);
+    }
+
+    .menu-toggle__lines i:last-child {
+      width: 13px;
+      margin-bottom: 0;
+    }
+  }
+</style>

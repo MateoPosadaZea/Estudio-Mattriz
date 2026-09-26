@@ -1,0 +1,21 @@
+{
+ "source": "es",
+ "strings": {
+  "Ver sitio web": "View website",
+  "<p><b class=\"f-bold\">Servicios</b></p>": "<p><b class=\"f-bold\">Services</b></p>",
+  "<p><b class=\"f-bold\">Resumen del proyecto<br> </b></p>": "<p><b class=\"f-bold\">Project overview<br> </b></p>",
+  "<p><b class=\"f-bold\">Lo que hicimos<br> </b></p>": "<p><b class=\"f-bold\">What we did<br> </b></p>",
+  "Proyecto Anterior": "Previous Project",
+  "Proyecto Siguiente": "Next Project",
+  "Let it Go - Mattriz Studio": "Let it Go - Mattriz Studio",
+  "<h2>Let It Go, aplicación móvil que busca cambiar hábitos de consumo en las personas para que intercambien y vendan la ropa y los libros que no usan.</h2>": "<h2>Let It Go, a mobile app that aims to change consumer habits so people swap and sell the clothes and books they no longer use.</h2>",
+  "Ver prototipo": "View prototype",
+  "Diseño Gráfico<br> Diseño UI/UX": "Graphic Design<br> UI/UX Design",
+  "<p>Este proyecto nace de un intento por aportar a la sostenibilidad y al medio ambiente a través de una economía circular. Parte de la idea de ver la ropa y los libros que no usamos no como un desecho sino como un recurso que puede ser intercambiado y reutilizado por otra persona.</p>": "<p>This project was born from an effort to contribute to sustainability and the environment through a circular economy. It starts from the idea of seeing the clothes and books we no longer use not as waste, but as a resource that someone else can swap and reuse.</p>",
+  "<ol><li>Investigar de la problemática ambiental</li><li>Plantear un problema de diseño</li><li>Precisar los objetivos de la aplicación</li><li>Definir el público objetivo</li><li>Estudiar el benchmarking</li><li>Creación de logotipo e identidad visual</li><li>Bocetos de la aplicación</li><li>Diseño UI/UX</li><li>Prototipo</li><li>Pruebas con usuarios</li></ol>": "<ol><li>Research on the environmental problem</li><li>Framing the design problem</li><li>Defining the app’s goals</li><li>Defining the target audience</li><li>Benchmarking</li><li>Logo and visual identity</li><li>App sketches</li><li>UI/UX design</li><li>Prototype</li><li>User testing</li></ol>",
+  "Let it go app ui/ux design": "Let it go app UI/UX design",
+  "Let it go app UI/UX": "Let it go app UI/UX",
+  "Posada Cárcamo Abogados": "Posada Cárcamo Abogados",
+  "AGL Vans Tour": "AGL Vans Tour"
+ }
+}

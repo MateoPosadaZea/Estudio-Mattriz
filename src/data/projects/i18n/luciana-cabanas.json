@@ -1,0 +1,19 @@
+{
+ "source": "es",
+ "strings": {
+  "Ver sitio web": "View website",
+  "<p><b class=\"f-bold\">Servicios</b></p>": "<p><b class=\"f-bold\">Services</b></p>",
+  "<p><b class=\"f-bold\">Resumen del proyecto<br> </b></p>": "<p><b class=\"f-bold\">Project overview<br> </b></p>",
+  "<p><b class=\"f-bold\">Lo que hicimos<br> </b></p>": "<p><b class=\"f-bold\">What we did<br> </b></p>",
+  "Proyecto Anterior": "Previous Project",
+  "Proyecto Siguiente": "Next Project",
+  "Luciana Cabañas - Mattriz Studio": "Luciana Cabañas - Mattriz Studio",
+  "<h2>Diseño de logotipo y sitio web para <a href=\"https://www.instagram.com/lucianacabanasguateque/?hl=es\" target=\"_blank\" rel=\"noopener\">@lucianacabanasguateque</a> 🍂🦜un lugar mágico ubicado en Guateque, Boyacá.<br> </h2>": "<h2>Logo and website design for <a href=\"https://www.instagram.com/lucianacabanasguateque/?hl=es\" target=\"_blank\" rel=\"noopener\">@lucianacabanasguateque</a> 🍂🦜a magical place in Guateque, Boyacá.<br> </h2>",
+  "Diseño Gráfico<br> Diseño UI/UX<br> Diseño Web<br> Optimización de SEO": "Graphic Design<br> UI/UX Design<br> Web Design<br> SEO Optimization",
+  "<p>El afán por salir de la ciudad me llevó a estas cabañas que encontré en Airbnb, quedé fascinado con la arquitectura y la naturaleza del lugar. Resultó que el dueño quería rediseñar la imagen de su negocio y tener más presencia online.</p>": "<p>The urge to get out of the city led me to these cabins I found on Airbnb, and I was captivated by the architecture and the nature around them. It turned out the owner wanted to redesign the brand of his business and build a stronger online presence.</p>",
+  "<ol><li>Investigar y conocer la historia detrás del lugar</li><li>Generar base de datos</li><li>Bocetar</li><li>Diseñar el logotipo</li><li>Adquirir hosting y dominio</li><li>Diseño UI/UX del sitio web</li><li>Creación del sitio web</li><li>Programación HTML y CSS</li><li>Configuración de correo electrónico</li><li>Pruebas de usuario</li><li>Optimización de SEO</li><li>Lanzamiento</li></ol>": "<ol><li>Research into the story behind the place</li><li>Content database</li><li>Sketching</li><li>Logo design</li><li>Hosting and domain setup</li><li>Website UI/UX design</li><li>Website build</li><li>HTML and CSS development</li><li>Email setup</li><li>User testing</li><li>SEO optimization</li><li>Launch</li></ol>",
+  "Luciana Cabañas Sitio Web - Mattriz": "Luciana Cabañas website - Mattriz",
+  "AGL Vans Tours": "AGL Vans Tours",
+  "Civilus": "Civilus"
+ }
+}

@@ -1,0 +1,107 @@
+/*
+ * Tokens de diseño extraídos del sitio vivo mattriz.com (Fase 0, 2026-09-25).
+ * Fuente de verdad: reference/TOKENS.md y reference/tokens.json.
+ * Las @font-face están en fonts.css.
+ */
+
+:root {
+  /* Color */
+  --color-black: #000000;
+  --color-ink: #0a0a0a;             /* color base del body */
+  --color-white: #ffffff;
+  --color-brand-green: #00ff7f;     /* gradiente animado de hero, studio y CTA */
+  --color-status-green: #55c91c;    /* punto "Currently accepting new clients" */
+  --color-hero-overlay: rgba(0, 0, 0, 0.78);
+  --color-hero-overlay-opacity: 0.8;
+  --color-white-12: rgba(255, 255, 255, 0.12);
+  --color-to-top-bg: rgba(0, 0, 0, 0.25);
+  --color-form-error: #990000;
+  --color-form-label: #333333;
+
+  /* v2: tema. Oscuro por defecto; html[data-theme="light"] lo cambia (toggle en el header y el menú).
+     El verde de marca es uno solo (--color-brand-green): todo lo verde sale de ahí. */
+  --bg: #0a0a0a;
+  --fg: #ffffff;
+  --muted: rgba(255, 255, 255, 0.6);
+  --line: rgba(255, 255, 255, 0.18);
+  --line-strong: rgba(255, 255, 255, 0.32);
+  --error: #ff8a80;
+  --accent-text: var(--color-brand-green);
+
+  /* Familias */
+  --font-display: 'noe-display', Georgia, serif;
+  --font-sans: 'maison-neue-light', 'Helvetica Neue', Arial, sans-serif;
+  --font-sans-book: 'maison-neue-book', var(--font-sans);
+  --font-sans-bold: 'maison-neue-bold', var(--font-sans);
+
+  /* Escala tipográfica (WPBakery trabaja en vw; valores a 1440px en comentario) */
+  --fs-h1: 5vw;                     /* 72px; tablet 10vw; mobile 39px */
+  --lh-h1: 1.14;
+  --fw-h1: 600;                     /* sintético sobre archivo 500 */
+  --fs-section-title: 6vw;          /* 86.4px: "What we build", "Selected Work" */
+  --fs-service-number: 7vw;         /* 100.8px */
+  --fs-service-title: 2vw;          /* 28.8px */
+  --fs-studio-title: 4vw;           /* 57.6px */
+  --fs-studio-text: 3.5vw;          /* 50.4px */
+  --fs-cta-title: 4vw;              /* 57.6px: "Book a free call" */
+  --fs-work-row: 46px;
+  --fs-ticker: 6vh;                 /* 54px a 900px de alto */
+  --fs-body: 17px;
+  --lh-body: 26px;
+  --fs-body-mobile: 14px;
+  --lh-body-mobile: 21px;
+  --fs-menu: 16px;
+  --fw-menu: 500;
+  --fs-small: 14px;
+  --fw-light: 300;
+  --lh-tight: 1.1;
+  --ls-tight: -0.03em;              /* todos los títulos en maison-neue-light */
+
+  /* Layout */
+  --header-top: 25px;
+  --header-height: 70px;
+  --header-height-mobile: 74px;
+  --header-radius: 50px;
+  --header-inset: 70px;             /* margen lateral del header en desktop */
+  --header-width-mobile: 88%;
+  --header-max-width: 1860px;
+  --section-pad-x: 5%;
+  --section-pad-x-hero: 8%;
+  --section-pad-x-footer: 45px;
+  --section-pad-y: 5vw;             /* "What we build" */
+  --section-pad-y-lg: 10vw;         /* "Selected Work" */
+  --bp-menu: 1000px;                /* menú a hamburguesa por debajo */
+  --bp-stack: 690px;                /* columnas a una sola por debajo */
+
+  /* Componentes */
+  --radius-pill: 50px;
+  --radius-card: 10px;
+  --radius-round: 200px;
+  --divider: 1px solid currentColor;
+  --button-height: 49px;
+
+  /* Movimiento (medido; ver reference/INTERACCIONES.md) */
+  --ease-reveal: cubic-bezier(0.25, 1, 0.33, 1);
+  --ease-panel: cubic-bezier(0.15, 0.2, 0.1, 1);
+  --ease-underline: cubic-bezier(0.23, 0.46, 0.4, 1);
+  --ease-arrow: cubic-bezier(0.15, 0.75, 0.5, 1);
+  --ease-pulse: cubic-bezier(0.2, 1, 0.2, 1);
+  --dur-text-reveal: 0.55s;
+  --dur-panel: 0.8s;
+  --dur-underline: 0.4s;
+  --dur-arrow: 0.9s;
+  --dur-color: 0.2s;
+}
+
+html[data-theme='light'] {
+  --bg: #f5f5f2;
+  --fg: #0a0a0a;
+  --muted: rgba(10, 10, 10, 0.64);
+  --line: rgba(10, 10, 10, 0.16);
+  --line-strong: rgba(10, 10, 10, 0.3);
+  --error: #b3261e;
+  /* El verde de marca como texto sobre claro no llega a AA: se oscurece. */
+  --accent-text: color-mix(in srgb, var(--color-brand-green) 50%, #000);
+  color-scheme: light;
+}
+

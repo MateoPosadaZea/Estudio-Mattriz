@@ -1,0 +1,31 @@
+---
+// v2: home con el lenguaje editorial de los casos de estudio (referencia: locomotive.ca).
+// Mismo contenido, orden y anclas que antes (#services, #how-we-work, #work).
+import Base from '../layouts/Base.astro';
+import Hero from '../components/home2/Hero.astro';
+import Services from '../components/home2/Services.astro';
+import Studio from '../components/home2/Studio.astro';
+import Work from '../components/home2/Work.astro';
+import ScanTeaser from '../components/home2/ScanTeaser.astro';
+import Testimonials from '../components/home2/Testimonials.astro';
+import { home } from '../data/home';
+import { langOf } from '../i18n';
+
+const { LABELS } = home(langOf(Astro.url));
+---
+
+<Base title={LABELS.metaTitle} description={LABELS.metaDescription} background="var(--bg)">
+  <div class="home">
+    <Hero />
+    <Services />
+    <Studio />
+    <Work />
+    <ScanTeaser />
+    <Testimonials />
+  </div>
+</Base>
+
+<script>
+  import '../scripts/lazy-video';
+  import '../scripts/case';
+</script>

@@ -1,0 +1,50 @@
+---
+// Imagen o video de un caso v2. Los videos se cargan al acercarse (src/scripts/lazy-video.ts).
+import { srcset, largest } from '../project/tone';
+import type { CaseMedia } from './extract';
+
+interface Props {
+  item: CaseMedia;
+  sizes: string;
+  eager?: boolean;
+}
+const { item, sizes, eager = false } = Astro.props;
+const m = item.local;
+---
+
+{
+  item.type === 'img' ? (
+    <img
+      src={largest(m)}
+      srcset={srcset(m)}
+      sizes={sizes}
+      width={m.width}
+      height={m.height}
+      alt={item.alt ?? ''}
+      loading={eager ? 'eager' : 'lazy'}
+      fetchpriority={eager ? 'high' : undefined}
+      decoding="async"
+    />
+  ) : (
+    <video
+      data-src={`${m.dir}/${m.base}.mp4`}
+      poster={`${m.dir}/${m.base}-poster.webp`}
+      width={m.width}
+      height={m.height}
+      muted
+      loop
+      playsinline
+      preload="none"
+      aria-hidden="true"
+    />
+  )
+}
+
+<style>
+  img,
+  video {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+</style>

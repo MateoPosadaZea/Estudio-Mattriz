@@ -1,0 +1,198 @@
+---
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import MobileMenu from '../components/MobileMenu.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import ToTop from '../components/ToTop.astro';
+import Loader from '../components/Loader.astro';
+import Analytics from '../components/Analytics.astro';
+import { SITE } from '../data/site';
+import { langOf, alternate, ui, LANGS } from '../i18n';
+
+interface Props {
+  title: string;
+  description: string;
+  /** Fondo de la página (en Salient se define por página). */
+  background?: string;
+  /** Imagen para redes; por defecto el logo, igual que el vivo. */
+  ogImage?: string;
+  noindex?: boolean;
+  /** Migas para los datos estructurados (sin contar "Home"). */
+  breadcrumb?: { name: string; path: string }[];
+  /** Enlaces hreflang a la otra versión (no en la 404 ni en el caso de estudio). */
+  alternates?: boolean;
+  /** Formulario en frase del footer (no en /contact/, que ya lo tiene arriba). */
+  footerForm?: boolean;
+}
+
+const { title, description, background = '#ffffff', ogImage = '/images/og-mattriz.png', noindex = false, breadcrumb = [], alternates = true, footerForm = true } = Astro.props;
+const lang = langOf(Astro.url);
+const t = ui(lang);
+const hreflangs = LANGS.map((l) => ({ lang: l, href: new URL(alternate(Astro.url, l), SITE.url).href }));
+const canonical = new URL(Astro.url.pathname, SITE.url).href;
+const ogImageUrl = new URL(ogImage, SITE.url).href;
+const home = `${SITE.url}/`;
+
+// Datos estructurados equivalentes a los de AIOSEO en el vivo: Organization, WebSite, WebPage y BreadcrumbList.
+const homeUrl = new URL(alternate(new URL('/', SITE.url), lang), SITE.url).href;
+const crumbs = [{ name: t.breadcrumbHome, url: homeUrl }, ...breadcrumb.map((b) => ({ name: b.name, url: new URL(b.path, SITE.url).href }))];
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Organization',
+      '@id': `${home}#organization`,
+      name: 'Mattriz',
+      description: SITE.description,
+      url: home,
+      email: SITE.email,
+      telephone: SITE.telephone,
+      logo: { '@type': 'ImageObject', '@id': `${home}#organizationLogo`, url: `${SITE.url}/images/og-mattriz.png`, width: 512, height: 512 },
+      image: { '@id': `${home}#organizationLogo` },
+      sameAs: [SITE.facebook, SITE.instagram, SITE.linkedin],
+    },
+    {
+      '@type': 'WebSite',
+      '@id': `${home}#website`,
+      url: home,
+      name: 'Mattriz',
+      alternateName: 'Estudio Mattriz',
+      description: SITE.description,
+      inLanguage: 'en-US',
+      publisher: { '@id': `${home}#organization` },
+    },
+    {
+      '@type': 'WebPage',
+      '@id': `${canonical}#webpage`,
+      url: canonical,
+      name: title,
+      description,
+      inLanguage: t.htmlLang,
+      isPartOf: { '@id': `${home}#website` },
+      breadcrumb: { '@id': `${canonical}#breadcrumblist` },
+    },
+    {
+      '@type': 'BreadcrumbList',
+      '@id': `${canonical}#breadcrumblist`,
+      itemListElement: crumbs.map((c, i) => ({ '@type': 'ListItem', position: i + 1, name: c.name, item: c.url })),
+    },
+  ],
+};
+---
+
+<!doctype html>
+<html lang={t.htmlLang} style={`--page-bg: ${background}`}>
+  <head>
+    <meta charset="utf-8" />
+    <script is:inline>
+      document.documentElement.classList.add('js');
+      // Tema (src/scripts/theme.ts): oscuro por defecto; claro si el visitante lo eligió.
+      try {
+        if (localStorage.getItem('mz-theme') === 'light') document.documentElement.dataset.theme = 'light';
+      } catch (e) {}
+      // Loader (src/components/Loader.astro): solo en la primera página de la sesión y sin
+      // movimiento reducido. Seguro: a los 4 s se quita pase lo que pase.
+      try {
+        if (!sessionStorage.getItem('mz-loaded') && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+          document.documentElement.classList.add('is-loading');
+          setTimeout(function () { document.documentElement.classList.remove('is-loading'); }, 4000);
+        }
+      } catch (e) {}
+    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    {
+      alternates &&
+        !noindex && [
+          ...hreflangs.map((h) => <link rel="alternate" hreflang={h.lang} href={h.href} />),
+          <link rel="alternate" hreflang="x-default" href={hreflangs[0].href} />,
+        ]
+    }
+    {
+      noindex ? (
+        <meta name="robots" content="noindex, nofollow" />
+      ) : (
+        <meta name="robots" content="max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+      )
+    }
+    <meta name="google-site-verification" content={SITE.googleSiteVerification} />
+
+    <meta property="og:site_name" content="Mattriz" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content={t.locale} />
+    {alternates && <meta property="og:locale:alternate" content={ui(lang === 'es' ? 'en' : 'es').locale} />}
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImageUrl} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageUrl} />
+
+    {!noindex && <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />}
+
+    <link rel="icon" href="/favicon-32x32.png" sizes="32x32" />
+    <link rel="icon" href="/favicon-192x192.png" sizes="192x192" />
+    <link rel="apple-touch-icon" href="/favicon-180x180.png" />
+
+    <link rel="preload" href="/fonts/Maison-Neue-Light.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/Noe-Display.woff2" as="font" type="font/woff2" crossorigin />
+    <slot name="head" />
+    <Analytics />
+  </head>
+  <body>
+    <Loader />
+    <a class="skip-link" href="#main">{t.skip}</a>
+
+    <div class="page" data-page id="top">
+      <Header />
+      <div class="page__inner" data-page-inner>
+        <main id="main">
+          <slot />
+        </main>
+        <SiteFooter form={footerForm} />
+      </div>
+    </div>
+
+    <MobileMenu />
+    <ToTop />
+
+    <script>
+      import '../scripts/menu';
+    </script>
+  </body>
+</html>
+
+<style is:global>
+  html {
+    scroll-behavior: smooth;
+  }
+
+  .page {
+    position: relative;
+    z-index: 1;
+    background: var(--page-bg);
+  }
+
+  /* Secciones de cambio de color (src/scripts/color-change.ts): transición de 0.8 s. */
+  html.has-color-change body,
+  html.has-color-change .page {
+    transition:
+      background-color 0.8s,
+      color 0.8s;
+  }
+
+  /* Con el menú abierto la página no se desplaza. */
+  html.menu-open,
+  html.menu-open body {
+    overflow: hidden;
+  }
+
+  /* Las anclas no quedan tapadas por el header fijo. */
+  [id] {
+    scroll-margin-top: calc(var(--header-top) + var(--header-height));
+  }
+</style>

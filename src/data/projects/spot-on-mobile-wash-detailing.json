@@ -1,0 +1,978 @@
+{
+ "title": "Spot On Mobile Wash & Detailing - Mattriz Studio",
+ "description": "Website redesign and service/price structure for a mobile detailing business in California.",
+ "ogImage": "https://mattriz.com/wp-content/uploads/2022/11/cropped-Logotipo-Estudio-Mattriz-Redes-Negro_Mesa-de-trabajo-1-copia-7.png",
+ "rows": [
+  {
+   "type": "row",
+   "inner": false,
+   "fullWidth": "section",
+   "bg": "#ffffff",
+   "bgImage": null,
+   "bgVideo": null,
+   "padTop": "3em",
+   "padBottom": "3em",
+   "classes": [],
+   "columnMargin": "default",
+   "text": "dark",
+   "cols": [
+    {
+     "span": 12,
+     "xs": null,
+     "classes": [
+      "no-extra-padding",
+      "el_spacing_0px"
+     ],
+     "animation": null,
+     "bg": null,
+     "radius": null,
+     "link": null,
+     "children": [
+      {
+       "type": "row",
+       "inner": true,
+       "fullWidth": null,
+       "bg": null,
+       "bgImage": null,
+       "bgVideo": null,
+       "padTop": "6%",
+       "padBottom": "6%",
+       "classes": [
+        "right_padding_20pct",
+        "right_padding_tablet_0px"
+       ],
+       "columnMargin": "default",
+       "text": "dark",
+       "cols": [
+        {
+         "span": 12,
+         "xs": null,
+         "classes": [
+          "child_column",
+          "no-extra-padding"
+         ],
+         "animation": null,
+         "bg": null,
+         "radius": null,
+         "link": null,
+         "children": [
+          {
+           "type": "split",
+           "tag": "h2",
+           "text": "Website redesign and service/price structure for a mobile detailing business in California.",
+           "style": {
+            "font-size": "3vw",
+            "line-height": "3.3vw"
+           },
+           "classes": [
+            "font_size_3vw",
+            "font_size_max_104px",
+            "font_line_height_1-2"
+           ]
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": "row",
+       "inner": true,
+       "fullWidth": null,
+       "bg": null,
+       "bgImage": null,
+       "bgVideo": null,
+       "padTop": null,
+       "padBottom": null,
+       "classes": [
+        "vc_row-o-equal-height",
+        "vc_row-o-content-bottom"
+       ],
+       "columnMargin": "default",
+       "text": "dark",
+       "cols": [
+        {
+         "span": 3,
+         "xs": 6,
+         "classes": [
+          "child_column",
+          "no-extra-padding",
+          "el_spacing_0px",
+          "one-fourths"
+         ],
+         "animation": null,
+         "bg": null,
+         "radius": null,
+         "link": null,
+         "children": [
+          {
+           "type": "html",
+           "html": "<h6>Year</h6>",
+           "keepLast": true,
+           "classes": [],
+           "style": {}
+          },
+          {
+           "type": "html",
+           "html": "<p>2025</p>",
+           "keepLast": false,
+           "classes": [],
+           "style": {}
+          }
+         ]
+        },
+        {
+         "span": 3,
+         "xs": 6,
+         "classes": [
+          "child_column",
+          "no-extra-padding",
+          "el_spacing_0px",
+          "one-fourths"
+         ],
+         "animation": null,
+         "bg": null,
+         "radius": null,
+         "link": null,
+         "children": [
+          {
+           "type": "html",
+           "html": "<h6>Client</h6>",
+           "keepLast": true,
+           "classes": [],
+           "style": {}
+          },
+          {
+           "type": "html",
+           "html": "<p>Spot On Mobile Car Wash &amp; Detailing</p>",
+           "keepLast": false,
+           "classes": [],
+           "style": {}
+          }
+         ]
+        },
+        {
+         "span": 6,
+         "xs": null,
+         "classes": [
+          "child_column",
+          "no-extra-padding",
+          "top_margin_tablet_30px"
+         ],
+         "animation": null,
+         "bg": null,
+         "radius": null,
+         "link": null,
+         "children": [
+          {
+           "type": "meta",
+           "items": [
+            {
+             "label": "SEO Optimization",
+             "href": null
+            },
+            {
+             "label": "UI/UX Design",
+             "href": null
+            },
+            {
+             "label": "Web Development",
+             "href": null
+            }
+           ],
+           "classes": [
+            "alignment_right_desktop",
+            "alignment_default_tablet",
+            "alignment_default_phone",
+            "direction-horizontal",
+            "style-outline"
+           ]
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "type": "row",
+   "inner": false,
+   "fullWidth": "content",
+   "bg": "#ffffff",
+   "bgImage": null,
+   "bgVideo": null,
+   "padTop": "0px",
+   "padBottom": "0px",
+   "classes": [
+    "vc_row-o-equal-height",
+    "vc_row-o-content-top"
+   ],
+   "columnMargin": "default",
+   "text": "light",
+   "cols": [
+    {
+     "span": 12,
+     "xs": null,
+     "classes": [
+      "no-extra-padding"
+     ],
+     "animation": null,
+     "bg": null,
+     "radius": null,
+     "link": null,
+     "children": [
+      {
+       "type": "video",
+       "src": "https://mattriz.com/wp-content/uploads/2025/12/Grabacion-de-pantalla-2026-01-21-a-las-12.41.10-p.m.mov",
+       "width": 1280,
+       "height": 720,
+       "radius": "none",
+       "poster": null,
+       "local": {
+        "base": "grabacion-de-pantalla-2026-01-21-a-las-12-41-10-p-m",
+        "width": 1600,
+        "height": 872,
+        "size": 1295680,
+        "dir": "/media/projects/spot-on-mobile-wash-detailing"
+       }
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "type": "row",
+   "inner": false,
+   "fullWidth": "section",
+   "bg": null,
+   "bgImage": null,
+   "bgVideo": null,
+   "padTop": "calc(100vw * 0.06)",
+   "padBottom": "calc(100vw * 0.06)",
+   "classes": [],
+   "columnMargin": "default",
+   "text": "dark",
+   "cols": [
+    {
+     "span": 12,
+     "xs": null,
+     "classes": [
+      "no-extra-padding"
+     ],
+     "animation": null,
+     "bg": null,
+     "radius": null,
+     "link": null,
+     "children": [
+      {
+       "type": "row",
+       "inner": true,
+       "fullWidth": null,
+       "bg": null,
+       "bgImage": null,
+       "bgVideo": null,
+       "padTop": null,
+       "padBottom": null,
+       "classes": [],
+       "columnMargin": "default",
+       "text": "dark",
+       "cols": [
+        {
+         "span": 4,
+         "xs": null,
+         "classes": [
+          "child_column",
+          "no-extra-padding",
+          "el_spacing_0px"
+         ],
+         "animation": null,
+         "bg": null,
+         "radius": null,
+         "link": null,
+         "children": [
+          {
+           "type": "html",
+           "html": "<h6>The Challenge</h6>",
+           "keepLast": true,
+           "classes": [],
+           "style": {}
+          }
+         ]
+        },
+        {
+         "span": 8,
+         "xs": null,
+         "classes": [
+          "child_column",
+          "el_spacing_30px",
+          "right_padding_desktop_15pct",
+          "right_padding_tablet_0px"
+         ],
+         "animation": null,
+         "bg": null,
+         "radius": null,
+         "link": null,
+         "children": [
+          {
+           "type": "html",
+           "html": "<p><strong>Booking challenge: </strong>the old site didn’t guide users to a clear action; too many choices and scattered messages made scheduling (call/WhatsApp/form) hard.</p><p><strong> Visual challenge:</strong> uninspiring, cluttered layout, inconsistent type/colors, confusing price tables without vehicle‑type segmentation (sedan/SUV/pick‑up), missing social proof (reviews/before‑after), and weak hierarchy of headings/benefits.</p><p><strong>Mobile challenge: </strong>low CTA visibility, uneven load times, and scroll friction. Goal: offer clarity, 1–2‑step booking flow, mobile‑first, and an aesthetic that signals trust &amp; quality.</p>",
+           "keepLast": false,
+           "classes": [
+            "font_size_desktop_1em",
+            "font_size_tablet_1em",
+            "font_line_height_1-6"
+           ],
+           "style": {}
+          },
+          {
+           "type": "cta",
+           "style_name": "underline",
+           "href": "https://mobilespotoncalifornia.com/",
+           "target": "_blank",
+           "label": "View Website",
+           "tag": null,
+           "classes": [
+            "font_size_desktop_1rem"
+           ],
+           "style": {
+            "margin-top": "50px",
+            "--nectar-button-color": "var(--nectar-default)",
+            "--nectar-icon-gap": "10px"
+           },
+           "wrapStyle": {}
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "type": "row",
+   "inner": false,
+   "fullWidth": "section",
+   "bg": null,
+   "bgImage": null,
+   "bgVideo": null,
+   "padTop": "0px",
+   "padBottom": "calc(10vw)",
+   "classes": [
+    "bottom_margin_10pct",
+    "column-margin-4pct",
+    "top_padding_phone_10px"
+   ],
+   "columnMargin": "custom",
+   "text": "dark",
+   "cols": [
+    {
+     "span": 4,
+     "xs": null,
+     "classes": [
+      "nectar-sticky-column-css",
+      "no-extra-padding",
+      "el_spacing_30px"
+     ],
+     "animation": "fade-in",
+     "bg": null,
+     "radius": null,
+     "link": null,
+     "children": [
+      {
+       "type": "html",
+       "html": "<h3>Spot On Mobile Wash &amp; Detailing</h3>",
+       "keepLast": false,
+       "classes": [
+        "font_size_max_54px",
+        "font_size_desktop_3vw",
+        "font_size_tablet_5vw",
+        "font_size_phone_34px",
+        "font_line_height_1-1"
+       ],
+       "style": {}
+      },
+      {
+       "type": "row",
+       "inner": true,
+       "fullWidth": null,
+       "bg": null,
+       "bgImage": null,
+       "bgVideo": null,
+       "padTop": null,
+       "padBottom": null,
+       "classes": [],
+       "columnMargin": "default",
+       "text": "dark",
+       "cols": [
+        {
+         "span": 6,
+         "xs": 6,
+         "classes": [
+          "child_column",
+          "no-extra-padding",
+          "el_spacing_5px"
+         ],
+         "animation": null,
+         "bg": null,
+         "radius": null,
+         "link": null,
+         "children": [
+          {
+           "type": "html",
+           "html": "<h5><strong>What we did</strong></h5>",
+           "keepLast": false,
+           "classes": [
+            "font_line_height_1-2"
+           ],
+           "style": {}
+          },
+          {
+           "type": "meta",
+           "items": [
+            {
+             "label": "SEO Optimization",
+             "href": null
+            },
+            {
+             "label": "UI/UX Design",
+             "href": null
+            },
+            {
+             "label": "Web Development",
+             "href": null
+            }
+           ],
+           "classes": [
+            "alignment_left_desktop",
+            "alignment_default_tablet",
+            "alignment_default_phone",
+            "direction-horizontal",
+            "style-outline"
+           ]
+          }
+         ]
+        },
+        {
+         "span": 6,
+         "xs": 6,
+         "classes": [
+          "child_column",
+          "no-extra-padding",
+          "el_spacing_5px"
+         ],
+         "animation": null,
+         "bg": null,
+         "radius": null,
+         "link": null,
+         "children": [
+          {
+           "type": "html",
+           "html": "<h5><strong>Industry</strong></h5>",
+           "keepLast": false,
+           "classes": [
+            "font_line_height_1-2"
+           ],
+           "style": {}
+          },
+          {
+           "type": "html",
+           "html": "<p>Automotive services · Local B2C</p>",
+           "keepLast": false,
+           "classes": [],
+           "style": {}
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": "row",
+       "inner": true,
+       "fullWidth": null,
+       "bg": null,
+       "bgImage": null,
+       "bgVideo": null,
+       "padTop": null,
+       "padBottom": null,
+       "classes": [],
+       "columnMargin": "default",
+       "text": "dark",
+       "cols": [
+        {
+         "span": 12,
+         "xs": null,
+         "classes": [
+          "child_column",
+          "no-extra-padding",
+          "el_spacing_10px"
+         ],
+         "animation": null,
+         "bg": null,
+         "radius": null,
+         "link": null,
+         "children": [
+          {
+           "type": "html",
+           "html": "<h5><strong>Approach</strong></h5>",
+           "keepLast": false,
+           "classes": [
+            "font_line_height_1-2"
+           ],
+           "style": {}
+          },
+          {
+           "type": "html",
+           "html": "<p>Simple layout, clear hierarchy, primary CTA, vehicle‑type tables (sedan/SUV/pick‑up), photos &amp; videos (before/after), testimonials, sticky mobile CTA, short form, WhatsApp/call, transparent copy (in/out), brands/products, WebP/AVIF + lazy load, AA accessibility, local SEO (schema, NAP, map).</p>",
+           "keepLast": false,
+           "classes": [],
+           "style": {}
+          },
+          {
+           "type": "divider",
+           "height": "25px",
+           "line": false,
+           "lineStyle": {
+            "height": "25px"
+           },
+           "classes": [],
+           "dclasses": [
+            "divider"
+           ]
+          },
+          {
+           "type": "html",
+           "html": "<h5><strong>Services</strong></h5>",
+           "keepLast": false,
+           "classes": [
+            "font_line_height_1-2"
+           ],
+           "style": {}
+          },
+          {
+           "type": "list",
+           "icon": "dot",
+           "spacing": "default",
+           "html": "<ul><li>Web development (WordPress)</li><li>Web design</li><li>UI/UX</li><li>Integrations (WhatsApp, call, Analytics, Schema)</li><li>Forms (short + validation)</li><li>SEO (local + on‑page)</li><li>Customer support &amp; troubleshooting</li><li>Custom embedded map (service area).</li></ul>"
+          },
+          {
+           "type": "divider",
+           "height": "25px",
+           "line": false,
+           "lineStyle": {
+            "height": "25px"
+           },
+           "classes": [],
+           "dclasses": [
+            "divider"
+           ]
+          },
+          {
+           "type": "html",
+           "html": "<h5><strong>What We Do</strong></h5>",
+           "keepLast": false,
+           "classes": [
+            "font_line_height_1-2"
+           ],
+           "style": {}
+          },
+          {
+           "type": "list",
+           "icon": "dot",
+           "spacing": "15px",
+           "html": "<ul><li><strong>Simple layout redesign</strong> with clear hierarchy and primary CTA.</li><li><strong>Vehicle‑type price tables</strong> (sedan/SUV/pick‑up) and in/out scope descriptions.</li><li><strong>Visual sections</strong> with photos &amp; videos (before/after) + testimonials and trust badges.</li><li><strong>Sticky mobile CTA</strong> and short form (name, location, vehicle type, service).</li><li><strong>WhatsApp/call integration</strong> with click/event tracking.</li><li><strong>Local on‑page SEO</strong>: headings/titles/meta, Local Schema, NAP, embedded map.</li><li><strong>Performance</strong>: LiteSpeed, WebP/AVIF images, lazy load, CLS/LCP control.</li><li><strong>AA accessibility</strong>: contrast, ALT, focus, roles.</li><li><strong>Simplified copy</strong> and confidence‑building microcopy.</li><li><strong>Analytics</strong>: <strong>GA4</strong> + <strong>Google Search Console</strong> (contact/booking events).</li></ul>"
+          },
+          {
+           "type": "divider",
+           "height": "25px",
+           "line": false,
+           "lineStyle": {
+            "height": "25px"
+           },
+           "classes": [],
+           "dclasses": [
+            "divider"
+           ]
+          },
+          {
+           "type": "html",
+           "html": "<h5><strong>Stack</strong></h5>",
+           "keepLast": false,
+           "classes": [
+            "font_line_height_1-2"
+           ],
+           "style": {}
+          },
+          {
+           "type": "list",
+           "icon": "dot",
+           "spacing": "default",
+           "html": "<ul><li>WordPress (Elementor)</li><li>LiteSpeed Cache</li><li>Square (booking)</li><li>Google Business Profile (GMB)</li><li>GA4</li><li>Google Search Console</li><li>WebP/AVIF</li><li>ChatGPT (ideation, English copy &amp; QA).</li></ul>"
+          },
+          {
+           "type": "divider",
+           "height": "25px",
+           "line": false,
+           "lineStyle": {
+            "height": "25px"
+           },
+           "classes": [],
+           "dclasses": [
+            "divider"
+           ]
+          },
+          {
+           "type": "html",
+           "html": "<h5><strong>Timeline</strong></h5>",
+           "keepLast": false,
+           "classes": [
+            "font_line_height_1-2"
+           ],
+           "style": {}
+          },
+          {
+           "type": "html",
+           "html": "<p>3–5 weeks</p>",
+           "keepLast": false,
+           "classes": [],
+           "style": {}
+          },
+          {
+           "type": "divider",
+           "height": "25px",
+           "line": false,
+           "lineStyle": {
+            "height": "25px"
+           },
+           "classes": [],
+           "dclasses": [
+            "divider"
+           ]
+          },
+          {
+           "type": "html",
+           "html": "<h5><strong>Impact</strong></h5>",
+           "keepLast": false,
+           "classes": [
+            "font_line_height_1-2"
+           ],
+           "style": {}
+          },
+          {
+           "type": "list",
+           "icon": "dot",
+           "spacing": "default",
+           "html": "<ul><li>+25–40% CTA clicks (WhatsApp/call)</li><li>LCP &lt; 2.5s on mobile</li><li>CLS &lt; 0.1, higher CTA click‑through (WhatsApp/call)</li><li>Clearer navigation</li><li>Improved local visibility (GMB + SEO)</li><li>We’ll update figures after 30 days of data.</li></ul>"
+          },
+          {
+           "type": "divider",
+           "height": "25px",
+           "line": false,
+           "lineStyle": {
+            "height": "25px"
+           },
+           "classes": [],
+           "dclasses": [
+            "divider"
+           ]
+          },
+          {
+           "type": "html",
+           "html": "<h5><strong>Deliverables</strong></h5>",
+           "keepLast": false,
+           "classes": [
+            "font_line_height_1-2"
+           ],
+           "style": {}
+          },
+          {
+           "type": "list",
+           "icon": "dot",
+           "spacing": "default",
+           "html": "<ul><li>Fully functional WordPress website</li><li>Responsive (mobile/tablet/desktop)</li><li>Vehicle‑type price tables</li><li>Booking flow with Square (button/embed)</li><li>On‑page SEO applied</li><li>Speed optimization (LiteSpeed, WebP/AVIF, lazy load)</li><li>Embedded map with service area</li></ul>"
+          },
+          {
+           "type": "cta",
+           "style_name": "arrow-animation",
+           "href": "https://mobilespotoncalifornia.com/",
+           "target": "_blank",
+           "label": "View website",
+           "tag": "h6",
+           "classes": [
+            "hover_color_000000",
+            "text_hover_color_ffffff",
+            "border_color_636363",
+            "border_thickness_1px",
+            "border_radius_100px"
+           ],
+           "style": {
+            "margin-top": "50px",
+            "--nectar-text-color": "#3a3a3a",
+            "--nectar-button-color": "var(--nectar-default)",
+            "--nectar-button-color-hover": "#000000",
+            "--nectar-text-color-hover": "#ffffff",
+            "--nectar-icon-gap": "10px"
+           },
+           "wrapStyle": {
+            "padding-top": "15px",
+            "padding-right": "40px",
+            "padding-bottom": "15px",
+            "padding-left": "40px"
+           }
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "span": 8,
+     "xs": null,
+     "classes": [
+      "no-extra-padding",
+      "el_spacing_20px"
+     ],
+     "animation": "fade-in",
+     "bg": null,
+     "radius": null,
+     "link": null,
+     "children": [
+      {
+       "type": "video",
+       "src": "https://mattriz.com/wp-content/uploads/2025/10/Grabacion-de-pantalla-2025-12-05-a-las-5.41.59-p.m.mov",
+       "width": 1280,
+       "height": 720,
+       "radius": "none",
+       "poster": null,
+       "local": {
+        "base": "grabacion-de-pantalla-2025-12-05-a-las-5-41-59-p-m",
+        "width": 1600,
+        "height": 872,
+        "size": 1054648,
+        "dir": "/media/projects/spot-on-mobile-wash-detailing"
+       }
+      },
+      {
+       "type": "img",
+       "src": "https://mattriz.com/wp-content/uploads/2025/12/Captura-de-pantalla-2026-01-21-a-las-12.13.30-p.m-scaled.png",
+       "width": 2560,
+       "height": 1400,
+       "alt": "",
+       "align": null,
+       "maxWidth": "100%",
+       "custom": false,
+       "style": {},
+       "local": {
+        "base": "captura-de-pantalla-2026-01-21-a-las-12-13-30-p-m-scaled",
+        "widths": [
+         1600,
+         1200,
+         700
+        ],
+        "width": 1600,
+        "height": 875,
+        "dir": "/media/projects/spot-on-mobile-wash-detailing"
+       }
+      },
+      {
+       "type": "img",
+       "src": "https://mattriz.com/wp-content/uploads/2025/12/Captura-de-pantalla-2026-01-21-a-las-12.14.22-p.m-scaled.png",
+       "width": 2560,
+       "height": 1361,
+       "alt": "",
+       "align": null,
+       "maxWidth": "100%",
+       "custom": false,
+       "style": {},
+       "local": {
+        "base": "captura-de-pantalla-2026-01-21-a-las-12-14-22-p-m-scaled",
+        "widths": [
+         1600,
+         1200,
+         700
+        ],
+        "width": 1600,
+        "height": 851,
+        "dir": "/media/projects/spot-on-mobile-wash-detailing"
+       }
+      },
+      {
+       "type": "video",
+       "src": "https://mattriz.com/wp-content/uploads/2025/12/Grabacion-de-pantalla-2026-01-21-a-las-12.20.50-p.m.mp4",
+       "width": 1280,
+       "height": 720,
+       "radius": "none",
+       "poster": null,
+       "local": {
+        "base": "grabacion-de-pantalla-2026-01-21-a-las-12-20-50-p-m",
+        "width": 1600,
+        "height": 872,
+        "size": 1973624,
+        "dir": "/media/projects/spot-on-mobile-wash-detailing"
+       }
+      },
+      {
+       "type": "row",
+       "inner": true,
+       "fullWidth": null,
+       "bg": null,
+       "bgImage": null,
+       "bgVideo": null,
+       "padTop": null,
+       "padBottom": null,
+       "classes": [
+        "vc_row-o-equal-height"
+       ],
+       "columnMargin": "default",
+       "text": "dark",
+       "cols": [
+        {
+         "span": 6,
+         "xs": null,
+         "classes": [
+          "child_column"
+         ],
+         "animation": null,
+         "bg": null,
+         "radius": null,
+         "link": null,
+         "children": [
+          {
+           "type": "divider",
+           "height": "400px",
+           "line": false,
+           "lineStyle": {
+            "height": "400px"
+           },
+           "classes": [
+            "height_phone_400px"
+           ],
+           "dclasses": [
+            "divider"
+           ]
+          }
+         ]
+        },
+        {
+         "span": 6,
+         "xs": null,
+         "classes": [
+          "child_column",
+          "no-extra-padding"
+         ],
+         "animation": null,
+         "bg": null,
+         "radius": null,
+         "link": null,
+         "children": [
+          {
+           "type": "divider",
+           "height": "600px",
+           "line": false,
+           "lineStyle": {
+            "height": "600px"
+           },
+           "classes": [
+            "height_phone_400px"
+           ],
+           "dclasses": [
+            "divider"
+           ]
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": "video",
+       "src": "https://mattriz.com/wp-content/uploads/2025/12/Grabacion-de-pantalla-2026-01-21-a-las-12.15.02-p.m.mov",
+       "width": 1280,
+       "height": 720,
+       "radius": "none",
+       "poster": null,
+       "local": {
+        "base": "grabacion-de-pantalla-2026-01-21-a-las-12-15-02-p-m",
+        "width": 1600,
+        "height": 528,
+        "size": 325778,
+        "dir": "/media/projects/spot-on-mobile-wash-detailing"
+       }
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "type": "row",
+   "inner": false,
+   "fullWidth": "section",
+   "bg": "#000000",
+   "bgImage": null,
+   "bgVideo": null,
+   "padTop": "10px",
+   "padBottom": "100px",
+   "classes": [],
+   "columnMargin": "default",
+   "text": "dark",
+   "cols": [
+    {
+     "span": 12,
+     "xs": null,
+     "classes": [
+      "no-extra-padding",
+      "el_spacing_0px"
+     ],
+     "animation": null,
+     "bg": null,
+     "radius": null,
+     "link": null,
+     "children": [
+      {
+       "type": "row",
+       "inner": true,
+       "fullWidth": null,
+       "bg": null,
+       "bgImage": null,
+       "bgVideo": null,
+       "padTop": "5%",
+       "padBottom": "5%",
+       "classes": [],
+       "columnMargin": "default",
+       "text": "dark",
+       "cols": [
+        {
+         "span": 12,
+         "xs": null,
+         "classes": [
+          "child_column",
+          "no-extra-padding"
+         ],
+         "animation": null,
+         "bg": null,
+         "radius": null,
+         "link": null,
+         "children": [
+          {
+           "type": "scrolling",
+           "text": "Explore More",
+           "classes": [
+            "font_size_6vw",
+            "font_size_mobile_10vw",
+            "text_space_medium"
+           ]
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": "postgrid"
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

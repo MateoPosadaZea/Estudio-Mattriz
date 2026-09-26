@@ -1,0 +1,323 @@
+---
+// Filas de WPBakery (modelo de tools/projects/extract.py) con las reglas de layout de Salient:
+// contenedor de 1300px con 70px a los lados (6 % en mobile), columnas en /12 con canal (column margin)
+// de 50px por defecto, filas de alto completo, filas a sangre (full-width-content) sin canal.
+import Element from './Element.astro';
+import { isDark, pct, largest, srcset } from './tone';
+import { langOf, localize } from '../../i18n';
+
+const lang = langOf(Astro.url);
+
+interface Props {
+  rows: any[];
+  bg: string;
+  slug: string;
+  /** Cuántas filas de este nivel cargan sus imágenes de inmediato (las primeras de la página). */
+  eagerRows?: number;
+}
+const { rows, bg, slug, eagerRows = 0 } = Astro.props;
+
+const gutterOf = (row: any) => {
+  if (row.classes.includes('column-margin-4pct')) return '4%';
+  if (/^\d+px$/.test(row.columnMargin ?? '')) return row.columnMargin;
+  if (row.columnMargin === 'none' || row.fullWidth === 'content') return '0px';
+  return '50px';
+};
+---
+
+{
+  rows.map((row, rowIndex) => {
+    const eager = rowIndex < eagerRows;
+    const rowBg = row.bg || bg;
+    const dark = isDark(rowBg);
+    const gutter = gutterOf(row);
+    const c: string[] = row.classes;
+    // Todas las variables se escriben en cada fila: si no, una fila interna heredaría las de su padre.
+    const rp = pct(c, 'right_padding_')?.replace('pct', '%');
+    const tabletZero = c.includes('right_padding_tablet_0px');
+    const style = [
+      `--row-bg:${row.bg || 'transparent'}`,
+      `--pt:${row.padTop || '0px'}`,
+      `--pb:${row.padBottom || '0px'}`,
+      `--gutter-d:${gutter}`,
+      `--gutter-m:${gutter === '4%' ? '50px' : gutter}`,
+      `--pr:${rp && !tabletZero ? rp : '0px'}`,
+      `--pr-d:${rp && tabletZero ? rp : '0px'}`,
+      `--pl:${pct(c, 'left_padding_')?.replace('pct', '%') ?? '0px'}`,
+      `--mt:${parseFloat(pct(c, 'top_margin_') ?? '0')}`,
+      `--mb:${parseFloat(pct(c, 'bottom_margin_') ?? '0')}`,
+      `--pt-p:${c.includes('top_padding_phone_10px') ? '10px' : row.padTop || '0px'}`,
+    ].join(';');
+    return (
+      <div
+        class:list={[
+          'wp-row',
+          row.inner ? 'wp-row--inner' : `wp-row--${row.fullWidth ?? 'boxed'}`,
+          dark ? 'tone-light' : 'tone-dark',
+          {
+            'is-full-height': c.includes('vc_row-o-full-height'),
+            'cols-middle': c.includes('vc_row-o-columns-middle'),
+            'content-middle': c.includes('vc_row-o-content-middle'),
+            'content-bottom': c.includes('vc_row-o-content-bottom'),
+            'equal-height': c.includes('vc_row-o-equal-height'),
+            'has-bg': row.bg,
+          },
+        ]}
+        style={style}
+      >
+        {row.bgImage?.local && (
+          <img class="wp-row__bg" src={largest(row.bgImage.local)} srcset={srcset(row.bgImage.local)} sizes="100vw" alt="" loading={eager ? 'eager' : 'lazy'} decoding="async" width={row.bgImage.local.width} height={row.bgImage.local.height} />
+        )}
+        {row.bgVideo?.local && (
+          <video class="wp-row__bg" data-src={`${row.bgVideo.local.dir}/${row.bgVideo.local.base}.mp4`} poster={`${row.bgVideo.local.dir}/${row.bgVideo.local.base}-poster.webp`} muted loop playsinline preload="none" aria-hidden="true" />
+        )}
+        <div class="wp-row__inner">
+          <div class="wp-cols">
+            {row.cols.map((col: any) => {
+              const cc: string[] = col.classes;
+              const padPct = pct(cc, 'padding-')?.replace('-percent', '');
+              const spacing = pct(cc, 'el_spacing_');
+              const colStyle = [
+                `--span:${col.span}`,
+                col.xs && `--xs:${col.xs}`,
+                padPct && `--cp:${padPct}%`,
+                padPct === '5' && '--cp-m:6%',
+                spacing && `--sp:${spacing}`,
+                col.bg && `--col-bg:${col.bg}`,
+                col.radius && `--col-radius:${col.radius}`,
+              ]
+                .filter(Boolean)
+                .join(';');
+              const colDark = col.bg ? isDark(col.bg) : dark;
+              return (
+                <div
+                  class:list={[
+                    'wp-col',
+                    colDark ? 'tone-light' : 'tone-dark',
+                    {
+                      'has-pad': padPct,
+                      'has-spacing': spacing,
+                      'is-sticky': cc.includes('nectar-sticky-column-css'),
+                      'is-centered': cc.includes('centered-text'),
+                      'pr-15': cc.includes('right_padding_desktop_15pct'),
+                      'mt-tablet-30': cc.includes('top_margin_tablet_30px'),
+                      'one-fourths': cc.includes('one-fourths'),
+                      'xs-half': col.xs === 6,
+                      'has-bg': col.bg,
+                    },
+                  ]}
+                  style={colStyle}
+                  data-animate={col.animation === 'fade-in-from-bottom' ? 'fade-up' : col.animation === 'fade-in' ? 'fade' : undefined}
+                >
+                  {col.link && <a class="wp-col__link" href={localize(col.link.replace('https://mattriz.com', '') || '/', lang)} aria-hidden="true" tabindex="-1" />}
+                  <div class="wp-col__inner">
+                    {col.children.map((el: any) =>
+                      el.type === 'row' ? <Astro.self rows={[el]} bg={col.bg || rowBg} slug={slug} eagerRows={eager ? 1 : 0} /> : <Element el={el} slug={slug} eager={eager} />,
+                    )}
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </div>
+    );
+  })
+}
+
+<style is:global>
+  .wp-row {
+    --container: min(100vw - 140px, 1300px);
+    --gutter: var(--gutter-d);
+    position: relative;
+    padding-top: var(--pt, 0);
+    padding-bottom: var(--pb, 0);
+    padding-left: var(--pl, 0);
+    padding-right: max(var(--pr), var(--pr-d));
+    margin-top: calc(var(--mt, 0) / 100 * var(--container));
+    margin-bottom: calc(var(--mb, 0) / 100 * var(--container));
+    background: var(--row-bg);
+  }
+
+  .wp-row--inner {
+    padding-left: 0;
+  }
+
+  .wp-row__bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  .wp-row__inner {
+    position: relative;
+  }
+
+  /* Filas "full-width-section" y normales: contenido en el contenedor de 1300px. */
+  .wp-row--section > .wp-row__inner,
+  .wp-row--boxed > .wp-row__inner {
+    width: var(--container);
+    margin: 0 auto;
+  }
+
+  .wp-cols {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 calc(var(--gutter) / -2);
+  }
+
+  .wp-row.is-full-height > .wp-row__inner > .wp-cols {
+    min-height: 100vh;
+  }
+
+  .wp-row.cols-middle > .wp-row__inner > .wp-cols {
+    align-items: center;
+  }
+
+  .wp-row:not(.equal-height):not(.cols-middle) > .wp-row__inner > .wp-cols {
+    align-items: flex-start;
+  }
+
+  .wp-col {
+    position: relative;
+    width: calc(var(--span) / 12 * 100%);
+    padding: 0 calc(var(--gutter) / 2);
+    display: flex;
+    flex-direction: column;
+  }
+
+  .wp-col.has-pad {
+    padding-top: var(--cp);
+    padding-bottom: var(--cp);
+  }
+
+  .wp-row--content > .wp-row__inner > .wp-cols > .wp-col.has-pad {
+    padding-left: var(--cp);
+    padding-right: var(--cp);
+  }
+
+  .wp-col.has-bg {
+    background: var(--col-bg);
+    border-radius: var(--col-radius, 0);
+  }
+
+  .content-middle > .wp-row__inner > .wp-cols > .wp-col > .wp-col__inner {
+    margin-block: auto;
+  }
+
+  .content-bottom > .wp-row__inner > .wp-cols > .wp-col > .wp-col__inner {
+    margin-top: auto;
+  }
+
+  .wp-col.is-centered {
+    text-align: center;
+  }
+
+  .wp-col__link {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+  }
+
+  /* Espaciado entre elementos: 1.5em por defecto en textos, el_spacing_N en columnas que lo definen. */
+  .wp-col__inner > * {
+    margin-bottom: 0;
+  }
+
+  .wp-col__inner > .wp-text {
+    margin-bottom: 1.5em;
+  }
+
+  .wp-col.has-spacing > .wp-col__inner > * {
+    margin-bottom: var(--sp);
+  }
+
+  /* El último elemento no suma espacio, salvo que tenga un margen propio (estilo en línea del vivo). */
+  .wp-col__inner > :last-child:not([style*='margin-bottom']) {
+    margin-bottom: 0;
+  }
+
+  /* padding-N-percent en filas con canal: solo arriba (así mide el vivo). */
+  .wp-row--section > .wp-row__inner > .wp-cols > .wp-col.has-pad {
+    padding-bottom: 0;
+  }
+
+  @media (min-width: 1000px) {
+    .wp-col.pr-15 > .wp-col__inner {
+      padding-right: 15%;
+    }
+
+    .wp-col.is-sticky > .wp-col__inner {
+      position: sticky;
+      top: calc(var(--header-top) + var(--header-height) + 30px);
+    }
+
+    .wp-col.is-sticky {
+      align-self: stretch;
+    }
+  }
+
+  @media (max-width: 999px) {
+    .wp-row {
+      --container: 88vw;
+      --gutter: var(--gutter-m);
+      padding-right: var(--pr);
+    }
+
+    .wp-col {
+      width: 100%;
+    }
+
+    .wp-col.one-fourths {
+      width: 50%;
+    }
+
+    /* Columnas apiladas: separadas por el canal de la fila. */
+    .wp-cols > .wp-col:not(:last-child):not(.one-fourths) {
+      margin-bottom: var(--gutter);
+    }
+
+    .wp-col.mt-tablet-30 {
+      margin-top: 30px;
+    }
+
+    .wp-row--content > .wp-row__inner > .wp-cols > .wp-col.has-pad {
+      padding: var(--cp-m, var(--cp));
+    }
+  }
+
+  @media (max-width: 690px) {
+    .wp-col.xs-half {
+      width: 50%;
+    }
+
+    .wp-cols > .wp-col.xs-half:not(:last-child) {
+      margin-bottom: 0;
+    }
+
+    .wp-row {
+      padding-top: var(--pt-p);
+    }
+  }
+
+  /* Texto según el fondo real. */
+  .tone-light {
+    color: var(--color-white);
+  }
+
+  .tone-dark {
+    color: var(--color-ink);
+  }
+
+  html.js .wp-col[data-animate='fade'] {
+    opacity: 0;
+    transition: opacity 0.8s ease;
+  }
+
+  html.js .wp-col[data-animate='fade'].is-in {
+    opacity: 1;
+  }
+</style>

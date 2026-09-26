@@ -1,0 +1,220 @@
+---
+import { NAV, SITE } from '../data/site';
+import ThemeToggle from './ThemeToggle.astro';
+import { langOf, localize, alternate, ui } from '../i18n';
+
+const path = Astro.url.pathname;
+const lang = langOf(Astro.url);
+const t = ui(lang);
+const other = lang === 'es' ? 'en' : 'es';
+---
+
+<!--
+  v2: menú mobile a pantalla completa en el verde de marca.
+  Barra superior (logo + "Close"), links grandes en Noe Display que entran
+  escalonados con máscara, e idioma y correo en las esquinas de abajo.
+  La lógica está en src/scripts/menu.ts.
+-->
+<div class="mobile-menu" id="mobile-menu" role="dialog" aria-modal="true" aria-label={t.menu} hidden>
+  <div class="mobile-menu__bar">
+    <a class="mobile-menu__logo" href={localize('/', lang)}>
+      <img src="/images/logo-mattriz.png" width="433" height="354" alt="Mattriz Studio" />
+    </a>
+    <button class="mobile-menu__close" type="button" data-menu-close aria-label={t.closeMenu}>
+      <span class="mask"><span>{t.close}</span></span>
+    </button>
+  </div>
+
+  <ul class="mobile-menu__list">
+    {
+      NAV.map((item, i) => (
+        <li style={`--i:${i}`}>
+          <a class="mask" href={localize(item.href, lang)} aria-current={localize(item.href, lang) === path ? 'page' : undefined}>
+            <span>{t.nav[i]}</span>
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+
+  <a class="mobile-menu__talk" href={SITE.calendly} target="_blank" rel="noopener">
+    <span class="mask"><span>{t.talk} ↗</span></span>
+  </a>
+
+  <div class="mobile-menu__foot">
+    <div class="mobile-menu__prefs">
+      <a class="mobile-menu__lang mask" href={alternate(Astro.url, other)} hreflang={other} lang={other}>
+        <span>{t.switchLong}</span>
+      </a>
+      <ThemeToggle class="mobile-menu__theme" />
+    </div>
+    <a class="mobile-menu__mail mask" href={`mailto:${SITE.email}`}><span>{SITE.email}</span></a>
+  </div>
+</div>
+
+<style>
+  .mobile-menu {
+    /* Fondo negro y texto blanco: el verde queda solo para el botón. */
+    --menu-bg: #0a0a0a;
+    --menu-fg: var(--color-white);
+    --menu-ease: cubic-bezier(0.7, 0, 0.2, 1);
+    position: fixed;
+    inset: 0;
+    z-index: 200;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    height: 100dvh;
+    padding: 0 6vw max(28px, env(safe-area-inset-bottom));
+    background: var(--menu-bg);
+    color: var(--menu-fg);
+    /* Cortina: baja desde arriba al abrir y sube al cerrar. */
+    clip-path: inset(0 0 100% 0);
+    transition: clip-path 0.7s var(--menu-ease);
+  }
+
+  .mobile-menu[hidden] {
+    display: none;
+  }
+
+  .mobile-menu.is-open {
+    clip-path: inset(0 0 0 0);
+  }
+
+  /* Misma altura y posición que la píldora del header para que el logo no salte. */
+  .mobile-menu__bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: var(--header-height-mobile);
+    margin-top: var(--header-top);
+  }
+
+  .mobile-menu__logo img {
+    width: auto;
+    height: 30px;
+    /* El archivo del logo es negro: en el menú (fondo negro) se ve en blanco. */
+    filter: invert(1);
+  }
+
+  .mobile-menu__close {
+    padding: 12px 0 12px 12px;
+    font-size: 18px;
+    line-height: 1.2;
+  }
+
+  .mobile-menu__list {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.08em;
+    font-family: var(--font-display);
+    font-size: clamp(52px, 15vw, 96px);
+    line-height: 1.02;
+    letter-spacing: -0.02em;
+  }
+
+  .mobile-menu__talk {
+    align-self: flex-start;
+    margin-bottom: clamp(32px, 6vh, 56px);
+    padding: 14px 24px;
+    border-radius: var(--radius-pill);
+    background: var(--color-brand-green);
+    color: var(--color-black);
+    font-size: 16px;
+    line-height: 1.2;
+  }
+
+  .mobile-menu__talk .mask > span {
+    --i: 5;
+  }
+
+  .mobile-menu__prefs {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  /* El botón de tema entra con el pie del menú. */
+  .mobile-menu :global(.mobile-menu__theme) {
+    margin: -10px 0 -10px -4px;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  .mobile-menu.is-open :global(.mobile-menu__theme) {
+    opacity: 1;
+    transition: opacity 0.6s 0.6s;
+  }
+
+  .mobile-menu__foot {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 16px;
+    font-size: 16px;
+    line-height: 1.4;
+  }
+
+  /* Máscara: el texto sube desde debajo de su propia línea. */
+  .mask {
+    display: inline-block;
+    overflow: hidden;
+    vertical-align: top;
+  }
+
+  .mask > span {
+    display: inline-block;
+    transform: translateY(105%);
+    transition: transform 0.5s var(--menu-ease);
+  }
+
+  .mobile-menu__list .mask > span {
+    padding-bottom: 0.06em;
+  }
+
+  .mobile-menu.is-open .mask > span {
+    transform: none;
+    transition: transform 0.9s cubic-bezier(0.2, 1, 0.3, 1);
+    transition-delay: calc(0.3s + var(--i, 0) * 0.06s);
+  }
+
+  .mobile-menu.is-open .mobile-menu__bar .mask > span {
+    transition-delay: 0.25s;
+  }
+
+  .mobile-menu.is-open .mobile-menu__foot .mask > span {
+    transition-delay: 0.6s;
+  }
+
+  /* Subrayado del ítem actual y al pasar el mouse. */
+  .mobile-menu__list a > span {
+    background: linear-gradient(currentColor, currentColor) 0 92% / 0 1.5px no-repeat;
+  }
+
+  .mobile-menu__list a[aria-current='page'] > span,
+  .mobile-menu__list a:hover > span {
+    background-size: 100% 1.5px;
+  }
+
+  .mobile-menu a:focus-visible,
+  .mobile-menu button:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 4px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .mobile-menu,
+    .mask > span,
+    .mobile-menu.is-open .mask > span {
+      transition: none;
+    }
+
+    .mobile-menu,
+    .mask > span {
+      clip-path: none;
+      transform: none;
+    }
+  }
+</style>

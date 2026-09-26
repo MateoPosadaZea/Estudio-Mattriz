@@ -1,0 +1,128 @@
+---
+// v2: hero del home. Titular gigante en Noe Display que sube palabra por palabra,
+// el gradiente verde de marca detrás, y una franja inferior con el subtítulo y el enlace.
+import AnimatedGradient from '../AnimatedGradient.astro';
+import { home } from '../../data/home';
+import { langOf, ui } from '../../i18n';
+
+const lang = langOf(Astro.url);
+const { HERO } = home(lang);
+const t = ui(lang);
+---
+
+<section class="h-hero">
+  <AnimatedGradient color1="brand" speed={250} blend="organic" />
+  <div class="h-hero__inner">
+    <p class="h-hero__status case-in">
+      <span class="h-hero__pulse" aria-hidden="true"></span>{t.accepting}
+    </p>
+    <h1 class="h-hero__title" aria-label={HERO.title}>
+      {
+        HERO.title.split(' ').map((w, i) => (
+          <span class="case-mask" aria-hidden="true">
+            <span style={`--d:${i * 70}ms`}>{w}</span>
+          </span>
+        ))
+      }
+    </h1>
+    <div class="h-hero__foot case-in" style="--d:500ms">
+      <p class="h-hero__subtitle">{HERO.subtitle}</p>
+      <a class="h-hero__cta" href={HERO.cta.href}>
+        {HERO.cta.label} <span aria-hidden="true">↓</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .h-hero {
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    min-height: 100vh;
+    min-height: 100svh;
+    padding: calc(var(--header-top) + var(--header-height) + 40px) var(--pad) clamp(32px, 5vw, 64px);
+    overflow: hidden;
+  }
+
+  .h-hero__inner {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+  }
+
+  .h-hero__status {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: clamp(20px, 2.4vw, 36px);
+    font-size: 15px;
+    color: var(--muted);
+  }
+
+  .h-hero__pulse {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--color-status-green);
+    box-shadow: 0 0 0 0 rgba(85, 201, 28, 0.6);
+    animation: h-pulse 2s var(--ease-pulse) infinite;
+  }
+
+  @keyframes h-pulse {
+    to {
+      box-shadow: 0 0 0 10px rgba(85, 201, 28, 0);
+    }
+  }
+
+  .h-hero__title {
+    max-width: 11em;
+    margin-left: -0.04em;
+    font-family: var(--font-display);
+    font-size: clamp(56px, 10vw, 180px);
+    font-weight: 500;
+    line-height: 0.92;
+    letter-spacing: -0.035em;
+  }
+
+  .h-hero__foot {
+    display: grid;
+    gap: 24px;
+    margin-top: clamp(32px, 4vw, 64px);
+    padding-top: 24px;
+    border-top: 1px solid var(--line);
+  }
+
+  @media (min-width: 1000px) {
+    .h-hero__foot {
+      grid-template-columns: 1fr auto;
+      align-items: end;
+      gap: 6vw;
+    }
+  }
+
+  .h-hero__subtitle {
+    max-width: 30em;
+    font-size: clamp(19px, 1.7vw, 26px);
+    line-height: 1.3;
+    letter-spacing: -0.015em;
+  }
+
+  .h-hero__cta {
+    justify-self: start;
+    display: inline-flex;
+    gap: 0.5em;
+    padding-bottom: 4px;
+    border-bottom: 1px solid currentColor;
+    font-size: 17px;
+    white-space: nowrap;
+  }
+
+  .h-hero__cta span {
+    transition: transform 0.4s cubic-bezier(0.2, 1, 0.3, 1);
+  }
+
+  .h-hero__cta:hover span {
+    transform: translateY(3px);
+  }
+</style>

@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Spot On Mobile Detailing — Case Study · Mattriz Studio</title>
+<meta name="robots" content="noindex, nofollow">
+<meta property="og:title" content="Spot On Mobile Detailing — Case Study · Mattriz Studio">
+<meta property="og:description" content="How a mobile detailer went from taking bookings by DM to a system that books, charges and follows up on its own — including a corporate fleet contract running on autopilot.">
+<meta property="og:image" content="https://mattriz.com/work/spot-on/img/spot-on-hero.png">
+<meta property="og:url" content="https://mattriz.com/work/spot-on/case-study.html">
+<meta property="og:type" content="article">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+<style>
+:root, [data-theme="dark"] {
+  --bg: #050505;
+  --surface: #0f0f0f;
+  --surface-elevated: #1a1a1a;
+  --text-primary: #ffffff;
+  --text-secondary: #b3b3b3;
+  --text-muted: #737373;
+  --text-faded: #525252;
+  --accent-green: #1f7a4e;
+  --accent-green-bright: #2d9966;
+  --border: rgba(255,255,255,0.08);
+  --border-strong: rgba(255,255,255,0.15);
+  --pill-bg: #ffffff;
+  --pill-text: #0a0a0a;
+  --glow-opacity: 1;
+  --shadow-header: 0 4px 24px rgba(0,0,0,0.4);
+}
+
+[data-theme="light"] {
+  --bg: #fafafa;
+  --surface: #ffffff;
+  --surface-elevated: #ffffff;
+  --text-primary: #0a0a0a;
+  --text-secondary: #404040;
+  --text-muted: #737373;
+  --text-faded: #a3a3a3;
+  --accent-green: #1f7a4e;
+  --accent-green-bright: #15803d;
+  --border: rgba(0,0,0,0.08);
+  --border-strong: rgba(0,0,0,0.15);
+  --pill-bg: #0a0a0a;
+  --pill-text: #ffffff;
+  --glow-opacity: 0.35;
+  --shadow-header: 0 4px 20px rgba(0,0,0,0.08);
+}
+
+:root {
+  --font-display: 'Playfair Display', Georgia, serif;
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+  background: var(--bg);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  transition: background 0.3s ease, color 0.3s ease;
+  scroll-behavior: smooth;
+}
+
+body { min-height: 100vh; }
+
+/* GLOW */
+.glow {
+  position: fixed;
+  border-radius: 50%;
+  filter: blur(140px);
+  pointer-events: none;
+  opacity: var(--glow-opacity);
+  z-index: 0;
+}
+.glow-right {
+  width: 700px; height: 700px;
+  right: -250px; top: 10%;
+  background: radial-gradient(circle, var(--accent-green) 0%, transparent 60%);
+}
+.glow-left {
+  width: 500px; height: 500px;
+  left: -200px; top: 55%;
+  background: radial-gradient(circle, var(--accent-green) 0%, transparent 60%);
+  opacity: calc(var(--glow-opacity) * 0.55);
+}
+
+/* HEADER */
+header {
+  position: fixed;
+  top: 1.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: calc(100% - 3rem);
+  max-width: 1000px;
+  background: var(--pill-bg);
+  border-radius: 100px;
+  padding: 0.85rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 100;
+  box-shadow: var(--shadow-header);
+  transition: background 0.3s ease, box-shadow 0.3s ease;
+}
+.logo-mark { display: flex; align-items: center; gap: 0.5rem; }
+.logo-m { width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; }
+.logo-m img { width: 100%; height: 100%; object-fit: contain; }
+[data-theme="dark"] .logo-m img { filter: invert(0); }
+[data-theme="light"] .logo-m img { filter: invert(1); }
+.header-meta { display: flex; align-items: center; gap: 1.5rem; font-size: 0.85rem; color: var(--pill-text); font-weight: 500; }
+.header-meta-divider { width: 1px; height: 16px; background: rgba(255,255,255,0.15); }
+[data-theme="light"] .header-meta-divider { background: rgba(255,255,255,0.2); }
+.client-name { font-weight: 600; color: var(--pill-text); }
+.proposal-tag { color: rgba(255,255,255,0.5); font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.1em; font-weight: 500; }
+[data-theme="light"] .proposal-tag { color: rgba(255,255,255,0.6); }
+.theme-toggle {
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.12);
+  color: var(--pill-text);
+  cursor: pointer; display: flex; align-items: center; justify-content: center;
+  width: 32px; height: 32px; border-radius: 50%; margin-left: 1rem;
+  transition: all 0.2s ease; padding: 0;
+}
+[data-theme="light"] .theme-toggle { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.15); }
+.theme-toggle:hover { background: rgba(255,255,255,0.15); }
+.theme-toggle svg { width: 14px; height: 14px; fill: var(--pill-text); }
+
+@media (max-width: 720px) {
+  header { padding: 0.75rem 1rem; }
+  .header-meta { gap: 0.75rem; font-size: 0.78rem; }
+  .header-meta-divider { display: none; }
+  .proposal-tag { display: none; }
+}
+
+/* LAYOUT */
+.container {
+  position: relative;
+  z-index: 1;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 9rem 2rem 6rem;
+}
+
+@media (max-width: 720px) {
+  .container { padding: 7rem 1.5rem 4rem; }
+}
+
+section.block { margin-bottom: 6rem; }
+
+.eyebrow {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--accent-green-bright);
+  font-weight: 500;
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+.eyebrow::before { content: ""; width: 24px; height: 1px; background: var(--accent-green-bright); }
+
+/* HERO */
+.hero-title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(2.6rem, 7vw, 4.8rem);
+  line-height: 1.04;
+  letter-spacing: -0.02em;
+  margin-bottom: 1.8rem;
+  color: var(--text-primary);
+}
+.hero-title .italic { font-style: italic; font-weight: 400; }
+.hero-lead {
+  font-size: clamp(1.15rem, 2vw, 1.4rem);
+  line-height: 1.5;
+  color: var(--text-secondary);
+  max-width: 740px;
+  margin-bottom: 3rem;
+}
+.hero-meta {
+  display: flex; gap: 3rem; flex-wrap: wrap;
+  padding-top: 2.5rem; border-top: 1px solid var(--border);
+}
+.hero-meta-item { display: flex; flex-direction: column; gap: 0.4rem; }
+.hero-meta-label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-muted); font-weight: 500; }
+.hero-meta-value { font-size: 1rem; color: var(--text-primary); font-weight: 500; }
+
+/* SECTION TITLES */
+.section-title {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(1.9rem, 4vw, 2.8rem);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  margin-bottom: 1.5rem;
+  color: var(--text-primary);
+}
+.section-title .italic { font-style: italic; font-weight: 400; }
+
+.body-text {
+  font-size: clamp(1rem, 1.5vw, 1.12rem);
+  line-height: 1.7;
+  color: var(--text-secondary);
+  margin-bottom: 1.3rem;
+  max-width: 780px;
+}
+.body-text:last-child { margin-bottom: 0; }
+.body-text strong { color: var(--text-primary); font-weight: 600; }
+
+/* PROBLEM LIST */
+.problem-list { list-style: none; margin-top: 2rem; max-width: 780px; }
+.problem-list li {
+  display: flex; gap: 1rem; padding: 1.1rem 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 1.05rem; color: var(--text-secondary); line-height: 1.5;
+}
+.problem-list li:last-child { border-bottom: none; }
+.problem-list li::before {
+  content: "×"; flex-shrink: 0; color: var(--text-muted);
+  font-size: 1.1rem; font-weight: 400; margin-top: 0.1rem;
+}
+
+/* BUILD GRID */
+.build-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
+  margin-top: 2.5rem;
+}
+@media (min-width: 720px) { .build-grid { grid-template-columns: 1fr 1fr; } }
+
+.build-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1.75rem;
+  transition: border-color 0.2s ease;
+}
+.build-card:hover { border-color: var(--border-strong); }
+.build-card-title {
+  font-size: 1.05rem; font-weight: 600; color: var(--text-primary);
+  line-height: 1.35; margin-bottom: 0.7rem; letter-spacing: -0.005em;
+}
+.build-card-desc { font-size: 0.92rem; color: var(--text-secondary); line-height: 1.55; }
+
+/* HIGHLIGHT BOX */
+.highlight-box {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent-green-bright);
+  border-radius: 0 12px 12px 0;
+  padding: 2rem 2.25rem;
+  margin-top: 2.5rem;
+}
+.highlight-box .body-text { margin-bottom: 0; }
+
+/* RESULTS / STATS */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.25rem;
+  margin-top: 2.5rem;
+}
+@media (min-width: 720px) { .stats-grid { grid-template-columns: repeat(3, 1fr); } }
+
+.stat-block {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1.6rem 1.5rem;
+  display: flex; flex-direction: column; gap: 0.5rem;
+}
+.stat-value {
+  font-family: var(--font-display);
+  font-size: 2.2rem; font-weight: 700; color: var(--text-primary);
+  letter-spacing: -0.02em; line-height: 1;
+}
+.stat-value.tbd { color: var(--text-muted); font-size: 1.5rem; font-style: italic; }
+.stat-label { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-muted); font-weight: 500; line-height: 1.35; }
+
+/* TIMELINE */
+.timeline { margin-top: 2.5rem; max-width: 780px; }
+.timeline-item {
+  display: grid;
+  grid-template-columns: 130px 1fr;
+  gap: 1.5rem;
+  padding: 1.1rem 0;
+  border-bottom: 1px solid var(--border);
+  align-items: baseline;
+}
+.timeline-item:last-child { border-bottom: none; }
+.timeline-date {
+  font-size: 0.82rem; color: var(--accent-green-bright);
+  font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em;
+}
+.timeline-text { font-size: 0.98rem; color: var(--text-secondary); line-height: 1.5; }
+.timeline-text strong { color: var(--text-primary); font-weight: 600; }
+
+@media (max-width: 600px) {
+  .timeline-item { grid-template-columns: 1fr; gap: 0.3rem; }
+}
+
+/* CLOSE / CTA */
+.close-block {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 3rem 2.5rem;
+  text-align: center;
+  margin-top: 2rem;
+}
+.close-title {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(1.7rem, 4vw, 2.4rem);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  margin-bottom: 1rem;
+  color: var(--text-primary);
+}
+.close-title .italic { font-style: italic; font-weight: 400; }
+.close-text { font-size: 1.05rem; color: var(--text-secondary); line-height: 1.6; max-width: 560px; margin: 0 auto 2rem; }
+.close-cta {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  padding: 0.95rem 1.9rem;
+  border: 1px solid var(--border-strong);
+  border-radius: 100px;
+  color: var(--text-primary);
+  text-decoration: none;
+  font-size: 0.98rem; font-weight: 500;
+  transition: all 0.2s ease;
+}
+.close-cta:hover { background: var(--bg); border-color: var(--accent-green-bright); }
+
+/* FOOTER */
+.footer {
+  position: relative; z-index: 1;
+  text-align: center;
+  padding: 2.5rem 2rem 3rem;
+  border-top: 1px solid var(--border);
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  line-height: 1.7;
+}
+.footer a { color: var(--text-secondary); text-decoration: none; }
+
+/* NOTE (internal placeholder marker) */
+.tbd-note {
+  font-size: 0.82rem;
+  color: var(--text-faded);
+  font-style: italic;
+  margin-top: 1rem;
+}
+
+/* FIGURES */
+.figure {
+  margin-top: 2.5rem;
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  background: var(--surface);
+}
+.figure img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+.figure-caption {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  padding: 0.9rem 1.25rem;
+  border-top: 1px solid var(--border);
+  letter-spacing: 0.01em;
+}
+.figure.hero-shot { margin-top: 0; margin-bottom: 3rem; }
+
+/* SCROLL REVEAL ANIMATIONS */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1), transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
+}
+.reveal.in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+/* stagger children: cards, list items, timeline rows, stats */
+.stagger > * {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1), transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.stagger.in-view > * {
+  opacity: 1;
+  transform: translateY(0);
+}
+.stagger.in-view > *:nth-child(1) { transition-delay: 0.05s; }
+.stagger.in-view > *:nth-child(2) { transition-delay: 0.13s; }
+.stagger.in-view > *:nth-child(3) { transition-delay: 0.21s; }
+.stagger.in-view > *:nth-child(4) { transition-delay: 0.29s; }
+.stagger.in-view > *:nth-child(5) { transition-delay: 0.37s; }
+.stagger.in-view > *:nth-child(6) { transition-delay: 0.45s; }
+
+/* figure zoom-in subtle */
+.figure.reveal { transform: translateY(28px) scale(0.985); }
+.figure.reveal.in-view { transform: translateY(0) scale(1); }
+
+/* eyebrow line draw */
+.reveal .eyebrow::before {
+  width: 0;
+  transition: width 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.2s;
+}
+.reveal.in-view .eyebrow::before { width: 24px; }
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal, .stagger > *, .figure.reveal {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+  .reveal .eyebrow::before { width: 24px; transition: none; }
+}
+</style>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-6CMGETX7FE"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-6CMGETX7FE');
+</script>
+</head>
+<body>
+
+<div class="glow glow-right"></div>
+<div class="glow glow-left"></div>
+
+<header>
+  <div class="logo-mark">
+    <div class="logo-m">
+      <img src="data:image/webp;base64,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" alt="Mattriz Studio">
+    </div>
+  </div>
+  <div style="display: flex; align-items: center;">
+    <div class="header-meta">
+      <span class="proposal-tag">Case study</span>
+      <span class="header-meta-divider"></span>
+      <span class="client-name">Spot On</span>
+    </div>
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+      <svg id="themeIcon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path id="themeIconPath" d="M12 3a9 9 0 1 0 9 9c0-.46-.04-.92-.1-1.36a5.389 5.389 0 0 1-4.4 2.26 5.4 5.4 0 0 1-3.14-9.8c-.44-.06-.9-.1-1.36-.1z"/>
+      </svg>
+    </button>
+  </div>
+</header>
+
+<div class="container">
+
+  <!-- HERO -->
+  <section class="block">
+    <div class="eyebrow">Mattriz Studio · Case study</div>
+    <h1 class="hero-title">
+      One mobile detailer,<br>
+      <span class="italic">one system that runs itself.</span>
+    </h1>
+    <p class="hero-lead">
+      How Spot On Mobile Detailing went from taking bookings by DM to a system that books, charges and follows up on its own — including a recurring corporate fleet contract that runs without manual coordination.
+    </p>
+    <div class="hero-meta">
+      <div class="hero-meta-item">
+        <span class="hero-meta-label">Client</span>
+        <span class="hero-meta-value">Spot On Mobile Detailing</span>
+      </div>
+      <div class="hero-meta-item">
+        <span class="hero-meta-label">Location</span>
+        <span class="hero-meta-value">California, USA</span>
+      </div>
+      <div class="hero-meta-item">
+        <span class="hero-meta-label">Live since</span>
+        <span class="hero-meta-value">March 2026</span>
+      </div>
+    </div>
+    <div class="figure" style="margin-top: 3rem;">
+      <img src="img/spot-on-hero.png" alt="Spot On Mobile Detailing website — premium mobile detailing in the San Francisco Bay Area">
+      <div class="figure-caption">The Spot On site — 350+ vehicles detailed, 4.9★ rating, 95% repeat clients.</div>
+    </div>
+  </section>
+
+  <!-- PROBLEM -->
+  <section class="block">
+    <div class="eyebrow">The problem</div>
+    <h2 class="section-title">Running a detailing business <span class="italic">out of a phone.</span></h2>
+    <p class="body-text">
+      Spot On had the demand. What it didn't have was a system. Every booking, every quote, every payment lived in text threads and DMs — which meant the business only moved as fast as its owner could reply.
+    </p>
+    <ul class="problem-list">
+      <li>Bookings taken through Instagram DMs and texts, with no formal confirmation or close</li>
+      <li>Response times stretching up to two days — leads going cold while waiting</li>
+      <li>Quotes sent with no tracking: no way to know who opened, who booked, who walked</li>
+      <li>No way to take a deposit or payment before the job</li>
+      <li>No way to collect tips or structured feedback</li>
+      <li>Every corporate session coordinated by hand, slot by slot</li>
+    </ul>
+  </section>
+
+  <!-- WHAT WE BUILT -->
+  <section class="block">
+    <div class="eyebrow">What we built</div>
+    <h2 class="section-title">A booking and payment engine, <span class="italic">end to end.</span></h2>
+    <p class="body-text">
+      A system where a customer books, pays and schedules on their own — no back-and-forth, no manual step. The owner stopped being the bottleneck.
+    </p>
+    <div class="build-grid">
+      <div class="build-card">
+        <div class="build-card-title">Self-service booking</div>
+        <div class="build-card-desc">Customers pick a service, vehicle size, add-ons, date and time, and pay by card — all in one guided flow. The price is calculated live, and the appointment is scheduled automatically.</div>
+      </div>
+      <div class="build-card">
+        <div class="build-card-title">Payments that just work</div>
+        <div class="build-card-desc">Cards are charged the moment a booking is confirmed. If a charge goes through but the slot can't be scheduled, the system refunds automatically — no customer ever pays without an appointment.</div>
+      </div>
+      <div class="build-card">
+        <div class="build-card-title">Recurring memberships</div>
+        <div class="build-card-desc">Customers can subscribe to a maintenance plan instead of booking one-off, turning one-time jobs into predictable recurring revenue.</div>
+      </div>
+      <div class="build-card">
+        <div class="build-card-title">Tips & reviews, automated</div>
+        <div class="build-card-desc">After each service, the system asks for a tip and a review through its own link — capturing revenue and reputation that were slipping through before.</div>
+      </div>
+      <div class="build-card">
+        <div class="build-card-title">Automatic follow-ups</div>
+        <div class="build-card-desc">Confirmations, reminders and review requests all send themselves on schedule. Nobody has to remember to chase anyone.</div>
+      </div>
+      <div class="build-card">
+        <div class="build-card-title">Owner dashboard</div>
+        <div class="build-card-desc">A private, secure panel to see every booking, manage cancellations, charge extras, run promos and pull reports — the whole operation in one place.</div>
+      </div>
+    </div>
+    <div class="figure">
+      <img src="img/spot-on-booking.png" alt="Spot On booking flow — customers pick a service and see live pricing">
+      <div class="figure-caption">Step-by-step booking: service, vehicle, add-ons, date and payment — with the price calculated live.</div>
+    </div>
+    <div class="figure">
+      <img src="img/spot-on-calendar.png" alt="Spot On availability calendar with real-time slots">
+      <div class="figure-caption">Customers pick from real available slots. No back-and-forth, no phone tag.</div>
+    </div>
+  </section>
+
+  <!-- CORPORATE PROGRAM -->
+  <section class="block">
+    <div class="eyebrow">The differentiator</div>
+    <h2 class="section-title">A recurring corporate fleet contract, <span class="italic">running on autopilot.</span></h2>
+    <p class="body-text">
+      The biggest win wasn't the website — it was landing a recurring contract with a corporate legal firm and building the entire program to run itself. Scheduled sessions, fixed program pricing, and a waitlist that manages its own slots.
+    </p>
+    <div class="build-grid">
+      <div class="build-card">
+        <div class="build-card-title">Scheduled sessions with limited slots</div>
+        <div class="build-card-desc">Each session runs on a fixed capacity (10 confirmed spots plus 3 on standby), booked against a specific date at a set program rate.</div>
+      </div>
+      <div class="build-card">
+        <div class="build-card-title">A waitlist that promotes itself</div>
+        <div class="build-card-desc">When a spot frees up, the system sends a payment link and promotes the next person to a confirmed slot on its own. Unpaid holds expire automatically. No manual slot-shuffling.</div>
+      </div>
+      <div class="build-card">
+        <div class="build-card-title">Session & access reminders</div>
+        <div class="build-card-desc">Coordinators get automatic reminders for sessions and key/access handoffs — coordination that used to happen by hand.</div>
+      </div>
+      <div class="build-card">
+        <div class="build-card-title">Executive reporting</div>
+        <div class="build-card-desc">The corporate client gets clean, branded reports in Spot On's own voice — professional enough for an institutional account.</div>
+      </div>
+    </div>
+    <div class="figure">
+      <img src="img/spot-on-corporate.png" alt="Spot On corporate program landing page for on-site office detailing">
+      <div class="figure-caption">A dedicated landing for the corporate program — employees book on-site office detailing in a fixed biweekly window.</div>
+    </div>
+  </section>
+
+  <!-- RESULTS -->
+  <section class="block">
+    <div class="eyebrow">Results</div>
+    <h2 class="section-title">Built fast. <span class="italic">Running in production.</span></h2>
+    <p class="body-text">
+      The system went live in March 2026 and has been in production since — adding capabilities every few weeks without breaking what was already running.
+    </p>
+
+    <div class="stats-grid">
+      <div class="stat-block">
+        <span class="stat-value">350+</span>
+        <span class="stat-label">Vehicles detailed</span>
+      </div>
+      <div class="stat-block">
+        <span class="stat-value">4.9★</span>
+        <span class="stat-label">Customer rating</span>
+      </div>
+      <div class="stat-block">
+        <span class="stat-value">95%</span>
+        <span class="stat-label">Repeat clients</span>
+      </div>
+    </div>
+
+    <div class="highlight-box">
+      <p class="body-text">
+        <strong>The turning point was mid-May.</strong> Before then, the digital side was essentially a quote-capture form. After it, a customer could book, pay and schedule with zero human involvement — with automatic charging and refunds built in. That single shift is what took the owner out of the critical path.
+      </p>
+    </div>
+  </section>
+
+  <!-- TIMELINE -->
+  <section class="block">
+    <div class="eyebrow">How it came together</div>
+    <h2 class="section-title">From zero to a full operating system, <span class="italic">shipping every few weeks.</span></h2>
+    <div class="timeline">
+      <div class="timeline-item">
+        <span class="timeline-date">Mar 2026</span>
+        <span class="timeline-text"><strong>System goes live.</strong> Site unified on a single payment and scheduling backbone.</span>
+      </div>
+      <div class="timeline-item">
+        <span class="timeline-date">Apr 2026</span>
+        <span class="timeline-text"><strong>Memberships & automated follow-ups.</strong> Recurring plans and self-sending review requests.</span>
+      </div>
+      <div class="timeline-item">
+        <span class="timeline-date">Apr 2026</span>
+        <span class="timeline-text"><strong>Corporate fleet program launches.</strong> Sessions, slots and waitlist for the institutional contract.</span>
+      </div>
+      <div class="timeline-item">
+        <span class="timeline-date">May 2026</span>
+        <span class="timeline-text"><strong>Full self-service booking + payment.</strong> The turning point — customers close on their own.</span>
+      </div>
+      <div class="timeline-item">
+        <span class="timeline-date">Jun 2026</span>
+        <span class="timeline-text"><strong>Session & access reminders.</strong> Manual coordination becomes automatic.</span>
+      </div>
+      <div class="timeline-item">
+        <span class="timeline-date">Jul 2026</span>
+        <span class="timeline-text"><strong>Self-promoting waitlist.</strong> Slots that used to move by hand now manage themselves.</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- CLOSE -->
+  <section class="block">
+    <div class="close-block">
+      <h2 class="close-title">Run a service business <span class="italic">that runs on you?</span></h2>
+      <p class="close-text">
+        If your bookings, payments and follow-ups still live in your phone, there's a system waiting to take that off your plate. That's what Mattriz builds.
+      </p>
+      <a href="mailto:contacto@mattriz.com" class="close-cta">contacto@mattriz.com →</a>
+    </div>
+  </section>
+
+</div>
+
+<div class="footer">
+  Mattriz Studio · Booking, payment and operations systems for service businesses<br>
+  <a href="mailto:contacto@mattriz.com">contacto@mattriz.com</a> · mattriz.com
+</div>
+
+<script>
+(function() {
+  const html = document.documentElement;
+  const themeToggle = document.getElementById('themeToggle');
+  const themeIconPath = document.getElementById('themeIconPath');
+  const MOON_PATH = "M12 3a9 9 0 1 0 9 9c0-.46-.04-.92-.1-1.36a5.389 5.389 0 0 1-4.4 2.26 5.4 5.4 0 0 1-3.14-9.8c-.44-.06-.9-.1-1.36-.1z";
+  const SUN_PATH = "M12 7c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zM2 13l2 0 0-2-2 0 0 2zm18 0l2 0 0-2-2 0 0 2zM11 2v2h2V2h-2zm0 18v2h2v-2h-2zM5.99 4.58l-1.41 1.41 1.79 1.79 1.41-1.41-1.79-1.79zm12.37 12.37l-1.41 1.41 1.79 1.79 1.41-1.41-1.79-1.79zm1.79-10.96l-1.41-1.41-1.79 1.79 1.41 1.41 1.79-1.79zM7.78 17.36l-1.41-1.41-1.79 1.79 1.41 1.41 1.79-1.79z";
+  function setTheme(theme) {
+    html.setAttribute('data-theme', theme);
+    localStorage.setItem('mattriz-theme', theme);
+    themeIconPath.setAttribute('d', theme === 'dark' ? MOON_PATH : SUN_PATH);
+  }
+  const savedTheme = localStorage.getItem('mattriz-theme') || 'dark';
+  setTheme(savedTheme);
+  themeToggle.addEventListener('click', () => {
+    setTheme(html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+  });
+
+  // ---- SCROLL REVEAL ----
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // tag elements for reveal
+  document.querySelectorAll('section.block').forEach(sec => {
+    // headline-level elements reveal as a unit
+    sec.querySelectorAll('.eyebrow, .hero-title, .section-title, .hero-lead, .body-text, .highlight-box, .close-block, .hero-meta, .tbd-note').forEach(el => {
+      el.classList.add('reveal');
+    });
+    // grids and lists stagger their children
+    sec.querySelectorAll('.build-grid, .stats-grid, .problem-list, .timeline').forEach(el => {
+      el.classList.add('stagger');
+    });
+    sec.querySelectorAll('.figure').forEach(el => el.classList.add('reveal'));
+  });
+
+  if (!reduceMotion && 'IntersectionObserver' in window) {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in-view');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll('.reveal, .stagger').forEach(el => io.observe(el));
+  } else {
+    document.querySelectorAll('.reveal, .stagger').forEach(el => el.classList.add('in-view'));
+  }
+
+  // ---- COUNT-UP STATS ----
+  function animateValue(el, target, suffix, decimals, duration) {
+    const start = performance.now();
+    function frame(now) {
+      const p = Math.min((now - start) / duration, 1);
+      // easeOutCubic
+      const eased = 1 - Math.pow(1 - p, 3);
+      const val = target * eased;
+      el.textContent = (decimals > 0 ? val.toFixed(decimals) : Math.round(val)) + suffix;
+      if (p < 1) requestAnimationFrame(frame);
+      else el.textContent = (decimals > 0 ? target.toFixed(decimals) : target) + suffix;
+    }
+    requestAnimationFrame(frame);
+  }
+
+  function setupCounters() {
+    document.querySelectorAll('.stat-value').forEach(el => {
+      const raw = el.textContent.trim();
+      // parse patterns like "350+", "4.9★", "95%"
+      const match = raw.match(/^(\d+(?:\.\d+)?)(.*)$/);
+      if (!match) return;
+      const target = parseFloat(match[1]);
+      const suffix = match[2] || '';
+      const decimals = (match[1].includes('.')) ? match[1].split('.')[1].length : 0;
+      el.dataset.target = target;
+      el.dataset.suffix = suffix;
+      el.dataset.decimals = decimals;
+      el.textContent = (decimals > 0 ? (0).toFixed(decimals) : '0') + suffix;
+    });
+
+    if (reduceMotion || !('IntersectionObserver' in window)) {
+      document.querySelectorAll('.stat-value').forEach(el => {
+        if (el.dataset.target) {
+          const d = parseInt(el.dataset.decimals, 10);
+          el.textContent = (d > 0 ? parseFloat(el.dataset.target).toFixed(d) : el.dataset.target) + el.dataset.suffix;
+        }
+      });
+      return;
+    }
+
+    const counterIO = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const el = entry.target;
+          animateValue(el, parseFloat(el.dataset.target), el.dataset.suffix, parseInt(el.dataset.decimals, 10), 1400);
+          counterIO.unobserve(el);
+        }
+      });
+    }, { threshold: 0.5 });
+
+    document.querySelectorAll('.stat-value').forEach(el => {
+      if (el.dataset.target) counterIO.observe(el);
+    });
+  }
+  setupCounters();
+})();
+</script>
+
+</body>
+</html>

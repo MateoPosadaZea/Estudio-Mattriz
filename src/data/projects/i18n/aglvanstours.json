@@ -1,0 +1,18 @@
+{
+ "source": "es",
+ "strings": {
+  "Ver sitio web": "View website",
+  "<p><b class=\"f-bold\">Servicios</b></p>": "<p><b class=\"f-bold\">Services</b></p>",
+  "<p><b class=\"f-bold\">Resumen del proyecto<br> </b></p>": "<p><b class=\"f-bold\">Project overview<br> </b></p>",
+  "<p><b class=\"f-bold\">Lo que hicimos<br> </b></p>": "<p><b class=\"f-bold\">What we did<br> </b></p>",
+  "Proyecto Anterior": "Previous Project",
+  "Proyecto Siguiente": "Next Project",
+  "AGL Vans Tours - Mattriz Studio": "AGL Vans Tours - Mattriz Studio",
+  "<h2>Creación de sitio web para AGL Vans Tours, empresa líder en servicios de transporte.<br> </h2>": "<h2>Website for AGL Vans Tours, a leading transportation services company.<br> </h2>",
+  "Diseño UI/UX<br> Diseño Web": "UI/UX Design<br> Web Design",
+  "<p>Nuestro cliente contaba con una identidad visual definida que nos sirvió bastante para el diseño y personalidad del sitio web, elegante y profesional. El objetivo es atraer más clientes dando a conocer los servicios que ofrecen.</p>": "<p>Our client already had a defined visual identity, which shaped the website’s design and its elegant, professional personality. The goal is to attract more clients by showcasing the services they offer.</p>",
+  "<ol><li>Crear moodboard con referentes</li><li>Generar base de datos</li><li>Adquirir hosting y dominio</li><li>Diseño UI/UX del sitio web</li><li>Desarrollo del sitio web</li><li>Pruebas de usuario</li><li>Optimización de SEO</li><li>Lanzamiento</li></ol>": "<ol><li>Moodboard with references</li><li>Content database</li><li>Hosting and domain setup</li><li>Website UI/UX design</li><li>Website development</li><li>User testing</li><li>SEO optimization</li><li>Launch</li></ol>",
+  "Let It Go": "Let It Go",
+  "Luciana Cabañas": "Luciana Cabañas"
+ }
+}

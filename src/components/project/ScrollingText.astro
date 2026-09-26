@@ -1,0 +1,63 @@
+---
+// "Explore More": texto grande repetido que se desplaza con el scroll (nectar-scrolling-text del vivo).
+// Vivo: 6vw (10vw en teléfono), light, blanco, separación media entre repeticiones.
+interface Props {
+  text: string;
+}
+const { text } = Astro.props;
+---
+
+<div class="scroll-text" data-scroll-text>
+  <div class="scroll-text__track" data-scroll-track>
+    {Array.from({ length: 6 }, (_, i) => <span class="scroll-text__chunk" aria-hidden={i > 0 ? 'true' : undefined}>{text}</span>)}
+  </div>
+</div>
+
+<style>
+  .scroll-text {
+    overflow: hidden;
+    color: var(--color-white);
+  }
+
+  .scroll-text__track {
+    display: flex;
+    width: max-content;
+    will-change: transform;
+  }
+
+  .scroll-text__chunk {
+    padding-right: 0.5em;
+    font-size: 6vw;
+    font-weight: var(--fw-light);
+    line-height: 1;
+    letter-spacing: var(--ls-tight);
+    white-space: nowrap;
+  }
+
+  @media (max-width: 690px) {
+    .scroll-text__chunk {
+      font-size: 10vw;
+      line-height: 1.1;
+    }
+  }
+</style>
+
+<script>
+  // Desplazamiento atado al scroll: a medida que la sección cruza la pantalla, el texto avanza a la izquierda.
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  document.querySelectorAll<HTMLElement>('[data-scroll-text]').forEach((el) => {
+    const track = el.querySelector<HTMLElement>('[data-scroll-track]')!;
+    if (reduce) return;
+    let ticking = false;
+    const update = () => {
+      ticking = false;
+      const r = el.getBoundingClientRect();
+      const progress = (innerHeight - r.top) / (innerHeight + r.height);
+      track.style.transform = `translate3d(${-Math.max(0, Math.min(1, progress)) * 35}%, 0, 0)`;
+    };
+    addEventListener('scroll', () => {
+      if (!ticking) requestAnimationFrame(update), (ticking = true);
+    }, { passive: true });
+    update();
+  });
+</script>

@@ -1,0 +1,240 @@
+---
+// v2: footer (mismo contenido que antes: Calendly, correo, redes, año).
+// - Gradiente verde animado de fondo, el mismo del hero.
+// - Formulario escrito como una frase para llenar (FooterForm.astro), con enlace a Calendly.
+// - Correo con botón para copiarlo, hora local de Bogotá en vivo, volver arriba.
+// Lógica en src/scripts/footer.ts; el formulario en src/scripts/footer-form.ts.
+import AnimatedGradient from './AnimatedGradient.astro';
+import FooterForm from './FooterForm.astro';
+import { SITE } from '../data/site';
+import { langOf, ui } from '../i18n';
+
+interface Props {
+  /** Formulario en frase; en /contact/ no va porque la página ya lo muestra. */
+  form?: boolean;
+}
+
+const { form = true } = Astro.props;
+const lang = langOf(Astro.url);
+const t = ui(lang);
+const year = new Date().getFullYear();
+---
+
+<footer class:list={['ft', { 'ft--compact': !form }]} data-footer>
+  <!-- Mismo gradiente animado del hero: se mueve solo en el fondo. -->
+  <AnimatedGradient color1="brand" speed={250} blend="organic" />
+
+  <div class="ft__inner">
+    {
+      form && (
+        <>
+          <p class="ft__status">
+            <span class="ft__pulse" aria-hidden="true"></span>
+            {t.accepting}
+          </p>
+          <FooterForm />
+        </>
+      )
+    }
+
+    <div class="ft__grid">
+      <div class="ft__col">
+        <p class="ft__label">{t.nav[4]}</p>
+        <p class="ft__mail">
+          <a class="u-link" href={`mailto:${SITE.email}`}>{SITE.email}</a>
+          <button class="ft__copy" type="button" data-copy={SITE.email} data-copied={t.copied} aria-label={t.copyEmail}>
+            <span data-copy-label>{t.copy}</span>
+          </button>
+        </p>
+      </div>
+      <div class="ft__col">
+        <p class="ft__label">{t.social}</p>
+        <ul class="ft__social">
+          <li><a class="u-link" href={SITE.instagram} target="_blank" rel="noopener">Instagram</a></li>
+          <li><a class="u-link" href={SITE.linkedin} target="_blank" rel="noopener">LinkedIn</a></li>
+        </ul>
+      </div>
+      <div class="ft__col">
+        <p class="ft__label">{t.localTime}</p>
+        <p class="ft__clock"><span data-clock>GMT−5</span></p>
+      </div>
+      <div class="ft__col ft__col--end">
+        <a class="ft__top" href="#top">
+          {t.toTop} <span aria-hidden="true">↑</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="ft__bottom">
+      <p class="ft__copyright">© <span data-year>{year}</span>. Mattriz Studio.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+  import '../scripts/footer';
+</script>
+
+<style>
+  .ft {
+    --pad: clamp(20px, 5vw, 80px);
+    --fg: var(--color-white);
+    --bg: #0a0a0a;
+    --muted: rgba(255, 255, 255, 0.55);
+    --line: rgba(255, 255, 255, 0.16);
+    position: relative;
+    overflow: hidden;
+    background: #0a0a0a;
+    color: var(--color-white);
+  }
+
+  /* Sin formulario (contacto): solo la franja de datos, con menos aire arriba. */
+  .ft--compact .ft__inner {
+    padding-top: clamp(40px, 5vw, 72px);
+  }
+
+  .ft--compact .ft__grid {
+    margin-top: 0;
+  }
+
+  .ft__inner {
+    position: relative;
+    padding: clamp(96px, 12vw, 200px) var(--pad) 24px;
+  }
+
+  .ft__status {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: clamp(20px, 3vw, 40px);
+    font-size: 15px;
+    color: var(--muted);
+  }
+
+  .ft__pulse {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--color-status-green);
+    animation: ft-pulse 2s var(--ease-pulse) infinite;
+  }
+
+  @keyframes ft-pulse {
+    from {
+      box-shadow: 0 0 0 0 rgba(85, 201, 28, 0.6);
+    }
+    to {
+      box-shadow: 0 0 0 10px rgba(85, 201, 28, 0);
+    }
+  }
+
+  .ft__grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 32px 24px;
+    margin-top: clamp(64px, 8vw, 128px);
+    padding-top: 24px;
+    border-top: 1px solid var(--line);
+    font-size: 16px;
+    line-height: 1.5;
+  }
+
+  @media (min-width: 1000px) {
+    .ft__grid {
+      grid-template-columns: 4fr 2fr 2fr 2fr;
+      gap: 4vw;
+    }
+  }
+
+  .ft__col:first-child {
+    grid-column: 1 / -1;
+  }
+
+  @media (min-width: 1000px) {
+    .ft__col:first-child {
+      grid-column: auto;
+    }
+  }
+
+  .ft__col--end {
+    text-align: right;
+  }
+
+  @media (max-width: 999px) {
+    .ft__col--end {
+      grid-column: 1 / -1;
+      text-align: left;
+    }
+  }
+
+  .ft__label {
+    margin-bottom: 8px;
+    font-size: 14px;
+    color: var(--muted);
+  }
+
+  .ft__mail {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px 14px;
+  }
+
+  .ft__copy {
+    padding: 4px 12px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-pill);
+    font-size: 13px;
+    line-height: 1.4;
+    color: var(--muted);
+    transition:
+      color 0.3s,
+      border-color 0.3s,
+      background-color 0.3s;
+  }
+
+  .ft__copy:hover {
+    color: var(--color-white);
+    border-color: rgba(255, 255, 255, 0.5);
+  }
+
+  .ft__copy.is-copied {
+    background: var(--color-brand-green);
+    border-color: var(--color-brand-green);
+    color: var(--color-black);
+  }
+
+  .ft__social {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+
+  .ft__clock {
+    font-variant-numeric: tabular-nums;
+  }
+
+  .ft__top span {
+    display: inline-block;
+    transition: transform 0.4s cubic-bezier(0.2, 1, 0.3, 1);
+  }
+
+  .ft__top:hover span {
+    transform: translateY(-4px);
+  }
+
+  .ft__bottom {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 8px 24px;
+    margin-top: clamp(48px, 6vw, 96px);
+  }
+
+  .ft__copyright {
+    font-size: 14px;
+    color: var(--muted);
+  }
+
+</style>

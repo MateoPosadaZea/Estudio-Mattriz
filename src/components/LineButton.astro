@@ -1,0 +1,163 @@
+---
+// Botón "arrow-animation" de Salient ("View our work", "Explore our work").
+// Vivo: píldora de 1px (radio 100px, padding 15px 40px) sobre un h6 de 18px/600 y 28px de alto de línea;
+// la píldora sobresale del bloque (el enlace es inline), así que el bloque mide 28px.
+// Hover (0.45s cubic-bezier(.23,.46,.4,1)): la línea de 25px se recoge a la derecha y vuelve a 1.2×,
+// el texto avanza 6px y se dibuja una flecha pequeña al final de la línea.
+interface Props {
+  href: string;
+  /** dark: borde #636363, hover relleno negro · light: borde #ccc, hover borde #0a0a0a */
+  variant?: 'dark' | 'light';
+  class?: string;
+}
+const { href, variant = 'light', class: className } = Astro.props;
+---
+
+<div class:list={['line-button', `line-button--${variant}`, className]}>
+  <a class="line-button__wrap" href={href}>
+    <span class="line-button__text"><slot /></span>
+    <svg class="line-button__arrow" aria-hidden="true" width="20" height="25" viewBox="0 0 50 80">
+      <polyline stroke-width="9" fill="none" stroke-linecap="round" stroke-linejoin="round" points="0, 0 45, 40 0, 80"></polyline>
+    </svg>
+    <span class="line-button__line" aria-hidden="true"></span>
+  </a>
+</div>
+
+<style>
+  .line-button {
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 28px;
+    color: var(--color-white);
+  }
+
+  .line-button__wrap {
+    position: relative;
+    display: inline;
+    padding: 15px 40px;
+    border: 1px solid;
+    border-radius: 100px;
+    transition:
+      background-color 0.45s var(--ease-reveal),
+      border-color 0.45s var(--ease-reveal),
+      color 0.45s var(--ease-reveal);
+  }
+
+  .line-button--dark .line-button__wrap {
+    border-color: #636363;
+  }
+
+  .line-button--dark .line-button__wrap:hover {
+    background-color: #000;
+  }
+
+  .line-button--light .line-button__wrap {
+    border-color: #cccccc;
+  }
+
+  .line-button--light .line-button__wrap:hover {
+    border-color: #0a0a0a;
+  }
+
+  /* El texto y los adornos van en una caja inline-block con 40px a la izquierda para la línea. */
+  .line-button__text {
+    display: inline-block;
+    margin-left: 40px;
+    animation: cta-text-start 0.45s cubic-bezier(0.23, 0.46, 0.4, 1) forwards;
+  }
+
+  .line-button__line {
+    position: absolute;
+    left: 40px;
+    top: 50%;
+    width: 25px;
+    height: 1px;
+    background: currentColor;
+    transform-origin: left;
+    transform: translateY(-50%);
+    animation: cta-line-start 0.45s cubic-bezier(0.23, 0.46, 0.4, 1) forwards;
+  }
+
+  .line-button__arrow {
+    position: absolute;
+    left: 65px;
+    top: 50%;
+    width: 6px;
+    height: auto;
+    stroke: currentColor;
+    transform: translateY(-50%);
+    animation: cta-svg-start 0.45s cubic-bezier(0.23, 0.46, 0.4, 1) forwards;
+  }
+
+  .line-button__arrow polyline {
+    stroke-dasharray: 140px;
+    stroke-dashoffset: 140px;
+    animation: cta-arrow-end 0.45s cubic-bezier(0.23, 0.46, 0.4, 1) forwards;
+  }
+
+  .line-button__wrap:hover .line-button__text {
+    animation-name: cta-text-end;
+  }
+
+  .line-button__wrap:hover .line-button__line {
+    animation-name: cta-line-end;
+  }
+
+  .line-button__wrap:hover .line-button__arrow {
+    animation-name: cta-svg-end;
+  }
+
+  .line-button__wrap:hover .line-button__arrow polyline {
+    animation: cta-arrow-start 0.45s ease 0.25s forwards;
+  }
+
+  @keyframes cta-text-start {
+    from { transform: translateX(6px); }
+    to { transform: translateX(0); }
+  }
+
+  @keyframes cta-text-end {
+    from { transform: translateX(0); }
+    to { transform: translateX(6px); }
+  }
+
+  @keyframes cta-line-start {
+    from { transform: scaleX(1.2) translateY(-50%); }
+    to { transform: scaleX(1) translateY(-50%); }
+  }
+
+  @keyframes cta-line-end {
+    0% { transform-origin: right; transform: scaleX(1) translateY(-50%); }
+    50% { transform-origin: right; transform: scaleX(0) translateY(-50%); }
+    51% { transform-origin: left; }
+    100% { transform-origin: left; transform: scaleX(1.2) translateY(-50%); }
+  }
+
+  @keyframes cta-svg-start {
+    from { transform: translateY(-50%) translateX(0); }
+    to { transform: translateY(-50%) translateX(-3px); }
+  }
+
+  @keyframes cta-svg-end {
+    from { transform: translateY(-50%) translateX(-3px); }
+    to { transform: translateY(-50%) translateX(0); }
+  }
+
+  @keyframes cta-arrow-start {
+    from { stroke-dasharray: 140px; stroke-dashoffset: 140px; }
+    to { stroke-dasharray: 140px; stroke-dashoffset: 10px; }
+  }
+
+  @keyframes cta-arrow-end {
+    0% { stroke-dashoffset: 10px; stroke-dasharray: 150px 150px; }
+    40% { opacity: 1; }
+    100% { opacity: 0; stroke-dashoffset: -53px; stroke-dasharray: 1px 150px; }
+  }
+
+  /* Vivo: en teléfono y tablet el bloque mide 44px. */
+  @media (max-width: 999px) {
+    .line-button {
+      min-height: 44px;
+    }
+  }
+</style>

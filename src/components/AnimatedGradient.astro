@@ -1,0 +1,42 @@
+---
+// Capa de fondo con gradiente animado. Va dentro de un contenedor con
+// position: relative; ocupa todo su tamaño y queda detrás del contenido.
+interface Props {
+  /** Hex, o "brand" para el verde de marca (--color-brand-green). */
+  color1: string;
+  color2?: string;
+  /** Velocidad del vivo (250 en hero y footer, 1300 en "One studio"). */
+  speed: number;
+  blend?: 'linear' | 'organic';
+}
+const { color1, color2 = '', speed, blend = 'linear' } = Astro.props;
+---
+
+<canvas
+  class="animated-gradient"
+  data-animated-gradient
+  data-color1={color1}
+  data-color2={color2}
+  data-speed={speed}
+  data-blend={blend}
+  aria-hidden="true"></canvas>
+
+<style>
+  .animated-gradient {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.8s ease;
+  }
+
+  .animated-gradient.is-loaded {
+    opacity: 1;
+  }
+</style>
+
+<script>
+  import '../scripts/animated-gradient';
+</script>

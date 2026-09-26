@@ -1,0 +1,200 @@
+---
+// v2: formulario del footer como una frase: los campos son espacios subrayados dentro del texto
+// (nombre, servicio, presupuesto, idea y correo). Envía a /api/contact, el mismo endpoint del
+// formulario de /contact/ (Resend + Turnstile + honeypot). Lógica en src/scripts/footer-form.ts.
+import { footerForm } from '../data/footer-form';
+import { contact } from '../data/contact';
+import { SITE } from '../data/site';
+import { langOf } from '../i18n';
+
+const lang = langOf(Astro.url);
+const f = footerForm(lang);
+const { CONTACT } = contact(lang);
+const turnstileKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
+---
+
+<form class="ff" action="/api/contact" method="post" aria-label={f.label} data-footer-form data-success={CONTACT.success} data-error={CONTACT.error} data-sending={f.sending}>
+  <p class="ff__sentence">
+    {f.parts.hi}
+    <input class="ff__blank" name="name" type="text" placeholder={f.ph.name} aria-label={f.a11y.name} autocomplete="name" maxlength="80" required data-grow />
+    {f.parts.help}
+    <select class="ff__blank ff__select" name="services" aria-label={f.a11y.service} data-grow>
+      {CONTACT.services.map((s) => <option value={s}>{s}</option>)}
+    </select>{f.parts.budget}
+    <select class="ff__blank ff__select" name="budget" aria-label={f.a11y.budget} data-grow>
+      {CONTACT.budgets.map((b) => <option value={b}>{b}</option>)}
+    </select>{f.parts.idea}
+    <input class="ff__blank" name="details" type="text" placeholder={f.ph.idea} aria-label={f.a11y.idea} maxlength="500" required data-grow />{f.parts.reach}
+    <input class="ff__blank" name="email" type="email" placeholder={f.ph.email} aria-label={f.a11y.email} autocomplete="email" spellcheck="false" maxlength="120" required data-grow />.
+  </p>
+
+  <input type="hidden" name="lang" value={lang} />
+  <div class="ff__hp" aria-hidden="true">
+    <input name="website" type="text" tabindex="-1" autocomplete="off" />
+  </div>
+  {turnstileKey && <div class="ff__turnstile" data-turnstile data-sitekey={turnstileKey} />}
+
+  <div class="ff__foot">
+    <button class="ff__send" type="submit" data-send>
+      <span class="reveal"><span class="reveal__text" data-text={f.send} data-send-label>{f.send}</span></span>
+      <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+    </button>
+    <p class="ff__call">
+      {f.call} <a class="u-link" href={SITE.calendly} target="_blank" rel="noopener">{f.callLink} ↗</a>
+    </p>
+  </div>
+  <p class="ff__status" role="status" aria-live="polite" hidden data-status></p>
+</form>
+
+<script>
+  import '../scripts/footer-form';
+</script>
+
+<style>
+  /* La frase: Maison ligera grande; los campos son espacios subrayados del mismo tamaño. */
+  .ff__sentence {
+    max-width: 22em;
+    font-size: clamp(22px, 3.4vw, 54px);
+    font-weight: var(--fw-light);
+    line-height: 1.45;
+    letter-spacing: -0.02em;
+  }
+
+  /* Colores con --fg/--bg: en /contact/ siguen el tema; el footer los fija en blanco sobre negro. */
+  /* Cada espacio mide lo que su contenido (o el placeholder); sin soporte, footer-form.ts lo calcula. */
+  .ff__blank {
+    field-sizing: content;
+    min-width: 2ch;
+    display: inline-block;
+    max-width: 100%;
+    margin: 0 0.12em;
+    padding: 0 0.1em;
+    border: 0;
+    border-bottom: 1px solid color-mix(in srgb, var(--fg) 45%, transparent);
+    border-radius: 0;
+    background: none;
+    color: var(--fg);
+    font: inherit;
+    letter-spacing: inherit;
+    line-height: 1.2;
+    vertical-align: baseline;
+    outline: none;
+    transition: border-color 0.3s;
+  }
+
+  .ff__blank::placeholder {
+    color: color-mix(in srgb, var(--fg) 40%, transparent);
+  }
+
+  .ff__blank:hover {
+    border-bottom-color: var(--fg);
+  }
+
+  .ff__blank:focus {
+    border-bottom-color: var(--color-brand-green);
+  }
+
+  /* Tras intentar enviar, los campos vacíos o inválidos se marcan. */
+  .ff.was-tried .ff__blank:invalid {
+    border-bottom-color: #ff8a80;
+  }
+
+  .ff__select {
+    appearance: none;
+    padding-right: 0.75em;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5 6 6.5 11 1.5' fill='none' stroke='white' stroke-width='1.4'/%3E%3C/svg%3E") no-repeat right 0.1em center / 0.4em auto;
+    cursor: pointer;
+  }
+
+  html[data-theme='light'] .ff__select {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5 6 6.5 11 1.5' fill='none' stroke='%230a0a0a' stroke-width='1.4'/%3E%3C/svg%3E");
+  }
+
+  .ff__select option {
+    background: var(--bg);
+    color: var(--fg);
+    font-size: 16px;
+  }
+
+  .ff__hp {
+    position: absolute;
+    left: -9999px;
+  }
+
+  .ff__turnstile:not(:empty) {
+    margin-top: 24px;
+  }
+
+  .ff__foot {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 16px 32px;
+    margin-top: clamp(28px, 3vw, 48px);
+  }
+
+  /* El verde queda para el botón. */
+  .ff__send {
+    white-space: nowrap;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 16px 30px;
+    border-radius: var(--radius-pill);
+    background: var(--color-brand-green);
+    color: var(--color-black);
+    font-size: 17px;
+    transition: transform 0.4s cubic-bezier(0.2, 1, 0.3, 1);
+  }
+
+  .ff__send:hover {
+    transform: scale(1.04);
+  }
+
+  .ff__send svg {
+    transition: transform 0.4s cubic-bezier(0.2, 1, 0.3, 1);
+  }
+
+  .ff__send:hover svg {
+    transform: translate(2px, -2px);
+  }
+
+  .ff__send:disabled {
+    opacity: 0.6;
+    pointer-events: none;
+  }
+
+  .ff__call {
+    font-size: 15px;
+    color: var(--muted);
+  }
+
+  .ff__call a {
+    color: var(--fg);
+  }
+
+  .ff__status {
+    margin-top: 20px;
+    font-size: 17px;
+    line-height: 1.5;
+  }
+
+  .ff__status.is-error {
+    color: #ff8a80;
+  }
+
+  /* Enviado: la frase se atenúa y queda el mensaje. */
+  .ff.is-sent .ff__sentence,
+  .ff.is-sent .ff__foot {
+    opacity: 0.35;
+    pointer-events: none;
+    transition: opacity 0.6s;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .ff__send,
+    .ff__send svg {
+      transition: none;
+    }
+  }
+</style>
