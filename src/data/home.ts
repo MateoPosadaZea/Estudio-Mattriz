@@ -124,22 +124,10 @@ export const TICKER = [
 // Orden del carrusel del vivo. Raya larga del testimonio de Daniela reemplazada por coma (regla de marca).
 export const TESTIMONIALS = [
   {
-    quote: 'We highlight their development, launch, and ongoing maintenance of our online store. They work fast and are always ready to help. I’d recommend them without hesitation.',
-    name: 'José Suárez',
-    company: 'My Doll Hair',
-    avatar: '/media/testimonials/jose-suarez.jpg',
-  },
-  {
     quote: 'I entrusted them with our website and the entire visual side of the company, it turned out spectacular. I fully recommend them.',
     name: 'Carlos Posada',
     company: 'Posada Cárcamo Abogados',
     avatar: '/media/testimonials/carlos-posada.jpg',
-  },
-  {
-    quote: 'They designed and developed our website. We were impressed by their ability to solve technical issues as they arose, and by how proactive and creative they are.',
-    name: 'Daniela Barrios',
-    company: 'Closet Up',
-    avatar: '/media/testimonials/daniela-barrios.jpg',
   },
   {
     quote: 'They designed our family business website, and we have only good things to say about the experience of building it alongside their team.',
@@ -200,22 +188,10 @@ export const HOME_ES = {
   ],
   TESTIMONIALS: [
     {
-      quote: 'Destacamos el desarrollo, el lanzamiento y el mantenimiento continuo de nuestra tienda en línea. Trabajan rápido y siempre están dispuestos a ayudar. Los recomendaría sin dudarlo.',
-      name: 'José Suárez',
-      company: 'My Doll Hair',
-      avatar: '/media/testimonials/jose-suarez.jpg',
-    },
-    {
       quote: 'Les confiamos nuestro sitio web y toda la parte visual de la empresa, y el resultado fue espectacular. Los recomiendo totalmente.',
       name: 'Carlos Posada',
       company: 'Posada Cárcamo Abogados',
       avatar: '/media/testimonials/carlos-posada.jpg',
-    },
-    {
-      quote: 'Diseñaron y desarrollaron nuestro sitio web. Nos impresionó su capacidad para resolver los problemas técnicos a medida que surgían, y lo proactivos y creativos que son.',
-      name: 'Daniela Barrios',
-      company: 'Closet Up',
-      avatar: '/media/testimonials/daniela-barrios.jpg',
     },
     {
       quote: 'Diseñaron el sitio web de nuestra empresa familiar y solo tenemos cosas buenas que decir de la experiencia de construirlo junto a su equipo.',

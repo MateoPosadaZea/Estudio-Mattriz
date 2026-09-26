@@ -60,6 +60,7 @@ const turnstileKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
     letter-spacing: -0.02em;
   }
 
+  /* Colores con --fg/--bg: en /contact/ siguen el tema; el footer los fija en blanco sobre negro. */
   /* Cada espacio mide lo que su contenido (o el placeholder); sin soporte, footer-form.ts lo calcula. */
   .ff__blank {
     field-sizing: content;
@@ -69,10 +70,10 @@ const turnstileKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
     margin: 0 0.12em;
     padding: 0 0.1em;
     border: 0;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.45);
+    border-bottom: 1px solid color-mix(in srgb, var(--fg) 45%, transparent);
     border-radius: 0;
     background: none;
-    color: var(--color-white);
+    color: var(--fg);
     font: inherit;
     letter-spacing: inherit;
     line-height: 1.2;
@@ -82,11 +83,11 @@ const turnstileKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
   }
 
   .ff__blank::placeholder {
-    color: rgba(255, 255, 255, 0.4);
+    color: color-mix(in srgb, var(--fg) 40%, transparent);
   }
 
   .ff__blank:hover {
-    border-bottom-color: var(--color-white);
+    border-bottom-color: var(--fg);
   }
 
   .ff__blank:focus {
@@ -105,9 +106,13 @@ const turnstileKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
     cursor: pointer;
   }
 
+  html[data-theme='light'] .ff__select {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5 6 6.5 11 1.5' fill='none' stroke='%230a0a0a' stroke-width='1.4'/%3E%3C/svg%3E");
+  }
+
   .ff__select option {
-    background: #0a0a0a;
-    color: var(--color-white);
+    background: var(--bg);
+    color: var(--fg);
     font-size: 16px;
   }
 
@@ -165,7 +170,7 @@ const turnstileKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
   }
 
   .ff__call a {
-    color: var(--color-white);
+    color: var(--fg);
   }
 
   .ff__status {

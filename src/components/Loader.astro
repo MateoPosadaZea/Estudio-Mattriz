@@ -1,6 +1,6 @@
 ---
-// v2: pantalla de carga (referencia: locomotive.ca). Contador 0 → 100 en Noe Display, línea
-// verde de progreso y salida con cortina hacia arriba. Solo en la primera página de la sesión.
+// v2: pantalla de carga (referencia: locomotive.ca). En blanco: contador 0 → 100 en Noe Display,
+// línea negra de progreso y salida con cortina hacia arriba. Solo en la primera página de la sesión.
 //
 // Nunca bloquea el sitio:
 // - La clase html.is-loading la pone un script en <head> (Base.astro); sin JS no hay loader.
@@ -31,8 +31,8 @@
     inset: 0;
     z-index: 1000;
     display: block;
-    background: #0a0a0a;
-    color: var(--color-white);
+    background: var(--color-white);
+    color: var(--color-black);
   }
 
   html.is-loading {
@@ -56,7 +56,6 @@
     left: clamp(20px, 5vw, 80px);
     width: auto;
     height: 30px;
-    filter: invert(1);
   }
 
   .loader__name {
@@ -64,7 +63,7 @@
     top: 36px;
     right: clamp(20px, 5vw, 80px);
     font-size: 15px;
-    color: rgba(255, 255, 255, 0.6);
+    color: rgba(10, 10, 10, 0.6);
   }
 
   .loader__count {
@@ -82,7 +81,6 @@
     content: '%';
     font-size: 0.3em;
     margin-left: 0.05em;
-    color: var(--color-brand-green);
   }
 
   .loader__bar {
@@ -91,13 +89,13 @@
     right: 0;
     bottom: 0;
     height: 3px;
-    background: rgba(255, 255, 255, 0.12);
+    background: rgba(10, 10, 10, 0.12);
   }
 
   .loader__bar span {
     display: block;
     height: 100%;
-    background: var(--color-brand-green);
+    background: var(--color-black);
     transform: scaleX(0);
     transform-origin: left;
   }
