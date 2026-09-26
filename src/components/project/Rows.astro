@@ -4,6 +4,9 @@
 // de 50px por defecto, filas de alto completo, filas a sangre (full-width-content) sin canal.
 import Element from './Element.astro';
 import { isDark, pct, largest, srcset } from './tone';
+import { langOf, localize } from '../../i18n';
+
+const lang = langOf(Astro.url);
 
 interface Props {
   rows: any[];
@@ -106,7 +109,7 @@ const gutterOf = (row: any) => {
                   style={colStyle}
                   data-animate={col.animation === 'fade-in-from-bottom' ? 'fade-up' : col.animation === 'fade-in' ? 'fade' : undefined}
                 >
-                  {col.link && <a class="wp-col__link" href={col.link.replace('https://mattriz.com', '')} aria-hidden="true" tabindex="-1" />}
+                  {col.link && <a class="wp-col__link" href={localize(col.link.replace('https://mattriz.com', '') || '/', lang)} aria-hidden="true" tabindex="-1" />}
                   <div class="wp-col__inner">
                     {col.children.map((el: any) =>
                       el.type === 'row' ? <Astro.self rows={[el]} bg={col.bg || rowBg} slug={slug} eagerRows={eager ? 1 : 0} /> : <Element el={el} slug={slug} eager={eager} />,

@@ -3,9 +3,11 @@
 import type { APIRoute } from 'astro';
 import { SITE } from '../data/site';
 
-const projects = Object.keys(import.meta.glob('../data/projects/*.json')).map((p) => p.split('/').pop()!.replace('.json', ''));
+import { PROJECT_SLUGS } from '../data/projects';
 
-export const PATHS = ['/', '/about/', '/contact/', ...projects.map((slug) => `/project/${slug}/`)];
+const EN = ['/', '/about/', '/contact/', ...PROJECT_SLUGS.map((slug) => `/project/${slug}/`)];
+// Inglés en la raíz y español bajo /es/ (con hreflang en cada página).
+export const PATHS = [...EN, ...EN.map((p) => `/es${p}`)];
 
 export const GET: APIRoute = () => {
   const urls = PATHS.map((p) => `  <url><loc>${SITE.url}${p}</loc></url>`).join('\n');

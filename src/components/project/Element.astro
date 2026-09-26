@@ -5,6 +5,7 @@ import LineButton from '../LineButton.astro';
 import ScrollingText from './ScrollingText.astro';
 import ExploreGrid from './ExploreGrid.astro';
 import { fontVars, srcset, largest } from './tone';
+import { langOf, localize, category } from '../../i18n';
 
 interface Props {
   el: any;
@@ -20,11 +21,15 @@ const css = (style: Record<string, string> = {}) =>
     .map(([k, v]) => `${k}:${v}`)
     .join(';');
 
-const local = (href: string | null) => (href ? href.replace(/^https:\/\/mattriz\.com/, '') || '/' : '#');
+const lang = langOf(Astro.url);
+// Enlaces internos del vivo (https://mattriz.com/…) → rutas del sitio en el idioma de la página.
+const local = (href: string | null) => (href ? (href.startsWith('https://mattriz.com') ? localize(href.replace(/^https:\/\/mattriz\.com/, '') || '/', lang) : href) : '#');
 const external = (href: string | null) => !!href && /^https?:\/\//.test(href) && !href.startsWith('https://mattriz.com');
 // h5/h6 de Salient son etiquetas ("Year", "The Challenge", "Services"), no títulos de sección: se dibujan
 // igual pero como párrafos, para no saltar niveles de encabezado (accesibilidad).
-const html = (el.html ?? '').replace(/<(\/?)h([56])>/g, (_: string, close: string, n: string) => (close ? '</p>' : `<p class="h${n}">`));
+const html = (el.html ?? '')
+  .replace(/href="https:\/\/mattriz\.com(\/[^"]*)?"/g, (_: string, p: string) => `href="${localize(p || '/', lang)}"`)
+  .replace(/<(\/?)h([56])>/g, (_: string, close: string, n: string) => (close ? '</p>' : `<p class="h${n}">`));
 const phone = (el.classes ?? []).map((c: string) => c.match(/^height_phone_(\d+px)$/)?.[1]).find(Boolean);
 ---
 
@@ -121,7 +126,7 @@ const phone = (el.classes ?? []).map((c: string) => c.match(/^height_phone_(\d+p
 {
   el.type === 'meta' && (
     <p class:list={['wp-meta', { 'wp-meta--right': el.classes.includes('alignment_right_desktop') }]}>
-      {el.items.map((it: any) => (it.href ? <a href={`/#work`}>{it.label}</a> : <span>{it.label}</span>))}
+      {el.items.map((it: any) => (it.href ? <a href={localize('/#work', lang)}>{category(it.label, lang)}</a> : <span>{category(it.label, lang)}</span>))}
     </p>
   )
 }

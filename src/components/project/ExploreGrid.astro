@@ -2,6 +2,9 @@
 // Tarjetas de otros proyectos al final de los casos (nectar-post-grid del vivo): 3 columnas,
 // tarjetas cuadradas con radio de 25px, categorías arriba y título abajo a la izquierda.
 import { PROJECTS } from '../../data/home';
+import { langOf, localize, category } from '../../i18n';
+
+const lang = langOf(Astro.url);
 
 interface Props {
   current: string;
@@ -24,10 +27,10 @@ const others = [1, 2, 3].map((n) => PROJECTS[(i + n) % PROJECTS.length]);
         </div>
         <div class="explore-card__content">
           <p class="explore-card__cats">
-            {p.categories.map((c) => <span>{c}</span>)}
+            {p.categories.map((c) => <span>{category(c, lang)}</span>)}
           </p>
           <h3 class="explore-card__title">
-            <a href={p.href}>{p.title}</a>
+            <a href={localize(p.href, lang)}>{p.title}</a>
           </h3>
         </div>
       </li>

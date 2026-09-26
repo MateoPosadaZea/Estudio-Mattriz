@@ -1,55 +1,8 @@
 ---
-// Páginas de proyecto: modelo JSON por proyecto (tools/projects/extract.py + media.py) renderizado con
-// las reglas de layout de Salient. Mismo contenido y orden que el vivo.
-import Base from '../../layouts/Base.astro';
-import Rows from '../../components/project/Rows.astro';
-import { PROJECTS } from '../../data/home';
+import Project from '../../views/Project.astro';
+import { projectPaths } from '../../data/projects';
 
-export function getStaticPaths() {
-  const models = import.meta.glob('../../data/projects/*.json', { eager: true }) as Record<string, { default: any }>;
-  return Object.entries(models).map(([path, mod]) => ({
-    params: { slug: path.split('/').pop()!.replace('.json', '') },
-    props: { model: mod.default },
-  }));
-}
-
-const { model } = Astro.props;
-const { slug } = Astro.params;
-const PAGE_BG = '#0a0a0a';
-
-// Las páginas nuevas (Civilus, The Grid, Spot On) dejan espacio para el header; las antiguas
-// empiezan con el hero negro por debajo del header.
-const headerSpace = model.rows[0]?.padTop === '3em';
-
-const firstText = (() => {
-  const walk = (n: any): string | undefined => {
-    if (!n || typeof n !== 'object') return;
-    if (n.type === 'split') return n.text;
-    if (n.type === 'html' && /<h2>/.test(n.html)) return n.html.replace(/<[^>]+>/g, '').trim();
-    for (const v of Array.isArray(n) ? n : Object.values(n)) {
-      const t = walk(v);
-      if (t) return t;
-    }
-  };
-  return walk(model.rows);
-})();
-const description = model.description || firstText || '';
-const projectName = PROJECTS.find((p) => p.href === `/project/${slug}/`)?.title ?? model.title.split(/ [|-] /)[0];
+export const getStaticPaths = projectPaths;
 ---
 
-<Base title={model.title} description={description} background={PAGE_BG} breadcrumb={[{ name: projectName, path: `/project/${slug}/` }]}>
-  <div class:list={['project', { 'project--header-space': headerSpace }]}>
-    <Rows rows={model.rows} bg={PAGE_BG} slug={slug!} eagerRows={2} />
-  </div>
-</Base>
-
-<style>
-  .project--header-space {
-    padding-top: calc(var(--header-top) + var(--header-height));
-  }
-</style>
-
-<script>
-  import '../../scripts/reveal';
-  import '../../scripts/lazy-video';
-</script>
+<Project {...Astro.props} />
