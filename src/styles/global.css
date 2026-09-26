@@ -141,6 +141,30 @@ button {
   transform: translateY(-20%);
 }
 
+/* Flecha de los botones: se mueve hacia donde apunta al pasar el mouse (→ por defecto). */
+.btn-arrow {
+  display: inline-block;
+  transition: transform 0.45s var(--ease-reveal);
+}
+
+:is(a, button):is(:hover, :focus-visible) .btn-arrow {
+  transform: translateX(4px);
+}
+
+:is(a, button):is(:hover, :focus-visible) .btn-arrow[data-dir='ne'] {
+  transform: translate(3px, -3px);
+}
+
+:is(a, button):is(:hover, :focus-visible) .btn-arrow[data-dir='up'] {
+  transform: translateY(-3px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn-arrow {
+    transition: none;
+  }
+}
+
 /* ---------- Enlace subrayado (Instagram, LinkedIn) ----------
  * Vivo: línea de 1px al 80 %; al pasar el mouse se recoge hacia la derecha
  * (scaleX 0, origen derecho) en 0.4s cubic-bezier(0.23, 0.46, 0.4, 1).

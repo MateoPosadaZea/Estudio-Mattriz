@@ -15,7 +15,7 @@ const c = scanCopy(lang);
   <form class="h-scan__form" action={localize('/scan/', lang)} method="get" data-case-reveal>
     <label class="sr-only" for="h-scan-url">{c.inputLabel}</label>
     <input id="h-scan-url" name="url" type="text" inputmode="url" autocomplete="url" autocapitalize="off" spellcheck="false" placeholder={c.placeholder} required />
-    <button type="submit"><span class="reveal"><span class="reveal__text" data-text={c.button}>{c.button}</span></span> <span aria-hidden="true">→</span></button>
+    <button type="submit"><span class="reveal"><span class="reveal__text" data-text={c.button}>{c.button}</span></span> <span class="btn-arrow" aria-hidden="true">→</span></button>
   </form>
 </section>
 
