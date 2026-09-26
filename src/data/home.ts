@@ -42,7 +42,7 @@ export const STUDIO = {
   stats: [
     { label: 'Build', value: '5+', text: 'Years designing and building digital systems for real businesses.' },
     { label: 'Maintain', value: '3', text: 'Active clients at a time, by design, not by accident.' },
-    { label: 'Grow', value: '100%', text: 'Retainer-based. We don’t do one-offs.' },
+    { label: 'Grow', value: '100%', text: 'We work on a monthly plan: we build, maintain and keep improving. No one-off projects.' },
   ],
 };
 
@@ -191,7 +191,7 @@ export const HOME_ES = {
     stats: [
       { label: 'Construir', value: '5+', text: 'Años diseñando y construyendo sistemas digitales para negocios reales.' },
       { label: 'Mantener', value: '3', text: 'Clientes activos a la vez, por decisión, no por accidente.' },
-      { label: 'Crecer', value: '100%', text: 'Trabajamos por retainer mensual. No hacemos proyectos sueltos.' },
+      { label: 'Crecer', value: '100%', text: 'Trabajamos con un plan mensual: construimos, mantenemos y seguimos mejorando. No hacemos proyectos sueltos.' },
     ],
   },
   TICKER: [
@@ -230,7 +230,7 @@ export const HOME_ES = {
 export const HOME_LABELS = {
   en: {
     metaTitle: 'Mattriz | Booking & operations systems for service businesses',
-    metaDescription: 'Mattriz builds booking, payment and operations systems for service businesses in the US and LATAM. One studio. One retainer.',
+    metaDescription: 'Mattriz builds booking, payment and operations systems for service businesses in the US and LATAM. One studio. One monthly plan.',
     selectedWork: 'Selected Work',
     filter: 'Filter',
     all: 'All',
@@ -246,7 +246,7 @@ export const HOME_LABELS = {
   },
   es: {
     metaTitle: 'Mattriz | Sistemas de reservas y operación para negocios de servicios',
-    metaDescription: 'Mattriz construye sistemas de reservas, pagos y operación para negocios de servicios en Estados Unidos y Latinoamérica. Un estudio. Un retainer.',
+    metaDescription: 'Mattriz construye sistemas de reservas, pagos y operación para negocios de servicios en Estados Unidos y Latinoamérica. Un estudio. Un plan mensual.',
     selectedWork: 'Proyectos seleccionados',
     filter: 'Filtrar',
     all: 'Todos',
