@@ -25,7 +25,7 @@ const c = scanCopy(lang);
     margin: calc(-1 * clamp(16px, 2vw, 40px)) 0 clamp(32px, 4vw, 56px);
     font-size: clamp(18px, 1.6vw, 24px);
     line-height: 1.4;
-    color: var(--fg-soft);
+    color: color-mix(in srgb, var(--fg) 80%, transparent);
   }
 
   .h-scan__form {
@@ -54,7 +54,7 @@ const c = scanCopy(lang);
   }
 
   .h-scan__form input::placeholder {
-    color: var(--placeholder);
+    color: color-mix(in srgb, var(--fg) 35%, transparent);
   }
 
   .h-scan__form button {

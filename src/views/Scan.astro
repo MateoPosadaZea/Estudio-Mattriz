@@ -166,7 +166,7 @@ const config = { lang, copy: c, pricing: PRICING, currency: CURRENCY };
     margin-top: clamp(24px, 3vw, 40px);
     font-size: clamp(18px, 1.6vw, 24px);
     line-height: 1.4;
-    color: var(--fg-soft);
+    color: color-mix(in srgb, var(--fg) 80%, transparent);
   }
 
   .scan-form {
@@ -178,7 +178,7 @@ const config = { lang, copy: c, pricing: PRICING, currency: CURRENCY };
     padding: 8px 8px 8px 24px;
     border: 1px solid var(--line);
     border-radius: var(--radius-pill);
-    background: var(--surface);
+    background: color-mix(in srgb, var(--fg) 4%, transparent);
     transition:
       border-color 0.3s,
       background-color 0.3s;
@@ -207,7 +207,7 @@ const config = { lang, copy: c, pricing: PRICING, currency: CURRENCY };
   }
 
   .scan-form input::placeholder {
-    color: var(--placeholder);
+    color: color-mix(in srgb, var(--fg) 35%, transparent);
   }
 
   .scan-form button {
@@ -291,7 +291,7 @@ const config = { lang, copy: c, pricing: PRICING, currency: CURRENCY };
     display: flex;
     align-items: center;
     gap: 12px;
-    color: var(--placeholder);
+    color: color-mix(in srgb, var(--fg) 30%, transparent);
     transition: color 0.4s;
   }
 
@@ -316,7 +316,7 @@ const config = { lang, copy: c, pricing: PRICING, currency: CURRENCY };
   }
 
   .scan-progress__list li.is-done {
-    color: var(--fg-soft);
+    color: color-mix(in srgb, var(--fg) 75%, transparent);
   }
 
   .scan-progress__list li.is-done::before {

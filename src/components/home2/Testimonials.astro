@@ -213,7 +213,7 @@ const pad = (n: number) => String(n).padStart(2, '0');
     overflow: hidden;
     aspect-ratio: 4 / 3;
     border-radius: 14px;
-    background: var(--surface);
+    background: color-mix(in srgb, var(--fg) 5%, transparent);
     clip-path: inset(100% 0 0 0 round 14px);
     transition: clip-path 0.9s cubic-bezier(0.7, 0, 0.2, 1);
   }
@@ -264,7 +264,7 @@ const pad = (n: number) => String(n).padStart(2, '0');
     place-items: center;
     align-content: center;
     gap: 20px;
-    background: var(--surface);
+    background: color-mix(in srgb, var(--fg) 6%, transparent);
   }
 
   .h-t__media--logo img {

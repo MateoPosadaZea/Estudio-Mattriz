@@ -22,14 +22,9 @@
      El verde de marca es uno solo (--color-brand-green): todo lo verde sale de ahí. */
   --bg: #0a0a0a;
   --fg: #ffffff;
-  --fg-soft: rgba(255, 255, 255, 0.8);
   --muted: rgba(255, 255, 255, 0.6);
   --line: rgba(255, 255, 255, 0.18);
   --line-strong: rgba(255, 255, 255, 0.32);
-  --surface: rgba(255, 255, 255, 0.05);
-  --placeholder: rgba(255, 255, 255, 0.4);
-  --inv-bg: #ffffff;
-  --inv-fg: #0a0a0a;
   --error: #ff8a80;
   --accent-text: var(--color-brand-green);
 
@@ -101,14 +96,9 @@
 html[data-theme='light'] {
   --bg: #f5f5f2;
   --fg: #0a0a0a;
-  --fg-soft: rgba(10, 10, 10, 0.82);
   --muted: rgba(10, 10, 10, 0.64);
   --line: rgba(10, 10, 10, 0.16);
   --line-strong: rgba(10, 10, 10, 0.3);
-  --surface: rgba(10, 10, 10, 0.045);
-  --placeholder: rgba(10, 10, 10, 0.45);
-  --inv-bg: #0a0a0a;
-  --inv-fg: #ffffff;
   --error: #b3261e;
   /* El verde de marca como texto sobre claro no llega a AA: se oscurece. */
   --accent-text: color-mix(in srgb, var(--color-brand-green) 50%, #000);
