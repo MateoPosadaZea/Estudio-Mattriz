@@ -37,7 +37,52 @@ if (footer) {
   });
 
   const word = footer.querySelector<HTMLElement>('[data-footer-word]');
-  const letters = word ? [...word.querySelectorAll<HTMLElement>('span')] : [];
+  const input = footer.querySelector<HTMLInputElement>('[data-footer-input]');
+  let letters = word ? [...word.querySelectorAll<HTMLElement>('span')] : [];
+
+  // La palabra llena el ancho: se mide a 100px y se escala. Con más letras, más chica.
+  const fit = () => {
+    if (!word) return;
+    const available = word.parentElement!.clientWidth;
+    word.style.setProperty('--fit', '100px');
+    const caret = word.querySelector<HTMLElement>('.ft__caret');
+    const caretShown = caret && getComputedStyle(caret).display !== 'none';
+    const first = letters[0]?.getBoundingClientRect();
+    const last = letters.at(-1)?.getBoundingClientRect();
+    const natural = (first && last ? last.right - first.left : 0) + (caretShown ? 10 : 0);
+    // 0.99: margen mínimo para la tinta que sobresale del último glifo.
+    const size = Math.min((available / Math.max(natural, 1)) * 100 * 0.99, window.innerWidth * 0.4);
+    word.style.setProperty('--fit', `${size.toFixed(2)}px`);
+  };
+
+  // Escribir otra palabra: se redibujan las letras (vacía, vuelve a "Mattriz" al salir).
+  if (word && input) {
+    const render = (text: string) => {
+      const caret = word.querySelector('.ft__caret');
+      letters.forEach((l) => l.remove());
+      letters = [...text].map((ch, i) => {
+        const span = document.createElement('span');
+        span.textContent = ch;
+        span.style.setProperty('--i', String(i));
+        word.insertBefore(span, caret);
+        return span;
+      });
+      fit();
+    };
+    input.addEventListener('input', () => render(input.value));
+    input.addEventListener('focus', () => requestAnimationFrame(fit));
+    input.addEventListener('blur', () => {
+      if (!input.value.trim()) input.value = 'Mattriz';
+      render(input.value);
+    });
+    // El cursor siempre al final (es lo que se dibuja).
+    const toEnd = () => input.setSelectionRange(input.value.length, input.value.length);
+    input.addEventListener('click', toEnd);
+    input.addEventListener('keyup', toEnd);
+    document.fonts?.ready.then(fit);
+    window.addEventListener('resize', fit);
+    fit();
+  }
 
   // Entrada de "Mattriz" al aparecer el footer.
   if (word) {
