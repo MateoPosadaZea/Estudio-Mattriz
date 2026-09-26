@@ -54,3 +54,15 @@ Ideas que surgen durante el port y que **no** se implementan en él (brief, secc
 - La analítica (GTM + etiqueta de Google) carga en la primera interacción o a los 4 s. Puede contar algo menos de rebotes instantáneos que antes.
 - El caso de estudio de Spot On se podría optimizar (fuentes locales, imágenes WebP) sin cambiar su aspecto.
 - Cutover: la redirección www → mattriz.com se configura como regla de Cloudflare (Redirect Rules) al apuntar el dominio.
+
+## v2 (rama `v2-motion`, referencia locomotive.ca)
+
+Hecho:
+- Menú móvil a pantalla completa en el verde de marca, con cortina y links escalonados.
+- Transición entre páginas con View Transitions nativas (CSS).
+- Casos de estudio en diseño editorial para The Grid y Spot On (caso nuevo de 2026), en EN/ES.
+
+Siguiente, a decidir:
+- Pasar al diseño nuevo los otros 5 proyectos (Civilus, Posada Carcamo, Let it Go, AGL Vans Tours, Luciana Cabañas).
+- Scroll suave con inercia (Lenis, ~3 KB): sería la primera dependencia de la v2 y hay que medir Lighthouse.
+- Transición compartida entre la miniatura de la grilla de trabajos y el hero del caso.
