@@ -231,7 +231,7 @@ export const HOME_LABELS = {
   en: {
     metaTitle: 'Mattriz | Booking & operations systems for service businesses',
     metaDescription: 'Mattriz builds booking, payment and operations systems for service businesses in the US and LATAM. One studio. One monthly plan.',
-    selectedWork: 'Selected Work',
+    selectedWork: 'Projects',
     filter: 'Filter',
     all: 'All',
     loadMore: 'Load More',
@@ -247,7 +247,7 @@ export const HOME_LABELS = {
   es: {
     metaTitle: 'Mattriz | Sistemas de reservas y operación para negocios de servicios',
     metaDescription: 'Mattriz construye sistemas de reservas, pagos y operación para negocios de servicios en Estados Unidos y Latinoamérica. Un estudio. Un plan mensual.',
-    selectedWork: 'Proyectos seleccionados',
+    selectedWork: 'Proyectos',
     filter: 'Filtrar',
     all: 'Todos',
     loadMore: 'Ver más',
