@@ -35,11 +35,14 @@ if (form) {
     el.style.width = `${Math.ceil(measure.getBoundingClientRect().width + extra)}px`;
   };
 
-  const growAll = () => fields.forEach(grow);
-  fields.forEach((el) => el.addEventListener(el instanceof HTMLSelectElement ? 'change' : 'input', () => grow(el)));
-  document.fonts?.ready.then(growAll);
-  window.addEventListener('resize', growAll);
-  growAll();
+  // Con field-sizing: content (CSS) el navegador ya les da el ancho justo; si no, se mide aquí.
+  if (!CSS.supports('field-sizing', 'content')) {
+    const growAll = () => fields.forEach(grow);
+    fields.forEach((el) => el.addEventListener(el instanceof HTMLSelectElement ? 'change' : 'input', () => grow(el)));
+    document.fonts?.ready.then(growAll);
+    window.addEventListener('resize', growAll);
+    growAll();
+  }
 
   let loading: Promise<void> | undefined;
   const loadTurnstile = () => {
@@ -65,6 +68,10 @@ if (form) {
     status.classList.toggle('is-error', !ok);
     form.classList.toggle('is-sent', ok);
   };
+
+  // Sin JS, el Worker vuelve a /contact/?sent=ok|error: se muestra el resultado.
+  const sent = new URLSearchParams(location.search).get('sent');
+  if (sent) show(sent === 'ok');
 
   form.addEventListener('submit', async (event) => {
     event.preventDefault();

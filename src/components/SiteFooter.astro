@@ -9,22 +9,33 @@ import FooterForm from './FooterForm.astro';
 import { SITE } from '../data/site';
 import { langOf, ui } from '../i18n';
 
+interface Props {
+  /** Formulario en frase; en /contact/ no va porque la página ya lo muestra. */
+  form?: boolean;
+}
+
+const { form = true } = Astro.props;
 const lang = langOf(Astro.url);
 const t = ui(lang);
 const year = new Date().getFullYear();
 ---
 
-<footer class="ft" data-footer>
+<footer class:list={['ft', { 'ft--compact': !form }]} data-footer>
   <!-- Mismo gradiente animado del hero: se mueve solo en el fondo. -->
   <AnimatedGradient color1="brand" speed={250} blend="organic" />
 
   <div class="ft__inner">
-    <p class="ft__status">
-      <span class="ft__pulse" aria-hidden="true"></span>
-      {t.accepting}
-    </p>
-
-    <FooterForm />
+    {
+      form && (
+        <>
+          <p class="ft__status">
+            <span class="ft__pulse" aria-hidden="true"></span>
+            {t.accepting}
+          </p>
+          <FooterForm />
+        </>
+      )
+    }
 
     <div class="ft__grid">
       <div class="ft__col">
@@ -73,6 +84,15 @@ const year = new Date().getFullYear();
     overflow: hidden;
     background: #0a0a0a;
     color: var(--color-white);
+  }
+
+  /* Sin formulario (contacto): solo la franja de datos, con menos aire arriba. */
+  .ft--compact .ft__inner {
+    padding-top: clamp(40px, 5vw, 72px);
+  }
+
+  .ft--compact .ft__grid {
+    margin-top: 0;
   }
 
   .ft__inner {

@@ -21,9 +21,11 @@ interface Props {
   breadcrumb?: { name: string; path: string }[];
   /** Enlaces hreflang a la otra versión (no en la 404 ni en el caso de estudio). */
   alternates?: boolean;
+  /** Formulario en frase del footer (no en /contact/, que ya lo tiene arriba). */
+  footerForm?: boolean;
 }
 
-const { title, description, background = '#ffffff', ogImage = '/images/og-mattriz.png', noindex = false, breadcrumb = [], alternates = true } = Astro.props;
+const { title, description, background = '#ffffff', ogImage = '/images/og-mattriz.png', noindex = false, breadcrumb = [], alternates = true, footerForm = true } = Astro.props;
 const lang = langOf(Astro.url);
 const t = ui(lang);
 const hreflangs = LANGS.map((l) => ({ lang: l, href: new URL(alternate(Astro.url, l), SITE.url).href }));
@@ -151,7 +153,7 @@ const jsonLd = {
         <main id="main">
           <slot />
         </main>
-        <SiteFooter />
+        <SiteFooter form={footerForm} />
       </div>
     </div>
 

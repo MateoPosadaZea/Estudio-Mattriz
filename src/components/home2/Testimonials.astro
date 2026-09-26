@@ -3,15 +3,34 @@
 // cliente con sus imágenes pasando rápido y el enlace al caso. Los clientes sin caso en el sitio
 // (My Doll Hair, Closet Up) muestran su logo. Lógica en src/scripts/testimonials.ts.
 // Accesible: botones anterior/siguiente, pausa, contador; con prefers-reduced-motion no avanza solo.
+// En /contact/ va sin título (bare), en una columna (imagen arriba, cita abajo) y con el testimonio
+// de Diego (Spot On) primero.
 import { home } from '../../data/home';
 import { langOf, localize } from '../../i18n';
 
+type Testimonial = { quote: string; name: string; company: string; avatar?: string };
+
+interface Props {
+  /** Sin etiqueta ni título de sección, en una sola columna. */
+  bare?: boolean;
+  /** Testimonios que van antes de los del home. */
+  lead?: Testimonial[];
+  /** Nombre accesible del carrusel cuando no hay título visible. */
+  label?: string;
+}
+
+const { bare = false, lead = [], label } = Astro.props;
 const lang = langOf(Astro.url);
-const { TESTIMONIALS, LABELS } = home(lang);
+const { LABELS } = home(lang);
+const TESTIMONIALS: Testimonial[] = [...lead, ...home(lang).TESTIMONIALS];
 
 const P = '/media/projects';
 // Proyecto de cada cliente (por empresa). Imágenes del caso, en el orden en que pasan.
 const PROJECTS: Record<string, { href: string; images: string[] }> = {
+  'Spot On Mobile California': {
+    href: '/project/spot-on-mobile-wash-detailing/',
+    images: [`${P}/spot-on-case/spot-on-hero-1200.webp`, `${P}/spot-on-case/spot-on-booking-1200.webp`, `${P}/spot-on-case/spot-on-calendar-1200.webp`, `${P}/spot-on-case/spot-on-corporate-1200.webp`],
+  },
   'Posada Cárcamo Abogados': {
     href: '/project/posada-carcamo-abogados/',
     images: [`${P}/posada-carcamo-abogados/jmb7973-scaled-1-1200.webp`, `${P}/posada-carcamo-abogados/mockup-scaled-1200.webp`, `${P}/posada-carcamo-abogados/portrait3-scaled-1200.webp`, `${P}/posada-carcamo-abogados/mockup-2-recuperado35-1200.webp`],
@@ -26,11 +45,21 @@ const total = TESTIMONIALS.length;
 const pad = (n: number) => String(n).padStart(2, '0');
 ---
 
-<section class="h-section h-t" aria-labelledby="h-testimonials-title">
-  <p class="h-label" data-case-reveal><span>(05)</span></p>
-  <h2 class="h-heading" id="h-testimonials-title" data-case-reveal>{LABELS.testimonials}</h2>
+<section class:list={['h-t', bare ? 'h-t--bare' : 'h-section']} aria-labelledby={bare ? undefined : 'h-testimonials-title'} aria-label={bare ? label : undefined}>
+  {
+    !bare && (
+      <>
+        <p class="h-label" data-case-reveal>
+          <span>(05)</span>
+        </p>
+        <h2 class="h-heading" id="h-testimonials-title" data-case-reveal>
+          {LABELS.testimonials}
+        </h2>
+      </>
+    )
+  }
 
-  <div class="h-t__carousel" role="region" aria-roledescription="carousel" aria-labelledby="h-testimonials-title" data-t-carousel data-case-reveal>
+  <div class="h-t__carousel" role="region" aria-roledescription="carousel" aria-labelledby={bare ? undefined : 'h-testimonials-title'} aria-label={bare ? label : undefined} data-t-carousel data-case-reveal>
     <div class="h-t__slides">
       {
         TESTIMONIALS.map((q, i) => {
@@ -50,7 +79,7 @@ const pad = (n: number) => String(n).padStart(2, '0');
                   <p>“{q.quote}”</p>
                 </blockquote>
                 <div class="h-t__who">
-                  <img src={q.avatar} width="56" height="56" alt="" loading="lazy" decoding="async" />
+                  {q.avatar && <img src={q.avatar} width="56" height="56" alt="" loading="lazy" decoding="async" />}
                   <span>
                     <cite>{q.name}</cite>
                     <span>{q.company}</span>
@@ -130,10 +159,29 @@ const pad = (n: number) => String(n).padStart(2, '0');
   }
 
   @media (min-width: 1000px) {
-    .h-t__slide {
+    .h-t:not(.h-t--bare) .h-t__slide {
       grid-template-columns: 6fr 5fr;
       gap: 5vw;
     }
+  }
+
+  /* Versión en columna (contacto): imagen arriba y cita debajo. */
+  .h-t--bare .h-t__slide {
+    gap: 24px;
+    align-items: start;
+  }
+
+  .h-t--bare .h-t__slide .h-t__media {
+    order: -1;
+    height: clamp(180px, 30vh, 340px);
+  }
+
+  .h-t--bare .h-t__slide .h-t__quote {
+    font-size: clamp(18px, 1.4vw, 22px);
+  }
+
+  .h-t--bare .h-t__slide .h-t__text {
+    gap: 20px;
   }
 
   @media (max-width: 999px) {

@@ -60,7 +60,10 @@ const turnstileKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
     letter-spacing: -0.02em;
   }
 
+  /* Cada espacio mide lo que su contenido (o el placeholder); sin soporte, footer-form.ts lo calcula. */
   .ff__blank {
+    field-sizing: content;
+    min-width: 2ch;
     display: inline-block;
     max-width: 100%;
     margin: 0 0.12em;

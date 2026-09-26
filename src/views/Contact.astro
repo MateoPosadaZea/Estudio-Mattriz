@@ -1,406 +1,110 @@
 ---
+// v2: contacto en negro. A la izquierda el formulario escrito como frase (el mismo del footer, que en
+// esta página no se repite); a la derecha los proyectos con sus testimonios, en carrusel, con el de
+// Diego (Spot On) primero. Envía a /api/contact (Worker con Resend + Turnstile + honeypot).
 import Base from '../layouts/Base.astro';
-import CircleArrowLink from '../components/CircleArrowLink.astro';
+import FooterForm from '../components/FooterForm.astro';
+import Testimonials from '../components/home2/Testimonials.astro';
 import { contact } from '../data/contact';
-import { langOf, localize } from '../i18n';
+import { home } from '../data/home';
+import { langOf, localize, ui } from '../i18n';
 
 const lang = langOf(Astro.url);
 const { CONTACT, CONTACT_CASE } = contact(lang);
-const F = CONTACT.fields;
+const { LABELS } = home(lang);
+const t = ui(lang);
 
-// Clave pública de Turnstile (se define en el build de Cloudflare). Sin clave no se muestra el widget.
-const turnstileKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
+const lead = [{ quote: CONTACT_CASE.quote[0], name: CONTACT_CASE.name, company: CONTACT_CASE.badge }];
 ---
 
 <Base
   breadcrumb={[{ name: CONTACT.breadcrumb, path: localize('/contact/', lang) }]}
   title={CONTACT.metaTitle}
   description={CONTACT.metaDescription}
-  background="#ffffff"
+  background="var(--bg)"
+  footerForm={false}
 >
-  <section class="contact">
-    <div class="contact__form-col">
-      <h1 class="contact__title">{CONTACT.title}</h1>
+  <div class="home ct">
+    <section class="ct__form" aria-labelledby="ct-title">
+      <p class="ct__status case-in">
+        <span class="ct__pulse" aria-hidden="true"></span>{t.accepting}
+      </p>
+      <h1 class="ct__title" id="ct-title">
+        {
+          CONTACT.title.split(' ').map((w, i) => (
+            <span class="case-mask" aria-hidden="true">
+              <span style={`--d:${i * 70}ms`}>{w}</span>
+            </span>
+          ))
+        }
+        <span class="sr-only">{CONTACT.title}</span>
+      </h1>
+      <!-- Sin animación de entrada: es el contenido principal (LCP) y debe verse al instante. -->
+      <FooterForm />
+    </section>
 
-      <form class="contact-form" action="/api/contact" method="post" data-contact-form data-success={CONTACT.success} data-error={CONTACT.error}>
-        <div class="field">
-          <label for="cf-name">{F.name} <span class="req" aria-hidden="true">*</span></label>
-          <input id="cf-name" name="name" type="text" placeholder={F.namePh} autocomplete="name" required />
-        </div>
-        <div class="field">
-          <label for="cf-email">{F.email} <span class="req" aria-hidden="true">*</span></label>
-          <input id="cf-email" name="email" type="email" placeholder={F.emailPh} autocomplete="email" spellcheck="false" required />
-        </div>
-        <div class="field">
-          <label for="cf-phone">{F.phone}</label>
-          <input id="cf-phone" name="phone" type="text" placeholder="+1 555… / +57 3…" autocomplete="tel" />
-        </div>
-        <fieldset class="field field--checks" aria-describedby="cf-services-help">
-          <legend>{F.help}</legend>
-          <ul>
-            {
-              CONTACT.services.map((s, i) => (
-                <li>
-                  <input id={`cf-service-${i}`} type="checkbox" name="services" value={s} />
-                  <label for={`cf-service-${i}`}>{s}</label>
-                </li>
-              ))
-            }
-          </ul>
-          <p class="field__help" id="cf-services-help">{F.helpNote}</p>
-        </fieldset>
-        <div class="field field--select">
-          <label for="cf-budget">{F.budget}</label>
-          <select id="cf-budget" name="budget">
-            {CONTACT.budgets.map((b) => <option value={b}>{b}</option>)}
-          </select>
-        </div>
-        <div class="field">
-          <label for="cf-details">{F.details} <span class="req" aria-hidden="true">*</span></label>
-          <textarea id="cf-details" name="details" placeholder={F.detailsPh} required></textarea>
-        </div>
-
-        <input type="hidden" name="lang" value={lang} />
-
-        <!-- Trampa para bots: oculto para personas y lectores de pantalla. -->
-        <div class="field--hp" aria-hidden="true">
-          <label for="cf-website">Website</label>
-          <input id="cf-website" name="website" type="text" tabindex="-1" autocomplete="off" />
-        </div>
-
-        {turnstileKey && <div class="contact-form__turnstile" data-turnstile data-sitekey={turnstileKey} />}
-
-        <div class="contact-form__submit">
-          <button type="submit">{CONTACT.submit}</button>
-        </div>
-        <p class="contact-form__status" role="status" aria-live="polite" data-form-status hidden></p>
-      </form>
-    </div>
-
-    <div class="contact__case-col">
-      <div class="case-card">
-        <p class="case-card__badge">{CONTACT_CASE.badge}</p>
-        <video class="case-card__video" data-src={CONTACT_CASE.video} poster={CONTACT_CASE.poster} width="1280" height="720" muted loop playsinline preload="none" aria-hidden="true"></video>
-        {CONTACT_CASE.quote.map((q) => <p class="case-card__quote"><span>{q}</span></p>)}
-        <h2 class="case-card__name">{CONTACT_CASE.name}</h2>
-        <p class="case-card__role">{CONTACT_CASE.role}</p>
-        <CircleArrowLink href={CONTACT_CASE.link.href} external>{CONTACT_CASE.link.label}</CircleArrowLink>
-      </div>
-    </div>
-  </section>
+    <aside class="ct__proof case-in" style="--d:600ms">
+      <Testimonials bare lead={lead} label={LABELS.testimonials} />
+    </aside>
+  </div>
 </Base>
 
+<script>
+  import '../scripts/lazy-video';
+  import '../scripts/case';
+</script>
+
 <style>
-  /* Vivo: fila de alto mínimo 100vh, 5vw arriba, columnas al 50 % centradas verticalmente. */
-  .contact {
+  .ct {
+    display: grid;
+    gap: clamp(56px, 8vw, 96px);
+    padding: calc(var(--header-top) + var(--header-height) + clamp(48px, 7vw, 112px)) var(--pad) clamp(80px, 10vw, 160px);
+  }
+
+  @media (min-width: 1100px) {
+    .ct {
+      grid-template-columns: 7fr 5fr;
+      gap: 6vw;
+      align-items: start;
+    }
+
+    .ct__proof {
+      position: sticky;
+      top: calc(var(--header-top) + var(--header-height) + 32px);
+    }
+  }
+
+  .ct__status {
     display: flex;
     align-items: center;
-    min-height: 100vh;
-    padding-top: 5vw;
-    background: var(--color-white);
-    color: var(--color-black);
+    gap: 10px;
+    margin-bottom: clamp(20px, 2.4vw, 32px);
+    font-size: 15px;
+    color: var(--muted);
   }
 
-  .contact__form-col {
-    flex: 0 0 50%;
-    padding: 8vw;
+  .ct__pulse {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--color-status-green);
   }
 
-  .contact__title {
-    margin-bottom: 10px;
+  .ct__title {
+    margin-bottom: clamp(32px, 4vw, 56px);
     font-family: var(--font-display);
-    font-size: 62px;
-    font-weight: 600;
-    line-height: 68px;
-  }
-
-  /* Padding y no margen: el margen colapsaría con el del título. */
-  .contact-form {
-    padding-top: 14px;
-  }
-
-  .field {
-    margin: 0;
-    padding: 10px 0;
-    border: 0;
-  }
-
-  /* Vivo: etiquetas 14px/700; la del presupuesto era gris #acacac (contraste 2.2:1), aquí negra. */
-  .field label,
-  .field legend {
-    display: block;
-    margin-bottom: 4px;
-    padding: 0;
-    font-size: 14px;
-    font-weight: 700;
-    line-height: 18.2px;
-  }
-
-  .req {
-    color: #d63637;
-    font-weight: 400;
-  }
-
-  .field input[type='text'],
-  .field input[type='email'],
-  .field textarea {
-    display: block;
-    width: 100%;
-    height: 38px;
-    padding: 6px 10px;
-    border: 1px solid #cccccc;
-    border-radius: 2px;
-    background: var(--color-white);
-    color: #333333;
-    font: inherit;
-    font-size: 16px;
-    line-height: 20.8px;
-    transition: border-color 0.2s;
-  }
-
-  .field textarea {
-    height: 70px;
-    resize: vertical;
-  }
-
-  .field input:focus,
-  .field textarea:focus {
-    border-color: #999999;
-  }
-
-  /* La leyenda flotada respeta el padding del fieldset, como las demás etiquetas. */
-  .field--checks legend {
-    float: left;
-    width: 100%;
-  }
-
-  .field--checks ul {
-    clear: both;
-  }
-
-  .field--checks ul li {
-    display: flex;
-    align-items: flex-start;
-    height: 26px;
-    margin-bottom: 5px;
-  }
-
-  .field--checks input {
-    flex: none;
-    width: 14px;
-    height: 14px;
-    margin: 3px 10px 0 3px;
-    accent-color: var(--color-black);
-  }
-
-  .field--checks li label {
-    margin: 0;
-    padding-top: 6px;
-    font-weight: 400;
-    line-height: 18.2px;
-  }
-
-  .field--checks li:last-child {
-    margin-bottom: 0;
-  }
-
-  .field__help {
-    margin-top: 8px;
-    font-size: 13px;
-    line-height: 16.9px;
-  }
-
-  /* Vivo: select2 sin borde, 16px, padding 15px 0 y triángulo a la derecha. */
-  .field--select {
-    margin-top: 12px;
-  }
-
-  .field select {
-    display: block;
-    width: 100%;
-    height: 49px;
-    padding: 0 30px 0 10px;
-    border: 0;
-    border-radius: 0;
-    background: var(--color-white)
-      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='5'%3E%3Cpath d='M0 0h8L4 5z' fill='%23888'/%3E%3C/svg%3E")
-      no-repeat right 12px center;
-    color: var(--color-black);
-    font: inherit;
-    font-size: 16px;
-    line-height: 26px;
-    appearance: none;
-    cursor: pointer;
-  }
-
-  .field--hp {
-    position: absolute;
-    left: -9999px;
-    width: 1px;
-    height: 1px;
-    overflow: hidden;
-  }
-
-  .contact-form__turnstile:not(:empty) {
-    margin-top: 20px;
-  }
-
-  .contact-form__submit {
-    margin-top: 40px;
-  }
-
-  .contact-form__submit button {
-    padding: 15px 35px;
-    border: 1px solid #dddddd;
-    border-radius: 200px;
-    background: #eeeeee;
-    color: #333333;
-    font-size: 17px;
+    font-size: clamp(48px, 6.4vw, 112px);
     font-weight: 500;
-    line-height: 20.4px;
-    transition:
-      opacity 0.45s var(--ease-reveal),
-      border-color 0.45s var(--ease-reveal),
-      background-color 0.45s var(--ease-reveal),
-      color 0.45s var(--ease-reveal);
+    line-height: 0.98;
+    letter-spacing: -0.03em;
   }
 
-  /* Vivo: fondo del color de acento (#000) y texto blanco. */
-  .contact-form__submit button:hover {
-    background: var(--color-black);
-    color: var(--color-white);
+  /* La frase del formulario, un poco más chica que en el footer para que quepa en la columna. */
+  .ct__form :global(.ff__sentence) {
+    font-size: clamp(22px, 2.5vw, 40px);
   }
 
-  .contact-form__submit button:disabled {
-    opacity: 0.5;
-    cursor: wait;
-  }
-
-  .contact-form__status {
-    margin-top: 20px;
-    font-size: 16px;
-    line-height: 24px;
-  }
-
-  .contact-form__status.is-error {
-    color: #b3261e;
-  }
-
-  /* Tarjeta: fondo #eee, radio 20px, 5vw a la derecha; relleno del 10 % de la columna. */
-  .contact__case-col {
-    flex: 0 0 50%;
-    padding-right: 5vw;
-  }
-
-  .case-card {
-    padding: 5vw;
-    border-radius: 20px;
-    background: #eeeeee;
-    color: var(--color-black);
-  }
-
-  .case-card__badge {
-    display: inline-block;
-    margin-bottom: 49px;
-    padding: 0.5em 1em;
-    border-radius: 20px;
-    background: var(--color-white);
-    line-height: 1;
-  }
-
-  .case-card__video {
-    display: block;
-    width: 100%;
-    height: auto;
-    aspect-ratio: 16 / 9;
-    margin-bottom: 1.5em;
-    border-radius: 10px;
-    object-fit: cover;
-  }
-
-  /* Vivo: texto a 12pt (16px) dentro de un bloque con el alto de línea del cuerpo (26px / 21px). */
-  .case-card__quote {
-    margin-bottom: 24px;
-  }
-
-  .case-card__quote span {
-    font-size: 16px;
-  }
-
-  .case-card__name {
-    margin-bottom: 24px;
-    font-size: 18px;
-    font-weight: 500;
-    line-height: 26px;
-  }
-
-  .case-card__role {
-    margin-bottom: 24px;
-    font-size: 16px;
-  }
-
-  @media (max-width: 999px) {
-    .contact {
-      flex-direction: column;
-      align-items: stretch;
-      padding-top: 4.4vw;
-    }
-
-    .contact__form-col {
-      padding: 8vw;
-    }
-
-    .contact__case-col {
-      padding: 0 8vw;
-    }
-
-    .case-card {
-      padding: 10vw;
-    }
-
-    .case-card__name {
-      font-size: 16px;
-      line-height: 24px;
-    }
-
-    .case-card__role {
-      font-size: 14px;
-    }
-
-    .case-card__quote span {
-      line-height: 24px;
-    }
-  }
-
-  @media (max-width: 690px) {
-    .contact__title {
-      font-size: 50px;
-      line-height: 55px;
-    }
-
-    .field {
-      padding: 10px 1px;
-    }
-
-    .field--checks ul li {
-      height: 21px;
-    }
-
-    .field--checks input {
-      margin-top: 0;
-    }
-
-    .field--checks li label {
-      padding-top: 3px;
-    }
-
-    .contact-form__submit button {
-      font-size: 14px;
-      line-height: 16.8px;
-    }
+  .ct__proof :global(.h-t__controls) {
+    margin-top: 24px;
   }
 </style>
-
-<script>
-  import '../scripts/contact-form';
-</script>
