@@ -36,6 +36,10 @@ const other = lang === 'es' ? 'en' : 'es';
     }
   </ul>
 
+  <a class="mobile-menu__talk" href={SITE.calendly} target="_blank" rel="noopener">
+    <span class="mask"><span>{t.talk} ↗</span></span>
+  </a>
+
   <div class="mobile-menu__foot">
     <a class="mobile-menu__lang mask" href={alternate(Astro.url, other)} hreflang={other} lang={other}>
       <span>{t.switchLong}</span>
@@ -102,6 +106,21 @@ const other = lang === 'es' ? 'en' : 'es';
     font-size: clamp(52px, 15vw, 96px);
     line-height: 1.02;
     letter-spacing: -0.02em;
+  }
+
+  .mobile-menu__talk {
+    align-self: flex-start;
+    margin-bottom: clamp(32px, 6vh, 56px);
+    padding: 14px 24px;
+    border-radius: var(--radius-pill);
+    background: var(--menu-fg);
+    color: var(--menu-bg);
+    font-size: 16px;
+    line-height: 1.2;
+  }
+
+  .mobile-menu__talk .mask > span {
+    --i: 5;
   }
 
   .mobile-menu__foot {

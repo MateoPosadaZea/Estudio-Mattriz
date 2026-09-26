@@ -176,17 +176,10 @@ const other = lang === 'es' ? 'en' : 'es';
       display: none;
     }
 
-    .lang-switch {
-      padding: 0 16px;
-      font-size: 13px;
-    }
-
-    /* Vivo: 83×53 px, texto 13px. */
+    /* v2: en móvil el header solo lleva logo y menú; idioma y "Let's talk" están dentro del menú. */
+    .lang-switch,
     .talk-button {
-      height: 53px;
-      padding: 0 15px;
-      font-size: 13px;
-      line-height: 1;
+      display: none;
     }
 
     /* Círculo negro con tres líneas. Vivo: 40×40 px, #0a0a0a, sombra 0 10px 25px 13 %. */
@@ -196,7 +189,7 @@ const other = lang === 'es' ? 'en' : 'es';
       flex: none;
       width: 40px;
       height: 40px;
-      margin-left: 18px;
+      margin-left: auto;
       background: var(--color-ink);
       border-radius: 100px;
       box-shadow: 0 10px 25px rgba(0, 0, 0, 0.13);
