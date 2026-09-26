@@ -4,6 +4,7 @@ import Header from '../components/Header.astro';
 import MobileMenu from '../components/MobileMenu.astro';
 import SiteFooter from '../components/SiteFooter.astro';
 import ToTop from '../components/ToTop.astro';
+import Loader from '../components/Loader.astro';
 import Analytics from '../components/Analytics.astro';
 import { SITE } from '../data/site';
 import { langOf, alternate, ui, LANGS } from '../i18n';
@@ -81,7 +82,17 @@ const jsonLd = {
 <html lang={t.htmlLang} style={`--page-bg: ${background}`}>
   <head>
     <meta charset="utf-8" />
-    <script is:inline>document.documentElement.classList.add('js');</script>
+    <script is:inline>
+      document.documentElement.classList.add('js');
+      // Loader (src/components/Loader.astro): solo en la primera página de la sesión y sin
+      // movimiento reducido. Seguro: a los 4 s se quita pase lo que pase.
+      try {
+        if (!sessionStorage.getItem('mz-loaded') && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+          document.documentElement.classList.add('is-loading');
+          setTimeout(function () { document.documentElement.classList.remove('is-loading'); }, 4000);
+        }
+      } catch (e) {}
+    </script>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
     <meta name="description" content={description} />
@@ -127,6 +138,7 @@ const jsonLd = {
     <Analytics />
   </head>
   <body>
+    <Loader />
     <a class="skip-link" href="#main">{t.skip}</a>
 
     <div class="page" data-page id="top">
