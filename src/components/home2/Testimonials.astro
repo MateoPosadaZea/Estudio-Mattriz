@@ -34,6 +34,10 @@ const PROJECTS: Record<string, { href: string; images: string[] }> = {
     href: '/project/posada-carcamo-abogados/',
     images: [`${P}/posada-carcamo-abogados/jmb7973-scaled-1-1200.webp`, `${P}/posada-carcamo-abogados/mockup-scaled-1200.webp`, `${P}/posada-carcamo-abogados/portrait3-scaled-1200.webp`, `${P}/posada-carcamo-abogados/mockup-2-recuperado35-1200.webp`],
   },
+  'The Grid': {
+    href: '/project/the-grid/',
+    images: [`${P}/the-grid/banner-1200.webp`, `${P}/the-grid/free-l-mockups-macbook-air2-1200.webp`, `${P}/the-grid/iphone-14-pro-psd-1200.webp`, `${P}/the-grid/captura-de-pantalla-2025-12-04-a-las-11-15-36-p-m-1200.webp`],
+  },
   'AGL Vans Tours': {
     href: '/project/aglvanstours/',
     images: [`${P}/aglvanstours/mockup-scaled-1200.webp`, `${P}/aglvanstours/grabacion-de-pantalla-2025-03-11-a-las-11-49-16-p-m-poster.webp`, `${P}/aglvanstours/bioseguridadagl-poster.webp`, `${P}/aglvanstours/mockupagl-1-poster.webp`],
@@ -188,9 +192,13 @@ const pad = (n: number) => String(n).padStart(2, '0');
       gap: 20px;
     }
 
-    .h-t__slide .h-t__media {
+    /* En pantallas angostas la portada va arriba, más grande (4:3, sin pasar de 60% de la pantalla). */
+    .h-t__slide .h-t__media,
+    .h-t--bare .h-t__slide .h-t__media {
       order: -1;
-      height: clamp(140px, 24vh, 240px);
+      height: auto;
+      aspect-ratio: 4 / 3;
+      max-height: 60vh;
     }
 
     .h-t__slide .h-t__text {

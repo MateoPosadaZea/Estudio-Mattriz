@@ -67,6 +67,12 @@ const PHOTO_SIZES: [number, number][] = [[900, 604], [600, 403], [400, 269]];
 // Mismo orden que el vivo (por fecha, más reciente primero).
 export const PROJECTS: Project[] = [
   {
+    title: 'Santo & Seña',
+    href: '/project/santo-y-sena/',
+    categories: ['UI/UX Design', 'Web Development', 'SEO Optimization'],
+    video: '/media/work/santo-y-sena.mp4',
+  },
+  {
     title: 'Civilus',
     href: '/project/civilus/',
     categories: ['Brand Identity', 'UI/UX Design', 'Web Development'],
@@ -127,6 +133,11 @@ export const TESTIMONIALS = [
     quote: 'I had the opportunity to work with Mattriz on building my business website, and the experience exceeded our expectations. From the very beginning, we received very positive feedback, even from people who work at large technology companies here in the United States.',
     name: 'Diego',
     company: 'Spot On Mobile California',
+  },
+  {
+    quote: 'An excellent studio, fully recommended. Modern and working with cutting-edge technology, blending technical knowledge with advanced AI tools.',
+    name: 'Héctor Posada',
+    company: 'The Grid',
   },
   {
     quote: 'We highlight their development, launch, and ongoing maintenance of our online store. They work fast and are always ready to help. I’d recommend them without hesitation.',
@@ -208,6 +219,11 @@ export const HOME_ES = {
       quote: 'Tuve la oportunidad de trabajar con Mattriz en el sitio web de mi negocio y la experiencia superó nuestras expectativas. Desde el principio recibimos comentarios muy positivos, incluso de personas que trabajan en grandes empresas de tecnología aquí en Estados Unidos.',
       name: 'Diego',
       company: 'Spot On Mobile California',
+    },
+    {
+      quote: 'Excelente estudio, totalmente recomendado. Moderno y utiliza tecnología de vanguardia, mezclando conocimiento técnico con herramientas avanzadas de AI.',
+      name: 'Héctor Posada',
+      company: 'The Grid',
     },
     {
       quote: 'Destacamos el desarrollo, el lanzamiento y el mantenimiento continuo de nuestra tienda en línea. Trabajan rápido y siempre están dispuestos a ayudar. Los recomendaría sin dudarlo.',
