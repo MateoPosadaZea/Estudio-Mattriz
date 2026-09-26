@@ -455,13 +455,15 @@ const sizes = { pair: '(max-width: 690px) 100vw, 50vw', trio: '(max-width: 690px
     }
   }
 
+  /* Títulos de sección y de las listas en Maison (se leen mejor que Noe a este tamaño); Noe queda
+     para el título del caso, las cifras y el siguiente proyecto. */
   .case-heading {
     margin-bottom: 28px;
-    font-family: var(--font-display);
-    font-size: clamp(34px, 4.4vw, 72px);
-    font-weight: 500;
-    line-height: 1.02;
-    letter-spacing: -0.025em;
+    font-family: var(--font-sans-book);
+    font-size: clamp(32px, 4vw, 64px);
+    font-weight: normal;
+    line-height: 1.08;
+    letter-spacing: -0.03em;
     text-wrap: balance;
   }
 
@@ -547,9 +549,9 @@ const sizes = { pair: '(max-width: 690px) 100vw, 50vw', trio: '(max-width: 690px
   }
 
   .case-cards__term {
-    font-family: var(--font-display);
-    font-size: clamp(22px, 1.8vw, 30px);
-    font-weight: 500;
+    font-family: var(--font-sans-book);
+    font-size: clamp(21px, 1.7vw, 28px);
+    font-weight: normal;
     line-height: 1.1;
     letter-spacing: -0.01em;
   }
@@ -622,7 +624,7 @@ const sizes = { pair: '(max-width: 690px) 100vw, 50vw', trio: '(max-width: 690px
   }
 
   .case-timeline__title {
-    font-family: var(--font-display);
+    font-family: var(--font-sans-book);
     font-size: clamp(20px, 1.7vw, 28px);
     line-height: 1.15;
   }
@@ -735,8 +737,8 @@ const sizes = { pair: '(max-width: 690px) 100vw, 50vw', trio: '(max-width: 690px
   }
 
   .case-list__term {
-    font-family: var(--font-display);
-    font-size: clamp(22px, 2vw, 32px);
+    font-family: var(--font-sans-book);
+    font-size: clamp(21px, 1.8vw, 30px);
     line-height: 1.15;
     letter-spacing: -0.01em;
   }

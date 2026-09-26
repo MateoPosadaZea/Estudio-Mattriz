@@ -129,6 +129,11 @@ export const TESTIMONIALS = [
     company: 'Spot On Mobile California',
   },
   {
+    quote: 'An excellent studio, fully recommended. Modern and working with cutting-edge technology, blending technical knowledge with advanced AI tools.',
+    name: 'Héctor Posada',
+    company: 'The Grid',
+  },
+  {
     quote: 'We highlight their development, launch, and ongoing maintenance of our online store. They work fast and are always ready to help. I’d recommend them without hesitation.',
     name: 'José Suárez',
     company: 'My Doll Hair',
@@ -208,6 +213,11 @@ export const HOME_ES = {
       quote: 'Tuve la oportunidad de trabajar con Mattriz en el sitio web de mi negocio y la experiencia superó nuestras expectativas. Desde el principio recibimos comentarios muy positivos, incluso de personas que trabajan en grandes empresas de tecnología aquí en Estados Unidos.',
       name: 'Diego',
       company: 'Spot On Mobile California',
+    },
+    {
+      quote: 'Excelente estudio, totalmente recomendado. Moderno y utiliza tecnología de vanguardia, mezclando conocimiento técnico con herramientas avanzadas de AI.',
+      name: 'Héctor Posada',
+      company: 'The Grid',
     },
     {
       quote: 'Destacamos el desarrollo, el lanzamiento y el mantenimiento continuo de nuestra tienda en línea. Trabajan rápido y siempre están dispuestos a ayudar. Los recomendaría sin dudarlo.',
