@@ -1,0 +1,106 @@
+---
+// v2: testimonios como citas grandes en dos columnas (sin carrusel: se leen todas).
+import { home } from '../../data/home';
+import { langOf } from '../../i18n';
+
+const { TESTIMONIALS, LABELS } = home(langOf(Astro.url));
+---
+
+<section class="h-section" aria-labelledby="h-testimonials-title">
+  <p class="h-label" data-case-reveal><span>(04)</span></p>
+  <h2 class="h-heading" id="h-testimonials-title" data-case-reveal>{LABELS.testimonials}</h2>
+  <ul class="h-quotes">
+    {
+      TESTIMONIALS.map((q, i) => (
+        <li data-case-reveal style={`transition-delay:${(i % 2) * 90}ms`}>
+          <blockquote class="h-quote">
+            <p class="h-quote__text">“{q.quote}”</p>
+            <footer class="h-quote__who">
+              <img src={q.avatar} width="48" height="48" alt="" loading="lazy" decoding="async" />
+              <span>
+                <cite>{q.name}</cite>
+                <span>{q.company}</span>
+              </span>
+            </footer>
+          </blockquote>
+        </li>
+      ))
+    }
+  </ul>
+</section>
+
+<style>
+  .h-quotes {
+    display: grid;
+    gap: 1px;
+    background: var(--line);
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+  }
+
+  @media (min-width: 1000px) {
+    .h-quotes {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  .h-quotes li {
+    background: var(--page-bg);
+  }
+
+  .h-quote {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 40px;
+    height: 100%;
+    margin: 0;
+    padding: clamp(32px, 4vw, 64px) 0;
+  }
+
+  @media (min-width: 1000px) {
+    .h-quotes li:nth-child(odd) .h-quote {
+      padding-right: 4vw;
+    }
+
+    .h-quotes li:nth-child(even) .h-quote {
+      padding-left: 4vw;
+    }
+  }
+
+  .h-quote__text {
+    font-family: var(--font-display);
+    font-size: clamp(22px, 2.1vw, 34px);
+    line-height: 1.2;
+    letter-spacing: -0.015em;
+    text-indent: -0.4em;
+  }
+
+  .h-quote__who {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    font-size: 15px;
+    line-height: 1.4;
+  }
+
+  .h-quote__who img {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+
+  .h-quote__who span {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .h-quote__who cite {
+    font-style: normal;
+  }
+
+  .h-quote__who span span {
+    color: var(--muted);
+  }
+</style>

@@ -1,36 +1,68 @@
 ---
+// v2: home con el lenguaje editorial de los casos de estudio (referencia: locomotive.ca).
+// Mismo contenido, orden y anclas que antes (#services, #how-we-work, #work).
 import Base from '../layouts/Base.astro';
-import Hero from '../components/home/Hero.astro';
-import Services from '../components/home/Services.astro';
-import Studio from '../components/home/Studio.astro';
-import WorkList from '../components/home/WorkList.astro';
-import WorkGrid from '../components/home/WorkGrid.astro';
-import Ticker from '../components/home/Ticker.astro';
-import Testimonials from '../components/home/Testimonials.astro';
+import Hero from '../components/home2/Hero.astro';
+import Services from '../components/home2/Services.astro';
+import Studio from '../components/home2/Studio.astro';
+import Work from '../components/home2/Work.astro';
+import Ticker from '../components/home2/Ticker.astro';
+import Testimonials from '../components/home2/Testimonials.astro';
 import { home } from '../data/home';
 import { langOf } from '../i18n';
 
 const { LABELS } = home(langOf(Astro.url));
 ---
 
-<Base
-  title={LABELS.metaTitle}
-  description={LABELS.metaDescription}
-  background="#000000"
->
-  <Hero />
-  <Services />
-  <Studio />
-  <!-- Una sola ancla #work para las dos versiones (lista en desktop, tarjetas en mobile). -->
-  <div id="work">
-    <WorkList />
-    <WorkGrid />
+<Base title={LABELS.metaTitle} description={LABELS.metaDescription} background="#0a0a0a">
+  <div class="home">
+    <Hero />
+    <Services />
+    <Studio />
+    <Work />
+    <Ticker />
+    <Testimonials />
   </div>
-  <Ticker />
-  <Testimonials />
 </Base>
 
 <script>
-  import '../scripts/reveal';
-  import '../scripts/color-change';
+  import '../scripts/lazy-video';
+  import '../scripts/case';
 </script>
+
+<style is:global>
+  .home {
+    --pad: clamp(20px, 5vw, 80px);
+    --muted: rgba(255, 255, 255, 0.6);
+    --line: rgba(255, 255, 255, 0.18);
+    color: var(--color-white);
+    overflow-x: clip;
+  }
+
+  .home .h-section {
+    padding: clamp(80px, 12vw, 200px) var(--pad);
+  }
+
+  .home .h-label {
+    margin-bottom: 20px;
+    font-size: 15px;
+    line-height: 1.5;
+    color: var(--muted);
+  }
+
+  .home .h-label span {
+    margin-right: 0.6em;
+    color: var(--color-white);
+  }
+
+  .home .h-heading {
+    max-width: 14em;
+    margin-bottom: clamp(40px, 5vw, 80px);
+    font-family: var(--font-display);
+    font-size: clamp(44px, 7vw, 128px);
+    font-weight: 500;
+    line-height: 0.98;
+    letter-spacing: -0.03em;
+    text-wrap: balance;
+  }
+</style>

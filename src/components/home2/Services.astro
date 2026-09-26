@@ -1,0 +1,75 @@
+---
+// v2: "What we build" como lista numerada a todo el ancho (mismo lenguaje que los casos).
+import { home } from '../../data/home';
+import { langOf, ui } from '../../i18n';
+
+const lang = langOf(Astro.url);
+const { SERVICES } = home(lang);
+const t = ui(lang);
+---
+
+<section class="h-section" id="services">
+  <p class="h-label" data-case-reveal><span>(01)</span> {t.nav[3]}</p>
+  <h2 class="h-heading" data-case-reveal>{SERVICES.title}</h2>
+  <ol class="h-services">
+    {
+      SERVICES.items.map((item, i) => (
+        <li data-case-reveal>
+          <span class="h-services__n">{String(i + 1).padStart(2, '0')}</span>
+          <h3 class="h-services__title">{item.title}</h3>
+          <p class="h-services__text">{item.text}</p>
+        </li>
+      ))
+    }
+  </ol>
+</section>
+
+<style>
+  .h-services {
+    border-top: 1px solid var(--line);
+  }
+
+  .h-services li {
+    display: grid;
+    grid-template-columns: 3em 1fr;
+    gap: 8px 16px;
+    padding: 28px 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  @media (min-width: 1000px) {
+    .h-services li {
+      grid-template-columns: 2fr 5fr 5fr;
+      gap: 4vw;
+      align-items: baseline;
+      padding: 36px 0;
+    }
+  }
+
+  .h-services__n {
+    grid-row: span 2;
+    font-size: 15px;
+    color: var(--color-brand-green);
+  }
+
+  @media (min-width: 1000px) {
+    .h-services__n {
+      grid-row: auto;
+    }
+  }
+
+  .h-services__title {
+    font-family: var(--font-display);
+    font-size: clamp(26px, 2.8vw, 46px);
+    font-weight: 500;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+  }
+
+  .h-services__text {
+    max-width: 30em;
+    font-size: 16px;
+    line-height: 1.55;
+    color: var(--muted);
+  }
+</style>

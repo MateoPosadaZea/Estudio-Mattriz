@@ -1,0 +1,242 @@
+---
+// v2: "Selected Work" como lista editorial. En escritorio (con mouse) la pieza de cada proyecto
+// aparece junto al cursor al pasar por encima (src/scripts/work-preview.ts); en táctil cada fila
+// muestra su miniatura. Mismo orden y enlaces que antes.
+import { PROJECTS, home } from '../../data/home';
+import { langOf, localize, category, ui } from '../../i18n';
+
+const lang = langOf(Astro.url);
+const { LABELS } = home(lang);
+const t = ui(lang);
+
+// Spot On tiene caso nuevo (2026): su pieza es la del sitio nuevo, no el video del anterior.
+const COVERS: Record<string, { src: string; srcset: string; width: number; height: number }> = {
+  '/project/spot-on-mobile-wash-detailing/': {
+    src: '/media/projects/spot-on-case/spot-on-hero-1200.webp',
+    srcset: '/media/projects/spot-on-case/spot-on-hero-700.webp 700w, /media/projects/spot-on-case/spot-on-hero-1200.webp 1200w',
+    width: 1200,
+    height: 590,
+  },
+};
+
+const items = PROJECTS.map((p) => {
+  const cover = COVERS[p.href];
+  return {
+    ...p,
+    href: localize(p.href, lang),
+    categories: p.categories.map((c) => category(c, lang)),
+    video: cover ? undefined : p.video,
+    image: cover ? { ...cover, alt: '' } : p.image,
+  };
+});
+---
+
+<section class="h-section h-work" id="work" data-work>
+  <p class="h-label" data-case-reveal><span>(03)</span> {t.nav[2]}</p>
+  <h2 class="h-heading" data-case-reveal>{LABELS.selectedWork}</h2>
+
+  <ol class="h-work__list">
+    {
+      items.map((p, i) => (
+        <li data-case-reveal>
+          <a class="h-work__row" href={p.href} data-work-row={i}>
+            <span class="h-work__thumb" aria-hidden="true">
+              {p.video ? (
+                <video data-src={p.video} poster={p.video.replace(/\.mp4$/, '-poster.webp')} muted loop playsinline preload="none" />
+              ) : (
+                p.image && <img src={p.image.src} srcset={p.image.srcset} sizes="(max-width: 999px) 88vw, 1px" width={p.image.width} height={p.image.height} alt="" loading="lazy" decoding="async" />
+              )}
+            </span>
+            <span class="h-work__n">{String(i + 1).padStart(2, '0')}</span>
+            <span class="h-work__name">{p.title}</span>
+            <span class="h-work__cats">{p.categories.join(' · ')}</span>
+            <span class="h-work__arrow" aria-hidden="true">↗</span>
+          </a>
+        </li>
+      ))
+    }
+  </ol>
+
+  <!-- Vista previa que sigue al cursor (solo con mouse, ≥1000px). -->
+  <div class="h-work__preview" aria-hidden="true" data-work-preview>
+    {
+      items.map((p, i) => (
+        <div class="h-work__preview-item" data-work-preview-item={i}>
+          {p.video ? (
+            <video data-preview-src={p.video} muted loop playsinline preload="none" />
+          ) : (
+            p.image && <img data-preview-src={p.image.src} width={p.image.width} height={p.image.height} alt="" />
+          )}
+        </div>
+      ))
+    }
+  </div>
+</section>
+
+<script>
+  import '../../scripts/work-preview';
+</script>
+
+<style>
+  .h-work {
+    position: relative;
+  }
+
+  .h-work__list {
+    list-style: none;
+    border-top: 1px solid var(--line);
+  }
+
+  .h-work__list li {
+    border-bottom: 1px solid var(--line);
+  }
+
+  .h-work__row {
+    display: grid;
+    grid-template-columns: 2.5em 1fr auto;
+    gap: 6px 16px;
+    align-items: baseline;
+    padding: 24px 0 28px;
+  }
+
+  .h-work__thumb {
+    grid-column: 1 / -1;
+    display: block;
+    overflow: hidden;
+    margin-bottom: 14px;
+    border-radius: 10px;
+    aspect-ratio: 16 / 10;
+    background: rgba(255, 255, 255, 0.06);
+  }
+
+  .h-work__thumb :global(video),
+  .h-work__thumb :global(img) {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .h-work__n {
+    font-size: 15px;
+    color: var(--muted);
+  }
+
+  .h-work__name {
+    font-family: var(--font-display);
+    font-size: clamp(32px, 5.4vw, 96px);
+    font-weight: 500;
+    line-height: 1;
+    letter-spacing: -0.03em;
+  }
+
+  .h-work__cats {
+    grid-column: 2 / -1;
+    font-size: 14px;
+    color: var(--muted);
+  }
+
+  .h-work__arrow {
+    grid-row: 2;
+    grid-column: 3;
+    font-size: 22px;
+  }
+
+  @media (min-width: 1000px) {
+    .h-work__thumb {
+      display: none;
+    }
+
+    .h-work__row {
+      grid-template-columns: 2fr 7fr 3fr auto;
+      gap: 4vw;
+      padding: 28px 0;
+    }
+
+    .h-work__cats {
+      grid-column: auto;
+    }
+
+    .h-work__arrow {
+      grid-row: auto;
+      grid-column: auto;
+    }
+
+    .h-work__name {
+      transition:
+        transform 0.6s cubic-bezier(0.2, 1, 0.3, 1),
+        opacity 0.4s;
+    }
+
+    .h-work__arrow {
+      transition: transform 0.6s cubic-bezier(0.2, 1, 0.3, 1);
+    }
+
+    /* Al pasar por una fila, el resto se atenúa y el nombre se corre un poco. */
+    .h-work__list:hover .h-work__name {
+      opacity: 0.3;
+    }
+
+    .h-work__row:hover .h-work__name,
+    .h-work__row:focus-visible .h-work__name {
+      opacity: 1;
+      transform: translateX(0.25em);
+    }
+
+    .h-work__row:hover .h-work__arrow {
+      transform: translate(4px, -4px);
+    }
+  }
+
+  .h-work__preview {
+    display: none;
+  }
+
+  @media (hover: hover) and (min-width: 1000px) {
+    .h-work__preview {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 50;
+      display: block;
+      width: min(30vw, 440px);
+      aspect-ratio: 4 / 3;
+      overflow: hidden;
+      border-radius: 12px;
+      pointer-events: none;
+      opacity: 0;
+      transform: translate3d(var(--x, 0), var(--y, 0), 0) translate(-50%, -50%) scale(0.85);
+      transition:
+        opacity 0.35s,
+        transform 0.5s cubic-bezier(0.2, 1, 0.3, 1);
+    }
+
+    .h-work__preview.is-on {
+      opacity: 1;
+      transform: translate3d(var(--x, 0), var(--y, 0), 0) translate(-50%, -50%) scale(1);
+    }
+  }
+
+  .h-work__preview-item {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  .h-work__preview-item.is-active {
+    opacity: 1;
+  }
+
+  .h-work__preview-item :global(video),
+  .h-work__preview-item :global(img) {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .h-work__preview {
+      display: none !important;
+    }
+  }
+</style>

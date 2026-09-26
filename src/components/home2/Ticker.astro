@@ -1,0 +1,109 @@
+---
+// v2: marquesina en Noe Display, más grande, con los separadores en verde.
+// Misma mecánica que la anterior: 5 copias por línea, 30 s en bucle, la segunda al revés.
+import { home } from '../../data/home';
+import { langOf } from '../../i18n';
+
+const { TICKER, LABELS } = home(langOf(Astro.url));
+const parts = (text: string) => text.split('·').map((s) => s.trim()).filter(Boolean);
+---
+
+<section class="h-ticker" aria-label={LABELS.ticker}>
+  {
+    TICKER.map((text, row) => (
+      <div class:list={['h-ticker__row', row === 0 ? 'h-ticker__row--rtl' : 'h-ticker__row--ltr']}>
+        {Array.from({ length: 5 }, (_, i) => (
+          <p class="h-ticker__chunk" aria-hidden={i > 0 ? 'true' : undefined}>
+            {parts(text).map((p) => (
+              <>
+                <span>{p}</span>
+                <span class="h-ticker__dot" aria-hidden="true">
+                  ✳
+                </span>
+              </>
+            ))}
+          </p>
+        ))}
+      </div>
+    ))
+  }
+</section>
+
+<style>
+  .h-ticker {
+    padding: clamp(40px, 6vw, 96px) 0;
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    overflow: hidden;
+  }
+
+  .h-ticker__row {
+    display: flex;
+    white-space: nowrap;
+  }
+
+  .h-ticker__row + .h-ticker__row {
+    margin-top: 0.15em;
+  }
+
+  .h-ticker__row--rtl {
+    justify-content: flex-end;
+  }
+
+  .h-ticker__chunk {
+    flex: none;
+    display: flex;
+    align-items: center;
+    gap: 0.35em;
+    padding-right: 0.35em;
+    font-family: var(--font-display);
+    font-size: clamp(40px, 6.5vw, 120px);
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+  }
+
+  .h-ticker__row--ltr .h-ticker__chunk {
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(255, 255, 255, 0.7);
+  }
+
+  .h-ticker__dot {
+    font-size: 0.45em;
+    color: var(--color-brand-green);
+    -webkit-text-stroke: 0;
+  }
+
+  .h-ticker__row--rtl .h-ticker__chunk {
+    transform: translateX(20%);
+    animation: h-ticker-rtl 40s linear infinite;
+  }
+
+  .h-ticker__row--ltr .h-ticker__chunk {
+    transform: translateX(-20%);
+    animation: h-ticker-ltr 40s linear infinite;
+  }
+
+  @keyframes h-ticker-rtl {
+    from {
+      transform: translateX(20%);
+    }
+    to {
+      transform: translateX(120%);
+    }
+  }
+
+  @keyframes h-ticker-ltr {
+    from {
+      transform: translateX(-20%);
+    }
+    to {
+      transform: translateX(-120%);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .h-ticker__chunk {
+      animation: none !important;
+    }
+  }
+</style>

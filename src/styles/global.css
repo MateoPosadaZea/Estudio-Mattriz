@@ -290,6 +290,90 @@ html.js [data-animate='cards'].is-in > * {
   transform: none;
 }
 
+/* ---------- v2: editorial (casos de estudio y home) ----------
+ * [data-case-reveal]  sube y aparece al entrar en pantalla (src/scripts/case.ts).
+ * .case-mask > span   palabra de un título gigante que sube desde su máscara (CSS, al cargar).
+ * .case-in            entrada del resto del hero (CSS, no espera al JS: no retrasa el LCP).
+ * [data-parallax]     el hijo se mueve dentro de su marco (case.ts pone --py).
+ */
+/* Listas numeradas propias (no las del contenido de WordPress, que conservan sus números). */
+.home ol,
+.case ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.case-mask {
+  display: inline-block;
+  overflow: hidden;
+  padding-bottom: 0.08em;
+  margin-right: 0.18em;
+  vertical-align: top;
+}
+
+.case-mask:last-child {
+  margin-right: 0;
+}
+
+.case-mask > span {
+  display: inline-block;
+}
+
+html.js .case-mask > span {
+  transform: translateY(110%);
+  animation: case-rise 1.2s cubic-bezier(0.2, 1, 0.3, 1) forwards;
+  animation-delay: calc(0.15s + var(--d, 0ms));
+}
+
+html.js .case-in {
+  animation: case-in 1s cubic-bezier(0.2, 1, 0.3, 1) both;
+  animation-delay: var(--d, 0ms);
+}
+
+@keyframes case-in {
+  from {
+    opacity: 0.01;
+    transform: translateY(30px);
+  }
+}
+
+@keyframes case-rise {
+  to {
+    transform: none;
+  }
+}
+
+html.js [data-case-reveal] {
+  opacity: 0;
+  transform: translateY(40px);
+  transition:
+    opacity 0.9s cubic-bezier(0.2, 1, 0.3, 1),
+    transform 1.1s cubic-bezier(0.2, 1, 0.3, 1);
+}
+
+html.js [data-case-reveal].is-in {
+  opacity: 1;
+  transform: none;
+}
+
+html.js [data-parallax] > * {
+  transform: translateY(var(--py, 0px)) scale(1.1);
+  will-change: transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html.js [data-case-reveal],
+  html.js .case-mask > span,
+  html.js .case-in,
+  html.js [data-parallax] > * {
+    opacity: 1;
+    transform: none;
+    transition: none;
+    animation: none;
+  }
+}
+
 /* ---------- v2: transición entre páginas ----------
  * View Transitions entre documentos (nativo, sin JS). La página que sale sube y se
  * desvanece; la que entra sube desde abajo. Los navegadores sin soporte navegan normal.

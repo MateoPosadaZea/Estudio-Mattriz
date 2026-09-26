@@ -309,47 +309,6 @@ const sizes = { pair: '(max-width: 690px) 100vw, 50vw', inset: '(max-width: 690p
     letter-spacing: -0.035em;
   }
 
-  .case-mask {
-    display: inline-block;
-    overflow: hidden;
-    padding-bottom: 0.08em;
-    margin-right: 0.18em;
-    vertical-align: top;
-  }
-
-  .case-mask:last-child {
-    margin-right: 0;
-  }
-
-  .case-mask > span {
-    display: inline-block;
-  }
-
-  html.js .case-mask > span {
-    transform: translateY(110%);
-    animation: case-rise 1.2s var(--ease-out) forwards;
-    animation-delay: calc(0.15s + var(--d, 0ms));
-  }
-
-  /* Resto del hero: entra con CSS (no espera al JS, así no retrasa el LCP). */
-  html.js .case-in {
-    animation: case-in 1s var(--ease-out) both;
-    animation-delay: var(--d, 0ms);
-  }
-
-  @keyframes case-in {
-    from {
-      opacity: 0.01;
-      transform: translateY(30px);
-    }
-  }
-
-  @keyframes case-rise {
-    to {
-      transform: none;
-    }
-  }
-
   .case-hero__foot {
     display: grid;
     grid-template-columns: 1fr;
@@ -1044,41 +1003,19 @@ const sizes = { pair: '(max-width: 690px) 100vw, 50vw', inset: '(max-width: 690p
     }
   }
 
-  /* ---------- Entradas al hacer scroll (src/scripts/case.ts) ---------- */
-
-  html.js [data-case-reveal] {
-    opacity: 0;
-    transform: translateY(40px);
-    transition:
-      opacity 0.9s var(--ease-out),
-      transform 1.1s var(--ease-out);
-  }
-
-  html.js [data-case-reveal].is-in {
-    opacity: 1;
-    transform: none;
-  }
-
+  /* Entradas, máscara del título y parallax: src/styles/global.css (v2: editorial). */
   html.js .case-figure[data-case-reveal] {
     transform: translateY(80px);
   }
 
-  /* Parallax: la imagen se mueve dentro de su marco (src/scripts/case.ts pone --py). */
-  html.js [data-parallax] > :global(*) {
-    transform: translateY(var(--py, 0px)) scale(1.1);
-    will-change: transform;
+  html.js .case-figure[data-case-reveal].is-in {
+    transform: none;
   }
 
   @media (prefers-reduced-motion: reduce) {
-    html.js [data-case-reveal],
-    html.js .case-mask > span,
-    html.js .case-in,
-    html.js [data-parallax] > :global(*),
+    html.js .case-figure[data-case-reveal],
     .case-hero-media__inner {
-      opacity: 1;
       transform: none;
-      transition: none;
-      animation: none;
     }
   }
 </style>
