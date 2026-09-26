@@ -35,3 +35,14 @@ Nameservers originales: `ns1.dns-parking.com`, `ns2.dns-parking.com`.
 - El dominio sigue registrado en Hostinger (la renovación se paga allá). Al cancelar el hosting,
   no cancelar el dominio.
 - Para volver atrás: en Hostinger, poner de nuevo `ns1.dns-parking.com` y `ns2.dns-parking.com`.
+
+## Cutover (2026-09-26)
+
+- `mattriz.com` es un Custom domain del Worker `mattriz-studio` (se borró el `CNAME @` a Hostinger).
+- `www` (CNAME a Hostinger, ahora con proxy) + Redirect Rule 301 `https://www.mattriz.com/*` →
+  `https://mattriz.com/${1}`, conservando la query string.
+- Redirect Rule 301 `http://mattriz.com/*` → `https://mattriz.com/${1}` (Always Use HTTPS no alcanzaba
+  al dominio del Worker).
+- Correo (MX, SPF, DKIM, DMARC) sin cambios.
+- Para volver atrás: quitar el Custom domain del Worker y crear de nuevo
+  `CNAME @ → mattriz.com.cdn.hstgr.net` (DNS only). El hosting de Hostinger se mantiene 30 días.
