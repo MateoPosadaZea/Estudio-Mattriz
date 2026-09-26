@@ -1007,19 +1007,15 @@ const sizes = { pair: '(max-width: 690px) 100vw, 50vw', trio: '(max-width: 690px
     letter-spacing: -0.035em;
   }
 
+  /* Portada del siguiente proyecto: debajo del título en pantallas táctiles o angostas; al lado,
+     apareciendo con el hover, donde hay mouse y espacio. */
   .case-next__media {
-    position: absolute;
-    right: var(--pad);
-    top: 50%;
-    width: min(36vw, 520px);
+    display: block;
+    width: min(100%, 520px);
+    margin-top: 32px;
     aspect-ratio: 4 / 3;
     overflow: hidden;
     border-radius: 12px;
-    opacity: 0;
-    transform: translateY(-40%) scale(0.9) rotate(-3deg);
-    transition:
-      opacity 0.5s,
-      transform 0.8s var(--ease-out);
   }
 
   .case-next__media :global(video),
@@ -1029,8 +1025,27 @@ const sizes = { pair: '(max-width: 690px) 100vw, 50vw', trio: '(max-width: 690px
     object-fit: cover;
   }
 
-  @media (hover: hover) and (min-width: 1000px) {
-    .case-next:hover .case-next__media {
+  @media (hover: hover) and (min-width: 700px) {
+    /* El título no se mete debajo de la portada. */
+    .case-next__name {
+      max-width: calc(100% - min(36vw, 520px) - 4vw);
+    }
+
+    .case-next__media {
+      position: absolute;
+      right: var(--pad);
+      top: 50%;
+      width: min(36vw, 520px);
+      margin-top: 0;
+      opacity: 0;
+      transform: translateY(-40%) scale(0.9) rotate(-3deg);
+      transition:
+        opacity 0.5s,
+        transform 0.8s var(--ease-out);
+    }
+
+    .case-next:hover .case-next__media,
+    .case-next:focus-visible .case-next__media {
       opacity: 1;
       transform: translateY(-50%) scale(1) rotate(0);
     }
