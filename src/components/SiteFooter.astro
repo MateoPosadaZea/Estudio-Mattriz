@@ -1,180 +1,346 @@
 ---
-import AnimatedGradient from './AnimatedGradient.astro';
+// v2: footer interactivo (mismo contenido que antes: Calendly, correo, redes, año).
+// - Un brillo verde de marca sigue al cursor (en táctil flota solo).
+// - "Book a free call" gigante, con efecto imán hacia el cursor.
+// - Correo con botón para copiarlo, hora local de Bogotá en vivo, volver arriba.
+// - "Mattriz" a todo el ancho: las letras suben en ola según la posición del cursor.
+// Lógica en src/scripts/footer.ts. Con prefers-reduced-motion todo queda quieto.
 import { SITE } from '../data/site';
 import { langOf, ui } from '../i18n';
 
-const t = ui(langOf(Astro.url));
-
+const lang = langOf(Astro.url);
+const t = ui(lang);
 const year = new Date().getFullYear();
 ---
 
-<!-- CTA final + footer. Es la misma sección en todas las páginas del vivo. -->
-<footer class="site-footer">
-  <AnimatedGradient color1="#00ff7f" speed={250} />
+<footer class="ft" data-footer>
+  <div class="ft__glow" aria-hidden="true" data-footer-glow></div>
 
-  <div class="site-footer__inner">
-    <p class="site-footer__status">
-      <span class="pulse" aria-hidden="true"></span>
+  <div class="ft__inner">
+    <p class="ft__status">
+      <span class="ft__pulse" aria-hidden="true"></span>
       {t.accepting}
     </p>
 
-    <p class="site-footer__cta">
-      <a href={SITE.calendly} target="_blank" rel="noopener">
-        <span class="reveal">
-          <span class="reveal__text" data-text={t.bookCall}>{t.bookCall}</span>
-        </span>
-      </a>
+    <a class="ft__cta" href={SITE.calendly} target="_blank" rel="noopener" data-magnetic>
+      <span class="ft__cta-text">{t.bookCall}</span>
+      <span class="ft__cta-arrow" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="24" height="24"><path d="M7 17 17 7M9 7h8v8" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+      </span>
+    </a>
+
+    <div class="ft__grid">
+      <div class="ft__col">
+        <p class="ft__label">{t.nav[4]}</p>
+        <p class="ft__mail">
+          <a class="u-link" href={`mailto:${SITE.email}`}>{SITE.email}</a>
+          <button class="ft__copy" type="button" data-copy={SITE.email} data-copied={t.copied} aria-label={t.copyEmail}>
+            <span data-copy-label>{t.copy}</span>
+          </button>
+        </p>
+      </div>
+      <div class="ft__col">
+        <p class="ft__label">{t.social}</p>
+        <ul class="ft__social">
+          <li><a class="u-link" href={SITE.instagram} target="_blank" rel="noopener">Instagram</a></li>
+          <li><a class="u-link" href={SITE.linkedin} target="_blank" rel="noopener">LinkedIn</a></li>
+        </ul>
+      </div>
+      <div class="ft__col">
+        <p class="ft__label">{t.localTime}</p>
+        <p class="ft__clock"><span data-clock>GMT−5</span></p>
+      </div>
+      <div class="ft__col ft__col--end">
+        <a class="ft__top" href="#top">
+          {t.toTop} <span aria-hidden="true">↑</span>
+        </a>
+      </div>
+    </div>
+
+    <p class="ft__word" aria-hidden="true" data-footer-word>
+      {[...'Mattriz'].map((ch, i) => <span style={`--i:${i}`}>{ch}</span>)}
     </p>
 
-    <ul class="site-footer__social">
-      <li><a class="u-link" href={SITE.instagram} target="_blank" rel="noopener">Instagram</a></li>
-      <li><a class="u-link" href={SITE.linkedin} target="_blank" rel="noopener">LinkedIn</a></li>
-    </ul>
-
-    <div class="site-footer__bottom">
-      <p class="site-footer__copy">© <span data-year>{year}</span>. Mattriz Studio.</p>
-      <a class="arrow-link site-footer__mail" href={`mailto:${SITE.email}`}>
-        <span>{SITE.email}</span>
-        <svg viewBox="0 0 22 22" aria-hidden="true">
-          <g transform="matrix(1,0,0,-1,12,11)">
-            <g transform="matrix(1,0,0,-1,-1,3)">
-              <path class="line" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round" d="M 7 3.3 L -3.2 3.3 C -5 3.3 -6.5 1.8 -6.5 0 L -6.5 -2.5"></path>
-            </g>
-            <g transform="matrix(1,0,0,-1,4,-0.5)">
-              <path class="arrow" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round" d="M -2.5 5 C -2.5 5 2.5 0 2.5 0"></path>
-              <path class="arrow" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round" d="M -2.5 -5 C -2.5 -5 2.5 0 2.5 0"></path>
-            </g>
-          </g>
-        </svg>
-      </a>
-    </div>
+    <p class="ft__copyright">© <span data-year>{year}</span>. Mattriz Studio.</p>
   </div>
 </footer>
 
 <script>
-  // El año se fija en el build; esto lo mantiene al día aunque no haya deploy en enero.
-  document.querySelectorAll('[data-year]').forEach((el) => (el.textContent = String(new Date().getFullYear())));
+  import '../scripts/footer';
 </script>
 
 <style>
-  .site-footer {
+  .ft {
+    --pad: clamp(20px, 5vw, 80px);
+    --muted: rgba(255, 255, 255, 0.55);
+    --line: rgba(255, 255, 255, 0.16);
     position: relative;
     overflow: hidden;
-    background: var(--color-black);
+    background: #0a0a0a;
     color: var(--color-white);
   }
 
-  /* Mismo ancho de contenido que el header: 70px de margen lateral. */
-  .site-footer__inner {
-    position: relative;
-    z-index: 1;
-    width: calc(100% - 2 * var(--header-inset));
-    margin: 0 auto;
-    padding: 108px 0 30px;
-    text-align: center;
+  /* Brillo verde: sigue al cursor (footer.ts pone --gx/--gy); sin cursor, flota abajo a la derecha. */
+  .ft__glow {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 70vmax;
+    height: 70vmax;
+    border-radius: 50%;
+    background: radial-gradient(closest-side, rgba(0, 255, 127, 0.55), rgba(0, 255, 127, 0.18) 45%, rgba(0, 255, 127, 0) 100%);
+    filter: blur(20px);
+    pointer-events: none;
+    transform: translate3d(calc(var(--gx, 75vw) - 50%), calc(var(--gy, 90%) - 50%), 0);
+    will-change: transform;
   }
 
-  .site-footer__status {
-    display: inline-flex;
+  .ft:not(.has-pointer) .ft__glow {
+    animation: ft-float 14s ease-in-out infinite alternate;
+  }
+
+  @keyframes ft-float {
+    from {
+      transform: translate3d(calc(70vw - 50%), calc(70% - 50%), 0);
+    }
+    to {
+      transform: translate3d(calc(25vw - 50%), calc(95% - 50%), 0);
+    }
+  }
+
+  .ft__inner {
+    position: relative;
+    padding: clamp(96px, 12vw, 200px) var(--pad) 24px;
+  }
+
+  .ft__status {
+    display: flex;
     align-items: center;
     gap: 10px;
+    margin-bottom: clamp(20px, 3vw, 40px);
+    font-size: 15px;
+    color: var(--muted);
   }
 
-  /* Punto verde que late. Vivo: 8px #55c91c; halo 2s cubic-bezier(.2,1,.2,1) infinito. */
-  .pulse {
-    position: relative;
+  .ft__pulse {
     width: 8px;
     height: 8px;
-    border-radius: var(--radius-round);
-    background: var(--color-status-green);
-  }
-
-  .pulse::after {
-    content: '';
-    position: absolute;
-    inset: 0;
     border-radius: 50%;
-    background: inherit;
-    animation: pulse 2s var(--ease-pulse) infinite;
+    background: var(--color-status-green);
+    animation: ft-pulse 2s var(--ease-pulse) infinite;
   }
 
-  @keyframes pulse {
-    from { opacity: 0.6; transform: scale(1); }
-    to { opacity: 0; transform: scale(3); }
+  @keyframes ft-pulse {
+    from {
+      box-shadow: 0 0 0 0 rgba(85, 201, 28, 0.6);
+    }
+    to {
+      box-shadow: 0 0 0 10px rgba(85, 201, 28, 0);
+    }
   }
 
-  /* Vivo: 4vw (máx. 130px), peso 300, −0.03em. */
-  .site-footer__cta {
-    margin-top: 20px;
-    font-size: min(var(--fs-cta-title), 130px);
-    line-height: var(--lh-tight);
-    font-weight: var(--fw-light);
-    letter-spacing: var(--ls-tight);
-    /* En español ("Agenda una llamada gratis") parte en dos líneas en móvil: líneas parejas. */
-    text-wrap: balance;
+  /* CTA gigante con imán (footer.ts pone --mx/--my). */
+  .ft__cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25em;
+    font-family: var(--font-display);
+    font-size: clamp(48px, 9vw, 168px);
+    font-weight: 500;
+    line-height: 0.95;
+    letter-spacing: -0.035em;
+    transform: translate3d(var(--mx, 0), var(--my, 0), 0);
+    transition: transform 0.6s cubic-bezier(0.2, 1, 0.3, 1);
   }
 
-  .site-footer__cta {
+  .ft__cta-text {
+    background: linear-gradient(currentColor, currentColor) 0 100% / 0 3px no-repeat;
+    transition: background-size 0.6s cubic-bezier(0.2, 1, 0.3, 1);
+  }
+
+  .ft__cta:hover .ft__cta-text,
+  .ft__cta:focus-visible .ft__cta-text {
+    background-size: 100% 3px;
+  }
+
+  .ft__cta-arrow {
+    display: inline-grid;
+    place-items: center;
+    flex: none;
+    width: 0.8em;
+    height: 0.8em;
+    border-radius: 50%;
+    background: var(--color-brand-green);
+    color: var(--color-black);
+    transition: transform 0.6s cubic-bezier(0.2, 1, 0.3, 1);
+  }
+
+  .ft__cta-arrow svg {
+    width: 45%;
+    height: 45%;
+  }
+
+  .ft__cta:hover .ft__cta-arrow {
+    transform: rotate(45deg) scale(1.08);
+  }
+
+  .ft__grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 32px 24px;
+    margin-top: clamp(64px, 8vw, 128px);
+    padding-top: 24px;
+    border-top: 1px solid var(--line);
+    font-size: 16px;
+    line-height: 1.5;
+  }
+
+  @media (min-width: 1000px) {
+    .ft__grid {
+      grid-template-columns: 4fr 2fr 2fr 2fr;
+      gap: 4vw;
+    }
+  }
+
+  .ft__col:first-child {
+    grid-column: 1 / -1;
+  }
+
+  @media (min-width: 1000px) {
+    .ft__col:first-child {
+      grid-column: auto;
+    }
+  }
+
+  .ft__col--end {
+    text-align: right;
+  }
+
+  @media (max-width: 999px) {
+    .ft__col--end {
+      grid-column: 1 / -1;
+      text-align: left;
+    }
+  }
+
+  .ft__label {
+    margin-bottom: 8px;
+    font-size: 14px;
+    color: var(--muted);
+  }
+
+  .ft__mail {
     display: flex;
-    justify-content: center;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px 14px;
   }
 
-  .site-footer__social {
+  .ft__copy {
+    padding: 4px 12px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-pill);
+    font-size: 13px;
+    line-height: 1.4;
+    color: var(--muted);
+    transition:
+      color 0.3s,
+      border-color 0.3s,
+      background-color 0.3s;
+  }
+
+  .ft__copy:hover {
+    color: var(--color-white);
+    border-color: rgba(255, 255, 255, 0.5);
+  }
+
+  .ft__copy.is-copied {
+    background: var(--color-brand-green);
+    border-color: var(--color-brand-green);
+    color: var(--color-black);
+  }
+
+  .ft__social {
     display: flex;
-    justify-content: center;
-    gap: 30px;
-    margin-top: 27px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
   }
 
-  .site-footer__bottom {
+  .ft__clock {
+    font-variant-numeric: tabular-nums;
+  }
+
+  .ft__top span {
+    display: inline-block;
+    transition: transform 0.4s cubic-bezier(0.2, 1, 0.3, 1);
+  }
+
+  .ft__top:hover span {
+    transform: translateY(-4px);
+  }
+
+  /* "Mattriz" a todo el ancho; cada letra sube según --lift (footer.ts). */
+  .ft__word {
     display: flex;
     justify-content: space-between;
-    align-items: flex-start;
-    margin-top: calc(3vw + 39px);
-    padding: 0 40px 0 30px;
+    margin: clamp(48px, 6vw, 96px) 0 0;
+    font-family: var(--font-display);
+    font-size: 25.5vw;
+    font-weight: 500;
+    line-height: 0.78;
+    letter-spacing: -0.04em;
+    user-select: none;
   }
 
-  .site-footer__copy {
-    line-height: 17px;
+  .ft__word span {
+    display: inline-block;
+    transform: translateY(calc(var(--lift, 0) * -0.14em));
+    color: color-mix(in srgb, var(--color-white), var(--color-brand-green) calc(var(--lift, 0) * 100%));
+    transition:
+      transform 0.5s cubic-bezier(0.2, 1, 0.3, 1),
+      color 0.5s;
   }
 
-  @media (max-width: 690px) {
-    .site-footer__inner {
-      width: 88%;
-      padding-top: 66px;
+  /* Entrada: las letras suben desde abajo, escalonadas, cuando el footer aparece. */
+  :global(html.js) .ft__word:not(.is-in) span {
+    transform: translateY(0.5em);
+    opacity: 0;
+  }
+
+  :global(html.js) .ft__word.is-in span {
+    transition:
+      transform 0.9s cubic-bezier(0.2, 1, 0.3, 1) calc(var(--i) * 60ms),
+      opacity 0.6s calc(var(--i) * 60ms),
+      color 0.5s;
+  }
+
+  :global(html.js) .ft__word.is-settled span {
+    transition:
+      transform 0.5s cubic-bezier(0.2, 1, 0.3, 1),
+      color 0.5s;
+  }
+
+  .ft__copyright {
+    margin-top: 20px;
+    font-size: 14px;
+    color: var(--muted);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .ft__glow,
+    .ft:not(.has-pointer) .ft__glow {
+      animation: none;
     }
 
-    .site-footer__cta {
-      font-size: 10vw;
+    .ft__cta {
+      transform: none;
     }
 
-    /* Vivo: enlaces con 8px de padding y 44px de alto mínimo (área táctil). */
-    .site-footer__cta a,
-    .site-footer__social a,
-    .site-footer__mail {
-      min-height: 44px;
-      padding: 8px 0;
-    }
-
-    .site-footer__bottom {
-      align-items: center;
-    }
-
-    .site-footer__social {
-      flex-direction: column;
-      align-items: center;
-      gap: 10px;
-      margin-top: 26px;
-    }
-
-    .site-footer__bottom {
-      flex-direction: column;
-      gap: 10px;
-      padding: 0;
-    }
-
-    .site-footer__copy {
-      line-height: inherit;
+    :global(html.js) .ft__word:not(.is-in) span,
+    .ft__word span {
+      transform: none;
+      opacity: 1;
     }
   }
 </style>
