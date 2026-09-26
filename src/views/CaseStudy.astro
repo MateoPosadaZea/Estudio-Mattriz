@@ -6,7 +6,8 @@ import Base from '../layouts/Base.astro';
 import CaseMedia from '../components/case/CaseMedia.astro';
 import { fromModel } from '../components/case/fromModel';
 import type { CaseDoc } from '../components/case/doc';
-import { MODEL_CASES, MANUAL_CASES, CASE_UI } from '../data/cases';
+import { fromLegacy } from '../components/case/fromLegacy';
+import { MODEL_CASES, MANUAL_CASES, LEGACY_CASES, CASE_UI } from '../data/cases';
 import { PROJECTS } from '../data/home';
 import { langOf, localize } from '../i18n';
 
@@ -18,7 +19,11 @@ interface Props {
 
 const { slug, orig, model } = Astro.props;
 const lang = langOf(Astro.url);
-const doc: CaseDoc = MANUAL_CASES[slug] ? MANUAL_CASES[slug](lang) : fromModel(MODEL_CASES[slug], orig, model, lang);
+const doc: CaseDoc = MANUAL_CASES[slug]
+  ? MANUAL_CASES[slug](lang)
+  : LEGACY_CASES[slug]
+    ? fromLegacy(LEGACY_CASES[slug], orig, model, lang)
+    : fromModel(MODEL_CASES[slug], orig, model, lang);
 const t = CASE_UI[lang];
 const bg = doc.bg ?? (doc.theme === 'dark' ? '#0a0a0a' : '#ffffff');
 
@@ -31,7 +36,7 @@ const next = PROJECTS[(idx + 1) % PROJECTS.length];
 
 const external = { target: '_blank', rel: 'noopener' };
 const host = doc.site ? new URL(doc.site).hostname.replace(/^www\./, '') : '';
-const sizes = { pair: '(max-width: 690px) 100vw, 50vw', inset: '(max-width: 690px) 100vw, 60vw', full: '100vw', wide: '100vw' };
+const sizes = { pair: '(max-width: 690px) 100vw, 50vw', trio: '(max-width: 690px) 100vw, 33vw', inset: '(max-width: 690px) 100vw, 60vw', full: '100vw', wide: '100vw' };
 ---
 
 <Base title={doc.metaTitle} description={doc.description} ogImage={doc.ogImage} background={bg} breadcrumb={[{ name: doc.name, path: localize(`/project/${slug}/`, lang) }]}>
@@ -42,7 +47,7 @@ const sizes = { pair: '(max-width: 690px) 100vw, 50vw', inset: '(max-width: 690p
   <article class:list={['case', `case--${doc.theme}`]} style={`--accent:${doc.accent};--on-accent:${doc.onAccent}`} aria-label={`${doc.name}. ${doc.tagline}`}>
     <header class="case-hero">
       <p class="case-eyebrow case-in">
-        <span>{t.eyebrow}</span><span>{doc.year}</span>
+        <span>{t.eyebrow}</span>{doc.year && <span>{doc.year}</span>}
       </p>
       <h1 class="case-title" aria-label={doc.name}>
         {
@@ -215,7 +220,7 @@ const sizes = { pair: '(max-width: 690px) 100vw, 50vw', inset: '(max-width: 690p
       doc.site && (
         <section class="case-visit">
           <a href={doc.site} {...external} class="case-visit__link">
-            <span class="case-visit__small">{t.visit}</span>
+            <span class="case-visit__small">{doc.siteLabel ?? t.visit}</span>
             <span class="case-visit__big" style={`--len:${host.length}`}>
               {host} <span aria-hidden="true">↗</span>
             </span>
@@ -261,7 +266,7 @@ const sizes = { pair: '(max-width: 690px) 100vw, 50vw', inset: '(max-width: 690p
 
   .case--light {
     --fg: var(--color-ink);
-    --muted: rgba(10, 10, 10, 0.6);
+    --muted: rgba(10, 10, 10, 0.68);
     --line: rgba(10, 10, 10, 0.15);
   }
 
@@ -823,6 +828,20 @@ const sizes = { pair: '(max-width: 690px) 100vw, 50vw', inset: '(max-width: 690p
     /* La segunda pieza del par baja un poco: ritmo escalonado. */
     .case-gallery--pair .case-figure:nth-child(2) {
       margin-top: var(--offset, 0);
+    }
+  }
+
+  .case-gallery--trio {
+    align-items: start;
+  }
+
+  @media (min-width: 690px) {
+    .case-gallery--trio {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .case-gallery--trio .case-figure:nth-child(2) {
+      margin-top: 6vw;
     }
   }
 

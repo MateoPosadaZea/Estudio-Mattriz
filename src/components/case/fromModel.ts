@@ -38,6 +38,7 @@ export function fromModel(cfg: ModelCase, orig: any, model: any, lang: Lang): Ca
   return {
     name: cfg.name,
     theme: cfg.theme,
+    bg: cfg.bg,
     accent: cfg.accent,
     onAccent: cfg.onAccent,
     metaTitle: model.title,

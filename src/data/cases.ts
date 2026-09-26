@@ -11,14 +11,16 @@
 import type { Lang } from '../i18n';
 import type { CaseDoc } from '../components/case/doc';
 import { spotOn } from './cases/spot-on';
+import type { LegacyCase } from '../components/case/fromLegacy';
 
 export type ModelBlock =
   | { section: 'challenge' | 'approach' | 'whatwedo' | 'impact' | 'details' }
-  | { media: number[]; layout: 'full' | 'pair' | 'inset' | 'wide'; parallax?: boolean };
+  | { media: number[]; layout: 'full' | 'pair' | 'trio' | 'inset' | 'wide'; parallax?: boolean };
 
 export type ModelCase = {
   name: string;
   theme: 'dark' | 'light';
+  bg?: string;
   accent: string;
   onAccent: string;
   hero: number;
@@ -27,6 +29,27 @@ export type ModelCase = {
 };
 
 export const MODEL_CASES: Record<string, ModelCase> = {
+  civilus: {
+    name: 'Civilus',
+    theme: 'dark',
+    bg: '#060f27',
+    accent: '#d93131',
+    onAccent: '#ffffff',
+    hero: 0,
+    flow: [
+      { section: 'challenge' },
+      { media: [7], layout: 'full' },
+      { media: [2, 1], layout: 'pair' },
+      { section: 'approach' },
+      { media: [5, 6], layout: 'pair' },
+      { section: 'whatwedo' },
+      { media: [8, 10], layout: 'pair' },
+      { section: 'impact' },
+      { media: [3], layout: 'full' },
+      { media: [9, 4], layout: 'pair' },
+      { section: 'details' },
+    ],
+  },
   'the-grid': {
     name: 'The Grid',
     theme: 'dark',
@@ -52,11 +75,91 @@ export const MODEL_CASES: Record<string, ModelCase> = {
   },
 };
 
+// Páginas antiguas (2021–2022), con otra estructura: src/components/case/fromLegacy.ts.
+// Índices de media en el orden de legacyMedia() (incluye imágenes y videos de fondo de fila).
+export const LEGACY_CASES: Record<string, LegacyCase> = {
+  'posada-carcamo-abogados': {
+    legacy: true,
+    name: 'Posada Carcamo Abogados',
+    theme: 'light',
+    accent: '#560323',
+    onAccent: '#ffffff',
+    hero: 0,
+    flow: [
+      { section: 'summary' },
+      { media: [1], layout: 'full' },
+      { media: [3, 4], layout: 'pair' },
+      { section: 'whatwedid' },
+      { media: [2], layout: 'wide' },
+      { media: [5], layout: 'full', parallax: true },
+    ],
+  },
+  'let-it-go': {
+    legacy: true,
+    name: 'Let it Go',
+    siteLabel: { en: 'See the prototype', es: 'Ver el prototipo' },
+    theme: 'light',
+    bg: '#ececf8',
+    accent: '#f63d1b',
+    onAccent: '#0a0a0a',
+    hero: 0,
+    flow: [
+      { section: 'summary' },
+      { media: [1, 2], layout: 'pair' },
+      { media: [3], layout: 'wide' },
+      { media: [4], layout: 'wide' },
+      { media: [6, 7], layout: 'pair' },
+      { media: [8], layout: 'wide' },
+      { section: 'whatwedid' },
+      { media: [9, 10], layout: 'pair' },
+      { media: [11], layout: 'wide' },
+      { media: [12], layout: 'wide' },
+      { media: [13, 15], layout: 'pair' },
+      { media: [17, 18, 19], layout: 'trio' },
+      { media: [20], layout: 'full', parallax: true },
+      { media: [22], layout: 'inset' },
+      { media: [23], layout: 'full', parallax: true },
+    ],
+  },
+  aglvanstours: {
+    legacy: true,
+    name: 'AGL Vans Tours',
+    theme: 'dark',
+    accent: '#22b050',
+    onAccent: '#0a0a0a',
+    hero: 1,
+    flow: [
+      { section: 'summary' },
+      { media: [0], layout: 'full', parallax: true },
+      { section: 'whatwedid' },
+      { media: [2], layout: 'full' },
+      { media: [3], layout: 'full' },
+    ],
+  },
+  'luciana-cabanas': {
+    legacy: true,
+    name: 'Luciana Cabañas',
+    theme: 'dark',
+    bg: '#2a1006',
+    accent: '#bf9571',
+    onAccent: '#2a1006',
+    hero: 0,
+    flow: [
+      { section: 'summary' },
+      { media: [1, 6], layout: 'pair' },
+      { media: [2], layout: 'full' },
+      { media: [3, 4, 5], layout: 'trio' },
+      { section: 'whatwedid' },
+      { media: [7, 8], layout: 'pair' },
+    ],
+  },
+};
+
 export const MANUAL_CASES: Record<string, (lang: Lang) => CaseDoc> = {
   'spot-on-mobile-wash-detailing': spotOn,
 };
 
-export const isCase = (slug: string) => slug in MODEL_CASES || slug in MANUAL_CASES;
+export const isCase = (slug: string) => slug in MODEL_CASES || slug in MANUAL_CASES || slug in LEGACY_CASES;
 
 export const CASE_UI = {
   en: { eyebrow: 'Case study', next: 'Next project', visit: 'Visit the live site' },

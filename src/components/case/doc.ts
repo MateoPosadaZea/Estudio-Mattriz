@@ -23,7 +23,7 @@ export type CaseBlock =
   | { kind: 'details'; cols: { title: string; html: string }[] }
   /** Llamado final con enlace. */
   | { kind: 'cta'; title: string; text: string; link: { href: string; label: string } }
-  | { kind: 'media'; layout: 'full' | 'pair' | 'inset' | 'wide'; items: CaseMedia[]; parallax?: boolean };
+  | { kind: 'media'; layout: 'full' | 'pair' | 'trio' | 'inset' | 'wide'; items: CaseMedia[]; parallax?: boolean };
 
 export type CaseDoc = {
   name: string;
@@ -44,4 +44,5 @@ export type CaseDoc = {
   hero: CaseMedia;
   blocks: CaseBlock[];
   site?: string;
+  siteLabel?: string;
 };
