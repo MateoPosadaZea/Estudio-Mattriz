@@ -377,9 +377,7 @@ html.js [data-parallax] > * {
 /* ---------- v2: base de las páginas editoriales (home, escáner) ---------- */
 .home {
   --pad: clamp(20px, 5vw, 80px);
-  --muted: rgba(255, 255, 255, 0.6);
-  --line: rgba(255, 255, 255, 0.18);
-  color: var(--color-white);
+  color: var(--fg);
   overflow-x: clip;
 }
 
@@ -396,7 +394,7 @@ html.js [data-parallax] > * {
 
 .home .h-label span {
   margin-right: 0.6em;
-  color: var(--color-white);
+  color: var(--fg);
 }
 
 .home .h-heading {

@@ -6,7 +6,7 @@ const lang = langOf(Astro.url);
 const t = ui(lang);
 ---
 
-<Base title={t.notFoundTitle} description={t.notFoundDesc} background="#0a0a0a" noindex alternates={false}>
+<Base title={t.notFoundTitle} description={t.notFoundDesc} background="var(--bg)" noindex alternates={false}>
   <!-- En el vivo "404" y "Page Not Found" son #0a0a0a sobre #0a0a0a (invisibles); aquí van en blanco. -->
   <section class="error-404">
     <h1>404</h1>
@@ -25,7 +25,7 @@ const t = ui(lang);
   .error-404 {
     min-height: 100vh;
     padding: 130px var(--header-inset) 130px;
-    color: var(--color-white);
+    color: var(--fg);
     text-align: center;
   }
 
@@ -52,8 +52,8 @@ const t = ui(lang);
     margin: 50px 0 10px;
     padding: 9px 10px 9px 28px;
     border-radius: 200px;
-    background: var(--color-black);
-    color: var(--color-white);
+    background: var(--inv-bg);
+    color: var(--inv-fg);
     font-size: 14px;
     font-weight: 500;
     line-height: 20px;
@@ -66,7 +66,7 @@ const t = ui(lang);
     width: 32px;
     height: 32px;
     border-radius: 50%;
-    background: rgba(255, 255, 255, 0.22);
+    background: color-mix(in srgb, currentColor 22%, transparent);
     transition: transform 0.45s var(--ease-reveal);
   }
 

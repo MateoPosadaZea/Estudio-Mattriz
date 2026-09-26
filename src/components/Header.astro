@@ -1,4 +1,5 @@
 ---
+import ThemeToggle from './ThemeToggle.astro';
 import { NAV, SITE } from '../data/site';
 import { langOf, localize, alternate, ui } from '../i18n';
 
@@ -41,6 +42,8 @@ const other = lang === 'es' ? 'en' : 'es';
         <span class="reveal__text" data-text={t.switchShort}>{t.switchShort}</span>
       </span>
     </a>
+
+    <ThemeToggle class="site-header__theme" />
 
     <a class="talk-button" href={SITE.calendly} target="_blank" rel="noopener">
       <span class="reveal">
@@ -147,6 +150,10 @@ const other = lang === 'es' ? 'en' : 'es';
     line-height: 1.3;
   }
 
+  :global(.site-header__theme) {
+    margin-right: 10px;
+  }
+
   .talk-button {
     position: relative;
     isolation: isolate;
@@ -213,7 +220,8 @@ const other = lang === 'es' ? 'en' : 'es';
 
     /* v2: en móvil el header solo lleva logo y menú; idioma y "Let's talk" están dentro del menú. */
     .lang-switch,
-    .talk-button {
+    .talk-button,
+    :global(.site-header__theme) {
       display: none;
     }
 

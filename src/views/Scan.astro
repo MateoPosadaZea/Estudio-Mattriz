@@ -14,7 +14,7 @@ const turnstileKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
 const config = { lang, copy: c, pricing: PRICING, currency: CURRENCY };
 ---
 
-<Base title={c.metaTitle} description={c.metaDescription} background="#0a0a0a" breadcrumb={[{ name: c.title.replace(/\.$/, ''), path: lang === 'es' ? '/es/scan/' : '/scan/' }]}>
+<Base title={c.metaTitle} description={c.metaDescription} background="var(--bg)" breadcrumb={[{ name: c.title.replace(/\.$/, ''), path: lang === 'es' ? '/es/scan/' : '/scan/' }]}>
   <div class="home scan" data-scan>
     <script type="application/json" data-scan-config set:html={JSON.stringify(config)} />
 
@@ -166,7 +166,7 @@ const config = { lang, copy: c, pricing: PRICING, currency: CURRENCY };
     margin-top: clamp(24px, 3vw, 40px);
     font-size: clamp(18px, 1.6vw, 24px);
     line-height: 1.4;
-    color: rgba(255, 255, 255, 0.8);
+    color: var(--fg-soft);
   }
 
   .scan-form {
@@ -178,7 +178,7 @@ const config = { lang, copy: c, pricing: PRICING, currency: CURRENCY };
     padding: 8px 8px 8px 24px;
     border: 1px solid var(--line);
     border-radius: var(--radius-pill);
-    background: rgba(255, 255, 255, 0.04);
+    background: var(--surface);
     transition:
       border-color 0.3s,
       background-color 0.3s;
@@ -186,7 +186,7 @@ const config = { lang, copy: c, pricing: PRICING, currency: CURRENCY };
 
   .scan-form:focus-within {
     border-color: var(--color-brand-green);
-    background: rgba(0, 255, 127, 0.05);
+    background: color-mix(in srgb, var(--color-brand-green) 6%, transparent);
   }
 
   .scan-form__prefix {
@@ -200,14 +200,14 @@ const config = { lang, copy: c, pricing: PRICING, currency: CURRENCY };
     padding: 12px 0;
     border: 0;
     background: none;
-    color: var(--color-white);
+    color: var(--fg);
     font: inherit;
     font-size: clamp(18px, 1.8vw, 26px);
     outline: none;
   }
 
   .scan-form input::placeholder {
-    color: rgba(255, 255, 255, 0.35);
+    color: var(--placeholder);
   }
 
   .scan-form button {
@@ -256,7 +256,7 @@ const config = { lang, copy: c, pricing: PRICING, currency: CURRENCY };
   .scan-error {
     margin-top: 16px;
     font-size: 16px;
-    color: #ff8a80;
+    color: var(--error);
   }
 
   /* Progreso */
@@ -291,7 +291,7 @@ const config = { lang, copy: c, pricing: PRICING, currency: CURRENCY };
     display: flex;
     align-items: center;
     gap: 12px;
-    color: rgba(255, 255, 255, 0.3);
+    color: var(--placeholder);
     transition: color 0.4s;
   }
 
@@ -308,7 +308,7 @@ const config = { lang, copy: c, pricing: PRICING, currency: CURRENCY };
   }
 
   .scan-progress__list li.is-active {
-    color: var(--color-white);
+    color: var(--fg);
   }
 
   .scan-progress__list li.is-active::before {
@@ -316,7 +316,7 @@ const config = { lang, copy: c, pricing: PRICING, currency: CURRENCY };
   }
 
   .scan-progress__list li.is-done {
-    color: rgba(255, 255, 255, 0.75);
+    color: var(--fg-soft);
   }
 
   .scan-progress__list li.is-done::before {
@@ -326,7 +326,7 @@ const config = { lang, copy: c, pricing: PRICING, currency: CURRENCY };
 
   @keyframes scan-blink {
     to {
-      background: var(--color-white);
+      background: var(--fg);
     }
   }
 
@@ -422,7 +422,7 @@ const config = { lang, copy: c, pricing: PRICING, currency: CURRENCY };
   }
 
   .scan-areas :global(.is-zero .bar span) {
-    background: #ff8a80;
+    background: var(--error);
   }
 
   .scan-areas :global(.pts) {
@@ -474,7 +474,7 @@ const config = { lang, copy: c, pricing: PRICING, currency: CURRENCY };
 
   .scan-has__grid :global(.chip) {
     padding: 4px 12px;
-    border: 1px solid rgba(0, 255, 127, 0.45);
+    border: 1px solid color-mix(in srgb, var(--color-brand-green) 45%, transparent);
     border-radius: var(--radius-pill);
     font-size: 14px;
     line-height: 1.4;
@@ -482,7 +482,7 @@ const config = { lang, copy: c, pricing: PRICING, currency: CURRENCY };
 
   .scan-has__grid :global(.none) {
     font-size: 14px;
-    color: #ff8a80;
+    color: var(--error);
   }
 
   .scan-seo {
@@ -512,7 +512,7 @@ const config = { lang, copy: c, pricing: PRICING, currency: CURRENCY };
   }
 
   .scan-seo :global(.bad) {
-    color: #ff8a80;
+    color: var(--error);
   }
 
   .scan-pages {
@@ -550,7 +550,7 @@ const config = { lang, copy: c, pricing: PRICING, currency: CURRENCY };
   .scan-steps :global(.n) {
     grid-row: span 3;
     font-size: 15px;
-    color: var(--color-brand-green);
+    color: var(--accent-text);
   }
 
   @media (min-width: 1000px) {
@@ -575,7 +575,7 @@ const config = { lang, copy: c, pricing: PRICING, currency: CURRENCY };
 
   .scan-steps :global(.price) {
     font-size: 15px;
-    color: var(--color-white);
+    color: var(--fg);
     white-space: nowrap;
   }
 
@@ -714,7 +714,7 @@ const config = { lang, copy: c, pricing: PRICING, currency: CURRENCY };
     padding: 10px 20px;
     border: 1px solid var(--line);
     border-radius: var(--radius-pill);
-    color: var(--color-white);
+    color: var(--fg);
     font-size: 15px;
   }
 

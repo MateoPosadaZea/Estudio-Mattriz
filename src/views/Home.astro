@@ -14,7 +14,7 @@ import { langOf } from '../i18n';
 const { LABELS } = home(langOf(Astro.url));
 ---
 
-<Base title={LABELS.metaTitle} description={LABELS.metaDescription} background="#0a0a0a">
+<Base title={LABELS.metaTitle} description={LABELS.metaDescription} background="var(--bg)">
   <div class="home">
     <Hero />
     <Services />

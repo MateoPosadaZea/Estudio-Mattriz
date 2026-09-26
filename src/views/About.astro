@@ -18,7 +18,7 @@ const ICONS: Record<string, string> = {
   breadcrumb={[{ name: LABELS.breadcrumb, path: localize('/about/', lang) }]}
   title={LABELS.metaTitle}
   description={LABELS.metaDescription}
-  background="#0a0a0a"
+  background="var(--bg)"
 >
   <!--
     En el vivo, el hero y "Our Services" tienen texto oscuro sobre fondo #0a0a0a y no se leen.
@@ -94,7 +94,7 @@ const ICONS: Record<string, string> = {
     align-items: center;
     /* El vivo suma el alto del header al padding de la primera fila. */
     padding: calc(8vw + var(--header-top) + var(--header-height)) 6% 10vw;
-    color: var(--color-white);
+    color: var(--fg);
   }
 
   .about-hero__title {
@@ -128,7 +128,7 @@ const ICONS: Record<string, string> = {
   .about-services {
     display: flex;
     padding: 10vw 3%;
-    color: var(--color-white);
+    color: var(--fg);
   }
 
   .about-services__title {
@@ -241,7 +241,7 @@ const ICONS: Record<string, string> = {
     place-items: center;
     width: 43px;
     height: 43px;
-    border: 1px solid var(--color-white);
+    border: 1px solid currentColor;
     border-radius: 50%;
     transition:
       background-color 0.3s,
@@ -251,6 +251,27 @@ const ICONS: Record<string, string> = {
   .member__links a:hover {
     background: var(--color-white);
     color: var(--color-black);
+  }
+
+  /* Tema claro: el equipo pasa a blanco y los botones de línea toman el color del texto. */
+  :global(html[data-theme='light']) .team {
+    background: var(--color-white);
+    color: var(--fg);
+  }
+
+  :global(html[data-theme='light']) .member__links a:hover {
+    background: var(--fg);
+    color: var(--bg);
+  }
+
+  :global(html[data-theme='light']) .about-hero :global(.line-button),
+  :global(html[data-theme='light']) .team :global(.line-button) {
+    color: var(--fg);
+  }
+
+  :global(html[data-theme='light']) .about-hero :global(.line-button--dark .line-button__wrap:hover) {
+    background-color: var(--fg);
+    color: var(--bg);
   }
 
   @media (max-width: 999px) {

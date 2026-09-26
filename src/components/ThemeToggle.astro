@@ -1,0 +1,71 @@
+---
+// v2: cambio de tema claro/oscuro. Oscuro por defecto; la elección se guarda (src/scripts/theme.ts)
+// y se aplica antes de pintar (script en línea de Base.astro), sin parpadeo.
+import { langOf, ui } from '../i18n';
+
+interface Props {
+  class?: string;
+}
+
+const t = ui(langOf(Astro.url));
+---
+
+<button class:list={['theme-toggle', Astro.props.class]} type="button" aria-label={t.themeLight} aria-pressed="false" data-theme-toggle>
+  <svg class="theme-toggle__sun" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+    <circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="1.6"></circle>
+    <path d="M12 2.5v2.2M12 19.3v2.2M4.7 4.7l1.6 1.6M17.7 17.7l1.6 1.6M2.5 12h2.2M19.3 12h2.2M4.7 19.3l1.6-1.6M17.7 6.3l1.6-1.6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path>
+  </svg>
+  <svg class="theme-toggle__moon" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+    <path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path>
+  </svg>
+</button>
+
+<script>
+  import '../scripts/theme';
+</script>
+
+<style>
+  .theme-toggle {
+    display: grid;
+    place-items: center;
+    flex: none;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    color: inherit;
+    transition: background-color 0.3s;
+  }
+
+  .theme-toggle:hover {
+    background: rgba(10, 10, 10, 0.07);
+  }
+
+  .theme-toggle svg {
+    grid-area: 1 / 1;
+    transition:
+      opacity 0.4s,
+      transform 0.6s cubic-bezier(0.2, 1, 0.3, 1);
+  }
+
+  /* En oscuro se ofrece el sol (pasar a claro); en claro, la luna. */
+  .theme-toggle__moon {
+    opacity: 0;
+    transform: rotate(-60deg) scale(0.6);
+  }
+
+  :global(html[data-theme='light']) .theme-toggle__sun {
+    opacity: 0;
+    transform: rotate(60deg) scale(0.6);
+  }
+
+  :global(html[data-theme='light']) .theme-toggle__moon {
+    opacity: 1;
+    transform: none;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .theme-toggle svg {
+      transition: none;
+    }
+  }
+</style>

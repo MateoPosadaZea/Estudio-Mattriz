@@ -84,6 +84,10 @@ const jsonLd = {
     <meta charset="utf-8" />
     <script is:inline>
       document.documentElement.classList.add('js');
+      // Tema (src/scripts/theme.ts): oscuro por defecto; claro si el visitante lo eligió.
+      try {
+        if (localStorage.getItem('mz-theme') === 'light') document.documentElement.dataset.theme = 'light';
+      } catch (e) {}
       // Loader (src/components/Loader.astro): solo en la primera página de la sesión y sin
       // movimiento reducido. Seguro: a los 4 s se quita pase lo que pase.
       try {

@@ -19,6 +19,8 @@ const noise3D = createNoise3D();
 const FRAME_MS = 1000 / 60; // el reloj del vivo avanza una unidad por frame a 60 Hz
 
 function hexToRgb(hex: string): Rgb | null {
+  // "brand": el verde de marca definido en tokens.css (--color-brand-green).
+  if (hex === 'brand') hex = getComputedStyle(document.documentElement).getPropertyValue('--color-brand-green');
   const m = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex.trim());
   return m ? { r: parseInt(m[1], 16), g: parseInt(m[2], 16), b: parseInt(m[3], 16) } : null;
 }
