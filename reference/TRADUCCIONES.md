@@ -29,3 +29,8 @@ Si se cambia un texto del modelo y falta su traducción, el build falla y dice c
   "Nueva solicitud de proyecto (ES)".
 - Los títulos de los proyectos (Civilus, The Grid…) no se traducen.
 - El caso de estudio de Spot On (`/work/spot-on/case-study.html`) sigue solo en inglés.
+
+## v2: caso nuevo de Spot On (2026)
+
+- Fuente: `/work/spot-on/case-study.html` (inglés). En `src/data/cases/spot-on.ts` el inglés es el mismo texto con las rayas largas cambiadas por coma, punto o dos puntos.
+- El español es traducción nuestra, **pendiente de revisión**. Decisiones a validar: "detailer a domicilio", "mensajes directos" (DM), "cupos" (slots), "lista de espera que se mueve sola" (self-promoting waitlist), "punto de quiebre" (turning point), "95 %" con espacio.

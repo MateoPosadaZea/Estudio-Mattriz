@@ -47,6 +47,8 @@ if (reduceMotion || !('IntersectionObserver' in window)) {
       const max = document.documentElement.clientWidth / growInner.offsetWidth - 1;
       growInner.style.setProperty('--grow', p.toFixed(4));
       growInner.style.setProperty('--grow-max', max.toFixed(4));
+      // El pie de foto baja lo que crece la imagen (el scale no mueve el flujo).
+      grow.style.setProperty('--grow-shift', `${(growInner.offsetHeight * max * p).toFixed(1)}px`);
     }
 
     for (const f of visible) {
