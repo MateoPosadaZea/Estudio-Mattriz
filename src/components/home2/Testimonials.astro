@@ -104,6 +104,12 @@ const pad = (n: number) => String(n).padStart(2, '0');
 </script>
 
 <style>
+  /* Todo el bloque (título, diapositiva y controles) cabe en una pantalla: así se ve que es un
+     carrusel y que hay más. La altura de la imagen depende del alto de la ventana. */
+  .h-t :global(.h-heading) {
+    margin-bottom: clamp(24px, 4vh, 48px);
+  }
+
   .h-t__slides {
     display: grid;
   }
@@ -131,8 +137,26 @@ const pad = (n: number) => String(n).padStart(2, '0');
   }
 
   @media (max-width: 999px) {
-    .h-t__media {
+    .h-t__slide {
+      gap: 20px;
+    }
+
+    .h-t__slide .h-t__media {
       order: -1;
+      height: clamp(140px, 24vh, 240px);
+    }
+
+    .h-t__slide .h-t__text {
+      gap: 18px;
+    }
+
+    .h-t__slide .h-t__quote {
+      font-size: 18px;
+    }
+
+    .h-t__slide .h-t__who img {
+      width: 44px;
+      height: 44px;
     }
   }
 
@@ -211,7 +235,7 @@ const pad = (n: number) => String(n).padStart(2, '0');
     position: relative;
     display: block;
     overflow: hidden;
-    aspect-ratio: 4 / 3;
+    height: clamp(200px, 42vh, 440px);
     border-radius: 14px;
     background: color-mix(in srgb, var(--fg) 5%, transparent);
     clip-path: inset(100% 0 0 0 round 14px);
@@ -286,8 +310,8 @@ const pad = (n: number) => String(n).padStart(2, '0');
     display: flex;
     align-items: center;
     gap: 12px;
-    margin-top: clamp(32px, 4vw, 56px);
-    padding-top: 20px;
+    margin-top: clamp(20px, 3vh, 40px);
+    padding-top: 16px;
     border-top: 1px solid var(--line);
   }
 
