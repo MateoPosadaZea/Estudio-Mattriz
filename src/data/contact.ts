@@ -5,7 +5,7 @@ import type { Lang } from '../i18n';
 
 export const CONTACT = {
   title: 'Let’s talk about your project.',
-  services: ['Web Design', 'Ecommerce', 'SEO', 'Process Automation', 'Branding'],
+  services: ['Web development', 'Booking & operations systems', 'Payment integration', 'Custom admin panels', 'Automation & follow-ups', 'Something else'],
   budgets: ['Not sure / want guidance', '$500–$1,000', '$1,000–$2,500', '$2,500–$5,000', '$5,000–$10,000', '$10,000+'],
   submit: 'Get a proposal',
   // Mensajes del brief (sección 4).
@@ -47,7 +47,7 @@ export const CONTACT_CASE = {
 export const CONTACT_ES = {
   CONTACT: {
     title: 'Hablemos de tu proyecto.',
-    services: ['Diseño web', 'Ecommerce', 'SEO', 'Automatización de procesos', 'Branding'],
+    services: ['Desarrollo web', 'Sistemas de reservas y operación', 'Integración de pagos', 'Paneles de administración', 'Automatización y seguimiento', 'Otra cosa'],
     budgets: ['No estoy seguro / quiero orientación', '$500–$1,000', '$1,000–$2,500', '$2,500–$5,000', '$5,000–$10,000', '$10,000+'],
     submit: 'Pedir una propuesta',
     success: 'Gracias. Te respondemos en un día hábil.',
