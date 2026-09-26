@@ -49,7 +49,7 @@ const sizes = { pair: '(max-width: 690px) 100vw, 50vw', trio: '(max-width: 690px
       <p class="case-eyebrow case-in">
         <span>{t.eyebrow}</span>{doc.year && <span>{doc.year}</span>}
       </p>
-      <h1 class="case-title" aria-label={doc.name}>
+      <h1 class="case-title" aria-label={doc.name} style={`--len:${doc.name.length}`}>
         {
           doc.name.split(' ').map((w, i) => (
             <span class="case-mask" aria-hidden="true">
@@ -308,7 +308,8 @@ const sizes = { pair: '(max-width: 690px) 100vw, 50vw', trio: '(max-width: 690px
   .case-title {
     margin: 0 0 0 -0.05em;
     font-family: var(--font-display);
-    font-size: clamp(76px, 17vw, 300px);
+    /* Nombres largos más chicos para que quepan en unas dos líneas (--len = caracteres). */
+    font-size: clamp(40px, min(17vw, calc(250vw / var(--len, 10))), 300px);
     font-weight: 500;
     line-height: 0.9;
     letter-spacing: -0.035em;

@@ -1,10 +1,11 @@
 ---
-// v2: footer interactivo (mismo contenido que antes: Calendly, correo, redes, año).
-// - Un brillo verde de marca sigue al cursor (en táctil flota solo).
-// - "Book a free call" gigante, con efecto imán hacia el cursor.
+// v2: footer (mismo contenido que antes: Calendly, correo, redes, año).
+// - Gradiente verde animado de fondo, el mismo del hero.
+// - Formulario escrito como una frase para llenar (FooterForm.astro), con enlace a Calendly.
 // - Correo con botón para copiarlo, hora local de Bogotá en vivo, volver arriba.
-// - "Mattriz" a todo el ancho: las letras suben en ola según la posición del cursor.
-// Lógica en src/scripts/footer.ts. Con prefers-reduced-motion todo queda quieto.
+// Lógica en src/scripts/footer.ts; el formulario en src/scripts/footer-form.ts.
+import AnimatedGradient from './AnimatedGradient.astro';
+import FooterForm from './FooterForm.astro';
 import { SITE } from '../data/site';
 import { langOf, ui } from '../i18n';
 
@@ -14,7 +15,8 @@ const year = new Date().getFullYear();
 ---
 
 <footer class="ft" data-footer>
-  <div class="ft__glow" aria-hidden="true" data-footer-glow></div>
+  <!-- Mismo gradiente animado del hero: se mueve solo en el fondo. -->
+  <AnimatedGradient color1="brand" speed={250} blend="organic" />
 
   <div class="ft__inner">
     <p class="ft__status">
@@ -22,12 +24,7 @@ const year = new Date().getFullYear();
       {t.accepting}
     </p>
 
-    <a class="ft__cta" href={SITE.calendly} target="_blank" rel="noopener" data-magnetic>
-      <span class="ft__cta-text">{t.bookCall}</span>
-      <span class="ft__cta-arrow" aria-hidden="true">
-        <svg viewBox="0 0 24 24" width="24" height="24"><path d="M7 17 17 7M9 7h8v8" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path></svg>
-      </span>
-    </a>
+    <FooterForm />
 
     <div class="ft__grid">
       <div class="ft__col">
@@ -57,20 +54,7 @@ const year = new Date().getFullYear();
       </div>
     </div>
 
-    <!-- "Mattriz" editable: el input transparente va encima de la palabra (footer.ts la redibuja). -->
-    <div class="ft__word-wrap" data-footer-word-wrap>
-      <label class="sr-only" for="ft-word">{t.wordLabel}</label>
-      <input id="ft-word" class="ft__word-input" type="text" value="Mattriz" maxlength="14" autocomplete="off" autocapitalize="off" spellcheck="false" data-footer-input />
-      <p class="ft__word" aria-hidden="true" data-footer-word>
-        {[...'Mattriz'].map((ch, i) => <span style={`--i:${i}`}>{ch}</span>)}<i class="ft__caret"></i>
-      </p>
-    </div>
-
     <div class="ft__bottom">
-      <p class="ft__hint" aria-hidden="true">
-        <svg viewBox="0 0 16 16" width="14" height="14"><path d="M11 2.5 13.5 5 6 12.5H3.5V10z" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"></path></svg>
-        {t.wordHint}
-      </p>
       <p class="ft__copyright">© <span data-year>{year}</span>. Mattriz Studio.</p>
     </div>
   </div>
@@ -89,34 +73,6 @@ const year = new Date().getFullYear();
     overflow: hidden;
     background: #0a0a0a;
     color: var(--color-white);
-  }
-
-  /* Brillo verde: sigue al cursor (footer.ts pone --gx/--gy); sin cursor, flota abajo a la derecha. */
-  .ft__glow {
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 70vmax;
-    height: 70vmax;
-    border-radius: 50%;
-    background: radial-gradient(closest-side, color-mix(in srgb, var(--color-brand-green) 55%, transparent), color-mix(in srgb, var(--color-brand-green) 18%, transparent) 45%, transparent 100%);
-    filter: blur(20px);
-    pointer-events: none;
-    transform: translate3d(calc(var(--gx, 75vw) - 50%), calc(var(--gy, 90%) - 50%), 0);
-    will-change: transform;
-  }
-
-  .ft:not(.has-pointer) .ft__glow {
-    animation: ft-float 14s ease-in-out infinite alternate;
-  }
-
-  @keyframes ft-float {
-    from {
-      transform: translate3d(calc(70vw - 50%), calc(70% - 50%), 0);
-    }
-    to {
-      transform: translate3d(calc(25vw - 50%), calc(95% - 50%), 0);
-    }
   }
 
   .ft__inner {
@@ -148,51 +104,6 @@ const year = new Date().getFullYear();
     to {
       box-shadow: 0 0 0 10px rgba(85, 201, 28, 0);
     }
-  }
-
-  /* CTA gigante con imán (footer.ts pone --mx/--my). */
-  .ft__cta {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.25em;
-    font-family: var(--font-display);
-    font-size: clamp(48px, 9vw, 168px);
-    font-weight: 500;
-    line-height: 0.95;
-    letter-spacing: -0.035em;
-    transform: translate3d(var(--mx, 0), var(--my, 0), 0);
-    transition: transform 0.6s cubic-bezier(0.2, 1, 0.3, 1);
-  }
-
-  .ft__cta-text {
-    background: linear-gradient(currentColor, currentColor) 0 100% / 0 3px no-repeat;
-    transition: background-size 0.6s cubic-bezier(0.2, 1, 0.3, 1);
-  }
-
-  .ft__cta:hover .ft__cta-text,
-  .ft__cta:focus-visible .ft__cta-text {
-    background-size: 100% 3px;
-  }
-
-  .ft__cta-arrow {
-    display: inline-grid;
-    place-items: center;
-    flex: none;
-    width: 0.8em;
-    height: 0.8em;
-    border-radius: 50%;
-    background: var(--color-brand-green);
-    color: var(--color-black);
-    transition: transform 0.6s cubic-bezier(0.2, 1, 0.3, 1);
-  }
-
-  .ft__cta-arrow svg {
-    width: 45%;
-    height: 45%;
-  }
-
-  .ft__cta:hover .ft__cta-arrow {
-    transform: rotate(45deg) scale(1.08);
   }
 
   .ft__grid {
@@ -291,109 +202,12 @@ const year = new Date().getFullYear();
     transform: translateY(-4px);
   }
 
-  /* Palabra final a todo el ancho. footer.ts ajusta el tamaño para que llene el ancho
-     (--fit); el valor por defecto corresponde a "Mattriz" y evita saltos al cargar. */
-  .ft__word-wrap {
-    position: relative;
-    margin-top: clamp(48px, 6vw, 96px);
-    cursor: text;
-  }
-
-  .ft__word-input {
-    position: absolute;
-    inset: 0;
-    z-index: 1;
-    width: 100%;
-    height: 100%;
-    padding: 0;
-    border: 0;
-    background: transparent;
-    color: transparent;
-    caret-color: transparent;
-    font-size: 16px;
-    opacity: 0;
-    cursor: text;
-  }
-
-  .ft__word {
-    display: flex;
-    align-items: flex-end;
-    white-space: nowrap;
-    font-family: var(--font-display);
-    font-size: var(--fit, calc((100vw - 2 * var(--pad)) * 0.348));
-    font-weight: 500;
-    line-height: 0.8;
-    letter-spacing: -0.035em;
-    user-select: none;
-  }
-
-  .ft__word-wrap:focus-within .ft__word {
-    outline: 1px dashed rgba(255, 255, 255, 0.3);
-    outline-offset: 12px;
-  }
-
-  .ft__caret {
-    display: none;
-    width: 0.035em;
-    height: 0.7em;
-    margin: 0 0 0.02em 0.06em;
-    background: var(--color-brand-green);
-    animation: ft-blink 1s steps(1) infinite;
-  }
-
-  .ft__word-wrap:focus-within .ft__caret {
-    display: block;
-  }
-
-  @keyframes ft-blink {
-    50% {
-      opacity: 0;
-    }
-  }
-
-  .ft__word :global(span) {
-    display: inline-block;
-    white-space: pre;
-    transform: translateY(calc(var(--lift, 0) * -0.14em));
-    color: color-mix(in srgb, var(--color-white), var(--color-brand-green) calc(var(--lift, 0) * 100%));
-    transition:
-      transform 0.5s cubic-bezier(0.2, 1, 0.3, 1),
-      color 0.5s;
-  }
-
   .ft__bottom {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
     gap: 8px 24px;
-    margin-top: 24px;
-  }
-
-  .ft__hint {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 14px;
-    color: var(--muted);
-  }
-
-  /* Entrada: las letras suben desde abajo, escalonadas, cuando el footer aparece. */
-  :global(html.js) .ft__word:not(.is-in) span {
-    transform: translateY(0.5em);
-    opacity: 0;
-  }
-
-  :global(html.js) .ft__word.is-in span {
-    transition:
-      transform 0.9s cubic-bezier(0.2, 1, 0.3, 1) calc(var(--i) * 60ms),
-      opacity 0.6s calc(var(--i) * 60ms),
-      color 0.5s;
-  }
-
-  :global(html.js) .ft__word.is-settled span {
-    transition:
-      transform 0.5s cubic-bezier(0.2, 1, 0.3, 1),
-      color 0.5s;
+    margin-top: clamp(48px, 6vw, 96px);
   }
 
   .ft__copyright {
@@ -401,20 +215,4 @@ const year = new Date().getFullYear();
     color: var(--muted);
   }
 
-  @media (prefers-reduced-motion: reduce) {
-    .ft__glow,
-    .ft:not(.has-pointer) .ft__glow {
-      animation: none;
-    }
-
-    .ft__cta {
-      transform: none;
-    }
-
-    :global(html.js) .ft__word:not(.is-in) span,
-    .ft__word :global(span) {
-      transform: none;
-      opacity: 1;
-    }
-  }
 </style>

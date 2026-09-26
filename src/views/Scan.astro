@@ -36,7 +36,7 @@ const config = { lang, copy: c, pricing: PRICING, currency: CURRENCY };
         <span class="scan-form__prefix" aria-hidden="true">https://</span>
         <input id="scan-url" name="url" type="text" inputmode="url" autocomplete="url" autocapitalize="off" spellcheck="false" placeholder={c.placeholder} required />
         <button type="submit">
-          <span>{c.button}</span>
+          <span class="reveal"><span class="reveal__text" data-text={c.button}>{c.button}</span></span>
           <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path></svg>
         </button>
       </form>
@@ -108,7 +108,7 @@ const config = { lang, copy: c, pricing: PRICING, currency: CURRENCY };
             <input name="phone" type="tel" autocomplete="tel" />
           </label>
           {turnstileKey && <div class="scan-lead__turnstile" data-turnstile data-sitekey={turnstileKey} />}
-          <button type="submit" class="scan-lead__submit">{c.form.submit} <span aria-hidden="true">→</span></button>
+          <button type="submit" class="scan-lead__submit"><span class="reveal"><span class="reveal__text" data-text={c.form.submit}>{c.form.submit}</span></span> <span aria-hidden="true">→</span></button>
           <p class="scan-lead__consent">{c.form.consent}</p>
           <p class="scan-lead__status" role="status" data-lead-status hidden></p>
         </form>
@@ -116,7 +116,7 @@ const config = { lang, copy: c, pricing: PRICING, currency: CURRENCY };
 
       <section class="scan-foot">
         <p>{c.disclaimer}</p>
-        <button type="button" class="scan-again" data-scan-again>{c.again} <span aria-hidden="true">↑</span></button>
+        <button type="button" class="scan-again" data-scan-again><span class="reveal"><span class="reveal__text" data-text={c.again}>{c.again}</span></span> <span aria-hidden="true">↑</span></button>
       </section>
     </div>
   </div>

@@ -10,12 +10,14 @@ const { LABELS } = home(lang);
 const t = ui(lang);
 
 // Spot On tiene caso nuevo (2026): su pieza es la del sitio nuevo, no el video del anterior.
-const COVERS: Record<string, { src: string; srcset: string; width: number; height: number }> = {
+// Es una captura 2:1: se muestra entera (contain) sobre el azul de la marca, sin recortar.
+const COVERS: Record<string, { src: string; srcset: string; width: number; height: number; fit?: string }> = {
   '/project/spot-on-mobile-wash-detailing/': {
     src: '/media/projects/spot-on-case/spot-on-hero-1200.webp',
     srcset: '/media/projects/spot-on-case/spot-on-hero-700.webp 700w, /media/projects/spot-on-case/spot-on-hero-1200.webp 1200w',
     width: 1200,
     height: 590,
+    fit: 'background:#091629;--fit:contain',
   },
 };
 
@@ -27,6 +29,7 @@ const items = PROJECTS.map((p) => {
     categories: p.categories.map((c) => category(c, lang)),
     video: cover ? undefined : p.video,
     image: cover ? { ...cover, alt: '' } : p.image,
+    fit: cover?.fit,
   };
 });
 ---
@@ -40,7 +43,7 @@ const items = PROJECTS.map((p) => {
       items.map((p, i) => (
         <li data-case-reveal>
           <a class="h-work__row" href={p.href} data-work-row={i}>
-            <span class="h-work__thumb" aria-hidden="true">
+            <span class="h-work__thumb" aria-hidden="true" style={p.fit}>
               {p.video ? (
                 <video data-src={p.video} poster={p.video.replace(/\.mp4$/, '-poster.webp')} muted loop playsinline preload="none" />
               ) : (
@@ -60,7 +63,7 @@ const items = PROJECTS.map((p) => {
   <div class="h-work__preview" aria-hidden="true" data-work-preview>
     {
       items.map((p, i) => (
-        <div class="h-work__preview-item" data-work-preview-item={i}>
+        <div class="h-work__preview-item" data-work-preview-item={i} style={p.fit}>
           {p.video ? (
             <video data-preview-src={p.video} muted loop playsinline preload="none" />
           ) : (
@@ -112,7 +115,7 @@ const items = PROJECTS.map((p) => {
   .h-work__thumb :global(img) {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: var(--fit, cover);
   }
 
   /* Nombres en Maison Neue ligera, tamaño de la v1 (46px a escritorio). */
@@ -226,7 +229,7 @@ const items = PROJECTS.map((p) => {
   .h-work__preview-item :global(img) {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: var(--fit, cover);
   }
 
   @media (prefers-reduced-motion: reduce) {
