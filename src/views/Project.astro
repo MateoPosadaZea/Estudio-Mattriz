@@ -4,6 +4,8 @@
 // Cada proyecto se muestra en su idioma original o traducido según la URL (/project/ o /es/project/).
 import Base from '../layouts/Base.astro';
 import Rows from '../components/project/Rows.astro';
+import CaseStudy from './CaseStudy.astro';
+import { CASES } from '../data/cases';
 import { PROJECTS } from '../data/home';
 import { langOf, localize } from '../i18n';
 import { localizeModel, type Dict } from '../components/project/translate';
@@ -39,11 +41,13 @@ const description = model.description || firstText || '';
 const projectName = PROJECTS.find((p) => p.href === `/project/${slug}/`)?.title ?? model.title.split(/ [|-] /)[0];
 ---
 
+{CASES[slug] ? <CaseStudy slug={slug} orig={Astro.props.model} model={model} /> : (
 <Base title={model.title} description={description} background={PAGE_BG} breadcrumb={[{ name: projectName, path: localize(`/project/${slug}/`, lang) }]}>
   <div class:list={['project', { 'project--header-space': headerSpace }]}>
     <Rows rows={model.rows} bg={PAGE_BG} slug={slug} eagerRows={2} />
   </div>
 </Base>
+)}
 
 <style>
   .project--header-space {
