@@ -65,7 +65,7 @@ const items = PROJECTS.map((p) => {
       items.map((p, i) => (
         <div class="h-work__preview-item" data-work-preview-item={i} style={p.fit}>
           {p.video ? (
-            <video data-preview-src={p.video} muted loop playsinline preload="none" />
+            <video data-preview-src={p.video} poster={p.video.replace(/\.mp4$/, '-poster.webp')} muted loop playsinline preload="auto" />
           ) : (
             p.image && <img data-preview-src={p.image.src} width={p.image.width} height={p.image.height} alt="" />
           )}

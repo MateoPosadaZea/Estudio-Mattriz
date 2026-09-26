@@ -1,6 +1,8 @@
 // v2: vista previa de "Selected Work" que sigue al cursor.
 // Solo con mouse y a partir de 1000px; con prefers-reduced-motion no se usa.
-// Las piezas se cargan la primera vez que se pasa por su fila; el video se pausa al salir.
+// Las piezas se precargan cuando la lista se acerca a la pantalla (los videos con su póster),
+// así aparecen al instante; el video se pausa al salir. Al hacer scroll se esconde y, cuando el
+// scroll para, vuelve a mostrar la pieza de la fila que quedó bajo el cursor.
 
 const root = document.querySelector<HTMLElement>('[data-work]');
 const preview = root?.querySelector<HTMLElement>('[data-work-preview]');
@@ -15,6 +17,7 @@ if (root && preview && !reduce) {
   let cx = 0;
   let cy = 0;
   let raf = 0;
+  let hovering = false;
 
   const load = (item: HTMLElement) => {
     const media = item.firstElementChild as HTMLImageElement | HTMLVideoElement | null;
@@ -33,7 +36,14 @@ if (root && preview && !reduce) {
 
   const show = (index: number) => {
     const item = items[index];
-    if (!item || item === active) return;
+    if (!item) return;
+    // Misma fila: solo volver a mostrar (p. ej. después de un scroll o de salir y entrar).
+    if (item === active) {
+      preview.classList.add('is-on');
+      const media = item.firstElementChild;
+      if (media instanceof HTMLVideoElement) media.play().catch(() => {});
+      return;
+    }
     if (active) {
       active.classList.remove('is-active');
       (active.firstElementChild as HTMLVideoElement | null)?.pause?.();
@@ -69,8 +79,41 @@ if (root && preview && !reduce) {
     if (!raf) raf = requestAnimationFrame(tick);
   });
 
-  root.querySelector('ol')?.addEventListener('pointerleave', hide);
-  window.addEventListener('scroll', hide, { passive: true });
+  root.querySelector('ol')?.addEventListener('pointerleave', () => {
+    hovering = false;
+    hide();
+  });
+  root.querySelector('ol')?.addEventListener('pointerenter', () => (hovering = true));
+
+  // Al hacer scroll se esconde; cuando para, se muestra la fila que quedó bajo el cursor.
+  let scrollTimer = 0;
+  window.addEventListener(
+    'scroll',
+    () => {
+      hide();
+      clearTimeout(scrollTimer);
+      scrollTimer = window.setTimeout(() => {
+        if (!hovering || !canHover.matches) return;
+        const row = document.elementFromPoint(x, y)?.closest<HTMLElement>('[data-work-row]');
+        if (row && root.contains(row)) show(Number(row.dataset.workRow));
+      }, 120);
+    },
+    { passive: true },
+  );
+
+  // Precarga: cuando la lista está cerca de la pantalla, se cargan todas las piezas.
+  const preload = () => items.forEach(load);
+  if ('IntersectionObserver' in window && canHover.matches) {
+    const io = new IntersectionObserver(
+      ([e]) => {
+        if (!e.isIntersecting) return;
+        preload();
+        io.disconnect();
+      },
+      { rootMargin: '600px 0px' },
+    );
+    io.observe(root);
+  }
 }
 
 export {};
