@@ -8,13 +8,10 @@ const t = ui(lang);
 const other = lang === 'es' ? 'en' : 'es';
 ---
 
-<header class="site-header" data-site-header>
+<header class="site-header">
   <div class="site-header__inner">
-    <!-- v2: logo completo. PROVISIONAL: la M es el logo real; "attriz" va en Noe Display hasta
-         tener el archivo oficial del logotipo completo. En móvil se recoge a la M al hacer scroll. -->
-    <a class="site-header__logo" href={localize('/', lang)} aria-label="Mattriz Studio">
-      <img src="/images/logo-mattriz.png" width="433" height="354" alt="" />
-      <span class="site-header__logo-rest" aria-hidden="true">attriz</span>
+    <a class="site-header__logo" href={localize('/', lang)}>
+      <img src="/images/logo-mattriz.png" width="433" height="354" alt="Mattriz Studio" />
     </a>
 
     <nav class="site-nav" aria-label={t.mainNav}>
@@ -55,10 +52,6 @@ const other = lang === 'es' ? 'en' : 'es';
   </div>
 </header>
 
-<script>
-  import '../scripts/header';
-</script>
-
 <style>
   /* Píldora blanca fija. Vivo: top 25px, alto 70px, radio 50px, 70px de margen lateral. */
   .site-header {
@@ -90,31 +83,9 @@ const other = lang === 'es' ? 'en' : 'es';
     height: 100%;
   }
 
-  .site-header__logo {
-    display: inline-flex;
-    align-items: baseline;
-  }
-
   .site-header__logo img {
     width: auto;
     height: 30px;
-  }
-
-  /* Cap height de Noe Display ≈ 0.75em: a 40px la "a" y la "t" quedan a la altura de la M. */
-  .site-header__logo-rest {
-    display: inline-block;
-    overflow: hidden;
-    max-width: 3em;
-    margin-left: -0.02em;
-    font-family: var(--font-display);
-    font-size: 40px;
-    font-weight: 700;
-    line-height: 1;
-    letter-spacing: -0.035em;
-    white-space: nowrap;
-    transition:
-      max-width 0.5s cubic-bezier(0.2, 1, 0.3, 1),
-      opacity 0.3s;
   }
 
   /* Menú centrado respecto a la píldora. */
@@ -203,12 +174,6 @@ const other = lang === 'es' ? 'en' : 'es';
 
     .site-nav {
       display: none;
-    }
-
-    /* Al hacer scroll el logo se recoge a la M (src/scripts/header.ts pone .is-scrolled). */
-    .site-header.is-scrolled .site-header__logo-rest {
-      max-width: 0;
-      opacity: 0;
     }
 
     /* v2: en móvil el header solo lleva logo y menú; idioma y "Let's talk" están dentro del menú. */
