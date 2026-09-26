@@ -1,7 +1,8 @@
 ---
-// v2: "What we build" como lista numerada a todo el ancho (mismo lenguaje que los casos).
-// Al hacer scroll cada fila se despliega como en la v1: la línea se dibuja, el número sube
-// desde su máscara y el texto aparece (src/scripts/rows.ts).
+// v2: "What we build" con el diseño de filas de la v1 (pedido de Mateo): título y texto a la
+// izquierda en Maison, número grande y ligero a la derecha, líneas blancas entre filas.
+// Al hacer scroll cada fila se despliega: la línea se dibuja, el número sube desde su máscara
+// y el texto aparece (src/scripts/rows.ts).
 import { home } from '../../data/home';
 import { langOf, ui } from '../../i18n';
 
@@ -17,11 +18,13 @@ const t = ui(lang);
     {
       SERVICES.items.map((item, i) => (
         <li data-row>
-          <span class="h-services__n">
+          <div class="h-services__body">
+            <h3 class="h-services__title">{item.title}</h3>
+            <p class="h-services__text">{item.text}</p>
+          </div>
+          <span class="h-services__n" aria-hidden="true">
             <span>{String(i + 1).padStart(2, '0')}</span>
           </span>
-          <h3 class="h-services__title">{item.title}</h3>
-          <p class="h-services__text">{item.text}</p>
         </li>
       ))
     }
@@ -33,15 +36,21 @@ const t = ui(lang);
 </script>
 
 <style>
+  /* Fila de la v1: texto en 2/3 del ancho, número alineado a la derecha. */
   .h-services li {
     position: relative;
-    display: grid;
-    grid-template-columns: 56px 1fr;
-    gap: 8px 16px;
-    padding: 28px 0;
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    padding: 22.5px 0;
   }
 
-  /* Líneas: arriba de cada fila y abajo de la última. Se dibujan de izquierda a derecha. */
+  .h-services__body {
+    flex: 0 0 66.6667%;
+    padding-right: max(5vw, 23px);
+  }
+
+  /* Líneas blancas de 1px: arriba de cada fila y abajo de la última. Se dibujan de izquierda a derecha. */
   .h-services li::before,
   .h-services li:last-child::after {
     content: '';
@@ -50,7 +59,7 @@ const t = ui(lang);
     right: 0;
     top: 0;
     height: 1px;
-    background: var(--line-strong);
+    background: var(--fg);
     transform-origin: left;
   }
 
@@ -75,6 +84,17 @@ const t = ui(lang);
   }
 
   /* Número: sube desde su máscara. */
+  .h-services__n {
+    flex: 1;
+    display: block;
+    overflow: hidden;
+    text-align: right;
+    font-size: 7vw;
+    font-weight: var(--fw-light);
+    line-height: 1;
+    letter-spacing: var(--ls-tight);
+  }
+
   .h-services__n > span {
     display: inline-block;
   }
@@ -89,6 +109,14 @@ const t = ui(lang);
   }
 
   /* Título y texto: suben y aparecen, uno detrás del otro. */
+  .h-services__title {
+    margin-bottom: 10px;
+    font-size: max(2vw, 28px);
+    line-height: max(2.2vw, 32px);
+    font-weight: 600;
+    letter-spacing: var(--ls-tight);
+  }
+
   :global(html.js) .h-services__title,
   :global(html.js) .h-services__text {
     opacity: 0;
@@ -112,6 +140,23 @@ const t = ui(lang);
     transform: none;
   }
 
+  @media (max-width: 999px) {
+    .h-services__n {
+      font-size: 70px;
+    }
+  }
+
+  @media (max-width: 690px) {
+    .h-services__body {
+      flex-basis: 75%;
+      padding-right: 0;
+    }
+
+    .h-services__n {
+      font-size: 12vw;
+    }
+  }
+
   @media (prefers-reduced-motion: reduce) {
     :global(html.js) .h-services li::before,
     :global(html.js) .h-services li:last-child::after,
@@ -122,56 +167,5 @@ const t = ui(lang);
       transform: none;
       transition: none;
     }
-  }
-
-  @media (min-width: 1000px) {
-    .h-services li {
-      grid-template-columns: 2fr 5fr 5fr;
-      gap: 4vw;
-      align-items: baseline;
-      padding: 36px 0;
-    }
-  }
-
-  /* Número grande en Noe, como en la v1. */
-  .h-services__n {
-    display: block;
-    overflow: hidden;
-    grid-row: span 2;
-    font-family: var(--font-display);
-    font-size: 30px;
-    font-weight: 500;
-    line-height: 1;
-    letter-spacing: -0.03em;
-    font-variant-numeric: tabular-nums;
-    color: var(--fg);
-  }
-
-  @media (min-width: 1000px) {
-    .h-services__n {
-      align-self: center;
-      font-size: clamp(56px, 6vw, 104px);
-    }
-  }
-
-  @media (min-width: 1000px) {
-    .h-services__n {
-      grid-row: auto;
-    }
-  }
-
-  .h-services__title {
-    font-family: var(--font-display);
-    font-size: clamp(26px, 2.8vw, 46px);
-    font-weight: 500;
-    line-height: 1.05;
-    letter-spacing: -0.02em;
-  }
-
-  .h-services__text {
-    max-width: 30em;
-    font-size: 16px;
-    line-height: 1.55;
-    color: var(--muted);
   }
 </style>

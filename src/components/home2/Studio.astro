@@ -1,6 +1,6 @@
 ---
-// v2: "One studio. Real systems." en un bloque verde de marca con texto negro,
-// frase en Noe Display y cifras grandes.
+// v2: "One studio. Real systems." en un bloque blanco con texto negro, frase en Noe Display y
+// cifras grandes. Blanco y negro son los colores principales; el verde queda para detalles.
 import { home } from '../../data/home';
 import { SITE } from '../../data/site';
 import { langOf, ui } from '../../i18n';
@@ -24,7 +24,7 @@ const t = ui(lang);
       STUDIO.stats.map((s) => (
         <li data-case-reveal>
           <span class="h-studio__stat-label">{s.label}</span>
-          <span class="h-studio__value">{s.value}</span>
+          <span class="h-studio__value" data-count>{s.value}</span>
           <span class="h-studio__stat-text">{s.text}</span>
         </li>
       ))
@@ -32,12 +32,16 @@ const t = ui(lang);
   </ul>
 </section>
 
+<script>
+  import '../../scripts/count-up';
+</script>
+
 <style>
   .h-studio {
     --muted: rgba(0, 0, 0, 0.62);
     --line: rgba(0, 0, 0, 0.2);
     padding: clamp(80px, 12vw, 200px) var(--pad);
-    background: var(--color-brand-green);
+    background: var(--color-white);
     color: var(--color-black);
   }
 
@@ -110,6 +114,7 @@ const t = ui(lang);
     font-size: clamp(64px, 8vw, 140px);
     line-height: 0.95;
     letter-spacing: -0.04em;
+    font-variant-numeric: tabular-nums;
   }
 
   .h-studio__stat-text {
