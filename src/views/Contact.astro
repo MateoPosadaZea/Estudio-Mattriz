@@ -1,7 +1,7 @@
 ---
 // v2: contacto en negro. A la izquierda el formulario escrito como frase (el mismo del footer, que en
-// esta página no se repite); a la derecha los proyectos con sus testimonios, en carrusel, con el de
-// Diego (Spot On) primero. Envía a /api/contact (Worker con Resend + Turnstile + honeypot).
+// esta página no se repite); a la derecha los proyectos con sus testimonios, en carrusel (el de Diego,
+// de Spot On, va primero en home.ts). Envía a /api/contact (Worker con Resend + Turnstile + honeypot).
 import Base from '../layouts/Base.astro';
 import FooterForm from '../components/FooterForm.astro';
 import Testimonials from '../components/home2/Testimonials.astro';
@@ -10,11 +10,10 @@ import { home } from '../data/home';
 import { langOf, localize, ui } from '../i18n';
 
 const lang = langOf(Astro.url);
-const { CONTACT, CONTACT_CASE } = contact(lang);
+const { CONTACT } = contact(lang);
 const { LABELS } = home(lang);
 const t = ui(lang);
 
-const lead = [{ quote: CONTACT_CASE.quote[0], name: CONTACT_CASE.name, company: CONTACT_CASE.badge }];
 ---
 
 <Base
@@ -44,7 +43,7 @@ const lead = [{ quote: CONTACT_CASE.quote[0], name: CONTACT_CASE.name, company: 
     </section>
 
     <aside class="ct__proof case-in" style="--d:600ms">
-      <Testimonials bare lead={lead} label={LABELS.testimonials} />
+      <Testimonials bare label={LABELS.testimonials} />
     </aside>
   </div>
 </Base>

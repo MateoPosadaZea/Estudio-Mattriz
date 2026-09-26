@@ -24,7 +24,9 @@ if (page && panel && openButton && closeButton) {
     panel.addEventListener('transitionend', onEnd);
   };
 
-  const open = () => {
+  // Con teclado el foco va al botón de cerrar (con su anillo); con toque o clic va al panel, sin
+  // recuadro visible, y el Tab sigue desde ahí.
+  const open = (keyboard: boolean) => {
     if (isOpen) return;
     isOpen = true;
     panel.hidden = false;
@@ -34,7 +36,8 @@ if (page && panel && openButton && closeButton) {
     requestAnimationFrame(() => {
       requestAnimationFrame(() => {
         panel.classList.add('is-open');
-        closeButton.focus({ preventScroll: true });
+        if (keyboard) closeButton.focus({ preventScroll: true });
+        else panel.focus({ preventScroll: true });
       });
     });
   };
@@ -53,7 +56,7 @@ if (page && panel && openButton && closeButton) {
     });
   };
 
-  openButton.addEventListener('click', () => open());
+  openButton.addEventListener('click', (event) => open(event.detail === 0));
   closeButton.addEventListener('click', () => close());
   document.addEventListener('keydown', (event) => {
     if (event.key === 'Escape') close();

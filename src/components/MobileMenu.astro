@@ -15,7 +15,7 @@ const other = lang === 'es' ? 'en' : 'es';
   escalonados con máscara, e idioma y correo en las esquinas de abajo.
   La lógica está en src/scripts/menu.ts.
 -->
-<div class="mobile-menu" id="mobile-menu" role="dialog" aria-modal="true" aria-label={t.menu} hidden>
+<div class="mobile-menu" id="mobile-menu" role="dialog" aria-modal="true" aria-label={t.menu} tabindex="-1" hidden>
   <div class="mobile-menu__bar">
     <a class="mobile-menu__logo" href={localize('/', lang)}>
       <img src="/images/logo-mattriz.png" width="433" height="354" alt="Mattriz Studio" />
@@ -196,6 +196,10 @@ const other = lang === 'es' ? 'en' : 'es';
   .mobile-menu__list a[aria-current='page'] > span,
   .mobile-menu__list a:hover > span {
     background-size: 100% 1.5px;
+  }
+
+  .mobile-menu:focus {
+    outline: none;
   }
 
   .mobile-menu a:focus-visible,
