@@ -96,8 +96,8 @@ const EN: Copy = {
   disclaimer: 'The scan reads the public pages of your site. Tools that only load after someone clicks may not show up.',
   again: 'Scan another site',
   teaserLabel: 'Free tool',
-  teaserTitle: 'What is your site missing?',
-  teaserText: 'Scan it and get a step-by-step plan: booking, payments, follow-ups and what it would take.',
+  teaserTitle: 'What is your business missing?',
+  teaserText: 'Scan your site and get a step-by-step plan: booking, payments, follow-ups and what it would take.',
   generic: {},
 };
 
@@ -158,8 +158,8 @@ const ES: Copy = {
   disclaimer: 'El escaneo lee las páginas públicas de tu sitio. Las herramientas que solo cargan cuando alguien hace clic pueden no aparecer.',
   again: 'Escanear otro sitio',
   teaserLabel: 'Herramienta gratis',
-  teaserTitle: '¿Qué le falta a tu sitio?',
-  teaserText: 'Escanéalo y recibe un plan paso a paso: reservas, pagos, seguimiento y lo que tomaría.',
+  teaserTitle: '¿Qué le falta a tu negocio?',
+  teaserText: 'Escanea tu sitio y recibe un plan paso a paso: reservas, pagos, seguimiento y lo que tomaría.',
   generic: {
     'Click-to-call': 'Botón de llamada',
     'SMS link': 'Enlace de SMS',
