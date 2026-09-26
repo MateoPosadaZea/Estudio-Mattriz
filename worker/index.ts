@@ -2,6 +2,8 @@
 // este código solo corre para las rutas de run_worker_first en wrangler.jsonc:
 //
 //   POST /api/contact                   Formulario de contacto → Resend → contacto@mattriz.com.
+//   GET  /api/scan?url=…                Escáner de sitios (src/lib/scan/): analiza un sitio y responde JSON.
+//   POST /api/scan-lead                 Pedido de plan y cotización desde el escáner → Resend.
 //   /work/spot-on/case-study.html       Se sirve en esa ruta exacta (sin el redirect de .html que haría
 //                                       html_handling), porque el caso de estudio circula con esa URL.
 //   /robots.txt                         En dominios que no son mattriz.com (el *.workers.dev de prueba)
@@ -21,6 +23,8 @@ interface Env {
   CONTACT_FROM?: string;
 }
 
+import { handleScan, handleLead } from '../src/lib/scan/http';
+
 const CASE_STUDY = '/work/spot-on/case-study.html';
 const CANONICAL_HOST = 'mattriz.com';
 
@@ -37,6 +41,9 @@ export default {
       const asset = await env.ASSETS.fetch(new Request(new URL('/work/spot-on/case-study', url), request));
       return new Response(asset.body, asset);
     }
+
+    if (url.pathname === '/api/scan') return handleScan(request);
+    if (url.pathname === '/api/scan-lead') return handleLead(request, env, request.headers.get('CF-Connecting-IP') || '');
 
     if (url.pathname === '/api/contact') {
       if (request.method !== 'POST') return new Response('Method Not Allowed', { status: 405, headers: { Allow: 'POST' } });

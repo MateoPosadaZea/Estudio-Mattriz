@@ -7,6 +7,7 @@ import Services from '../components/home2/Services.astro';
 import Studio from '../components/home2/Studio.astro';
 import Work from '../components/home2/Work.astro';
 import Ticker from '../components/home2/Ticker.astro';
+import ScanTeaser from '../components/home2/ScanTeaser.astro';
 import Testimonials from '../components/home2/Testimonials.astro';
 import { home } from '../data/home';
 import { langOf } from '../i18n';
@@ -20,6 +21,7 @@ const { LABELS } = home(langOf(Astro.url));
     <Services />
     <Studio />
     <Work />
+    <ScanTeaser />
     <Ticker />
     <Testimonials />
   </div>
@@ -29,40 +31,3 @@ const { LABELS } = home(langOf(Astro.url));
   import '../scripts/lazy-video';
   import '../scripts/case';
 </script>
-
-<style is:global>
-  .home {
-    --pad: clamp(20px, 5vw, 80px);
-    --muted: rgba(255, 255, 255, 0.6);
-    --line: rgba(255, 255, 255, 0.18);
-    color: var(--color-white);
-    overflow-x: clip;
-  }
-
-  .home .h-section {
-    padding: clamp(80px, 12vw, 200px) var(--pad);
-  }
-
-  .home .h-label {
-    margin-bottom: 20px;
-    font-size: 15px;
-    line-height: 1.5;
-    color: var(--muted);
-  }
-
-  .home .h-label span {
-    margin-right: 0.6em;
-    color: var(--color-white);
-  }
-
-  .home .h-heading {
-    max-width: 14em;
-    margin-bottom: clamp(40px, 5vw, 80px);
-    font-family: var(--font-display);
-    font-size: clamp(44px, 7vw, 128px);
-    font-weight: 500;
-    line-height: 0.98;
-    letter-spacing: -0.03em;
-    text-wrap: balance;
-  }
-</style>

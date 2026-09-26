@@ -5,7 +5,7 @@ import { SITE } from '../data/site';
 
 import { PROJECT_SLUGS } from '../data/projects';
 
-const EN = ['/', '/about/', '/contact/', ...PROJECT_SLUGS.map((slug) => `/project/${slug}/`)];
+const EN = ['/', '/about/', '/contact/', '/scan/', ...PROJECT_SLUGS.map((slug) => `/project/${slug}/`)];
 // Inglés en la raíz y español bajo /es/ (con hreflang en cada página).
 export const PATHS = [...EN, ...EN.map((p) => `/es${p}`)];
 

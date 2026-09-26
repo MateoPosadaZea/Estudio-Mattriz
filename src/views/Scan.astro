@@ -1,0 +1,727 @@
+---
+// v2: escáner de sitios para negocios de servicios (/scan/, /es/scan/).
+// La página pide la URL, llama a /api/scan (Worker de Cloudflare; en el preview, función de
+// Netlify), muestra lo que tiene el sitio, un puntaje, el plan paso a paso y la cotización.
+// Lógica en src/scripts/scan.ts; análisis en src/lib/scan/.
+import Base from '../layouts/Base.astro';
+import { scanCopy } from '../data/scan';
+import { PRICING, CURRENCY } from '../data/scan-pricing';
+import { langOf } from '../i18n';
+
+const lang = langOf(Astro.url);
+const c = scanCopy(lang);
+const turnstileKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
+const config = { lang, copy: c, pricing: PRICING, currency: CURRENCY };
+---
+
+<Base title={c.metaTitle} description={c.metaDescription} background="#0a0a0a" breadcrumb={[{ name: c.title.replace(/\.$/, ''), path: lang === 'es' ? '/es/scan/' : '/scan/' }]}>
+  <div class="home scan" data-scan>
+    <script type="application/json" data-scan-config set:html={JSON.stringify(config)} />
+
+    <section class="scan-hero">
+      <p class="scan-eyebrow case-in"><span class="scan-dot" aria-hidden="true"></span>{c.eyebrow}</p>
+      <h1 class="scan-title" aria-label={c.title}>
+        {
+          c.title.split(' ').map((w, i) => (
+            <span class="case-mask" aria-hidden="true">
+              <span style={`--d:${i * 80}ms`}>{w}</span>
+            </span>
+          ))
+        }
+      </h1>
+      <p class="scan-intro case-in" style="--d:400ms">{c.intro}</p>
+
+      <form class="scan-form case-in" style="--d:550ms" data-scan-form novalidate>
+        <label class="sr-only" for="scan-url">{c.inputLabel}</label>
+        <span class="scan-form__prefix" aria-hidden="true">https://</span>
+        <input id="scan-url" name="url" type="text" inputmode="url" autocomplete="url" autocapitalize="off" spellcheck="false" placeholder={c.placeholder} required />
+        <button type="submit">
+          <span>{c.button}</span>
+          <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+        </button>
+      </form>
+      <p class="scan-error" role="alert" data-scan-error hidden></p>
+    </section>
+
+    <!-- Progreso del escaneo -->
+    <section class="scan-progress" data-scan-progress hidden aria-live="polite">
+      <p class="scan-progress__url" data-scan-target></p>
+      <ol class="scan-progress__list">
+        {c.scanning.map((s) => <li>{s}</li>)}
+      </ol>
+      <span class="scan-progress__bar" aria-hidden="true"><span data-scan-bar></span></span>
+    </section>
+
+    <!-- Resultados (los llena scan.ts) -->
+    <div class="scan-results" data-scan-results hidden>
+      <section class="h-section scan-score">
+        <p class="h-label"><span>(01)</span> {c.scoreLabel}</p>
+        <div class="scan-score__grid">
+          <div>
+            <p class="scan-score__value"><span data-score>0</span><small>/100</small></p>
+            <p class="scan-score__note">{c.scoreNote}</p>
+            <p class="scan-score__site" data-scan-site></p>
+          </div>
+          <ul class="scan-areas" data-scan-areas></ul>
+        </div>
+      </section>
+
+      <section class="h-section scan-has">
+        <p class="h-label"><span>(02)</span> {c.hasTitle}</p>
+        <div class="scan-has__grid" data-scan-has></div>
+        <dl class="scan-seo" data-scan-seo></dl>
+        <p class="scan-pages" data-scan-pages></p>
+      </section>
+
+      <section class="h-section scan-plan">
+        <p class="h-label"><span>(03)</span> {c.planTitle}</p>
+        <h2 class="h-heading">{c.planIntro}</h2>
+        <ol class="scan-steps" data-scan-steps></ol>
+      </section>
+
+      <section class="scan-quote" id="quote">
+        <p class="h-label"><span>(04)</span> {c.quoteTitle}</p>
+        <div class="scan-quote__range" data-scan-range hidden>
+          <p class="scan-quote__label">{c.quoteRange}</p>
+          <p class="scan-quote__value" data-scan-total></p>
+          <p class="scan-quote__note">{c.quoteNote}</p>
+        </div>
+        <p class="scan-quote__ask">{c.quoteAsk}</p>
+
+        <form class="scan-lead" action="/api/scan-lead" method="post" data-scan-lead data-success={c.form.success} data-error={c.form.error}>
+          <input type="hidden" name="lang" value={lang} />
+          <input type="hidden" name="url" data-lead-url />
+          <input type="hidden" name="report" data-lead-report />
+          <div class="scan-lead__hp" aria-hidden="true">
+            <label>Website <input type="text" name="website" tabindex="-1" autocomplete="off" /></label>
+          </div>
+          <label class="scan-field">
+            <span>{c.form.name}</span>
+            <input name="name" type="text" autocomplete="name" required />
+          </label>
+          <label class="scan-field">
+            <span>{c.form.email}</span>
+            <input name="email" type="email" autocomplete="email" required />
+          </label>
+          <label class="scan-field">
+            <span>{c.form.phone}</span>
+            <input name="phone" type="tel" autocomplete="tel" />
+          </label>
+          {turnstileKey && <div class="scan-lead__turnstile" data-turnstile data-sitekey={turnstileKey} />}
+          <button type="submit" class="scan-lead__submit">{c.form.submit} <span aria-hidden="true">→</span></button>
+          <p class="scan-lead__consent">{c.form.consent}</p>
+          <p class="scan-lead__status" role="status" data-lead-status hidden></p>
+        </form>
+      </section>
+
+      <section class="scan-foot">
+        <p>{c.disclaimer}</p>
+        <button type="button" class="scan-again" data-scan-again>{c.again} <span aria-hidden="true">↑</span></button>
+      </section>
+    </div>
+  </div>
+</Base>
+
+<script>
+  import '../scripts/scan';
+</script>
+
+<style>
+  .scan-hero {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    min-height: 88vh;
+    min-height: 88svh;
+    padding: calc(var(--header-top) + var(--header-height) + 40px) var(--pad) clamp(40px, 6vw, 80px);
+  }
+
+  .scan-eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: clamp(20px, 2.4vw, 36px);
+    font-size: 15px;
+    color: var(--muted);
+  }
+
+  .scan-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--color-brand-green);
+  }
+
+  .scan-title {
+    margin-left: -0.04em;
+    font-family: var(--font-display);
+    font-size: clamp(64px, 13vw, 220px);
+    font-weight: 500;
+    line-height: 0.9;
+    letter-spacing: -0.04em;
+  }
+
+  .scan-intro {
+    max-width: 34em;
+    margin-top: clamp(24px, 3vw, 40px);
+    font-size: clamp(18px, 1.6vw, 24px);
+    line-height: 1.4;
+    color: rgba(255, 255, 255, 0.8);
+  }
+
+  .scan-form {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    max-width: 880px;
+    margin-top: clamp(32px, 4vw, 56px);
+    padding: 8px 8px 8px 24px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-pill);
+    background: rgba(255, 255, 255, 0.04);
+    transition:
+      border-color 0.3s,
+      background-color 0.3s;
+  }
+
+  .scan-form:focus-within {
+    border-color: var(--color-brand-green);
+    background: rgba(0, 255, 127, 0.05);
+  }
+
+  .scan-form__prefix {
+    font-size: clamp(18px, 1.8vw, 26px);
+    color: var(--muted);
+  }
+
+  .scan-form input {
+    flex: 1;
+    min-width: 0;
+    padding: 12px 0;
+    border: 0;
+    background: none;
+    color: var(--color-white);
+    font: inherit;
+    font-size: clamp(18px, 1.8vw, 26px);
+    outline: none;
+  }
+
+  .scan-form input::placeholder {
+    color: rgba(255, 255, 255, 0.35);
+  }
+
+  .scan-form button {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    flex: none;
+    padding: 16px 28px;
+    border-radius: var(--radius-pill);
+    background: var(--color-brand-green);
+    color: var(--color-black);
+    font-size: 17px;
+    transition: transform 0.4s cubic-bezier(0.2, 1, 0.3, 1);
+  }
+
+  .scan-form button:hover {
+    transform: scale(1.04);
+  }
+
+  .scan-form button:disabled {
+    opacity: 0.6;
+    transform: none;
+  }
+
+  @media (max-width: 690px) {
+    .scan-form {
+      flex-wrap: wrap;
+      padding: 8px;
+      border-radius: 20px;
+    }
+
+    .scan-form__prefix {
+      display: none;
+    }
+
+    .scan-form input {
+      padding: 12px 14px;
+    }
+
+    .scan-form button {
+      justify-content: center;
+      width: 100%;
+    }
+  }
+
+  .scan-error {
+    margin-top: 16px;
+    font-size: 16px;
+    color: #ff8a80;
+  }
+
+  /* Progreso */
+  .scan-progress,
+  .scan-results {
+    scroll-margin-top: calc(var(--header-top) + var(--header-height) + 16px);
+  }
+
+  .scan-progress {
+    padding: clamp(40px, 6vw, 96px) var(--pad) clamp(80px, 10vw, 160px);
+  }
+
+  .scan-progress__url {
+    margin-bottom: 24px;
+    font-family: var(--font-display);
+    font-size: clamp(32px, 5vw, 80px);
+    line-height: 1;
+    letter-spacing: -0.03em;
+    overflow-wrap: anywhere;
+  }
+
+  .scan-progress__list {
+    display: grid;
+    gap: 10px;
+    margin: 0 0 32px;
+    padding: 0;
+    list-style: none;
+    font-size: 17px;
+  }
+
+  .scan-progress__list li {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: rgba(255, 255, 255, 0.3);
+    transition: color 0.4s;
+  }
+
+  .scan-progress__list li::before {
+    content: '';
+    flex: none;
+    width: 10px;
+    height: 10px;
+    border: 1px solid currentColor;
+    border-radius: 50%;
+    transition:
+      background-color 0.3s,
+      border-color 0.3s;
+  }
+
+  .scan-progress__list li.is-active {
+    color: var(--color-white);
+  }
+
+  .scan-progress__list li.is-active::before {
+    animation: scan-blink 0.8s ease-in-out infinite alternate;
+  }
+
+  .scan-progress__list li.is-done {
+    color: rgba(255, 255, 255, 0.75);
+  }
+
+  .scan-progress__list li.is-done::before {
+    border-color: var(--color-brand-green);
+    background: var(--color-brand-green);
+  }
+
+  @keyframes scan-blink {
+    to {
+      background: var(--color-white);
+    }
+  }
+
+  .scan-progress__bar {
+    display: block;
+    height: 2px;
+    background: var(--line);
+  }
+
+  .scan-progress__bar span {
+    display: block;
+    height: 100%;
+    background: var(--color-brand-green);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s ease;
+  }
+
+  /* Puntaje */
+  .scan-score__grid {
+    display: grid;
+    gap: clamp(40px, 5vw, 80px);
+  }
+
+  @media (min-width: 1000px) {
+    .scan-score__grid {
+      grid-template-columns: 5fr 7fr;
+      align-items: end;
+    }
+  }
+
+  .scan-score__value {
+    font-family: var(--font-display);
+    font-size: clamp(120px, 20vw, 340px);
+    line-height: 0.8;
+    letter-spacing: -0.05em;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .scan-score__value small {
+    margin-left: 0.05em;
+    font-size: 0.22em;
+    color: var(--muted);
+    letter-spacing: 0;
+  }
+
+  .scan-score__note {
+    max-width: 26em;
+    margin-top: 24px;
+    font-size: 16px;
+    line-height: 1.5;
+    color: var(--muted);
+  }
+
+  .scan-score__site {
+    margin-top: 12px;
+    font-size: 15px;
+    overflow-wrap: anywhere;
+  }
+
+  .scan-areas {
+    display: grid;
+    gap: 18px;
+  }
+
+  .scan-areas :global(li) {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 8px;
+    font-size: 16px;
+  }
+
+  .scan-areas :global(.bar) {
+    grid-column: 1 / -1;
+    height: 6px;
+    border-radius: 6px;
+    background: var(--line);
+    overflow: hidden;
+  }
+
+  .scan-areas :global(.bar span) {
+    display: block;
+    height: 100%;
+    border-radius: 6px;
+    background: var(--color-brand-green);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 1.2s cubic-bezier(0.2, 1, 0.3, 1);
+  }
+
+  .scan-areas :global(.is-low .bar span) {
+    background: #ffcc02;
+  }
+
+  .scan-areas :global(.is-zero .bar span) {
+    background: #ff8a80;
+  }
+
+  .scan-areas :global(.pts) {
+    color: var(--muted);
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* Lo que tiene */
+  .scan-has__grid {
+    display: grid;
+    gap: 1px;
+    background: var(--line);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    overflow: hidden;
+  }
+
+  @media (min-width: 690px) {
+    .scan-has__grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (min-width: 1000px) {
+    .scan-has__grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+
+  .scan-has__grid :global(.cell) {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: clamp(20px, 2vw, 32px);
+    background: var(--page-bg);
+  }
+
+  .scan-has__grid :global(.cell h3) {
+    font-size: 14px;
+    font-weight: inherit;
+    color: var(--muted);
+  }
+
+  .scan-has__grid :global(.chips) {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .scan-has__grid :global(.chip) {
+    padding: 4px 12px;
+    border: 1px solid rgba(0, 255, 127, 0.45);
+    border-radius: var(--radius-pill);
+    font-size: 14px;
+    line-height: 1.4;
+  }
+
+  .scan-has__grid :global(.none) {
+    font-size: 14px;
+    color: #ff8a80;
+  }
+
+  .scan-seo {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px 24px;
+    margin: 40px 0 0;
+    font-size: 15px;
+    line-height: 1.45;
+  }
+
+  @media (min-width: 1000px) {
+    .scan-seo {
+      grid-template-columns: 3fr 4fr 2fr 2fr 3fr;
+    }
+  }
+
+  .scan-seo :global(dt) {
+    margin-bottom: 4px;
+    font-size: 13px;
+    color: var(--muted);
+  }
+
+  .scan-seo :global(dd) {
+    margin: 0;
+    overflow-wrap: anywhere;
+  }
+
+  .scan-seo :global(.bad) {
+    color: #ff8a80;
+  }
+
+  .scan-pages {
+    margin-top: 24px;
+    font-size: 13px;
+    color: var(--muted);
+    overflow-wrap: anywhere;
+  }
+
+  /* Plan */
+  .scan-steps {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    border-top: 1px solid var(--line);
+  }
+
+  .scan-steps :global(li) {
+    display: grid;
+    grid-template-columns: 3em 1fr;
+    gap: 6px 16px;
+    padding: 26px 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  @media (min-width: 1000px) {
+    .scan-steps :global(li) {
+      grid-template-columns: 2fr 5fr 5fr 2fr;
+      gap: 4vw;
+      align-items: baseline;
+      padding: 32px 0;
+    }
+  }
+
+  .scan-steps :global(.n) {
+    grid-row: span 3;
+    font-size: 15px;
+    color: var(--color-brand-green);
+  }
+
+  @media (min-width: 1000px) {
+    .scan-steps :global(.n) {
+      grid-row: auto;
+    }
+  }
+
+  .scan-steps :global(h3) {
+    font-family: var(--font-display);
+    font-size: clamp(24px, 2.4vw, 40px);
+    font-weight: 500;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+  }
+
+  .scan-steps :global(p) {
+    font-size: 16px;
+    line-height: 1.55;
+    color: var(--muted);
+  }
+
+  .scan-steps :global(.price) {
+    font-size: 15px;
+    color: var(--color-white);
+    white-space: nowrap;
+  }
+
+  @media (min-width: 1000px) {
+    .scan-steps :global(.price) {
+      text-align: right;
+    }
+  }
+
+  /* Cotización */
+  .scan-quote {
+    padding: clamp(80px, 12vw, 200px) var(--pad);
+    background: var(--color-brand-green);
+    color: var(--color-black);
+    --muted: rgba(0, 0, 0, 0.62);
+    --line: rgba(0, 0, 0, 0.2);
+  }
+
+  .scan-quote :global(.h-label span) {
+    color: var(--color-black);
+  }
+
+  .scan-quote__label {
+    font-size: 15px;
+    color: var(--muted);
+  }
+
+  .scan-quote__value {
+    font-family: var(--font-display);
+    font-size: clamp(56px, 9vw, 160px);
+    line-height: 0.95;
+    letter-spacing: -0.04em;
+  }
+
+  .scan-quote__note {
+    margin-top: 12px;
+    font-size: 15px;
+    color: var(--muted);
+  }
+
+  .scan-quote__ask {
+    max-width: 22em;
+    margin: clamp(32px, 4vw, 56px) 0 clamp(32px, 4vw, 48px);
+    font-family: var(--font-display);
+    font-size: clamp(30px, 3.6vw, 60px);
+    line-height: 1.02;
+    letter-spacing: -0.025em;
+  }
+
+  .scan-lead {
+    display: grid;
+    gap: 16px;
+    max-width: 880px;
+  }
+
+  @media (min-width: 690px) {
+    .scan-lead {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+
+  .scan-field {
+    display: grid;
+    gap: 6px;
+    font-size: 14px;
+  }
+
+  .scan-field input {
+    padding: 14px 16px;
+    border: 1px solid rgba(0, 0, 0, 0.35);
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.35);
+    color: var(--color-black);
+    font: inherit;
+    font-size: 16px;
+  }
+
+  .scan-field input:focus-visible {
+    outline: 2px solid var(--color-black);
+    outline-offset: 1px;
+  }
+
+  .scan-lead__hp {
+    position: absolute;
+    left: -9999px;
+  }
+
+  .scan-lead__turnstile,
+  .scan-lead__submit,
+  .scan-lead__consent,
+  .scan-lead__status {
+    grid-column: 1 / -1;
+  }
+
+  .scan-lead__submit {
+    justify-self: start;
+    display: inline-flex;
+    gap: 10px;
+    padding: 16px 28px;
+    border-radius: var(--radius-pill);
+    background: var(--color-black);
+    color: var(--color-white);
+    font-size: 17px;
+    transition: transform 0.4s cubic-bezier(0.2, 1, 0.3, 1);
+  }
+
+  .scan-lead__submit:hover {
+    transform: scale(1.04);
+  }
+
+  .scan-lead__submit:disabled {
+    opacity: 0.6;
+  }
+
+  .scan-lead__consent {
+    font-size: 13px;
+    color: var(--muted);
+  }
+
+  .scan-lead__status {
+    font-size: 16px;
+  }
+
+  .scan-foot {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px 32px;
+    padding: 40px var(--pad);
+    font-size: 14px;
+    color: var(--muted);
+  }
+
+  .scan-again {
+    padding: 10px 20px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-pill);
+    color: var(--color-white);
+    font-size: 15px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .scan-areas :global(.bar span),
+    .scan-progress__bar span {
+      transition: none;
+    }
+  }
+</style>
