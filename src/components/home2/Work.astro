@@ -143,23 +143,32 @@ const items = PROJECTS.map((p) => {
       display: none;
     }
 
+    /* Nombre a todo el ancho y, debajo, las categorías; la flecha a la derecha. */
     .h-work__row {
-      /* Sin números: el nombre arranca en el borde izquierdo y tiene más ancho. */
-      grid-template-columns: 8fr 3fr auto;
-      gap: 4vw;
+      grid-template-columns: 1fr auto;
+      gap: 10px 4vw;
       padding: 28px 0;
     }
 
+    .h-work__name {
+      grid-row: 1;
+      grid-column: 1;
+    }
+
     .h-work__cats {
-      grid-column: auto;
+      grid-row: 2;
+      grid-column: 1;
+      font-size: 15px;
     }
 
     .h-work__arrow {
-      grid-row: auto;
-      grid-column: auto;
+      grid-row: 1;
+      grid-column: 2;
+      align-self: center;
     }
 
-    .h-work__name {
+    .h-work__name,
+    .h-work__cats {
       transition:
         transform 0.6s cubic-bezier(0.2, 1, 0.3, 1),
         opacity 0.4s;
@@ -170,12 +179,12 @@ const items = PROJECTS.map((p) => {
     }
 
     /* Al pasar por una fila, el resto se atenúa y el nombre se corre un poco. */
-    .h-work__list:hover .h-work__name {
+    .h-work__list:hover :is(.h-work__name, .h-work__cats) {
       opacity: 0.3;
     }
 
-    .h-work__row:hover .h-work__name,
-    .h-work__row:focus-visible .h-work__name {
+    .h-work__row:hover :is(.h-work__name, .h-work__cats),
+    .h-work__row:focus-visible :is(.h-work__name, .h-work__cats) {
       opacity: 1;
       transform: translateX(0.25em);
     }
