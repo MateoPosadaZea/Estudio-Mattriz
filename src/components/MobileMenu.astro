@@ -54,8 +54,9 @@ const other = lang === 'es' ? 'en' : 'es';
 
 <style>
   .mobile-menu {
-    --menu-bg: var(--color-brand-green);
-    --menu-fg: var(--color-black);
+    /* Fondo negro y texto blanco: el verde queda solo para el botón. */
+    --menu-bg: #0a0a0a;
+    --menu-fg: var(--color-white);
     --menu-ease: cubic-bezier(0.7, 0, 0.2, 1);
     position: fixed;
     inset: 0;
@@ -92,6 +93,8 @@ const other = lang === 'es' ? 'en' : 'es';
   .mobile-menu__logo img {
     width: auto;
     height: 30px;
+    /* El archivo del logo es negro: en el menú (fondo negro) se ve en blanco. */
+    filter: invert(1);
   }
 
   .mobile-menu__close {
@@ -117,8 +120,8 @@ const other = lang === 'es' ? 'en' : 'es';
     margin-bottom: clamp(32px, 6vh, 56px);
     padding: 14px 24px;
     border-radius: var(--radius-pill);
-    background: var(--menu-fg);
-    color: var(--menu-bg);
+    background: var(--color-brand-green);
+    color: var(--color-black);
     font-size: 16px;
     line-height: 1.2;
   }
