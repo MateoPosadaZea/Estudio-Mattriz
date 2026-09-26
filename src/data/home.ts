@@ -4,8 +4,8 @@ import type { Lang } from '../i18n';
 // Copy: brief sección 4 donde se solapa con el vivo (sin rayas largas); el resto, tal cual el vivo.
 
 export const HERO = {
-  title: 'Websites and systems, built in weeks.',
-  subtitle: 'We design, build and run the digital side of your business, so it works while you sleep.',
+  title: 'Systems that work while you sleep.',
+  subtitle: 'We design and build the websites, stores and booking systems your business runs on, and keep them running every month.',
   cta: { label: 'See how we work', href: '#how-we-work' },
 };
 
@@ -171,8 +171,8 @@ export const TESTIMONIALS = [
 
 export const HOME_ES = {
   HERO: {
-    title: 'Sitios y sistemas, listos en semanas.',
-    subtitle: 'Diseñamos, construimos y mantenemos la parte digital de tu negocio, para que funcione mientras duermes.',
+    title: 'Sistemas que trabajan mientras duermes.',
+    subtitle: 'Diseñamos y construimos los sitios, tiendas y sistemas de reservas con los que funciona tu negocio, y los mantenemos funcionando mes a mes.',
     cta: { label: 'Mira cómo trabajamos', href: '#how-we-work' },
   },
   SERVICES: {
