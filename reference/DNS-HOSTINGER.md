@@ -26,3 +26,12 @@ Nameservers originales: `ns1.dns-parking.com`, `ns2.dns-parking.com`.
 - El `ALIAS @` de Hostinger en Cloudflare es un `CNAME @` (Cloudflare lo aplana).
 - Verificar que el DKIM de Google quede completo (Cloudflare a veces lo parte en dos cadenas; está bien
   si al unirlas queda idéntico).
+
+## Cambio de nameservers (2026-09-26)
+
+- Registros revisados en Cloudflare: 12, todos en DNS only. El `ALIAS @` quedó como
+  `CNAME @ → mattriz.com.cdn.hstgr.net` (se borraron los A/AAAA que importó Cloudflare).
+- Nameservers de Cloudflare puestos en Hostinger: `casey.ns.cloudflare.com`, `gail.ns.cloudflare.com`.
+- El dominio sigue registrado en Hostinger (la renovación se paga allá). Al cancelar el hosting,
+  no cancelar el dominio.
+- Para volver atrás: en Hostinger, poner de nuevo `ns1.dns-parking.com` y `ns2.dns-parking.com`.
