@@ -1,5 +1,7 @@
 ---
 // v2: "What we build" como lista numerada a todo el ancho (mismo lenguaje que los casos).
+// Al hacer scroll cada fila se despliega como en la v1: la línea se dibuja, el número sube
+// desde su máscara y el texto aparece (src/scripts/rows.ts).
 import { home } from '../../data/home';
 import { langOf, ui } from '../../i18n';
 
@@ -14,8 +16,10 @@ const t = ui(lang);
   <ol class="h-services">
     {
       SERVICES.items.map((item, i) => (
-        <li data-case-reveal>
-          <span class="h-services__n">{String(i + 1).padStart(2, '0')}</span>
+        <li data-row>
+          <span class="h-services__n">
+            <span>{String(i + 1).padStart(2, '0')}</span>
+          </span>
           <h3 class="h-services__title">{item.title}</h3>
           <p class="h-services__text">{item.text}</p>
         </li>
@@ -24,17 +28,100 @@ const t = ui(lang);
   </ol>
 </section>
 
-<style>
-  .h-services {
-    border-top: 1px solid var(--line);
-  }
+<script>
+  import '../../scripts/rows';
+</script>
 
+<style>
   .h-services li {
+    position: relative;
     display: grid;
-    grid-template-columns: 3em 1fr;
+    grid-template-columns: 56px 1fr;
     gap: 8px 16px;
     padding: 28px 0;
-    border-bottom: 1px solid var(--line);
+  }
+
+  /* Líneas: arriba de cada fila y abajo de la última. Se dibujan de izquierda a derecha. */
+  .h-services li::before,
+  .h-services li:last-child::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.32);
+    transform-origin: left;
+  }
+
+  .h-services li:last-child::after {
+    top: auto;
+    bottom: 0;
+  }
+
+  :global(html.js) .h-services li::before,
+  :global(html.js) .h-services li:last-child::after {
+    transform: scaleX(0);
+    transition: transform 1.5s cubic-bezier(0.65, 0, 0.35, 1);
+  }
+
+  :global(html.js) .h-services li:last-child::after {
+    transition-delay: 0.35s;
+  }
+
+  :global(html.js) .h-services li.is-in::before,
+  :global(html.js) .h-services li.is-in:last-child::after {
+    transform: none;
+  }
+
+  /* Número: sube desde su máscara. */
+  .h-services__n > span {
+    display: inline-block;
+  }
+
+  :global(html.js) .h-services__n > span {
+    transform: translateY(110%);
+    transition: transform 1.2s cubic-bezier(0.2, 1, 0.3, 1) 0.2s;
+  }
+
+  :global(html.js) .h-services li.is-in .h-services__n > span {
+    transform: none;
+  }
+
+  /* Título y texto: suben y aparecen, uno detrás del otro. */
+  :global(html.js) .h-services__title,
+  :global(html.js) .h-services__text {
+    opacity: 0;
+    transform: translateY(24px);
+    transition:
+      opacity 0.9s cubic-bezier(0.2, 1, 0.3, 1),
+      transform 1.1s cubic-bezier(0.2, 1, 0.3, 1);
+  }
+
+  :global(html.js) .h-services__title {
+    transition-delay: 0.3s;
+  }
+
+  :global(html.js) .h-services__text {
+    transition-delay: 0.45s;
+  }
+
+  :global(html.js) .h-services li.is-in .h-services__title,
+  :global(html.js) .h-services li.is-in .h-services__text {
+    opacity: 1;
+    transform: none;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    :global(html.js) .h-services li::before,
+    :global(html.js) .h-services li:last-child::after,
+    :global(html.js) .h-services__n > span,
+    :global(html.js) .h-services__title,
+    :global(html.js) .h-services__text {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
   }
 
   @media (min-width: 1000px) {
@@ -46,10 +133,25 @@ const t = ui(lang);
     }
   }
 
+  /* Número grande en Noe, como en la v1. */
   .h-services__n {
+    display: block;
+    overflow: hidden;
     grid-row: span 2;
-    font-size: 15px;
+    font-family: var(--font-display);
+    font-size: 30px;
+    font-weight: 500;
+    line-height: 1;
+    letter-spacing: -0.03em;
+    font-variant-numeric: tabular-nums;
     color: var(--color-brand-green);
+  }
+
+  @media (min-width: 1000px) {
+    .h-services__n {
+      align-self: center;
+      font-size: clamp(56px, 6vw, 104px);
+    }
   }
 
   @media (min-width: 1000px) {
