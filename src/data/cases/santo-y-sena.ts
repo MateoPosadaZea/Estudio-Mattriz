@@ -65,6 +65,12 @@ const READINGS = desk('lecturas', {
 const M_HOME = phone('home', { en: 'Santo & Seña home on a phone', es: 'Portada de Santo & Seña en el celular' });
 const M_RECORD = phone('disco', { en: 'Record page on a phone', es: 'Ficha de un disco en el celular' });
 const M_LISTEN = phone('escucha', { en: 'Turntable page on a phone', es: 'Tocadiscos en el celular' });
+const FLOW = (lang: Lang): CaseMedia => ({
+  type: 'video',
+  local: { dir: DIR, base: 'ss-flow', width: 1440, height: 900 },
+  alt: { en: 'Browsing the home page, opening the shop, adding a book to the cart', es: 'Recorrido por la portada, la tienda y un libro añadido al carrito' }[lang],
+  caption: { en: 'From the home page to the cart: catalogue, product page and cart served by the new site.', es: 'De la portada al carrito: catálogo, ficha y carrito servidos por el sitio nuevo.' }[lang],
+});
 
 const TEXT = {
   en: {
@@ -264,6 +270,7 @@ export function santoYSena(lang: Lang): CaseDoc {
     site: 'https://casasantoysena.com/',
     blocks: [
       { kind: 'text', style: 'lead', ...t.brief },
+      { kind: 'media', layout: 'full', items: [FLOW(lang)] },
       { kind: 'media', layout: 'pair', items: [SHOP(lang), SEARCH(lang)] },
       { kind: 'list', ...t.constraint },
       { kind: 'cards', ...t.decisions },
