@@ -41,7 +41,7 @@ export const STUDIO = {
   cta: 'Our work',
   stats: [
     { label: 'Build', value: '5+', text: 'Years designing and building digital systems for real businesses.' },
-    { label: 'Maintain', value: '3', text: 'Active clients at a time, by design, not by accident.' },
+    { label: 'Maintain', value: '3', text: 'Active clients at a time. A deliberate limit, so each one gets our full time and quality.' },
     { label: 'Grow', value: '100%', text: 'We work on a monthly plan: we build, maintain and keep improving. No one-off projects.' },
   ],
 };
@@ -217,7 +217,7 @@ export const HOME_ES = {
     cta: 'Nuestro trabajo',
     stats: [
       { label: 'Construir', value: '5+', text: 'Años diseñando y construyendo sistemas digitales para negocios reales.' },
-      { label: 'Mantener', value: '3', text: 'Clientes activos a la vez, por decisión, no por accidente.' },
+      { label: 'Mantener', value: '3', text: 'Clientes activos a la vez. Un límite deliberado, para darle a cada uno todo nuestro tiempo y calidad.' },
       { label: 'Crecer', value: '100%', text: 'Trabajamos con un plan mensual: construimos, mantenemos y seguimos mejorando. No hacemos proyectos sueltos.' },
     ],
   },
