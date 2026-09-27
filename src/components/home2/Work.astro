@@ -180,6 +180,7 @@ const items = PROJECTS.map((p) => {
     }
 
     .h-work__name,
+    .h-work__summary,
     .h-work__cats {
       transition:
         transform 0.6s cubic-bezier(0.2, 1, 0.3, 1),
@@ -190,15 +191,16 @@ const items = PROJECTS.map((p) => {
       transition: transform 0.6s cubic-bezier(0.2, 1, 0.3, 1);
     }
 
-    /* Al pasar por una fila, el resto se atenúa y el nombre se corre un poco. */
-    .h-work__list:hover :is(.h-work__name, .h-work__cats) {
+    /* Al pasar por una fila, el resto se atenúa y la información se corre un poco, toda junta
+       (el mismo desplazamiento en px para el nombre, la descripción y las categorías, así quedan alineados). */
+    .h-work__list:hover :is(.h-work__name, .h-work__summary, .h-work__cats) {
       opacity: 0.3;
     }
 
-    .h-work__row:hover :is(.h-work__name, .h-work__cats),
-    .h-work__row:focus-visible :is(.h-work__name, .h-work__cats) {
+    .h-work__row:hover :is(.h-work__name, .h-work__summary, .h-work__cats),
+    .h-work__row:focus-visible :is(.h-work__name, .h-work__summary, .h-work__cats) {
       opacity: 1;
-      transform: translateX(0.25em);
+      transform: translateX(16px);
     }
 
     .h-work__row:hover .h-work__arrow {
