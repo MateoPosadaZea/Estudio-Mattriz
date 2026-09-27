@@ -1,6 +1,6 @@
 ---
 import ThemeToggle from './ThemeToggle.astro';
-import { NAV, SITE } from '../data/site';
+import { NAV } from '../data/site';
 import { langOf, localize, alternate, ui } from '../i18n';
 
 const path = Astro.url.pathname;
@@ -43,7 +43,7 @@ const other = lang === 'es' ? 'en' : 'es';
 
     <ThemeToggle class="site-header__theme" />
 
-    <a class="talk-button" href={SITE.calendly} target="_blank" rel="noopener">
+    <a class="talk-button" href="#contact-form">
       <span class="reveal">
         <span class="reveal__text" data-text={t.talk}>{t.talk}</span>
       </span>
