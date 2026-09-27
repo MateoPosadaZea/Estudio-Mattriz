@@ -88,14 +88,14 @@ export const PROJECTS: Project[] = [
     href: '/project/the-grid/',
     summary: { en: 'Brand identity and Webflow website for a construction digital-twin consultancy.', es: 'Identidad de marca y sitio en Webflow para una consultora de gemelos digitales en construcción.' },
     categories: ['Brand Identity', 'SEO Optimization', 'UI/UX Design', 'Web Development'],
-    video: '/media/work/the-grid-nav.mp4',
+    video: '/media/work/the-grid-cover.mp4',
   },
   {
     title: 'Dr. Daniel De Zubiría',
     href: '/project/dr-daniel-de-zubiria/',
     summary: { en: 'Brand identity, an 11-page site, online booking and the full infrastructure for an allergy practice in Bogotá.', es: 'Identidad de marca, sitio de 11 páginas, agenda en línea y toda la infraestructura de un consultorio de alergología en Bogotá.' },
     categories: ['Brand Identity', 'UI/UX Design', 'Web Development', 'SEO Optimization'],
-    video: '/media/work/dezubiria-nav.mp4',
+    video: '/media/work/dezubiria-cover.mp4',
   },
   {
     title: 'Posada Cárcamo Abogados',
@@ -116,14 +116,14 @@ export const PROJECTS: Project[] = [
     href: '/project/luciana-cabanas/',
     summary: { en: 'Logo and a direct-booking website for six boutique cabins in the Valle de Tenza, Boyacá.', es: 'Logotipo y sitio de reserva directa para seis cabañas boutique en el Valle de Tenza, Boyacá.' },
     categories: ['Brand Identity', 'UI/UX Design', 'Web Development', 'SEO Optimization'],
-    video: '/media/work/luciana-nav.mp4',
+    video: '/media/work/luciana-cover.mp4',
   },
   {
     title: 'Civilus',
     href: '/project/civilus/',
     summary: { en: 'Brand identity and React website for an online structural-calculus platform.', es: 'Identidad de marca y sitio en React para una plataforma de cálculo estructural en línea.' },
     categories: ['Brand Identity', 'UI/UX Design', 'Web Development'],
-    video: '/media/work/civilus-nav.mp4',
+    video: '/media/work/civilus-cover.mp4',
   },
 ];
 
