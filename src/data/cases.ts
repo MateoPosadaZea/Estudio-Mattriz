@@ -13,6 +13,7 @@ import type { CaseDoc } from '../components/case/doc';
 import { spotOn } from './cases/spot-on';
 import { santoYSena } from './cases/santo-y-sena';
 import { drDanielDeZubiria } from './cases/dr-daniel-de-zubiria';
+import { lucianaCabanas } from './cases/luciana-cabanas';
 import type { LegacyCase } from '../components/case/fromLegacy';
 
 export type ModelBlock =
@@ -146,29 +147,13 @@ export const LEGACY_CASES: Record<string, LegacyCase> = {
       { media: [3], layout: 'full' },
     ],
   },
-  'luciana-cabanas': {
-    legacy: true,
-    name: 'Luciana Cabañas',
-    theme: 'dark',
-    bg: '#2a1006',
-    accent: '#bf9571',
-    onAccent: '#2a1006',
-    hero: 0,
-    flow: [
-      { section: 'summary' },
-      { media: [1, 6], layout: 'pair' },
-      { media: [2], layout: 'full' },
-      { media: [3, 4, 5], layout: 'trio' },
-      { section: 'whatwedid' },
-      { media: [7, 8], layout: 'pair' },
-    ],
-  },
 };
 
 export const MANUAL_CASES: Record<string, (lang: Lang) => CaseDoc> = {
   'spot-on-mobile-wash-detailing': spotOn,
   'santo-y-sena': santoYSena,
   'dr-daniel-de-zubiria': drDanielDeZubiria,
+  'luciana-cabanas': lucianaCabanas,
 };
 
 export const isCase = (slug: string) => slug in MODEL_CASES || slug in MANUAL_CASES || slug in LEGACY_CASES;
@@ -184,10 +169,6 @@ export const CASE_SEO: Record<string, Record<Lang, { title: string; description:
   aglvanstours: {
     en: { title: 'AGL Vans Tours Website Case Study | Mattriz Studio', description: 'Website design and development for AGL Vans Tours, a transportation services company. Designed and built by Mattriz Studio, a studio in Bogotá.' },
     es: { title: 'Caso de estudio: sitio web de AGL Vans Tours | Mattriz Studio', description: 'Diseño y desarrollo del sitio web de AGL Vans Tours, empresa de servicios de transporte. Diseñado y construido por Mattriz Studio, un estudio en Bogotá.' },
-  },
-  'luciana-cabanas': {
-    en: { title: 'Luciana Cabañas: Logo & Website | Mattriz Studio', description: 'Logo and website design for Luciana Cabañas, cabins in Guateque, Boyacá, Colombia. Brand identity and web development by Mattriz Studio.' },
-    es: { title: 'Luciana Cabañas: logotipo y sitio web | Mattriz Studio', description: 'Diseño de logotipo y sitio web para Luciana Cabañas, cabañas en Guateque, Boyacá. Identidad de marca y desarrollo web de Mattriz Studio.' },
   },
   'posada-carcamo-abogados': {
     en: { title: 'Posada Cárcamo Abogados: Law Firm Website | Mattriz Studio', description: 'Web design and development for Posada Cárcamo Abogados, a law firm focused on innovation and client service. Built by Mattriz Studio.' },

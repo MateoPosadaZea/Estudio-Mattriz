@@ -121,9 +121,9 @@ export const PROJECTS: Project[] = [
   {
     title: 'Luciana Cabañas',
     href: '/project/luciana-cabanas/',
-    summary: { en: 'Logo and website for cabins in Guateque, Boyacá.', es: 'Logotipo y sitio web para unas cabañas en Guateque, Boyacá.' },
-    categories: ['Brand Identity', 'UI/UX Design', 'Web Development'],
-    image: img('luciana-cabanas', PHOTO_SIZES, ''),
+    summary: { en: 'Logo and a direct-booking website for six boutique cabins in the Valle de Tenza, Boyacá.', es: 'Logotipo y sitio de reserva directa para seis cabañas boutique en el Valle de Tenza, Boyacá.' },
+    categories: ['Brand Identity', 'UI/UX Design', 'Web Development', 'SEO Optimization'],
+    video: '/media/work/luciana-nav.mp4',
   },
 ];
 
