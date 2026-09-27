@@ -88,7 +88,7 @@ export const PROJECTS: Project[] = [
     href: '/project/civilus/',
     summary: { en: 'Brand identity and React website for an online structural-calculus platform.', es: 'Identidad de marca y sitio en React para una plataforma de cálculo estructural en línea.' },
     categories: ['Brand Identity', 'UI/UX Design', 'Web Development'],
-    video: '/media/work/civilus.mp4',
+    video: '/media/work/civilus-nav.mp4',
   },
   {
     title: 'Spot On Mobile Wash & Detailing',

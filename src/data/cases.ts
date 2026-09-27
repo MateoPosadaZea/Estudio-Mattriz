@@ -9,7 +9,8 @@
 //   de 2026 publicado en /work/spot-on/case-study.html).
 
 import type { Lang } from '../i18n';
-import type { CaseDoc } from '../components/case/doc';
+import type { CaseDoc, CaseMedia } from '../components/case/doc';
+import { CIVILUS_HERO, CIVILUS_TOOLS, CIVILUS_BEAM, CIVILUS_PHONES } from './cases/civilus-media';
 import { spotOn } from './cases/spot-on';
 import { santoYSena } from './cases/santo-y-sena';
 import { drDanielDeZubiria } from './cases/dr-daniel-de-zubiria';
@@ -20,7 +21,9 @@ import type { LegacyCase } from '../components/case/fromLegacy';
 
 export type ModelBlock =
   | { section: 'challenge' | 'approach' | 'whatwedo' | 'impact' | 'details' }
-  | { media: number[]; layout: 'full' | 'pair' | 'trio' | 'inset' | 'wide'; parallax?: boolean };
+  | { media: number[]; layout: 'full' | 'pair' | 'trio' | 'inset' | 'wide'; parallax?: boolean }
+  /** Media nueva, fuera del modelo (capturas y videos del sitio en vivo). */
+  | { extra: ((lang: Lang) => CaseMedia)[]; layout: 'full' | 'pair' | 'trio' | 'inset' | 'wide' };
 
 export type ModelCase = {
   name: string;
@@ -29,6 +32,8 @@ export type ModelCase = {
   accent: string;
   onAccent: string;
   hero: number;
+  /** Media principal fuera del modelo; si está, reemplaza a media[hero]. */
+  heroExtra?: (lang: Lang) => CaseMedia;
   flow: ModelBlock[];
   stats?: Record<Lang, { value: string; label: string }[]>;
 };
@@ -49,13 +54,17 @@ export const MODEL_CASES: Record<string, ModelCase> = {
     accent: '#d93131',
     onAccent: '#ffffff',
     hero: 0,
+    heroExtra: CIVILUS_HERO,
     flow: [
       { section: 'challenge' },
       { media: [7], layout: 'full' },
       { media: [2, 1], layout: 'pair' },
       { section: 'approach' },
+      { extra: CIVILUS_TOOLS, layout: 'pair' },
+      { extra: CIVILUS_BEAM, layout: 'pair' },
       { media: [5, 6], layout: 'pair' },
       { section: 'whatwedo' },
+      { extra: CIVILUS_PHONES, layout: 'trio' },
       { media: [8, 10], layout: 'pair' },
       { section: 'impact' },
       { media: [3], layout: 'full' },

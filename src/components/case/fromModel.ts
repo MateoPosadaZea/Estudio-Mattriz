@@ -18,6 +18,7 @@ export function fromModel(cfg: ModelCase, orig: any, model: any, lang: Lang): Ca
   });
 
   const blocks: CaseBlock[] = cfg.flow.map((b): CaseBlock => {
+    if ('extra' in b) return { kind: 'media', layout: b.layout, items: b.extra.map((m) => m(lang)) };
     if ('media' in b) return { kind: 'media', layout: b.layout, parallax: b.parallax, items: b.media.map((i) => c.media[i]) };
     switch (b.section) {
       case 'challenge':
@@ -50,7 +51,7 @@ export function fromModel(cfg: ModelCase, orig: any, model: any, lang: Lang): Ca
       { label: label('Industry'), value: plain(s['Industry']?.html ?? '') },
       { label: label('What we did'), chips: c.categories.map((cat) => category(cat, lang)) },
     ],
-    hero: c.media[cfg.hero],
+    hero: cfg.heroExtra ? cfg.heroExtra(lang) : c.media[cfg.hero],
     blocks,
     site: c.cta?.href,
   };
