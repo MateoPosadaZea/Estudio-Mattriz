@@ -1,6 +1,6 @@
 // v2: carrusel de testimonios del home (src/components/home2/Testimonials.astro).
 // - Avanza solo cada 9 s (barra de progreso); se pausa al pasar el mouse, al enfocar dentro,
-//   con el botón de pausa, o si la sección no está en pantalla.
+//   con el botón de pausa, o si la sección no está en pantalla (los clips no cargan hasta que aparece).
 // - En la diapositiva activa, el proyecto alterna clips cortos y capturas (imagen 1.1 s, clip hasta 4 s).
 // - Con prefers-reduced-motion no avanza ni pasa imágenes solo.
 
@@ -125,12 +125,24 @@ if (carousel) {
     if (Math.abs(dx) > 50) go(index + (dx < 0 ? 1 : -1));
   });
 
+  // Los clips no se cargan ni corren hasta que la sección aparece en pantalla; al salir se pausan.
+  let started = false;
+  const onView = (on: boolean) => {
+    visible = on;
+    if (on && !started) {
+      started = true;
+      reel();
+    } else if (!on) {
+      slides[index].querySelectorAll('video').forEach((v) => v.pause());
+    } else {
+      slides[index].querySelector<HTMLVideoElement>('[data-t-reel] > video.is-on')?.play().catch(() => {});
+    }
+  };
   if ('IntersectionObserver' in window) {
-    new IntersectionObserver(([e]) => (visible = e.isIntersecting), { threshold: 0.3 }).observe(carousel);
-  } else visible = true;
+    new IntersectionObserver(([e]) => onView(e.isIntersecting), { threshold: 0.2 }).observe(carousel);
+  } else onView(true);
 
   setToggle();
-  reel();
   requestAnimationFrame(loop);
 }
 
