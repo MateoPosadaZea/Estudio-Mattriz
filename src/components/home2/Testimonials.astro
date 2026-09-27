@@ -1,7 +1,8 @@
 ---
 // v2: testimonios en carrusel. Cada diapositiva: la cita a un lado y, al otro, el proyecto del
 // cliente con sus imágenes pasando rápido y el enlace al caso. Los clientes sin caso en el sitio
-// (My Doll Hair, Closet Up) muestran su logo. Lógica en src/scripts/testimonials.ts.
+// muestran un video de la tienda en la época en que trabajamos con ellos (con la fecha, sin enlace),
+// o su logo si no hay material (Closet Up). Lógica en src/scripts/testimonials.ts.
 // Accesible: botones anterior/siguiente, pausa, contador; con prefers-reduced-motion no avanza solo.
 // En /contact/ va sin título (bare), en una columna (imagen arriba, cita abajo).
 import { home } from '../../data/home';
@@ -25,7 +26,7 @@ const TESTIMONIALS: Testimonial[] = [...lead, ...home(lang).TESTIMONIALS];
 
 const P = '/media/projects';
 // Proyecto de cada cliente (por empresa). Imágenes del caso, en el orden en que pasan.
-const PROJECTS: Record<string, { href: string; images: string[]; video?: string }> = {
+const PROJECTS: Record<string, { href?: string; images: string[]; video?: string; tag?: Record<'en' | 'es', string> }> = {
   'Spot On Mobile California': {
     href: '/project/spot-on-mobile-wash-detailing/',
     // Navegación real del sitio (video cuadrado sobre el azul de la marca): no se recorta como las capturas 2:1.
@@ -34,6 +35,7 @@ const PROJECTS: Record<string, { href: string; images: string[]; video?: string 
   },
   'Posada Cárcamo Abogados': {
     href: '/project/posada-carcamo-abogados/',
+    video: '/media/work/posada-nav.mp4',
     images: [`${P}/posada-carcamo-abogados/jmb7973-scaled-1-1200.webp`, `${P}/posada-carcamo-abogados/mockup-scaled-1200.webp`, `${P}/posada-carcamo-abogados/portrait3-scaled-1200.webp`, `${P}/posada-carcamo-abogados/mockup-2-recuperado35-1200.webp`],
   },
   'The Grid': {
@@ -42,7 +44,14 @@ const PROJECTS: Record<string, { href: string; images: string[]; video?: string 
   },
   'AGL Vans Tours': {
     href: '/project/aglvanstours/',
+    video: '/media/work/agl-nav.mp4',
     images: [`${P}/aglvanstours/mockup-scaled-1200.webp`, `${P}/aglvanstours/grabacion-de-pantalla-2025-03-11-a-las-11-49-16-p-m-poster.webp`, `${P}/aglvanstours/bioseguridadagl-poster.webp`, `${P}/aglvanstours/mockupagl-1-poster.webp`],
+  },
+  // Sin caso: la tienda como era cuando trabajábamos con ellos (grabaciones de octubre de 2024).
+  'My Doll Hair': {
+    video: '/media/work/mydollhair-2024.mp4',
+    images: [],
+    tag: { en: 'The store in 2024', es: 'La tienda en 2024' },
   },
 };
 
@@ -90,14 +99,19 @@ const pad = (n: number) => String(n).padStart(2, '0');
                     <span>{q.company}</span>
                   </span>
                 </div>
-                {project && (
+                {project?.href && (
                   <a class="h-t__link" href={localize(project.href, lang)}>
                     {LABELS.viewProject} <span aria-hidden="true">→</span>
                   </a>
                 )}
               </div>
 
-              {project ? (
+              {project && !project.href ? (
+                <div class="h-t__media" aria-hidden="true">
+                  <video class="is-on" data-src={project.video} poster={project.video?.replace(/\.mp4$/, '-poster.webp')} muted loop playsinline preload="none" />
+                  {project.tag && <span class="h-t__media-tag">{project.tag[lang]}</span>}
+                </div>
+              ) : project?.href ? (
                 <a class="h-t__media" href={localize(project.href, lang)} tabindex="-1" aria-hidden="true" data-t-reel={project.video ? undefined : ''}>
                   {project.video ? (
                     <video class="is-on" data-src={project.video} poster={project.video.replace(/\.mp4$/, '-poster.webp')} muted loop playsinline preload="none" />
