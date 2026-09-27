@@ -97,7 +97,7 @@ const TEXT = {
     ],
     brief: {
       label: 'The brief',
-      title: 'A new practice, with nothing yet.',
+      title: 'A new practice, ready from day one.',
       html:
         '<p>A doctor opening his practice needs more than a website: a brand that works on a business card and on WhatsApp, pages that explain conditions the way patients search for them, a clear path to an appointment, and the infrastructure to keep all of it running.</p><p>So the work covered four fronts from the same place: identity, website, scheduling and infrastructure. Nothing was subcontracted.</p>',
     },
@@ -185,7 +185,7 @@ const TEXT = {
     ],
     brief: {
       label: 'El encargo',
-      title: 'Un consultorio nuevo, todavía sin nada.',
+      title: 'Un consultorio nuevo, listo desde el primer día.',
       html:
         '<p>Un médico que abre su consultorio necesita más que una página: una marca que funcione en una tarjeta y en WhatsApp, páginas que expliquen las condiciones como los pacientes las buscan, un camino claro hacia la cita y la infraestructura para que todo siga funcionando.</p><p>Por eso el trabajo cubrió cuatro frentes, todos desde el mismo lugar: identidad, sitio, agendamiento e infraestructura. Nada se subcontrató.</p>',
     },
