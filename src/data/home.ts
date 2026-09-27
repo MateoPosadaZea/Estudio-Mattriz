@@ -38,7 +38,7 @@ export const SERVICES = {
 export const STUDIO = {
   title: 'One studio. Real systems.',
   text: 'Mattriz is a systems studio based in Bogotá, working with service businesses across the USA and LATAM. The site is just the part you see. Behind it: booking engines, payment flows and operations that hold up to a direct question.',
-  cta: "Let's talk about your project",
+  cta: 'Our work',
   stats: [
     { label: 'Build', value: '5+', text: 'Years designing and building digital systems for real businesses.' },
     { label: 'Maintain', value: '3', text: 'Active clients at a time, by design, not by accident.' },
@@ -203,7 +203,7 @@ export const HOME_ES = {
   STUDIO: {
     title: 'Un estudio. Sistemas reales.',
     text: 'Mattriz es un estudio de sistemas con sede en Bogotá que trabaja con negocios de servicios en Estados Unidos y Latinoamérica. El sitio web es solo la parte que se ve. Detrás hay motores de reservas, flujos de pago y operaciones que resisten una pregunta directa.',
-    cta: 'Hablemos de tu proyecto',
+    cta: 'Nuestro trabajo',
     stats: [
       { label: 'Construir', value: '5+', text: 'Años diseñando y construyendo sistemas digitales para negocios reales.' },
       { label: 'Mantener', value: '3', text: 'Clientes activos a la vez, por decisión, no por accidente.' },

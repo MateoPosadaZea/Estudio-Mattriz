@@ -159,6 +159,10 @@ button {
   transform: translateY(-3px);
 }
 
+:is(a, button):is(:hover, :focus-visible) .btn-arrow[data-dir='down'] {
+  transform: translateY(3px);
+}
+
 @media (prefers-reduced-motion: reduce) {
   .btn-arrow {
     transition: none;

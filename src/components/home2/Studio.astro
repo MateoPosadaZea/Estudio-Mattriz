@@ -2,7 +2,6 @@
 // v2: "One studio. Real systems." en un bloque blanco con texto negro, frase en Noe Display y
 // cifras grandes. Blanco y negro son los colores principales; el verde queda para detalles.
 import { home } from '../../data/home';
-import { SITE } from '../../data/site';
 import { langOf, ui } from '../../i18n';
 
 const lang = langOf(Astro.url);
@@ -15,8 +14,8 @@ const t = ui(lang);
   <h2 class="h-heading h-studio__title" data-case-reveal>{STUDIO.title}</h2>
   <div class="h-studio__body">
     <p class="h-studio__text" data-case-reveal>{STUDIO.text}</p>
-    <a class="h-studio__cta" href={SITE.calendly} target="_blank" rel="noopener" data-case-reveal>
-      <span class="reveal"><span class="reveal__text" data-text={STUDIO.cta}>{STUDIO.cta}</span></span> <span class="btn-arrow" data-dir="ne" aria-hidden="true">↗</span>
+    <a class="h-studio__cta" href="#work" data-case-reveal>
+      <span class="reveal"><span class="reveal__text" data-text={STUDIO.cta}>{STUDIO.cta}</span></span> <span class="btn-arrow" data-dir="down" aria-hidden="true">↓</span>
     </a>
   </div>
   <ul class="h-studio__stats">
