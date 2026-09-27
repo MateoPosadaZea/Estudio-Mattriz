@@ -1,0 +1,10 @@
+import { chromium } from 'playwright';
+const b = await chromium.launch({ executablePath: '/opt/pw-browsers/chromium-1194/chrome-linux/chrome', headless: false, args: ['--disable-blink-features=AutomationControlled'] });
+const p = await b.newPage({ viewport: { width: 1440, height: 900 } });
+p.on('requestfailed', r => console.log('FAIL', r.url().slice(0, 110), r.failure()?.errorText));
+await p.goto('https://aglvans.com/', { waitUntil: 'networkidle', timeout: 90000 });
+await p.evaluate(async () => { for (let y = 0; y < document.body.scrollHeight; y += 500) { scrollTo(0, y); await new Promise(r => setTimeout(r, 150)); } });
+await p.evaluate(() => scrollTo(0, 6250)); await p.waitForTimeout(1200);
+console.log(JSON.stringify(await p.evaluate(() => { const out = []; for (const yy of [320, 400, 460]) { let e = document.elementFromPoint(720, yy); const chain = []; for (let i = 0; i < 5 && e; i++) { chain.push(e.tagName + '#' + e.id + '.' + String(e.className).slice(0, 60)); e = e.parentElement; } out.push(chain); } return out; })));
+await p.screenshot({ path: '/tmp/claude-0/-home-user-Estudio-Mattriz/932b8836-13f7-53de-95a1-2eb9e3536959/scratchpad/aglmap.png' });
+await b.close();

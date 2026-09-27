@@ -58,7 +58,6 @@ const SITE_ARTICLES = site('articles', { en: 'Articles on transport law', es: 'A
   es: 'Artículos escritos para las preguntas que de verdad buscan las empresas de transporte.',
 });
 const SITE_CLIENTS = site('clients', { en: 'Client logos: transport companies', es: 'Logos de clientes: empresas de transporte' });
-const SITE_CONTACT = site('contact', { en: 'Contact section with phone, email, address and form', es: 'Sección de contacto con teléfono, correo, dirección y formulario' });
 const M_HERO = phone('hero', { en: 'Home page on a phone', es: 'Portada en el celular' });
 const M_TEAM = phone('team', { en: 'The founding partner on a phone', es: 'El socio fundador en el celular' });
 const M_CONTACT = phone('contact', { en: 'Contact on a phone', es: 'Contacto en el celular' });
@@ -203,7 +202,7 @@ export function posadaCarcamo(lang: Lang): CaseDoc {
       { kind: 'media', layout: 'wide', items: [SITE_TEAM2(lang)] },
       { kind: 'text', style: 'lead', ...t.niche },
       { kind: 'media', layout: 'pair', items: [SITE_SICE(lang), SITE_ARTICLES(lang)] },
-      { kind: 'media', layout: 'pair', items: [SITE_CLIENTS(lang), SITE_CONTACT(lang)] },
+      { kind: 'media', layout: 'wide', items: [SITE_CLIENTS(lang)] },
       { kind: 'media', layout: 'trio', items: [M_HERO(lang), M_TEAM(lang), M_CONTACT(lang)] },
       { kind: 'text', style: 'statement', ...t.quote },
       { kind: 'media', layout: 'pair', items: [TABLET(lang), PHONE_MOCK(lang)] },
