@@ -23,9 +23,11 @@ interface Props {
   alternates?: boolean;
   /** Formulario en frase del footer (no en /contact/, que ya lo tiene arriba). */
   footerForm?: boolean;
+  /** Nodos extra de datos estructurados (p. ej. el CreativeWork de un caso); se enlazan a la página. */
+  schema?: Record<string, unknown>[];
 }
 
-const { title, description, background = '#ffffff', ogImage = '/images/og-mattriz.png', noindex = false, breadcrumb = [], alternates = true, footerForm = true } = Astro.props;
+const { title, description, background = '#ffffff', ogImage = '/og/home.jpg', noindex = false, breadcrumb = [], alternates = true, footerForm = true, schema = [] } = Astro.props;
 const lang = langOf(Astro.url);
 const t = ui(lang);
 const hreflangs = LANGS.map((l) => ({ lang: l, href: new URL(alternate(Astro.url, l), SITE.url).href }));
@@ -50,6 +52,9 @@ const jsonLd = {
       logo: { '@type': 'ImageObject', '@id': `${home}#organizationLogo`, url: `${SITE.url}/images/og-mattriz.png`, width: 512, height: 512 },
       image: { '@id': `${home}#organizationLogo` },
       sameAs: [SITE.facebook, SITE.instagram, SITE.linkedin],
+      address: { '@type': 'PostalAddress', addressLocality: 'Bogotá', addressCountry: 'CO' },
+      areaServed: ['US', 'Latin America'],
+      knowsAbout: ['Web design', 'Web development', 'E-commerce', 'Booking systems', 'Brand identity', 'SEO'],
     },
     {
       '@type': 'WebSite',
@@ -58,7 +63,7 @@ const jsonLd = {
       name: 'Mattriz',
       alternateName: 'Estudio Mattriz',
       description: SITE.description,
-      inLanguage: 'en-US',
+      inLanguage: ['en', 'es'],
       publisher: { '@id': `${home}#organization` },
     },
     {
@@ -76,6 +81,7 @@ const jsonLd = {
       '@id': `${canonical}#breadcrumblist`,
       itemListElement: crumbs.map((c, i) => ({ '@type': 'ListItem', position: i + 1, name: c.name, item: c.url })),
     },
+    ...schema.map((node) => ({ mainEntityOfPage: { '@id': `${canonical}#webpage` }, ...node })),
   ],
 };
 ---
@@ -102,7 +108,7 @@ const jsonLd = {
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
     <meta name="description" content={description} />
-    <link rel="canonical" href={canonical} />
+    {!noindex && <link rel="canonical" href={canonical} />}
     {
       alternates &&
         !noindex && [
@@ -127,6 +133,8 @@ const jsonLd = {
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
     <meta property="og:image" content={ogImageUrl} />
+    {ogImageUrl.endsWith('.jpg') && [<meta property="og:image:width" content="1200" />, <meta property="og:image:height" content="630" />]}
+    <meta property="og:image:alt" content={title} />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />

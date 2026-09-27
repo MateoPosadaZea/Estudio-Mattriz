@@ -7,7 +7,7 @@ import CaseMedia from '../components/case/CaseMedia.astro';
 import { fromModel } from '../components/case/fromModel';
 import type { CaseDoc } from '../components/case/doc';
 import { fromLegacy } from '../components/case/fromLegacy';
-import { MODEL_CASES, MANUAL_CASES, LEGACY_CASES, CASE_UI } from '../data/cases';
+import { MODEL_CASES, MANUAL_CASES, LEGACY_CASES, CASE_UI, CASE_SEO } from '../data/cases';
 import { PROJECTS } from '../data/home';
 import { langOf, localize } from '../i18n';
 
@@ -25,6 +25,25 @@ const doc: CaseDoc = MANUAL_CASES[slug]
     ? fromLegacy(LEGACY_CASES[slug], orig, model, lang)
     : fromModel(MODEL_CASES[slug], orig, model, lang);
 const t = CASE_UI[lang];
+const seo = CASE_SEO[slug]?.[lang];
+const metaTitle = seo?.title ?? doc.metaTitle;
+const metaDescription = seo?.description ?? doc.description;
+const ogImage = `/og/${slug}.jpg`;
+// Datos estructurados del caso: un CreativeWork hecho por Mattriz.
+const schema = [
+  {
+    '@type': 'CreativeWork',
+    name: doc.name,
+    headline: doc.tagline,
+    description: metaDescription,
+    image: new URL(ogImage, 'https://mattriz.com').href,
+    dateCreated: doc.year,
+    inLanguage: lang,
+    creator: { '@id': 'https://mattriz.com/#organization' },
+    ...(doc.site ? { sameAs: doc.site } : {}),
+  },
+];
+const mediaAlt = lang === 'es' ? `${doc.name}: pieza del proyecto` : `${doc.name}: project work`;
 const bg = doc.bg ?? (doc.theme === 'dark' ? '#0a0a0a' : '#ffffff');
 
 // Numeración de secciones: (01), (02)… en el orden en que aparecen.
@@ -39,7 +58,7 @@ const host = doc.site ? new URL(doc.site).hostname.replace(/^www\./, '') : '';
 const sizes = { pair: '(max-width: 690px) 100vw, 50vw', trio: '(max-width: 690px) 100vw, 33vw', inset: '(max-width: 690px) 100vw, 60vw', full: '100vw', wide: '100vw' };
 ---
 
-<Base title={doc.metaTitle} description={doc.description} ogImage={doc.ogImage} background={bg} breadcrumb={[{ name: doc.name, path: localize(`/project/${slug}/`, lang) }]}>
+<Base title={metaTitle} description={metaDescription} ogImage={ogImage} schema={schema} background={bg} breadcrumb={[{ name: doc.name, path: localize(`/project/${slug}/`, lang) }]}>
   {
     /* Si el principal es un video, su póster es el LCP: se pide con prioridad alta. */
     doc.hero.type === 'video' && <link slot="head" rel="preload" as="image" fetchpriority="high" href={`${doc.hero.local.dir}/${doc.hero.local.base}-poster.webp`} />
@@ -78,7 +97,7 @@ const sizes = { pair: '(max-width: 690px) 100vw, 50vw', trio: '(max-width: 690px
 
     <figure class="case-hero-media" data-case-grow>
       <div class="case-hero-media__inner">
-        <CaseMedia item={doc.hero} sizes="100vw" eager />
+        <CaseMedia item={doc.hero} sizes="100vw" eager fallbackAlt={mediaAlt} />
       </div>
       {doc.hero.caption && <figcaption class="case-caption">{doc.hero.caption}</figcaption>}
     </figure>
@@ -90,7 +109,7 @@ const sizes = { pair: '(max-width: 690px) 100vw, 50vw', trio: '(max-width: 690px
             {b.items.map((item, i) => (
               <figure class="case-figure" data-case-reveal style={b.layout === 'pair' && i === 1 ? '--offset:8vw' : undefined}>
                 <div class="case-figure__frame" data-parallax={b.parallax ? '' : undefined}>
-                  <CaseMedia item={item} sizes={sizes[b.layout]} />
+                  <CaseMedia item={item} sizes={sizes[b.layout]} fallbackAlt={mediaAlt} />
                 </div>
                 {item.caption && <figcaption class="case-caption">{item.caption}</figcaption>}
               </figure>

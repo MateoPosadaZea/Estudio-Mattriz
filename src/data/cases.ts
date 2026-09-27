@@ -30,6 +30,14 @@ export type ModelCase = {
 };
 
 export const MODEL_CASES: Record<string, ModelCase> = {
+  'spot-on-mobile-wash-detailing': {
+    en: { title: 'Spot On Mobile Detailing Case Study | Mattriz Studio', description: 'How a mobile detailer went from booking by DM to a system that books, charges and follows up on its own, plus a corporate fleet program on autopilot.' },
+    es: { title: 'Caso de estudio Spot On Mobile Detailing | Mattriz Studio', description: 'Cómo un detailer a domicilio pasó de agendar por mensajes a un sistema que reserva, cobra y hace seguimiento solo, con un programa corporativo en piloto automático.' },
+  },
+  'the-grid': {
+    en: { title: 'The Grid Digital Twin Branding & Webflow | Mattriz Studio', description: 'Brand identity, visual system and Webflow website for The Grid, a digital twin & BIM consultancy. See how we built a bold, flexible design language.' },
+    es: { title: 'The Grid: marca y sitio web en Webflow | Mattriz Studio', description: 'Identidad de marca, sistema visual y sitio web en Webflow para The Grid, consultora de gemelos digitales y BIM. Un lenguaje de diseño audaz y flexible.' },
+  },
   civilus: {
     name: 'Civilus',
     theme: 'dark',
@@ -166,4 +174,37 @@ export const isCase = (slug: string) => slug in MODEL_CASES || slug in MANUAL_CA
 export const CASE_UI = {
   en: { eyebrow: 'Case study', next: 'Next project', visit: 'Visit the live site' },
   es: { eyebrow: 'Caso de estudio', next: 'Siguiente proyecto', visit: 'Visita el sitio en vivo' },
+};
+
+// Título y descripción para buscadores de los casos que venían del vivo con metadatos pobres
+// ("Nombre - Mattriz Studio"). Solo datos que ya estaban en el proyecto.
+export const CASE_SEO: Record<string, Record<Lang, { title: string; description: string }>> = {
+  aglvanstours: {
+    en: { title: 'AGL Vans Tours Website Case Study | Mattriz Studio', description: 'Website design and development for AGL Vans Tours, a transportation services company. Designed and built by Mattriz Studio, a studio in Bogotá.' },
+    es: { title: 'Caso de estudio: sitio web de AGL Vans Tours | Mattriz Studio', description: 'Diseño y desarrollo del sitio web de AGL Vans Tours, empresa de servicios de transporte. Diseñado y construido por Mattriz Studio, un estudio en Bogotá.' },
+  },
+  'luciana-cabanas': {
+    en: { title: 'Luciana Cabañas: Logo & Website | Mattriz Studio', description: 'Logo and website design for Luciana Cabañas, cabins in Guateque, Boyacá, Colombia. Brand identity and web development by Mattriz Studio.' },
+    es: { title: 'Luciana Cabañas: logotipo y sitio web | Mattriz Studio', description: 'Diseño de logotipo y sitio web para Luciana Cabañas, cabañas en Guateque, Boyacá. Identidad de marca y desarrollo web de Mattriz Studio.' },
+  },
+  'posada-carcamo-abogados': {
+    en: { title: 'Posada Cárcamo Abogados: Law Firm Website | Mattriz Studio', description: 'Web design and development for Posada Cárcamo Abogados, a law firm focused on innovation and client service. Built by Mattriz Studio.' },
+    es: { title: 'Posada Cárcamo Abogados: sitio web | Mattriz Studio', description: 'Diseño y desarrollo web para Posada Cárcamo Abogados, firma de abogados enfocada en la innovación y el servicio al cliente. Hecho por Mattriz Studio.' },
+  },
+  'let-it-go': {
+    en: { title: 'Let it Go: App Brand & UI Design | Mattriz Studio', description: 'Let It Go, a mobile app that aims to change consumer habits so people swap and sell the clothes and books they no longer use. Brand and UI design by Mattriz Studio.' },
+    es: { title: 'Let it Go: marca y diseño de app | Mattriz Studio', description: 'Let It Go, aplicación móvil para intercambiar y vender la ropa y los libros que ya no se usan. Marca y diseño de interfaz de Mattriz Studio.' },
+  },
+  'spot-on-mobile-wash-detailing': {
+    en: { title: 'Spot On Mobile Detailing Case Study | Mattriz Studio', description: 'How a mobile detailer went from booking by DM to a system that books, charges and follows up on its own, plus a corporate fleet program on autopilot.' },
+    es: { title: 'Caso de estudio Spot On Mobile Detailing | Mattriz Studio', description: 'Cómo un detailer a domicilio pasó de agendar por mensajes a un sistema que reserva, cobra y hace seguimiento solo, con un programa corporativo en piloto automático.' },
+  },
+  'the-grid': {
+    en: { title: 'The Grid Digital Twin Branding & Webflow | Mattriz Studio', description: 'Brand identity, visual system and Webflow website for The Grid, a digital twin & BIM consultancy. See how we built a bold, flexible design language.' },
+    es: { title: 'The Grid: marca y sitio web en Webflow | Mattriz Studio', description: 'Identidad de marca, sistema visual y sitio web en Webflow para The Grid, consultora de gemelos digitales y BIM. Un lenguaje de diseño audaz y flexible.' },
+  },
+  civilus: {
+    en: { title: 'Civilus | Brand identity & website | Mattriz Studio', description: 'Civilus: brand identity and React website for an online structural-calculus platform, designed and developed by Mattriz Studio.' },
+    es: { title: 'Civilus | Identidad de marca y sitio web | Mattriz Studio', description: 'Civilus: identidad de marca y sitio web en React para una plataforma de cálculo estructural en línea, diseñados y desarrollados por Mattriz Studio.' },
+  },
 };

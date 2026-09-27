@@ -10,7 +10,7 @@ export const SITE = {
   facebook: 'https://www.facebook.com/EstudioMattriz/',
   // Teléfono publicado en los datos estructurados del vivo (AIOSEO).
   telephone: '+573138433136',
-  description: 'Booking, payments and operations systems for service businesses',
+  description: 'Websites, online stores and booking systems, designed, built and run by a studio in Bogotá.',
   // Verificación de Google Search Console (misma etiqueta del vivo; si se pierde, la propiedad deja de verificarse).
   googleSiteVerification: '_FvgwI41e7TbXI0h41WHi0g1FLguvW6AkNjGC9iJGWY',
   // Analítica del vivo: contenedor de Tag Manager y etiqueta de Google de Site Kit.

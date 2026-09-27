@@ -1,0 +1,22 @@
+# Mattriz
+
+> Mattriz is a design and development studio in Bogotá, Colombia. We design, build and run websites, online stores and booking systems for businesses in the US and Latin America, using AI-assisted development directed by people. Built in weeks, kept running every month.
+
+- Site in English: https://mattriz.com/ · in Spanish: https://mattriz.com/es/
+- Contact: contacto@mattriz.com · https://mattriz.com/contact/
+- Free website scanner: https://mattriz.com/scan/
+
+## Case studies
+
+- [Santo & Seña](https://mattriz.com/project/santo-y-sena/): new site for a Bogotá bookshop and record store (3,538 products) built over its WooCommerce operation without migrating it, launched in 12 days.
+- [Spot On Mobile Detailing](https://mattriz.com/project/spot-on-mobile-wash-detailing/): booking, payments and a corporate fleet program for a mobile detailer in California.
+- [The Grid](https://mattriz.com/project/the-grid/): brand identity and Webflow website for a construction digital-twin consultancy.
+- [Civilus](https://mattriz.com/project/civilus/): brand identity and React website for a structural-calculus platform.
+- [Posada Cárcamo Abogados](https://mattriz.com/project/posada-carcamo-abogados/): website for a law firm.
+- [AGL Vans Tours](https://mattriz.com/project/aglvanstours/): website for a transportation services company.
+- [Luciana Cabañas](https://mattriz.com/project/luciana-cabanas/): logo and website for cabins in Guateque, Boyacá.
+- [Let it Go](https://mattriz.com/project/let-it-go/): brand and UI design for a clothes and books swapping app.
+
+## About
+
+- [About Mattriz](https://mattriz.com/about/)

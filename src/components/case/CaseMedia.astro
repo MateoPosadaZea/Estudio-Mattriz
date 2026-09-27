@@ -7,8 +7,10 @@ interface Props {
   item: CaseMedia;
   sizes: string;
   eager?: boolean;
+  /** Texto alternativo si la pieza no trae uno (las imágenes del vivo venían sin alt). */
+  fallbackAlt?: string;
 }
-const { item, sizes, eager = false } = Astro.props;
+const { item, sizes, eager = false, fallbackAlt = '' } = Astro.props;
 const m = item.local;
 ---
 
@@ -20,7 +22,7 @@ const m = item.local;
       sizes={sizes}
       width={m.width}
       height={m.height}
-      alt={item.alt ?? ''}
+      alt={item.alt || item.caption || fallbackAlt}
       loading={eager ? 'eager' : 'lazy'}
       fetchpriority={eager ? 'high' : undefined}
       decoding="async"

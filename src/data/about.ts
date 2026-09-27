@@ -67,15 +67,15 @@ export const ABOUT_ES = {
 
 export const ABOUT_LABELS = {
   en: {
-    metaTitle: 'About Mattriz | Web Development, SEO & Automation',
-    metaDescription: 'Mattriz is a web development studio building fast Webflow/WordPress sites with SEO & site speed, a clean CMS, and light automation. See client stories and outcomes.',
+    metaTitle: 'About Mattriz | Design & development studio in Bogotá',
+    metaDescription: 'Mattriz is a design and development studio in Bogotá. We build websites, online stores and booking systems with AI-assisted development and human judgment.',
     breadcrumb: 'About',
     services: 'Our Services',
     on: 'on',
   },
   es: {
-    metaTitle: 'Sobre Mattriz | Desarrollo web, SEO y automatización',
-    metaDescription: 'Mattriz es un estudio de desarrollo web que construye sitios rápidos en Webflow y WordPress, con SEO, velocidad, un CMS limpio y automatización ligera. Conoce historias y resultados de clientes.',
+    metaTitle: 'Sobre Mattriz | Estudio de diseño y desarrollo en Bogotá',
+    metaDescription: 'Mattriz es un estudio de diseño y desarrollo en Bogotá. Construimos sitios web, tiendas en línea y sistemas de reservas con desarrollo asistido por IA y criterio humano.',
     breadcrumb: 'Nosotros',
     services: 'Nuestros servicios',
     on: 'en',

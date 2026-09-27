@@ -255,8 +255,8 @@ export const HOME_ES = {
 // Textos sueltos de las secciones de la home.
 export const HOME_LABELS = {
   en: {
-    metaTitle: 'Mattriz | Booking & operations systems for service businesses',
-    metaDescription: 'Mattriz builds booking, payment and operations systems for service businesses in the US and LATAM. One studio. One monthly plan.',
+    metaTitle: 'Mattriz | Websites & systems, built in weeks',
+    metaDescription: 'Mattriz designs, builds and runs websites, online stores and booking systems for businesses in the US and LATAM. Built in weeks, kept running every month.',
     selectedWork: 'Projects',
     filter: 'Filter',
     all: 'All',
@@ -271,8 +271,8 @@ export const HOME_LABELS = {
     ticker: 'Services',
   },
   es: {
-    metaTitle: 'Mattriz | Sistemas de reservas y operación para negocios de servicios',
-    metaDescription: 'Mattriz construye sistemas de reservas, pagos y operación para negocios de servicios en Estados Unidos y Latinoamérica. Un estudio. Un plan mensual.',
+    metaTitle: 'Mattriz | Sitios web y sistemas en semanas',
+    metaDescription: 'Mattriz diseña, construye y mantiene sitios web, tiendas en línea y sistemas de reservas para negocios en Estados Unidos y Latinoamérica. En semanas, no en meses.',
     selectedWork: 'Proyectos',
     filter: 'Filtrar',
     all: 'Todos',
