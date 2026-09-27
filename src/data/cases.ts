@@ -14,6 +14,8 @@ import { spotOn } from './cases/spot-on';
 import { santoYSena } from './cases/santo-y-sena';
 import { drDanielDeZubiria } from './cases/dr-daniel-de-zubiria';
 import { lucianaCabanas } from './cases/luciana-cabanas';
+import { posadaCarcamo } from './cases/posada-carcamo';
+import { aglVans } from './cases/agl-vans';
 import type { LegacyCase } from '../components/case/fromLegacy';
 
 export type ModelBlock =
@@ -89,22 +91,6 @@ export const MODEL_CASES: Record<string, ModelCase> = {
 // Páginas antiguas (2021–2022), con otra estructura: src/components/case/fromLegacy.ts.
 // Índices de media en el orden de legacyMedia() (incluye imágenes y videos de fondo de fila).
 export const LEGACY_CASES: Record<string, LegacyCase> = {
-  'posada-carcamo-abogados': {
-    legacy: true,
-    name: 'Posada Carcamo Abogados',
-    theme: 'light',
-    accent: '#560323',
-    onAccent: '#ffffff',
-    hero: 0,
-    flow: [
-      { section: 'summary' },
-      { media: [1], layout: 'full' },
-      { media: [3, 4], layout: 'pair' },
-      { section: 'whatwedid' },
-      { media: [2], layout: 'wide' },
-      { media: [5], layout: 'full', parallax: true },
-    ],
-  },
   'let-it-go': {
     legacy: true,
     name: 'Let it Go',
@@ -132,21 +118,6 @@ export const LEGACY_CASES: Record<string, LegacyCase> = {
       { media: [23], layout: 'full', parallax: true },
     ],
   },
-  aglvanstours: {
-    legacy: true,
-    name: 'AGL Vans Tours',
-    theme: 'dark',
-    accent: '#22b050',
-    onAccent: '#0a0a0a',
-    hero: 1,
-    flow: [
-      { section: 'summary' },
-      { media: [0], layout: 'full', parallax: true },
-      { section: 'whatwedid' },
-      { media: [2], layout: 'full' },
-      { media: [3], layout: 'full' },
-    ],
-  },
 };
 
 export const MANUAL_CASES: Record<string, (lang: Lang) => CaseDoc> = {
@@ -154,6 +125,8 @@ export const MANUAL_CASES: Record<string, (lang: Lang) => CaseDoc> = {
   'santo-y-sena': santoYSena,
   'dr-daniel-de-zubiria': drDanielDeZubiria,
   'luciana-cabanas': lucianaCabanas,
+  'posada-carcamo-abogados': posadaCarcamo,
+  aglvanstours: aglVans,
 };
 
 export const isCase = (slug: string) => slug in MODEL_CASES || slug in MANUAL_CASES || slug in LEGACY_CASES;
@@ -166,14 +139,6 @@ export const CASE_UI = {
 // Título y descripción para buscadores de los casos que venían del vivo con metadatos pobres
 // ("Nombre - Mattriz Studio"). Solo datos que ya estaban en el proyecto.
 export const CASE_SEO: Record<string, Record<Lang, { title: string; description: string }>> = {
-  aglvanstours: {
-    en: { title: 'AGL Vans Tours Website Case Study | Mattriz Studio', description: 'Website design and development for AGL Vans Tours, a transportation services company. Designed and built by Mattriz Studio, a studio in Bogotá.' },
-    es: { title: 'Caso de estudio: sitio web de AGL Vans Tours | Mattriz Studio', description: 'Diseño y desarrollo del sitio web de AGL Vans Tours, empresa de servicios de transporte. Diseñado y construido por Mattriz Studio, un estudio en Bogotá.' },
-  },
-  'posada-carcamo-abogados': {
-    en: { title: 'Posada Cárcamo Abogados: Law Firm Website | Mattriz Studio', description: 'Web design and development for Posada Cárcamo Abogados, a law firm focused on innovation and client service. Built by Mattriz Studio.' },
-    es: { title: 'Posada Cárcamo Abogados: sitio web | Mattriz Studio', description: 'Diseño y desarrollo web para Posada Cárcamo Abogados, firma de abogados enfocada en la innovación y el servicio al cliente. Hecho por Mattriz Studio.' },
-  },
   'let-it-go': {
     en: { title: 'Let it Go: App Brand & UI Design | Mattriz Studio', description: 'Let It Go, a mobile app that aims to change consumer habits so people swap and sell the clothes and books they no longer use. Brand and UI design by Mattriz Studio.' },
     es: { title: 'Let it Go: marca y diseño de app | Mattriz Studio', description: 'Let It Go, aplicación móvil para intercambiar y vender la ropa y los libros que ya no se usan. Marca y diseño de interfaz de Mattriz Studio.' },
