@@ -11,6 +11,7 @@
 import type { Lang } from '../i18n';
 import type { CaseDoc, CaseMedia } from '../components/case/doc';
 import { CIVILUS_HERO, CIVILUS_TOOLS, CIVILUS_BEAM, CIVILUS_PHONES } from './cases/civilus-media';
+import { THE_GRID_HERO, THE_GRID_SERVICES, THE_GRID_WORK, THE_GRID_PEOPLE, THE_GRID_PHONES } from './cases/the-grid-media';
 import { spotOn } from './cases/spot-on';
 import { santoYSena } from './cases/santo-y-sena';
 import { drDanielDeZubiria } from './cases/dr-daniel-de-zubiria';
@@ -78,15 +79,21 @@ export const MODEL_CASES: Record<string, ModelCase> = {
     accent: '#0000ff',
     onAccent: '#ffffff',
     hero: 11,
+    heroExtra: THE_GRID_HERO,
     flow: [
       { section: 'challenge' },
+      { media: [11], layout: 'full' },
       { media: [13], layout: 'full', parallax: true },
       { media: [0, 9], layout: 'pair' },
       { section: 'approach' },
+      { extra: THE_GRID_SERVICES, layout: 'pair' },
+      { extra: THE_GRID_WORK, layout: 'pair' },
       { media: [3, 5], layout: 'pair' },
       { media: [2, 4], layout: 'pair' },
       { media: [7], layout: 'wide' },
       { section: 'whatwedo' },
+      { extra: THE_GRID_PHONES, layout: 'trio' },
+      { extra: THE_GRID_PEOPLE, layout: 'pair' },
       { media: [1], layout: 'inset' },
       { media: [8], layout: 'wide' },
       { section: 'impact' },

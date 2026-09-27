@@ -102,7 +102,7 @@ export const PROJECTS: Project[] = [
     href: '/project/the-grid/',
     summary: { en: 'Brand identity and Webflow website for a construction digital-twin consultancy.', es: 'Identidad de marca y sitio en Webflow para una consultora de gemelos digitales en construcción.' },
     categories: ['Brand Identity', 'SEO Optimization', 'UI/UX Design', 'Web Development'],
-    video: '/media/work/the-grid.mp4',
+    video: '/media/work/the-grid-nav.mp4',
   },
   {
     title: 'Posada Cárcamo Abogados',
