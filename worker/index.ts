@@ -6,6 +6,9 @@
 //   POST /api/scan-lead                 Pedido de plan y cotización desde el escáner → Resend.
 //   /work/spot-on/case-study.html       Se sirve en esa ruta exacta (sin el redirect de .html que haría
 //                                       html_handling), porque el caso de estudio circula con esa URL.
+//   /, /es/, /project/*, /es/project/*  Una sola vez por navegador: Clear-Site-Data "cache" borra lo que
+//                                       quedó en caché del WordPress anterior (páginas viejas de proyectos
+//                                       que el navegador seguía mostrando) y una cookie marca que ya se hizo.
 //   /robots.txt                         En dominios que no son mattriz.com (el *.workers.dev de prueba)
 //                                       bloquea todo, para que Google no indexe una copia del sitio.
 //
@@ -27,6 +30,8 @@ import { handleScan, handleLead } from '../src/lib/scan/http';
 
 const CASE_STUDY = '/work/spot-on/case-study.html';
 const CANONICAL_HOST = 'mattriz.com';
+// Cookie que marca que ya se limpió la caché del sitio viejo en este navegador.
+const PURGE_COOKIE = 'mz_v2';
 
 export default {
   async fetch(request: Request, env: Env): Promise<Response> {
@@ -50,7 +55,14 @@ export default {
       return handleContact(request, env);
     }
 
-    return env.ASSETS.fetch(request);
+    const res = await env.ASSETS.fetch(request);
+    if (request.method === 'GET' && !(request.headers.get('Cookie') || '').includes(`${PURGE_COOKIE}=1`) && (res.headers.get('Content-Type') || '').includes('text/html')) {
+      const out = new Response(res.body, res);
+      out.headers.set('Clear-Site-Data', '"cache"');
+      out.headers.append('Set-Cookie', `${PURGE_COOKIE}=1; Path=/; Max-Age=31536000; Secure; SameSite=Lax`);
+      return out;
+    }
+    return res;
   },
 };
 
