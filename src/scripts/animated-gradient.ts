@@ -41,6 +41,8 @@ class AnimatedGradient {
   constructor(private canvas: HTMLCanvasElement, private still: boolean) {
     const d = canvas.dataset;
     this.colors = [d.color1, d.color2].map((c) => (c ? hexToRgb(c) : null)).filter((c): c is Rgb => !!c);
+    // Si el navegador no entrega el color de marca (variable CSS aún sin leer), se usa el verde directo.
+    if (!this.colors.length) this.colors = [{ r: 0, g: 255, b: 127 }];
     if (this.colors.length === 2 && this.colors[0].r === this.colors[1].r && this.colors[0].g === this.colors[1].g && this.colors[0].b === this.colors[1].b) {
       this.colors.length = 1;
     }

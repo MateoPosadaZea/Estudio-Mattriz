@@ -25,9 +25,11 @@ const TESTIMONIALS: Testimonial[] = [...lead, ...home(lang).TESTIMONIALS];
 
 const P = '/media/projects';
 // Proyecto de cada cliente (por empresa). Imágenes del caso, en el orden en que pasan.
-const PROJECTS: Record<string, { href: string; images: string[] }> = {
+const PROJECTS: Record<string, { href: string; images: string[]; video?: string }> = {
   'Spot On Mobile California': {
     href: '/project/spot-on-mobile-wash-detailing/',
+    // Navegación real del sitio (video cuadrado sobre el azul de la marca): no se recorta como las capturas 2:1.
+    video: '/media/work/spot-on-nav.mp4',
     images: [`${P}/spot-on-case/spot-on-hero-1200.webp`, `${P}/spot-on-case/spot-on-booking-1200.webp`, `${P}/spot-on-case/spot-on-calendar-1200.webp`, `${P}/spot-on-case/spot-on-corporate-1200.webp`],
   },
   'Posada Cárcamo Abogados': {
@@ -96,10 +98,14 @@ const pad = (n: number) => String(n).padStart(2, '0');
               </div>
 
               {project ? (
-                <a class="h-t__media" href={localize(project.href, lang)} tabindex="-1" aria-hidden="true" data-t-reel>
-                  {project.images.map((src, k) => (
-                    <img class:list={{ 'is-on': k === 0 }} src={src} width="1200" height="900" alt="" loading="lazy" decoding="async" />
-                  ))}
+                <a class="h-t__media" href={localize(project.href, lang)} tabindex="-1" aria-hidden="true" data-t-reel={project.video ? undefined : ''}>
+                  {project.video ? (
+                    <video class="is-on" data-src={project.video} poster={project.video.replace(/\.mp4$/, '-poster.webp')} muted loop playsinline preload="none" />
+                  ) : (
+                    project.images.map((src, k) => (
+                      <img class:list={{ 'is-on': k === 0 }} src={src} width="1200" height="900" alt="" loading="lazy" decoding="async" />
+                    ))
+                  )}
                   <span class="h-t__media-tag">{LABELS.viewProject} ↗</span>
                 </a>
               ) : (
@@ -317,6 +323,14 @@ const pad = (n: number) => String(n).padStart(2, '0');
   .h-t__media img.is-on {
     opacity: 1;
     transform: scale(1);
+  }
+
+  .h-t__media video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
 
   .h-t__media-tag {

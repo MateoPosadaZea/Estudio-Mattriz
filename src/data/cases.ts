@@ -12,6 +12,7 @@ import type { Lang } from '../i18n';
 import type { CaseDoc } from '../components/case/doc';
 import { spotOn } from './cases/spot-on';
 import { santoYSena } from './cases/santo-y-sena';
+import { drDanielDeZubiria } from './cases/dr-daniel-de-zubiria';
 import type { LegacyCase } from '../components/case/fromLegacy';
 
 export type ModelBlock =
@@ -167,6 +168,7 @@ export const LEGACY_CASES: Record<string, LegacyCase> = {
 export const MANUAL_CASES: Record<string, (lang: Lang) => CaseDoc> = {
   'spot-on-mobile-wash-detailing': spotOn,
   'santo-y-sena': santoYSena,
+  'dr-daniel-de-zubiria': drDanielDeZubiria,
 };
 
 export const isCase = (slug: string) => slug in MODEL_CASES || slug in MANUAL_CASES || slug in LEGACY_CASES;

@@ -1,123 +1,257 @@
-// v2: caso de estudio del Dr. Daniel de Zubiría (2026), escrito a mano.
+// v2: caso de estudio del Dr. Daniel De Zubiría (2026), escrito a mano.
 //
-// BORRADOR: todavía no está registrado en src/data/cases.ts (MANUAL_CASES) ni en la lista de
-// proyectos, así que no se publica. Falta, cuando haya acceso a drdanieldezubiria.com:
-// - Confirmar el nombre exacto (con o sin tilde) y la especialidad del doctor.
-// - Capturas (escritorio 2x, celular 3x), video de la navegación para la portada y el hero, y los
-//   colores de la marca (bg / accent / onAccent).
-// - Resultados: solo con datos reales (Cloudflare Analytics, Search Console, PageSpeed, Google
-//   Business). No se afirma ningún número de citas atribuibles al sitio: no se puede medir.
-// - Testimonio del doctor (pedido; todavía no hay).
-// Texto: lo que hizo el estudio según Mateo (27 de septiembre de 2026). Sin rayas largas.
+// Español: resumen del documento del estudio (26 de septiembre de 2026). Sin métricas de tráfico ni
+// de citas: el sitio lleva menos de tres meses y no hay datos medidos; no se afirma nada que no esté
+// en el documento. Sin testimonio (pedido). Sin rayas largas (regla de marca).
+// Inglés: traducción de ese texto (pendiente de revisión).
+// Colores de la marca del doctor: navy #1B3A94, tinta #1B2C52, ámbar claro #E9A94E.
+// Imágenes: piezas del paquete de identidad (identidad-dezubiria.zip) → public/media/projects/dezubiria/.
+// Pendiente: capturas y video de la navegación del sitio (el entorno no tiene acceso al dominio).
 
 import type { Lang } from '../../i18n';
-import type { CaseDoc } from '../../components/case/doc';
+import type { CaseDoc, CaseMedia } from '../../components/case/doc';
+
+const DIR = '/media/projects/dezubiria';
+type L = Record<Lang, string>;
+const pic = (base: string, width: number, height: number, widths: number[], alt: L, caption?: L) => (lang: Lang): CaseMedia => ({
+  type: 'img',
+  local: { dir: DIR, base, width, height, widths },
+  alt: alt[lang],
+  caption: caption?.[lang],
+});
+
+const HERO = pic('dz-og', 1200, 630, [1200, 700], {
+  en: 'Dr. Daniel De Zubiría, allergy specialist in Bogotá: navy brand card with the typographic logo',
+  es: 'Dr. Daniel De Zubiría, alergólogo en Bogotá: pieza de marca en navy con el logotipo tipográfico',
+});
+const CARD_FRONT = pic('dz-tarjeta-frente', 1134, 661, [1134, 700], {
+  en: 'Business card, front: the logo on navy with the amber rule',
+  es: 'Tarjeta de presentación, frente: el logotipo sobre navy con la línea ámbar',
+});
+const CARD_BACK = pic('dz-tarjeta-reverso', 1134, 661, [1134, 700], {
+  en: 'Business card, back: contact details on paper white',
+  es: 'Tarjeta de presentación, reverso: datos de contacto sobre papel',
+}, {
+  en: 'The business card. Every print file has its text converted to curves, so the printer never needs the fonts.',
+  es: 'La tarjeta de presentación. Todos los archivos de impresión tienen el texto convertido a curvas, para que la imprenta no dependa de las fuentes.',
+});
+const LINKEDIN = pic('dz-linkedin', 1584, 396, [1584, 1200, 700], {
+  en: 'LinkedIn banner with the horizontal logo',
+  es: 'Banner de LinkedIn con el logotipo horizontal',
+});
+const WHATSAPP = pic('dz-whatsapp', 1200, 400, [1200, 700], {
+  en: 'WhatsApp Business cover with address and phone',
+  es: 'Portada de WhatsApp Business con dirección y teléfono',
+});
+const GOOGLE = pic('dz-google', 1080, 608, [1080, 700], {
+  en: 'Google Business Profile cover',
+  es: 'Portada del perfil de Google Business',
+}, {
+  en: 'The same system on WhatsApp Business and Google Business Profile.',
+  es: 'El mismo sistema en WhatsApp Business y en el perfil de Google Business.',
+});
+const LETTERHEAD = pic('dz-membrete', 1200, 1552, [1200, 700], {
+  en: 'Letterhead with the logo and the practice address',
+  es: 'Membrete con el logotipo y la dirección del consultorio',
+}, {
+  en: 'One of three letterhead variants.',
+  es: 'Una de las tres variantes de membrete.',
+});
 
 const TEXT = {
   en: {
-    metaTitle: 'Dr. Daniel de Zubiría Case Study | Mattriz Studio',
+    metaTitle: 'Dr. Daniel De Zubiría Case Study | Mattriz Studio',
     description:
-      'Brand identity, an 11-page website, technical SEO, online scheduling and local presence for a medical practice, built in July 2026.',
-    tagline: 'A doctor’s brand, website and local presence, built in one month.',
+      'Brand identity, an 11-page website, online scheduling and the full infrastructure for an allergy practice in Bogotá: domain, hosting, analytics, SEO and Google Business.',
+    tagline: 'An allergy practice in Bogotá: a complete brand, 11 pages and everything behind them.',
     intro:
-      'In July 2026 we built the complete digital presence of Dr. Daniel de Zubiría’s practice: a visual identity, an 11-page website with his own medical content, online scheduling and a verified Google Business profile. Live since late July.',
+      'A full identity, an 11-page website and the whole infrastructure behind it (domain, hosting, analytics, SEO, Google Business) for a pediatric and adult allergy practice. Four fronts from one place, nothing subcontracted, built between July and September 2026.',
     facts: [
-      { label: 'Client', value: 'Dr. Daniel de Zubiría' },
-      { label: 'Project', value: 'July 2026' },
-      { label: 'Live since', value: 'Late July 2026' },
+      { label: 'Client', value: 'Dr. Daniel De Zubiría' },
+      { label: 'Specialty', value: 'Pediatric & adult allergy' },
+      { label: 'Location', value: 'Bogotá, Colombia' },
     ],
     brief: {
       label: 'The brief',
-      title: 'Everything a practice needs to be found, trusted and booked.',
+      title: 'A new practice, with nothing yet.',
       html:
-        '<p>A doctor’s website isn’t a brochure. It has to explain conditions in plain language, show up when a patient searches for them, and turn that visit into an appointment without friction. And it has to look like a practice you would trust with your health.</p><p>So the work covered the whole chain: the brand, the site and its content, the technical SEO, the scheduling and the local presence on Google.</p>',
+        '<p>A doctor opening his practice needs more than a website: a brand that works on a business card and on WhatsApp, pages that explain conditions the way patients search for them, a clear path to an appointment, and the infrastructure to keep all of it running.</p><p>So the work covered four fronts from the same place: identity, website, scheduling and infrastructure. Nothing was subcontracted.</p>',
     },
-    work: {
-      label: 'What we did',
-      title: 'From the logo to the appointment.',
-      items: [
-        { term: 'Visual identity', desc: 'A typographic logo with a system of three versions, colour palette, type system, brand manual and print-ready files with vectorised strokes.' },
-        { term: 'Website design & development', desc: 'An 11-page site with light and dark mode, a hand-made generative particle background and smooth scrolling.' },
-        { term: 'Content architecture', desc: 'Eight condition pages written with the doctor’s own medical content, a services and procedures section, and a blog.' },
-        { term: 'Technical SEO', desc: 'Physician and medical-condition schema, sitemap, Open Graph, Search Console and internal linking between conditions, services and articles.' },
-        { term: 'Online scheduling', desc: 'Integration with SaludTools for appointments, with WhatsApp as the next step in a clear conversion hierarchy.' },
-        { term: 'Local presence', desc: 'A Google Business Profile created, verified and branded, so the practice shows up where patients look first.' },
-        { term: 'Infrastructure', desc: 'Own domain, hosting on Cloudflare Pages and automatic deploys from GitHub: every change goes live in minutes.' },
-        { term: 'Brand pieces', desc: 'WhatsApp Business profile and cover, LinkedIn, and logos for the clinical record.' },
+    identity: {
+      label: 'Identity',
+      title: 'Three typefaces, three colours, one system.',
+      html:
+        '<p>A type system where each font has one job: Instrument Serif for the logo, Newsreader for headlines, Karla for body text. A three-colour palette (navy #1B3A94, ink #1B2C52, amber #C9822F) declared once as tokens, so the website and the printed pieces never drift apart.</p>',
+      bullets: [
+        'Logo in three lockups (horizontal, stacked, name only), each in navy and in white',
+        '39 application files: WhatsApp and Google profiles, banners, share image, favicons, letterheads in three variants and a business card',
+        'Vectors with text converted to curves, so the printer doesn’t depend on having the fonts',
+        'An identity manual with usage rules and minimum sizes',
       ],
     },
+    site: {
+      label: 'The website',
+      title: '11 pages, built by hand.',
+      intro: 'All the medical content is Daniel’s own words. Not a line was rewritten: in healthcare, the copy isn’t the designer’s.',
+      items: [
+        { term: 'Home', desc: 'Hero, what we treat (8 conditions), services and procedures (7), immunotherapy and recommendations, the doctor’s profile and a closing call to action.' },
+        { term: '8 condition pages', desc: 'Each with symptoms, treatment, cross-links to related conditions and its own call to action.' },
+        { term: 'Blog', desc: 'With its first article, on the skin prick test.' },
+        { term: 'A particle field in canvas', desc: 'Hand-made, not from a library: organic drift from phase-shifted sines, depth layers, cursor repulsion. It pauses off-screen and switches off if the system asks for less motion.' },
+        { term: 'Light and dark mode', desc: 'Remembered between visits, including when going back in the browser history. Plus a defence against iOS forced dark mode, which broke text contrast.' },
+        { term: 'Smooth scrolling', desc: 'With Lenis, on desktop only.' },
+      ],
+    },
+    scheduling: {
+      label: 'Scheduling',
+      title: 'A deliberate hierarchy, from visit to appointment.',
+      items: [
+        { term: 'Book online first, WhatsApp second', desc: 'The primary button goes to the SaludTools online calendar; a secondary text link goes to WhatsApp.' },
+        { term: 'Two exceptions where talking is right', desc: 'The header and the “Not sure which is your case?” card lead only to WhatsApp.' },
+        { term: 'A message that changes with the page', desc: 'The WhatsApp message comes pre-written and depends on where the patient is: someone reading about allergic rhinitis writes differently from someone reading about hives.' },
+        { term: 'Every booking link is tagged', desc: 'Links to SaludTools carry UTM parameters, so each booking can be attributed to its page.' },
+      ],
+    },
+    infra: {
+      label: 'Infrastructure & SEO',
+      title: 'Two migrations, not one broken URL.',
+      intro: 'The site first lived on Netlify and then moved to Cloudflare Pages; the domain moved from alergologodezubiria.com to drdanieldezubiria.com while it cost nothing: no printed cards and no rankings to lose.',
+      items: [
+        { term: 'Domain', desc: 'drdanieldezubiria.com on Cloudflare; the previous alergologodezubiria.com redirects with a 301 and keeps the path.' },
+        { term: 'Hosting', desc: 'Cloudflare Pages with an automatic deploy on every push.' },
+        { term: 'Structured data', desc: 'Physician, MedicalCondition and MedicalSignOrSymptom, plus sitemap, dynamic robots.txt and Open Graph.' },
+        { term: 'Google Search Console', desc: 'Domain property verified and sitemap submitted.' },
+        { term: 'Analytics without cookies', desc: 'Cloudflare Web Analytics: no cookies and no consent banner.' },
+        { term: 'Google Business Profile', desc: 'Created, verified and branded.' },
+      ],
+    },
+    next: {
+      label: 'What’s next',
+      title: 'A site that has just been born.',
+      html:
+        '<p>With under three months online and a practice that has just opened, it’s too early for traffic figures, and we won’t publish a number nobody measured. What comes next is ongoing work: monthly maintenance and a chatbot for patients.</p><p>It was a graduation gift. The scope wasn’t cut because of that.</p>',
+    },
     details: [
-      { title: 'Stack', html: '<p>Astro (static site), Cloudflare Pages, deploys from GitHub.</p>' },
-      { title: 'Scheduling', html: '<p>SaludTools, with WhatsApp as a secondary channel.</p>' },
-      { title: 'Search', html: '<p>Schema.org (Physician and MedicalCondition), sitemap, Open Graph, Search Console and Google Business Profile.</p>' },
+      { title: 'Stack', html: '<p>Astro 5, hand-written CSS with design tokens, vanilla JavaScript. No styling frameworks.</p>' },
+      { title: 'Type', html: '<p>Instrument Serif (logo), Newsreader (headlines), Karla (body).</p>' },
+      { title: 'Timeline', html: '<p>From the first scoping conversation on July 20, 2026 to a complete brand and site in a little over two months.</p>' },
     ],
     cta: {
-      title: 'A practice that deserves to be found?',
-      text: 'We build the brand, the site and the path from search to appointment, and keep it running every month. That’s what Mattriz does.',
+      title: 'Opening a practice, a studio, a business?',
+      text: 'We build the brand, the site and everything behind them, and keep it running every month. That’s what Mattriz does.',
     },
   },
   es: {
-    metaTitle: 'Caso de estudio Dr. Daniel de Zubiría | Mattriz Studio',
+    metaTitle: 'Caso de estudio Dr. Daniel De Zubiría | Mattriz Studio',
     description:
-      'Identidad visual, sitio web de 11 páginas, SEO técnico, agendamiento en línea y presencia local para un consultorio médico, hecho en julio de 2026.',
-    tagline: 'La marca, el sitio y la presencia local de un médico, en un mes.',
+      'Identidad de marca, sitio web de 11 páginas, agendamiento en línea y toda la infraestructura de un consultorio de alergología en Bogotá: dominio, hosting, analítica, SEO y Google Business.',
+    tagline: 'Un consultorio de alergología en Bogotá: marca completa, 11 páginas y todo lo que hay detrás.',
     intro:
-      'En julio de 2026 construimos la presencia digital completa del consultorio del Dr. Daniel de Zubiría: identidad visual, un sitio de 11 páginas con su propio contenido médico, agendamiento en línea y un perfil de Google Business verificado. En línea desde finales de julio.',
+      'Identidad completa, un sitio de 11 páginas y toda la infraestructura detrás (dominio, hosting, analítica, SEO, Google Business) para un consultorio de alergología pediátrica y de adultos. Cuatro frentes desde el mismo lugar, nada subcontratado, entre julio y septiembre de 2026.',
     facts: [
-      { label: 'Cliente', value: 'Dr. Daniel de Zubiría' },
-      { label: 'Proyecto', value: 'Julio de 2026' },
-      { label: 'En línea desde', value: 'Finales de julio de 2026' },
+      { label: 'Cliente', value: 'Dr. Daniel De Zubiría' },
+      { label: 'Especialidad', value: 'Alergología pediátrica y de adultos' },
+      { label: 'Ubicación', value: 'Bogotá, Colombia' },
     ],
     brief: {
       label: 'El encargo',
-      title: 'Todo lo que un consultorio necesita para que lo encuentren, confíen y agenden.',
+      title: 'Un consultorio nuevo, todavía sin nada.',
       html:
-        '<p>El sitio de un médico no es un folleto. Tiene que explicar condiciones en lenguaje claro, aparecer cuando un paciente las busca y convertir esa visita en una cita sin fricción. Y tiene que verse como un consultorio al que uno le confiaría su salud.</p><p>Por eso el trabajo cubrió toda la cadena: la marca, el sitio y su contenido, el SEO técnico, el agendamiento y la presencia local en Google.</p>',
+        '<p>Un médico que abre su consultorio necesita más que una página: una marca que funcione en una tarjeta y en WhatsApp, páginas que expliquen las condiciones como los pacientes las buscan, un camino claro hacia la cita y la infraestructura para que todo siga funcionando.</p><p>Por eso el trabajo cubrió cuatro frentes, todos desde el mismo lugar: identidad, sitio, agendamiento e infraestructura. Nada se subcontrató.</p>',
     },
-    work: {
-      label: 'Lo que hicimos',
-      title: 'Del logotipo a la cita.',
-      items: [
-        { term: 'Identidad visual', desc: 'Logotipo tipográfico con un sistema de tres versiones, paleta, sistema tipográfico, manual de marca y archivos de imprenta con trazos vectorizados.' },
-        { term: 'Diseño y desarrollo web', desc: 'Un sitio de 11 páginas con modo claro y oscuro, un fondo generativo de partículas hecho a mano y scroll suave.' },
-        { term: 'Arquitectura de contenido', desc: 'Ocho páginas de condiciones con el contenido médico del propio doctor, una sección de servicios y procedimientos, y un blog.' },
-        { term: 'SEO técnico', desc: 'Schema de médico y de condiciones, sitemap, Open Graph, Search Console y enlaces internos entre condiciones, servicios y artículos.' },
-        { term: 'Agendamiento en línea', desc: 'Integración con SaludTools para las citas, con WhatsApp como siguiente paso en una jerarquía de conversión clara.' },
-        { term: 'Presencia local', desc: 'Perfil de Google Business creado, verificado y con la marca aplicada, para que el consultorio aparezca donde los pacientes buscan primero.' },
-        { term: 'Infraestructura', desc: 'Dominio propio, hosting en Cloudflare Pages y deploy automático desde GitHub: cada cambio sale en vivo en minutos.' },
-        { term: 'Piezas de marca', desc: 'Perfil y portada de WhatsApp Business, LinkedIn y logos para la historia clínica.' },
+    identity: {
+      label: 'Identidad',
+      title: 'Tres fuentes, tres colores, un sistema.',
+      html:
+        '<p>Un sistema tipográfico de tres fuentes, cada una con un trabajo: Instrument Serif para el logotipo, Newsreader para titulares, Karla para el cuerpo. Una paleta de tres colores (navy #1B3A94, tinta #1B2C52, ámbar #C9822F) declarada una sola vez como tokens, para que la web y lo impreso no se separen con el tiempo.</p>',
+      bullets: [
+        'Logotipo en tres bloqueos (horizontal, apilado, solo nombre), cada uno en navy y en blanco',
+        '39 archivos de aplicación: perfiles de WhatsApp y Google, banners, imagen para compartir, favicons, membretes en tres variantes y tarjeta de presentación',
+        'Vectores con el texto convertido a curvas, para que la imprenta no dependa de tener la fuente',
+        'Manual de identidad con reglas de uso y tamaños mínimos',
       ],
     },
+    site: {
+      label: 'El sitio',
+      title: '11 páginas, hechas a mano.',
+      intro: 'Todo el contenido médico es texto literal de Daniel. No se reescribió una línea: en salud, el copy no es del diseñador.',
+      items: [
+        { term: 'Inicio', desc: 'Hero, qué tratamos (8 condiciones), servicios y procedimientos (7), inmunoterapia y recomendaciones, perfil del doctor y cierre.' },
+        { term: '8 páginas de condición', desc: 'Cada una con síntomas, tratamiento, enlaces cruzados entre condiciones y su propio llamado a la acción.' },
+        { term: 'Blog', desc: 'Con su primer artículo, sobre la prueba de prick.' },
+        { term: 'Campo de partículas en canvas', desc: 'Hecho a mano, no traído de una librería: deriva orgánica por senos desfasados, capas de profundidad, repulsión al cursor. Se pausa fuera de pantalla y se apaga si el sistema pide menos movimiento.' },
+        { term: 'Modo claro y oscuro', desc: 'Se recuerda entre visitas, incluso al volver atrás en el historial. Más una defensa contra el modo oscuro forzado de iOS, que rompía el contraste del texto.' },
+        { term: 'Scroll suave', desc: 'Con Lenis, solo en escritorio.' },
+      ],
+    },
+    scheduling: {
+      label: 'Agendamiento',
+      title: 'Una jerarquía deliberada, de la visita a la cita.',
+      items: [
+        { term: 'Primero la agenda, después WhatsApp', desc: 'El botón primario va a la agenda en línea de SaludTools; un enlace secundario de texto va a WhatsApp.' },
+        { term: 'Dos excepciones donde conversar es lo correcto', desc: 'El header y la tarjeta «¿No sabes cuál es tu caso?» llevan solo a WhatsApp.' },
+        { term: 'Un mensaje que cambia con la página', desc: 'El mensaje de WhatsApp viene pre-escrito y cambia según la página: quien entra por rinitis alérgica escribe distinto a quien entra por urticaria.' },
+        { term: 'Cada enlace de reserva va marcado', desc: 'Los enlaces a SaludTools llevan UTM, para poder atribuir cada reserva a su página.' },
+      ],
+    },
+    infra: {
+      label: 'Infraestructura y SEO',
+      title: 'Dos migraciones, ni una URL rota.',
+      intro: 'El sitio vivió primero en Netlify y pasó a Cloudflare Pages; el dominio pasó de alergologodezubiria.com a drdanieldezubiria.com mientras no costaba nada: sin tarjetas impresas y sin posicionamiento que perder.',
+      items: [
+        { term: 'Dominio', desc: 'drdanieldezubiria.com en Cloudflare; el anterior alergologodezubiria.com redirige con 301 conservando la ruta.' },
+        { term: 'Hosting', desc: 'Cloudflare Pages con deploy automático en cada push.' },
+        { term: 'Datos estructurados', desc: 'Physician, MedicalCondition y MedicalSignOrSymptom, más sitemap, robots.txt dinámico y Open Graph.' },
+        { term: 'Google Search Console', desc: 'Propiedad de dominio verificada y sitemap enviado.' },
+        { term: 'Analítica sin cookies', desc: 'Cloudflare Web Analytics: sin cookies y sin banner de consentimiento.' },
+        { term: 'Perfil de Google Business', desc: 'Creado, verificado y con la marca aplicada.' },
+      ],
+    },
+    next: {
+      label: 'Lo que sigue',
+      title: 'Un sitio recién nacido.',
+      html:
+        '<p>Con menos de tres meses en línea y un consultorio que acaba de abrir, todavía es pronto para cifras de tráfico, y no vamos a publicar un número que nadie midió. Lo que sigue es trabajo continuo: el mantenimiento mensual y un chatbot para pacientes.</p><p>Fue un regalo de grado. El alcance no se recortó por eso.</p>',
+    },
     details: [
-      { title: 'Tecnología', html: '<p>Astro (sitio estático), Cloudflare Pages, deploy desde GitHub.</p>' },
-      { title: 'Agendamiento', html: '<p>SaludTools, con WhatsApp como canal secundario.</p>' },
-      { title: 'Búsqueda', html: '<p>Schema.org (Physician y MedicalCondition), sitemap, Open Graph, Search Console y Google Business Profile.</p>' },
+      { title: 'Tecnología', html: '<p>Astro 5, CSS propio con design tokens, JavaScript vanilla. Sin frameworks de estilos.</p>' },
+      { title: 'Tipografía', html: '<p>Instrument Serif (logotipo), Newsreader (titulares), Karla (cuerpo).</p>' },
+      { title: 'Tiempos', html: '<p>De la primera conversación de alcance, el 20 de julio de 2026, a una marca y un sitio completos en poco más de dos meses.</p>' },
     ],
     cta: {
-      title: '¿Un consultorio que merece que lo encuentren?',
-      text: 'Construimos la marca, el sitio y el camino de la búsqueda a la cita, y lo mantenemos funcionando mes a mes. Eso es lo que hace Mattriz.',
+      title: '¿Vas a abrir un consultorio, un estudio, un negocio?',
+      text: 'Construimos la marca, el sitio y todo lo que hay detrás, y lo mantenemos funcionando mes a mes. Eso es lo que hace Mattriz.',
     },
   },
 };
 
-// Pendiente: hero y bloques de media (capturas y video), y colores de la marca.
-export function drDanielDeZubiria(lang: Lang): Omit<CaseDoc, 'hero'> {
+export function drDanielDeZubiria(lang: Lang): CaseDoc {
   const t = TEXT[lang];
   return {
-    name: 'Dr. Daniel de Zubiría',
+    name: 'Dr. Daniel De Zubiría',
     theme: 'dark',
-    accent: '#ffffff',
-    onAccent: '#0a0a0a',
+    bg: '#1B3A94',
+    accent: '#E9A94E',
+    onAccent: '#1B2C52',
     metaTitle: t.metaTitle,
     description: t.description,
     year: '2026',
     tagline: t.tagline,
     intro: t.intro,
     facts: t.facts,
+    hero: HERO(lang),
     site: 'https://drdanieldezubiria.com/',
     blocks: [
       { kind: 'text', style: 'lead', ...t.brief },
-      { kind: 'cards', ...t.work },
+      { kind: 'media', layout: 'pair', items: [CARD_FRONT(lang), CARD_BACK(lang)] },
+      { kind: 'text', style: 'lead', ...t.identity },
+      { kind: 'media', layout: 'wide', items: [LINKEDIN(lang)] },
+      { kind: 'media', layout: 'pair', items: [WHATSAPP(lang), GOOGLE(lang)] },
+      { kind: 'cards', ...t.site },
+      { kind: 'list', ...t.scheduling },
+      { kind: 'list', ...t.infra },
+      { kind: 'media', layout: 'inset', items: [LETTERHEAD(lang)] },
+      { kind: 'text', style: 'lead', ...t.next },
       { kind: 'details', cols: t.details },
       { kind: 'cta', ...t.cta, link: { href: 'mailto:contacto@mattriz.com', label: 'contacto@mattriz.com' } },
     ],
