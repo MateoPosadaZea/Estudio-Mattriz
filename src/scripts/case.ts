@@ -72,7 +72,7 @@ if (reduceMotion || !('IntersectionObserver' in window)) {
 }
 
 // [data-case-scroll]  Guía "Sigue bajando": aparece poco después de cargar y cada vez que el
-//                     lector se detiene unos segundos con mucho caso por delante; se esconde al
+//                     lector deja de hacer scroll (poco más de un segundo) con mucho caso por delante; se esconde al
 //                     moverse y cerca del final. Al tocarla baja casi una pantalla.
 const cue = document.querySelector<HTMLElement>('[data-case-scroll]');
 if (cue) {
@@ -93,14 +93,14 @@ if (cue) {
     'scroll',
     () => {
       cue.classList.remove('is-shown');
-      arm(4500);
+      arm(1200);
     },
     { passive: true },
   );
   cue.addEventListener('click', () => {
     window.scrollBy({ top: window.innerHeight * 0.85, behavior: reduceMotion ? 'auto' : 'smooth' });
   });
-  arm(scrollY < 40 ? 1600 : 4500);
+  arm(scrollY < 40 ? 1600 : 1200);
 }
 
 export {};

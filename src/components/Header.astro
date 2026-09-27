@@ -112,6 +112,7 @@ const other = lang === 'es' ? 'en' : 'es';
 
   .site-nav a {
     display: block;
+    white-space: nowrap;
     padding: 0 20px;
     font-size: var(--fs-menu);
     font-weight: var(--fw-menu);
@@ -178,8 +179,9 @@ const other = lang === 'es' ? 'en' : 'es';
     display: none;
   }
 
-  /* Header compacto por debajo de 1000px (data-header-breakpoint del vivo). */
-  @media (max-width: 999px) {
+  /* Header compacto por debajo de 1280px: entre 1000 y 1279 el menú completo no cabía junto al idioma
+     y "Let's talk" ("How we work" se partía en tres líneas). */
+  @media (max-width: 1279px) {
     .site-header {
       width: var(--header-width-mobile);
       height: var(--header-height-mobile);

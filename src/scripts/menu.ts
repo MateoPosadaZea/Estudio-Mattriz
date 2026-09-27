@@ -92,7 +92,7 @@ if (page && panel && openButton && closeButton) {
   });
 
   // Si la ventana pasa a desktop con el menú abierto, se cierra.
-  window.matchMedia('(min-width: 1000px)').addEventListener('change', (event) => {
+  window.matchMedia('(min-width: 1280px)').addEventListener('change', (event) => {
     if (event.matches) close();
   });
 }

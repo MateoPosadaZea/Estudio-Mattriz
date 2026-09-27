@@ -308,8 +308,8 @@ const sizes = { pair: '(max-width: 690px) 100vw, 50vw', trio: '(max-width: 690px
     flex-direction: column;
     justify-content: flex-end;
     /* Deja asomar el video principal por debajo. */
-    min-height: 88vh;
-    min-height: 88svh;
+    min-height: 72vh;
+    min-height: 72svh;
     padding: calc(var(--header-top) + var(--header-height) + 40px) var(--pad) clamp(32px, 5vw, 64px);
   }
 
@@ -340,7 +340,7 @@ const sizes = { pair: '(max-width: 690px) 100vw, 50vw', trio: '(max-width: 690px
     margin: 0 0 0 -0.05em;
     font-family: var(--font-display);
     /* Nombres largos más chicos para que quepan en unas dos líneas (--len = caracteres). */
-    font-size: clamp(40px, min(17vw, calc(250vw / var(--len, 10))), 300px);
+    font-size: clamp(40px, min(9vw, calc(150vw / var(--len, 10))), 160px);
     font-weight: 500;
     line-height: 0.9;
     letter-spacing: -0.035em;
