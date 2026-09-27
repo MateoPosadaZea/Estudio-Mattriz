@@ -126,7 +126,7 @@ const phone = (el.classes ?? []).map((c: string) => c.match(/^height_phone_(\d+p
 {
   el.type === 'meta' && (
     <p class:list={['wp-meta', { 'wp-meta--right': el.classes.includes('alignment_right_desktop') }]}>
-      {el.items.map((it: any) => (it.href ? <a href={localize('/#work', lang)}>{category(it.label, lang)}</a> : <span>{category(it.label, lang)}</span>))}
+      {el.items.map((it: any) => (it.href ? <a href={localize('/#projects', lang)}>{category(it.label, lang)}</a> : <span>{category(it.label, lang)}</span>))}
     </p>
   )
 }

@@ -8,16 +8,29 @@
 /finalizar-compra/ /  301
 
 # Archivos por tipo de proyecto → sección de proyectos de la home
-/project-type /#work 301
-/project-type/* /#work 301
+/project-type /#projects 301
+/project-type/* /#projects 301
 
 # Carpeta /work/ (en el vivo daba 403) y enlaces rotos del vivo → proyectos
-/work /#work 301
-/work/ /#work 301
-/trabajos /#work 301
-/trabajos/ /#work 301
-/project/gravity-font /#work 301
-/project/gravity-font/ /#work 301
+/work /#projects 301
+/work/ /#projects 301
+/trabajos /#projects 301
+/trabajos/ /#projects 301
+/project/gravity-font /#projects 301
+/project/gravity-font/ /#projects 301
+
+# "projects" en plural: la sección es /#projects y cada proyecto vive en /project/<slug>/ (la URL
+# que Google tiene indexada desde WordPress). Quien escriba /projects/... llega al mismo lugar.
+/projects /#projects 301
+/projects/ /#projects 301
+/projects/* /project/:splat 301
+/es/projects /es/#projects 301
+/es/projects/ /es/#projects 301
+/es/projects/* /es/project/:splat 301
+/project /#projects 301
+/project/ /#projects 301
+/es/project /es/#projects 301
+/es/project/ /es/#projects 301
 
 # Sitemaps de AIOSEO → sitemap de Astro
 /sitemap.xml /sitemap-index.xml 301

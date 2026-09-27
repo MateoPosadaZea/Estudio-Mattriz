@@ -25,7 +25,9 @@ const items = PROJECTS.map((p) => {
 });
 ---
 
-<section class="h-section h-work" id="work" data-work>
+<section class="h-section h-work" id="projects" data-work>
+  <!-- Alias del ancla anterior (#work), para los enlaces viejos que ya circulan. -->
+  <span id="work" aria-hidden="true"></span>
   <p class="h-label" data-case-reveal><span>(03)</span> {t.nav[2]}</p>
   <h2 class="h-heading" data-case-reveal>{LABELS.selectedWork}</h2>
 

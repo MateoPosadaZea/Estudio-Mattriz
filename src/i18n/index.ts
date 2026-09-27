@@ -12,7 +12,7 @@ export const langOf = (url: URL | string): Lang => {
 /** Quita el prefijo de idioma: /es/about/ → /about/ */
 export const basePath = (path: string) => (path === '/es' ? '/' : path.startsWith('/es/') ? path.slice(3) : path);
 
-/** Ruta en un idioma: localize('/about/', 'es') → /es/about/; localize('/#work', 'es') → /es/#work */
+/** Ruta en un idioma: localize('/about/', 'es') → /es/about/; localize('/#projects', 'es') → /es/#projects */
 export const localize = (path: string, lang: Lang) => {
   if (lang === 'en' || /^(https?:|mailto:|tel:|#)/.test(path)) return path;
   return path.startsWith('/') ? `/es${path}` : path;

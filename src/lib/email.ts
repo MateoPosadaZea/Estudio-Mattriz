@@ -111,7 +111,7 @@ export function whatsappLink(phone: string) {
 export function renderAutoReply(lang: 'en' | 'es', fullName: string): { subject: string; html: string; text: string } {
   const name = (fullName.trim().split(/\s+/)[0] || '').replace(/[^\p{L}\p{M}'-]/gu, '').slice(0, 30);
   const es = lang === 'es';
-  const work = es ? 'https://mattriz.com/es/#work' : 'https://mattriz.com/#work';
+  const work = es ? 'https://mattriz.com/es/#projects' : 'https://mattriz.com/#projects';
   const subject = es ? `Recibimos tu mensaje${name ? `, ${name}` : ''}` : `We got your message${name ? `, ${name}` : ''}`;
   const paras = es
     ? [

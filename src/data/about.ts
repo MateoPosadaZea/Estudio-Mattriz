@@ -5,7 +5,7 @@ import type { Lang } from '../i18n';
 export const ABOUT_HERO = {
   title: 'We blend design and technology to grow your business.',
   text: 'We’re a studio that blends design and technology. We build fast, SEO-ready websites in Webflow & WordPress, with clear UX and a clean CMS your team can edit. We also add light automation to remove busywork.',
-  cta: 'View our work',
+  cta: 'View our projects',
 };
 
 export const ABOUT_SERVICES = [
@@ -18,7 +18,7 @@ export const ABOUT_SERVICES = [
 export const TEAM = {
   title: 'Meet The Team',
   text: 'We make websites that are fast, simple to manage, and search-friendly. Webflow & WordPress + a touch of automation.',
-  cta: 'Explore our work',
+  cta: 'Explore our projects',
   members: [
     {
       name: 'Mateo Posada',
@@ -45,7 +45,7 @@ export const ABOUT_ES = {
   ABOUT_HERO: {
     title: 'Unimos diseño y tecnología para hacer crecer tu negocio.',
     text: 'Somos un estudio que une diseño y tecnología. Construimos sitios rápidos y listos para SEO en Webflow y WordPress, con una UX clara y un CMS limpio que tu equipo puede editar. También sumamos automatización ligera para quitarte trabajo repetitivo.',
-    cta: 'Ver nuestro trabajo',
+    cta: 'Ver nuestros proyectos',
   },
   ABOUT_SERVICES: [
     { title: 'Identidad de marca y concepto', text: 'Creamos tu sistema de marca: logo, color, tipografía y guías de uso que tu equipo puede aplicar en todas partes.' },
@@ -57,7 +57,7 @@ export const ABOUT_ES = {
     ...TEAM,
     title: 'Conoce al equipo',
     text: 'Hacemos sitios rápidos, fáciles de administrar y amigables con los buscadores. Webflow y WordPress, con un toque de automatización.',
-    cta: 'Explora nuestro trabajo',
+    cta: 'Explora nuestros proyectos',
     members: [
       { ...TEAM.members[0], role: 'CEO, fundador' },
       { ...TEAM.members[1], role: 'CXO, director de experiencia' },
