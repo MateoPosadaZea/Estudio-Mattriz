@@ -28,7 +28,7 @@ const year = new Date().getFullYear();
     {
       form && (
         <>
-          <p class="ft__status">
+          <p class="ft__status" id="contact-form">
             {t.accepting}
           </p>
           <FooterForm />
@@ -102,6 +102,7 @@ const year = new Date().getFullYear();
   }
 
   .ft__status {
+    scroll-margin-top: calc(var(--header-top) + var(--header-height) + 32px);
     display: flex;
     align-items: center;
     gap: 10px;

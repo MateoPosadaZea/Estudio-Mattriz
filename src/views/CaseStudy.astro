@@ -56,6 +56,10 @@ const bg = doc.bg ?? (doc.theme === 'dark' ? '#0a0a0a' : '#ffffff');
 
 // Numeración de secciones: (01), (02)… en el orden en que aparecen.
 let n = 0;
+// Todo caso termina con un llamado al formulario; los que no traen uno propio reciben el genérico.
+if (!doc.blocks.some((b) => b.kind === 'cta')) {
+  doc.blocks.push({ kind: 'cta', title: t.ctaTitle, text: t.ctaText, link: { href: '#contact-form', label: t.talk } });
+}
 const numbered = new Map(doc.blocks.map((b) => [b, ['media', 'details', 'cta'].includes(b.kind) ? '' : `(${String(++n).padStart(2, '0')})`]));
 
 const idx = PROJECTS.findIndex((p) => p.href === `/project/${slug}/`);
@@ -226,8 +230,9 @@ const sizes = { pair: '(max-width: 690px) 100vw, 50vw', trio: '(max-width: 690px
           <section class="case-cta">
             <h2 class="case-cta__title" data-case-reveal>{b.title}</h2>
             <p class="case-lead" data-case-reveal>{b.text}</p>
-            <a class="case-link" href={b.link.href} data-case-reveal>
-              {b.link.label} <span aria-hidden="true">→</span>
+            {/* Lleva al formulario del pie de la misma página (el correo sigue en el pie). */}
+            <a class="case-link" href="#contact-form" data-case-reveal>
+              {t.talk} <span aria-hidden="true">↓</span>
             </a>
           </section>
         ) : (
