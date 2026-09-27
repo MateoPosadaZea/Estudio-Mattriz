@@ -26,7 +26,7 @@ const t = ui(lang);
   <div class="home ct">
     <section class="ct__form" aria-labelledby="ct-title">
       <p class="ct__status case-in">
-        <span class="ct__pulse" aria-hidden="true"></span>{t.accepting}
+        {t.accepting}
       </p>
       <h1 class="ct__title" id="ct-title">
         {
@@ -80,13 +80,6 @@ const t = ui(lang);
     margin-bottom: clamp(20px, 2.4vw, 32px);
     font-size: 15px;
     color: var(--muted);
-  }
-
-  .ct__pulse {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: var(--color-status-green);
   }
 
   .ct__title {

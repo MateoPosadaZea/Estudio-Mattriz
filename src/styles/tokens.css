@@ -10,7 +10,7 @@
   --color-ink: #0a0a0a;             /* color base del body */
   --color-white: #ffffff;
   --color-brand-green: #00ff7f;     /* gradiente animado de hero, studio y CTA */
-  --color-status-green: #55c91c;    /* punto "Currently accepting new clients" */
+  --color-status-green: #55c91c;    /* punto de estado (ya no se usa en el sitio) */
   --color-hero-overlay: rgba(0, 0, 0, 0.78);
   --color-hero-overlay-opacity: 0.8;
   --color-white-12: rgba(255, 255, 255, 0.12);

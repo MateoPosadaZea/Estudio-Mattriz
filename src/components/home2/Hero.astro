@@ -14,7 +14,7 @@ const t = ui(lang);
   <AnimatedGradient color1="brand" speed={250} blend="organic" />
   <div class="h-hero__inner">
     <p class="h-hero__status case-in">
-      <span class="h-hero__pulse" aria-hidden="true"></span>{t.accepting}
+      {t.accepting}
     </p>
     <h1 class="h-hero__title" aria-label={HERO.title} style={`--em:${lang === 'es' ? 9.2 : 7.7}`}>
       {
@@ -58,21 +58,6 @@ const t = ui(lang);
     margin-bottom: clamp(20px, 2.4vw, 36px);
     font-size: 15px;
     color: var(--muted);
-  }
-
-  .h-hero__pulse {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: var(--color-status-green);
-    box-shadow: 0 0 0 0 rgba(85, 201, 28, 0.6);
-    animation: h-pulse 2s var(--ease-pulse) infinite;
-  }
-
-  @keyframes h-pulse {
-    to {
-      box-shadow: 0 0 0 10px rgba(85, 201, 28, 0);
-    }
   }
 
   /* En pantallas medianas y grandes el título cabe en dos líneas: el tamaño se ajusta para que la
