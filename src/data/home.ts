@@ -64,13 +64,14 @@ const img = (name: string, sizes: [number, number][], alt: string) => ({
 
 const PHOTO_SIZES: [number, number][] = [[900, 604], [600, 403], [400, 269]];
 
-// Mismo orden que el vivo (por fecha, más reciente primero).
+// Por fecha, más reciente primero. Let it Go salió de la lista (su página sigue en /project/let-it-go/;
+// irá a una sección de laboratorio o a una página con todos los proyectos, por decidir).
 export const PROJECTS: Project[] = [
   {
     title: 'Santo & Seña',
     href: '/project/santo-y-sena/',
     categories: ['UI/UX Design', 'Web Development', 'SEO Optimization'],
-    video: '/media/work/santo-y-sena.mp4',
+    video: '/media/work/santo-y-sena-nav.mp4',
   },
   {
     title: 'Civilus',
@@ -95,12 +96,6 @@ export const PROJECTS: Project[] = [
     href: '/project/posada-carcamo-abogados/',
     categories: ['UI/UX Design', 'Web Development'],
     image: img('posada-carcamo', PHOTO_SIZES, 'Posada Carcamo Abogados Estudio Mattriz'),
-  },
-  {
-    title: 'Let it Go',
-    href: '/project/let-it-go/',
-    categories: ['Brand Identity', 'UI/UX Design'],
-    image: img('let-it-go', [[1024, 768], [768, 576], [650, 488]], ''),
   },
   {
     title: 'AGL Vans Tours',

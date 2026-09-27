@@ -67,9 +67,9 @@ const M_RECORD = phone('disco', { en: 'Record page on a phone', es: 'Ficha de un
 const M_LISTEN = phone('escucha', { en: 'Turntable page on a phone', es: 'Tocadiscos en el celular' });
 const FLOW = (lang: Lang): CaseMedia => ({
   type: 'video',
-  local: { dir: DIR, base: 'ss-flow', width: 1440, height: 900 },
-  alt: { en: 'Browsing the home page, opening the shop, adding a book to the cart', es: 'Recorrido por la portada, la tienda y un libro añadido al carrito' }[lang],
-  caption: { en: 'From the home page to the cart: catalogue, product page and cart served by the new site.', es: 'De la portada al carrito: catálogo, ficha y carrito servidos por el sitio nuevo.' }[lang],
+  local: { dir: DIR, base: 'ss-nav', width: 1440, height: 900 },
+  alt: { en: 'Browsing the home page, instant search, the turntable, the shop and adding a book to the cart', es: 'Recorrido por la portada, el buscador instantáneo, el tocadiscos, la tienda y un libro añadido al carrito' }[lang],
+  caption: { en: 'Home, instant search, the turntable, the shop and the cart, all served by the new site.', es: 'Portada, buscador instantáneo, tocadiscos, tienda y carrito, todo servido por el sitio nuevo.' }[lang],
 });
 
 const TEXT = {
