@@ -25,6 +25,14 @@ const doc: CaseDoc = MANUAL_CASES[slug]
     ? fromLegacy(LEGACY_CASES[slug], orig, model, lang)
     : fromModel(MODEL_CASES[slug], orig, model, lang);
 const t = CASE_UI[lang];
+// Los casos del vivo traen el título dentro del texto ("<p><strong>Título:</strong> texto</p>"):
+// se separa para que el título vaya arriba, como en los casos nuevos.
+const splitTerm = (it: { term: string; desc: string }) => {
+  if (it.term) return it;
+  const m = it.desc.match(/^\s*<p>\s*<strong>([^<]+?):?\s*<\/strong>:?\s*([\s\S]*)$/);
+  const decode = (x: string) => x.replace(/&amp;/g, '&').replace(/&quot;/g, '"').replace(/&#39;|&#x27;/g, "'").replace(/&nbsp;/g, ' ');
+  return m ? { term: decode(m[1]).replace(/:$/, '').trim(), desc: `<p>${m[2]}` } : it;
+};
 const seo = CASE_SEO[slug]?.[lang];
 const metaTitle = seo?.title ?? doc.metaTitle;
 const metaDescription = seo?.description ?? doc.description;
@@ -150,7 +158,7 @@ const sizes = { pair: '(max-width: 690px) 100vw, 50vw', trio: '(max-width: 690px
             )}
             {b.kind === 'list' ? (
               <ol class="case-list">
-                {b.items.map((it, i) => (
+                {b.items.map(splitTerm).map((it, i) => (
                   <li data-case-reveal>
                     <span class="case-list__n">{String(i + 1).padStart(2, '0')}</span>
                     <span class="case-list__term">{it.term}</span>
