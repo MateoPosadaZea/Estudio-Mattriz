@@ -49,6 +49,30 @@ const CORPORATE = img('spot-on-corporate', 1396, 1232, [1396, 1200, 700], {
   es: 'Una página dedicada al programa corporativo: los empleados reservan el detailing en la oficina en una franja fija cada dos semanas.',
 });
 
+const video = (base: string, alt: Record<Lang, string>, caption: Record<Lang, string>) => (lang: Lang): CaseMedia => ({
+  type: 'video',
+  local: { dir: DIR, base, width: 1440, height: 900 },
+  alt: alt[lang],
+  caption: caption[lang],
+});
+
+// Videos de la navegación real del sitio (grabados en septiembre de 2026, sin llenar datos ni pagar).
+const FLOW = video('spot-on-flow', {
+  en: 'Browsing the Spot On site and booking a detail step by step',
+  es: 'Navegación por el sitio de Spot On y reserva paso a paso',
+}, {
+  en: 'The real site: home, then booking in five steps (service, vehicle, add-ons, date and time, details) with the price calculated live.',
+  es: 'El sitio real: la portada y la reserva en cinco pasos (servicio, vehículo, adicionales, fecha y hora, datos), con el precio calculado en vivo.',
+});
+
+const CORPORATE_FLOW = video('spot-on-corporate-flow', {
+  en: 'Spot On corporate program page in motion',
+  es: 'Página del programa corporativo de Spot On en movimiento',
+}, {
+  en: 'The corporate program page: how it works, what the company provides, the schedule and the discovery-call form.',
+  es: 'La página del programa corporativo: cómo funciona, qué pone la empresa, la frecuencia y el formulario para agendar una llamada.',
+});
+
 const TEXT = {
   en: {
     metaTitle: 'Spot On Mobile Detailing Case Study | Mattriz Studio',
@@ -223,13 +247,15 @@ export function spotOn(lang: Lang): CaseDoc {
     tagline: t.tagline,
     intro: t.intro,
     facts: t.facts,
-    hero: HERO(lang),
+    hero: FLOW(lang),
     site: 'https://www.mobilespotoncalifornia.com/',
     blocks: [
       { kind: 'text', style: 'lead', ...t.problem },
       { kind: 'cards', ...t.built },
-      { kind: 'media', layout: 'pair', items: [BOOKING(lang), CALENDAR(lang)] },
+      { kind: 'media', layout: 'pair', items: [HERO(lang), BOOKING(lang)] },
+      { kind: 'media', layout: 'inset', items: [CALENDAR(lang)] },
       { kind: 'list', ...t.corporate },
+      { kind: 'media', layout: 'wide', items: [CORPORATE_FLOW(lang)] },
       { kind: 'media', layout: 'inset', items: [CORPORATE(lang)] },
       { kind: 'stats', ...t.results },
       { kind: 'timeline', ...t.timeline },

@@ -9,17 +9,8 @@ const lang = langOf(Astro.url);
 const { LABELS } = home(lang);
 const t = ui(lang);
 
-// Spot On tiene caso nuevo (2026): su pieza es la del sitio nuevo, no el video del anterior.
-// Es una captura 2:1: se muestra entera (contain) sobre el azul de la marca, sin recortar.
-const COVERS: Record<string, { src: string; srcset: string; width: number; height: number; fit?: string }> = {
-  '/project/spot-on-mobile-wash-detailing/': {
-    src: '/media/projects/spot-on-case/spot-on-hero-1200.webp',
-    srcset: '/media/projects/spot-on-case/spot-on-hero-700.webp 700w, /media/projects/spot-on-case/spot-on-hero-1200.webp 1200w',
-    width: 1200,
-    height: 590,
-    fit: 'background:#091629;--fit:contain',
-  },
-};
+// Imagen fija en vez del video del proyecto, si hiciera falta (hoy todos usan su video).
+const COVERS: Record<string, { src: string; srcset: string; width: number; height: number; fit?: string }> = {};
 
 const items = PROJECTS.map((p) => {
   const cover = COVERS[p.href];

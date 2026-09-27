@@ -30,7 +30,7 @@ export const CONTACT = {
 
 export const CONTACT_CASE = {
   badge: 'Spot On Mobile California',
-  video: '/media/work/spot-on.mp4',
+  video: '/media/work/spot-on-nav.mp4',
   poster: '/media/contact/spot-on-poster-1000.webp',
   quote: [
     'I had the opportunity to work with Mattriz on building my business website, and the experience exceeded our expectations. From the very beginning, we received very positive feedback, even from people who work at large technology companies here in the United States.',

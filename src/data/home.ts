@@ -82,7 +82,7 @@ export const PROJECTS: Project[] = [
     title: 'Spot On Mobile Wash & Detailing',
     href: '/project/spot-on-mobile-wash-detailing/',
     categories: ['SEO Optimization', 'UI/UX Design', 'Web Development'],
-    video: '/media/work/spot-on.mp4',
+    video: '/media/work/spot-on-nav.mp4',
   },
   {
     title: 'The Grid',
