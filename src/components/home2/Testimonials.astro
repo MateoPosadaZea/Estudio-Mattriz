@@ -216,12 +216,13 @@ const pad = (n: number) => String(n).padStart(2, '0');
       gap: 20px;
     }
 
-    /* En pantallas angostas la portada va arriba, más grande (4:3, sin pasar de 60% de la pantalla). */
+    /* En pantallas angostas la portada va arriba, en la proporción de las capturas y clips (16:10),
+       así las páginas se ven completas y no se cortan a los lados. */
     .h-t__slide .h-t__media,
     .h-t--bare .h-t__slide .h-t__media {
       order: -1;
       height: auto;
-      aspect-ratio: 4 / 3;
+      aspect-ratio: 16 / 10;
       max-height: 60vh;
     }
 
