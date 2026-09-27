@@ -6,6 +6,7 @@
 //                          por Resend con lo detectado (mismas variables que el formulario de contacto).
 
 import { scanSite, ScanError } from './fetch';
+import { renderLeadEmail, bogotaNow, whatsappLink } from '../email';
 
 export type LeadEnv = { RESEND_API_KEY?: string; TURNSTILE_SECRET?: string; CONTACT_TO?: string; CONTACT_FROM?: string };
 
@@ -56,16 +57,25 @@ export async function handleLead(request: Request, env: LeadEnv, remoteIp = ''):
 
   if (!env.RESEND_API_KEY) return json({ ok: false, error: 'not-configured' }, 503);
 
-  const rows: [string, string][] = [
-    ['Name', name],
-    ['Email', email],
-    ['Phone / WhatsApp', phone || '(not provided)'],
-    ['Website scanned', site],
-    ['Language', lang],
-    ['Scan summary', report || '(none)'],
-  ];
-  const text = rows.map(([k, v]) => `${k}:\n${v}`).join('\n\n');
-  const html = rows.map(([k, v]) => `<p><strong>${esc(k)}</strong><br>${esc(v).replace(/\n/g, '<br>')}</p>`).join('');
+  const first = name.split(/\s+/)[0];
+  const wa = phone ? whatsappLink(phone) : '';
+  const { html, text } = renderLeadEmail({
+    tag: 'Escáner',
+    title: `${name} pidió plan y cotización`,
+    messageLabel: 'Resumen del escaneo',
+    message: report,
+    fields: [
+      { label: 'Sitio escaneado', value: site, href: /^https?:\/\//.test(site) ? site : undefined },
+      { label: 'Correo', value: email, href: `mailto:${email}` },
+      { label: 'Teléfono / WhatsApp', value: phone, href: wa || undefined },
+      { label: 'Idioma', value: lang === 'es' ? 'Español' : 'Inglés' },
+    ],
+    actions: [
+      { label: `Responder a ${first}`, href: `mailto:${email}?subject=${encodeURIComponent(lang === 'es' ? 'Tu plan y cotización de Mattriz' : 'Your plan & quote from Mattriz')}` },
+      ...(wa ? [{ label: 'Escribir por WhatsApp', href: wa }] : []),
+    ],
+    footer: `Enviado desde el escáner de mattriz.com · ${bogotaNow()} (hora de Bogotá)`,
+  });
 
   const send = await fetch('https://api.resend.com/emails', {
     method: 'POST',
@@ -74,7 +84,7 @@ export async function handleLead(request: Request, env: LeadEnv, remoteIp = ''):
       from: env.CONTACT_FROM || 'Mattriz website <forms@mattriz.com>',
       to: [env.CONTACT_TO || 'contacto@mattriz.com'],
       reply_to: email,
-      subject: `${lang === 'es' ? 'Escáner: plan y cotización' : 'Scanner: plan & quote'}: ${site || name}`,
+      subject: `Escáner: plan y cotización para ${site || name}`,
       text,
       html,
     }),
@@ -82,6 +92,3 @@ export async function handleLead(request: Request, env: LeadEnv, remoteIp = ''):
   return json({ ok: send.ok }, send.ok ? 200 : 502);
 }
 
-function esc(s: string) {
-  return s.replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]!);
-}

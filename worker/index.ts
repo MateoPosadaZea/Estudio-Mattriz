@@ -27,6 +27,7 @@ interface Env {
 }
 
 import { handleScan, handleLead } from '../src/lib/scan/http';
+import { renderLeadEmail, bogotaNow, whatsappLink } from '../src/lib/email';
 
 const CASE_STUDY = '/work/spot-on/case-study.html';
 const CANONICAL_HOST = 'mattriz.com';
@@ -110,18 +111,27 @@ async function handleContact(request: Request, env: Env): Promise<Response> {
 
   if (!env.RESEND_API_KEY) return reply(false, 500);
 
-  const rows: [string, string][] = [
-    ['Name', name],
-    ['Email', email],
-    ['Phone / Whatsapp', phone || '(not provided)'],
-    ['How can we help', services.join(', ') || '(none selected)'],
-    ['Estimated budget (USD)', budget || '(not provided)'],
-    ['More details', details],
-  ];
-  const text = rows.map(([k, v]) => `${k}:\n${v}`).join('\n\n');
-  const html = rows
-    .map(([k, v]) => `<p><strong>${esc(k)}</strong><br>${esc(v).replace(/\n/g, '<br>')}</p>`)
-    .join('');
+  const es = get('lang') === 'es';
+  const first = name.split(/\s+/)[0];
+  const wa = phone ? whatsappLink(phone) : '';
+  const { html, text } = renderLeadEmail({
+    tag: 'Nuevo proyecto',
+    title: `${name} quiere hablar de un proyecto`,
+    messageLabel: 'La idea',
+    message: details,
+    fields: [
+      { label: 'Necesita ayuda con', value: services.join(', ') },
+      { label: 'Presupuesto (USD)', value: budget },
+      { label: 'Correo', value: email, href: `mailto:${email}` },
+      { label: 'Teléfono / WhatsApp', value: phone, href: wa || undefined },
+      { label: 'Idioma del formulario', value: es ? 'Español' : 'Inglés' },
+    ],
+    actions: [
+      { label: `Responder a ${first}`, href: `mailto:${email}?subject=${encodeURIComponent(es ? 'Tu proyecto con Mattriz' : 'Your project with Mattriz')}` },
+      ...(wa ? [{ label: 'Escribir por WhatsApp', href: wa }] : []),
+    ],
+    footer: `Enviado desde el formulario de mattriz.com${es ? '/es/' : '/'} · ${bogotaNow()} (hora de Bogotá)`,
+  });
 
   const send = await fetch('https://api.resend.com/emails', {
     method: 'POST',
@@ -130,7 +140,7 @@ async function handleContact(request: Request, env: Env): Promise<Response> {
       from: env.CONTACT_FROM || 'Mattriz website <forms@mattriz.com>',
       to: [env.CONTACT_TO || 'contacto@mattriz.com'],
       reply_to: email,
-      subject: `${get('lang') === 'es' ? 'Nueva solicitud de proyecto (ES)' : 'New project inquiry'}: ${name}`,
+      subject: `Nuevo proyecto: ${name}${services.length ? ` · ${services.join(', ')}` : ''}`,
       text,
       html,
     }),
@@ -139,6 +149,3 @@ async function handleContact(request: Request, env: Env): Promise<Response> {
   return reply(send.ok, send.ok ? 200 : 502);
 }
 
-function esc(s: string) {
-  return s.replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]!);
-}
