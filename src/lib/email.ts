@@ -104,3 +104,51 @@ export function whatsappLink(phone: string) {
   if (!phone.trim().startsWith('+') && digits.length === 10) digits = (digits.startsWith('3') ? '57' : '1') + digits;
   return `https://wa.me/${digits}`;
 }
+
+/** Respuesta automática a quien escribe desde el formulario, en su idioma y firmada por Mateo.
+ *  No repite lo que la persona escribió (solo su primer nombre, recortado): así nadie puede usar el
+ *  formulario para mandar texto arbitrario desde mattriz.com a la dirección de otra persona. */
+export function renderAutoReply(lang: 'en' | 'es', fullName: string): { subject: string; html: string; text: string } {
+  const name = (fullName.trim().split(/\s+/)[0] || '').replace(/[^\p{L}\p{M}'-]/gu, '').slice(0, 30);
+  const es = lang === 'es';
+  const work = es ? 'https://mattriz.com/es/#work' : 'https://mattriz.com/#work';
+  const subject = es ? `Recibimos tu mensaje${name ? `, ${name}` : ''}` : `We got your message${name ? `, ${name}` : ''}`;
+  const paras = es
+    ? [
+        `Hola${name ? `, ${name}` : ''}:`,
+        'Gracias por escribirnos. Tu mensaje ya nos llegó y lo vamos a leer con calma.',
+        'Te respondemos personalmente a este mismo correo. Si quieres adelantar algo, como referencias, enlaces o un documento, puedes responder aquí mismo.',
+      ]
+    : [
+        `Hi${name ? ` ${name}` : ''},`,
+        'Thanks for reaching out. Your message came through and we’ll read it carefully.',
+        'We’ll reply personally to this same email. If you’d like to share anything else, like references, links or a brief, just reply here.',
+      ];
+  const workLine = es ? ['Mientras tanto, puedes ver algunos de nuestros proyectos en ', 'mattriz.com'] : ['In the meantime, you can see some of our work at ', 'mattriz.com'];
+  const sign = es ? 'Un saludo,' : 'Best,';
+  const tagline = es ? 'Mattriz · Desde Bogotá, para clientes en todo el mundo' : 'Mattriz · Based in Bogotá, working worldwide';
+
+  const p = (html: string) => `<tr><td style="padding:0 0 18px;font:16px/1.6 ${SANS};color:#0a0a0a">${html}</td></tr>`;
+  const html = `<!doctype html>
+<html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="light only"></head>
+<body style="margin:0;padding:0;background:#f2f2ef">
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#f2f2ef">
+    <tr><td align="center" style="padding:32px 16px">
+      <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:600px;background:#ffffff;border-radius:20px">
+        <tr><td style="padding:32px 36px 0"><img src="${LOGO}" width="34" height="28" alt="Mattriz" style="display:block;border:0"></td></tr>
+        <tr><td style="padding:36px 36px 8px">
+          <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
+            ${paras.map((t) => p(esc(t))).join('')}
+            ${p(`${esc(workLine[0])}<a href="${work}" style="color:#0a0a0a;text-decoration:underline">${workLine[1]}</a>.`)}
+            <tr><td style="padding:8px 0 0;font:16px/1.6 ${SANS};color:#0a0a0a">${sign}</td></tr>
+            <tr><td style="padding:2px 0 0;font:24px/1.3 ${SERIF};color:#0a0a0a">Mateo</td></tr>
+          </table>
+        </td></tr>
+        <tr><td style="padding:20px 36px 32px;font:12px/1.5 ${SANS};color:#9a9a92">${esc(tagline)}</td></tr>
+      </table>
+    </td></tr>
+  </table>
+</body></html>`;
+  const text = [...paras, `${workLine[0]}${work}.`, `${sign}\nMateo`, tagline].join('\n\n');
+  return { subject, html, text };
+}

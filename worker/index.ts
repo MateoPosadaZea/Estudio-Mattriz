@@ -16,6 +16,7 @@
 //   RESEND_API_KEY     secreto. Clave de Resend con el dominio mattriz.com verificado.
 //   TURNSTILE_SECRET   secreto. Clave secreta del widget de Turnstile.
 //   CONTACT_TO         opcional. Destino (por defecto contacto@mattriz.com).
+//   AUTOREPLY_FROM     opcional. Remitente de la respuesta automática (por defecto "Mateo de Mattriz <contacto@mattriz.com>").
 //   CONTACT_FROM       opcional. Remitente verificado en Resend (por defecto "Mattriz website <forms@mattriz.com>").
 
 interface Env {
@@ -24,10 +25,11 @@ interface Env {
   TURNSTILE_SECRET?: string;
   CONTACT_TO?: string;
   CONTACT_FROM?: string;
+  AUTOREPLY_FROM?: string;
 }
 
 import { handleScan, handleLead } from '../src/lib/scan/http';
-import { renderLeadEmail, bogotaNow, whatsappLink } from '../src/lib/email';
+import { renderLeadEmail, renderAutoReply, bogotaNow, whatsappLink } from '../src/lib/email';
 
 const CASE_STUDY = '/work/spot-on/case-study.html';
 const CANONICAL_HOST = 'mattriz.com';
@@ -145,6 +147,23 @@ async function handleContact(request: Request, env: Env): Promise<Response> {
       html,
     }),
   });
+
+  // Respuesta automática a quien escribió. Si falla, el aviso ya salió: no se le muestra error a la persona.
+  if (send.ok) {
+    const auto = renderAutoReply(es ? 'es' : 'en', name);
+    await fetch('https://api.resend.com/emails', {
+      method: 'POST',
+      headers: { Authorization: `Bearer ${env.RESEND_API_KEY}`, 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        from: env.AUTOREPLY_FROM || 'Mateo de Mattriz <contacto@mattriz.com>',
+        to: [email],
+        reply_to: env.CONTACT_TO || 'contacto@mattriz.com',
+        subject: auto.subject,
+        text: auto.text,
+        html: auto.html,
+      }),
+    }).catch(() => null);
+  }
 
   return reply(send.ok, send.ok ? 200 : 502);
 }
