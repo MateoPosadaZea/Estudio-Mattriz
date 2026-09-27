@@ -4,6 +4,8 @@
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "mattriz-studio",
   "main": "worker/index.ts",
+  // Conserva las variables creadas en el panel de Cloudflare en cada deploy (los secretos ya se conservan).
+  "keep_vars": true,
   "compatibility_date": "2026-09-25",
   "assets": {
     "directory": "./dist",
