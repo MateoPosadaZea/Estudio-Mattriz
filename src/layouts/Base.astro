@@ -169,6 +169,7 @@ const jsonLd = {
     <ToTop />
 
     <script>
+      import '../scripts/smooth-scroll';
       import '../scripts/menu';
     </script>
   </body>
@@ -177,6 +178,24 @@ const jsonLd = {
 <style is:global>
   html {
     scroll-behavior: smooth;
+  }
+
+  /* Lenis (src/scripts/smooth-scroll.ts): mientras está activo, el suavizado es suyo, no del navegador. */
+  html.lenis,
+  html.lenis body {
+    height: auto;
+  }
+
+  .lenis.lenis-smooth {
+    scroll-behavior: auto !important;
+  }
+
+  .lenis.lenis-smooth [data-lenis-prevent] {
+    overscroll-behavior: contain;
+  }
+
+  .lenis.lenis-stopped {
+    overflow: clip;
   }
 
   .page {

@@ -72,8 +72,8 @@ const t = ui(langOf(Astro.url));
 </style>
 
 <script>
+  import { scrollToY } from '../scripts/smooth-scroll';
   const button = document.querySelector<HTMLElement>('[data-to-top]');
-  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (button) {
     const update = () => button.classList.toggle('is-visible', window.scrollY > window.innerHeight * 1.5);
     update();
@@ -83,7 +83,7 @@ const t = ui(langOf(Astro.url));
   document.querySelectorAll<HTMLAnchorElement>('a[href="#top"]').forEach((link) =>
     link.addEventListener('click', (event) => {
       event.preventDefault();
-      window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' });
+      scrollToY(0);
       history.replaceState(null, '', location.pathname + location.search);
     }),
   );

@@ -4,6 +4,7 @@
 
 import type { ScanResult, Hit } from '../lib/scan/analyze';
 import { plan as makePlan, type StepId } from '../lib/scan/recommend';
+import { scrollToEl, scrollToY } from './smooth-scroll';
 
 declare global {
   interface Window {
@@ -73,7 +74,7 @@ if (root && cfgEl) {
     progress.hidden = false;
     $('[data-scan-target]').textContent = url.replace(/^https?:\/\//, '').replace(/\/$/, '');
     progress.querySelectorAll('li').forEach((li) => li.classList.remove('is-done', 'is-active'));
-    progress.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
+    scrollToEl(progress);
 
     const request = fetch(`/api/scan?url=${encodeURIComponent(url)}`, { headers: { Accept: 'application/json' } })
       .then((r) => r.json().catch(() => ({ ok: false, error: 'network' })))
@@ -85,7 +86,7 @@ if (root && cfgEl) {
 
     if (!data.ok || !data.result) {
       showError(data.error || 'network');
-      form.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'center' });
+      scrollToEl(form, 'center');
       return;
     }
     render(data.result);
@@ -176,7 +177,7 @@ if (root && cfgEl) {
     $<HTMLInputElement>('[data-lead-report]').value = summary;
 
     results.hidden = false;
-    results.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
+    scrollToEl(results);
 
     // Animaciones: conteo del puntaje y barras.
     const start = performance.now();
@@ -200,7 +201,7 @@ if (root && cfgEl) {
   $('[data-scan-again]').addEventListener('click', () => {
     results.hidden = true;
     input.value = '';
-    window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' });
+    scrollToY(0);
     setTimeout(() => input.focus({ preventScroll: true }), reduce ? 0 : 500);
   });
 

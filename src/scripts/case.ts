@@ -7,6 +7,8 @@
 //
 // Con prefers-reduced-motion todo queda quieto y visible desde el principio.
 
+import { scrollToY } from './smooth-scroll';
+
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const reveals = document.querySelectorAll<HTMLElement>('[data-case-reveal]');
 
@@ -98,7 +100,7 @@ if (cue) {
     { passive: true },
   );
   cue.addEventListener('click', () => {
-    window.scrollBy({ top: window.innerHeight * 0.85, behavior: reduceMotion ? 'auto' : 'smooth' });
+    scrollToY(window.scrollY + window.innerHeight * 0.85);
   });
   arm(scrollY < 40 ? 1600 : 1200);
 }

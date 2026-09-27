@@ -4,6 +4,8 @@
 // escalonados; cierra al revés. La página queda inert y sin scroll mientras
 // el menú está abierto. Con prefers-reduced-motion todo es instantáneo.
 
+import { scrollToEl, stopScroll, startScroll } from './smooth-scroll';
+
 const page = document.querySelector<HTMLElement>('[data-page]');
 const panel = document.getElementById('mobile-menu');
 const openButton = document.querySelector<HTMLButtonElement>('[data-menu-open]');
@@ -31,6 +33,7 @@ if (page && panel && openButton && closeButton) {
     isOpen = true;
     panel.hidden = false;
     root.classList.add('menu-open');
+    stopScroll();
     openButton.setAttribute('aria-expanded', 'true');
     page.setAttribute('inert', '');
     requestAnimationFrame(() => {
@@ -50,6 +53,7 @@ if (page && panel && openButton && closeButton) {
     openButton.setAttribute('aria-expanded', 'false');
     afterTransition(() => {
       root.classList.remove('menu-open');
+      startScroll();
       panel.hidden = true;
       if (then) then();
       else openButton.focus({ preventScroll: true });
@@ -85,7 +89,7 @@ if (page && panel && openButton && closeButton) {
       event.preventDefault();
       close(() => {
         const target = document.querySelector(url.hash);
-        target?.scrollIntoView({ behavior: reduceMotion.matches ? 'auto' : 'smooth' });
+        if (target) scrollToEl(target);
         history.pushState(null, '', url.hash);
       });
     });
