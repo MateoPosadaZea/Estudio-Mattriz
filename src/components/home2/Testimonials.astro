@@ -1,8 +1,8 @@
 ---
 // v2: testimonios en carrusel. Cada diapositiva: la cita a un lado y, al otro, el proyecto del
 // cliente con sus imágenes pasando rápido y el enlace al caso. Los clientes sin caso en el sitio
-// muestran un video de la tienda en la época en que trabajamos con ellos (con la fecha, sin enlace),
-// o su logo si no hay material (Closet Up). Lógica en src/scripts/testimonials.ts.
+// muestran la tienda en la época en que trabajamos con ellos (con la fecha, sin enlace), o su logo
+// si no hay material (Closet Up). Lógica en src/scripts/testimonials.ts.
 // Accesible: botones anterior/siguiente, pausa, contador; con prefers-reduced-motion no avanza solo.
 // En /contact/ va sin título (bare), en una columna (imagen arriba, cita abajo).
 import { home } from '../../data/home';
@@ -25,33 +25,30 @@ const { LABELS } = home(lang);
 const TESTIMONIALS: Testimonial[] = [...lead, ...home(lang).TESTIMONIALS];
 
 const P = '/media/projects';
-// Proyecto de cada cliente (por empresa). Imágenes del caso, en el orden en que pasan.
-const PROJECTS: Record<string, { href?: string; images: string[]; video?: string; tag?: Record<'en' | 'es', string> }> = {
+const R = '/media/work/reel';
+// Proyecto de cada cliente (por empresa): una secuencia corta que alterna clips de 2 a 3 segundos
+// (.mp4) con capturas; testimonials.ts la recorre (imagen 1.1 s, video hasta que termina).
+// Los clientes sin caso muestran la tienda como era cuando trabajábamos con ellos, con la fecha.
+const PROJECTS: Record<string, { href?: string; reel: string[]; tag?: Record<'en' | 'es', string> }> = {
   'Spot On Mobile California': {
     href: '/project/spot-on-mobile-wash-detailing/',
-    // Navegación real del sitio (video cuadrado sobre el azul de la marca): no se recorta como las capturas 2:1.
-    video: '/media/work/spot-on-nav.mp4',
-    images: [`${P}/spot-on-case/spot-on-hero-1200.webp`, `${P}/spot-on-case/spot-on-booking-1200.webp`, `${P}/spot-on-case/spot-on-calendar-1200.webp`, `${P}/spot-on-case/spot-on-corporate-1200.webp`],
-  },
-  'Posada Cárcamo Abogados': {
-    href: '/project/posada-carcamo-abogados/',
-    video: '/media/work/posada-nav.mp4',
-    images: [`${P}/posada-carcamo-abogados/jmb7973-scaled-1-1200.webp`, `${P}/posada-carcamo-abogados/mockup-scaled-1200.webp`, `${P}/posada-carcamo-abogados/portrait3-scaled-1200.webp`, `${P}/posada-carcamo-abogados/mockup-2-recuperado35-1200.webp`],
+    reel: [`${R}/spot-on-a.mp4`, `${P}/spot-on-case/spot-on-booking-1200.webp`, `${P}/spot-on-case/spot-on-calendar-1200.webp`, `${R}/spot-on-b.mp4`, `${P}/spot-on-case/spot-on-corporate-1200.webp`],
   },
   'The Grid': {
     href: '/project/the-grid/',
-    images: [`${P}/the-grid/banner-1200.webp`, `${P}/the-grid/free-l-mockups-macbook-air2-1200.webp`, `${P}/the-grid/iphone-14-pro-psd-1200.webp`, `${P}/the-grid/captura-de-pantalla-2025-12-04-a-las-11-15-36-p-m-1200.webp`],
+    reel: [`${R}/the-grid-a.mp4`, `${P}/the-grid/banner-1200.webp`, `${P}/the-grid/free-l-mockups-macbook-air2-1200.webp`, `${R}/the-grid-b.mp4`, `${P}/the-grid/iphone-14-pro-psd-1200.webp`],
+  },
+  'My Doll Hair': {
+    reel: [`${R}/mydollhair-a.mp4`, `${R}/mydollhair-c.mp4`, `${R}/mydollhair-b.mp4`],
+    tag: { en: 'The store in 2024', es: 'La tienda en 2024' },
+  },
+  'Posada Cárcamo Abogados': {
+    href: '/project/posada-carcamo-abogados/',
+    reel: [`${R}/posada-a.mp4`, `${P}/posada-carcamo-abogados/pc-site-team-1200.webp`, `${P}/posada-carcamo-abogados/jmb7973-scaled-1-1200.webp`, `${R}/posada-b.mp4`, `${P}/posada-carcamo-abogados/pc-site-articles-1200.webp`],
   },
   'AGL Vans Tours': {
     href: '/project/aglvanstours/',
-    video: '/media/work/agl-nav.mp4',
-    images: [`${P}/aglvanstours/mockup-scaled-1200.webp`, `${P}/aglvanstours/grabacion-de-pantalla-2025-03-11-a-las-11-49-16-p-m-poster.webp`, `${P}/aglvanstours/bioseguridadagl-poster.webp`, `${P}/aglvanstours/mockupagl-1-poster.webp`],
-  },
-  // Sin caso: la tienda como era cuando trabajábamos con ellos (grabaciones de octubre de 2024).
-  'My Doll Hair': {
-    video: '/media/work/mydollhair-2024.mp4',
-    images: [],
-    tag: { en: 'The store in 2024', es: 'La tienda en 2024' },
+    reel: [`${R}/agl-a.mp4`, `${P}/aglvanstours/agl-site-services-1200.webp`, `${P}/aglvanstours/mockup-scaled-1200.webp`, `${R}/agl-b.mp4`, `${P}/aglvanstours/agl-site-pay-1200.webp`],
   },
 };
 
@@ -106,22 +103,29 @@ const pad = (n: number) => String(n).padStart(2, '0');
                 )}
               </div>
 
-              {project && !project.href ? (
-                <div class="h-t__media" aria-hidden="true">
-                  <video class="is-on" data-src={project.video} poster={project.video?.replace(/\.mp4$/, '-poster.webp')} muted loop playsinline preload="none" />
-                  {project.tag && <span class="h-t__media-tag">{project.tag[lang]}</span>}
-                </div>
-              ) : project?.href ? (
-                <a class="h-t__media" href={localize(project.href, lang)} tabindex="-1" aria-hidden="true" data-t-reel={project.video ? undefined : ''}>
-                  {project.video ? (
-                    <video class="is-on" data-src={project.video} poster={project.video.replace(/\.mp4$/, '-poster.webp')} muted loop playsinline preload="none" />
-                  ) : (
-                    project.images.map((src, k) => (
-                      <img class:list={{ 'is-on': k === 0 }} src={src} width="1200" height="900" alt="" loading="lazy" decoding="async" />
-                    ))
-                  )}
-                  <span class="h-t__media-tag">{LABELS.viewProject} ↗</span>
-                </a>
+              {project ? (
+                <Fragment>
+                  {(() => {
+                    const items = project.reel.map((src, k) =>
+                      src.endsWith('.mp4') ? (
+                        <video class:list={{ "is-on": k === 0 }} data-reel-src={src} poster={src.replace(/\.mp4$/, '-poster.webp')} muted playsinline preload="none" />
+                      ) : (
+                        <img class:list={{ 'is-on': k === 0 }} src={src} width="1200" height="750" alt="" loading="lazy" decoding="async" />
+                      ),
+                    );
+                    return project.href ? (
+                      <a class="h-t__media" href={localize(project.href, lang)} tabindex="-1" aria-hidden="true" data-t-reel>
+                        {items}
+                        <span class="h-t__media-tag">{LABELS.viewProject} ↗</span>
+                      </a>
+                    ) : (
+                      <div class="h-t__media" aria-hidden="true" data-t-reel>
+                        {items}
+                        {project.tag && <span class="h-t__media-tag">{project.tag[lang]}</span>}
+                      </div>
+                    );
+                  })()}
+                </Fragment>
               ) : (
                 <div class="h-t__media h-t__media--logo" aria-hidden="true">
                   <img src={q.avatar} width="300" height="300" alt="" loading="lazy" decoding="async" />
@@ -321,7 +325,8 @@ const pad = (n: number) => String(n).padStart(2, '0');
     clip-path: inset(0 0 0 0 round 14px);
   }
 
-  .h-t__media img {
+  .h-t__media img,
+  .h-t__media video {
     position: absolute;
     inset: 0;
     width: 100%;
@@ -334,17 +339,10 @@ const pad = (n: number) => String(n).padStart(2, '0');
       transform 2.4s ease-out;
   }
 
-  .h-t__media img.is-on {
+  .h-t__media img.is-on,
+  .h-t__media video.is-on {
     opacity: 1;
     transform: scale(1);
-  }
-
-  .h-t__media video {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
   }
 
   .h-t__media-tag {
@@ -455,6 +453,7 @@ const pad = (n: number) => String(n).padStart(2, '0');
     .h-t__text,
     .h-t__media,
     .h-t__media img,
+    .h-t__media video,
     .h-t__slide {
       transition: none;
     }

@@ -1,7 +1,7 @@
 // v2: carrusel de testimonios del home (src/components/home2/Testimonials.astro).
-// - Avanza solo cada 7 s (barra de progreso); se pausa al pasar el mouse, al enfocar dentro,
+// - Avanza solo cada 9 s (barra de progreso); se pausa al pasar el mouse, al enfocar dentro,
 //   con el botón de pausa, o si la sección no está en pantalla.
-// - En la diapositiva activa, las imágenes del proyecto pasan rápido (cada 1.1 s).
+// - En la diapositiva activa, el proyecto alterna clips cortos y capturas (imagen 1.1 s, clip hasta 4 s).
 // - Con prefers-reduced-motion no avanza ni pasa imágenes solo.
 
 const carousel = document.querySelector<HTMLElement>('[data-t-carousel]');
@@ -12,8 +12,9 @@ if (carousel) {
   const bar = carousel.querySelector<HTMLElement>('[data-t-progress]')!;
   const toggle = carousel.querySelector<HTMLButtonElement>('[data-t-toggle]')!;
   const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const SLIDE_MS = 7000;
+  const SLIDE_MS = 9000;
   const REEL_MS = 1100;
+  const CLIP_MAX_MS = 4000;
 
   let index = 0;
   let userPaused = reduce;
@@ -30,18 +31,44 @@ if (carousel) {
     toggle.setAttribute('aria-label', userPaused ? toggle.dataset.labelPlay! : toggle.dataset.labelPause!);
   };
 
-  // Imágenes del proyecto de la diapositiva activa.
+  // Secuencia del proyecto de la diapositiva activa: una imagen dura REEL_MS; un clip corre hasta
+  // terminar (2 a 3 s, con tope de CLIP_MAX_MS). Los clips se cargan solo cuando les toca.
+  let reelRun = 0;
   const reel = () => {
-    clearInterval(reelTimer);
-    const imgs = [...(slides[index].querySelectorAll<HTMLImageElement>('[data-t-reel] img') ?? [])];
-    if (imgs.length < 2 || reduce) return;
-    let k = imgs.findIndex((i) => i.classList.contains('is-on'));
-    reelTimer = window.setInterval(() => {
-      if (paused() && !hover) return;
-      imgs[k].classList.remove('is-on');
-      k = (k + 1) % imgs.length;
-      imgs[k].classList.add('is-on');
-    }, REEL_MS);
+    clearTimeout(reelTimer);
+    const run = ++reelRun;
+    const items = [...slides[index].querySelectorAll<HTMLElement>('[data-t-reel] > img, [data-t-reel] > video')];
+    slides.forEach((s, i) => i !== index && s.querySelectorAll('video').forEach((v) => v.pause()));
+    if (!items.length) return;
+    let k = Math.max(0, items.findIndex((el) => el.classList.contains('is-on')));
+    const show = () => {
+      if (run !== reelRun) return;
+      items.forEach((el, i) => el.classList.toggle('is-on', i === k));
+      const el = items[k];
+      const next = () => {
+        if (run !== reelRun) return;
+        if (paused() && !hover) return void (reelTimer = window.setTimeout(next, 300));
+        k = (k + 1) % items.length;
+        show();
+      };
+      if (el instanceof HTMLVideoElement) {
+        if (!el.src) el.src = el.dataset.reelSrc!;
+        el.currentTime = 0;
+        if (reduce) return;
+        const skip = () => { clearTimeout(reelTimer); reelTimer = window.setTimeout(next, REEL_MS); };
+        el.play().catch(skip);
+        el.onerror = skip;
+        el.onended = () => { clearTimeout(reelTimer); next(); };
+        reelTimer = window.setTimeout(next, CLIP_MAX_MS);
+      } else {
+        if (reduce) return;
+        reelTimer = window.setTimeout(next, REEL_MS);
+      }
+    };
+    show();
+    // Precarga el primer clip de la diapositiva siguiente.
+    const nextVid = slides[(index + 1) % slides.length].querySelector<HTMLVideoElement>('video[data-reel-src]');
+    if (nextVid && !nextVid.src) { nextVid.preload = 'auto'; nextVid.src = nextVid.dataset.reelSrc!; }
   };
 
   const go = (next: number) => {
