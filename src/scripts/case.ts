@@ -71,4 +71,36 @@ if (reduceMotion || !('IntersectionObserver' in window)) {
   update();
 }
 
+// [data-case-scroll]  Guía "Sigue bajando": aparece poco después de cargar y cada vez que el
+//                     lector se detiene unos segundos con mucho caso por delante; se esconde al
+//                     moverse y cerca del final. Al tocarla baja casi una pantalla.
+const cue = document.querySelector<HTMLElement>('[data-case-scroll]');
+if (cue) {
+  const end = document.querySelector<HTMLElement>('.case-cta, .case-next');
+  const room = () => {
+    const limit = end ? end.getBoundingClientRect().top : document.documentElement.scrollHeight - scrollY;
+    return limit > window.innerHeight * 1.6;
+  };
+  let idle = 0;
+  const show = () => {
+    if (room()) cue.classList.add('is-shown');
+  };
+  const arm = (ms: number) => {
+    clearTimeout(idle);
+    idle = window.setTimeout(show, ms);
+  };
+  window.addEventListener(
+    'scroll',
+    () => {
+      cue.classList.remove('is-shown');
+      arm(4500);
+    },
+    { passive: true },
+  );
+  cue.addEventListener('click', () => {
+    window.scrollBy({ top: window.innerHeight * 0.85, behavior: reduceMotion ? 'auto' : 'smooth' });
+  });
+  arm(scrollY < 40 ? 1600 : 4500);
+}
+
 export {};

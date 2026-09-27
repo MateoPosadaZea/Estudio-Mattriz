@@ -174,8 +174,8 @@ export const MANUAL_CASES: Record<string, (lang: Lang) => CaseDoc> = {
 export const isCase = (slug: string) => slug in MODEL_CASES || slug in MANUAL_CASES || slug in LEGACY_CASES;
 
 export const CASE_UI = {
-  en: { eyebrow: 'Case study', next: 'Next project', visit: 'Visit the live site' },
-  es: { eyebrow: 'Caso de estudio', next: 'Siguiente proyecto', visit: 'Visita el sitio en vivo' },
+  en: { eyebrow: 'Case study', next: 'Next project', visit: 'Visit the live site', scroll: 'Keep scrolling' },
+  es: { eyebrow: 'Caso de estudio', next: 'Siguiente proyecto', visit: 'Visita el sitio en vivo', scroll: 'Sigue bajando' },
 };
 
 // Título y descripción para buscadores de los casos que venían del vivo con metadatos pobres

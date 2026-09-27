@@ -150,10 +150,16 @@ const TEXT = {
       ],
     },
     next: {
-      label: 'What’s next',
-      title: 'A site that has just been born.',
-      html:
-        '<p>With under three months online and a practice that has just opened, it’s too early for traffic figures, and we won’t publish a number nobody measured. What comes next is ongoing work: monthly maintenance and a chatbot for patients.</p><p>It was a graduation gift. The scope wasn’t cut because of that.</p>',
+      label: 'First weeks on Google',
+      title: 'A site that has just been born, already found.',
+      intro: 'Google Search Console, August 18 to September 24, 2026. The practice had just opened and nothing was paid for: these are early numbers, not a trend.',
+      stats: [
+        { value: '801', label: 'Times it showed up on Google' },
+        { value: '48', label: 'Visits from search, no ads' },
+        { value: '3.1', label: 'Average position for “alergólogo bogotá”' },
+      ],
+      after:
+        '<p>89% of those appearances were in Colombia and 69% on a phone. The average position improved from 11.5 in the first half of the period to 7.8 in the second. What comes next is ongoing work: monthly maintenance and a chatbot for patients.</p><p>It was a graduation gift. The scope wasn’t cut because of that.</p>',
     },
     details: [
       { title: 'Stack', html: '<p>Astro 5, hand-written CSS with design tokens, vanilla JavaScript. No styling frameworks.</p>' },
@@ -232,10 +238,16 @@ const TEXT = {
       ],
     },
     next: {
-      label: 'Lo que sigue',
-      title: 'Un sitio recién nacido.',
-      html:
-        '<p>Con menos de tres meses en línea y un consultorio que acaba de abrir, todavía es pronto para cifras de tráfico, y no vamos a publicar un número que nadie midió. Lo que sigue es trabajo continuo: el mantenimiento mensual y un chatbot para pacientes.</p><p>Fue un regalo de grado. El alcance no se recortó por eso.</p>',
+      label: 'Primeras semanas en Google',
+      title: 'Un sitio recién nacido que ya encuentran.',
+      intro: 'Google Search Console, del 18 de agosto al 24 de septiembre de 2026. El consultorio acababa de abrir y no hubo nada pago: son cifras tempranas, no una tendencia.',
+      stats: [
+        { value: '801', label: 'Veces que apareció en Google' },
+        { value: '48', label: 'Visitas desde el buscador, sin anuncios' },
+        { value: '3,1', label: 'Posición promedio para “alergólogo bogotá”' },
+      ],
+      after:
+        '<p>El 89% de esas apariciones fueron en Colombia y el 69% en celular. La posición promedio pasó de 11,5 en la primera mitad del periodo a 7,8 en la segunda. Lo que sigue es trabajo continuo: el mantenimiento mensual y un chatbot para pacientes.</p><p>Fue un regalo de grado. El alcance no se recortó por eso.</p>',
     },
     details: [
       { title: 'Tecnología', html: '<p>Astro 5, CSS propio con design tokens, JavaScript vanilla. Sin frameworks de estilos.</p>' },
@@ -279,7 +291,7 @@ export function drDanielDeZubiria(lang: Lang): CaseDoc {
       { kind: 'list', ...t.infra },
       { kind: 'media', layout: 'pair', items: [SITE_DOCTOR(lang), HERO(lang)] },
       { kind: 'media', layout: 'inset', items: [LETTERHEAD(lang)] },
-      { kind: 'text', style: 'lead', ...t.next },
+      { kind: 'stats', ...t.next },
       { kind: 'details', cols: t.details },
       { kind: 'cta', ...t.cta, link: { href: 'mailto:contacto@mattriz.com', label: 'contacto@mattriz.com' } },
     ],
