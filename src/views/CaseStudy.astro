@@ -260,7 +260,7 @@ const sizes = { pair: '(max-width: 690px) 100vw, 50vw', trio: '(max-width: 690px
       next && (
         <a class="case-next" href={localize(next.href, lang)}>
           <span class="case-next__small">{t.next}</span>
-          <span class="case-next__name">{next.title}</span>
+          <span class="case-next__name" style={`--len:${next.title.length}`}>{next.title}</span>
           <span class="case-next__media" aria-hidden="true">
             {next.video ? (
               <video data-src={next.video} poster={next.video.replace(/\.mp4$/, '-poster.webp')} muted loop playsinline preload="none" />
@@ -1099,7 +1099,8 @@ const sizes = { pair: '(max-width: 690px) 100vw, 50vw', trio: '(max-width: 690px
     display: block;
     max-width: 12em;
     font-family: var(--font-display);
-    font-size: clamp(52px, 10vw, 180px);
+    /* Más contenido que el título del caso; los nombres largos bajan según su largo (--len). */
+    font-size: clamp(36px, min(6.5vw, calc(150vw / var(--len, 10))), 112px);
     line-height: 0.95;
     letter-spacing: -0.035em;
   }
