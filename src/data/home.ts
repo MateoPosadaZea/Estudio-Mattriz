@@ -66,30 +66,9 @@ const img = (name: string, sizes: [number, number][], alt: string) => ({
 
 const PHOTO_SIZES: [number, number][] = [[900, 604], [600, 403], [400, 269]];
 
-// Por fecha, más reciente primero. Let it Go salió de la lista (su página sigue en /project/let-it-go/;
+// Orden elegido por Mateo (Spot On primero). Let it Go salió de la lista (su página sigue en /project/let-it-go/;
 // irá a una sección de laboratorio o a una página con todos los proyectos, por decidir).
 export const PROJECTS: Project[] = [
-  {
-    title: 'Santo & Seña',
-    href: '/project/santo-y-sena/',
-    summary: { en: 'New site for a Bogotá bookshop and record store, built over its WooCommerce operation without migrating it. Launched in 12 days.', es: 'Sitio nuevo para una librería y tienda de discos de Bogotá, construido sobre su operación en WooCommerce sin migrarla. Lanzado en 12 días.' },
-    categories: ['UI/UX Design', 'Web Development', 'SEO Optimization'],
-    video: '/media/work/santo-y-sena-nav.mp4',
-  },
-  {
-    title: 'Dr. Daniel De Zubiría',
-    href: '/project/dr-daniel-de-zubiria/',
-    summary: { en: 'Brand identity, an 11-page site, online booking and the full infrastructure for an allergy practice in Bogotá.', es: 'Identidad de marca, sitio de 11 páginas, agenda en línea y toda la infraestructura de un consultorio de alergología en Bogotá.' },
-    categories: ['Brand Identity', 'UI/UX Design', 'Web Development', 'SEO Optimization'],
-    video: '/media/work/dezubiria-nav.mp4',
-  },
-  {
-    title: 'Civilus',
-    href: '/project/civilus/',
-    summary: { en: 'Brand identity and React website for an online structural-calculus platform.', es: 'Identidad de marca y sitio en React para una plataforma de cálculo estructural en línea.' },
-    categories: ['Brand Identity', 'UI/UX Design', 'Web Development'],
-    video: '/media/work/civilus-nav.mp4',
-  },
   {
     title: 'Spot On Mobile Wash & Detailing',
     href: '/project/spot-on-mobile-wash-detailing/',
@@ -98,11 +77,25 @@ export const PROJECTS: Project[] = [
     video: '/media/work/spot-on-nav.mp4',
   },
   {
+    title: 'Santo & Seña',
+    href: '/project/santo-y-sena/',
+    summary: { en: 'New site for a Bogotá bookshop and record store, built over its WooCommerce operation without migrating it. Launched in 12 days.', es: 'Sitio nuevo para una librería y tienda de discos de Bogotá, construido sobre su operación en WooCommerce sin migrarla. Lanzado en 12 días.' },
+    categories: ['UI/UX Design', 'Web Development', 'SEO Optimization'],
+    video: '/media/work/santo-y-sena-nav.mp4',
+  },
+  {
     title: 'The Grid',
     href: '/project/the-grid/',
     summary: { en: 'Brand identity and Webflow website for a construction digital-twin consultancy.', es: 'Identidad de marca y sitio en Webflow para una consultora de gemelos digitales en construcción.' },
     categories: ['Brand Identity', 'SEO Optimization', 'UI/UX Design', 'Web Development'],
     video: '/media/work/the-grid-nav.mp4',
+  },
+  {
+    title: 'Dr. Daniel De Zubiría',
+    href: '/project/dr-daniel-de-zubiria/',
+    summary: { en: 'Brand identity, an 11-page site, online booking and the full infrastructure for an allergy practice in Bogotá.', es: 'Identidad de marca, sitio de 11 páginas, agenda en línea y toda la infraestructura de un consultorio de alergología en Bogotá.' },
+    categories: ['Brand Identity', 'UI/UX Design', 'Web Development', 'SEO Optimization'],
+    video: '/media/work/dezubiria-nav.mp4',
   },
   {
     title: 'Posada Cárcamo Abogados',
@@ -124,6 +117,13 @@ export const PROJECTS: Project[] = [
     summary: { en: 'Logo and a direct-booking website for six boutique cabins in the Valle de Tenza, Boyacá.', es: 'Logotipo y sitio de reserva directa para seis cabañas boutique en el Valle de Tenza, Boyacá.' },
     categories: ['Brand Identity', 'UI/UX Design', 'Web Development', 'SEO Optimization'],
     video: '/media/work/luciana-nav.mp4',
+  },
+  {
+    title: 'Civilus',
+    href: '/project/civilus/',
+    summary: { en: 'Brand identity and React website for an online structural-calculus platform.', es: 'Identidad de marca y sitio en React para una plataforma de cálculo estructural en línea.' },
+    categories: ['Brand Identity', 'UI/UX Design', 'Web Development'],
+    video: '/media/work/civilus-nav.mp4',
   },
 ];
 
