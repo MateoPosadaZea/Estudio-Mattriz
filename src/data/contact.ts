@@ -48,7 +48,7 @@ export const CONTACT_ES = {
   CONTACT: {
     title: 'Hablemos de tu proyecto.',
     services: ['Desarrollo web', 'Sistemas de reservas y operación', 'Integración de pagos', 'Paneles de administración', 'Automatización y seguimiento', 'Otra cosa'],
-    budgets: ['No estoy seguro / quiero orientación', '$500–$1,000', '$1,000–$2,500', '$2,500–$5,000', '$5,000–$10,000', '$10,000+'],
+    budgets: ['Por definir / oriéntenme', '$500–$1,000', '$1,000–$2,500', '$2,500–$5,000', '$5,000–$10,000', '$10,000+'],
     submit: 'Pedir una propuesta',
     success: 'Gracias. Te respondemos en un día hábil.',
     error: 'Algo salió mal y tu mensaje no se envió. Escríbenos directamente a contacto@mattriz.com.',
