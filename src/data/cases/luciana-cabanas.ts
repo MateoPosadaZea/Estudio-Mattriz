@@ -24,7 +24,7 @@ const phone = (base: string, alt: L) => pic(`lc-m-${base}`, 900, 1948, [900, 600
 
 const NAV = (lang: Lang): CaseMedia => ({
   type: 'video',
-  local: { dir: DIR, base: 'lc-nav', width: 1440, height: 900 },
+  local: { dir: DIR, base: 'lc-nav', width: 1280, height: 800 },
   alt: {
     en: 'Browsing the site: the thatched cabin hero, the cabin gallery with its filters, guest reviews, the comparison table and the booking form',
     es: 'Recorrido por el sitio: la portada con la cabaña de paja, la galería de cabañas con sus filtros, las reseñas, la tabla comparativa y el formulario de reserva',
