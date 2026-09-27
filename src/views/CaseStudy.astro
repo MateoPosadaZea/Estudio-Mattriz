@@ -832,15 +832,28 @@ const sizes = { pair: '(max-width: 690px) 100vw, 50vw', trio: '(max-width: 690px
     color: var(--muted);
   }
 
+  /* Viñeta y texto en la misma línea (los textos del vivo vienen como <li><p>…</p></li>). */
+  .case-impact-list :global(li),
+  .case-details__body :global(li) {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+  }
+
+  .case-impact-list :global(li p),
+  .case-details__body :global(li p) {
+    margin: 0;
+  }
+
   .case-impact-list :global(li)::before,
   .case-details__body :global(li)::before {
     content: '';
-    display: inline-block;
+    flex: none;
     width: 5px;
     height: 5px;
-    margin: 0 10px 2px 0;
     border-radius: 50%;
     background: currentColor;
+    transform: translateY(-0.2em);
   }
 
   /* ---------- Galerías ---------- */
