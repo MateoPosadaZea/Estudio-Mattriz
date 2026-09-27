@@ -4,8 +4,8 @@ import type { Lang } from '../i18n';
 // Copy: brief sección 4 donde se solapa con el vivo (sin rayas largas); el resto, tal cual el vivo.
 
 export const HERO = {
-  title: 'Websites and systems, built in weeks.',
-  subtitle: 'We design, build and run the digital side of your business, so it works while you sleep.',
+  title: 'Systems that work while you sleep.',
+  subtitle: 'We design and build the websites, online stores, booking and payment systems your business runs on, and keep them running every month.',
   cta: { label: 'See how we work', href: '#how-we-work' },
 };
 
@@ -81,7 +81,7 @@ export const PROJECTS: Project[] = [
     href: '/project/dr-daniel-de-zubiria/',
     summary: { en: 'Brand identity, an 11-page site, online booking and the full infrastructure for an allergy practice in Bogotá.', es: 'Identidad de marca, sitio de 11 páginas, agenda en línea y toda la infraestructura de un consultorio de alergología en Bogotá.' },
     categories: ['Brand Identity', 'UI/UX Design', 'Web Development', 'SEO Optimization'],
-    image: img('dezubiria', [[900, 900], [600, 600], [400, 400]], 'Dr. Daniel De Zubiría, allergy specialist in Bogotá'),
+    video: '/media/work/dezubiria-nav.mp4',
   },
   {
     title: 'Civilus',
@@ -182,8 +182,8 @@ export const TESTIMONIALS = [
 
 export const HOME_ES = {
   HERO: {
-    title: 'Sitios web y sistemas en semanas, no en meses.',
-    subtitle: 'Diseñamos, construimos y mantenemos la parte digital de tu negocio, para que funcione mientras duermes.',
+    title: 'Sistemas que trabajan mientras duermes.',
+    subtitle: 'Diseñamos y construimos los sitios web, tiendas en línea y sistemas de reservas y pagos con los que funciona tu negocio, y los mantenemos funcionando mes a mes.',
     cta: { label: 'Mira cómo trabajamos', href: '#how-we-work' },
   },
   SERVICES: {
@@ -266,7 +266,7 @@ export const HOME_ES = {
 // Textos sueltos de las secciones de la home.
 export const HOME_LABELS = {
   en: {
-    metaTitle: 'Mattriz | Websites & systems, built in weeks',
+    metaTitle: 'Mattriz | Systems that work while you sleep',
     metaDescription: 'Mattriz designs, builds and runs websites, online stores and booking systems for businesses in the US and LATAM. Built in weeks, kept running every month.',
     selectedWork: 'Projects',
     filter: 'Filter',
@@ -282,7 +282,7 @@ export const HOME_LABELS = {
     ticker: 'Services',
   },
   es: {
-    metaTitle: 'Mattriz | Sitios web y sistemas en semanas',
+    metaTitle: 'Mattriz | Sistemas que trabajan mientras duermes',
     metaDescription: 'Mattriz diseña, construye y mantiene sitios web, tiendas en línea y sistemas de reservas para negocios en Estados Unidos y Latinoamérica. En semanas, no en meses.',
     selectedWork: 'Proyectos',
     filter: 'Filtrar',

@@ -6,7 +6,7 @@
 // Inglés: traducción de ese texto (pendiente de revisión).
 // Colores de la marca del doctor: navy #1B3A94, tinta #1B2C52, ámbar claro #E9A94E.
 // Imágenes: piezas del paquete de identidad (identidad-dezubiria.zip) → public/media/projects/dezubiria/.
-// Pendiente: capturas y video de la navegación del sitio (el entorno no tiene acceso al dominio).
+// Capturas y video de la navegación: drdanieldezubiria.com, 27 de septiembre de 2026 (sin agendar nada).
 
 import type { Lang } from '../../i18n';
 import type { CaseDoc, CaseMedia } from '../../components/case/doc';
@@ -57,6 +57,30 @@ const LETTERHEAD = pic('dz-membrete', 1200, 1552, [1200, 700], {
   en: 'One of three letterhead variants.',
   es: 'Una de las tres variantes de membrete.',
 });
+
+const site = (base: string, alt: L, caption?: L) => pic(`dz-site-${base}`, 1600, 1000, [1600, 1200, 700], alt, caption);
+const phone = (base: string, alt: L) => pic(`dz-m-${base}`, 900, 1948, [900, 600], alt);
+
+const NAV = (lang: Lang): CaseMedia => ({
+  type: 'video',
+  local: { dir: DIR, base: 'dz-nav', width: 1440, height: 900 },
+  alt: { en: 'Browsing the site: particle field, light and dark mode, conditions and the asthma page', es: 'Recorrido por el sitio: campo de partículas, modo claro y oscuro, condiciones y la página de asma' }[lang],
+  caption: { en: 'The real site: the hand-made particle field reacting to the cursor, light and dark mode, what we treat and a condition page.', es: 'El sitio real: el campo de partículas hecho a mano reaccionando al cursor, modo claro y oscuro, qué tratamos y una página de condición.' }[lang],
+});
+const SITE_HOME = site('home', { en: 'Home page in light mode', es: 'Portada en modo claro' });
+const SITE_DARK = site('home-dark', { en: 'Home page in dark mode, on the brand navy', es: 'Portada en modo oscuro, sobre el navy de la marca' }, {
+  en: 'Light and dark mode, with the same palette declared once as tokens.',
+  es: 'Modo claro y oscuro, con la misma paleta declarada una sola vez como tokens.',
+});
+const SITE_CONDITIONS = site('tratamos', { en: 'What we treat: eight conditions', es: 'Qué tratamos: ocho condiciones' });
+const SITE_ASTHMA = site('asma', { en: 'Asthma condition page with its own booking card', es: 'Página de asma con su propia tarjeta para agendar' }, {
+  en: 'Each condition page has its own call to action: book online first, WhatsApp second.',
+  es: 'Cada condición tiene su propio llamado: primero la agenda en línea, después WhatsApp.',
+});
+const SITE_DOCTOR = site('doctor', { en: 'The doctor’s profile and training', es: 'Perfil y formación del doctor' });
+const M_HOME = phone('home', { en: 'Home page on a phone', es: 'Portada en el celular' });
+const M_ASTHMA = phone('asma', { en: 'Asthma page on a phone', es: 'Página de asma en el celular' });
+const M_HIVES = phone('urticaria', { en: 'Hives and angioedema page on a phone', es: 'Página de urticaria y angioedema en el celular' });
 
 const TEXT = {
   en: {
@@ -239,17 +263,21 @@ export function drDanielDeZubiria(lang: Lang): CaseDoc {
     tagline: t.tagline,
     intro: t.intro,
     facts: t.facts,
-    hero: HERO(lang),
+    hero: NAV(lang),
     site: 'https://drdanieldezubiria.com/',
     blocks: [
       { kind: 'text', style: 'lead', ...t.brief },
+      { kind: 'media', layout: 'pair', items: [SITE_HOME(lang), SITE_DARK(lang)] },
       { kind: 'media', layout: 'pair', items: [CARD_FRONT(lang), CARD_BACK(lang)] },
       { kind: 'text', style: 'lead', ...t.identity },
       { kind: 'media', layout: 'wide', items: [LINKEDIN(lang)] },
       { kind: 'media', layout: 'pair', items: [WHATSAPP(lang), GOOGLE(lang)] },
       { kind: 'cards', ...t.site },
+      { kind: 'media', layout: 'pair', items: [SITE_CONDITIONS(lang), SITE_ASTHMA(lang)] },
+      { kind: 'media', layout: 'trio', items: [M_HOME(lang), M_ASTHMA(lang), M_HIVES(lang)] },
       { kind: 'list', ...t.scheduling },
       { kind: 'list', ...t.infra },
+      { kind: 'media', layout: 'pair', items: [SITE_DOCTOR(lang), HERO(lang)] },
       { kind: 'media', layout: 'inset', items: [LETTERHEAD(lang)] },
       { kind: 'text', style: 'lead', ...t.next },
       { kind: 'details', cols: t.details },
