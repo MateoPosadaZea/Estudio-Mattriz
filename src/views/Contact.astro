@@ -1,17 +1,14 @@
 ---
-// v2: contacto en negro. A la izquierda el formulario escrito como frase (el mismo del footer, que en
-// esta página no se repite); a la derecha los proyectos con sus testimonios, en carrusel (el de Diego,
-// de Spot On, va primero en home.ts). Envía a /api/contact (Worker con Resend + Turnstile + honeypot).
+// v2: contacto en negro. Solo el formulario escrito como frase (el mismo del footer, que en esta
+// página no se repite), con aire alrededor: los testimonios viven en el home y en cada caso.
+// Envía a /api/contact (Worker con Resend + Turnstile + honeypot).
 import Base from '../layouts/Base.astro';
 import FooterForm from '../components/FooterForm.astro';
-import Testimonials from '../components/home2/Testimonials.astro';
 import { contact } from '../data/contact';
-import { home } from '../data/home';
 import { langOf, localize, ui } from '../i18n';
 
 const lang = langOf(Astro.url);
 const { CONTACT } = contact(lang);
-const { LABELS } = home(lang);
 const t = ui(lang);
 
 ---
@@ -41,10 +38,6 @@ const t = ui(lang);
       <!-- Sin animación de entrada: es el contenido principal (LCP) y debe verse al instante. -->
       <FooterForm />
     </section>
-
-    <aside class="ct__proof case-in" style="--d:600ms">
-      <Testimonials bare label={LABELS.testimonials} />
-    </aside>
   </div>
 </Base>
 
@@ -55,22 +48,16 @@ const t = ui(lang);
 
 <style>
   .ct {
-    display: grid;
-    gap: clamp(56px, 8vw, 96px);
-    padding: calc(var(--header-top) + var(--header-height) + clamp(48px, 7vw, 112px)) var(--pad) clamp(80px, 10vw, 160px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 100vh;
+    min-height: 100svh;
+    padding: calc(var(--header-top) + var(--header-height) + clamp(64px, 9vw, 144px)) var(--pad) clamp(96px, 12vw, 192px);
   }
 
-  @media (min-width: 1100px) {
-    .ct {
-      grid-template-columns: 7fr 5fr;
-      gap: 6vw;
-      align-items: start;
-    }
-
-    .ct__proof {
-      position: sticky;
-      top: calc(var(--header-top) + var(--header-height) + 32px);
-    }
+  .ct__form {
+    max-width: 1180px;
   }
 
   .ct__status {
@@ -91,12 +78,4 @@ const t = ui(lang);
     letter-spacing: -0.03em;
   }
 
-  /* La frase del formulario, un poco más chica que en el footer para que quepa en la columna. */
-  .ct__form :global(.ff__sentence) {
-    font-size: clamp(22px, 2.5vw, 40px);
-  }
-
-  .ct__proof :global(.h-t__controls) {
-    margin-top: 24px;
-  }
 </style>
