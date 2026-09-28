@@ -86,7 +86,7 @@ const TEXT = {
   en: {
     metaTitle: 'Dr. Daniel De Zubiría Case Study | Mattriz Studio',
     description:
-      'Brand identity, an 11-page website, online scheduling and the full infrastructure for an allergy practice in Bogotá: domain, hosting, analytics, SEO and Google Business.',
+      'Brand identity, an 11-page site, online scheduling and full infrastructure for an allergy practice in Bogotá: domain, hosting, analytics, SEO, Google Business.',
     tagline: 'An allergy practice in Bogotá: a complete brand, 11 pages and everything behind them.',
     intro:
       'A full identity, an 11-page website and the whole infrastructure behind it (domain, hosting, analytics, SEO, Google Business) for a pediatric and adult allergy practice. Four fronts from one place, nothing subcontracted, built between July and September 2026.',
@@ -174,7 +174,7 @@ const TEXT = {
   es: {
     metaTitle: 'Caso de estudio Dr. Daniel De Zubiría | Mattriz Studio',
     description:
-      'Identidad de marca, sitio web de 11 páginas, agendamiento en línea y toda la infraestructura de un consultorio de alergología en Bogotá: dominio, hosting, analítica, SEO y Google Business.',
+      'Marca, sitio de 11 páginas, agenda en línea e infraestructura para un consultorio de alergología en Bogotá: dominio, hosting, analítica, SEO y Google Business.',
     tagline: 'Un consultorio de alergología en Bogotá: marca completa, 11 páginas y todo lo que hay detrás.',
     intro:
       'Identidad completa, un sitio de 11 páginas y toda la infraestructura detrás (dominio, hosting, analítica, SEO, Google Business) para un consultorio de alergología pediátrica y de adultos. Cuatro frentes desde el mismo lugar, nada subcontratado, entre julio y septiembre de 2026.',

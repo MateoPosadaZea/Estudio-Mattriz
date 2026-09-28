@@ -72,7 +72,7 @@ const M_BOOKING = phone('reserva', { en: 'Booking form on a phone', es: 'Formula
 
 const TEXT = {
   en: {
-    metaTitle: 'Luciana Cabañas Boutique Case Study: Logo & Website | Mattriz Studio',
+    metaTitle: 'Luciana Cabañas Case Study: Logo & Website | Mattriz Studio',
     description:
       'Logo, UI/UX design and website for Luciana Cabañas Boutique, six cabins in Guateque, Boyacá: cabin pages, comparison table, guest reviews and direct booking.',
     tagline: 'Six cabins in the Valle de Tenza, a new logo and a website that takes bookings directly.',
@@ -136,9 +136,9 @@ const TEXT = {
     },
   },
   es: {
-    metaTitle: 'Caso de estudio Luciana Cabañas Boutique: logotipo y sitio web | Mattriz Studio',
+    metaTitle: 'Luciana Cabañas: logotipo y sitio web | Mattriz Studio',
     description:
-      'Logotipo, diseño UI/UX y sitio web para Luciana Cabañas Boutique, seis cabañas en Guateque, Boyacá: páginas por cabaña, tabla comparativa, reseñas y reserva directa.',
+      'Logotipo, diseño UI/UX y sitio web para Luciana Cabañas Boutique, seis cabañas en Guateque, Boyacá: páginas por cabaña, reseñas y reserva directa.',
     tagline: 'Seis cabañas en el Valle de Tenza, un logotipo nuevo y un sitio que recibe reservas directas.',
     intro:
       'Identidad de marca, diseño UI/UX y desarrollo del sitio web de Luciana Cabañas Boutique, en Guateque, Boyacá. De la historia del lugar a un sitio donde los huéspedes comparan cabañas, leen reseñas reales y reservan sin intermediarios.',

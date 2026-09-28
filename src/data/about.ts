@@ -75,7 +75,7 @@ export const ABOUT_LABELS = {
   },
   es: {
     metaTitle: 'Sobre Mattriz | Estudio de diseño y desarrollo en Bogotá',
-    metaDescription: 'Mattriz es un estudio de diseño y desarrollo en Bogotá. Construimos sitios web, tiendas en línea y sistemas de reservas con desarrollo asistido por IA y criterio humano.',
+    metaDescription: 'Mattriz es un estudio de diseño y desarrollo en Bogotá. Hacemos sitios web, tiendas en línea y sistemas de reservas con IA y criterio humano.',
     breadcrumb: 'Nosotros',
     services: 'Nuestros servicios',
     on: 'en',

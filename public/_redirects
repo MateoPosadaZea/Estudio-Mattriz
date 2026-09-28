@@ -38,3 +38,32 @@
 /page-sitemap.xml /sitemap-index.xml 301
 /portfolio-sitemap.xml /sitemap-index.xml 301
 /project-type-sitemap.xml /sitemap-index.xml 301
+
+/sitemap.rss /sitemap-index.xml 301
+
+# Páginas sin barra final → con barra, permanente (Cloudflare por defecto usa 307).
+/about /about/ 301
+/contact /contact/ 301
+/scan /scan/ 301
+/project/aglvanstours /project/aglvanstours/ 301
+/project/civilus /project/civilus/ 301
+/project/dr-daniel-de-zubiria /project/dr-daniel-de-zubiria/ 301
+/project/let-it-go /project/let-it-go/ 301
+/project/luciana-cabanas /project/luciana-cabanas/ 301
+/project/posada-carcamo-abogados /project/posada-carcamo-abogados/ 301
+/project/santo-y-sena /project/santo-y-sena/ 301
+/project/spot-on-mobile-wash-detailing /project/spot-on-mobile-wash-detailing/ 301
+/project/the-grid /project/the-grid/ 301
+/es /es/ 301
+/es/about /es/about/ 301
+/es/contact /es/contact/ 301
+/es/scan /es/scan/ 301
+/es/project/aglvanstours /es/project/aglvanstours/ 301
+/es/project/civilus /es/project/civilus/ 301
+/es/project/dr-daniel-de-zubiria /es/project/dr-daniel-de-zubiria/ 301
+/es/project/let-it-go /es/project/let-it-go/ 301
+/es/project/luciana-cabanas /es/project/luciana-cabanas/ 301
+/es/project/posada-carcamo-abogados /es/project/posada-carcamo-abogados/ 301
+/es/project/santo-y-sena /es/project/santo-y-sena/ 301
+/es/project/spot-on-mobile-wash-detailing /es/project/spot-on-mobile-wash-detailing/ 301
+/es/project/the-grid /es/project/the-grid/ 301

@@ -56,9 +56,9 @@ const M_APP = phone('app', { en: 'Biosecurity and the app on a phone', es: 'Bios
 
 const TEXT = {
   en: {
-    metaTitle: 'AGL Vans Case Study: Transport Company Website | Mattriz Studio',
+    metaTitle: 'AGL Vans Case Study: Transport Website | Mattriz Studio',
     description:
-      'UI/UX design and website for AGL Vans, a special transport company in Bogotá serving hotels, companies and tourists: services, drivers, payments and booking requests.',
+      'UI/UX design and website for AGL Vans, a special transport company in Bogotá for hotels, companies and tourists: services, drivers, payments and bookings.',
     tagline: 'Special transport for hotels, companies and tourists, and a website that turns visits into quotes.',
     intro:
       'UI/UX design and development of the website for AGL Vans, a family transport company in Bogotá that moves hotel guests, company staff and travellers.',
@@ -112,9 +112,9 @@ const TEXT = {
     },
   },
   es: {
-    metaTitle: 'Caso de estudio AGL Vans: sitio web de transporte | Mattriz Studio',
+    metaTitle: 'AGL Vans: sitio web de transporte | Mattriz Studio',
     description:
-      'Diseño UI/UX y sitio web para AGL Vans, empresa de transporte especial en Bogotá para hoteles, empresas y turismo: servicios, conductores, pagos y solicitudes de reserva.',
+      'Diseño UI/UX y sitio web para AGL Vans, transporte especial en Bogotá para hoteles, empresas y turismo: servicios, conductores, pagos y reservas.',
     tagline: 'Transporte especial para hoteles, empresas y turistas, y un sitio que convierte visitas en cotizaciones.',
     intro:
       'Diseño UI/UX y desarrollo del sitio web de AGL Vans, una empresa familiar de transporte en Bogotá que mueve huéspedes de hotel, empleados de empresas y viajeros.',

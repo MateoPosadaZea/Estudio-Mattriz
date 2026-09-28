@@ -42,7 +42,7 @@ export type ModelCase = {
 export const MODEL_CASES: Record<string, ModelCase> = {
   'spot-on-mobile-wash-detailing': {
     en: { title: 'Spot On Mobile Detailing Case Study | Mattriz Studio', description: 'How a mobile detailer went from booking by DM to a system that books, charges and follows up on its own, plus a corporate fleet program on autopilot.' },
-    es: { title: 'Caso de estudio Spot On Mobile Detailing | Mattriz Studio', description: 'Cómo un detailer a domicilio pasó de agendar por mensajes a un sistema que reserva, cobra y hace seguimiento solo, con un programa corporativo en piloto automático.' },
+    es: { title: 'Caso de estudio Spot On Mobile Detailing | Mattriz Studio', description: 'Cómo un detailer a domicilio pasó de agendar por mensajes a un sistema que reserva, cobra y hace seguimiento solo, con un programa corporativo automático.' },
   },
   'the-grid': {
     en: { title: 'The Grid Digital Twin Branding & Webflow | Mattriz Studio', description: 'Brand identity, visual system and Webflow website for The Grid, a digital twin & BIM consultancy. See how we built a bold, flexible design language.' },
@@ -156,12 +156,12 @@ export const CASE_UI = {
 // ("Nombre - Mattriz Studio"). Solo datos que ya estaban en el proyecto.
 export const CASE_SEO: Record<string, Record<Lang, { title: string; description: string }>> = {
   'let-it-go': {
-    en: { title: 'Let it Go: App Brand & UI Design | Mattriz Studio', description: 'Let It Go, a mobile app that aims to change consumer habits so people swap and sell the clothes and books they no longer use. Brand and UI design by Mattriz Studio.' },
+    en: { title: 'Let it Go: App Brand & UI Design | Mattriz Studio', description: 'Let It Go, a mobile app that aims to change consumer habits: swap and sell the clothes and books you no longer use. Brand and UI design by Mattriz Studio.' },
     es: { title: 'Let it Go: marca y diseño de app | Mattriz Studio', description: 'Let It Go, aplicación móvil para intercambiar y vender la ropa y los libros que ya no se usan. Marca y diseño de interfaz de Mattriz Studio.' },
   },
   'spot-on-mobile-wash-detailing': {
     en: { title: 'Spot On Mobile Detailing Case Study | Mattriz Studio', description: 'How a mobile detailer went from booking by DM to a system that books, charges and follows up on its own, plus a corporate fleet program on autopilot.' },
-    es: { title: 'Caso de estudio Spot On Mobile Detailing | Mattriz Studio', description: 'Cómo un detailer a domicilio pasó de agendar por mensajes a un sistema que reserva, cobra y hace seguimiento solo, con un programa corporativo en piloto automático.' },
+    es: { title: 'Caso de estudio Spot On Mobile Detailing | Mattriz Studio', description: 'Cómo un detailer a domicilio pasó de agendar por mensajes a un sistema que reserva, cobra y hace seguimiento solo, con un programa corporativo automático.' },
   },
   'the-grid': {
     en: { title: 'The Grid Digital Twin Branding & Webflow | Mattriz Studio', description: 'Brand identity, visual system and Webflow website for The Grid, a digital twin & BIM consultancy. See how we built a bold, flexible design language.' },

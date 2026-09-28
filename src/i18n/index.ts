@@ -19,7 +19,11 @@ export const localize = (path: string, lang: Lang) => {
 };
 
 /** La misma página en el otro idioma (o en el pedido). */
-export const alternate = (url: URL, lang: Lang) => localize(basePath(url.pathname), lang);
+// En la página 404 el cambio de idioma lleva al inicio del otro idioma (no hay /es/404/ navegable).
+export const alternate = (url: URL, lang: Lang) => {
+  const base = basePath(url.pathname);
+  return localize(/^\/404(\.html|\/)?$/.test(base) ? '/' : base, lang);
+};
 
 /** Elige el valor del idioma: pick(lang, { en: 'Home', es: 'Inicio' }) */
 export const pick = <T>(lang: Lang, values: Record<Lang, T>): T => values[lang];

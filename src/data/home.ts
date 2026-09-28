@@ -283,7 +283,7 @@ export const HOME_LABELS = {
   },
   es: {
     metaTitle: 'Mattriz | Sistemas que trabajan mientras duermes',
-    metaDescription: 'Mattriz diseña, construye y mantiene sitios web, tiendas en línea y sistemas de reservas para negocios en Estados Unidos y Latinoamérica. En semanas, no en meses.',
+    metaDescription: 'Mattriz diseña, construye y mantiene sitios web, tiendas en línea y sistemas de reservas para negocios en EE. UU. y Latinoamérica. En semanas, no en meses.',
     selectedWork: 'Proyectos',
     filter: 'Filtrar',
     all: 'Todos',

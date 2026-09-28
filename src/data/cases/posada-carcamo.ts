@@ -64,7 +64,7 @@ const M_CONTACT = phone('contact', { en: 'Contact on a phone', es: 'Contacto en 
 
 const TEXT = {
   en: {
-    metaTitle: 'Posada Cárcamo Abogados Case Study: Law Firm Website | Mattriz Studio',
+    metaTitle: 'Posada Cárcamo Abogados: Law Firm Website | Mattriz Studio',
     description:
       'UI/UX design and website for Posada Cárcamo Abogados, a Colombian law firm: eleven practice areas, lawyer profiles, articles on transport law and contact.',
     tagline: 'A law firm with eleven practice areas, and a website that puts its people first.',
@@ -121,9 +121,9 @@ const TEXT = {
     },
   },
   es: {
-    metaTitle: 'Caso de estudio Posada Cárcamo Abogados: sitio web | Mattriz Studio',
+    metaTitle: 'Posada Cárcamo Abogados: sitio web | Mattriz Studio',
     description:
-      'Diseño UI/UX y sitio web para Posada Cárcamo Abogados, firma de abogados en Colombia: once áreas de práctica, perfiles de abogados, artículos de derecho de transporte y contacto.',
+      'Diseño UI/UX y sitio web para Posada Cárcamo Abogados, firma de abogados en Colombia: once áreas de práctica, perfiles, artículos y contacto.',
     tagline: 'Una firma de abogados con once áreas de práctica, y un sitio que pone primero a su gente.',
     intro:
       'Diseño UI/UX y desarrollo del sitio web de Posada Cárcamo Abogados, una firma cuya especialización más importante, en sus propias palabras, es el servicio al cliente y la innovación.',

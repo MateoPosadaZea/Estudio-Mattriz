@@ -102,7 +102,7 @@ const EN: Copy = {
 };
 
 const ES: Copy = {
-  metaTitle: 'Escáner gratis de sitios web para negocios de servicios | Mattriz',
+  metaTitle: 'Escáner gratis de sitios web para negocios | Mattriz',
   metaDescription: 'Pega tu sitio web y mira en qué está hecho, cómo reservan y pagan tus clientes, qué le falta y qué construiríamos, paso a paso.',
   eyebrow: 'Herramienta gratis',
   title: 'Escanea tu sitio.',

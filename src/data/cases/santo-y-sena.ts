@@ -86,7 +86,7 @@ const TEXT = {
   en: {
     metaTitle: 'Santo & Seña Case Study | Mattriz Studio',
     description:
-      'A new site for a Bogotá bookshop and record store with three locations and 3,538 products, launched in twelve days without touching the operation behind the till.',
+      'A new site for a Bogotá bookshop and record store with three locations and 3,538 products, launched in twelve days without disrupting the store.',
     tagline: 'A bookshop with three locations, 3,538 products and a till that couldn’t stop.',
     intro:
       'Twelve days from the first line of code to launch, without migrating the operation. Santo & Seña got a site that looks like the house, while WordPress kept running the shop, the invoicing and the point of sale.',
@@ -174,7 +174,7 @@ const TEXT = {
   es: {
     metaTitle: 'Caso de estudio Santo & Seña | Mattriz Studio',
     description:
-      'Un sitio nuevo para una librería y tienda de discos de Bogotá con tres sedes y 3.538 productos, lanzado en doce días sin tocar la operación que sostiene la caja.',
+      'Un sitio nuevo para una librería y tienda de discos de Bogotá con tres sedes y 3.538 productos, lanzado en doce días sin tocar la operación de la caja.',
     tagline: 'Una librería con tres sedes, 3.538 productos y una caja que no podía parar.',
     intro:
       'Doce días de la primera línea al lanzamiento, sin migrar la operación. Santo & Seña estrenó un sitio que se parece a la casa, mientras WordPress siguió moviendo la tienda, la facturación y el punto de venta.',
