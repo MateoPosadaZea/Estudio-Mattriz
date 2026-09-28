@@ -484,3 +484,21 @@ html.js [data-parallax] > * {
     scroll-behavior: auto !important;
   }
 }
+
+/* Videos decorativos (portadas, casos, testimonios): nunca muestran los controles nativos de iOS
+   ni reciben toques; el toque va al enlace que los contiene. */
+video[data-src],
+video[data-reel-src],
+video[data-preview-src] {
+  pointer-events: none;
+}
+
+video[data-src]::-webkit-media-controls,
+video[data-reel-src]::-webkit-media-controls,
+video[data-preview-src]::-webkit-media-controls,
+video[data-src]::-webkit-media-controls-start-playback-button,
+video[data-reel-src]::-webkit-media-controls-start-playback-button,
+video[data-preview-src]::-webkit-media-controls-start-playback-button {
+  display: none !important;
+  -webkit-appearance: none;
+}

@@ -9,7 +9,15 @@ const videos = document.querySelectorAll<HTMLVideoElement>('video[data-src]');
 const narrow = matchMedia('(max-width: 999px)').matches;
 const source = (v: HTMLVideoElement) => (narrow && v.dataset.srcMobile) || v.dataset.src!;
 
-videos.forEach((v) => v.addEventListener('playing', () => v.classList.add('is-playing'), { once: true }));
+// Videos decorativos: sin controles nativos, sin AirPlay ni imagen en imagen. La clase is-playing
+// solo está mientras reproduce: si el sistema lo detiene (p. ej. modo de bajo consumo en iPhone),
+// vuelve a verse la portada fija en vez del reproductor con el botón de play.
+videos.forEach((v) => {
+  v.disablePictureInPicture = true;
+  v.setAttribute('disableremoteplayback', '');
+  v.addEventListener('playing', () => v.classList.add('is-playing'));
+  v.addEventListener('pause', () => v.classList.remove('is-playing'));
+});
 
 if ('IntersectionObserver' in window) {
   // Carga: una pantalla antes de que aparezca.
