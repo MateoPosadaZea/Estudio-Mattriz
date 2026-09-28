@@ -1,8 +1,8 @@
 // v2: vista previa de "Selected Work" que sigue al cursor.
 // Solo con mouse y a partir de 1000px; con prefers-reduced-motion no se usa.
 // Las portadas se precargan cuando la lista se acerca a la pantalla, así aparecen al instante; el
-// video de cada pieza se carga al pasar por su fila y se pausa al salir. Al hacer scroll se esconde y, cuando el
-// scroll para, vuelve a mostrar la pieza de la fila que quedó bajo el cursor.
+// video de cada pieza se carga al pasar por su fila y se pausa al salir. Durante el scroll sigue
+// mostrando, al instante, la pieza de la fila que queda bajo el cursor.
 
 const root = document.querySelector<HTMLElement>('[data-work]');
 const preview = root?.querySelector<HTMLElement>('[data-work-preview]');
@@ -98,18 +98,31 @@ if (root && preview && !reduce) {
   });
   root.querySelector('ol')?.addEventListener('pointerenter', () => (hovering = true));
 
-  // Al hacer scroll se esconde; cuando para, se muestra la fila que quedó bajo el cursor.
-  let scrollTimer = 0;
+  // Al hacer scroll no se esconde ni espera a que pare (con el scroll suave eso tardaba cerca de un
+  // segundo): en cada cuadro muestra la fila que queda bajo el cursor, o se esconde si no hay.
+  // La posición del mouse se sigue en toda la página: si la lista pasa por debajo de un cursor
+  // quieto, el navegador no siempre avisa que entró.
+  let mx = -1;
+  let my = -1;
+  window.addEventListener('pointermove', (e) => e.pointerType === 'mouse' && ((mx = e.clientX), (my = e.clientY)), { passive: true });
+  let scrollRaf = 0;
   window.addEventListener(
     'scroll',
     () => {
-      hide();
-      clearTimeout(scrollTimer);
-      scrollTimer = window.setTimeout(() => {
-        if (!hovering || !canHover.matches) return;
-        const row = document.elementFromPoint(x, y)?.closest<HTMLElement>('[data-work-row]');
-        if (row && root.contains(row)) show(Number(row.dataset.workRow));
-      }, 120);
+      if (scrollRaf || mx < 0 || !canHover.matches) return;
+      scrollRaf = requestAnimationFrame(() => {
+        scrollRaf = 0;
+        const row = document.elementFromPoint(mx, my)?.closest<HTMLElement>('[data-work-row]');
+        if (row && root.contains(row)) {
+          if (!preview.classList.contains('is-on')) {
+            cx = x = mx;
+            cy = y = my;
+            tick();
+          }
+          hovering = true;
+          show(Number(row.dataset.workRow));
+        } else if (preview.classList.contains('is-on')) hide();
+      });
     },
     { passive: true },
   );
