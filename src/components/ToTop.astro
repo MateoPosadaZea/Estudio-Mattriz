@@ -75,17 +75,18 @@ const t = ui(langOf(Astro.url));
   import { scrollToY } from '../scripts/smooth-scroll';
   const button = document.querySelector<HTMLElement>('[data-to-top]');
   if (button) {
-    // Se esconde si queda encima de controles marcados con data-to-top-avoid (p. ej. las flechas
-    // de los testimonios en móvil).
-    const avoid = [...document.querySelectorAll<HTMLElement>('[data-to-top-avoid]')];
-    const overlaps = () => {
-      const b = button.getBoundingClientRect();
-      return avoid.some((el) => {
-        const r = el.getBoundingClientRect();
-        return r.bottom > b.top - 12 && r.top < b.bottom + 12 && r.right > b.left - 12 && r.left < b.right + 12;
+    // Se esconde mientras haya en pantalla controles marcados con data-to-top-avoid (p. ej. las
+    // flechas de los testimonios), para que nunca quede encima de ellos.
+    const inView = new Set<Element>();
+    const update = () =>
+      button.classList.toggle('is-visible', window.scrollY > window.innerHeight * 1.5 && inView.size === 0);
+    if ('IntersectionObserver' in window) {
+      const io = new IntersectionObserver((entries) => {
+        for (const e of entries) e.isIntersecting ? inView.add(e.target) : inView.delete(e.target);
+        update();
       });
-    };
-    const update = () => button.classList.toggle('is-visible', window.scrollY > window.innerHeight * 1.5 && !overlaps());
+      document.querySelectorAll('[data-to-top-avoid]').forEach((el) => io.observe(el));
+    }
     update();
     window.addEventListener('scroll', update, { passive: true });
   }
