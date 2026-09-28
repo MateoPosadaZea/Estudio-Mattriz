@@ -25,7 +25,7 @@ const turnstileKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
       {CONTACT.budgets.map((b) => <option value={b}>{b}</option>)}
     </select>{f.parts.idea}
     <input class="ff__blank" name="details" type="text" placeholder={f.ph.idea} aria-label={f.a11y.idea} maxlength="500" required data-grow />{f.parts.reach}
-    <input class="ff__blank" name="email" type="email" placeholder={f.ph.email} aria-label={f.a11y.email} autocomplete="email" spellcheck="false" maxlength="120" required data-grow />.
+    <span class="ff__end"><input class="ff__blank" name="email" type="email" placeholder={f.ph.email} aria-label={f.a11y.email} autocomplete="email" spellcheck="false" maxlength="120" required data-grow />.</span>
   </p>
 
   <input type="hidden" name="lang" value={lang} />
@@ -80,6 +80,15 @@ const turnstileKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
     vertical-align: baseline;
     outline: none;
     transition: border-color 0.3s;
+  }
+
+  /* El punto final va pegado al correo: nunca queda solo en una línea. */
+  .ff__end {
+    white-space: nowrap;
+  }
+
+  .ff__end .ff__blank {
+    max-width: calc(100% - 0.5em);
   }
 
   .ff__blank::placeholder {
