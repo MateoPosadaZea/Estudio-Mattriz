@@ -14,20 +14,25 @@ const source = (v: HTMLVideoElement) => (narrow && v.dataset.srcMobile) || v.dat
 // vuelve a verse la portada fija en vez del reproductor con el botón de play.
 // Además nunca se abren en pantalla completa: si el sistema lo intenta (iOS/Android al tocar o al
 // reproducir), se cierra de inmediato. Aplica también a los clips de testimonios y a la vista previa.
+// Solo atributos y eventos (nada de asignar propiedades que un navegador pueda tener de solo
+// lectura) y dentro de try/catch: si algo falla en un navegador, los videos y el resto de los
+// scripts de la página siguen funcionando.
 type WebkitVideo = HTMLVideoElement & { webkitExitFullscreen?: () => void };
 const exitFullscreen = (v: WebkitVideo) => {
-  if (document.fullscreenElement === v) document.exitFullscreen().catch(() => {});
-  v.webkitExitFullscreen?.();
+  try {
+    if (document.fullscreenElement === v) document.exitFullscreen().catch(() => {});
+    if (typeof v.webkitExitFullscreen === 'function') v.webkitExitFullscreen();
+  } catch {}
 };
 document.querySelectorAll<WebkitVideo>('video[data-src], video[data-reel-src], video[data-preview-src]').forEach((v) => {
-  v.disablePictureInPicture = true;
-  v.setAttribute('disableremoteplayback', '');
-  v.setAttribute('webkit-playsinline', '');
-  v.setAttribute('x-webkit-airplay', 'deny');
-  v.setAttribute('controlslist', 'nofullscreen nodownload noremoteplayback noplaybackrate');
-  v.controls = false;
-  v.addEventListener('webkitbeginfullscreen', () => exitFullscreen(v));
-  v.addEventListener('fullscreenchange', () => exitFullscreen(v));
+  try {
+    v.setAttribute('disablepictureinpicture', '');
+    v.setAttribute('disableremoteplayback', '');
+    v.setAttribute('webkit-playsinline', '');
+    v.setAttribute('controlslist', 'nofullscreen nodownload noremoteplayback noplaybackrate');
+    v.addEventListener('webkitbeginfullscreen', () => exitFullscreen(v));
+    v.addEventListener('fullscreenchange', () => exitFullscreen(v));
+  } catch {}
 });
 videos.forEach((v) => {
   v.addEventListener('playing', () => v.classList.add('is-playing'));
