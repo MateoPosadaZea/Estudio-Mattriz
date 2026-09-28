@@ -1083,10 +1083,10 @@ const sizes = { pair: '(max-width: 690px) 100vw, 50vw', trio: '(max-width: 690px
     display: block;
     overflow: hidden;
     padding: clamp(60px, 10vw, 160px) var(--pad);
-    /* Negro en todos los casos: blanco y negro son los colores principales. */
-    background: #0a0a0a;
-    color: var(--color-white);
-    border-top: 1px solid rgba(255, 255, 255, 0.12);
+    /* Mismo fondo y texto que el resto del caso de estudio. */
+    background: var(--page-bg);
+    color: var(--fg);
+    border-top: 1px solid var(--line);
   }
 
   .case-next__small {
@@ -1095,7 +1095,7 @@ const sizes = { pair: '(max-width: 690px) 100vw, 50vw', trio: '(max-width: 690px
     display: block;
     margin-bottom: 16px;
     font-size: 15px;
-    color: rgba(255, 255, 255, 0.6);
+    color: var(--muted);
   }
 
   .case-next__name {

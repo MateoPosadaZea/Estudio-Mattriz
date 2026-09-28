@@ -1,7 +1,7 @@
 // v2: vista previa de "Selected Work" que sigue al cursor.
 // Solo con mouse y a partir de 1000px; con prefers-reduced-motion no se usa.
-// Las piezas se precargan cuando la lista se acerca a la pantalla (los videos con su póster),
-// así aparecen al instante; el video se pausa al salir. Al hacer scroll se esconde y, cuando el
+// Las portadas se precargan cuando la lista se acerca a la pantalla, así aparecen al instante; el
+// video de cada pieza se carga al pasar por su fila y se pausa al salir. Al hacer scroll se esconde y, cuando el
 // scroll para, vuelve a mostrar la pieza de la fila que quedó bajo el cursor.
 
 const root = document.querySelector<HTMLElement>('[data-work]');
@@ -19,12 +19,22 @@ if (root && preview && !reduce) {
   let raf = 0;
   let hovering = false;
 
-  const load = (item: HTMLElement) => {
+  // Portada: el póster de un video (o la imagen) se pide antes, para que aparezca al instante.
+  const arm = (item: HTMLElement) => {
     const media = item.firstElementChild as HTMLImageElement | HTMLVideoElement | null;
-    if (media && !media.getAttribute('src')) {
-      if (media.dataset.poster) media.setAttribute('poster', media.dataset.poster);
-      media.setAttribute('src', media.dataset.previewSrc!);
-    }
+    if (!media) return media;
+    if (media instanceof HTMLVideoElement) {
+      if (media.dataset.poster && !media.getAttribute('poster')) {
+        media.setAttribute('poster', media.dataset.poster);
+        new Image().src = media.dataset.poster;
+      }
+    } else if (!media.getAttribute('src')) media.setAttribute('src', media.dataset.previewSrc!);
+    return media;
+  };
+  // El video en sí se carga solo cuando se pasa por su fila (no los ocho a la vez).
+  const load = (item: HTMLElement) => {
+    const media = arm(item);
+    if (media && !media.getAttribute('src')) media.setAttribute('src', media.dataset.previewSrc!);
     return media;
   };
 
@@ -104,8 +114,9 @@ if (root && preview && !reduce) {
     { passive: true },
   );
 
-  // Precarga: cuando la lista está cerca de la pantalla, se cargan todas las piezas.
-  const preload = () => items.forEach(load);
+  // Precarga: cuando la lista está cerca de la pantalla, se piden las portadas (livianas); cada
+  // video se carga al pasar por su fila y mientras tanto se ve su portada.
+  const preload = () => items.forEach(arm);
   if ('IntersectionObserver' in window && canHover.matches) {
     const io = new IntersectionObserver(
       ([e]) => {

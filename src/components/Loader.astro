@@ -1,20 +1,17 @@
 ---
-// v2: pantalla de carga. En blanco: "hola" en varios idiomas en Noe Display (cierra en el idioma
-// del sitio, con el punto en verde), línea negra de progreso y salida con cortina hacia arriba.
-// Solo en la primera página de la sesión.
+// v2: pantalla de carga, lo más simple posible: en blanco, solo "hola" en varios idiomas, pequeño y
+// centrado en Noe Display (cierra en el idioma del sitio, con el punto en verde), y salida con
+// cortina hacia arriba. Solo en la primera página de la sesión.
 //
 // Nunca bloquea el sitio:
 // - La clase html.is-loading la pone un script en <head> (Base.astro); sin JS no hay loader.
 // - Con prefers-reduced-motion no aparece.
-// - Si el script de abajo falla, el de <head> quita la clase a los 4 s.
+// - Si el script de abajo falla, el de <head> quita la clase a los 5 s.
 // Mientras está, las entradas del hero quedan en pausa y arrancan cuando sube la cortina.
 ---
 
 <div class="loader" aria-hidden="true" data-loader>
-  <img class="loader__logo" src="/images/logo-mattriz.png" width="433" height="354" alt="" />
-  <p class="loader__name">Mattriz Studio</p>
   <p class="loader__word" data-loader-word></p>
-  <span class="loader__bar"><span data-loader-bar></span></span>
 </div>
 
 <script>
@@ -51,52 +48,22 @@
     transition: transform 0.9s cubic-bezier(0.7, 0, 0.2, 1);
   }
 
-  .loader__logo {
-    position: absolute;
-    top: 32px;
-    left: clamp(20px, 5vw, 80px);
-    width: auto;
-    height: 30px;
-  }
-
-  .loader__name {
-    position: absolute;
-    top: 36px;
-    right: clamp(20px, 5vw, 80px);
-    font-size: 15px;
-    color: rgba(10, 10, 10, 0.6);
-  }
-
+  /* Solo el saludo, pequeño y centrado. */
   .loader__word {
     position: absolute;
-    left: clamp(20px, 5vw, 80px);
-    bottom: clamp(40px, 6vw, 88px);
+    inset: 0;
+    display: grid;
+    place-items: center;
+    margin: 0;
     font-family: var(--font-display);
-    font-size: clamp(80px, 19vw, 300px);
-    line-height: 0.8;
-    letter-spacing: -0.04em;
+    font-size: clamp(22px, 2.2vw, 32px);
+    line-height: 1;
+    letter-spacing: -0.01em;
     white-space: nowrap;
   }
 
   .loader__word i {
     font-style: normal;
     color: var(--color-brand-green);
-  }
-
-  .loader__bar {
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    height: 3px;
-    background: rgba(10, 10, 10, 0.12);
-  }
-
-  .loader__bar span {
-    display: block;
-    height: 100%;
-    background: var(--color-black);
-    transform: scaleX(0);
-    transform-origin: left;
   }
 </style>
