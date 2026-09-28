@@ -151,6 +151,11 @@ export const TESTIMONIALS = [
     company: 'The Grid',
   },
   {
+    quote: 'An excellent designer and professional. Highly recommended!',
+    name: 'Sebastián',
+    company: 'Luciana Cabañas Boutique',
+  },
+  {
     quote: 'We highlight their development, launch, and ongoing maintenance of our online store. They work fast and are always ready to help. I’d recommend them without hesitation.',
     name: 'José Suárez',
     company: 'My Doll Hair',
@@ -235,6 +240,11 @@ export const HOME_ES = {
       quote: 'Excelente estudio, totalmente recomendado. Moderno y utiliza tecnología de vanguardia, mezclando conocimiento técnico con herramientas avanzadas de AI.',
       name: 'Héctor Posada',
       company: 'The Grid',
+    },
+    {
+      quote: 'Excelente diseñador y profesional. ¡Muy recomendado!',
+      name: 'Sebastián',
+      company: 'Luciana Cabañas Boutique',
     },
     {
       quote: 'Destacamos el desarrollo, el lanzamiento y el mantenimiento continuo de nuestra tienda en línea. Trabajan rápido y siempre están dispuestos a ayudar. Los recomendaría sin dudarlo.',

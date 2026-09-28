@@ -5,7 +5,7 @@
 // vivo, lucianacabanasboutique.com, recorrido el 27 de septiembre de 2026 (sin llenar ni enviar nada).
 // Lo que se describe del sitio es lo que se ve en él. Sin métricas: no hay datos medidos del sitio.
 // Las 430+ evaluaciones de Airbnb son del negocio (lo dice su propio sitio), no un resultado nuestro.
-// Sin año: el caso anterior no lo tenía. Testimonio pendiente (Mateo lo consigue). Sin rayas largas.
+// Sin año: el caso anterior no lo tenía. Testimonio: reseña de Google de Sebastián (5 estrellas), tal como la escribió. Sin rayas largas.
 // Colores: café oscuro #2a1006 y el tono arena #bf9571 del logotipo, como en la versión anterior.
 
 import type { Lang } from '../../i18n';
@@ -125,6 +125,10 @@ const TEXT = {
       html:
         '<p>Researching the story behind the place, building a database, sketching, designing the logo, buying the hosting and domain, UI/UX design of the website, building it in HTML and CSS, setting up email, user testing, SEO and launch.</p>',
     },
+    quote: {
+      label: 'Testimonial',
+      html: '<p>“An excellent designer and professional. Highly recommended!”</p><p>Sebastián, Luciana Cabañas Boutique</p>',
+    },
     details: [
       { title: 'Services', html: '<p>Brand identity, UI/UX design, web development, SEO.</p>' },
       { title: 'Deliverables', html: '<p>Logo, website with six cabin pages, booking form, blog, email and domain.</p>' },
@@ -189,6 +193,10 @@ const TEXT = {
       html:
         '<p>Investigar y conocer la historia detrás del lugar, generar la base de datos, bocetar, diseñar el logotipo, adquirir el hosting y el dominio, diseñar la experiencia y la interfaz del sitio, construirlo en HTML y CSS, configurar el correo, hacer pruebas con usuarios, optimizar el SEO y lanzar.</p>',
     },
+    quote: {
+      label: 'Testimonio',
+      html: '<p>“Excelente diseñador y profesional. ¡Muy recomendado!”</p><p>Sebastián, Luciana Cabañas Boutique</p>',
+    },
     details: [
       { title: 'Servicios', html: '<p>Identidad de marca, diseño UI/UX, desarrollo web, SEO.</p>' },
       { title: 'Entregables', html: '<p>Logotipo, sitio web con seis páginas de cabañas, formulario de reserva, blog, correo y dominio.</p>' },
@@ -227,6 +235,7 @@ export function lucianaCabanas(lang: Lang): CaseDoc {
       { kind: 'list', ...t.booking },
       { kind: 'media', layout: 'pair', items: [SITE_TABLE(lang), SITE_BOOKING(lang)] },
       { kind: 'media', layout: 'trio', items: [M_HERO(lang), M_TABLE(lang), M_BOOKING(lang)] },
+      { kind: 'text', style: 'statement', ...t.quote },
       { kind: 'text', style: 'lead', ...t.process },
       { kind: 'media', layout: 'pair', items: [MOSAIC(lang), SITE_FOOTER(lang)] },
       { kind: 'details', cols: t.details },
