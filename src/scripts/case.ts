@@ -1,8 +1,9 @@
 // v2: movimiento de los casos de estudio.
 //
 // [data-case-reveal]  Sube y aparece cuando entra en pantalla (una vez).
-// [data-case-grow]    El video principal crece hasta el ancho completo mientras sube a la
-//                     parte de arriba de la ventana y pierde las esquinas redondeadas.
+// [data-case-grow]    El video principal empieza más pequeño y crece hasta su tamaño (el ancho
+//                     del contenido, con tope, para que no se pixele) mientras sube a la
+//                     parte de arriba de la ventana. Siempre con esquinas redondeadas.
 // [data-parallax]     La imagen se desplaza dentro de su marco, más lento que el scroll.
 //
 // Con prefers-reduced-motion todo queda quieto y visible desde el principio.
@@ -45,12 +46,11 @@ if (reduceMotion || !('IntersectionObserver' in window)) {
     if (grow && growInner) {
       const r = grow.getBoundingClientRect();
       const p = Math.min(Math.max(1 - r.top / vh, 0), 1);
-      // Escala necesaria para que la caja interior llegue a los bordes de la ventana.
-      const max = document.documentElement.clientWidth / growInner.offsetWidth - 1;
-      growInner.style.setProperty('--grow', p.toFixed(4));
-      growInner.style.setProperty('--grow-max', max.toFixed(4));
-      // El pie de foto baja lo que crece la imagen (el scale no mueve el flujo).
-      grow.style.setProperty('--grow-shift', `${(growInner.offsetHeight * max * p).toFixed(1)}px`);
+      // Empieza al 72 % y crece hasta su tamaño (el ancho del contenido, con tope), nunca más.
+      const scale = 0.72 + 0.28 * p;
+      growInner.style.setProperty('--grow-scale', scale.toFixed(4));
+      // El pie de foto sube lo que le falta a la imagen para su tamaño (el scale no mueve el flujo).
+      grow.style.setProperty('--grow-shift', `${(growInner.offsetHeight * (scale - 1)).toFixed(1)}px`);
     }
 
     for (const f of visible) {
