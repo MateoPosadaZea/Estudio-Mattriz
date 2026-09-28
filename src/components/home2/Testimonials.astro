@@ -138,7 +138,7 @@ const pad = (n: number) => String(n).padStart(2, '0');
       }
     </div>
 
-    <div class="h-t__controls">
+    <div class="h-t__controls" data-to-top-avoid>
       <p class="h-t__count" aria-hidden="true"><span data-t-current>01</span> / {pad(total)}</p>
       <span class="h-t__progress" aria-hidden="true"><span data-t-progress></span></span>
       <button type="button" class="h-t__btn" data-t-toggle aria-label={LABELS.pause} data-label-pause={LABELS.pause} data-label-play={LABELS.play}>
@@ -224,6 +224,13 @@ const pad = (n: number) => String(n).padStart(2, '0');
       height: auto;
       aspect-ratio: 16 / 10;
       max-height: 60vh;
+    }
+
+    /* Clips completos (sin recorte ni zoom): son grabaciones de pantalla entre 16:9 y 16:10.
+       Las capturas ya vienen en 16:10 y las fotos de mockups pueden recortarse. */
+    .h-t__slide .h-t__media video {
+      object-fit: contain;
+      transform: none;
     }
 
     .h-t__slide .h-t__text {

@@ -75,7 +75,17 @@ const t = ui(langOf(Astro.url));
   import { scrollToY } from '../scripts/smooth-scroll';
   const button = document.querySelector<HTMLElement>('[data-to-top]');
   if (button) {
-    const update = () => button.classList.toggle('is-visible', window.scrollY > window.innerHeight * 1.5);
+    // Se esconde si queda encima de controles marcados con data-to-top-avoid (p. ej. las flechas
+    // de los testimonios en móvil).
+    const avoid = [...document.querySelectorAll<HTMLElement>('[data-to-top-avoid]')];
+    const overlaps = () => {
+      const b = button.getBoundingClientRect();
+      return avoid.some((el) => {
+        const r = el.getBoundingClientRect();
+        return r.bottom > b.top - 12 && r.top < b.bottom + 12 && r.right > b.left - 12 && r.left < b.right + 12;
+      });
+    };
+    const update = () => button.classList.toggle('is-visible', window.scrollY > window.innerHeight * 1.5 && !overlaps());
     update();
     window.addEventListener('scroll', update, { passive: true });
   }
