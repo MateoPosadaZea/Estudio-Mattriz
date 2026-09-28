@@ -5,7 +5,7 @@ const t = ui(langOf(Astro.url));
 
 <!-- Botón "volver arriba": aparece después de bajar un poco más de una pantalla y medio, en celular y
      escritorio. Sin fondo: flecha grande con borde fino; mix-blend-mode: difference lo mantiene visible
-     sobre fondos claros, oscuros y fotos. El enlace "Volver arriba" del footer usa el mismo código. -->
+     sobre fondos claros, oscuros y fotos. -->
 <a class="to-top" href="#top" aria-label={t.toTop} data-to-top>
   <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true">
     <path d="M12 19V5M5.5 11.5 12 5l6.5 6.5" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"></path>
@@ -90,7 +90,7 @@ const t = ui(langOf(Astro.url));
     update();
     window.addEventListener('scroll', update, { passive: true });
   }
-  // El botón flotante y el "Volver arriba" del footer: subir con JS (no depende del ancla #top).
+  // El botón flotante (y cualquier enlace a #top): subir con JS (no depende del ancla #top).
   document.querySelectorAll<HTMLAnchorElement>('a[href="#top"]').forEach((link) =>
     link.addEventListener('click', (event) => {
       event.preventDefault();

@@ -57,11 +57,6 @@ const year = new Date().getFullYear();
         <p class="ft__label">{t.localTime}</p>
         <p class="ft__clock"><span data-clock>GMT−5</span></p>
       </div>
-      <div class="ft__col ft__col--end">
-        <a class="ft__top" href="#top">
-          {t.toTop} <span aria-hidden="true">↑</span>
-        </a>
-      </div>
     </div>
 
     <div class="ft__bottom">
@@ -139,16 +134,6 @@ const year = new Date().getFullYear();
     }
   }
 
-  .ft__col--end {
-    text-align: right;
-  }
-
-  @media (max-width: 999px) {
-    .ft__col--end {
-      grid-column: 1 / -1;
-      text-align: left;
-    }
-  }
 
   .ft__label {
     margin-bottom: 8px;
@@ -196,15 +181,6 @@ const year = new Date().getFullYear();
 
   .ft__clock {
     font-variant-numeric: tabular-nums;
-  }
-
-  .ft__top span {
-    display: inline-block;
-    transition: transform 0.4s cubic-bezier(0.2, 1, 0.3, 1);
-  }
-
-  .ft__top:hover span {
-    transform: translateY(-4px);
   }
 
   .ft__bottom {
