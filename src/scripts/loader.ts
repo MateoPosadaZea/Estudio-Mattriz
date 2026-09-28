@@ -1,7 +1,7 @@
 // v2: loader (src/components/Loader.astro). Mientras la página carga pasan saludos en varios
-// idiomas (uno cada ~170 ms, en bucle si hace falta) y la barra avanza hasta 90 %. Cuando la
-// página está lista (fuentes + evento load, mínimo 1.1 s) cierra con el saludo en el idioma del
-// sitio y el punto en verde, la barra llega a 100 y sube la cortina. Tope: 3 s.
+// idiomas (uno cada ~240 ms, en bucle si hace falta) y la barra avanza hasta 90 %. Cuando la
+// página está lista (fuentes + evento load, mínimo 2.1 s) cierra con el saludo en el idioma del
+// sitio y el punto en verde, la barra llega a 100 y sube la cortina. Tope: 4 s.
 
 const root = document.documentElement;
 const loader = document.querySelector<HTMLElement>('[data-loader]');
@@ -12,9 +12,9 @@ if (loader && word && bar && root.classList.contains('is-loading')) {
   const es = root.lang.startsWith('es');
   const FINAL = es ? 'Hola' : 'Hello';
   const WORDS = [es ? 'Hello' : 'Hola', 'Bonjour', 'Olá', 'Ciao', 'Hallo', 'Hej'];
-  const MIN = 1100;
-  const MAX = 3000;
-  const STEP = 170;
+  const MIN = 2100;
+  const MAX = 4000;
+  const STEP = 240;
   const start = performance.now();
   let ready = false;
   let i = 0;

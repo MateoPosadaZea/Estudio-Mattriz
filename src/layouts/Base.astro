@@ -97,11 +97,11 @@ const jsonLd = {
         if (localStorage.getItem('mz-theme') === 'light') document.documentElement.dataset.theme = 'light';
       } catch (e) {}
       // Loader (src/components/Loader.astro): solo en la primera página de la sesión y sin
-      // movimiento reducido. Seguro: a los 4 s se quita pase lo que pase.
+      // movimiento reducido. Seguro: a los 5 s se quita pase lo que pase.
       try {
         if (!sessionStorage.getItem('mz-loaded') && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
           document.documentElement.classList.add('is-loading');
-          setTimeout(function () { document.documentElement.classList.remove('is-loading'); }, 4000);
+          setTimeout(function () { document.documentElement.classList.remove('is-loading'); }, 5000);
         }
       } catch (e) {}
     </script>
