@@ -1,7 +1,7 @@
 ---
 // v2: pantalla de carga, lo más simple posible: en blanco, solo "hola" en varios idiomas, pequeño y
-// centrado en Noe Display (cierra en el idioma del sitio, con el punto en verde), y salida con
-// cortina hacia arriba. Solo en la primera página de la sesión.
+// centrado en Noe Display (cierra en "Mattriz.", con el punto en verde); la palabra se desvanece
+// y el fondo sube como un telón. Solo en la primera página de la sesión.
 //
 // Nunca bloquea el sitio:
 // - La clase html.is-loading la pone un script en <head> (Base.astro); sin JS no hay loader.
@@ -25,6 +25,7 @@
 
   html.is-loading .loader,
   .loader.is-leaving {
+    clip-path: inset(0 0 0 0);
     position: fixed;
     inset: 0;
     z-index: 1000;
@@ -43,9 +44,16 @@
     animation-play-state: paused;
   }
 
+  /* Salida: la palabra se desvanece y el fondo sube como un telón (el borde de abajo va hacia
+     arriba); nada se desplaza. */
   .loader.is-leaving {
-    transform: translateY(-100%);
-    transition: transform 0.9s cubic-bezier(0.7, 0, 0.2, 1);
+    clip-path: inset(0 0 100% 0);
+    transition: clip-path 0.9s cubic-bezier(0.7, 0, 0.2, 1) 0.2s;
+  }
+
+  .loader.is-leaving .loader__word {
+    opacity: 0;
+    transition: opacity 0.25s ease;
   }
 
   /* Solo el saludo, pequeño y centrado. */

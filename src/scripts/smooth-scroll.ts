@@ -17,8 +17,8 @@ const headerOffset = () => {
 export const lenis: Lenis | null =
   fine && !reduce
     ? new Lenis({
-        lerp: 0.085,
-        wheelMultiplier: 1,
+        lerp: 0.1,
+        wheelMultiplier: 1.1,
         smoothWheel: true,
         autoRaf: true,
         // Las anclas ya respetan scroll-margin-top (Base.astro), así que no se suma otro desplazamiento.
