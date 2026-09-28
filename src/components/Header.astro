@@ -35,8 +35,8 @@ const other = lang === 'es' ? 'en' : 'es';
       </ul>
     </nav>
 
-    <!-- Cambio de idioma: la misma página en el otro idioma. Solo el ícono de mundo; en móvil
-         también queda a la vista en la barra, junto al menú. -->
+    <!-- Cambio de idioma: la misma página en el otro idioma. Solo el ícono de mundo (en móvil
+         el idioma está dentro del menú). -->
     <a class="lang-switch" href={alternate(Astro.url, other)} hreflang={other} lang={other} aria-label={t.switchLabel} title={t.switchLabel}>
       <GlobeIcon size={20} />
     </a>
@@ -194,12 +194,9 @@ const other = lang === 'es' ? 'en' : 'es';
       display: none;
     }
 
-    /* v2: en móvil el header lleva logo, idioma (mundo) y menú; "Let's talk" y el tema
-       están dentro del menú. */
-    .lang-switch {
-      padding: 10px 12px;
-    }
-
+    /* v2: en móvil el header solo lleva logo y menú; idioma, tema y "Let's talk" están dentro
+       del menú. */
+    .lang-switch,
     .talk-button,
     .site-header__inner :global(.site-header__theme) {
       display: none;
@@ -212,6 +209,7 @@ const other = lang === 'es' ? 'en' : 'es';
       flex: none;
       width: 40px;
       height: 40px;
+      margin-left: auto;
       background: var(--color-ink);
       border-radius: 100px;
       box-shadow: 0 10px 25px rgba(0, 0, 0, 0.13);

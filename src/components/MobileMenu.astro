@@ -1,7 +1,6 @@
 ---
 import { NAV, SITE } from '../data/site';
 import ThemeToggle from './ThemeToggle.astro';
-import GlobeIcon from './GlobeIcon.astro';
 import { langOf, localize, alternate, ui } from '../i18n';
 
 const path = Astro.url.pathname;
@@ -48,7 +47,7 @@ const other = lang === 'es' ? 'en' : 'es';
   <div class="mobile-menu__foot">
     <div class="mobile-menu__prefs">
       <a class="mobile-menu__lang mask" href={alternate(Astro.url, other)} hreflang={other} lang={other}>
-        <span><GlobeIcon size={16} /> {t.switchLong}</span>
+        <span>{t.switchLong}</span>
       </a>
       <ThemeToggle class="mobile-menu__theme" />
     </div>
@@ -141,12 +140,6 @@ const other = lang === 'es' ? 'en' : 'es';
 
   .mobile-menu__talk .mask > span {
     --i: 5;
-  }
-
-  .mobile-menu__lang.mask > span {
-    display: inline-flex;
-    align-items: center;
-    gap: 7px;
   }
 
   .mobile-menu__prefs {
