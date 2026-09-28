@@ -11,7 +11,7 @@ const other = lang === 'es' ? 'en' : 'es';
 
 <!--
   v2: menú mobile a pantalla completa en el verde de marca.
-  Barra superior (logo + "Close"). Abajo, los links numerados en Maison
+  Barra superior (logo + "Close"). Abajo, los links en Maison
   Neue con una línea entre cada uno (referencia: studiors.be); entran escalonados con máscara.
   Idioma y correo en las esquinas de abajo.
   La lógica está en src/scripts/menu.ts.
@@ -32,7 +32,6 @@ const other = lang === 'es' ? 'en' : 'es';
         NAV.map((item, i) => (
           <li style={`--i:${i}`}>
             <a href={localize(item.href, lang)} aria-current={localize(item.href, lang) === path ? 'page' : undefined}>
-              <span class="mobile-menu__num" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
               <span class="mask"><span>{t.nav[i]}</span></span>
             </a>
           </li>
@@ -107,7 +106,7 @@ const other = lang === 'es' ? 'en' : 'es';
     line-height: 1.2;
   }
 
-  /* Links abajo, numerados y separados por líneas. */
+  /* Links abajo, separados por líneas. */
   .mobile-menu__nav {
     display: flex;
     flex: 1;
@@ -128,28 +127,8 @@ const other = lang === 'es' ? 'en' : 'es';
   }
 
   .mobile-menu__list a {
-    display: flex;
-    align-items: flex-end;
-    gap: 16px;
+    display: block;
     padding: clamp(10px, 1.8vh, 16px) 0;
-  }
-
-  .mobile-menu__num {
-    width: 22px;
-    flex: none;
-    padding-bottom: 0.3em;
-    font-family: var(--font-sans);
-    font-size: 12px;
-    letter-spacing: 0;
-    color: rgba(255, 255, 255, 0.45);
-    font-variant-numeric: tabular-nums;
-    opacity: 0;
-    transition: opacity 0.3s;
-  }
-
-  .mobile-menu.is-open .mobile-menu__num {
-    opacity: 1;
-    transition: opacity 0.6s calc(0.4s + var(--i, 0) * 0.06s);
   }
 
   .mobile-menu__talk {
