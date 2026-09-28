@@ -11,8 +11,9 @@ const other = lang === 'es' ? 'en' : 'es';
 
 <!--
   v2: menú mobile a pantalla completa en el verde de marca.
-  Barra superior (logo + "Close"), links grandes en Noe Display que entran
-  escalonados con máscara, e idioma y correo en las esquinas de abajo.
+  Barra superior (logo + "Close"). Abajo, la etiqueta "(Menu)" y los links numerados en Maison
+  Neue con una línea entre cada uno (referencia: studiors.be); entran escalonados con máscara.
+  Idioma y correo en las esquinas de abajo.
   La lógica está en src/scripts/menu.ts.
 -->
 <div class="mobile-menu" id="mobile-menu" data-lenis-prevent role="dialog" aria-modal="true" aria-label={t.menu} tabindex="-1" hidden>
@@ -25,17 +26,21 @@ const other = lang === 'es' ? 'en' : 'es';
     </button>
   </div>
 
-  <ul class="mobile-menu__list">
-    {
-      NAV.map((item, i) => (
-        <li style={`--i:${i}`}>
-          <a class="mask" href={localize(item.href, lang)} aria-current={localize(item.href, lang) === path ? 'page' : undefined}>
-            <span>{t.nav[i]}</span>
-          </a>
-        </li>
-      ))
-    }
-  </ul>
+  <nav class="mobile-menu__nav" aria-label={t.menu}>
+    <p class="mobile-menu__label mask"><span>({t.menu})</span></p>
+    <ul class="mobile-menu__list">
+      {
+        NAV.map((item, i) => (
+          <li style={`--i:${i}`}>
+            <a href={localize(item.href, lang)} aria-current={localize(item.href, lang) === path ? 'page' : undefined}>
+              <span class="mobile-menu__num" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
+              <span class="mask"><span>{t.nav[i]}</span></span>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </nav>
 
   <a class="mobile-menu__talk" href="#contact-form">
     <span class="mask"><span>{t.talk} ↓</span></span>
@@ -103,16 +108,55 @@ const other = lang === 'es' ? 'en' : 'es';
     line-height: 1.2;
   }
 
-  .mobile-menu__list {
+  /* Links abajo, numerados y separados por líneas. */
+  .mobile-menu__nav {
     display: flex;
     flex: 1;
     flex-direction: column;
-    justify-content: center;
-    gap: 0.08em;
-    font-family: var(--font-display);
-    font-size: clamp(52px, 15vw, 96px);
-    line-height: 1.02;
+    justify-content: flex-end;
+    padding-bottom: clamp(28px, 5vh, 48px);
+  }
+
+  .mobile-menu__label {
+    margin-bottom: clamp(10px, 2vh, 18px);
+    font-size: 16px;
+    color: rgba(255, 255, 255, 0.5);
+  }
+
+  .mobile-menu__list {
+    font-family: var(--font-sans-book);
+    font-size: clamp(30px, 8.6vw, 48px);
+    line-height: 1.05;
     letter-spacing: -0.02em;
+  }
+
+  .mobile-menu__list li {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.16);
+  }
+
+  .mobile-menu__list a {
+    display: flex;
+    align-items: flex-end;
+    gap: 16px;
+    padding: clamp(10px, 1.8vh, 16px) 0;
+  }
+
+  .mobile-menu__num {
+    width: 22px;
+    flex: none;
+    padding-bottom: 0.3em;
+    font-family: var(--font-sans);
+    font-size: 12px;
+    letter-spacing: 0;
+    color: rgba(255, 255, 255, 0.45);
+    font-variant-numeric: tabular-nums;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  .mobile-menu.is-open .mobile-menu__num {
+    opacity: 1;
+    transition: opacity 0.6s calc(0.4s + var(--i, 0) * 0.06s);
   }
 
   .mobile-menu__talk {
@@ -150,9 +194,10 @@ const other = lang === 'es' ? 'en' : 'es';
 
   .mobile-menu__foot {
     display: flex;
+    flex-wrap: wrap;
     align-items: flex-end;
     justify-content: space-between;
-    gap: 16px;
+    gap: 12px 16px;
     font-size: 16px;
     line-height: 1.4;
   }
@@ -189,12 +234,12 @@ const other = lang === 'es' ? 'en' : 'es';
   }
 
   /* Subrayado del ítem actual y al pasar el mouse. */
-  .mobile-menu__list a > span {
+  .mobile-menu__list .mask > span {
     background: linear-gradient(currentColor, currentColor) 0 92% / 0 1.5px no-repeat;
   }
 
-  .mobile-menu__list a[aria-current='page'] > span,
-  .mobile-menu__list a:hover > span {
+  .mobile-menu__list a[aria-current='page'] .mask > span,
+  .mobile-menu__list a:hover .mask > span {
     background-size: 100% 1.5px;
   }
 
