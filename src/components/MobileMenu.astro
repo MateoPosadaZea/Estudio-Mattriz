@@ -11,7 +11,7 @@ const other = lang === 'es' ? 'en' : 'es';
 
 <!--
   v2: menú mobile a pantalla completa en el verde de marca.
-  Barra superior (logo + "Close"). Abajo, la etiqueta "(Menu)" y los links numerados en Maison
+  Barra superior (logo + "Close"). Abajo, los links numerados en Maison
   Neue con una línea entre cada uno (referencia: studiors.be); entran escalonados con máscara.
   Idioma y correo en las esquinas de abajo.
   La lógica está en src/scripts/menu.ts.
@@ -27,7 +27,6 @@ const other = lang === 'es' ? 'en' : 'es';
   </div>
 
   <nav class="mobile-menu__nav" aria-label={t.menu}>
-    <p class="mobile-menu__label mask"><span>({t.menu})</span></p>
     <ul class="mobile-menu__list">
       {
         NAV.map((item, i) => (
@@ -115,12 +114,6 @@ const other = lang === 'es' ? 'en' : 'es';
     flex-direction: column;
     justify-content: flex-end;
     padding-bottom: clamp(28px, 5vh, 48px);
-  }
-
-  .mobile-menu__label {
-    margin-bottom: clamp(10px, 2vh, 18px);
-    font-size: 16px;
-    color: rgba(255, 255, 255, 0.5);
   }
 
   .mobile-menu__list {
