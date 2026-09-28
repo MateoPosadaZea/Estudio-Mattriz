@@ -33,10 +33,24 @@ if (carousel) {
 
   // Secuencia del proyecto de la diapositiva activa: una imagen dura REEL_MS; un clip corre hasta
   // terminar (2 a 3 s, con tope de CLIP_MAX_MS). Los clips se cargan solo cuando les toca.
+  // Las capturas y los pósters de los clips se piden solo para la diapositiva activa y la siguiente.
+  const arm = (slide: HTMLElement) => {
+    slide.querySelectorAll<HTMLVideoElement>('video[data-poster]').forEach((v) => {
+      v.poster = v.dataset.poster!;
+      v.removeAttribute('data-poster');
+    });
+    slide.querySelectorAll<HTMLImageElement>('img[data-img-src]').forEach((img) => {
+      img.src = img.dataset.imgSrc!;
+      img.removeAttribute('data-img-src');
+    });
+  };
+
   let reelRun = 0;
   const reel = () => {
     clearTimeout(reelTimer);
     const run = ++reelRun;
+    arm(slides[index]);
+    arm(slides[(index + 1) % slides.length]);
     const items = [...slides[index].querySelectorAll<HTMLElement>('[data-t-reel] > img, [data-t-reel] > video')];
     slides.forEach((s, i) => i !== index && s.querySelectorAll('video').forEach((v) => v.pause()));
     if (!items.length) return;
@@ -82,8 +96,6 @@ if (carousel) {
     slide.removeAttribute('aria-hidden');
     slide.inert = false;
     current.textContent = String(index + 1).padStart(2, '0');
-    // Precarga las imágenes del proyecto que entra.
-    slide.querySelectorAll('img[loading="lazy"]').forEach((img) => img.removeAttribute('loading'));
     elapsed = 0;
     bar.style.transform = 'scaleX(0)';
     reel();
@@ -140,6 +152,13 @@ if (carousel) {
   };
   if ('IntersectionObserver' in window) {
     new IntersectionObserver(([e]) => onView(e.isIntersecting), { threshold: 0.2 }).observe(carousel);
+    // Una pantalla antes de llegar, el póster de la primera diapositiva ya está listo.
+    const near = new IntersectionObserver(([e]) => {
+      if (!e.isIntersecting) return;
+      arm(slides[index]);
+      near.disconnect();
+    }, { rootMargin: '100% 0px' });
+    near.observe(carousel);
   } else onView(true);
 
   setToggle();

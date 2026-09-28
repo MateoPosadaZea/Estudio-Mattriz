@@ -108,9 +108,9 @@ const pad = (n: number) => String(n).padStart(2, '0');
                   {(() => {
                     const items = project.reel.map((src, k) =>
                       src.endsWith('.mp4') ? (
-                        <video class:list={{ "is-on": k === 0 }} data-reel-src={src} poster={src.replace(/\.mp4$/, '-poster.webp')} muted playsinline preload="none" />
+                        <video class:list={{ "is-on": k === 0 }} data-reel-src={src} data-poster={src.replace(/\.mp4$/, '-poster.webp')} muted playsinline preload="none" />
                       ) : (
-                        <img class:list={{ 'is-on': k === 0 }} src={src} width="1200" height="750" alt="" loading="lazy" decoding="async" />
+                        <img class:list={{ 'is-on': k === 0 }} data-img-src={src} width="1200" height="750" alt="" decoding="async" />
                       ),
                     );
                     return project.href ? (

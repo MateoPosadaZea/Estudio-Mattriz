@@ -21,7 +21,10 @@ if (root && preview && !reduce) {
 
   const load = (item: HTMLElement) => {
     const media = item.firstElementChild as HTMLImageElement | HTMLVideoElement | null;
-    if (media && !media.getAttribute('src')) media.setAttribute('src', media.dataset.previewSrc!);
+    if (media && !media.getAttribute('src')) {
+      if (media.dataset.poster) media.setAttribute('poster', media.dataset.poster);
+      media.setAttribute('src', media.dataset.previewSrc!);
+    }
     return media;
   };
 
