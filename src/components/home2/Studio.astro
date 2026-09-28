@@ -1,5 +1,5 @@
 ---
-// v2: "One studio. Real systems." en un bloque blanco con texto negro, frase en Noe Display y
+// v2: "One studio. Real systems." sigue el tema (negro en oscuro, claro en claro), frase en Noe Display y
 // cifras grandes. Blanco y negro son los colores principales; el verde queda para detalles.
 import { home } from '../../data/home';
 import { langOf, ui } from '../../i18n';
@@ -36,16 +36,15 @@ const t = ui(lang);
 </script>
 
 <style>
+  /* Sigue el tema: negro en oscuro, claro en claro. */
   .h-studio {
-    --muted: rgba(0, 0, 0, 0.62);
-    --line: rgba(0, 0, 0, 0.2);
     padding: clamp(80px, 12vw, 200px) var(--pad);
-    background: var(--color-white);
-    color: var(--color-black);
+    background: var(--bg);
+    color: var(--fg);
   }
 
   .h-studio :global(.h-label span) {
-    color: var(--color-black);
+    color: var(--fg);
   }
 
   .h-studio__body {
@@ -74,8 +73,8 @@ const t = ui(lang);
     gap: 0.5em;
     padding: 14px 24px;
     border-radius: var(--radius-pill);
-    background: var(--color-black);
-    color: var(--color-white);
+    background: var(--fg);
+    color: var(--bg);
     font-size: 16px;
     transition: transform 0.4s cubic-bezier(0.2, 1, 0.3, 1);
   }
