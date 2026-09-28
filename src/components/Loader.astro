@@ -1,6 +1,7 @@
 ---
-// v2: pantalla de carga (referencia: locomotive.ca). En blanco: contador 0 → 100 en Noe Display,
-// línea negra de progreso y salida con cortina hacia arriba. Solo en la primera página de la sesión.
+// v2: pantalla de carga. En blanco: "hola" en varios idiomas en Noe Display (cierra en el idioma
+// del sitio, con el punto en verde), línea negra de progreso y salida con cortina hacia arriba.
+// Solo en la primera página de la sesión.
 //
 // Nunca bloquea el sitio:
 // - La clase html.is-loading la pone un script en <head> (Base.astro); sin JS no hay loader.
@@ -12,7 +13,7 @@
 <div class="loader" aria-hidden="true" data-loader>
   <img class="loader__logo" src="/images/logo-mattriz.png" width="433" height="354" alt="" />
   <p class="loader__name">Mattriz Studio</p>
-  <p class="loader__count"><span data-loader-count>0</span></p>
+  <p class="loader__word" data-loader-word></p>
   <span class="loader__bar"><span data-loader-bar></span></span>
 </div>
 
@@ -66,21 +67,20 @@
     color: rgba(10, 10, 10, 0.6);
   }
 
-  .loader__count {
+  .loader__word {
     position: absolute;
     left: clamp(20px, 5vw, 80px);
     bottom: clamp(40px, 6vw, 88px);
     font-family: var(--font-display);
-    font-size: clamp(96px, 22vw, 380px);
+    font-size: clamp(80px, 19vw, 300px);
     line-height: 0.8;
     letter-spacing: -0.04em;
-    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
   }
 
-  .loader__count::after {
-    content: '%';
-    font-size: 0.3em;
-    margin-left: 0.05em;
+  .loader__word i {
+    font-style: normal;
+    color: var(--color-brand-green);
   }
 
   .loader__bar {
