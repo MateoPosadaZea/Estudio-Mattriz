@@ -1,5 +1,6 @@
 ---
 import ThemeToggle from './ThemeToggle.astro';
+import GlobeIcon from './GlobeIcon.astro';
 import { NAV } from '../data/site';
 import { langOf, localize, alternate, ui } from '../i18n';
 
@@ -34,8 +35,10 @@ const other = lang === 'es' ? 'en' : 'es';
       </ul>
     </nav>
 
-    <!-- Cambio de idioma: la misma página en el otro idioma. -->
+    <!-- Cambio de idioma: la misma página en el otro idioma. Ícono de mundo + código; en móvil
+         también queda a la vista en la barra, junto al menú. -->
     <a class="lang-switch" href={alternate(Astro.url, other)} hreflang={other} lang={other} aria-label={t.switchLabel}>
+      <GlobeIcon />
       <span class="reveal">
         <span class="reveal__text" data-text={t.switchShort}>{t.switchShort}</span>
       </span>
@@ -122,6 +125,9 @@ const other = lang === 'es' ? 'en' : 'es';
   /* Botón negro. Vivo: 116×49 px, 24px de padding, radio 200px.
      Hover: el fondo crece a 1.065 (0.45s) y aparece una sombra a 1.07 (0.3s); el texto no escala. */
   .lang-switch {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
     margin-left: auto;
     padding: 0 24px;
     font-size: var(--fs-menu);
@@ -192,8 +198,13 @@ const other = lang === 'es' ? 'en' : 'es';
       display: none;
     }
 
-    /* v2: en móvil el header solo lleva logo y menú; idioma y "Let's talk" están dentro del menú. */
-    .lang-switch,
+    /* v2: en móvil el header lleva logo, idioma (mundo + código) y menú; "Let's talk" y el tema
+       están dentro del menú. */
+    .lang-switch {
+      padding: 0 14px;
+      font-size: 15px;
+    }
+
     .talk-button,
     .site-header__inner :global(.site-header__theme) {
       display: none;
@@ -206,7 +217,6 @@ const other = lang === 'es' ? 'en' : 'es';
       flex: none;
       width: 40px;
       height: 40px;
-      margin-left: auto;
       background: var(--color-ink);
       border-radius: 100px;
       box-shadow: 0 10px 25px rgba(0, 0, 0, 0.13);
