@@ -268,7 +268,7 @@ const sizes = { pair: '(max-width: 690px) 100vw, 50vw', trio: '(max-width: 690px
           <span class="case-next__name" style={`--len:${next.title.length}`}>{next.title}</span>
           <span class="case-next__media" aria-hidden="true">
             {next.video ? (
-              <video data-src={next.video} poster={next.video.replace(/\.mp4$/, '-poster.webp')} muted loop playsinline preload="none" />
+              <video data-src={next.video} poster={next.video.replace(/\.mp4$/, '-poster.webp')} muted loop playsinline webkit-playsinline disablepictureinpicture disableremoteplayback preload="none" />
             ) : (
               next.image && <img src={next.image.src} srcset={next.image.srcset} sizes="40vw" width={next.image.width} height={next.image.height} alt="" loading="lazy" decoding="async" />
             )}

@@ -69,7 +69,7 @@ const gutterOf = (row: any) => {
           <img class="wp-row__bg" src={largest(row.bgImage.local)} srcset={srcset(row.bgImage.local)} sizes="100vw" alt="" loading={eager ? 'eager' : 'lazy'} decoding="async" width={row.bgImage.local.width} height={row.bgImage.local.height} />
         )}
         {row.bgVideo?.local && (
-          <video class="wp-row__bg" data-src={`${row.bgVideo.local.dir}/${row.bgVideo.local.base}.mp4`} poster={`${row.bgVideo.local.dir}/${row.bgVideo.local.base}-poster.webp`} muted loop playsinline preload="none" aria-hidden="true" />
+          <video class="wp-row__bg" data-src={`${row.bgVideo.local.dir}/${row.bgVideo.local.base}.mp4`} poster={`${row.bgVideo.local.dir}/${row.bgVideo.local.base}-poster.webp`} muted loop playsinline webkit-playsinline disablepictureinpicture disableremoteplayback preload="none" aria-hidden="true" />
         )}
         <div class="wp-row__inner">
           <div class="wp-cols">

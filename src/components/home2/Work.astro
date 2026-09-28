@@ -40,7 +40,7 @@ const items = PROJECTS.map((p) => {
               {p.video ? (
                 <>
                   <img src={p.video.replace(/\.mp4$/, '-poster.webp')} alt="" loading="lazy" decoding="async" />
-                  <video data-src={p.video} data-src-mobile={p.video.replace(/\.mp4$/, '-m.mp4')} muted loop playsinline preload="none" />
+                  <video data-src={p.video} data-src-mobile={p.video.replace(/\.mp4$/, '-m.mp4')} muted loop playsinline webkit-playsinline disablepictureinpicture disableremoteplayback preload="none" />
                 </>
               ) : (
                 p.image && <img src={p.image.src} srcset={p.image.srcset} sizes="(max-width: 999px) 88vw, 1px" width={p.image.width} height={p.image.height} alt="" loading="lazy" decoding="async" />
@@ -62,7 +62,7 @@ const items = PROJECTS.map((p) => {
       items.map((p, i) => (
         <div class="h-work__preview-item" data-work-preview-item={i} style={p.fit}>
           {p.video ? (
-            <video data-preview-src={p.video} data-poster={p.video.replace(/\.mp4$/, '-poster.webp')} muted loop playsinline preload="auto" />
+            <video data-preview-src={p.video} data-poster={p.video.replace(/\.mp4$/, '-poster.webp')} muted loop playsinline webkit-playsinline disablepictureinpicture disableremoteplayback preload="auto" />
           ) : (
             p.image && <img data-preview-src={p.image.src} width={p.image.width} height={p.image.height} alt="" />
           )}

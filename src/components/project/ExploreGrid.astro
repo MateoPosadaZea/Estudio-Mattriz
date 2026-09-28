@@ -20,7 +20,7 @@ const others = [1, 2, 3].map((n) => PROJECTS[(i + n) % PROJECTS.length]);
       <li class="explore-card">
         <div class="explore-card__bg" aria-hidden="true">
           {p.video ? (
-            <video data-src={p.video} muted loop playsinline preload="none" />
+            <video data-src={p.video} muted loop playsinline webkit-playsinline disablepictureinpicture disableremoteplayback preload="none" />
           ) : (
             p.image && <img src={p.image.src} srcset={p.image.srcset} sizes="(max-width: 999px) 90vw, 30vw" width={p.image.width} height={p.image.height} alt="" loading="lazy" decoding="async" />
           )}

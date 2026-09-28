@@ -12,9 +12,24 @@ const source = (v: HTMLVideoElement) => (narrow && v.dataset.srcMobile) || v.dat
 // Videos decorativos: sin controles nativos, sin AirPlay ni imagen en imagen. La clase is-playing
 // solo está mientras reproduce: si el sistema lo detiene (p. ej. modo de bajo consumo en iPhone),
 // vuelve a verse la portada fija en vez del reproductor con el botón de play.
-videos.forEach((v) => {
+// Además nunca se abren en pantalla completa: si el sistema lo intenta (iOS/Android al tocar o al
+// reproducir), se cierra de inmediato. Aplica también a los clips de testimonios y a la vista previa.
+type WebkitVideo = HTMLVideoElement & { webkitExitFullscreen?: () => void };
+const exitFullscreen = (v: WebkitVideo) => {
+  if (document.fullscreenElement === v) document.exitFullscreen().catch(() => {});
+  v.webkitExitFullscreen?.();
+};
+document.querySelectorAll<WebkitVideo>('video[data-src], video[data-reel-src], video[data-preview-src]').forEach((v) => {
   v.disablePictureInPicture = true;
   v.setAttribute('disableremoteplayback', '');
+  v.setAttribute('webkit-playsinline', '');
+  v.setAttribute('x-webkit-airplay', 'deny');
+  v.setAttribute('controlslist', 'nofullscreen nodownload noremoteplayback noplaybackrate');
+  v.controls = false;
+  v.addEventListener('webkitbeginfullscreen', () => exitFullscreen(v));
+  v.addEventListener('fullscreenchange', () => exitFullscreen(v));
+});
+videos.forEach((v) => {
   v.addEventListener('playing', () => v.classList.add('is-playing'));
   v.addEventListener('pause', () => v.classList.remove('is-playing'));
 });
