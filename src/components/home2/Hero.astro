@@ -10,7 +10,7 @@ const { HERO } = home(lang);
 const t = ui(lang);
 ---
 
-<section class="h-hero">
+<section class="h-hero" data-header-tone="dark">
   <AnimatedGradient color1="brand" speed={250} blend="organic" />
   <div class="h-hero__inner">
     <h1 class="h-hero__title" aria-label={HERO.title} style={`--em:${lang === 'es' ? 9.2 : 7.7}`}>

@@ -59,10 +59,17 @@ const other = lang === 'es' ? 'en' : 'es';
 
 <script>
   // Header transparente arriba del todo; al bajar, píldora blanca. El tono (claro u oscuro) sale del
-  // color de fondo de la página, para que logo, menú y botón se lean sobre cualquier portada.
+  // color de fondo de la página, para que logo, menú y botón se lean sobre cualquier portada. Una
+  // portada que tiene su propio fondo lo declara con data-header-tone (el hero del home es negro
+  // aunque el sitio esté en modo claro).
   const header = document.querySelector<HTMLElement>('[data-site-header]');
   if (header) {
     const tone = () => {
+      const forced = document.querySelector<HTMLElement>('[data-header-tone]');
+      if (forced) {
+        header.dataset.tone = forced.dataset.headerTone;
+        return;
+      }
       const bg = getComputedStyle(document.body).backgroundColor;
       const m = bg.match(/\d+(\.\d+)?/g)?.map(Number) ?? [255, 255, 255, 1];
       const [r, g, b, a = 1] = m;
