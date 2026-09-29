@@ -1,7 +1,7 @@
 // Scroll suave con Lenis, solo con mouse o trackpad (pointer: fine) y sin prefers-reduced-motion.
 // En pantallas táctiles queda el scroll nativo, que ya es suave y no conviene interceptar.
 // Lenis mueve el scroll real de la ventana, así que los listeners de 'scroll' existentes siguen igual.
-// scrollToY / scrollToEl: los botones que desplazan la página (volver arriba, "Sigue bajando",
+// scrollToY / scrollToEl: los botones que desplazan la página (volver arriba, "Conoce más",
 // anclas del menú, escáner) pasan por aquí para usar el mismo movimiento.
 import Lenis from 'lenis';
 

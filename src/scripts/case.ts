@@ -95,7 +95,7 @@ if (reduceMotion || !('IntersectionObserver' in window)) {
   update();
 }
 
-// [data-case-scroll]  Guía "Sigue bajando": aparece poco después de cargar y cada vez que el
+// [data-case-scroll]  Guía "Conoce más": aparece poco después de cargar y cada vez que el
 //                     lector deja de hacer scroll (poco más de un segundo) con mucho caso por delante; se esconde al
 //                     moverse y cerca del final. Al tocarla baja casi una pantalla.
 // [data-case-float]   Enlace al sitio: fijo abajo a la izquierda desde que la portada sale de la
@@ -117,7 +117,7 @@ if (float) {
   place();
 }
 
-// La guía "Sigue bajando" solo acompaña la portada; después ese lugar es del enlace al sitio.
+// La guía "Conoce más" solo acompaña la portada; después ese lugar es del enlace al sitio.
 const cue = document.querySelector<HTMLElement>('[data-case-scroll]');
 if (cue) {
   const end = document.querySelector<HTMLElement>('.case-cta, .case-next');
