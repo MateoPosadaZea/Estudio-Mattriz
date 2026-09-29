@@ -13,15 +13,16 @@ const t = ui(lang);
 <section class="h-hero">
   <AnimatedGradient color1="brand" speed={250} blend="organic" />
   <div class="h-hero__inner">
-    <p class="h-hero__status case-in">
-      {t.accepting}
-    </p>
     <h1 class="h-hero__title" aria-label={HERO.title} style={`--em:${lang === 'es' ? 9.2 : 7.7}`}>
       {
-        HERO.title.split(' ').map((w, i) => (
-          <span class="case-mask" aria-hidden="true">
-            <span style={`--d:${i * 70}ms`}>{w}</span>
-          </span>
+        // En pantallas medianas y grandes, dos líneas partidas por la mitad de la frase.
+        HERO.title.split(' ').map((w, i, all) => (
+          <>
+            <span class="case-mask" aria-hidden="true">
+              <span style={`--d:${i * 70}ms`}>{w}</span>
+            </span>
+            {i === Math.ceil(all.length / 2) - 1 && <br class="h-hero__br" />}
+          </>
         ))
       }
     </h1>
@@ -66,16 +67,25 @@ const t = ui(lang);
     max-width: 11em;
     margin-left: -0.04em;
     font-family: var(--font-display);
-    font-size: clamp(56px, 10vw, 180px);
+    font-size: clamp(48px, 8.4vw, 140px);
     font-weight: 500;
     line-height: 0.92;
     letter-spacing: -0.035em;
   }
 
+  .h-hero__br {
+    display: none;
+  }
+
   @media (min-width: 700px) {
+    .h-hero__br {
+      display: inline;
+    }
+
     .h-hero__title {
       max-width: none;
-      font-size: clamp(56px, min(10vw, calc((100vw - 2 * var(--pad)) / var(--em, 9.4))), 180px);
+      /* Un poco más contenido: 80 % del ancho disponible para la línea más larga, tope 140 px. */
+      font-size: clamp(48px, min(8vw, calc((100vw - 2 * var(--pad)) * 0.8 / var(--em, 9.4))), 140px);
     }
   }
 
