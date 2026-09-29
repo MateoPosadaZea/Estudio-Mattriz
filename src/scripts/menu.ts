@@ -28,9 +28,13 @@ if (page && panel && openButton && closeButton) {
 
   // Con teclado el foco va al botón de cerrar (con su anillo); con toque o clic va al panel, sin
   // recuadro visible, y el Tab sigue desde ahí.
+  // Al cerrar, el foco vuelve al botón del menú solo si se abrió con teclado: tras un toque, Safari
+  // dibujaría el recuadro de foco alrededor del ícono.
+  let viaKeyboard = false;
   const open = (keyboard: boolean) => {
     if (isOpen) return;
     isOpen = true;
+    viaKeyboard = keyboard;
     panel.hidden = false;
     root.classList.add('menu-open');
     stopScroll();
@@ -56,14 +60,17 @@ if (page && panel && openButton && closeButton) {
       startScroll();
       panel.hidden = true;
       if (then) then();
-      else openButton.focus({ preventScroll: true });
+      else if (viaKeyboard) openButton.focus({ preventScroll: true });
     });
   };
 
   openButton.addEventListener('click', (event) => open(event.detail === 0));
   closeButton.addEventListener('click', () => close());
   document.addEventListener('keydown', (event) => {
-    if (event.key === 'Escape') close();
+    if (event.key === 'Escape' && isOpen) {
+      viaKeyboard = true;
+      close();
+    }
   });
 
   // Foco atrapado dentro del menú.
