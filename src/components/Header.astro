@@ -137,7 +137,7 @@ const other = lang === 'es' ? 'en' : 'es';
 
   .site-header__logo {
     display: inline-flex;
-    align-items: baseline;
+    align-items: center;
   }
 
   /* Logotipo: la palabra "Mattriz" en Noe Display, en su peso real (el del archivo), toda en texto
@@ -148,7 +148,10 @@ const other = lang === 'es' ? 'en' : 'es';
     font-family: var(--font-display);
     font-size: 40px;
     font-weight: 500;
-    line-height: 1;
+    /* Solo la altura de las mayúsculas (sin el espacio de descendentes), para que el logo quede
+       centrado en vertical con el menú y los botones. */
+    line-height: 0.74;
+    padding-top: 0.06em;
     letter-spacing: -0.02em;
     white-space: nowrap;
   }

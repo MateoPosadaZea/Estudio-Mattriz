@@ -19,7 +19,7 @@ const other = lang === 'es' ? 'en' : 'es';
 <div class="mobile-menu" id="mobile-menu" data-lenis-prevent role="dialog" aria-modal="true" aria-label={t.menu} tabindex="-1" hidden>
   <div class="mobile-menu__bar">
     <a class="mobile-menu__logo" href={localize('/', lang)}>
-      <img src="/images/logo-mattriz.png" width="433" height="354" alt="Mattriz Studio" />
+      <span class="mobile-menu__word" aria-label="Mattriz Studio">Mattriz</span>
     </a>
     <button class="mobile-menu__close" type="button" data-menu-close aria-label={t.closeMenu}>
       <span class="mask"><span>{t.close}</span></span>
@@ -93,11 +93,16 @@ const other = lang === 'es' ? 'en' : 'es';
     margin-top: var(--header-top);
   }
 
-  .mobile-menu__logo img {
-    width: auto;
-    height: 30px;
-    /* El archivo del logo es negro: en el menú (fondo negro) se ve en blanco. */
-    filter: invert(1);
+  /* Logotipo completo: "Mattriz" en Noe Display, en el peso real del archivo (igual que el header). */
+  .mobile-menu__word {
+    display: inline-block;
+    font-family: var(--font-display);
+    font-size: 40px;
+    font-weight: 500;
+    line-height: 0.74;
+    padding-top: 0.06em;
+    letter-spacing: -0.02em;
+    color: var(--menu-fg);
   }
 
   .mobile-menu__close {
