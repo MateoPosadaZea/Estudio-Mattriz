@@ -57,6 +57,27 @@ const other = lang === 'es' ? 'en' : 'es';
 </header>
 
 
+<script>
+  // Header transparente arriba del todo; al bajar, píldora blanca. El tono (claro u oscuro) sale del
+  // color de fondo de la página, para que logo, menú y botón se lean sobre cualquier portada.
+  const header = document.querySelector<HTMLElement>('[data-site-header]');
+  if (header) {
+    const tone = () => {
+      const bg = getComputedStyle(document.body).backgroundColor;
+      const m = bg.match(/\d+(\.\d+)?/g)?.map(Number) ?? [255, 255, 255, 1];
+      const [r, g, b, a = 1] = m;
+      const lum = a === 0 ? 1 : (0.2126 * r + 0.7152 * g + 0.0722 * b) / 255;
+      header.dataset.tone = lum < 0.5 ? 'dark' : 'light';
+    };
+    const update = () => header.classList.toggle('is-top', window.scrollY < 24);
+    tone();
+    update();
+    window.addEventListener('scroll', update, { passive: true });
+    // El tema (claro/oscuro) puede cambiar con el botón del header.
+    new MutationObserver(tone).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+  }
+</script>
+
 <style>
   /* Píldora blanca fija. Vivo: top 25px, alto 70px, radio 50px, 70px de margen lateral. */
   .site-header {
@@ -74,6 +95,40 @@ const other = lang === 'es' ? 'en' : 'es';
     border-radius: var(--header-radius);
     color: var(--color-black);
     animation: header-entrance 1.5s ease forwards;
+    transition:
+      background-color 0.4s ease,
+      box-shadow 0.4s ease,
+      color 0.4s ease;
+  }
+
+  /* Arriba del todo la píldora es transparente y todo se adapta al fondo de la página
+     (data-tone lo pone el script según el color de fondo). Al bajar vuelve la píldora blanca. */
+  .site-header.is-top {
+    background-color: transparent;
+  }
+
+  .site-header.is-top[data-tone='dark'] {
+    color: var(--color-white);
+  }
+
+  .site-header__logo img {
+    transition: filter 0.4s ease;
+  }
+
+  .site-header.is-top[data-tone='dark'] .site-header__logo img {
+    filter: invert(1);
+  }
+
+  .site-header.is-top[data-tone='dark'] .talk-button {
+    color: var(--color-black);
+  }
+
+  .site-header.is-top[data-tone='dark'] .talk-button::before {
+    background: var(--color-white);
+  }
+
+  .site-header.is-top .talk-button::after {
+    display: none;
   }
 
   @keyframes header-entrance {
@@ -213,6 +268,19 @@ const other = lang === 'es' ? 'en' : 'es';
       background: var(--color-ink);
       border-radius: 100px;
       box-shadow: 0 10px 25px rgba(0, 0, 0, 0.13);
+      transition: background-color 0.4s ease, box-shadow 0.4s ease;
+    }
+
+    .site-header.is-top .menu-toggle {
+      box-shadow: none;
+    }
+
+    .site-header.is-top[data-tone='dark'] .menu-toggle {
+      background: var(--color-white);
+    }
+
+    .site-header.is-top[data-tone='dark'] .menu-toggle__lines i {
+      background: var(--color-black);
     }
 
     .menu-toggle__lines {
@@ -227,6 +295,7 @@ const other = lang === 'es' ? 'en' : 'es';
       height: 1.5px;
       margin-bottom: 3.5px;
       background: var(--color-white);
+      transition: background-color 0.4s ease;
     }
 
     .menu-toggle__lines i:last-child {
