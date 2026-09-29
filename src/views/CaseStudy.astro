@@ -551,7 +551,7 @@ const sizes = { pair: '(max-width: 690px) 100vw, 50vw', trio: '(max-width: 690px
   }
 
   /* ---------- Media principal: empieza pequeña y crece hasta su tamaño al hacer scroll ----------
-     Tope de ancho para que la grabación no se vea pixelada; esquinas siempre redondeadas. */
+     Crece hasta los márgenes de la página (el mismo borde del texto); esquinas siempre redondeadas. */
 
   .case-hero-media {
     margin: 0;
@@ -559,8 +559,6 @@ const sizes = { pair: '(max-width: 690px) 100vw, 50vw', trio: '(max-width: 690px
   }
 
   .case-hero-media__inner {
-    max-width: 1100px;
-    margin: 0 auto;
     overflow: hidden;
     border-radius: 16px;
     transform: scale(var(--grow-scale, 0.72));
