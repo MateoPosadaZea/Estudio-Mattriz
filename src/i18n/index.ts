@@ -31,9 +31,15 @@ export const pick = <T>(lang: Lang, values: Record<Lang, T>): T => values[lang];
 // Categorías de proyecto: el nombre en inglés es la clave (también para los filtros).
 export const CATEGORY_ES: Record<string, string> = {
   'Brand Identity': 'Identidad de marca',
-  'SEO Optimization': 'Optimización SEO',
   'UI/UX Design': 'Diseño UI/UX',
   'Web Development': 'Desarrollo web',
+  'E-commerce': 'Tienda en línea',
+  'Booking & Payments': 'Reservas y pagos',
+  Automation: 'Automatización',
+  SEO: 'SEO',
+  // Nombres del sitio anterior que aún aparecen en datos viejos.
+  'SEO Optimization': 'SEO',
+  'Graphic Design': 'Diseño gráfico',
 };
 
 export const category = (name: string, lang: Lang) => (lang === 'es' ? CATEGORY_ES[name] ?? name : name);

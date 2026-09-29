@@ -1,3 +1,4 @@
+import { CASE_CATEGORIES } from './categories';
 import type { Lang } from '../i18n';
 
 // Contenido de la home.
@@ -73,56 +74,56 @@ export const PROJECTS: Project[] = [
     title: 'Spot On Mobile Wash & Detailing',
     href: '/project/spot-on-mobile-wash-detailing/',
     summary: { en: 'Booking, payments and a corporate fleet program for a mobile detailer in California, running on their own.', es: 'Reservas, pagos y un programa corporativo para un detailer a domicilio en California, funcionando solos.' },
-    categories: ['SEO Optimization', 'UI/UX Design', 'Web Development'],
+    categories: CASE_CATEGORIES['spot-on-mobile-wash-detailing'],
     video: '/media/work/spot-on-nav.mp4',
   },
   {
     title: 'Santo & Seña',
     href: '/project/santo-y-sena/',
     summary: { en: 'New site for a Bogotá bookshop and record store, built over its WooCommerce operation without migrating it. Launched in 12 days.', es: 'Sitio nuevo para una librería y tienda de discos de Bogotá, construido sobre su operación en WooCommerce sin migrarla. Lanzado en 12 días.' },
-    categories: ['UI/UX Design', 'Web Development', 'SEO Optimization'],
+    categories: CASE_CATEGORIES['santo-y-sena'],
     video: '/media/work/santo-y-sena-nav.mp4',
   },
   {
     title: 'The Grid',
     href: '/project/the-grid/',
     summary: { en: 'Brand identity and Webflow website for a construction digital-twin consultancy.', es: 'Identidad de marca y sitio en Webflow para una consultora de gemelos digitales en construcción.' },
-    categories: ['Brand Identity', 'SEO Optimization', 'UI/UX Design', 'Web Development'],
+    categories: CASE_CATEGORIES['the-grid'],
     video: '/media/work/the-grid-cover.mp4',
   },
   {
     title: 'Dr. Daniel De Zubiría',
     href: '/project/dr-daniel-de-zubiria/',
     summary: { en: 'Brand identity, an 11-page site, online booking and the full infrastructure for an allergy practice in Bogotá.', es: 'Identidad de marca, sitio de 11 páginas, agenda en línea y toda la infraestructura de un consultorio de alergología en Bogotá.' },
-    categories: ['Brand Identity', 'UI/UX Design', 'Web Development', 'SEO Optimization'],
+    categories: CASE_CATEGORIES['dr-daniel-de-zubiria'],
     video: '/media/work/dezubiria-cover.mp4',
   },
   {
     title: 'Posada Cárcamo Abogados',
     href: '/project/posada-carcamo-abogados/',
     summary: { en: 'Website for a law firm with eleven practice areas, built around its team and its transport clients.', es: 'Sitio web para una firma de abogados con once áreas de práctica, pensado alrededor de su equipo y sus clientes de transporte.' },
-    categories: ['UI/UX Design', 'Web Development', 'SEO Optimization'],
+    categories: CASE_CATEGORIES['posada-carcamo-abogados'],
     video: '/media/work/posada-nav.mp4',
   },
   {
     title: 'AGL Vans',
     href: '/project/aglvanstours/',
     summary: { en: 'Website for a special transport company serving hotels, companies and tourists in Bogotá.', es: 'Sitio web para una empresa de transporte especial para hoteles, empresas y turismo en Bogotá.' },
-    categories: ['UI/UX Design', 'Web Development', 'SEO Optimization'],
+    categories: CASE_CATEGORIES['aglvanstours'],
     video: '/media/work/agl-nav.mp4',
   },
   {
     title: 'Luciana Cabañas',
     href: '/project/luciana-cabanas/',
     summary: { en: 'Logo and a direct-booking website for six boutique cabins in the Valle de Tenza, Boyacá.', es: 'Logotipo y sitio de reserva directa para seis cabañas boutique en el Valle de Tenza, Boyacá.' },
-    categories: ['Brand Identity', 'UI/UX Design', 'Web Development', 'SEO Optimization'],
+    categories: CASE_CATEGORIES['luciana-cabanas'],
     video: '/media/work/luciana-cover.mp4',
   },
   {
     title: 'Civilus',
     href: '/project/civilus/',
     summary: { en: 'Brand identity and React website for an online structural-calculus platform.', es: 'Identidad de marca y sitio en React para una plataforma de cálculo estructural en línea.' },
-    categories: ['Brand Identity', 'UI/UX Design', 'Web Development'],
+    categories: CASE_CATEGORIES['civilus'],
     video: '/media/work/civilus-cover.mp4',
   },
 ];

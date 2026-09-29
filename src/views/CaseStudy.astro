@@ -10,7 +10,8 @@ import type { CaseDoc } from '../components/case/doc';
 import { fromLegacy } from '../components/case/fromLegacy';
 import { MODEL_CASES, MANUAL_CASES, LEGACY_CASES, CASE_UI, CASE_SEO } from '../data/cases';
 import { PROJECTS } from '../data/home';
-import { langOf, localize } from '../i18n';
+import { langOf, localize, category } from '../i18n';
+import { CASE_CATEGORIES } from '../data/categories';
 
 interface Props {
   slug: string;
@@ -54,6 +55,13 @@ const schema = [
 ];
 const mediaAlt = lang === 'es' ? `${doc.name}: pieza del proyecto` : `${doc.name}: project work`;
 const bg = doc.bg ?? (doc.theme === 'dark' ? '#0a0a0a' : '#ffffff');
+// Las etiquetas "Qué hicimos" / "Servicios" salen de la lista única de categorías del proyecto.
+if (CASE_CATEGORIES[slug]) {
+  const chips = CASE_CATEGORIES[slug].map((c) => category(c, lang));
+  doc.facts = doc.facts.some((f) => f.chips)
+    ? doc.facts.map((f) => (f.chips ? { ...f, chips } : f))
+    : [...doc.facts, { label: lang === 'es' ? 'Servicios' : 'Services', chips }];
+}
 
 // Numeración de secciones: (01), (02)… en el orden en que aparecen.
 let n = 0;
