@@ -54,7 +54,7 @@ const reel = lang === 'es' ? { open: 'Ver reel', close: 'Cerrar' } : { open: 'Vi
 
 <dialog class="h-reel-modal" data-reel-modal data-lenis-prevent aria-label={reel.open}>
   <button type="button" class="h-reel-modal__close" data-reel-close>{reel.close} <span aria-hidden="true">×</span></button>
-  <div class="h-reel-modal__frame">
+  <div class="h-reel-modal__frame" tabindex="-1">
   <video
     class="h-reel-modal__video"
     data-full="/media/reel/mattriz-reel.mp4"
@@ -239,6 +239,10 @@ const reel = lang === 'es' ? { open: 'Ver reel', close: 'Cerrar' } : { open: 'Vi
   .h-reel-modal__frame.is-vertical {
     width: min(100%, calc((100dvh - 140px) * 9 / 16));
     aspect-ratio: 9 / 16;
+  }
+
+  .h-reel-modal__frame:focus {
+    outline: none;
   }
 
   .h-reel-modal__video {

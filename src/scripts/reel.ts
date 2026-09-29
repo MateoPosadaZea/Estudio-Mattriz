@@ -27,6 +27,9 @@ if (open && modal && video && typeof modal.showModal === 'function') {
     }
     video.currentTime = 0;
     modal.showModal();
+    // El diálogo enfoca solo el botón de cerrar y Safari le dibuja el anillo de foco; se enfoca el
+    // video (sin anillo). Con Tab se llega a Cerrar igual.
+    frame?.focus({ preventScroll: true });
     stopScroll();
     thumb?.pause();
     video.play().catch(() => {});
