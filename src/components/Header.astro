@@ -14,7 +14,7 @@ const other = lang === 'es' ? 'en' : 'es';
   <div class="site-header__inner">
     <!-- v2: por ahora solo la M, en escritorio y en móvil (pedido de Mateo). -->
     <a class="site-header__logo" href={localize('/', lang)} aria-label="Mattriz Studio">
-      <img src="/images/logo-mattriz.png" width="433" height="354" alt="" />
+      <span class="site-header__word" aria-hidden="true">M<span class="site-header__rest">attriz</span></span>
     </a>
 
     <nav class="site-nav" aria-label={t.mainNav}>
@@ -111,14 +111,6 @@ const other = lang === 'es' ? 'en' : 'es';
     color: var(--color-white);
   }
 
-  .site-header__logo img {
-    transition: filter 0.4s ease;
-  }
-
-  .site-header.is-top[data-tone='dark'] .site-header__logo img {
-    filter: invert(1);
-  }
-
   .site-header.is-top[data-tone='dark'] .talk-button {
     color: var(--color-black);
   }
@@ -148,9 +140,31 @@ const other = lang === 'es' ? 'en' : 'es';
     align-items: baseline;
   }
 
-  .site-header__logo img {
-    width: auto;
-    height: 30px;
+  /* Logotipo: la palabra "Mattriz" en Noe Display, en su peso real (el del archivo), toda en texto
+     para que la M y el resto tengan exactamente el mismo peso. Arriba del todo se ve completa; al
+     bajar, "attriz" se recoge y queda la M. Toma el color del header (blanco arriba en fondos oscuros). */
+  .site-header__word {
+    display: inline-flex;
+    font-family: var(--font-display);
+    font-size: 40px;
+    font-weight: 500;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    white-space: nowrap;
+  }
+
+  .site-header__rest {
+    display: inline-block;
+    overflow: hidden;
+    max-width: 3.2em;
+    transition:
+      max-width 0.5s cubic-bezier(0.2, 1, 0.3, 1),
+      opacity 0.3s ease;
+  }
+
+  .site-header:not(.is-top) .site-header__rest {
+    max-width: 0;
+    opacity: 0;
   }
 
   /* Menú centrado respecto a la píldora. */
