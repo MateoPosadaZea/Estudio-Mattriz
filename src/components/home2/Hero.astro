@@ -67,7 +67,7 @@ const t = ui(lang);
     max-width: 11em;
     margin-left: -0.04em;
     font-family: var(--font-display);
-    font-size: clamp(48px, 8.4vw, 140px);
+    font-size: clamp(44px, 7vw, 112px);
     font-weight: 500;
     line-height: 0.92;
     letter-spacing: -0.035em;
@@ -84,8 +84,8 @@ const t = ui(lang);
 
     .h-hero__title {
       max-width: none;
-      /* Un poco más contenido: 80 % del ancho disponible para la línea más larga, tope 140 px. */
-      font-size: clamp(48px, min(8vw, calc((100vw - 2 * var(--pad)) * 0.8 / var(--em, 9.4))), 140px);
+      /* Contenido para que no compita con el logo: 64 % del ancho para la línea más larga, tope 112 px. */
+      font-size: clamp(44px, min(6.4vw, calc((100vw - 2 * var(--pad)) * 0.64 / var(--em, 9.4))), 112px);
     }
   }
 
