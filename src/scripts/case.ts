@@ -13,9 +13,13 @@ import { scrollToY } from './smooth-scroll';
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const reveals = document.querySelectorAll<HTMLElement>('[data-case-reveal]');
 
-// [data-step]         Pasos numerados: --p va de 0 a 1 mientras el paso sube por la pantalla (entra
-//                     al 90 % de la altura y se completa al 40 %); completo, lleva is-done (✓).
+// [data-step]         Pasos numerados, en orden: cada bloque (tarjetas o lista) avanza como una sola
+//                     barra que recorre sus pasos uno tras otro; un paso no empieza hasta que el
+//                     anterior termina. El bloque arranca cuando su primer paso sube al 85 % de la
+//                     pantalla y termina cuando el último llega al 40 %. --p va de 0 a 1 por paso y,
+//                     completo, el paso lleva is-done (✓).
 const steps = [...document.querySelectorAll<HTMLElement>('[data-step]')];
+const stepGroups = [...new Set(steps.map((s) => s.parentElement!))].map((g) => [...g.querySelectorAll<HTMLElement>(':scope > [data-step]')]);
 
 if (reduceMotion || !('IntersectionObserver' in window)) {
   reveals.forEach((el) => el.classList.add('is-in'));
@@ -58,12 +62,17 @@ if (reduceMotion || !('IntersectionObserver' in window)) {
       grow.style.setProperty('--grow-shift', `${(growInner.offsetHeight * (scale - 1)).toFixed(1)}px`);
     }
 
-    for (const st of steps) {
-      const r = st.getBoundingClientRect();
-      if (r.bottom < -vh || r.top > vh * 2) continue;
-      const p = Math.min(Math.max((vh * 0.9 - r.top) / (vh * 0.5), 0), 1);
-      st.style.setProperty('--p', p.toFixed(3));
-      st.classList.toggle('is-done', p >= 0.999);
+    for (const group of stepGroups) {
+      const first = group[0].getBoundingClientRect();
+      const last = group[group.length - 1].getBoundingClientRect();
+      if (last.bottom < -vh || first.top > vh * 2) continue;
+      const run = vh * 0.45 + (last.top - first.top);
+      const g = Math.min(Math.max((vh * 0.85 - first.top) / run, 0), 1) * group.length;
+      group.forEach((st, i) => {
+        const p = Math.min(Math.max(g - i, 0), 1);
+        st.style.setProperty('--p', p.toFixed(3));
+        st.classList.toggle('is-done', p >= 0.999);
+      });
     }
 
     for (const f of visible) {
