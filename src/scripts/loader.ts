@@ -11,8 +11,8 @@ if (loader && word && root.classList.contains('is-loading')) {
   const es = root.lang.startsWith('es');
   // Pasa por varios idiomas y cierra en el del sitio.
   const FINAL = es ? 'Hola' : 'Hello';
-  // Dieciséis saludos distintos: alcanzan para el tope de 4 s sin repetir ninguno.
-  const WORDS = [es ? 'Hello' : 'Hola', 'Bonjour', 'Olá', 'Ciao', 'Hallo', 'Hej', 'Ahoj', 'Aloha', 'Merhaba', 'Namaste', 'Jambo', 'Salut', 'Szia', 'Konnichiwa', 'Ni hao', 'Hei'];
+  // Dieciséis saludos distintos y cercanos: alcanzan para el tope de 4 s sin repetir ninguno.
+  const WORDS = [es ? 'Hello' : 'Hola', 'Bonjour', 'Olá', 'Ciao', 'Hallo', 'Hej', 'Salut', 'Aloha', 'Ahoj', 'Hei', 'Hoi', 'Servus', 'Szia', 'Oi', 'Moi', 'Bom dia'];
   const MIN = 2100;
   const MAX = 4000;
   const STEP = 240;
