@@ -218,7 +218,7 @@ if (root && cfgEl) {
       s.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit';
       s.async = true;
       s.onload = () => {
-        widgetId = window.turnstile?.render(widget, { sitekey: widget.dataset.sitekey, appearance: 'interaction-only', theme: 'light' });
+        widgetId = window.turnstile?.render(widget, { sitekey: widget.dataset.sitekey, appearance: 'interaction-only', theme: 'dark' });
         resolve();
       };
       s.onerror = () => resolve();

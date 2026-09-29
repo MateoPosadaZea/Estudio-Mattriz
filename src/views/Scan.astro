@@ -589,14 +589,14 @@ const config = { lang, copy: c, pricing: PRICING, currency: CURRENCY };
   /* Cotización */
   .scan-quote {
     padding: clamp(80px, 12vw, 200px) var(--pad);
-    background: var(--color-brand-green);
-    color: var(--color-black);
-    --muted: rgba(0, 0, 0, 0.62);
-    --line: rgba(0, 0, 0, 0.2);
+    background: var(--color-black);
+    color: var(--color-white);
+    --muted: rgba(255, 255, 255, 0.62);
+    --line: rgba(255, 255, 255, 0.2);
   }
 
   .scan-quote :global(.h-label span) {
-    color: var(--color-black);
+    color: var(--color-white);
   }
 
   .scan-quote__label {
@@ -646,16 +646,16 @@ const config = { lang, copy: c, pricing: PRICING, currency: CURRENCY };
 
   .scan-field input {
     padding: 14px 16px;
-    border: 1px solid rgba(0, 0, 0, 0.35);
+    border: 1px solid rgba(255, 255, 255, 0.28);
     border-radius: 12px;
-    background: rgba(255, 255, 255, 0.35);
-    color: var(--color-black);
+    background: rgba(255, 255, 255, 0.06);
+    color: var(--color-white);
     font: inherit;
     font-size: 16px;
   }
 
   .scan-field input:focus-visible {
-    outline: 2px solid var(--color-black);
+    outline: 2px solid var(--color-brand-green);
     outline-offset: 1px;
   }
 
@@ -678,8 +678,8 @@ const config = { lang, copy: c, pricing: PRICING, currency: CURRENCY };
     gap: 10px;
     padding: 16px 28px;
     border-radius: var(--radius-pill);
-    background: var(--color-black);
-    color: var(--color-white);
+    background: var(--color-brand-green);
+    color: var(--color-black);
     font-size: 17px;
     transition: transform 0.4s cubic-bezier(0.2, 1, 0.3, 1);
   }
