@@ -101,6 +101,11 @@ const sizes = { pair: '(max-width: 690px) 100vw, 50vw', trio: '(max-width: 690px
         <div class="case-in" style="--d:450ms">
           <p class="case-tagline">{doc.tagline}</p>
           {doc.intro && <p class="case-intro">{doc.intro}</p>}
+          {doc.site && (
+            <a class="case-site" href={doc.site} {...external}>
+              {doc.siteLabel ?? t.visitShort} <span aria-hidden="true">↗</span>
+            </a>
+          )}
         </div>
         <dl class="case-facts case-in" style="--d:550ms">
           {
@@ -286,6 +291,13 @@ const sizes = { pair: '(max-width: 690px) 100vw, 50vw', trio: '(max-width: 690px
         </a>
       )
     }
+    {
+      doc.site && (
+        <a class="case-float" href={doc.site} {...external} data-case-float tabindex="-1">
+          {doc.siteLabel ?? t.visitShort} <span aria-hidden="true">↗</span>
+        </a>
+      )
+    }
     <button type="button" class="case-scroll" data-case-scroll tabindex="-1" aria-hidden="true">
       <span>{t.scroll}</span>
       <svg viewBox="0 0 12 16" width="12" height="16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 1v13M1.5 9.5 6 14l4.5-4.5" /></svg>
@@ -462,6 +474,53 @@ const sizes = { pair: '(max-width: 690px) 100vw, 50vw', trio: '(max-width: 690px
     transform: translate(-50%, 12px);
     pointer-events: none;
     transition: opacity 0.5s var(--ease-out), transform 0.5s var(--ease-out);
+  }
+
+  /* Enlace al sitio del caso: fijo abajo a la izquierda después de la portada, hasta llegar a la
+     sección "Visita el sitio en vivo". Mismo estilo que la guía de scroll. */
+  .case-float {
+    position: fixed;
+    left: max(20px, env(safe-area-inset-left));
+    bottom: max(20px, env(safe-area-inset-bottom));
+    z-index: 20;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 20px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-pill);
+    font-size: 14px;
+    color: var(--fg);
+    background: color-mix(in srgb, var(--page-bg, #000) 72%, transparent);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    opacity: 0;
+    transform: translateY(12px);
+    pointer-events: none;
+    transition: opacity 0.45s var(--ease-out), transform 0.45s var(--ease-out), background-color 0.3s;
+  }
+
+  .case-float.is-shown {
+    opacity: 1;
+    transform: none;
+    pointer-events: auto;
+  }
+
+  @media (hover: hover) {
+    .case-float:hover {
+      background: var(--fg);
+      color: var(--page-bg);
+    }
+  }
+
+  /* Enlace al sitio en la portada del caso, debajo del texto. */
+  .case-site {
+    display: inline-flex;
+    gap: 6px;
+    margin-top: 22px;
+    padding-bottom: 3px;
+    border-bottom: 1px solid currentColor;
+    font-size: 16px;
   }
 
   .case-scroll.is-shown {

@@ -89,6 +89,26 @@ if (reduceMotion || !('IntersectionObserver' in window)) {
 // [data-case-scroll]  Guía "Sigue bajando": aparece poco después de cargar y cada vez que el
 //                     lector deja de hacer scroll (poco más de un segundo) con mucho caso por delante; se esconde al
 //                     moverse y cerca del final. Al tocarla baja casi una pantalla.
+// [data-case-float]   Enlace al sitio: fijo abajo a la izquierda desde que la portada sale de la
+//                     pantalla hasta que aparece la sección "Visita el sitio en vivo".
+const hero = document.querySelector<HTMLElement>('.case-hero');
+const float = document.querySelector<HTMLElement>('[data-case-float]');
+const pastHero = () => !!hero && hero.getBoundingClientRect().bottom < 0;
+if (float) {
+  const stop = document.querySelector<HTMLElement>('.case-visit, .case-cta');
+  let raf = 0;
+  const place = () => {
+    raf = 0;
+    const beforeEnd = !stop || stop.getBoundingClientRect().top > window.innerHeight * 0.9;
+    const on = pastHero() && beforeEnd;
+    float.classList.toggle('is-shown', on);
+    float.tabIndex = on ? 0 : -1;
+  };
+  window.addEventListener('scroll', () => (raf ||= requestAnimationFrame(place)), { passive: true });
+  place();
+}
+
+// La guía "Sigue bajando" solo acompaña la portada; después ese lugar es del enlace al sitio.
 const cue = document.querySelector<HTMLElement>('[data-case-scroll]');
 if (cue) {
   const end = document.querySelector<HTMLElement>('.case-cta, .case-next');
@@ -98,7 +118,7 @@ if (cue) {
   };
   let idle = 0;
   const show = () => {
-    if (room()) cue.classList.add('is-shown');
+    if (room() && !(float && pastHero())) cue.classList.add('is-shown');
   };
   const arm = (ms: number) => {
     clearTimeout(idle);

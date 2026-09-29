@@ -148,8 +148,8 @@ export const MANUAL_CASES: Record<string, (lang: Lang) => CaseDoc> = {
 export const isCase = (slug: string) => slug in MODEL_CASES || slug in MANUAL_CASES || slug in LEGACY_CASES;
 
 export const CASE_UI = {
-  en: { eyebrow: 'Case study', next: 'Next project', visit: 'Visit the live site', scroll: 'Keep scrolling', talk: 'Tell us about your project', ctaTitle: 'Got a project in mind?', ctaText: 'We design and build websites, online stores and booking and payment systems, and keep them running every month.' },
-  es: { eyebrow: 'Caso de estudio', next: 'Siguiente proyecto', visit: 'Visita el sitio en vivo', scroll: 'Sigue bajando', talk: 'Cuéntanos tu proyecto', ctaTitle: '¿Tienes un proyecto en mente?', ctaText: 'Diseñamos y construimos sitios web, tiendas en línea y sistemas de reservas y pagos, y los mantenemos funcionando mes a mes.' },
+  en: { eyebrow: 'Case study', next: 'Next project', visit: 'Visit the live site', visitShort: 'Visit the site', scroll: 'Keep scrolling', talk: 'Tell us about your project', ctaTitle: 'Got a project in mind?', ctaText: 'We design and build websites, online stores and booking and payment systems, and keep them running every month.' },
+  es: { eyebrow: 'Caso de estudio', next: 'Siguiente proyecto', visit: 'Visita el sitio en vivo', visitShort: 'Visitar el sitio', scroll: 'Sigue bajando', talk: 'Cuéntanos tu proyecto', ctaTitle: '¿Tienes un proyecto en mente?', ctaText: 'Diseñamos y construimos sitios web, tiendas en línea y sistemas de reservas y pagos, y los mantenemos funcionando mes a mes.' },
 };
 
 // Título y descripción para buscadores de los casos que venían del vivo con metadatos pobres
