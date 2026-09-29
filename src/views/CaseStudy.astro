@@ -177,7 +177,6 @@ const sizes = { pair: '(max-width: 690px) 100vw, 50vw', trio: '(max-width: 690px
               <ol class="case-list">
                 {b.items.map(splitTerm).map((it, i) => (
                   <li data-step>
-                    <span class="case-step__bar" aria-hidden="true" />
                     <span class="case-list__n case-step__n"><span class="case-step__num">{String(i + 1).padStart(2, '0')}</span><svg class="case-step__check" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" /></svg></span>
                     <span class="case-list__term">{it.term}</span>
                     <span class="case-list__desc" set:html={it.desc} />
@@ -188,7 +187,6 @@ const sizes = { pair: '(max-width: 690px) 100vw, 50vw', trio: '(max-width: 690px
               <ul class="case-cards">
                 {b.items.map((it, i) => (
                   <li data-step>
-                    <span class="case-step__bar" aria-hidden="true" />
                     <span class="case-cards__n case-step__n"><span class="case-step__num">{String(i + 1).padStart(2, '0')}</span><svg class="case-step__check" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" /></svg></span>
                     <h3 class="case-cards__term">{it.term}</h3>
                     <p class="case-cards__desc" set:html={it.desc} />
@@ -915,28 +913,11 @@ const sizes = { pair: '(max-width: 690px) 100vw, 50vw', trio: '(max-width: 690px
     display: none;
   }
 
-  /* Pasos numerados (tarjetas y lista): al bajar, una línea se llena en cada paso y, al completarse,
-     el número se vuelve un círculo lleno con un ✓. El texto se aclara a medida que avanza.
+  /* Pasos numerados (tarjetas y lista): al bajar, el texto de cada paso pasa de tenue a completo y,
+     al completarse, el número se vuelve un círculo lleno con un ✓. Sin líneas de progreso.
      --p (0 a 1) lo calcula src/scripts/case.ts según la posición en la pantalla. */
   [data-step] {
     --p: 0;
-  }
-
-  .case-step__bar {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 2px;
-    background: var(--accent);
-    transform: scaleX(var(--p));
-    transform-origin: 0 50%;
-    pointer-events: none;
-  }
-
-  .case-list .case-step__bar {
-    top: auto;
-    bottom: -1px;
   }
 
   .case-step__n {
