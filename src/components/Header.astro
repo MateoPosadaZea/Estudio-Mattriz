@@ -257,7 +257,6 @@ const other = lang === 'es' ? 'en' : 'es';
       display: none;
     }
 
-    /* Círculo negro con tres líneas. Vivo: 40×40 px, #0a0a0a, sombra 0 10px 25px 13 %. */
     .menu-toggle {
       position: relative;
       display: block;
@@ -265,22 +264,10 @@ const other = lang === 'es' ? 'en' : 'es';
       width: 40px;
       height: 40px;
       margin-left: auto;
-      background: var(--color-ink);
-      border-radius: 100px;
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.13);
-      transition: background-color 0.4s ease, box-shadow 0.4s ease;
-    }
-
-    .site-header.is-top .menu-toggle {
-      box-shadow: none;
-    }
-
-    .site-header.is-top[data-tone='dark'] .menu-toggle {
-      background: var(--color-white);
-    }
-
-    .site-header.is-top[data-tone='dark'] .menu-toggle__lines i {
-      background: var(--color-black);
+      /* Solo las tres líneas, sin círculo: el logo queda como protagonista. Toman el color del
+         texto del header (negro en la píldora, blanco arriba sobre fondos oscuros). */
+      background: none;
+      margin-right: -8px;
     }
 
     .menu-toggle__lines {
@@ -294,8 +281,7 @@ const other = lang === 'es' ? 'en' : 'es';
       width: 17px;
       height: 1.5px;
       margin-bottom: 3.5px;
-      background: var(--color-white);
-      transition: background-color 0.4s ease;
+      background: currentColor;
     }
 
     .menu-toggle__lines i:last-child {
