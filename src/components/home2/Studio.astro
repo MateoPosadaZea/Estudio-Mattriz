@@ -148,7 +148,8 @@ const reel = lang === 'es' ? { open: 'Ver reel', close: 'Cerrar' } : { open: 'Vi
     transform: scale(1.04);
   }
 
-  /* Botón de play: solo el ícono, transparente con borde fino; al pasar el mouse se llena de verde. */
+  /* Botón de play: solo el ícono, con fondo desenfocado (se lee sobre cualquier color) y borde fino;
+     al pasar el mouse se llena de verde. */
   .h-reel__btn {
     position: absolute;
     top: 50%;
@@ -158,9 +159,11 @@ const reel = lang === 'es' ? { open: 'Ver reel', close: 'Cerrar' } : { open: 'Vi
     place-items: center;
     width: 64px;
     height: 64px;
-    border: 1px solid rgba(255, 255, 255, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.45);
     border-radius: 50%;
-    background: transparent;
+    background: rgba(20, 20, 20, 0.22);
+    -webkit-backdrop-filter: blur(14px) saturate(1.2);
+    backdrop-filter: blur(14px) saturate(1.2);
     color: var(--color-white);
     transform: translate(-50%, -50%);
     transition:
