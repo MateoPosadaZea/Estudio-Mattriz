@@ -1,5 +1,5 @@
 // v2: loader (src/components/Loader.astro). Mientras la página carga pasan saludos en varios
-// idiomas (uno cada ~240 ms, en bucle si hace falta). Cuando la página está lista (fuentes + evento
+// idiomas (uno cada ~240 ms, sin repetir). Cuando la página está lista (fuentes + evento
 // load, mínimo 2.1 s) cierra con el saludo en el idioma del sitio (punto en verde) y el fondo blanco
 // sube como un telón: la palabra no se mueve, el borde del telón la va cubriendo. Tope: 4 s.
 
@@ -11,7 +11,8 @@ if (loader && word && root.classList.contains('is-loading')) {
   const es = root.lang.startsWith('es');
   // Pasa por varios idiomas y cierra en el del sitio.
   const FINAL = es ? 'Hola' : 'Hello';
-  const WORDS = [es ? 'Hello' : 'Hola', 'Bonjour', 'Olá', 'Ciao', 'Hallo', 'Hej'];
+  // Dieciséis saludos distintos: alcanzan para el tope de 4 s sin repetir ninguno.
+  const WORDS = [es ? 'Hello' : 'Hola', 'Bonjour', 'Olá', 'Ciao', 'Hallo', 'Hej', 'Ahoj', 'Aloha', 'Merhaba', 'Namaste', 'Jambo', 'Salut', 'Szia', 'Konnichiwa', 'Ni hao', 'Hei'];
   const MIN = 2100;
   const MAX = 4000;
   const STEP = 240;
@@ -45,7 +46,7 @@ if (loader && word && root.classList.contains('is-loading')) {
       setTimeout(finish, 600);
       return;
     }
-    word.textContent = WORDS[i % WORDS.length];
+    word.textContent = WORDS[Math.min(i, WORDS.length - 1)];
     i++;
     setTimeout(tick, i === 1 ? 300 : STEP);
   };
