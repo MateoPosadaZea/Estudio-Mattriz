@@ -51,12 +51,12 @@ const CORPORATE = img('spot-on-corporate', 1396, 1232, [1396, 1200, 700], {
 
 const video = (base: string, alt: Record<Lang, string>, caption: Record<Lang, string>) => (lang: Lang): CaseMedia => ({
   type: 'video',
-  local: { dir: DIR, base, width: 1440, height: 900 },
+  local: { dir: DIR, base, width: 1920, height: 1200 },
   alt: alt[lang],
   caption: caption[lang],
 });
 
-// Videos de la navegación real del sitio (grabados en septiembre de 2026, sin llenar datos ni pagar).
+// Videos de la navegación real del sitio (regrabados el 29 de septiembre de 2026 a doble resolución, sin llenar datos ni pagar).
 const FLOW = video('spot-on-flow', {
   en: 'Browsing the Spot On site and booking a detail step by step',
   es: 'Navegación por el sitio de Spot On y reserva paso a paso',

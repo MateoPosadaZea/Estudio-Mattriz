@@ -67,14 +67,14 @@ const M_RECORD = phone('disco', { en: 'Record page on a phone', es: 'Ficha de un
 const M_LISTEN = phone('escucha', { en: 'Turntable page on a phone', es: 'Tocadiscos en el celular' });
 const FLOW = (lang: Lang): CaseMedia => ({
   type: 'video',
-  local: { dir: DIR, base: 'ss-nav', width: 1280, height: 800 },
+  local: { dir: DIR, base: 'ss-nav', width: 1920, height: 1200 },
   alt: { en: 'Browsing the home page, instant search, the turntable, the shop and adding a book to the cart', es: 'Recorrido por la portada, el buscador instantáneo, el tocadiscos, la tienda y un libro añadido al carrito' }[lang],
   caption: { en: 'Home, instant search, the turntable, the shop and the cart, all served by the new site.', es: 'Portada, buscador instantáneo, tocadiscos, tienda y carrito, todo servido por el sitio nuevo.' }[lang],
 });
 
 const TURNTABLE = (lang: Lang): CaseMedia => ({
   type: 'video',
-  local: { dir: DIR, base: 'ss-listen', width: 1280, height: 800 },
+  local: { dir: DIR, base: 'ss-listen', width: 1920, height: 1200 },
   alt: { en: 'The Escucha page: picking records, the turntable spinning, and searching the vinyls', es: 'La página Escucha: se escogen discos, el tocadiscos gira y se buscan vinilos' }[lang],
   caption: {
     en: 'Escucha, the listening page: pick a record, the turntable spins and 30 seconds play. The iPad in the shop has its own version, made for touch.',
