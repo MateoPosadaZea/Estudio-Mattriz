@@ -1,8 +1,8 @@
 ---
 // v2: hero del home. Titular gigante en Noe Display que sube palabra por palabra,
 // el gradiente verde de marca detrás, y una franja inferior con el subtítulo y el enlace.
-// A la derecha del titular, una miniatura del reel (en bucle, sin sonido): al pasar el mouse aparece
-// "View reel" y al hacer clic se abre el reel completo en un diálogo (src/scripts/reel.ts).
+// A la derecha del titular, una miniatura del reel (en bucle, sin sonido) con el botón "View reel";
+// al hacer clic se abre el reel completo en un diálogo (src/scripts/reel.ts).
 import AnimatedGradient from '../AnimatedGradient.astro';
 import { home } from '../../data/home';
 import { langOf, ui } from '../../i18n';
@@ -57,6 +57,7 @@ const reel = lang === 'es' ? { open: 'Ver reel', close: 'Cerrar' } : { open: 'Vi
 
 <dialog class="h-reel-modal" data-reel-modal data-lenis-prevent aria-label={reel.open}>
   <button type="button" class="h-reel-modal__close" data-reel-close>{reel.close} <span aria-hidden="true">×</span></button>
+  <div class="h-reel-modal__frame">
   <video
     class="h-reel-modal__video"
     data-full="/media/reel/mattriz-reel.mp4"
@@ -67,6 +68,7 @@ const reel = lang === 'es' ? { open: 'Ver reel', close: 'Cerrar' } : { open: 'Vi
     playsinline
     disablepictureinpicture
     disableremoteplayback></video>
+  </div>
 </dialog>
 
 <script>
@@ -153,6 +155,8 @@ const reel = lang === 'es' ? { open: 'Ver reel', close: 'Cerrar' } : { open: 'Vi
     background: #161616;
     cursor: pointer;
     isolation: isolate;
+    -webkit-mask-image: -webkit-radial-gradient(white, black);
+    transform: translateZ(0);
   }
 
   @media (min-width: 1000px) {
@@ -189,11 +193,8 @@ const reel = lang === 'es' ? { open: 'Ver reel', close: 'Cerrar' } : { open: 'Vi
     font-size: 15px;
     white-space: nowrap;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
-    transform: translate(-50%, -50%) scale(0.85);
-    opacity: 0;
-    transition:
-      opacity 0.3s ease,
-      transform 0.5s cubic-bezier(0.2, 1, 0.3, 1);
+    transform: translate(-50%, -50%);
+    transition: transform 0.5s cubic-bezier(0.2, 1, 0.3, 1);
   }
 
   .h-reel__btn svg {
@@ -203,16 +204,7 @@ const reel = lang === 'es' ? { open: 'Ver reel', close: 'Cerrar' } : { open: 'Vi
 
   .h-reel:hover .h-reel__btn,
   .h-reel:focus-visible .h-reel__btn {
-    opacity: 1;
-    transform: translate(-50%, -50%);
-  }
-
-  /* Sin mouse (celular, tableta) el botón se ve siempre. */
-  @media (hover: none) {
-    .h-reel__btn {
-      opacity: 1;
-      transform: translate(-50%, -50%);
-    }
+    transform: translate(-50%, -50%) scale(1.06);
   }
 
   .h-reel:focus-visible {
@@ -250,14 +242,22 @@ const reel = lang === 'es' ? { open: 'Ver reel', close: 'Cerrar' } : { open: 'Vi
     }
   }
 
-  .h-reel-modal__video {
-    width: 100%;
-    max-width: 1600px;
-    max-height: calc(100dvh - 140px);
+  /* Marco con las esquinas redondeadas: siempre 16:9 y del tamaño exacto del video. */
+  .h-reel-modal__frame {
+    width: min(100%, 1600px, calc((100dvh - 140px) * 16 / 9));
     aspect-ratio: 16 / 9;
-    border-radius: 14px;
+    border-radius: 16px;
+    overflow: hidden;
     background: #000;
-    object-fit: contain;
+    -webkit-mask-image: -webkit-radial-gradient(white, black);
+    transform: translateZ(0);
+  }
+
+  .h-reel-modal__video {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
 
   .h-reel-modal__close {
