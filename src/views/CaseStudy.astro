@@ -65,6 +65,13 @@ const numbered = new Map(doc.blocks.map((b) => [b, ['media', 'details', 'cta'].i
 
 const idx = PROJECTS.findIndex((p) => p.href === `/project/${slug}/`);
 const next = PROJECTS[(idx + 1) % PROJECTS.length];
+// "Siguiente proyecto" va con el fondo y el tema del caso que presenta (no del actual).
+const nextSlug = next?.href.split('/').filter(Boolean).pop() ?? '';
+const nextLook: { theme?: 'dark' | 'light'; bg?: string } = MANUAL_CASES[nextSlug]
+  ? MANUAL_CASES[nextSlug](lang)
+  : (MODEL_CASES as Record<string, { theme?: 'dark' | 'light'; bg?: string }>)[nextSlug] ?? { theme: doc.theme, bg };
+const nextTheme = nextLook.theme ?? doc.theme;
+const nextBg = nextLook.bg ?? (nextTheme === 'dark' ? '#0a0a0a' : '#ffffff');
 
 const external = { target: '_blank', rel: 'noopener' };
 const host = doc.site ? new URL(doc.site).hostname.replace(/^www\./, '') : '';
@@ -264,7 +271,7 @@ const sizes = { pair: '(max-width: 690px) 100vw, 50vw', trio: '(max-width: 690px
 
     {
       next && (
-        <a class="case-next" href={localize(next.href, lang)}>
+        <a class:list={['case-next', `case-next--${nextTheme}`]} href={localize(next.href, lang)} style={`--next-bg:${nextBg}`}>
           <span class="case-next__small">{t.next}</span>
           <span class="case-next__name" style={`--len:${next.title.length}`}>{next.title}</span>
           <span class="case-next__media" aria-hidden="true">
@@ -1087,10 +1094,22 @@ const sizes = { pair: '(max-width: 690px) 100vw, 50vw', trio: '(max-width: 690px
     display: block;
     overflow: hidden;
     padding: clamp(60px, 10vw, 160px) var(--pad);
-    /* Mismo fondo y texto que el resto del caso de estudio. */
-    background: var(--page-bg);
+    /* Fondo y texto del caso que se presenta como siguiente. */
+    background: var(--next-bg, var(--page-bg));
     color: var(--fg);
     border-top: 1px solid var(--line);
+  }
+
+  .case-next--dark {
+    --fg: var(--color-white);
+    --muted: rgba(255, 255, 255, 0.6);
+    --line: rgba(255, 255, 255, 0.2);
+  }
+
+  .case-next--light {
+    --fg: var(--color-ink);
+    --muted: rgba(10, 10, 10, 0.68);
+    --line: rgba(10, 10, 10, 0.15);
   }
 
   .case-next__small {
