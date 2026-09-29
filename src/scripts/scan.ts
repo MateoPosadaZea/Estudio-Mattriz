@@ -198,7 +198,20 @@ if (root && cfgEl) {
     scan(input.value);
   });
 
-  $('[data-scan-again]').addEventListener('click', () => {
+  // "Escanear otro sitio" aparece fijo abajo cuando se llega a la cotización, el final del escáner.
+  const again = $('[data-scan-again]');
+  const quote = document.getElementById('quote');
+  let againRaf = 0;
+  const placeAgain = () => {
+    againRaf = 0;
+    const top = quote?.getBoundingClientRect().top ?? Infinity;
+    again.classList.toggle('is-shown', !results.hidden && top < innerHeight * 0.6);
+  };
+  addEventListener('scroll', () => (againRaf ||= requestAnimationFrame(placeAgain)), { passive: true });
+  addEventListener('resize', () => (againRaf ||= requestAnimationFrame(placeAgain)), { passive: true });
+
+  again.addEventListener('click', () => {
+    again.classList.remove('is-shown');
     results.hidden = true;
     input.value = '';
     scrollToY(0);

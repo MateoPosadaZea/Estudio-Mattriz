@@ -31,7 +31,6 @@ type Copy = {
   quoteNote: string;
   quoteAsk: string;
   form: { name: string; email: string; phone: string; submit: string; consent: string; success: string; error: string };
-  disclaimer: string;
   again: string;
   teaserLabel: string;
   teaserTitle: string;
@@ -93,7 +92,6 @@ const EN: Copy = {
     success: 'Thanks. We’ll get back to you within one business day.',
     error: 'Something went wrong and your message wasn’t sent. Write to us directly at contacto@mattriz.com.',
   },
-  disclaimer: 'The scan reads the public pages of your site. Tools that only load after someone clicks may not show up.',
   again: 'Scan another site',
   teaserLabel: 'Free tool',
   teaserTitle: 'What is your business missing?',
@@ -155,7 +153,6 @@ const ES: Copy = {
     success: 'Gracias. Te respondemos en un día hábil.',
     error: 'Algo falló y tu mensaje no se envió. Escríbenos directo a contacto@mattriz.com.',
   },
-  disclaimer: 'El escaneo lee las páginas públicas de tu sitio. Las herramientas que solo cargan cuando alguien hace clic pueden no aparecer.',
   again: 'Escanear otro sitio',
   teaserLabel: 'Herramienta gratis',
   teaserTitle: '¿Qué le falta a tu negocio?',

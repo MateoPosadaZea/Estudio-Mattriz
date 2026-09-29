@@ -114,10 +114,7 @@ const config = { lang, copy: c, pricing: PRICING, currency: CURRENCY };
         </form>
       </section>
 
-      <section class="scan-foot">
-        <p>{c.disclaimer}</p>
-        <button type="button" class="scan-again" data-scan-again><span class="reveal"><span class="reveal__text" data-text={c.again}>{c.again}</span></span> <span class="btn-arrow" data-dir="up" aria-hidden="true">↑</span></button>
-      </section>
+      <button type="button" class="scan-again" data-scan-again><span class="reveal"><span class="reveal__text" data-text={c.again}>{c.again}</span></span> <span class="btn-arrow" data-dir="up" aria-hidden="true">↑</span></button>
     </div>
   </div>
 </Base>
@@ -701,27 +698,33 @@ const config = { lang, copy: c, pricing: PRICING, currency: CURRENCY };
     font-size: 16px;
   }
 
-  .scan-foot {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: center;
-    gap: 16px 32px;
-    padding: 40px var(--pad);
-    font-size: 14px;
-    color: var(--muted);
-  }
-
+  /* Escanear otro sitio: fijo abajo al centro, aparece al llegar a la cotización (final del escáner). */
   .scan-again {
+    position: fixed;
+    left: 50%;
+    bottom: 24px;
+    z-index: 40;
     display: inline-flex;
     align-items: center;
     gap: 0.4em;
     white-space: nowrap;
-    padding: 10px 20px;
-    border: 1px solid var(--line);
+    padding: 14px 26px;
     border-radius: var(--radius-pill);
-    color: var(--fg);
-    font-size: 15px;
+    background: var(--color-white);
+    color: var(--color-black);
+    font-size: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+    opacity: 0;
+    visibility: hidden;
+    transform: translate(-50%, 20px);
+    transition: opacity 0.4s ease, transform 0.5s cubic-bezier(0.2, 1, 0.3, 1), visibility 0s 0.5s;
+  }
+
+  .scan-again.is-shown {
+    opacity: 1;
+    visibility: visible;
+    transform: translate(-50%, 0);
+    transition: opacity 0.4s ease, transform 0.5s cubic-bezier(0.2, 1, 0.3, 1);
   }
 
   @media (prefers-reduced-motion: reduce) {
