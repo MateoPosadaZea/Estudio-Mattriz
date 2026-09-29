@@ -5,6 +5,7 @@
 // si no hay material (Closet Up). Lógica en src/scripts/testimonials.ts.
 // Accesible: botones anterior/siguiente, pausa, contador; con prefers-reduced-motion no avanza solo.
 // En /contact/ va sin título (bare), en una columna (imagen arriba, cita abajo).
+import { mobileSrc } from '../../lib/mobile-video';
 import { home } from '../../data/home';
 import { langOf, localize } from '../../i18n';
 
@@ -112,7 +113,7 @@ const pad = (n: number) => String(n).padStart(2, '0');
                   {(() => {
                     const items = project.reel.map((src, k) =>
                       src.endsWith('.mp4') ? (
-                        <video class:list={{ "is-on": k === 0 }} data-reel-src={src} data-poster={src.replace(/\.mp4$/, '-poster.webp')} muted playsinline webkit-playsinline disablepictureinpicture disableremoteplayback preload="none" />
+                        <video class:list={{ "is-on": k === 0 }} data-reel-src={src} data-reel-src-mobile={mobileSrc(src)} data-poster={src.replace(/\.mp4$/, '-poster.webp')} muted playsinline webkit-playsinline disablepictureinpicture disableremoteplayback preload="none" />
                       ) : (
                         <img class:list={{ 'is-on': k === 0 }} data-img-src={src} width="1200" height="750" alt="" decoding="async" />
                       ),

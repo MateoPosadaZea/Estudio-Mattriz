@@ -1,5 +1,6 @@
 ---
 // Un elemento de WPBakery: texto, título partido, imagen, video, divisor, botón, categorías, marquesina.
+import { mobileSrc } from '../../lib/mobile-video';
 import SplitText from '../SplitText.astro';
 import LineButton from '../LineButton.astro';
 import ScrollingText from './ScrollingText.astro';
@@ -66,7 +67,7 @@ const phone = (el.classes ?? []).map((c: string) => c.match(/^height_phone_(\d+p
   el.type === 'video' && el.local && (
     <div class="wp-video" style={el.radius && el.radius !== 'none' ? `--radius:${el.radius}` : ''}>
       <video
-        data-src={`${el.local.dir}/${el.local.base}.mp4`}
+        data-src={`${el.local.dir}/${el.local.base}.mp4`} data-src-mobile={mobileSrc(`${el.local.dir}/${el.local.base}.mp4`)}
         poster={`${el.local.dir}/${el.local.base}-poster.webp`}
         width={el.local.width}
         height={el.local.height}

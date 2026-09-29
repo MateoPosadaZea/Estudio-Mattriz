@@ -12,6 +12,9 @@ if (carousel) {
   const bar = carousel.querySelector<HTMLElement>('[data-t-progress]')!;
   const toggle = carousel.querySelector<HTMLButtonElement>('[data-t-toggle]')!;
   const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  // En pantallas angostas se usa la versión liviana del clip (720 px) si existe.
+  const narrow = window.matchMedia('(max-width: 999px)').matches;
+  const reelSrc = (v: HTMLVideoElement) => (narrow && v.dataset.reelSrcMobile) || v.dataset.reelSrc!;
   const SLIDE_MS = 9000;
   const REEL_MS = 1100;
   const CLIP_MAX_MS = 4000;
@@ -66,7 +69,7 @@ if (carousel) {
         show();
       };
       if (el instanceof HTMLVideoElement) {
-        if (!el.src) el.src = el.dataset.reelSrc!;
+        if (!el.src) el.src = reelSrc(el);
         el.currentTime = 0;
         if (reduce) return;
         const skip = () => { clearTimeout(reelTimer); reelTimer = window.setTimeout(next, REEL_MS); };
@@ -82,7 +85,7 @@ if (carousel) {
     show();
     // Precarga el primer clip de la diapositiva siguiente.
     const nextVid = slides[(index + 1) % slides.length].querySelector<HTMLVideoElement>('video[data-reel-src]');
-    if (nextVid && !nextVid.src) { nextVid.preload = 'auto'; nextVid.src = nextVid.dataset.reelSrc!; }
+    if (nextVid && !nextVid.src) { nextVid.preload = 'auto'; nextVid.src = reelSrc(nextVid); }
   };
 
   const go = (next: number) => {

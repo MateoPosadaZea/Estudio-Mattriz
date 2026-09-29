@@ -2,6 +2,7 @@
 // v2: caso de estudio con diseño editorial (referencia: locomotive.ca).
 // Dibuja un CaseDoc (src/components/case/doc.ts), que sale del modelo del proyecto
 // (fromModel, The Grid) o de un caso escrito a mano (src/data/cases/, Spot On).
+import { mobileSrc } from '../lib/mobile-video';
 import Base from '../layouts/Base.astro';
 import CaseMedia from '../components/case/CaseMedia.astro';
 import { fromModel } from '../components/case/fromModel';
@@ -268,7 +269,7 @@ const sizes = { pair: '(max-width: 690px) 100vw, 50vw', trio: '(max-width: 690px
           <span class="case-next__name" style={`--len:${next.title.length}`}>{next.title}</span>
           <span class="case-next__media" aria-hidden="true">
             {next.video ? (
-              <video data-src={next.video} poster={next.video.replace(/\.mp4$/, '-poster.webp')} muted loop playsinline webkit-playsinline disablepictureinpicture disableremoteplayback preload="none" />
+              <video data-src={next.video} data-src-mobile={mobileSrc(next.video)} poster={next.video.replace(/\.mp4$/, '-poster.webp')} muted loop playsinline webkit-playsinline disablepictureinpicture disableremoteplayback preload="none" />
             ) : (
               next.image && <img src={next.image.src} srcset={next.image.srcset} sizes="40vw" width={next.image.width} height={next.image.height} alt="" loading="lazy" decoding="async" />
             )}

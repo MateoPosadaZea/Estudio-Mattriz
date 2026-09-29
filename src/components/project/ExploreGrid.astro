@@ -1,6 +1,7 @@
 ---
 // Tarjetas de otros proyectos al final de los casos (nectar-post-grid del vivo): 3 columnas,
 // tarjetas cuadradas con radio de 25px, categorías arriba y título abajo a la izquierda.
+import { mobileSrc } from '../../lib/mobile-video';
 import { PROJECTS } from '../../data/home';
 import { langOf, localize, category } from '../../i18n';
 
@@ -20,7 +21,7 @@ const others = [1, 2, 3].map((n) => PROJECTS[(i + n) % PROJECTS.length]);
       <li class="explore-card">
         <div class="explore-card__bg" aria-hidden="true">
           {p.video ? (
-            <video data-src={p.video} muted loop playsinline webkit-playsinline disablepictureinpicture disableremoteplayback preload="none" />
+            <video data-src={p.video} data-src-mobile={mobileSrc(p.video)} muted loop playsinline webkit-playsinline disablepictureinpicture disableremoteplayback preload="none" />
           ) : (
             p.image && <img src={p.image.src} srcset={p.image.srcset} sizes="(max-width: 999px) 90vw, 30vw" width={p.image.width} height={p.image.height} alt="" loading="lazy" decoding="async" />
           )}

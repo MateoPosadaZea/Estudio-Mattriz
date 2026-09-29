@@ -1,5 +1,6 @@
 ---
 // Imagen o video de un caso v2. Los videos se cargan al acercarse (src/scripts/lazy-video.ts).
+import { mobileSrc } from '../../lib/mobile-video';
 import { srcset, largest } from '../project/tone';
 import type { CaseMedia } from './extract';
 
@@ -29,7 +30,7 @@ const m = item.local;
     />
   ) : (
     <video
-      data-src={`${m.dir}/${m.base}.mp4`}
+      data-src={`${m.dir}/${m.base}.mp4`} data-src-mobile={mobileSrc(`${m.dir}/${m.base}.mp4`)}
       poster={`${m.dir}/${m.base}-poster.webp`}
       width={m.width}
       height={m.height}

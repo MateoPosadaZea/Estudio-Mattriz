@@ -2,6 +2,7 @@
 // Filas de WPBakery (modelo de tools/projects/extract.py) con las reglas de layout de Salient:
 // contenedor de 1300px con 70px a los lados (6 % en mobile), columnas en /12 con canal (column margin)
 // de 50px por defecto, filas de alto completo, filas a sangre (full-width-content) sin canal.
+import { mobileSrc } from '../../lib/mobile-video';
 import Element from './Element.astro';
 import { isDark, pct, largest, srcset } from './tone';
 import { langOf, localize } from '../../i18n';
@@ -69,7 +70,7 @@ const gutterOf = (row: any) => {
           <img class="wp-row__bg" src={largest(row.bgImage.local)} srcset={srcset(row.bgImage.local)} sizes="100vw" alt="" loading={eager ? 'eager' : 'lazy'} decoding="async" width={row.bgImage.local.width} height={row.bgImage.local.height} />
         )}
         {row.bgVideo?.local && (
-          <video class="wp-row__bg" data-src={`${row.bgVideo.local.dir}/${row.bgVideo.local.base}.mp4`} poster={`${row.bgVideo.local.dir}/${row.bgVideo.local.base}-poster.webp`} muted loop playsinline webkit-playsinline disablepictureinpicture disableremoteplayback preload="none" aria-hidden="true" />
+          <video class="wp-row__bg" data-src={`${row.bgVideo.local.dir}/${row.bgVideo.local.base}.mp4`} data-src-mobile={mobileSrc(`${row.bgVideo.local.dir}/${row.bgVideo.local.base}.mp4`)} poster={`${row.bgVideo.local.dir}/${row.bgVideo.local.base}-poster.webp`} muted loop playsinline webkit-playsinline disablepictureinpicture disableremoteplayback preload="none" aria-hidden="true" />
         )}
         <div class="wp-row__inner">
           <div class="wp-cols">
