@@ -1,6 +1,7 @@
-// v2: reel del home (src/components/home2/Hero.astro). La miniatura es un video corto en bucle
+// v2: reel del home (src/components/home2/Studio.astro). La miniatura es un video corto en bucle
 // (lo carga lazy-video). Al hacer clic se abre el reel completo en un <dialog>: el archivo se pide
-// solo en ese momento (en pantallas angostas, la versión de 720 px). Se cierra con el botón, con
+// solo en ese momento. En el celular en vertical se abre la versión vertical (9:16, la misma de
+// Instagram); en pantallas angostas en horizontal, la de 720 px. Se cierra con el botón, con
 // Escape o haciendo clic fuera del video; al cerrar se pausa.
 import { startScroll, stopScroll } from './smooth-scroll';
 
@@ -12,8 +13,18 @@ if (open && modal && video && typeof modal.showModal === 'function') {
   const narrow = matchMedia('(max-width: 999px)').matches;
   const thumb = open.querySelector<HTMLVideoElement>('video');
 
+  const portrait = matchMedia('(max-width: 699px) and (orientation: portrait)');
+  const frame = video.parentElement;
+
   open.addEventListener('click', () => {
-    if (!video.getAttribute('src')) video.setAttribute('src', (narrow && video.dataset.fullMobile) || video.dataset.full!);
+    // Se decide al abrir: si el celular está en vertical, el reel vertical.
+    const vertical = portrait.matches && !!video.dataset.fullVertical;
+    const src = vertical ? video.dataset.fullVertical! : (narrow && video.dataset.fullMobile) || video.dataset.full!;
+    frame?.classList.toggle('is-vertical', vertical);
+    if (video.getAttribute('src') !== src) {
+      video.setAttribute('poster', vertical ? video.dataset.posterVertical! : video.dataset.poster!);
+      video.setAttribute('src', src);
+    }
     video.currentTime = 0;
     modal.showModal();
     stopScroll();
