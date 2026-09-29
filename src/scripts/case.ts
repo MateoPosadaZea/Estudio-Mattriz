@@ -13,8 +13,13 @@ import { scrollToY } from './smooth-scroll';
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const reveals = document.querySelectorAll<HTMLElement>('[data-case-reveal]');
 
+// [data-step]         Pasos numerados: --p va de 0 a 1 mientras el paso sube por la pantalla (entra
+//                     al 90 % de la altura y se completa al 40 %); completo, lleva is-done (✓).
+const steps = [...document.querySelectorAll<HTMLElement>('[data-step]')];
+
 if (reduceMotion || !('IntersectionObserver' in window)) {
   reveals.forEach((el) => el.classList.add('is-in'));
+  steps.forEach((el) => (el.style.setProperty('--p', '1'), el.classList.add('is-done')));
 } else {
   const io = new IntersectionObserver(
     (entries) => {
@@ -51,6 +56,14 @@ if (reduceMotion || !('IntersectionObserver' in window)) {
       growInner.style.setProperty('--grow-scale', scale.toFixed(4));
       // El pie de foto sube lo que le falta a la imagen para su tamaño (el scale no mueve el flujo).
       grow.style.setProperty('--grow-shift', `${(growInner.offsetHeight * (scale - 1)).toFixed(1)}px`);
+    }
+
+    for (const st of steps) {
+      const r = st.getBoundingClientRect();
+      if (r.bottom < -vh || r.top > vh * 2) continue;
+      const p = Math.min(Math.max((vh * 0.9 - r.top) / (vh * 0.5), 0), 1);
+      st.style.setProperty('--p', p.toFixed(3));
+      st.classList.toggle('is-done', p >= 0.999);
     }
 
     for (const f of visible) {

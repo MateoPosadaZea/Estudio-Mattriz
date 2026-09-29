@@ -171,8 +171,9 @@ const sizes = { pair: '(max-width: 690px) 100vw, 50vw', trio: '(max-width: 690px
             {b.kind === 'list' ? (
               <ol class="case-list">
                 {b.items.map(splitTerm).map((it, i) => (
-                  <li data-case-reveal>
-                    <span class="case-list__n">{String(i + 1).padStart(2, '0')}</span>
+                  <li data-step>
+                    <span class="case-step__bar" aria-hidden="true" />
+                    <span class="case-list__n case-step__n"><span class="case-step__num">{String(i + 1).padStart(2, '0')}</span><svg class="case-step__check" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" /></svg></span>
                     <span class="case-list__term">{it.term}</span>
                     <span class="case-list__desc" set:html={it.desc} />
                   </li>
@@ -181,8 +182,9 @@ const sizes = { pair: '(max-width: 690px) 100vw, 50vw', trio: '(max-width: 690px
             ) : (
               <ul class="case-cards">
                 {b.items.map((it, i) => (
-                  <li data-case-reveal style={`transition-delay:${(i % 3) * 80}ms`}>
-                    <span class="case-cards__n">{String(i + 1).padStart(2, '0')}</span>
+                  <li data-step>
+                    <span class="case-step__bar" aria-hidden="true" />
+                    <span class="case-cards__n case-step__n"><span class="case-step__num">{String(i + 1).padStart(2, '0')}</span><svg class="case-step__check" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" /></svg></span>
                     <h3 class="case-cards__term">{it.term}</h3>
                     <p class="case-cards__desc" set:html={it.desc} />
                   </li>
@@ -618,6 +620,7 @@ const sizes = { pair: '(max-width: 690px) 100vw, 50vw', trio: '(max-width: 690px
   }
 
   .case-cards li {
+    position: relative;
     display: flex;
     flex-direction: column;
     gap: 14px;
@@ -801,6 +804,7 @@ const sizes = { pair: '(max-width: 690px) 100vw, 50vw', trio: '(max-width: 690px
   }
 
   .case-list li {
+    position: relative;
     display: grid;
     grid-template-columns: 3em 1fr;
     gap: 6px 16px;
@@ -850,6 +854,89 @@ const sizes = { pair: '(max-width: 690px) 100vw, 50vw', trio: '(max-width: 690px
 
   .case-list__desc:empty {
     display: none;
+  }
+
+  /* Pasos numerados (tarjetas y lista): al bajar, una línea se llena en cada paso y, al completarse,
+     el número se vuelve un círculo lleno con un ✓. El texto se aclara a medida que avanza.
+     --p (0 a 1) lo calcula src/scripts/case.ts según la posición en la pantalla. */
+  [data-step] {
+    --p: 0;
+  }
+
+  .case-step__bar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--accent);
+    transform: scaleX(var(--p));
+    transform-origin: 0 50%;
+    pointer-events: none;
+  }
+
+  .case-list .case-step__bar {
+    top: auto;
+    bottom: -1px;
+  }
+
+  .case-step__n {
+    position: relative;
+    display: inline-grid;
+    place-items: center;
+    align-self: flex-start;
+    width: 36px;
+    height: 36px;
+    border: 1px solid color-mix(in srgb, var(--fg) 35%, transparent);
+    border-radius: 50%;
+    color: var(--muted);
+    font-size: 13px;
+    font-variant-numeric: tabular-nums;
+    transition:
+      background-color 0.35s,
+      border-color 0.35s,
+      color 0.35s;
+  }
+
+  .case-step__num,
+  .case-step__check {
+    grid-area: 1 / 1;
+    transition:
+      opacity 0.3s,
+      transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  .case-step__check {
+    width: 18px;
+    height: 18px;
+    opacity: 0;
+    transform: scale(0.4);
+  }
+
+  [data-step].is-done .case-step__n {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: var(--on-accent, #0a0a0a);
+  }
+
+  [data-step].is-done .case-step__num {
+    opacity: 0;
+    transform: scale(0.4);
+  }
+
+  [data-step].is-done .case-step__check {
+    opacity: 1;
+    transform: none;
+  }
+
+  [data-step] .case-cards__term,
+  [data-step] .case-list__term {
+    opacity: calc(0.35 + 0.65 * var(--p));
+  }
+
+  [data-step] .case-cards__desc,
+  [data-step] .case-list__desc {
+    opacity: calc(0.3 + 0.7 * var(--p));
   }
 
   /* Cifras destacadas. */
