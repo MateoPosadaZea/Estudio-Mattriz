@@ -189,7 +189,7 @@ export const TESTIMONIALS = [
 export const HOME_ES = {
   HERO: {
     title: 'Sistemas que trabajan mientras duermes.',
-    subtitle: 'Diseñamos y construimos los sitios web, tiendas en línea y sistemas de reservas y pagos con los que funciona tu negocio, y los mantenemos funcionando mes a mes.',
+    subtitle: 'Diseñamos y construimos los sitios web, tiendas en línea y sistemas de reservas y pagos con los que funciona tu negocio. Y los mantenemos funcionando mes a mes.',
     cta: { label: 'Mira cómo trabajamos', href: '#how-we-work' },
   },
   SERVICES: {
