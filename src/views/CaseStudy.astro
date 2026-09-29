@@ -858,8 +858,14 @@ const sizes = { pair: '(max-width: 690px) 100vw, 50vw', trio: '(max-width: 690px
     grid-template-columns: 3em 1fr;
     gap: 6px 16px;
     padding: 22px 0;
+    border-top: 1px solid var(--line);
     font-size: 16px;
     line-height: 1.5;
+  }
+
+  /* Líneas fijas entre filas (sin animación): aquí separan bien las entregas. */
+  .case-list li:last-child {
+    border-bottom: 1px solid var(--line);
   }
 
   @media (min-width: 1000px) {
