@@ -1,7 +1,7 @@
 ---
 // v2: "One studio. Real systems." sigue el tema (negro en oscuro, claro en claro), frase en Noe Display y
 // cifras grandes. Blanco y negro son los colores principales; el verde queda para detalles.
-// A la izquierda del párrafo, la miniatura del reel (en bucle, sin sonido) con el botón "View reel";
+// A la izquierda del párrafo, la miniatura del reel (en bucle, sin sonido) con un botón de play;
 // al hacer clic se abre el reel completo en un diálogo (src/scripts/reel.ts).
 import { home } from '../../data/home';
 import { langOf, ui } from '../../i18n';
@@ -17,7 +17,7 @@ const reel = lang === 'es' ? { open: 'Ver reel', close: 'Cerrar' } : { open: 'Vi
   <h2 class="h-heading h-studio__title" data-case-reveal>{STUDIO.title}</h2>
   <div class="h-studio__row">
   <div class="h-studio__reel" data-case-reveal>
-    <button type="button" class="h-reel" data-reel-open>
+    <button type="button" class="h-reel" data-reel-open aria-label={reel.open}>
       <video
         class="h-reel__video"
         data-src="/media/reel/mattriz-reel-thumb.mp4"
@@ -27,9 +27,8 @@ const reel = lang === 'es' ? { open: 'Ver reel', close: 'Cerrar' } : { open: 'Vi
         playsinline
         preload="none"
         aria-hidden="true"></video>
-      <span class="h-reel__btn">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5z" fill="currentColor" /></svg>
-        {reel.open}
+      <span class="h-reel__btn" aria-hidden="true">
+        <svg viewBox="0 0 24 24"><path d="M9 6.5v11l9-5.5z" fill="currentColor" /></svg>
       </span>
     </button>
   </div>
@@ -149,33 +148,40 @@ const reel = lang === 'es' ? { open: 'Ver reel', close: 'Cerrar' } : { open: 'Vi
     transform: scale(1.04);
   }
 
+  /* Botón de play: solo el ícono, transparente con borde fino; al pasar el mouse se llena de verde. */
   .h-reel__btn {
     position: absolute;
     top: 50%;
     left: 50%;
     z-index: 1;
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 12px 20px 12px 16px;
-    border-radius: var(--radius-pill);
-    background: var(--color-white);
-    color: var(--color-black);
-    font-size: 15px;
-    white-space: nowrap;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+    display: grid;
+    place-items: center;
+    width: 64px;
+    height: 64px;
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    border-radius: 50%;
+    background: transparent;
+    color: var(--color-white);
     transform: translate(-50%, -50%);
-    transition: transform 0.5s cubic-bezier(0.2, 1, 0.3, 1);
+    transition:
+      background-color 0.35s ease,
+      border-color 0.35s ease,
+      color 0.35s ease,
+      transform 0.5s cubic-bezier(0.2, 1, 0.3, 1);
   }
 
   .h-reel__btn svg {
-    width: 16px;
-    height: 16px;
+    width: 22px;
+    height: 22px;
+    margin-left: 2px;
   }
 
   .h-reel:hover .h-reel__btn,
   .h-reel:focus-visible .h-reel__btn {
-    transform: translate(-50%, -50%) scale(1.06);
+    border-color: var(--color-brand-green);
+    background: var(--color-brand-green);
+    color: var(--color-black);
+    transform: translate(-50%, -50%) scale(1.08);
   }
 
   .h-reel:focus-visible {
