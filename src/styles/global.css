@@ -332,9 +332,11 @@ html.js [data-animate='cards'].is-in > * {
   list-style: none;
 }
 
+/* Solo recorta por abajo (por donde sube la palabra): arriba y a los lados nunca corta letras,
+   acentos ni remates de la tipografía. */
 .case-mask {
   display: inline-block;
-  overflow: hidden;
+  clip-path: inset(-0.5em -0.5em 0 -0.5em);
   padding-bottom: 0.08em;
   margin-right: 0.18em;
   vertical-align: top;
