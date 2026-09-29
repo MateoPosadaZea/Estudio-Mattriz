@@ -158,7 +158,11 @@ const other = lang === 'es' ? 'en' : 'es';
 
   .site-header__rest {
     display: inline-block;
+    /* Solo recorta a lo ancho (para recogerse): arriba deja ver el punto de la i. */
     overflow: hidden;
+    overflow: clip visible;
+    padding-top: 0.2em;
+    margin-top: -0.2em;
     max-width: 3.2em;
     transition:
       max-width 0.5s cubic-bezier(0.2, 1, 0.3, 1),
