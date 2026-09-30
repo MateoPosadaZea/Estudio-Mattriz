@@ -1,5 +1,5 @@
 ---
-// Modos de color: blanco (texto negro), rojo (fondo blanco, texto rojo) y oscuro (negro suave,
+// Modos de color: blanco (texto negro), rojo (fondo papel, texto rojo) y oscuro (negro suave,
 // texto blanco). En el header es el ícono de contraste, que despliega los tres en una columna al
 // pasar el mouse (o al tocarlo, en pantallas táctiles y con teclado); en
 // el menú móvil van a la vista, en fila. El modo se guarda (src/scripts/color-modes.ts) y se aplica
@@ -150,7 +150,7 @@ const MODES = ['white', 'red', 'dark'] as const;
   }
 
   .modes__option--white { --a: #0d0d0d; --b: #ffffff; --o: #0d0d0d; }
-  .modes__option--red { --a: #e0553f; --b: #ffffff; --o: #e0553f; }
+  .modes__option--red { --a: #e0553f; --b: #f3eee5; --o: #e0553f; }
   .modes__option--dark { --a: #ffffff; --b: #0d0d0d; --o: #0d0d0d; }
 
   /* En el menú móvil del modo oscuro los contornos negros van en blanco para que se vean. */
