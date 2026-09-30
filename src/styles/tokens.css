@@ -62,7 +62,7 @@
   --header-top: 25px;
   --header-height: 70px;
   --header-height-mobile: 74px;
-  --header-radius: 50px;
+  --header-radius: 6px;             /* header: apenas redondeado, ya no en píldora */
   --header-inset: 70px;             /* margen lateral del header en desktop */
   --header-width-mobile: 88%;
   --header-max-width: 1860px;
@@ -75,7 +75,7 @@
   --bp-stack: 690px;                /* columnas a una sola por debajo */
 
   /* Componentes */
-  --radius-pill: 50px;
+  --radius-pill: var(--btn-radius); /* etiquetas y controles pequeños: rectos, como los botones */
   --radius-card: 10px;
   --radius-round: 200px;
   --btn-radius: 3px;                /* botones: apenas redondeados */

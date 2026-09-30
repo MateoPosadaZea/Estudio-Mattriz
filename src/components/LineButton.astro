@@ -36,7 +36,7 @@ const { href, variant = 'light', class: className } = Astro.props;
     display: inline;
     padding: 15px 40px;
     border: 1px solid;
-    border-radius: 100px;
+    border-radius: var(--btn-radius);
     transition:
       background-color 0.45s var(--ease-reveal),
       border-color 0.45s var(--ease-reveal),
