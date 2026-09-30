@@ -30,11 +30,19 @@ const R = '/media/work/reel';
 // Proyecto de cada cliente (por empresa): una secuencia corta que alterna clips de 2 a 3 segundos
 // (.mp4) con capturas; testimonials.ts la recorre (imagen 1.1 s, video hasta que termina).
 // Los clientes sin caso muestran la tienda como era cuando trabajábamos con ellos, con la fecha.
+const DEZUBIRIA = {
+  href: '/project/dr-daniel-de-zubiria/',
+  reel: [`${P}/dezubiria/dz-site-home-1200.webp`, `${P}/dezubiria/dz-site-tratamos-1200.webp`, `${P}/dezubiria/dz-site-doctor-1200.webp`, `${P}/dezubiria/dz-site-asma-1200.webp`],
+};
 const PROJECTS: Record<string, { href?: string; reel: string[]; tag?: Record<'en' | 'es', string> }> = {
+  // La empresa va traducida en cada idioma: las dos claves llevan al mismo caso.
+  'Allergy practice, Bogotá': DEZUBIRIA,
+  'Consultorio de alergología, Bogotá': DEZUBIRIA,
   'Spot On Mobile California': {
     href: '/project/spot-on-mobile-wash-detailing/',
     reel: [`${R}/spot-on-a.mp4`, `${R}/spot-on-c.mp4`, `${R}/spot-on-d.mp4`, `${R}/spot-on-e.mp4`],
   },
+
   'The Grid': {
     href: '/project/the-grid/',
     reel: [`${R}/the-grid-a.mp4`, `${P}/the-grid/banner-1200.webp`, `${P}/the-grid/free-l-mockups-macbook-air2-1200.webp`, `${R}/the-grid-b.mp4`, `${P}/the-grid/iphone-14-pro-psd-1200.webp`],

@@ -148,6 +148,11 @@ export const TESTIMONIALS = [
     company: 'Spot On Mobile California',
   },
   {
+    quote: 'Excellent experience with Mattriz Studio creating the website for my medical practice. They understood my needs perfectly and delivered a professional, modern, and easy-to-navigate site. I especially appreciate their support, attention to detail, and willingness to make adjustments. Highly recommended for anyone looking to develop their online presence!',
+    name: 'Dr. Daniel De Zubiría',
+    company: 'Allergy practice, Bogotá',
+  },
+  {
     quote: 'An excellent studio, fully recommended. Modern and working with cutting-edge technology, blending technical knowledge with advanced AI tools.',
     name: 'Héctor Posada',
     company: 'The Grid',
@@ -238,6 +243,11 @@ export const HOME_ES = {
       quote: 'Tuve la oportunidad de trabajar con Mattriz en el sitio web de mi negocio y la experiencia superó nuestras expectativas. Desde el principio recibimos comentarios muy positivos, incluso de personas que trabajan en grandes empresas de tecnología aquí en Estados Unidos.',
       name: 'Diego',
       company: 'Spot On Mobile California',
+    },
+    {
+      quote: 'Excelente experiencia con Mattriz Studio en la creación de la página web de mi consultorio médico. Entendieron muy bien lo que necesitaba y lograron una página profesional, moderna y fácil de navegar. Destaco su acompañamiento, atención a los detalles y disposición para realizar ajustes. ¡Muy recomendados para quienes quieran desarrollar su presencia digital!',
+      name: 'Dr. Daniel De Zubiría',
+      company: 'Consultorio de alergología, Bogotá',
     },
     {
       quote: 'Excelente estudio, totalmente recomendado. Moderno y utiliza tecnología de vanguardia, mezclando conocimiento técnico con herramientas avanzadas de AI.',
