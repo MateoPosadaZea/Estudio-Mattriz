@@ -16,13 +16,12 @@ const { LABELS } = home(langOf(Astro.url));
 
 <Base title={LABELS.metaTitle} description={LABELS.metaDescription} background="var(--bg)">
   <div class="home">
-    <!-- Un solo modo, con secciones en distintos tonos (tokens.css, .tone). -->
     <Hero />
     <Services />
-    <div class="tone tone--papel-rojo"><Studio /></div>
+    <Studio />
     <Work />
-    <div class="tone tone--acento"><ScanTeaser /></div>
-    <div class="tone tone--papel"><Testimonials /></div>
+    <ScanTeaser />
+    <Testimonials />
   </div>
 </Base>
 

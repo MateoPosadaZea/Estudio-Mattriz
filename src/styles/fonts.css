@@ -11,6 +11,15 @@
   font-style: normal;
   font-display: swap;
 }
+/* Noe Display Bold, solo para el logotipo (header y menú móvil): es el peso de la M del logo.
+   Va como familia aparte para no cambiar los títulos, que siguen en la cara Medium. */
+@font-face {
+  font-family: 'noe-display-bold';
+  src: url('/fonts/Noe-Display-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
 @font-face {
   font-family: 'maison-neue-light';
   src: url('/fonts/Maison-Neue-Light.woff2') format('woff2');
