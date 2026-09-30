@@ -293,6 +293,19 @@ const t = ui(lang);
       width: calc(100% - 2 * var(--header-gap-mobile));
       height: var(--header-height-mobile);
       padding: 0 calc(var(--pad) - var(--header-gap-mobile));
+      transition:
+        background-color 0.4s ease,
+        box-shadow 0.4s ease,
+        color 0.4s ease,
+        padding 0.45s cubic-bezier(0.2, 1, 0.3, 1),
+        height 0.45s cubic-bezier(0.2, 1, 0.3, 1);
+    }
+
+    /* Al bajar, dentro de la barra blanca: más aire a los lados (el logo y el menú se acercan al
+       centro) y una barra más baja. */
+    .site-header:not(.is-top) {
+      height: 58px;
+      padding: 0 calc(var(--pad) + 6px);
     }
 
     .site-nav {
