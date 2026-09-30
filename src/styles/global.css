@@ -511,3 +511,11 @@ video[data-preview-src]::-webkit-media-controls-start-playback-button {
   display: none !important;
   -webkit-appearance: none;
 }
+
+/* Cambio de modo de color (src/scripts/color-modes.ts): por dos cuadros no hay transiciones, para que
+   el header y el resto cambien de color al mismo tiempo. */
+html.mode-switching *,
+html.mode-switching *::before,
+html.mode-switching *::after {
+  transition: none !important;
+}

@@ -9,6 +9,9 @@ const groups = [...document.querySelectorAll<HTMLElement>('[data-modes]')];
 const current = (): Mode => (root.dataset.theme !== 'light' ? 'dark' : root.dataset.palette === 'blanco-rojo' ? 'red' : 'white');
 
 const apply = (mode: Mode) => {
+  // Mientras cambia el modo, sin transiciones: todo (header incluido) cambia de color a la vez.
+  root.classList.add('mode-switching');
+  requestAnimationFrame(() => requestAnimationFrame(() => root.classList.remove('mode-switching')));
   if (mode === 'dark') delete root.dataset.theme;
   else root.dataset.theme = 'light';
   if (mode === 'red') root.dataset.palette = 'blanco-rojo';
