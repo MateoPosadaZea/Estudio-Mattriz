@@ -41,9 +41,7 @@ const t = ui(lang);
     <ColorModes class="site-header__theme" />
 
     <a class="talk-button" href="#contact-form">
-      <span class="reveal">
-        <span class="reveal__text" data-text={t.talk}>{t.talk}</span>
-      </span>
+      {t.talk} <span class="btn-arrow" data-dir="down" aria-hidden="true">↓</span>
     </a>
 
     <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-menu" data-menu-open>
@@ -142,10 +140,6 @@ const t = ui(lang);
   :global(html[data-page-tone='dark']) .site-header.is-top .talk-button::before,
   :global(html[data-page-tone='theme']:not([data-theme='light'])) .site-header.is-top .talk-button::before {
     background: var(--color-white);
-  }
-
-  .site-header.is-top .talk-button::after {
-    display: none;
   }
 
   /* Modo rojo (ColorModes.astro): el header también va en rojo, con el botón rojo y texto blanco. */
@@ -249,8 +243,6 @@ const t = ui(lang);
     transform: none;
   }
 
-  /* Botón negro. Vivo: 116×49 px, 24px de padding, radio 200px.
-     Hover: el fondo crece a 1.065 (0.45s) y aparece una sombra a 1.07 (0.3s); el texto no escala. */
   :global(.lang-switch) {
     margin-left: auto;
     margin-right: 4px;
@@ -260,47 +252,32 @@ const t = ui(lang);
     margin-right: 10px;
   }
 
+  /* Botón del sistema: apenas redondeado, padding compacto y la flecha que avanza al pasar el mouse
+     (global.css, .btn-arrow). */
   .talk-button {
     position: relative;
     isolation: isolate;
     display: inline-flex;
     align-items: center;
-    height: 49px;
-    padding: 0 24px;
+    gap: 10px;
+    padding: var(--btn-pad);
     color: var(--color-white);
     font-size: var(--fs-menu);
     font-weight: var(--fw-menu);
     line-height: 1.3;
   }
 
-  .talk-button::before,
-  .talk-button::after {
+  .talk-button::before {
     content: '';
     position: absolute;
     inset: 0;
     z-index: -1;
-    border-radius: var(--radius-round);
+    border-radius: var(--btn-radius);
   }
 
   /* Negro suave (#0d0d0d), el mismo del modo oscuro, no negro puro. */
   .talk-button::before {
     background: #0d0d0d;
-    transition: transform 0.45s var(--ease-reveal);
-  }
-
-  .talk-button::after {
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.13);
-    opacity: 0;
-    transition: opacity 0.3s, transform 0.3s;
-  }
-
-  .talk-button:hover::before {
-    transform: scale(1.065);
-  }
-
-  .talk-button:hover::after {
-    opacity: 1;
-    transform: scale(1.07);
   }
 
   .menu-toggle {

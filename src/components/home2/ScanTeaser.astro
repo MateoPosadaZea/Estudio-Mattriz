@@ -32,9 +32,9 @@ const c = scanCopy(lang);
     display: flex;
     gap: 8px;
     max-width: 760px;
-    padding: 8px 8px 8px 24px;
+    padding: 6px 6px 6px 20px;
     border: 1px solid var(--line);
-    border-radius: var(--radius-pill);
+    border-radius: calc(var(--btn-radius) + 3px);
     transition: border-color 0.3s;
   }
 
@@ -63,23 +63,18 @@ const c = scanCopy(lang);
     gap: 0.4em;
     white-space: nowrap;
     flex: none;
-    padding: 16px 28px;
-    border-radius: var(--radius-pill);
+    padding: var(--btn-pad);
+    border-radius: var(--btn-radius);
     background: var(--color-brand);
     color: var(--color-white);
     font-size: 17px;
-    transition: transform 0.4s cubic-bezier(0.2, 1, 0.3, 1);
-  }
-
-  .h-scan__form button:hover {
-    transform: scale(1.04);
   }
 
   @media (max-width: 690px) {
     .h-scan__form {
       flex-direction: column;
       padding: 8px;
-      border-radius: 20px;
+      border-radius: calc(var(--btn-radius) + 3px);
     }
 
     .h-scan__form input {

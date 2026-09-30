@@ -37,7 +37,7 @@ const turnstileKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
   <div class="ff__foot">
     <button class="ff__send" type="submit" data-send>
       <span class="reveal"><span class="reveal__text" data-text={f.send} data-send-label>{f.send}</span></span>
-      <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+      <svg class="btn-arrow" data-dir="ne" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg>
     </button>
     <p class="ff__call">
       {f.call} <a class="u-link" href={SITE.calendly} target="_blank" rel="noopener">{f.callLink} ↗</a>
@@ -153,24 +153,11 @@ const turnstileKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
     display: inline-flex;
     align-items: center;
     gap: 10px;
-    padding: 16px 30px;
-    border-radius: var(--radius-pill);
+    padding: var(--btn-pad);
+    border-radius: var(--btn-radius);
     background: var(--color-brand);
     color: var(--color-white);
     font-size: 17px;
-    transition: transform 0.4s cubic-bezier(0.2, 1, 0.3, 1);
-  }
-
-  .ff__send:hover {
-    transform: scale(1.04);
-  }
-
-  .ff__send svg {
-    transition: transform 0.4s cubic-bezier(0.2, 1, 0.3, 1);
-  }
-
-  .ff__send:hover svg {
-    transform: translate(2px, -2px);
   }
 
   .ff__send:disabled {

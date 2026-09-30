@@ -78,6 +78,8 @@
   --radius-pill: 50px;
   --radius-card: 10px;
   --radius-round: 200px;
+  --btn-radius: 3px;                /* botones: apenas redondeados */
+  --btn-pad: 9px 16px;              /* botones: padding compacto */
   --divider: 1px solid currentColor;
   --button-height: 49px;
 

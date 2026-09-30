@@ -41,7 +41,7 @@ const other = lang === 'es' ? 'en' : 'es';
   </nav>
 
   <a class="mobile-menu__talk" href="#contact-form">
-    <span class="mask"><span>{t.talk} ↓</span></span>
+    <span class="mask"><span>{t.talk} <span class="btn-arrow" data-dir="down" aria-hidden="true">↓</span></span></span>
   </a>
 
   <div class="mobile-menu__foot">
@@ -137,8 +137,8 @@ const other = lang === 'es' ? 'en' : 'es';
   .mobile-menu__talk {
     align-self: flex-start;
     margin-bottom: clamp(32px, 6vh, 56px);
-    padding: 14px 24px;
-    border-radius: var(--radius-pill);
+    padding: var(--btn-pad);
+    border-radius: var(--btn-radius);
     background: var(--color-brand);
     color: var(--color-white);
     font-size: 16px;

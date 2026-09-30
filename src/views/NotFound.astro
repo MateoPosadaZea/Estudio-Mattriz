@@ -13,7 +13,7 @@ const t = ui(lang);
     <h2>{t.notFound}</h2>
     <a class="error-404__button" href={localize('/', lang)}>
       <span>{t.backHome}</span>
-      <span class="error-404__icon" aria-hidden="true">
+      <span class="error-404__icon btn-arrow" aria-hidden="true">
         <svg viewBox="0 0 24 24" width="14" height="14"><path d="M5 12h13M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg>
       </span>
     </a>
@@ -48,10 +48,10 @@ const t = ui(lang);
   .error-404__button {
     display: inline-flex;
     align-items: center;
-    gap: 20px;
+    gap: 10px;
     margin: 50px 0 10px;
-    padding: 9px 10px 9px 28px;
-    border-radius: 200px;
+    padding: var(--btn-pad);
+    border-radius: var(--btn-radius);
     background: var(--color-black);
     color: var(--color-white);
     font-size: 14px;
@@ -63,15 +63,6 @@ const t = ui(lang);
   .error-404__icon {
     display: grid;
     place-items: center;
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.22);
-    transition: transform 0.45s var(--ease-reveal);
-  }
-
-  .error-404__button:hover .error-404__icon {
-    transform: translateX(4px);
   }
 
   @media (max-width: 690px) {
