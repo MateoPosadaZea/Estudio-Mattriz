@@ -25,8 +25,8 @@ const t = ui(lang);
         ))
       }
     </h1>
-    <!-- Aviso para seguir bajando: aparece solo si el visitante no ha bajado tras unos segundos de
-         lectura, y se va en cuanto baja. En escritorio va a la derecha del titular. -->
+    <!-- Aviso para seguir bajando, solo en celular: aparece si el visitante no ha bajado tras 15 s de
+         lectura, y se va en cuanto baja. En escritorio no se muestra. -->
     <a class="h-scroll" href="#services" data-scroll-hint aria-hidden="true" tabindex="-1">
       <span>{HERO.scroll}</span>
       <i></i>
@@ -43,9 +43,10 @@ const t = ui(lang);
 </section>
 
 <script>
+  // Solo en celular, y con tiempo: primero se lee, y si en 15 s nadie ha bajado, aparece el ícono.
   const hint = document.querySelector<HTMLElement>('[data-scroll-hint]');
-  if (hint) {
-    const DELAY = 6000;
+  if (hint && window.matchMedia('(max-width: 699px)').matches) {
+    const DELAY = 15000;
     const scrolled = () => window.scrollY > 40;
     const hide = () => {
       if (scrolled()) {
@@ -70,6 +71,12 @@ const t = ui(lang);
     min-height: 100svh;
     padding: calc(var(--header-top) + var(--header-height) + 40px) var(--pad) clamp(32px, 5vw, 64px);
     overflow: hidden;
+  }
+
+  @media (min-width: 700px) {
+    .h-scroll {
+      display: none !important;
+    }
   }
 
   .h-hero__head {
