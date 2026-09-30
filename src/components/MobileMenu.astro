@@ -149,13 +149,13 @@ const other = lang === 'es' ? 'en' : 'es';
 
   .mobile-menu__prefs {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
-    gap: 12px;
+    gap: 16px 20px;
   }
 
-  /* El botón de tema entra con el pie del menú. */
+  /* Los modos de color entran con el pie del menú. */
   .mobile-menu :global(.mobile-menu__theme) {
-    margin: -10px 0 -10px -4px;
     opacity: 0;
     transition: opacity 0.3s;
   }

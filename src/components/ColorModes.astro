@@ -1,12 +1,13 @@
 ---
 // Modos de color: blanco (texto negro), rojo (fondo blanco, texto rojo) y oscuro (negro suave,
-// texto blanco). En el header es un botón que despliega los tres; en el menú móvil van a la vista.
-// El modo se guarda (src/scripts/color-modes.ts) y se aplica antes de pintar (Base.astro).
+// texto blanco). En el header es el ícono de contraste, que despliega una píldora con los tres; en
+// el menú móvil la píldora va a la vista. El modo se guarda (src/scripts/color-modes.ts) y se aplica
+// antes de pintar (Base.astro).
 import { langOf, ui } from '../i18n';
 
 interface Props {
   class?: string;
-  /** Siempre abiertos (menú móvil), sin el botón que los despliega. */
+  /** Siempre abierta (menú móvil), sin el botón que la despliega. */
   open?: boolean;
 }
 
@@ -15,24 +16,24 @@ const t = ui(langOf(Astro.url));
 const MODES = ['white', 'red', 'dark'] as const;
 ---
 
-<div class:list={['modes', className, { 'is-open': open, 'modes--static': open }]} data-modes role="group" aria-label={t.colorModes}>
+<div class:list={['modes', className, { 'is-open': open, 'modes--static': open }]} data-modes>
   {
     !open && (
       <button class="modes__toggle" type="button" aria-expanded="false" aria-label={t.colorModes} data-modes-toggle>
-        <span class="modes__dot modes__dot--current" aria-hidden="true" />
+        <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
+          <circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.8" />
+          <path d="M12 3a9 9 0 0 0 0 18Z" fill="currentColor" />
+        </svg>
       </button>
     )
   }
-  <div class="modes__list">
+  <div class="modes__panel" role="group" aria-label={t.colorModes}>
     {
       MODES.map((m, i) => (
-        <button class={`modes__option modes__option--${m}`} type="button" aria-pressed="false" aria-label={t.modeNames[i]} title={t.modeNames[i]} data-mode={m}>
-          <span class="modes__dot" aria-hidden="true">
-            <i />
-          </span>
-        </button>
+        <button class={`modes__option modes__option--${m}`} type="button" aria-pressed="false" aria-label={t.modeNames[i]} title={t.modeNames[i]} data-mode={m} />
       ))
     }
+    <span class="modes__label" aria-hidden="true">{t.colorModes}</span>
   </div>
 </div>
 
@@ -45,81 +46,98 @@ const MODES = ['white', 'red', 'dark'] as const;
     position: relative;
     display: flex;
     align-items: center;
-    flex-direction: row-reverse;
   }
 
-  .modes__toggle,
-  .modes__option {
+  .modes__toggle {
     display: grid;
     place-items: center;
     flex: none;
-    width: 36px;
-    height: 36px;
+    width: 44px;
+    height: 44px;
     border-radius: 50%;
+    color: inherit;
     transition: background-color 0.3s;
   }
 
   .modes__toggle:hover,
-  .modes__option:hover {
+  .modes.is-open .modes__toggle {
     background: color-mix(in srgb, currentColor 10%, transparent);
   }
 
-  /* Cada muestra: el fondo del modo con un punto del color de su texto. */
-  .modes__dot {
-    display: grid;
-    place-items: center;
-    width: 18px;
-    height: 18px;
-    border: 1px solid color-mix(in srgb, currentColor 45%, transparent);
-    border-radius: 50%;
-  }
-
-  .modes__dot i {
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-  }
-
-  .modes__option--white .modes__dot { background: #ffffff; }
-  .modes__option--white .modes__dot i { background: #141414; }
-  .modes__option--red .modes__dot { background: #ffffff; }
-  .modes__option--red .modes__dot i { background: #e0553f; }
-  .modes__option--dark .modes__dot { background: #141414; }
-  .modes__option--dark .modes__dot i { background: #ffffff; }
-
-  /* El botón muestra un círculo mitad blanco, mitad rojo, mitad negro: "hay modos". */
-  .modes__dot--current {
-    background: conic-gradient(#ffffff 0 33%, #e0553f 0 66%, #141414 0);
-  }
-
-  .modes__option[aria-pressed='true'] .modes__dot {
-    outline: 1.5px solid currentColor;
-    outline-offset: 2px;
-  }
-
-  .modes__list {
+  /* Píldora oscura con las tres muestras y el nombre, como en la referencia. */
+  .modes__panel {
     display: flex;
-    gap: 2px;
-    overflow: hidden;
-    max-width: 0;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 22px 10px 12px;
+    border-radius: var(--radius-pill);
+    background: rgba(52, 52, 52, 0.96);
+    color: #ffffff;
+    white-space: nowrap;
+  }
+
+  .modes:not(.modes--static) .modes__panel {
+    position: absolute;
+    top: calc(100% + 14px);
+    right: -8px;
+    z-index: 2;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18);
     opacity: 0;
+    visibility: hidden;
+    transform: translateY(-6px);
     transition:
-      max-width 0.5s cubic-bezier(0.2, 1, 0.3, 1),
-      opacity 0.3s ease;
+      opacity 0.3s ease,
+      transform 0.45s cubic-bezier(0.2, 1, 0.3, 1),
+      visibility 0s 0.3s;
   }
 
-  .modes.is-open .modes__list {
-    max-width: 120px;
+  .modes.is-open:not(.modes--static) .modes__panel {
     opacity: 1;
+    visibility: visible;
+    transform: none;
+    transition:
+      opacity 0.3s ease,
+      transform 0.45s cubic-bezier(0.2, 1, 0.3, 1);
   }
 
-  .modes--static .modes__list {
-    transition: none;
+  /* Cada muestra: el color del texto arriba a la izquierda y el del fondo abajo a la derecha,
+     partidos en diagonal, con un aro gris. */
+  .modes__option {
+    flex: none;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    box-shadow:
+      0 0 0 2px rgba(52, 52, 52, 1),
+      0 0 0 3.5px rgba(255, 255, 255, 0.28);
+    background: linear-gradient(135deg, var(--a) 0 50%, var(--b) 50% 100%);
+    transition: box-shadow 0.3s, transform 0.3s;
+  }
+
+  .modes__option:hover {
+    transform: scale(1.08);
+  }
+
+  .modes__option[aria-pressed='true'] {
+    box-shadow:
+      0 0 0 2px rgba(52, 52, 52, 1),
+      0 0 0 3.5px #ffffff;
+  }
+
+  .modes__option--white { --a: #141414; --b: #ffffff; }
+  .modes__option--red { --a: #e0553f; --b: #ffffff; }
+  .modes__option--dark { --a: #ffffff; --b: #141414; }
+
+  .modes__label {
+    margin-left: 8px;
+    font-size: 15px;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .modes__list {
-      transition: none;
+    .modes__panel {
+      transition: none !important;
     }
   }
 </style>
