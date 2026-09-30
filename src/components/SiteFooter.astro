@@ -4,7 +4,6 @@
 // - Formulario escrito como una frase para llenar (FooterForm.astro), con enlace a Calendly.
 // - Correo con botón para copiarlo, hora local de Bogotá en vivo, volver arriba.
 // Lógica en src/scripts/footer.ts; el formulario en src/scripts/footer-form.ts.
-import AnimatedGradient from './AnimatedGradient.astro';
 import FooterForm from './FooterForm.astro';
 import { SITE } from '../data/site';
 import { langOf, ui } from '../i18n';
@@ -22,7 +21,6 @@ const year = new Date().getFullYear();
 
 <footer class:list={['ft', { 'ft--compact': !form }]} data-footer>
   <!-- Mismo gradiente animado del hero: se mueve solo en el fondo. -->
-  <AnimatedGradient color1="brand" speed={250} blend="organic" />
 
   <div class="ft__inner">
     {
@@ -73,12 +71,12 @@ const year = new Date().getFullYear();
   .ft {
     --pad: clamp(20px, 5vw, 80px);
     --fg: var(--color-white);
-    --bg: #0a0a0a;
+    --bg: #141414;
     --muted: rgba(255, 255, 255, 0.55);
     --line: rgba(255, 255, 255, 0.16);
     position: relative;
     overflow: hidden;
-    background: #0a0a0a;
+    background: #141414;
     color: var(--color-white);
   }
 
@@ -167,9 +165,9 @@ const year = new Date().getFullYear();
   }
 
   .ft__copy.is-copied {
-    background: var(--color-brand-green);
-    border-color: var(--color-brand-green);
-    color: var(--color-black);
+    background: var(--color-brand);
+    border-color: var(--color-brand);
+    color: var(--color-white);
   }
 
   .ft__social {

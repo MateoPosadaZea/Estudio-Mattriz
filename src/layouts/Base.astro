@@ -101,9 +101,18 @@ const jsonLd = {
     <meta charset="utf-8" />
     <script is:inline>
       document.documentElement.classList.add('js');
-      // Tema (src/scripts/theme.ts): oscuro por defecto; claro si el visitante lo eligió.
+      // Tema (src/scripts/theme.ts): claro por defecto; oscuro si el visitante lo eligió.
       try {
-        if (localStorage.getItem('mz-theme') === 'light') document.documentElement.dataset.theme = 'light';
+        if (localStorage.getItem('mz-theme') !== 'dark') document.documentElement.dataset.theme = 'light';
+      } catch (e) {
+        document.documentElement.dataset.theme = 'light';
+      }
+      // Prueba de texto en rojo: ?texto=rojo la activa y la recuerda; ?texto=negro la quita.
+      try {
+        var q = new URLSearchParams(location.search).get('texto');
+        if (q === 'rojo') localStorage.setItem('mz-text', 'red');
+        if (q === 'negro') localStorage.removeItem('mz-text');
+        if (localStorage.getItem('mz-text') === 'red') document.documentElement.classList.add('text-red');
       } catch (e) {}
       // Loader (src/components/Loader.astro): solo en la primera página de la sesión y sin
       // movimiento reducido. Seguro: a los 5 s se quita pase lo que pase.

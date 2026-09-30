@@ -9,7 +9,7 @@
   --color-black: #000000;
   --color-ink: #0a0a0a;             /* color base del body */
   --color-white: #ffffff;
-  --color-brand-green: #00ff7f;     /* gradiente animado de hero, studio y CTA */
+  --color-brand: #e0553f;           /* rojo de marca: botones, detalles y el punto del loader */
   --color-status-green: #55c91c;    /* punto de estado (ya no se usa en el sitio) */
   --color-hero-overlay: rgba(0, 0, 0, 0.78);
   --color-hero-overlay-opacity: 0.8;
@@ -18,15 +18,15 @@
   --color-form-error: #990000;
   --color-form-label: #333333;
 
-  /* v2: tema. Oscuro por defecto; html[data-theme="light"] lo cambia (toggle en el header y el menú).
-     El verde de marca es uno solo (--color-brand-green): todo lo verde sale de ahí. */
-  --bg: #0a0a0a;
+  /* v2: tema. Claro por defecto (Base.astro pone data-theme="light"); sin el atributo es el oscuro,
+     un negro suave (#141414), no negro puro. El rojo de marca es uno solo (--color-brand). */
+  --bg: #141414;
   --fg: #ffffff;
   --muted: rgba(255, 255, 255, 0.6);
   --line: rgba(255, 255, 255, 0.18);
   --line-strong: rgba(255, 255, 255, 0.32);
   --error: #ff8a80;
-  --accent-text: var(--color-brand-green);
+  --accent-text: var(--color-brand);
 
   /* Familias */
   --font-display: 'noe-display', Georgia, serif;
@@ -94,14 +94,23 @@
 }
 
 html[data-theme='light'] {
-  --bg: #f5f5f2;
-  --fg: #0a0a0a;
-  --muted: rgba(10, 10, 10, 0.64);
-  --line: rgba(10, 10, 10, 0.16);
-  --line-strong: rgba(10, 10, 10, 0.3);
+  --bg: #ffffff;
+  --fg: #141414;
+  --muted: rgba(20, 20, 20, 0.64);
+  --line: rgba(20, 20, 20, 0.16);
+  --line-strong: rgba(20, 20, 20, 0.3);
   --error: #b3261e;
-  /* El verde de marca como texto sobre claro no llega a AA: se oscurece. */
-  --accent-text: color-mix(in srgb, var(--color-brand-green) 50%, #000);
+  /* El rojo de marca como texto pequeño sobre blanco no llega a AA: un tono más oscuro. */
+  --accent-text: #c23f2b;
   color-scheme: light;
 }
 
+
+/* Prueba: todo el texto en rojo sobre blanco. Se activa con ?texto=rojo (y ?texto=negro lo quita). */
+html.text-red[data-theme='light'] {
+  --fg: var(--color-brand);
+  --muted: color-mix(in srgb, var(--color-brand) 72%, transparent);
+  --line: color-mix(in srgb, var(--color-brand) 22%, transparent);
+  --line-strong: color-mix(in srgb, var(--color-brand) 40%, transparent);
+  --color-ink: var(--color-brand);
+}

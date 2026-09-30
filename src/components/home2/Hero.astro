@@ -1,7 +1,6 @@
 ---
 // v2: hero del home. Titular gigante en Noe Display que sube palabra por palabra,
-// el gradiente verde de marca detrás, y una franja inferior con el subtítulo y el enlace.
-import AnimatedGradient from '../AnimatedGradient.astro';
+// sobre el fondo del tema, y una franja inferior con el subtítulo y el enlace.
 import { home } from '../../data/home';
 import { langOf, ui } from '../../i18n';
 
@@ -11,7 +10,6 @@ const t = ui(lang);
 ---
 
 <section class="h-hero">
-  <AnimatedGradient color1="brand" speed={250} blend="organic" />
   <div class="h-hero__inner">
     <h1 class="h-hero__title" aria-label={HERO.title} style={`--em:${lang === 'es' ? 9.2 : 7.7}`}>
       {
