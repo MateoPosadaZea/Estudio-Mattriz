@@ -30,6 +30,15 @@ interface Props {
 const { title, description, background = '#ffffff', ogImage = '/og/home.jpg', noindex = false, breadcrumb = [], alternates = true, footerForm = true, schema = [] } = Astro.props;
 const lang = langOf(Astro.url);
 const t = ui(lang);
+// Tono del fondo para el header transparente (Header.astro): se decide aquí, al construir, y lo
+// aplica el CSS. Un color fijo (los casos) da claro u oscuro; var(--bg) sigue el tema.
+const pageTone = (() => {
+  const hex = background.trim().match(/^#([0-9a-f]{3}|[0-9a-f]{6})$/i)?.[1];
+  if (!hex) return 'theme';
+  const full = hex.length === 3 ? [...hex].map((c) => c + c).join('') : hex;
+  const [r, g, b] = [0, 2, 4].map((i) => parseInt(full.slice(i, i + 2), 16));
+  return (0.2126 * r + 0.7152 * g + 0.0722 * b) / 255 < 0.5 ? 'dark' : 'light';
+})();
 const hreflangs = LANGS.map((l) => ({ lang: l, href: new URL(alternate(Astro.url, l), SITE.url).href }));
 const canonical = new URL(Astro.url.pathname, SITE.url).href;
 const ogImageUrl = new URL(ogImage, SITE.url).href;
@@ -87,7 +96,7 @@ const jsonLd = {
 ---
 
 <!doctype html>
-<html lang={t.htmlLang} style={`--page-bg: ${background}`}>
+<html lang={t.htmlLang} style={`--page-bg: ${background}`} data-page-tone={pageTone}>
   <head>
     <meta charset="utf-8" />
     <script is:inline>

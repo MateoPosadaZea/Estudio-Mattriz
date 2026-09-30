@@ -10,7 +10,7 @@ const t = ui(lang);
 const other = lang === 'es' ? 'en' : 'es';
 ---
 
-<header class="site-header" data-site-header>
+<header class="site-header is-top" data-site-header>
   <div class="site-header__inner">
     <!-- v2: por ahora solo la M, en escritorio y en móvil (pedido de Mateo). -->
     <a class="site-header__logo" href={localize('/', lang)} aria-label="Mattriz Studio">
@@ -58,33 +58,15 @@ const other = lang === 'es' ? 'en' : 'es';
 
 
 <script>
-  // Header transparente arriba del todo; al bajar, píldora blanca. El tono (claro u oscuro) sale del
-  // color de fondo de la página (sigue el tema claro/oscuro y el color de cada caso), para que logo,
-  // menú y botón se lean sobre cualquier portada.
+  // Header transparente arriba del todo; al bajar, píldora blanca. El color arriba (claro u oscuro)
+  // lo decide el CSS según data-page-tone de <html> (Base.astro) y el tema: no depende de medir el
+  // fondo en el navegador, que en el iPhone a veces se medía antes de que cargaran los estilos.
   const header = document.querySelector<HTMLElement>('[data-site-header]');
   if (header) {
-    const rgba = (el: Element) => {
-      const m = getComputedStyle(el).backgroundColor.match(/\d+(\.\d+)?/g)?.map(Number) ?? [];
-      return m.length === 3 ? [...m, 1] : m;
-    };
-    const tone = () => {
-      // Si el fondo aún es transparente (los estilos no terminaron de cargar, pasa en el iPhone), no
-      // se adivina: se prueba con el de <html> y, si tampoco hay, se espera al evento load.
-      let c = rgba(document.body);
-      if (c.length < 4 || c[3] === 0) c = rgba(document.documentElement);
-      if (c.length < 4 || c[3] === 0) return;
-      const [r, g, b] = c;
-      const lum = (0.2126 * r + 0.7152 * g + 0.0722 * b) / 255;
-      header.dataset.tone = lum < 0.5 ? 'dark' : 'light';
-    };
     const update = () => header.classList.toggle('is-top', window.scrollY < 24);
-    tone();
-    window.addEventListener('load', tone, { once: true });
-    window.addEventListener('pageshow', tone);
     update();
     window.addEventListener('scroll', update, { passive: true });
-    // El tema (claro/oscuro) puede cambiar con el botón del header.
-    new MutationObserver(tone).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+    window.addEventListener('pageshow', update);
   }
 </script>
 
@@ -111,21 +93,25 @@ const other = lang === 'es' ? 'en' : 'es';
       color 0.4s ease;
   }
 
-  /* Arriba del todo la píldora es transparente y todo se adapta al fondo de la página
-     (data-tone lo pone el script según el color de fondo). Al bajar vuelve la píldora blanca. */
+  /* Arriba del todo la píldora es transparente y todo se adapta al fondo de la página: blanco sobre
+     fondo oscuro (un caso oscuro, o el tema oscuro en las páginas que lo siguen). Al bajar vuelve la
+     píldora blanca. */
   .site-header.is-top {
     background-color: transparent;
   }
 
-  .site-header.is-top[data-tone='dark'] {
+  :global(html[data-page-tone='dark']) .site-header.is-top,
+  :global(html[data-page-tone='theme']:not([data-theme='light'])) .site-header.is-top {
     color: var(--color-white);
   }
 
-  .site-header.is-top[data-tone='dark'] .talk-button {
+  :global(html[data-page-tone='dark']) .site-header.is-top .talk-button,
+  :global(html[data-page-tone='theme']:not([data-theme='light'])) .site-header.is-top .talk-button {
     color: var(--color-black);
   }
 
-  .site-header.is-top[data-tone='dark'] .talk-button::before {
+  :global(html[data-page-tone='dark']) .site-header.is-top .talk-button::before,
+  :global(html[data-page-tone='theme']:not([data-theme='light'])) .site-header.is-top .talk-button::before {
     background: var(--color-white);
   }
 
