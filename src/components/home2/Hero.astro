@@ -18,7 +18,7 @@ const t = ui(lang);
         HERO.title.split(' ').map((w, i, all) => (
           <>
             <span class="case-mask" aria-hidden="true">
-              <span style={`--d:${i * 70}ms`}>{w}</span>
+              <span style={`--d:${i * 70}ms`}>{[...w].map((ch) => <span class="h-c">{ch}</span>)}</span>
             </span>
             {i === Math.ceil(all.length / 2) - 1 && <br class="h-hero__br" />}
           </>
@@ -43,6 +43,52 @@ const t = ui(lang);
 </section>
 
 <script>
+  // Titular: con el mouse encima, las letras cercanas engruesan con un trazo del mismo color, más
+  // entre más cerca. Noe Display no es variable (pesos fijos), y el trazo da un cambio continuo sin
+  // mover las letras. Cada letra se acerca a su grosor cuadro a cuadro, así sube y vuelve suave; el
+  // ciclo solo corre mientras hay algo que mover. Solo con mouse y sin "reducir movimiento".
+  const title = document.querySelector<HTMLElement>('.h-hero__title');
+  if (title && window.matchMedia('(hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference)').matches) {
+    const MAX = 0.05; // em
+    const chars = [...title.querySelectorAll<HTMLElement>('.h-c')].map((el) => ({ el, v: 0 }));
+    let x = 0;
+    let y = 0;
+    let inside = false;
+    let raf = 0;
+    const frame = () => {
+      raf = 0;
+      const r = Math.max(110, title.getBoundingClientRect().height * 0.75);
+      let moving = false;
+      for (const c of chars) {
+        let t = 0;
+        if (inside) {
+          const b = c.el.getBoundingClientRect();
+          const k = Math.max(0, 1 - Math.hypot(b.left + b.width / 2 - x, b.top + b.height / 2 - y) / r);
+          t = k * k * (3 - 2 * k) * MAX;
+        }
+        let v = c.v + (t - c.v) * 0.16;
+        if (Math.abs(t - v) < 0.0002) v = t;
+        if (v !== c.v) {
+          c.v = v;
+          c.el.style.setProperty('--s', v ? `${v.toFixed(4)}em` : '');
+          moving = true;
+        }
+      }
+      if (moving || inside) raf = requestAnimationFrame(frame);
+    };
+    const kick = () => (raf ||= requestAnimationFrame(frame));
+    title.addEventListener('pointermove', (e) => {
+      x = e.clientX;
+      y = e.clientY;
+      inside = true;
+      kick();
+    });
+    title.addEventListener('pointerleave', () => {
+      inside = false;
+      kick();
+    });
+  }
+
   // Solo en celular, y con tiempo: primero se lee, y si en 15 s nadie ha bajado, aparece el ícono.
   const hint = document.querySelector<HTMLElement>('[data-scroll-hint]');
   if (hint && window.matchMedia('(max-width: 699px)').matches) {
@@ -216,6 +262,10 @@ const t = ui(lang);
     font-weight: 500;
     line-height: 0.92;
     letter-spacing: -0.035em;
+  }
+
+  .h-c {
+    -webkit-text-stroke: var(--s, 0) currentColor;
   }
 
   .h-hero__br {
