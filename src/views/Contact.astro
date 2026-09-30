@@ -53,7 +53,14 @@ const t = ui(lang);
     justify-content: center;
     min-height: 100vh;
     min-height: 100svh;
-    padding: calc(var(--header-top) + var(--header-height) + clamp(64px, 9vw, 144px)) var(--pad) clamp(96px, 12vw, 192px);
+    /* Todo el bloque (título, frase y Send) cabe en la pantalla al llegar: el aire de arriba y abajo y
+       los tamaños de letra se ajustan también al alto de la ventana, no solo al ancho. */
+    padding: calc(var(--header-top) + var(--header-height) + clamp(20px, 6vh, 112px)) var(--pad) clamp(28px, 7vh, 120px);
+  }
+
+  /* La frase del formulario, un poco más contenida en pantallas bajas. */
+  .ct :global(.ff__sentence) {
+    font-size: clamp(20px, min(3.4vw, 5.6vh), 54px);
   }
 
   .ct__form {
@@ -64,15 +71,15 @@ const t = ui(lang);
     display: flex;
     align-items: center;
     gap: 10px;
-    margin-bottom: clamp(20px, 2.4vw, 32px);
+    margin-bottom: clamp(12px, 2.4vh, 32px);
     font-size: 15px;
     color: var(--muted);
   }
 
   .ct__title {
-    margin-bottom: clamp(32px, 4vw, 56px);
+    margin-bottom: clamp(20px, 4.5vh, 56px);
     font-family: var(--font-display);
-    font-size: clamp(48px, 6.4vw, 112px);
+    font-size: clamp(40px, min(6.4vw, 10vh), 112px);
     font-weight: 500;
     line-height: 0.98;
     letter-spacing: -0.03em;
