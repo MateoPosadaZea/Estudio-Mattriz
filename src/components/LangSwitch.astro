@@ -1,0 +1,152 @@
+---
+// Cambio de idioma del header: el ícono de mundo despliega los dos idiomas en una columna, igual que
+// los modos de color (ColorModes.astro): al pasar el mouse, o al tocarlo. El activo va relleno.
+// La apertura y el cierre los maneja src/scripts/color-modes.ts (todo grupo [data-modes]).
+import GlobeIcon from './GlobeIcon.astro';
+import { langOf, alternate, ui, LANGS } from '../i18n';
+
+interface Props {
+  class?: string;
+}
+
+const lang = langOf(Astro.url);
+const t = ui(lang);
+const NAMES: Record<string, string> = { en: 'English', es: 'Español' };
+---
+
+<div class:list={['lang', Astro.props.class]} data-modes>
+  <button class="lang__toggle" type="button" aria-expanded="false" aria-label={t.switchLabel} data-modes-toggle>
+    <GlobeIcon size={20} />
+  </button>
+  <div class="lang__panel">
+    {
+      LANGS.map((l) => (
+        <a
+          class="lang__option"
+          href={alternate(Astro.url, l)}
+          hreflang={l}
+          lang={l}
+          aria-current={l === lang ? 'true' : undefined}
+          aria-label={NAMES[l]}
+          title={NAMES[l]}
+        >
+          {l.toUpperCase()}
+        </a>
+      ))
+    }
+  </div>
+</div>
+
+<style>
+  .lang {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+
+  .lang__toggle {
+    display: grid;
+    place-items: center;
+    flex: none;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    color: inherit;
+    transition: background-color 0.3s;
+  }
+
+  .lang__toggle:hover,
+  .lang.is-open .lang__toggle {
+    background: color-mix(in srgb, currentColor 10%, transparent);
+  }
+
+  /* La misma columna gris claro de los modos de color. */
+  .lang__panel {
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 50%;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    padding: 4px;
+    border-radius: var(--radius-pill);
+    background: #ebebeb;
+    opacity: 0;
+    visibility: hidden;
+    transform: translate(-50%, -6px);
+    transition:
+      opacity 0.3s ease,
+      transform 0.45s cubic-bezier(0.2, 1, 0.3, 1),
+      visibility 0s 0.3s;
+  }
+
+  .lang__panel::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 100%;
+    height: 10px;
+  }
+
+  .lang.is-open .lang__panel {
+    opacity: 1;
+    visibility: visible;
+    transform: translate(-50%, 0);
+    transition:
+      opacity 0.3s ease,
+      transform 0.45s cubic-bezier(0.2, 1, 0.3, 1);
+  }
+
+  @media (hover: hover) {
+    .lang:hover .lang__panel {
+      opacity: 1;
+      visibility: visible;
+      transform: translate(-50%, 0);
+      transition:
+        opacity 0.3s ease,
+        transform 0.45s cubic-bezier(0.2, 1, 0.3, 1);
+    }
+
+    .lang:hover .lang__toggle {
+      background: color-mix(in srgb, currentColor 10%, transparent);
+    }
+  }
+
+  /* Mismo tamaño que las muestras de color: el idioma activo, relleno; el otro, solo el texto. */
+  .lang__option {
+    display: grid;
+    place-items: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    color: #141414;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.03em;
+    line-height: 1;
+    transition: transform 0.3s, background-color 0.3s;
+  }
+
+  .lang__option:hover {
+    transform: scale(1.08);
+  }
+
+  .lang__option[aria-current] {
+    background: #141414;
+    color: #ffffff;
+  }
+
+  /* Modo rojo: el idioma activo va en rojo, como el resto del header. */
+  :global(html[data-palette='blanco-rojo']) .lang__option[aria-current] {
+    background: var(--color-brand);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .lang__panel {
+      transition: none !important;
+    }
+  }
+</style>
