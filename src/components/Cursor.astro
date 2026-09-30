@@ -1,9 +1,10 @@
 ---
 // Cursor propio: un círculo que invierte los colores de lo que tiene debajo y crece sobre enlaces y
-// botones. Solo con mouse; en celular y tabletas no existe. En campos de texto vuelve el cursor normal.
+// botones; sobre los proyectos se vuelve un círculo sólido con un texto (data-cursor-label, p. ej.
+// "View project"). Solo con mouse; en celular y tabletas no existe. En campos de texto vuelve el cursor normal.
 ---
 
-<div class="mz-cursor" data-cursor aria-hidden="true"></div>
+<div class="mz-cursor" data-cursor aria-hidden="true"><span data-cursor-text></span></div>
 
 <script>
   const el = document.querySelector<HTMLElement>('[data-cursor]');
@@ -11,6 +12,7 @@
   if (el && fine.matches) {
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const root = document.documentElement;
+    const label = el.querySelector<HTMLElement>('[data-cursor-text]')!;
     const GROW = 'a, button, [role="button"], label, summary, select, [data-cursor-grow]';
     const TEXT = 'input:not([type="checkbox"]):not([type="radio"]):not([type="submit"]):not([type="button"]), textarea, [contenteditable="true"]';
     let x = 0;
@@ -49,7 +51,10 @@
         const t = e.target instanceof Element ? e.target : null;
         const text = !!t?.closest(TEXT);
         el.classList.toggle('is-on', !text);
-        el.classList.toggle('is-grow', !text && !!t?.closest(GROW));
+        const labelled = text ? null : t?.closest<HTMLElement>('[data-cursor-label]');
+        if (labelled) label.textContent = labelled.dataset.cursorLabel ?? '';
+        el.classList.toggle('is-label', !!labelled);
+        el.classList.toggle('is-grow', !text && !labelled && !!t?.closest(GROW));
         raf ||= requestAnimationFrame(frame);
       },
       { passive: true },
@@ -102,6 +107,35 @@
     width: 72px;
     height: 72px;
     margin: -36px 0 0 -36px;
+  }
+
+  /* Con texto: círculo sólido del color del texto, sin invertir, para que se lea sobre cualquier imagen. */
+  .mz-cursor span {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    padding: 0 10px;
+    font-size: 13px;
+    line-height: 1.15;
+    letter-spacing: 0.01em;
+    text-align: center;
+    color: var(--bg);
+    opacity: 0;
+    transition: opacity 0.2s ease;
+  }
+
+  .mz-cursor.is-label {
+    width: 96px;
+    height: 96px;
+    margin: -48px 0 0 -48px;
+    background: var(--fg);
+    mix-blend-mode: normal;
+  }
+
+  .mz-cursor.is-label span {
+    opacity: 1;
+    transition-delay: 0.1s;
   }
 
   .mz-cursor.is-down {
