@@ -100,8 +100,8 @@ const MODES = ['white', 'red', 'dark'] as const;
       transform 0.45s cubic-bezier(0.2, 1, 0.3, 1);
   }
 
-  /* Cada muestra: el color del texto arriba a la izquierda y el del fondo abajo a la derecha,
-     partidos en diagonal, con un aro gris. */
+  /* Cada muestra: el color del texto a la izquierda y el del fondo a la derecha,
+     partidos en vertical, con un aro gris. */
   .modes__option {
     flex: none;
     width: 30px;
@@ -110,7 +110,7 @@ const MODES = ['white', 'red', 'dark'] as const;
     box-shadow:
       0 0 0 2px rgba(52, 52, 52, 1),
       0 0 0 3.5px rgba(255, 255, 255, 0.28);
-    background: linear-gradient(135deg, var(--a) 0 50%, var(--b) 50% 100%);
+    background: linear-gradient(90deg, var(--a) 0 50%, var(--b) 50% 100%);
     transition: box-shadow 0.3s, transform 0.3s;
   }
 
