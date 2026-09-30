@@ -44,7 +44,7 @@ const t = ui(lang);
 
 <script>
   // Titular: con el mouse encima, las letras cercanas pasan de Noe Display Medium a la Regular, más
-  // delgada, cada una con un fundido corto. Noe no es variable (pesos fijos): cada letra lleva su copia
+  // delgada, poco a poco y más entre más cerca. Noe no es variable (pesos fijos): cada letra lleva su copia
   // en Regular en la misma celda (::after, alineada por la línea base), así las letras no se mueven.
   // El ciclo solo corre mientras hay algo que mover. Solo con mouse y sin "reducir movimiento".
   const title = document.querySelector<HTMLElement>('.h-hero__title');
@@ -59,17 +59,17 @@ const t = ui(lang);
     let raf = 0;
     const frame = () => {
       raf = 0;
-      const r = Math.max(110, title.getBoundingClientRect().height * 0.6);
+      const r = Math.max(110, title.getBoundingClientRect().height * 0.85);
       let moving = false;
       for (const c of chars) {
         let t = 0;
         if (inside) {
           const b = c.el.getBoundingClientRect();
           const k = Math.max(0, 1 - Math.hypot(b.left + b.width / 2 - x, b.top + b.height / 2 - y) / r);
-          t = k > 0.35 ? MAX : 0;
+          t = k * k * (3 - 2 * k) * MAX;
         }
-        let v = c.v + (t - c.v) * 0.22;
-        if (Math.abs(t - v) < 0.004) v = t;
+        let v = c.v + (t - c.v) * 0.1;
+        if (Math.abs(t - v) < 0.002) v = t;
         if (v !== c.v) {
           c.v = v;
           c.el.style.setProperty('--k', v ? v.toFixed(3) : '');
@@ -284,7 +284,9 @@ const t = ui(lang);
     font-family: 'noe-display-regular', var(--font-display);
     font-weight: 400;
     color: var(--fg);
-    opacity: var(--k, 0);
+    /* La Regular llega entera pronto y la Medium se va desvaneciendo encima: el peso baja poco a poco,
+       sin quedar gris a medio camino. */
+    opacity: min(1, calc(var(--k, 0) * 3));
     pointer-events: none;
   }
 
