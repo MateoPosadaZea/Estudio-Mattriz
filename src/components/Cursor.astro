@@ -1,6 +1,6 @@
 ---
 // Cursor propio: un punto que invierte los colores de lo que tiene debajo y, sobre enlaces y botones,
-// una mano dibujada (grabado en puntillismo) que al hacer clic suelta unos destellos. Solo con mouse;
+// una mano dibujada pequeña (grabado en puntillismo) que al hacer clic suelta unos destellos. Solo con mouse;
 // en celular y tabletas no existe. En campos de texto vuelve el cursor normal.
 // La mano son cuatro máscaras (public/media/cursor/hand-*.webp): relleno en el color del fondo, tinta
 // en el color del texto, destellos y su halo; así se adapta a cada modo de color. Se descargan con el
@@ -137,7 +137,7 @@
 
   /* La mano: la punta del dedo (13,2 % y 9,2 % de la imagen) queda en el puntero. */
   .mz-hand {
-    --h: 90px;
+    --h: 48px;
     --tx: calc(var(--h) * 0.1323);
     --ty: calc(var(--h) * 0.0916);
     z-index: 10001;
