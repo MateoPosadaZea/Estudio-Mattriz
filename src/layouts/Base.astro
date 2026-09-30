@@ -27,9 +27,11 @@ interface Props {
   schema?: Record<string, unknown>[];
 }
 
-const { title, description, background = '#ffffff', ogImage = '/og/home.jpg', noindex = false, breadcrumb = [], alternates = true, footerForm = true, schema = [] } = Astro.props;
+const { title, description, background = '#ffffff', ogImage: ogProp, noindex = false, breadcrumb = [], alternates = true, footerForm = true, schema = [] } = Astro.props;
 const lang = langOf(Astro.url);
 const t = ui(lang);
+// Imagen para redes (tools/og/og.mjs): cada idioma tiene la suya.
+const ogImage = ogProp ?? (lang === 'es' ? '/og/home-es.jpg' : '/og/home.jpg');
 // Tono del fondo para el header transparente (Header.astro): se decide aquí, al construir, y lo
 // aplica el CSS. Un color fijo (los casos) da claro u oscuro; var(--bg) sigue el tema.
 const pageTone = (() => {
@@ -152,6 +154,7 @@ const jsonLd = {
       )
     }
     <meta name="google-site-verification" content={SITE.googleSiteVerification} />
+    <meta name="theme-color" content="#ffffff" />
 
     <meta property="og:site_name" content="Mattriz" />
     <meta property="og:type" content="website" />

@@ -38,7 +38,7 @@ const splitTerm = (it: { term: string; desc: string }) => {
 const seo = CASE_SEO[slug]?.[lang];
 const metaTitle = seo?.title ?? doc.metaTitle;
 const metaDescription = seo?.description ?? doc.description;
-const ogImage = `/og/${slug}.jpg`;
+const ogImage = lang === 'es' ? `/og/${slug}-es.jpg` : `/og/${slug}.jpg`;
 // Datos estructurados del caso: un CreativeWork hecho por Mattriz.
 const schema = [
   {
