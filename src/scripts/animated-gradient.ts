@@ -19,7 +19,7 @@ const noise3D = createNoise3D();
 const FRAME_MS = 1000 / 60; // el reloj del vivo avanza una unidad por frame a 60 Hz
 
 function hexToRgb(hex: string): Rgb | null {
-  // "brand": el verde de marca definido en tokens.css (--color-brand).
+  // "brand": el color de marca definido en tokens.css (--color-brand).
   if (hex === 'brand') hex = getComputedStyle(document.documentElement).getPropertyValue('--color-brand');
   const m = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex.trim());
   return m ? { r: parseInt(m[1], 16), g: parseInt(m[2], 16), b: parseInt(m[3], 16) } : null;
@@ -41,8 +41,8 @@ class AnimatedGradient {
   constructor(private canvas: HTMLCanvasElement, private still: boolean) {
     const d = canvas.dataset;
     this.colors = [d.color1, d.color2].map((c) => (c ? hexToRgb(c) : null)).filter((c): c is Rgb => !!c);
-    // Si el navegador no entrega el color de marca (variable CSS aún sin leer), se usa el verde directo.
-    if (!this.colors.length) this.colors = [{ r: 0, g: 255, b: 127 }];
+    // Si el navegador no entrega el color de marca (variable CSS aún sin leer), se usa el rojo directo.
+    if (!this.colors.length) this.colors = [{ r: 224, g: 85, b: 63 }];
     if (this.colors.length === 2 && this.colors[0].r === this.colors[1].r && this.colors[0].g === this.colors[1].g && this.colors[0].b === this.colors[1].b) {
       this.colors.length = 1;
     }
