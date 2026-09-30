@@ -287,10 +287,12 @@ const t = ui(lang);
   /* Header compacto por debajo de 1280px: entre 1000 y 1279 el menú completo no cabía junto al idioma
      y "Let's talk" ("How we work" se partía en tres líneas). */
   @media (max-width: 1279px) {
+    /* El logo y el menú quedan alineados con el margen del texto (--pad), arriba y al bajar: la
+       barra blanca se extiende un poco más allá (--header-gap-mobile del borde). */
     .site-header {
-      width: var(--header-width-mobile);
+      width: calc(100% - 2 * var(--header-gap-mobile));
       height: var(--header-height-mobile);
-      padding: 0 22px;
+      padding: 0 calc(var(--pad) - var(--header-gap-mobile));
     }
 
     .site-nav {
@@ -315,7 +317,8 @@ const t = ui(lang);
       /* Solo las tres líneas, sin círculo: el logo queda como protagonista. Toman el color del
          texto del header (negro en la píldora, blanco arriba sobre fondos oscuros). */
       background: none;
-      margin-right: -8px;
+      /* Las líneas terminan justo en el margen del texto (11.5px es su distancia al borde del botón). */
+      margin-right: -11.5px;
     }
 
     .menu-toggle__lines {

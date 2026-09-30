@@ -65,6 +65,8 @@
   --header-radius: 6px;             /* header: apenas redondeado, ya no en píldora */
   --header-inset: 70px;             /* margen lateral del header en desktop */
   --header-width-mobile: 88%;
+  --pad: clamp(20px, 5vw, 80px);    /* margen lateral de las páginas (el header en móvil se alinea a él) */
+  --header-gap-mobile: 10px;        /* en móvil, distancia de la barra blanca al borde de la pantalla */
   --header-max-width: 1860px;
   --section-pad-x: 5%;
   --section-pad-x-hero: 8%;
