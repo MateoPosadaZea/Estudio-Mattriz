@@ -1,0 +1,116 @@
+---
+// Cursor propio: un círculo que invierte los colores de lo que tiene debajo y crece sobre enlaces y
+// botones. Solo con mouse; en celular y tabletas no existe. En campos de texto vuelve el cursor normal.
+---
+
+<div class="mz-cursor" data-cursor aria-hidden="true"></div>
+
+<script>
+  const el = document.querySelector<HTMLElement>('[data-cursor]');
+  const fine = window.matchMedia('(hover: hover) and (pointer: fine)');
+  if (el && fine.matches) {
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const root = document.documentElement;
+    const GROW = 'a, button, [role="button"], label, summary, select, [data-cursor-grow]';
+    const TEXT = 'input:not([type="checkbox"]):not([type="radio"]):not([type="submit"]):not([type="button"]), textarea, [contenteditable="true"]';
+    let x = 0;
+    let y = 0;
+    let cx = 0;
+    let cy = 0;
+    let shown = false;
+    let raf = 0;
+
+    root.classList.add('has-cursor');
+
+    // El círculo sigue al mouse con un poco de retraso; el ciclo se detiene cuando llega.
+    const frame = () => {
+      const k = reduced ? 1 : 0.2;
+      cx += (x - cx) * k;
+      cy += (y - cy) * k;
+      if (Math.abs(x - cx) < 0.1 && Math.abs(y - cy) < 0.1) {
+        cx = x;
+        cy = y;
+      }
+      el.style.transform = `translate3d(${cx}px, ${cy}px, 0)`;
+      raf = cx === x && cy === y ? 0 : requestAnimationFrame(frame);
+    };
+
+    document.addEventListener(
+      'pointermove',
+      (e) => {
+        if (e.pointerType !== 'mouse') return;
+        x = e.clientX;
+        y = e.clientY;
+        if (!shown) {
+          cx = x;
+          cy = y;
+          shown = true;
+        }
+        const t = e.target instanceof Element ? e.target : null;
+        const text = !!t?.closest(TEXT);
+        el.classList.toggle('is-on', !text);
+        el.classList.toggle('is-grow', !text && !!t?.closest(GROW));
+        raf ||= requestAnimationFrame(frame);
+      },
+      { passive: true },
+    );
+    // Al salir de la ventana (o entrar a un iframe) se esconde.
+    document.addEventListener('mouseout', (e) => {
+      if (!e.relatedTarget) el.classList.remove('is-on');
+    });
+    document.addEventListener('pointerdown', () => el.classList.add('is-down'));
+    document.addEventListener('pointerup', () => el.classList.remove('is-down'));
+  }
+</script>
+
+<style is:global>
+  html.has-cursor,
+  html.has-cursor * {
+    cursor: none !important;
+  }
+
+  html.has-cursor :is(input, textarea, [contenteditable='true']):not([type='checkbox'], [type='radio'], [type='submit'], [type='button']) {
+    cursor: text !important;
+  }
+
+  .mz-cursor {
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 10000;
+    width: 22px;
+    height: 22px;
+    margin: -11px 0 0 -11px;
+    border-radius: 50%;
+    background: #fff;
+    mix-blend-mode: difference;
+    pointer-events: none;
+    opacity: 0;
+    transition:
+      opacity 0.2s ease,
+      width 0.35s cubic-bezier(0.2, 1, 0.3, 1),
+      height 0.35s cubic-bezier(0.2, 1, 0.3, 1),
+      margin 0.35s cubic-bezier(0.2, 1, 0.3, 1),
+      scale 0.2s ease;
+  }
+
+  .mz-cursor.is-on {
+    opacity: 1;
+  }
+
+  .mz-cursor.is-grow {
+    width: 72px;
+    height: 72px;
+    margin: -36px 0 0 -36px;
+  }
+
+  .mz-cursor.is-down {
+    scale: 0.85;
+  }
+
+  @media (hover: none), (pointer: coarse) {
+    .mz-cursor {
+      display: none;
+    }
+  }
+</style>

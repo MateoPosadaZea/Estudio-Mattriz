@@ -6,6 +6,7 @@ import SiteFooter from '../components/SiteFooter.astro';
 import ToTop from '../components/ToTop.astro';
 import Loader from '../components/Loader.astro';
 import Analytics from '../components/Analytics.astro';
+import Cursor from '../components/Cursor.astro';
 import { SITE } from '../data/site';
 import { langOf, alternate, ui, LANGS } from '../i18n';
 
@@ -199,6 +200,7 @@ const jsonLd = {
 
     <MobileMenu />
     <ToTop />
+    <Cursor />
 
     <script>
       import '../scripts/smooth-scroll';
