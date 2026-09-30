@@ -1,7 +1,7 @@
 ---
 // Modos de color: blanco (texto negro), rojo (fondo blanco, texto rojo) y oscuro (negro suave,
-// texto blanco). En el header es el ícono de contraste, que despliega una píldora con los tres; en
-// el menú móvil la píldora va a la vista. El modo se guarda (src/scripts/color-modes.ts) y se aplica
+// texto blanco). En el header es el ícono de contraste, que despliega los tres en una columna; en
+// el menú móvil van a la vista, en fila. El modo se guarda (src/scripts/color-modes.ts) y se aplica
 // antes de pintar (Base.astro).
 import { langOf, ui } from '../i18n';
 
@@ -33,7 +33,6 @@ const MODES = ['white', 'red', 'dark'] as const;
         <button class={`modes__option modes__option--${m}`} type="button" aria-pressed="false" aria-label={t.modeNames[i]} title={t.modeNames[i]} data-mode={m} />
       ))
     }
-    <span class="modes__label" aria-hidden="true">{t.colorModes}</span>
   </div>
 </div>
 
@@ -64,27 +63,25 @@ const MODES = ['white', 'red', 'dark'] as const;
     background: color-mix(in srgb, currentColor 10%, transparent);
   }
 
-  /* Píldora oscura con las tres muestras y el nombre, como en la referencia. */
+  /* Columna gris claro (el mismo gris del hover) con las tres muestras, debajo del ícono. */
   .modes__panel {
     display: flex;
     align-items: center;
-    gap: 12px;
-    padding: 10px 22px 10px 12px;
-    border-radius: var(--radius-pill);
-    background: rgba(52, 52, 52, 0.96);
-    color: #ffffff;
-    white-space: nowrap;
+    gap: 10px;
   }
 
   .modes:not(.modes--static) .modes__panel {
     position: absolute;
-    top: calc(100% + 14px);
-    right: -8px;
+    top: calc(100% + 8px);
+    left: 50%;
     z-index: 2;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18);
+    flex-direction: column;
+    padding: 8px;
+    border-radius: var(--radius-pill);
+    background: #ebebeb;
     opacity: 0;
     visibility: hidden;
-    transform: translateY(-6px);
+    transform: translate(-50%, -6px);
     transition:
       opacity 0.3s ease,
       transform 0.45s cubic-bezier(0.2, 1, 0.3, 1),
@@ -94,24 +91,34 @@ const MODES = ['white', 'red', 'dark'] as const;
   .modes.is-open:not(.modes--static) .modes__panel {
     opacity: 1;
     visibility: visible;
-    transform: none;
+    transform: translate(-50%, 0);
     transition:
       opacity 0.3s ease,
       transform 0.45s cubic-bezier(0.2, 1, 0.3, 1);
   }
 
-  /* Cada muestra: el color del texto a la izquierda y el del fondo a la derecha,
-     partidos en vertical, con un aro gris. */
+  /* Cada muestra: el color del texto a la izquierda y el del fondo a la derecha, partidos en
+     vertical, con un aro fino. El modo activo lleva el aro marcado. */
   .modes__option {
+    --gap: #ebebeb;
+    --ring: rgba(20, 20, 20, 0.22);
+    --ring-on: #141414;
     flex: none;
-    width: 30px;
-    height: 30px;
+    width: 28px;
+    height: 28px;
     border-radius: 50%;
     box-shadow:
-      0 0 0 2px rgba(52, 52, 52, 1),
-      0 0 0 3.5px rgba(255, 255, 255, 0.28);
+      0 0 0 2px var(--gap),
+      0 0 0 3.5px var(--ring);
     background: linear-gradient(90deg, var(--a) 0 50%, var(--b) 50% 100%);
     transition: box-shadow 0.3s, transform 0.3s;
+  }
+
+  /* En el menú móvil (fondo oscuro) los aros son claros. */
+  .modes--static .modes__option {
+    --gap: #141414;
+    --ring: rgba(255, 255, 255, 0.28);
+    --ring-on: #ffffff;
   }
 
   .modes__option:hover {
@@ -120,20 +127,13 @@ const MODES = ['white', 'red', 'dark'] as const;
 
   .modes__option[aria-pressed='true'] {
     box-shadow:
-      0 0 0 2px rgba(52, 52, 52, 1),
-      0 0 0 3.5px #ffffff;
+      0 0 0 2px var(--gap),
+      0 0 0 3.5px var(--ring-on);
   }
 
   .modes__option--white { --a: #141414; --b: #ffffff; }
   .modes__option--red { --a: #e0553f; --b: #ffffff; }
   .modes__option--dark { --a: #ffffff; --b: #141414; }
-
-  .modes__label {
-    margin-left: 8px;
-    font-size: 15px;
-    letter-spacing: 0.02em;
-    text-transform: uppercase;
-  }
 
   @media (prefers-reduced-motion: reduce) {
     .modes__panel {
