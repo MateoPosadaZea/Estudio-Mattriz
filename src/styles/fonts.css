@@ -39,3 +39,20 @@
   font-style: normal;
   font-display: swap;
 }
+/* Flechas (← ↑ → ↓ ↖ ↗ ↘ ↙) con los brazos más cerrados que los de Maison Neue: mismas flechas y mismo
+   grosor, con los brazos a 38° del asta en vez de 52°. Solo cubren esos caracteres (unicode-range) y,
+   al declararse después, el navegador las usa en lugar de las de la fuente completa. */
+@font-face {
+  font-family: 'maison-neue-light';
+  src: url('/fonts/Maison-Neue-Light-Arrows.woff2') format('woff2');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+2190-2193, U+2196-2199;
+}
+@font-face {
+  font-family: 'maison-neue-book';
+  src: url('/fonts/Maison-Neue-Book-Arrows.woff2') format('woff2');
+  font-display: swap;
+  unicode-range: U+2190-2193, U+2196-2199;
+}

@@ -54,6 +54,11 @@
           shown = true;
           root.classList.add('cursor-ready');
         }
+        // Un <dialog> abierto (el reel) va en una capa por encima de todo: el cursor se muda adentro
+        // mientras esté abierto, y vuelve al body al cerrarse.
+        const modal = document.querySelector('dialog[open]');
+        const host = modal && modal.matches(':modal') ? modal : document.body;
+        if (el.parentElement !== host) host.append(el, hand);
         const t = e.target instanceof Element ? e.target : null;
         const text = !!t?.closest(TEXT);
         const link = !text && !!t?.closest(LINK);
@@ -181,6 +186,15 @@
 
   .mz-hand__ink {
     background: var(--fg);
+  }
+
+  /* En el modo oscuro la mano va clara (blanca con el dibujo en negro), para que no se pierda en el fondo. */
+  html:not([data-theme='light']) .mz-hand__fill {
+    background: #fff;
+  }
+
+  html:not([data-theme='light']) .mz-hand__ink {
+    background: #0d0d0d;
   }
 
   @media (prefers-reduced-motion: reduce) {
