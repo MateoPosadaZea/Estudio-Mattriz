@@ -29,6 +29,7 @@ const reel = lang === 'es' ? { open: 'Ver reel', close: 'Cerrar' } : { open: 'Vi
         aria-hidden="true"></video>
       <span class="h-reel__btn" aria-hidden="true">
         <svg viewBox="0 0 24 24"><path d="M9 6.5v11l9-5.5z" fill="currentColor" /></svg>
+        {reel.open}
       </span>
     </button>
   </div>
@@ -151,19 +152,22 @@ const reel = lang === 'es' ? { open: 'Ver reel', close: 'Cerrar' } : { open: 'Vi
     transform: scale(1.04);
   }
 
-  /* Botón de play: solo el ícono, con fondo desenfocado (se lee sobre cualquier color) y borde fino;
-     al pasar el mouse se llena de verde. */
+  /* Botón de play: una píldora pequeña con el ícono y "View reel", con fondo desenfocado (se lee
+     sobre cualquier color) y borde fino; al pasar el mouse se llena del rojo de marca. */
   .h-reel__btn {
     position: absolute;
     top: 50%;
     left: 50%;
     z-index: 1;
-    display: grid;
-    place-items: center;
-    width: 64px;
-    height: 64px;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 6px 13px 6px 9px;
     border: 1px solid rgba(255, 255, 255, 0.45);
-    border-radius: 50%;
+    border-radius: var(--radius-pill);
+    font-size: 13px;
+    line-height: 1.2;
+    white-space: nowrap;
     background: rgba(20, 20, 20, 0.22);
     -webkit-backdrop-filter: blur(14px) saturate(1.2);
     backdrop-filter: blur(14px) saturate(1.2);
@@ -177,9 +181,8 @@ const reel = lang === 'es' ? { open: 'Ver reel', close: 'Cerrar' } : { open: 'Vi
   }
 
   .h-reel__btn svg {
-    width: 22px;
-    height: 22px;
-    margin-left: 2px;
+    width: 14px;
+    height: 14px;
   }
 
   .h-reel:hover .h-reel__btn,
