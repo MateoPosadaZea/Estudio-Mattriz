@@ -59,25 +59,28 @@ const other = lang === 'es' ? 'en' : 'es';
 
 <script>
   // Header transparente arriba del todo; al bajar, píldora blanca. El tono (claro u oscuro) sale del
-  // color de fondo de la página, para que logo, menú y botón se lean sobre cualquier portada. Una
-  // portada que tiene su propio fondo lo declara con data-header-tone (el hero del home es negro
-  // aunque el sitio esté en modo claro).
+  // color de fondo de la página (sigue el tema claro/oscuro y el color de cada caso), para que logo,
+  // menú y botón se lean sobre cualquier portada.
   const header = document.querySelector<HTMLElement>('[data-site-header]');
   if (header) {
+    const rgba = (el: Element) => {
+      const m = getComputedStyle(el).backgroundColor.match(/\d+(\.\d+)?/g)?.map(Number) ?? [];
+      return m.length === 3 ? [...m, 1] : m;
+    };
     const tone = () => {
-      const forced = document.querySelector<HTMLElement>('[data-header-tone]');
-      if (forced) {
-        header.dataset.tone = forced.dataset.headerTone;
-        return;
-      }
-      const bg = getComputedStyle(document.body).backgroundColor;
-      const m = bg.match(/\d+(\.\d+)?/g)?.map(Number) ?? [255, 255, 255, 1];
-      const [r, g, b, a = 1] = m;
-      const lum = a === 0 ? 1 : (0.2126 * r + 0.7152 * g + 0.0722 * b) / 255;
+      // Si el fondo aún es transparente (los estilos no terminaron de cargar, pasa en el iPhone), no
+      // se adivina: se prueba con el de <html> y, si tampoco hay, se espera al evento load.
+      let c = rgba(document.body);
+      if (c.length < 4 || c[3] === 0) c = rgba(document.documentElement);
+      if (c.length < 4 || c[3] === 0) return;
+      const [r, g, b] = c;
+      const lum = (0.2126 * r + 0.7152 * g + 0.0722 * b) / 255;
       header.dataset.tone = lum < 0.5 ? 'dark' : 'light';
     };
     const update = () => header.classList.toggle('is-top', window.scrollY < 24);
     tone();
+    window.addEventListener('load', tone, { once: true });
+    window.addEventListener('pageshow', tone);
     update();
     window.addEventListener('scroll', update, { passive: true });
     // El tema (claro/oscuro) puede cambiar con el botón del header.
