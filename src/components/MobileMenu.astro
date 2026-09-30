@@ -58,8 +58,10 @@ const other = lang === 'es' ? 'en' : 'es';
 <style>
   .mobile-menu {
     /* Fondo negro y texto blanco: el verde queda solo para el botón. */
-    --menu-bg: #141414;
-    --menu-fg: var(--color-white);
+    /* Sigue el modo de color: blanco con texto negro, blanco con texto rojo o negro suave con
+       texto blanco. */
+    --menu-bg: var(--bg);
+    --menu-fg: var(--fg);
     --menu-ease: cubic-bezier(0.7, 0, 0.2, 1);
     position: fixed;
     inset: 0;

@@ -164,8 +164,10 @@ html[data-theme='light'] .tone--papel-rojo {
   --color-ink: var(--color-brand);
 }
 
-/* Fondo rojo con texto blanco: los botones rojos pasan a negro para no perderse. */
-.tone--rojo {
+/* Sección de acento (el escáner): cambia con el modo de color. En el rojo y el oscuro es roja con
+   texto blanco (los botones rojos pasan a negro para no perderse); en el blanco es negra con texto
+   blanco y el botón rojo. */
+.tone--acento {
   --bg: #e0553f;
   --fg: #ffffff;
   --muted: rgba(255, 255, 255, 0.8);
@@ -174,4 +176,15 @@ html[data-theme='light'] .tone--papel-rojo {
   --accent-text: #ffffff;
   --color-ink: #ffffff;
   --color-brand: #141414;
+}
+
+html[data-theme='light']:not([data-palette]) .tone--acento {
+  --bg: #141414;
+  --fg: #ffffff;
+  --muted: rgba(255, 255, 255, 0.64);
+  --line: rgba(255, 255, 255, 0.2);
+  --line-strong: rgba(255, 255, 255, 0.4);
+  --accent-text: var(--color-brand);
+  --color-ink: #ffffff;
+  --color-brand: #e0553f;
 }

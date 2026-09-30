@@ -153,9 +153,9 @@ const MODES = ['white', 'red', 'dark'] as const;
   .modes__option--red { --a: #e0553f; --b: #ffffff; --o: #e0553f; }
   .modes__option--dark { --a: #ffffff; --b: #141414; --o: #141414; }
 
-  /* En el menú móvil (fondo oscuro) los contornos negros van en blanco para que se vean. */
-  .modes--static .modes__option--white,
-  .modes--static .modes__option--dark { --o: #ffffff; }
+  /* En el menú móvil del modo oscuro los contornos negros van en blanco para que se vean. */
+  :global(html:not([data-theme='light'])) .modes--static .modes__option--white,
+  :global(html:not([data-theme='light'])) .modes--static .modes__option--dark { --o: #ffffff; }
 
   @media (prefers-reduced-motion: reduce) {
     .modes__panel {
