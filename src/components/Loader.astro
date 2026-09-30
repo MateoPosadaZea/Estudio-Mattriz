@@ -1,7 +1,8 @@
 ---
-// v2: pantalla de carga, lo más simple posible: en blanco, solo "hola" en varios idiomas, pequeño y
-// centrado en Noe Display (cierra en el idioma del sitio, con el punto en verde) y el fondo sube
-// como un telón que se lleva la palabra. Solo en la primera página de la sesión.
+// v2: pantalla de carga, lo más simple posible: solo "hola" en varios idiomas, pequeño y centrado en
+// Noe Display (cierra en el idioma del sitio, con el punto rojo), y el fondo sube como un telón que
+// descubre la página. El telón va en el color inverso al de la página (negro en el modo blanco,
+// blanco en el oscuro, rojo en el rojo) para que su subida se vea. Solo en la primera página de la sesión.
 //
 // Nunca bloquea el sitio:
 // - La clase html.is-loading la pone un script en <head> (Base.astro); sin JS no hay loader.
@@ -30,8 +31,8 @@
     inset: 0;
     z-index: 1000;
     display: block;
-    background: var(--color-white);
-    color: var(--color-black);
+    background: var(--fg);
+    color: var(--bg);
   }
 
   html.is-loading {
@@ -44,11 +45,29 @@
     animation-play-state: paused;
   }
 
-  /* Salida: el fondo sube como un telón (el borde de abajo va hacia arriba) y se lleva la palabra,
-     que se queda quieta en su sitio. */
+  /* Salida: el telón sube (el borde de abajo va hacia arriba) con una curva suave, y la palabra sube
+     un poco y se desvanece antes de que la alcance. */
   .loader.is-leaving {
     clip-path: inset(0 0 100% 0);
-    transition: clip-path 0.9s cubic-bezier(0.7, 0, 0.2, 1);
+    transition: clip-path 1.15s cubic-bezier(0.76, 0, 0.24, 1);
+  }
+
+  .loader.is-leaving .loader__word {
+    opacity: 0;
+    transform: translateY(-24px);
+    transition:
+      opacity 0.45s ease,
+      transform 0.9s cubic-bezier(0.76, 0, 0.24, 1);
+  }
+
+  /* Tras el loader, el titular y el resto del hero arrancan medio segundo después: suben mientras
+     el telón los va descubriendo, no detrás de él. */
+  html.after-loader.js .case-mask > span {
+    animation-delay: calc(0.6s + var(--d, 0ms));
+  }
+
+  html.after-loader.js .case-in {
+    animation-delay: calc(0.5s + var(--d, 0ms));
   }
 
   /* Solo el saludo, pequeño y centrado. */
@@ -68,5 +87,10 @@
   .loader__word i {
     font-style: normal;
     color: var(--color-brand);
+  }
+
+  /* En el modo rojo el telón ya es rojo: el punto va del color del texto. */
+  html[data-palette] .loader__word i {
+    color: inherit;
   }
 </style>

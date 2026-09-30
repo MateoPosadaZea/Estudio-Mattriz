@@ -28,6 +28,8 @@ if (loader && word && root.classList.contains('is-loading')) {
       sessionStorage.setItem('mz-loaded', '1');
     } catch {}
     loader.classList.add('is-leaving');
+    // Las entradas del hero esperan un poco más, para que las palabras suban mientras sube el telón.
+    root.classList.add('after-loader');
     root.classList.remove('is-loading');
     const done = (e: TransitionEvent) => {
       if (e.target !== loader) return;
@@ -35,7 +37,7 @@ if (loader && word && root.classList.contains('is-loading')) {
       loader.remove();
     };
     loader.addEventListener('transitionend', done);
-    setTimeout(() => loader.remove(), 1500);
+    setTimeout(() => loader.remove(), 1800);
   };
 
   const tick = () => {
