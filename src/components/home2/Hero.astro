@@ -38,6 +38,7 @@ const t = ui(lang);
 <a class="h-scroll" href="#services" data-scroll-hint aria-hidden="true" tabindex="-1">
   <span>{HERO.scroll}</span>
   <i></i>
+  <b class="h-scroll__icon"></b>
 </a>
 
 <script>
@@ -97,18 +98,56 @@ const t = ui(lang);
     transform: translate(-50%, 0);
   }
 
-  /* En celular el enlace del hero ocupa el centro de abajo: el aviso va a la derecha. */
+  /* En celular, sin texto: solo un ícono animado (una píldora con un punto que baja), a la derecha
+     para no tapar el enlace del hero ni la lectura. */
+  .h-scroll__icon {
+    display: none;
+  }
+
   @media (max-width: 699px) {
     .h-scroll {
       left: auto;
       right: var(--pad);
-      align-items: flex-end;
+      bottom: 28px;
       transform: translateY(8px);
     }
 
     .h-scroll.is-visible {
       transform: none;
     }
+
+    .h-scroll span,
+    .h-scroll i {
+      display: none;
+    }
+
+    .h-scroll__icon {
+      position: relative;
+      display: block;
+      width: 16px;
+      height: 26px;
+      border: 1.4px solid currentColor;
+      border-radius: 10px;
+    }
+
+    .h-scroll__icon::after {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: 5px;
+      width: 3px;
+      height: 5px;
+      margin-left: -1.5px;
+      border-radius: 2px;
+      background: currentColor;
+      animation: h-scroll-dot 1.6s cubic-bezier(0.6, 0, 0.3, 1) infinite;
+    }
+  }
+
+  @keyframes h-scroll-dot {
+    0% { opacity: 0; transform: translateY(0); }
+    30% { opacity: 1; }
+    100% { opacity: 0; transform: translateY(9px); }
   }
 
   .h-scroll i {
@@ -133,7 +172,8 @@ const t = ui(lang);
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .h-scroll i::after {
+    .h-scroll i::after,
+    .h-scroll__icon::after {
       animation: none;
     }
   }
