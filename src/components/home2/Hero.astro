@@ -18,7 +18,7 @@ const t = ui(lang);
         HERO.title.split(' ').map((w, i, all) => (
           <>
             <span class="case-mask" aria-hidden="true">
-              <span style={`--d:${i * 70}ms`}>{[...w].map((ch) => <span class="h-c" data-c={ch}><span>{ch}</span></span>)}</span>
+              <span style={`--d:${i * 70}ms`}>{w}</span>
             </span>
             {i === Math.ceil(all.length / 2) - 1 && <br class="h-hero__br" />}
           </>
@@ -43,54 +43,6 @@ const t = ui(lang);
 </section>
 
 <script>
-  // Titular: con el mouse encima, las letras cercanas pasan de Noe Display Medium a la Regular, más
-  // delgada, poco a poco y más entre más cerca. Noe no es variable (pesos fijos): cada letra lleva su copia
-  // en Regular en la misma celda (::after, alineada por la línea base), así las letras no se mueven.
-  // El ciclo solo corre mientras hay algo que mover. Solo con mouse y sin "reducir movimiento".
-  const title = document.querySelector<HTMLElement>('.h-hero__title');
-  if (title && window.matchMedia('(hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference)').matches) {
-    const MAX = 1;
-    // La Regular se pide al primer paso del mouse, no al cargar la página.
-    title.addEventListener('pointerenter', () => title.classList.add('is-thin'), { once: true });
-    const chars = [...title.querySelectorAll<HTMLElement>('.h-c')].map((el) => ({ el, v: 0 }));
-    let x = 0;
-    let y = 0;
-    let inside = false;
-    let raf = 0;
-    const frame = () => {
-      raf = 0;
-      const r = Math.max(110, title.getBoundingClientRect().height * 0.85);
-      let moving = false;
-      for (const c of chars) {
-        let t = 0;
-        if (inside) {
-          const b = c.el.getBoundingClientRect();
-          const k = Math.max(0, 1 - Math.hypot(b.left + b.width / 2 - x, b.top + b.height / 2 - y) / r);
-          t = k * k * (3 - 2 * k) * MAX;
-        }
-        let v = c.v + (t - c.v) * 0.1;
-        if (Math.abs(t - v) < 0.002) v = t;
-        if (v !== c.v) {
-          c.v = v;
-          c.el.style.setProperty('--k', v ? v.toFixed(3) : '');
-          moving = true;
-        }
-      }
-      if (moving || inside) raf = requestAnimationFrame(frame);
-    };
-    const kick = () => (raf ||= requestAnimationFrame(frame));
-    title.addEventListener('pointermove', (e) => {
-      x = e.clientX;
-      y = e.clientY;
-      inside = true;
-      kick();
-    });
-    title.addEventListener('pointerleave', () => {
-      inside = false;
-      kick();
-    });
-  }
-
   // Solo en celular, y con tiempo: primero se lee, y si en 15 s nadie ha bajado, aparece el ícono.
   const hint = document.querySelector<HTMLElement>('[data-scroll-hint]');
   if (hint && window.matchMedia('(max-width: 699px)').matches) {
@@ -264,30 +216,6 @@ const t = ui(lang);
     font-weight: 500;
     line-height: 0.92;
     letter-spacing: -0.035em;
-  }
-
-  /* Las dos versiones de la letra en la misma celda, alineadas por la línea base. */
-  .is-thin .h-c {
-    display: inline-grid;
-    align-items: baseline;
-    justify-items: center;
-    color: color-mix(in srgb, currentColor calc((1 - var(--k, 0)) * 100%), transparent);
-  }
-
-  .is-thin .h-c > * {
-    grid-area: 1 / 1;
-  }
-
-  .is-thin .h-c::after {
-    content: attr(data-c);
-    grid-area: 1 / 1;
-    font-family: 'noe-display-regular', var(--font-display);
-    font-weight: 400;
-    color: var(--fg);
-    /* La Regular llega entera pronto y la Medium se va desvaneciendo encima: el peso baja poco a poco,
-       sin quedar gris a medio camino. */
-    opacity: min(1, calc(var(--k, 0) * 3));
-    pointer-events: none;
   }
 
   .h-hero__br {

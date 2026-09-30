@@ -11,15 +11,6 @@
   font-style: normal;
   font-display: swap;
 }
-/* Noe Display Regular, solo para el titular del home: las letras cerca del mouse pasan a este peso
-   más delgado (se descarga al pasar el mouse por primera vez, no al cargar). */
-@font-face {
-  font-family: 'noe-display-regular';
-  src: url('/fonts/Noe-Display-Regular.woff2') format('woff2');
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
 /* Noe Display Bold, solo para el logotipo (header y menú móvil): es el peso de la M del logo.
    Va como familia aparte para no cambiar los títulos, que siguen en la cara Medium. */
 @font-face {
