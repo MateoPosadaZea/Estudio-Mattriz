@@ -119,6 +119,15 @@ const other = lang === 'es' ? 'en' : 'es';
     display: none;
   }
 
+  /* Modo rojo (ColorModes.astro): el header también va en rojo, con el botón rojo y texto blanco. */
+  :global(html[data-palette='blanco-rojo']) .site-header {
+    color: var(--color-brand);
+  }
+
+  :global(html[data-palette='blanco-rojo']) .site-header .talk-button::before {
+    background: var(--color-brand);
+  }
+
   @keyframes header-entrance {
     from { opacity: 0.01; }
     to { opacity: 1; }

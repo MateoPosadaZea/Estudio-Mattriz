@@ -1,6 +1,7 @@
 ---
 // Modos de color: blanco (texto negro), rojo (fondo blanco, texto rojo) y oscuro (negro suave,
-// texto blanco). En el header es el ícono de contraste, que despliega los tres en una columna; en
+// texto blanco). En el header es el ícono de contraste, que despliega los tres en una columna al
+// pasar el mouse (o al tocarlo, en pantallas táctiles y con teclado); en
 // el menú móvil van a la vista, en fila. El modo se guarda (src/scripts/color-modes.ts) y se aplica
 // antes de pintar (Base.astro).
 import { langOf, ui } from '../i18n';
@@ -86,6 +87,31 @@ const MODES = ['white', 'red', 'dark'] as const;
       opacity 0.3s ease,
       transform 0.45s cubic-bezier(0.2, 1, 0.3, 1),
       visibility 0s 0.3s;
+  }
+
+  /* Puente invisible entre el ícono y la columna, para que el hover no se corte al bajar. */
+  .modes:not(.modes--static) .modes__panel::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 100%;
+    height: 10px;
+  }
+
+  @media (hover: hover) {
+    .modes:not(.modes--static):hover .modes__panel {
+      opacity: 1;
+      visibility: visible;
+      transform: translate(-50%, 0);
+      transition:
+        opacity 0.3s ease,
+        transform 0.45s cubic-bezier(0.2, 1, 0.3, 1);
+    }
+
+    .modes:not(.modes--static):hover .modes__toggle {
+      background: color-mix(in srgb, currentColor 10%, transparent);
+    }
   }
 
   .modes.is-open:not(.modes--static) .modes__panel {
