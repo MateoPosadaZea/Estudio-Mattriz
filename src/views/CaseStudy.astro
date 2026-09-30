@@ -9,7 +9,7 @@ import { fromModel } from '../components/case/fromModel';
 import type { CaseDoc } from '../components/case/doc';
 import { fromLegacy } from '../components/case/fromLegacy';
 import { MODEL_CASES, MANUAL_CASES, LEGACY_CASES, CASE_UI, CASE_SEO } from '../data/cases';
-import { PROJECTS, HOME_LABELS } from '../data/home';
+import { PROJECTS } from '../data/home';
 import { langOf, localize, category } from '../i18n';
 import { CASE_CATEGORIES } from '../data/categories';
 
@@ -284,7 +284,7 @@ const sizes = { pair: '(max-width: 690px) 100vw, 50vw', trio: '(max-width: 690px
 
     {
       next && (
-        <a class:list={['case-next', `case-next--${nextTheme}`]} href={localize(next.href, lang)} style={`--next-bg:${nextBg}`} data-cursor-label={`${HOME_LABELS[lang].viewProject} ↗`}>
+        <a class:list={['case-next', `case-next--${nextTheme}`]} href={localize(next.href, lang)} style={`--next-bg:${nextBg}`}>
           <span class="case-next__small">{t.next}</span>
           <span class="case-next__name" style={`--len:${next.title.length}`}>{next.title}</span>
           <span class="case-next__media" aria-hidden="true">

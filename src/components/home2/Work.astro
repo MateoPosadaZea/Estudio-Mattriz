@@ -35,7 +35,7 @@ const items = PROJECTS.map((p) => {
     {
       items.map((p, i) => (
         <li data-case-reveal>
-          <a class="h-work__row" href={p.href} data-work-row={i} data-cursor-label={`${LABELS.viewProject} ↗`}>
+          <a class="h-work__row" href={p.href} data-work-row={i}>
             <span class="h-work__thumb" aria-hidden="true" style={p.fit}>
               {p.video ? (
                 <>
