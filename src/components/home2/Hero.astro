@@ -11,6 +11,7 @@ const t = ui(lang);
 
 <section class="h-hero">
   <div class="h-hero__inner">
+    <div class="h-hero__head">
     <h1 class="h-hero__title" aria-label={HERO.title} style={`--em:${lang === 'es' ? 9.2 : 7.7}`}>
       {
         // En pantallas medianas y grandes, dos líneas partidas por la mitad de la frase.
@@ -24,6 +25,14 @@ const t = ui(lang);
         ))
       }
     </h1>
+    <!-- Aviso para seguir bajando: aparece solo si el visitante no ha bajado tras unos segundos de
+         lectura, y se va en cuanto baja. En escritorio va a la derecha del titular. -->
+    <a class="h-scroll" href="#services" data-scroll-hint aria-hidden="true" tabindex="-1">
+      <span>{HERO.scroll}</span>
+      <i></i>
+      <b class="h-scroll__icon"></b>
+    </a>
+    </div>
     <div class="h-hero__foot case-in" style="--d:500ms">
       <p class="h-hero__subtitle">{HERO.subtitle}</p>
       <a class="h-hero__cta" href={HERO.cta.href}>
@@ -32,14 +41,6 @@ const t = ui(lang);
     </div>
   </div>
 </section>
-
-<!-- Aviso para seguir bajando: aparece solo si el visitante no ha bajado tras unos segundos de lectura,
-     y se va en cuanto baja. -->
-<a class="h-scroll" href="#services" data-scroll-hint aria-hidden="true" tabindex="-1">
-  <span>{HERO.scroll}</span>
-  <i></i>
-  <b class="h-scroll__icon"></b>
-</a>
 
 <script>
   const hint = document.querySelector<HTMLElement>('[data-scroll-hint]');
@@ -71,12 +72,17 @@ const t = ui(lang);
     overflow: hidden;
   }
 
-  /* Pequeño y sutil, abajo al centro: el texto y una línea que baja una y otra vez. */
+  .h-hero__head {
+    position: relative;
+  }
+
+  /* Pequeño y sutil, a la derecha del titular, alineado con su última línea: el texto y una línea
+     que baja una y otra vez. */
   .h-scroll {
-    position: fixed;
-    left: 50%;
-    bottom: 22px;
-    z-index: 50;
+    position: absolute;
+    right: 0;
+    bottom: 0.4em;
+    z-index: 5;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -86,7 +92,7 @@ const t = ui(lang);
     color: var(--muted);
     opacity: 0;
     pointer-events: none;
-    transform: translate(-50%, 8px);
+    transform: translateY(8px);
     transition:
       opacity 0.6s ease,
       transform 0.8s cubic-bezier(0.2, 1, 0.3, 1);
@@ -95,7 +101,7 @@ const t = ui(lang);
   .h-scroll.is-visible {
     opacity: 1;
     pointer-events: auto;
-    transform: translate(-50%, 0);
+    transform: none;
   }
 
   /* En celular, sin texto: solo un ícono animado (una píldora con un punto que baja), a la derecha
@@ -106,7 +112,7 @@ const t = ui(lang);
 
   @media (max-width: 699px) {
     .h-scroll {
-      left: auto;
+      position: fixed;
       right: var(--pad);
       bottom: 28px;
       transform: translateY(8px);

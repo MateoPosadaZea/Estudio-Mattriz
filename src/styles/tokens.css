@@ -6,8 +6,8 @@
 
 :root {
   /* Color */
-  --color-black: #000000;
-  --color-ink: #0a0a0a;             /* color base del body */
+  --color-black: #0d0d0d;           /* el negro de la marca (no negro puro) */
+  --color-ink: #0d0d0d;             /* color base del body */
   --color-white: #ffffff;
   --color-brand: #e0553f;           /* rojo de marca: botones, detalles y el punto del loader */
   --color-status-green: #55c91c;    /* punto de estado (ya no se usa en el sitio) */
@@ -19,8 +19,8 @@
   --color-form-label: #333333;
 
   /* v2: tema. Claro por defecto (Base.astro pone data-theme="light"); sin el atributo es el oscuro,
-     un negro suave (#141414), no negro puro. El rojo de marca es uno solo (--color-brand). */
-  --bg: #141414;
+     un negro suave (#0d0d0d), no negro puro. El rojo de marca es uno solo (--color-brand). */
+  --bg: #0d0d0d;
   --fg: #ffffff;
   --muted: rgba(255, 255, 255, 0.6);
   --line: rgba(255, 255, 255, 0.18);
@@ -96,10 +96,10 @@
 
 html[data-theme='light'] {
   --bg: #ffffff;
-  --fg: #141414;
-  --muted: rgba(20, 20, 20, 0.64);
-  --line: rgba(20, 20, 20, 0.16);
-  --line-strong: rgba(20, 20, 20, 0.3);
+  --fg: #0d0d0d;
+  --muted: rgba(13, 13, 13, 0.64);
+  --line: rgba(13, 13, 13, 0.16);
+  --line-strong: rgba(13, 13, 13, 0.3);
   --error: #b3261e;
   /* El rojo de marca como texto pequeño sobre blanco no llega a AA: un tono más oscuro. */
   --accent-text: #c23f2b;
@@ -141,5 +141,5 @@ html[data-palette='rojo'] {
   --line-strong: rgba(255, 255, 255, 0.5);
   --accent-text: #ffffff;
   --color-ink: #ffffff;
-  --color-brand: #141414;
+  --color-brand: #0d0d0d;
 }

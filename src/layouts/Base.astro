@@ -241,6 +241,31 @@ const jsonLd = {
       color 0.8s;
   }
 
+  /* Al abrir la página (o al terminar el loader) el contenido entra borroso y se va enfocando.
+     Solo "backwards": al terminar no queda ningún filtro, que rompería los elementos fijos. */
+  @keyframes mz-focus {
+    from {
+      filter: blur(18px);
+      opacity: 0.35;
+    }
+    to {
+      filter: blur(0);
+      opacity: 1;
+    }
+  }
+
+  html.js:not(.is-loading) main,
+  html.js:not(.is-loading) .ft {
+    animation: mz-focus 1.4s cubic-bezier(0.2, 0.7, 0.2, 1) backwards;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html.js main,
+    html.js .ft {
+      animation: none !important;
+    }
+  }
+
   /* Con el menú abierto la página no se desplaza. */
   html.menu-open,
   html.menu-open body {

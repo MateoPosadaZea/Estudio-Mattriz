@@ -149,9 +149,9 @@ const MODES = ['white', 'red', 'dark'] as const;
     transform: scale(1.12);
   }
 
-  .modes__option--white { --a: #141414; --b: #ffffff; --o: #141414; }
+  .modes__option--white { --a: #0d0d0d; --b: #ffffff; --o: #0d0d0d; }
   .modes__option--red { --a: #e0553f; --b: #ffffff; --o: #e0553f; }
-  .modes__option--dark { --a: #ffffff; --b: #141414; --o: #141414; }
+  .modes__option--dark { --a: #ffffff; --b: #0d0d0d; --o: #0d0d0d; }
 
   /* En el menú móvil del modo oscuro los contornos negros van en blanco para que se vean. */
   :global(html:not([data-theme='light'])) .modes--static .modes__option--white,
