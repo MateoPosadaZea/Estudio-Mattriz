@@ -77,7 +77,8 @@ const MODES = ['white', 'red', 'dark'] as const;
     left: 50%;
     z-index: 2;
     flex-direction: column;
-    padding: 8px;
+    gap: 2px;
+    padding: 4px;
     border-radius: var(--radius-pill);
     background: #ebebeb;
     opacity: 0;
@@ -123,43 +124,38 @@ const MODES = ['white', 'red', 'dark'] as const;
       transform 0.45s cubic-bezier(0.2, 1, 0.3, 1);
   }
 
-  /* Cada muestra: el color del texto a la izquierda y el del fondo a la derecha, partidos en
-     vertical, con un aro fino. El modo activo lleva el aro marcado. */
+  /* Cada muestra se dibuja igual que el ícono de contraste: un círculo del tamaño del ícono, con su
+     contorno y la mitad izquierda del color del texto del modo, la derecha del color del fondo. */
   .modes__option {
-    --gap: #ebebeb;
-    --ring: rgba(20, 20, 20, 0.22);
-    --ring-on: #141414;
+    display: grid;
+    place-items: center;
     flex: none;
-    width: 28px;
-    height: 28px;
+    width: 30px;
+    height: 30px;
     border-radius: 50%;
-    box-shadow:
-      0 0 0 2px var(--gap),
-      0 0 0 3.5px var(--ring);
-    background: linear-gradient(90deg, var(--a) 0 50%, var(--b) 50% 100%);
-    transition: box-shadow 0.3s, transform 0.3s;
+    transition: transform 0.3s;
   }
 
-  /* En el menú móvil (fondo oscuro) los aros son claros. */
-  .modes--static .modes__option {
-    --gap: #141414;
-    --ring: rgba(255, 255, 255, 0.28);
-    --ring-on: #ffffff;
+  .modes__option::before {
+    content: '';
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    box-shadow: inset 0 0 0 1.8px var(--o);
+    background: linear-gradient(90deg, var(--a) 0 50%, var(--b) 50% 100%);
   }
 
   .modes__option:hover {
-    transform: scale(1.08);
+    transform: scale(1.12);
   }
 
-  .modes__option[aria-pressed='true'] {
-    box-shadow:
-      0 0 0 2px var(--gap),
-      0 0 0 3.5px var(--ring-on);
-  }
+  .modes__option--white { --a: #141414; --b: #ffffff; --o: #141414; }
+  .modes__option--red { --a: #e0553f; --b: #ffffff; --o: #e0553f; }
+  .modes__option--dark { --a: #ffffff; --b: #141414; --o: #141414; }
 
-  .modes__option--white { --a: #141414; --b: #ffffff; }
-  .modes__option--red { --a: #e0553f; --b: #ffffff; }
-  .modes__option--dark { --a: #ffffff; --b: #141414; }
+  /* En el menú móvil (fondo oscuro) los contornos negros van en blanco para que se vean. */
+  .modes--static .modes__option--white,
+  .modes--static .modes__option--dark { --o: #ffffff; }
 
   @media (prefers-reduced-motion: reduce) {
     .modes__panel {
