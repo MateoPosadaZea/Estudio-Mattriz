@@ -150,12 +150,13 @@ html[data-palette='rojo'] {
   color: var(--fg);
 }
 
-.tone--papel,
-.tone--papel-rojo {
+/* Los tonos papel son del modo claro; en el oscuro esas secciones siguen el fondo de la página. */
+html[data-theme='light'] .tone--papel,
+html[data-theme='light'] .tone--papel-rojo {
   --bg: #f3eee5;
 }
 
-.tone--papel-rojo {
+html[data-theme='light'] .tone--papel-rojo {
   --fg: var(--color-brand);
   --muted: color-mix(in srgb, var(--color-brand) 72%, transparent);
   --line: color-mix(in srgb, var(--color-brand) 22%, transparent);

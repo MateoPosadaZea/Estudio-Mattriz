@@ -1,0 +1,125 @@
+---
+// Modos de color: blanco (texto negro), rojo (fondo blanco, texto rojo) y oscuro (negro suave,
+// texto blanco). En el header es un botón que despliega los tres; en el menú móvil van a la vista.
+// El modo se guarda (src/scripts/color-modes.ts) y se aplica antes de pintar (Base.astro).
+import { langOf, ui } from '../i18n';
+
+interface Props {
+  class?: string;
+  /** Siempre abiertos (menú móvil), sin el botón que los despliega. */
+  open?: boolean;
+}
+
+const { class: className, open = false } = Astro.props;
+const t = ui(langOf(Astro.url));
+const MODES = ['white', 'red', 'dark'] as const;
+---
+
+<div class:list={['modes', className, { 'is-open': open, 'modes--static': open }]} data-modes role="group" aria-label={t.colorModes}>
+  {
+    !open && (
+      <button class="modes__toggle" type="button" aria-expanded="false" aria-label={t.colorModes} data-modes-toggle>
+        <span class="modes__dot modes__dot--current" aria-hidden="true" />
+      </button>
+    )
+  }
+  <div class="modes__list">
+    {
+      MODES.map((m, i) => (
+        <button class={`modes__option modes__option--${m}`} type="button" aria-pressed="false" aria-label={t.modeNames[i]} title={t.modeNames[i]} data-mode={m}>
+          <span class="modes__dot" aria-hidden="true">
+            <i />
+          </span>
+        </button>
+      ))
+    }
+  </div>
+</div>
+
+<script>
+  import '../scripts/color-modes';
+</script>
+
+<style>
+  .modes {
+    position: relative;
+    display: flex;
+    align-items: center;
+    flex-direction: row-reverse;
+  }
+
+  .modes__toggle,
+  .modes__option {
+    display: grid;
+    place-items: center;
+    flex: none;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    transition: background-color 0.3s;
+  }
+
+  .modes__toggle:hover,
+  .modes__option:hover {
+    background: color-mix(in srgb, currentColor 10%, transparent);
+  }
+
+  /* Cada muestra: el fondo del modo con un punto del color de su texto. */
+  .modes__dot {
+    display: grid;
+    place-items: center;
+    width: 18px;
+    height: 18px;
+    border: 1px solid color-mix(in srgb, currentColor 45%, transparent);
+    border-radius: 50%;
+  }
+
+  .modes__dot i {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+  }
+
+  .modes__option--white .modes__dot { background: #ffffff; }
+  .modes__option--white .modes__dot i { background: #141414; }
+  .modes__option--red .modes__dot { background: #ffffff; }
+  .modes__option--red .modes__dot i { background: #e0553f; }
+  .modes__option--dark .modes__dot { background: #141414; }
+  .modes__option--dark .modes__dot i { background: #ffffff; }
+
+  /* El botón muestra un círculo mitad blanco, mitad rojo, mitad negro: "hay modos". */
+  .modes__dot--current {
+    background: conic-gradient(#ffffff 0 33%, #e0553f 0 66%, #141414 0);
+  }
+
+  .modes__option[aria-pressed='true'] .modes__dot {
+    outline: 1.5px solid currentColor;
+    outline-offset: 2px;
+  }
+
+  .modes__list {
+    display: flex;
+    gap: 2px;
+    overflow: hidden;
+    max-width: 0;
+    opacity: 0;
+    transition:
+      max-width 0.5s cubic-bezier(0.2, 1, 0.3, 1),
+      opacity 0.3s ease;
+  }
+
+  .modes.is-open .modes__list {
+    max-width: 120px;
+    opacity: 1;
+  }
+
+  .modes--static .modes__list {
+    transition: none;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .modes__list {
+      transition: none;
+    }
+  }
+</style>

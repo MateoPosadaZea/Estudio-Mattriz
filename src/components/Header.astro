@@ -1,5 +1,5 @@
 ---
-import ThemeToggle from './ThemeToggle.astro';
+import ColorModes from './ColorModes.astro';
 import GlobeIcon from './GlobeIcon.astro';
 import { NAV } from '../data/site';
 import { langOf, localize, alternate, ui } from '../i18n';
@@ -41,8 +41,7 @@ const other = lang === 'es' ? 'en' : 'es';
       <GlobeIcon size={20} />
     </a>
 
-    {/* Un solo modo por ahora (claro): el botón de tema queda guardado para cuando vuelva el oscuro. */}
-    {false && <ThemeToggle class="site-header__theme" />}
+    <ColorModes class="site-header__theme" />
 
     <a class="talk-button" href="#contact-form">
       <span class="reveal">
