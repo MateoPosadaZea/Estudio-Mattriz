@@ -33,6 +33,32 @@ const t = ui(lang);
   </div>
 </section>
 
+<!-- Aviso para seguir bajando: aparece solo si el visitante no ha bajado tras unos segundos de lectura,
+     y se va en cuanto baja. -->
+<a class="h-scroll" href="#services" data-scroll-hint aria-hidden="true" tabindex="-1">
+  <span>{HERO.scroll}</span>
+  <i></i>
+</a>
+
+<script>
+  const hint = document.querySelector<HTMLElement>('[data-scroll-hint]');
+  if (hint) {
+    const DELAY = 6000;
+    const scrolled = () => window.scrollY > 40;
+    const hide = () => {
+      if (scrolled()) {
+        hint.classList.remove('is-visible');
+        window.removeEventListener('scroll', hide);
+      }
+    };
+    setTimeout(() => {
+      if (scrolled()) return;
+      hint.classList.add('is-visible');
+      window.addEventListener('scroll', hide, { passive: true });
+    }, DELAY);
+  }
+</script>
+
 <style>
   .h-hero {
     position: relative;
@@ -42,6 +68,74 @@ const t = ui(lang);
     min-height: 100svh;
     padding: calc(var(--header-top) + var(--header-height) + 40px) var(--pad) clamp(32px, 5vw, 64px);
     overflow: hidden;
+  }
+
+  /* Pequeño y sutil, abajo al centro: el texto y una línea que baja una y otra vez. */
+  .h-scroll {
+    position: fixed;
+    left: 50%;
+    bottom: 22px;
+    z-index: 50;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    font-size: 13px;
+    letter-spacing: 0.02em;
+    color: var(--muted);
+    opacity: 0;
+    pointer-events: none;
+    transform: translate(-50%, 8px);
+    transition:
+      opacity 0.6s ease,
+      transform 0.8s cubic-bezier(0.2, 1, 0.3, 1);
+  }
+
+  .h-scroll.is-visible {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translate(-50%, 0);
+  }
+
+  /* En celular el enlace del hero ocupa el centro de abajo: el aviso va a la derecha. */
+  @media (max-width: 699px) {
+    .h-scroll {
+      left: auto;
+      right: var(--pad);
+      align-items: flex-end;
+      transform: translateY(8px);
+    }
+
+    .h-scroll.is-visible {
+      transform: none;
+    }
+  }
+
+  .h-scroll i {
+    position: relative;
+    width: 1px;
+    height: 28px;
+    overflow: hidden;
+    background: var(--line);
+  }
+
+  .h-scroll i::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: currentColor;
+    animation: h-scroll-line 1.8s cubic-bezier(0.6, 0, 0.3, 1) infinite;
+  }
+
+  @keyframes h-scroll-line {
+    from { transform: translateY(-100%); }
+    to { transform: translateY(100%); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .h-scroll i::after {
+      animation: none;
+    }
   }
 
   .h-hero__inner {
