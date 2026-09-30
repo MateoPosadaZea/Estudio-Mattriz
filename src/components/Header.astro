@@ -41,7 +41,8 @@ const other = lang === 'es' ? 'en' : 'es';
       <GlobeIcon size={20} />
     </a>
 
-    <ThemeToggle class="site-header__theme" />
+    {/* Un solo modo por ahora (claro): el botón de tema queda guardado para cuando vuelva el oscuro. */}
+    {false && <ThemeToggle class="site-header__theme" />}
 
     <a class="talk-button" href="#contact-form">
       <span class="reveal">

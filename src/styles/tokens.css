@@ -142,3 +142,35 @@ html[data-palette='rojo'] {
   --color-ink: #ffffff;
   --color-brand: #141414;
 }
+
+/* Tonos por sección: el sitio tiene un solo modo (claro) y algunas secciones cambian de fondo y
+   de texto. Cada tono redefine las variables del tema dentro de su bloque. */
+.tone {
+  background: var(--bg);
+  color: var(--fg);
+}
+
+.tone--papel,
+.tone--papel-rojo {
+  --bg: #f3eee5;
+}
+
+.tone--papel-rojo {
+  --fg: var(--color-brand);
+  --muted: color-mix(in srgb, var(--color-brand) 72%, transparent);
+  --line: color-mix(in srgb, var(--color-brand) 22%, transparent);
+  --line-strong: color-mix(in srgb, var(--color-brand) 40%, transparent);
+  --color-ink: var(--color-brand);
+}
+
+/* Fondo rojo con texto blanco: los botones rojos pasan a negro para no perderse. */
+.tone--rojo {
+  --bg: #e0553f;
+  --fg: #ffffff;
+  --muted: rgba(255, 255, 255, 0.8);
+  --line: rgba(255, 255, 255, 0.3);
+  --line-strong: rgba(255, 255, 255, 0.5);
+  --accent-text: #ffffff;
+  --color-ink: #ffffff;
+  --color-brand: #141414;
+}

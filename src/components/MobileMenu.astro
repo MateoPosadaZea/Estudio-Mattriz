@@ -49,7 +49,8 @@ const other = lang === 'es' ? 'en' : 'es';
       <a class="mobile-menu__lang mask" href={alternate(Astro.url, other)} hreflang={other} lang={other}>
         <span>{t.switchLong}</span>
       </a>
-      <ThemeToggle class="mobile-menu__theme" />
+      {/* Un solo modo por ahora (claro). */}
+      {false && <ThemeToggle class="mobile-menu__theme" />}
     </div>
     <a class="mobile-menu__mail mask" href={`mailto:${SITE.email}`}><span>{SITE.email}</span></a>
   </div>
