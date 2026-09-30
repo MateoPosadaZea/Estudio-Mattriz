@@ -106,11 +106,39 @@ html[data-theme='light'] {
 }
 
 
-/* Prueba: todo el texto en rojo sobre blanco. Se activa con ?texto=rojo (y ?texto=negro lo quita). */
-html.text-red[data-theme='light'] {
+/* Pruebas de paleta (no son definitivas). Se activan con ?paleta=<nombre> y el navegador la recuerda;
+   ?paleta=no la quita. Base.astro pone data-palette y el tema que le corresponde a cada una. */
+html[data-palette='blanco-rojo'],
+html[data-palette='papel-rojo'],
+html[data-palette='oscuro-rojo'] {
   --fg: var(--color-brand);
   --muted: color-mix(in srgb, var(--color-brand) 72%, transparent);
   --line: color-mix(in srgb, var(--color-brand) 22%, transparent);
   --line-strong: color-mix(in srgb, var(--color-brand) 40%, transparent);
   --color-ink: var(--color-brand);
+}
+
+html[data-palette='papel'],
+html[data-palette='papel-rojo'] {
+  --bg: #f3eee5;
+}
+
+html[data-palette='gris'] {
+  --bg: #ebebe9;
+}
+
+html[data-palette='grafito'] {
+  --bg: #2a2826;
+}
+
+/* Fondo rojo con texto blanco: los botones rojos pasan a negro para no perderse. */
+html[data-palette='rojo'] {
+  --bg: #e0553f;
+  --fg: #ffffff;
+  --muted: rgba(255, 255, 255, 0.78);
+  --line: rgba(255, 255, 255, 0.3);
+  --line-strong: rgba(255, 255, 255, 0.5);
+  --accent-text: #ffffff;
+  --color-ink: #ffffff;
+  --color-brand: #141414;
 }

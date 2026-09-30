@@ -107,12 +107,19 @@ const jsonLd = {
       } catch (e) {
         document.documentElement.dataset.theme = 'light';
       }
-      // Prueba de texto en rojo: ?texto=rojo la activa y la recuerda; ?texto=negro la quita.
+      // Pruebas de paleta (tokens.css): ?paleta=<nombre> la activa y la recuerda; ?paleta=no la quita.
+      // Cada paleta fija su tema: las de fondo oscuro quitan data-theme.
       try {
-        var q = new URLSearchParams(location.search).get('texto');
-        if (q === 'rojo') localStorage.setItem('mz-text', 'red');
-        if (q === 'negro') localStorage.removeItem('mz-text');
-        if (localStorage.getItem('mz-text') === 'red') document.documentElement.classList.add('text-red');
+        var q = new URLSearchParams(location.search).get('paleta');
+        if (new URLSearchParams(location.search).get('texto') === 'rojo') q = 'blanco-rojo';
+        if (q === 'no' || new URLSearchParams(location.search).get('texto') === 'negro') localStorage.removeItem('mz-palette');
+        else if (q) localStorage.setItem('mz-palette', q);
+        var pal = localStorage.getItem('mz-palette');
+        if (pal) {
+          document.documentElement.dataset.palette = pal;
+          if (/^(oscuro|grafito)/.test(pal)) delete document.documentElement.dataset.theme;
+          else document.documentElement.dataset.theme = 'light';
+        }
       } catch (e) {}
       // Loader (src/components/Loader.astro): solo en la primera página de la sesión y sin
       // movimiento reducido. Seguro: a los 5 s se quita pase lo que pase.
