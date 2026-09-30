@@ -65,6 +65,38 @@ const t = ui(lang);
     window.addEventListener('scroll', update, { passive: true });
     window.addEventListener('pageshow', update);
   }
+
+  // Enlace activo del menú: en el home, la sección que cruza el centro de la pantalla (o "Home"
+  // arriba del todo, pero solo después de que el visitante baje: al abrir no se marca nada); en las
+  // demás páginas, la página actual (aria-current).
+  const links = [...document.querySelectorAll<HTMLAnchorElement>('.site-nav a')];
+  const sections = links
+    .filter((a) => a.hash && a.pathname === location.pathname)
+    .map((a) => ({ a, el: document.querySelector<HTMLElement>(a.hash) }))
+    .filter((s): s is { a: HTMLAnchorElement; el: HTMLElement } => !!s.el);
+  const page = links.find((a) => a.getAttribute('aria-current') === 'page');
+  let raf = 0;
+  let touched = false;
+  const spy = () => {
+    raf = 0;
+    const mid = window.innerHeight * 0.45;
+    let active = sections.find(({ el }) => {
+      const r = el.getBoundingClientRect();
+      return r.top < mid && r.bottom > mid;
+    })?.a;
+    if (!active && page && (!sections.length || (touched && window.scrollY < window.innerHeight * 0.5))) active = page;
+    links.forEach((a) => a.classList.toggle('is-active', a === active));
+  };
+  spy();
+  window.addEventListener(
+    'scroll',
+    () => {
+      if (window.scrollY > 24) touched = true;
+      raf ||= requestAnimationFrame(spy);
+    },
+    { passive: true },
+  );
+  window.addEventListener('resize', spy);
 </script>
 
 <style>
@@ -189,12 +221,32 @@ const t = ui(lang);
   }
 
   .site-nav a {
+    position: relative;
     display: block;
     white-space: nowrap;
     padding: 0 20px;
     font-size: var(--fs-menu);
     font-weight: var(--fw-menu);
     line-height: 1.3;
+  }
+
+  /* Enlace activo (la página, o la sección que se está viendo en el home): una línea fina debajo,
+     del ancho del texto. */
+  .site-nav a::after {
+    content: '';
+    position: absolute;
+    left: 20px;
+    right: 20px;
+    bottom: -5px;
+    height: 1px;
+    background: currentColor;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.45s cubic-bezier(0.2, 1, 0.3, 1);
+  }
+
+  .site-nav a.is-active::after {
+    transform: none;
   }
 
   /* Botón negro. Vivo: 116×49 px, 24px de padding, radio 200px.
