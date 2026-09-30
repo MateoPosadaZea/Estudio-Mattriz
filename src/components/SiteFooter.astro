@@ -1,6 +1,6 @@
 ---
 // v2: footer (mismo contenido que antes: Calendly, correo, redes, año).
-// - Sigue el tema de la página (fondo y texto), separado por una línea fina.
+// - Sigue el tema de la página (fondo y texto).
 // - Formulario escrito como una frase para llenar (FooterForm.astro), con enlace a Calendly.
 // - Correo con botón para copiarlo, hora local de Bogotá en vivo, volver arriba.
 // Lógica en src/scripts/footer.ts; el formulario en src/scripts/footer-form.ts.
@@ -72,7 +72,6 @@ const year = new Date().getFullYear();
     --pad: clamp(20px, 5vw, 80px);
     position: relative;
     overflow: hidden;
-    border-top: 1px solid var(--line);
     background: var(--bg);
     color: var(--fg);
   }
