@@ -59,8 +59,16 @@ const config = { lang, copy: c, pricing: PRICING, currency: CURRENCY };
         <div class="scan-score__grid">
           <div>
             <p class="scan-score__value"><span data-score>0</span><small>/100</small></p>
-            <p class="scan-score__note">{c.scoreNote}</p>
+            <p class="scan-score__note" data-score-note></p>
             <p class="scan-score__site" data-scan-site></p>
+            <!-- El tipo de negocio que leímos, con opción de corregirlo: el puntaje y el plan cambian. -->
+            <div class="scan-kind">
+              <p>{c.kindLabel} <strong data-kind-name></strong>.</p>
+              <p class="scan-kind__change">{c.kindChange}:</p>
+              <div class="scan-kind__options" role="group" aria-label={c.kindChange}>
+                {(['booking', 'store', 'leads'] as const).map((k) => <button type="button" class="chip" data-kind={k} aria-pressed="false">{c.kinds[k]}</button>)}
+              </div>
+            </div>
           </div>
           <ul class="scan-areas" data-scan-areas></ul>
         </div>
@@ -377,6 +385,51 @@ const config = { lang, copy: c, pricing: PRICING, currency: CURRENCY };
     margin-top: 12px;
     font-size: 15px;
     overflow-wrap: anywhere;
+  }
+
+  .scan-kind {
+    display: grid;
+    gap: 10px;
+    margin-top: 28px;
+    padding-top: 20px;
+    border-top: 1px solid var(--line);
+    font-size: 16px;
+  }
+
+  .scan-kind strong {
+    font-weight: 400;
+    color: var(--fg);
+    border-bottom: 1px solid currentColor;
+  }
+
+  .scan-kind__change {
+    font-size: 14px;
+    color: var(--muted);
+  }
+
+  .scan-kind__options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .scan-kind__options .chip {
+    padding: 6px 12px;
+    border: 1px solid var(--line-strong);
+    border-radius: var(--radius-pill);
+    font-size: 14px;
+    color: var(--fg);
+    transition: background-color 0.25s, color 0.25s;
+  }
+
+  .scan-kind__options .chip:hover {
+    background: color-mix(in srgb, var(--fg) 8%, transparent);
+  }
+
+  .scan-kind__options .chip[aria-pressed='true'] {
+    background: var(--fg);
+    border-color: var(--fg);
+    color: var(--bg);
   }
 
   .scan-areas {

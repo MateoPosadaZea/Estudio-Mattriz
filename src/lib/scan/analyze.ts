@@ -5,6 +5,9 @@
 
 export type Hit = { id: string; name: string };
 
+/** Qué tipo de negocio parece: tienda en línea, negocio que agenda o negocio que vende por consultas. */
+export type Kind = 'store' | 'booking' | 'leads';
+
 export type Page = { url: string; html: string; headers: Record<string, string> };
 
 export type ScanResult = {
@@ -14,6 +17,8 @@ export type ScanResult = {
   pages: string[];
   platform: Hit[];
   builders: Hit[];
+  kind: Kind;
+  store: Hit[];
   booking: Hit[];
   payments: Hit[];
   contact: Hit[];
@@ -98,6 +103,28 @@ const BOOKING: Sig[] = [
   sig('resy', 'Resy', /resy\.com/i),
   sig('google-booking', 'Google Calendar booking', /calendar\.app\.google|calendar\.google\.com\/calendar\/appointments/i),
 ];
+
+// Tienda en línea: plataformas de e-commerce y señales de carrito y producto.
+const STORE: Sig[] = [
+  sig('shopify-store', 'Shopify', /cdn\.shopify\.com|Shopify\.theme|myshopify\.com/i),
+  sig('woocommerce-store', 'WooCommerce', /woocommerce|wc-add-to-cart|add_to_cart_button/i),
+  sig('tiendanube', 'Tiendanube', /tiendanube|nuvemshop|mitiendanube/i),
+  sig('vtex', 'VTEX', /vteximg|vtexassets|vtex\.com/i),
+  sig('bigcommerce', 'BigCommerce', /bigcommerce\.com|cdn\d*\.bigcommerce/i),
+  sig('prestashop', 'PrestaShop', /prestashop/i),
+  sig('magento', 'Adobe Commerce (Magento)', /mage\/cookies|Magento_|magento/i),
+  sig('ecwid', 'Ecwid', /ecwid\.com|app\.ecwid/i),
+  sig('squarespace-commerce', 'Squarespace Commerce', /sqs-add-to-cart|squarespace-commerce/i),
+  sig('wix-stores', 'Wix Stores', /wixstores|wix-ecommerce/i),
+  sig('jumpseller', 'Jumpseller', /jumpseller/i),
+  sig('cart', 'Shopping cart', /href=["'][^"']*\/(cart|carrito|basket)\b|add[-_ ]to[-_ ]cart|añadir al carrito|agregar al carrito/i),
+  sig('product-schema', 'Products in structured data', /"@type"\s*:\s*"Product"|itemtype=["']https?:\/\/schema\.org\/Product/i),
+];
+
+// Señales de un negocio que agenda aunque no tenga herramienta de reservas: tipos de negocio con
+// cita (schema.org) o textos de reserva en los enlaces y botones.
+const BOOKING_TYPES = /BeautySalon|HairSalon|NailSalon|DaySpa|HealthAndBeautyBusiness|Dentist|MedicalClinic|Physician|Optician|VeterinaryCare|AutoWash|AutoRepair|ExerciseGym|HealthClub|SportsActivityLocation|LodgingBusiness|Hotel|Motel|BedAndBreakfast|Campground|Resort|Restaurant|FoodEstablishment|TouristAttraction|ChildCare|EmergencyService/;
+const BOOKING_WORDS = />[^<]{0,40}\b(book now|book online|book an appointment|book a table|schedule (now|online|an appointment)|reserve( now| a table)?|reservar|reserva(s)? (ahora|en l[ií]nea|tu)|agenda(r)? (tu |una )?cita|agendar|pide tu cita|solicita tu cita)\b/i;
 
 // Pagos.
 const PAYMENTS: Sig[] = [
@@ -229,6 +256,18 @@ export function analyze(url: string, pages: Page[]): ScanResult {
   }
   const builders = platform.some((p) => p.id === 'wordpress') ? match(BUILDERS, all) : [];
 
+  // Tipo de negocio: quien ya agenda (herramienta, tipo de negocio con cita o botones de reservar)
+  // es "booking"; si no, quien vende productos con carrito es "store"; el resto vende por consultas.
+  const booking = match(BOOKING, all);
+  const store = match(STORE, all);
+  const storeStrong = store.some((s) => !['cart', 'product-schema'].includes(s.id)) || store.length >= 2;
+  // Calendly y parecidos sirven para agendar reuniones: en una consultora o una firma no significan
+  // que el negocio viva de reservas. Solo cuentan como "booking" si hay otra señal de negocio con cita.
+  const MEETINGS = ['calendly', 'calcom', 'tidycal', 'hubspot-meetings', 'youcanbook', 'zoho-bookings', 'google-booking'];
+  const bookingTool = booking.some((b) => !MEETINGS.includes(b.id));
+  const bookingIntent = schema.some((t) => BOOKING_TYPES.test(t)) || BOOKING_WORDS.test(all);
+  const kind: Kind = bookingTool ? 'booking' : storeStrong ? 'store' : bookingIntent ? 'booking' : 'leads';
+
   // Un formulario de búsqueda de WordPress no es un formulario de contacto.
   const contact = match(CONTACT, all).filter((c) => c.id !== 'form' || /<form(?![^>]*(role=["']search["']|class=["'][^"']*search))/i.test(all));
 
@@ -239,7 +278,9 @@ export function analyze(url: string, pages: Page[]): ScanResult {
     pages: pages.map((p) => p.url),
     platform,
     builders,
-    booking: match(BOOKING, all),
+    kind,
+    store,
+    booking,
     payments: match(PAYMENTS, all),
     contact,
     chat: match(CHAT, all),

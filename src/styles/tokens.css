@@ -123,8 +123,6 @@ html[data-palette='oscuro-rojo'] {
   --color-ink: var(--color-brand);
 }
 
-/* El modo rojo (ColorModes.astro) usa el fondo papel: el texto rojo sobre blanco puro cansaba. */
-html[data-palette='blanco-rojo'],
 html[data-palette='papel'],
 html[data-palette='papel-rojo'] {
   --bg: #f3eee5;

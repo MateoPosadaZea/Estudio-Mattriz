@@ -2,7 +2,7 @@
 // dibuja lo que tiene el sitio, el puntaje, el plan y la cotización, y envía el pedido del plan
 // a /api/scan-lead. Con ?url=… en la dirección (desde el home) arranca solo.
 
-import type { ScanResult, Hit } from '../lib/scan/analyze';
+import type { ScanResult, Hit, Kind } from '../lib/scan/analyze';
 import { plan as makePlan, type StepId } from '../lib/scan/recommend';
 import { scrollToEl, scrollToY } from './smooth-scroll';
 
@@ -95,8 +95,20 @@ if (root && cfgEl) {
     history.replaceState(null, '', u);
   };
 
-  const render = (r: ScanResult) => {
-    const p = makePlan(r);
+  // Cambiar el tipo de negocio vuelve a armar el puntaje y el plan sin volver a escanear.
+  let last: ScanResult | null = null;
+  root.querySelectorAll<HTMLButtonElement>('[data-kind]').forEach((b) =>
+    b.addEventListener('click', () => {
+      if (last) render(last, b.dataset.kind as Kind, false);
+    }),
+  );
+
+  const render = (r: ScanResult, kind: Kind = r.kind, scroll = true) => {
+    last = r;
+    const p = makePlan(r, kind);
+    $('[data-score-note]').textContent = c.scoreNote[p.kind];
+    $('[data-kind-name]').textContent = c.kinds[p.kind].toLowerCase();
+    root.querySelectorAll<HTMLButtonElement>('[data-kind]').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.kind === p.kind)));
 
     // Puntaje con conteo.
     const scoreEl = $('[data-score]');
@@ -113,6 +125,7 @@ if (root && cfgEl) {
     const groups: [keyof ScanResult, string][] = [
       ['platform', 'platform'],
       ['builders', 'builders'],
+      ['store', 'store'],
       ['booking', 'booking'],
       ['payments', 'payments'],
       ['contact', 'contact'],
@@ -122,7 +135,7 @@ if (root && cfgEl) {
       ['tech', 'tech'],
     ];
     $('[data-scan-has]').innerHTML = groups
-      .filter(([k]) => k !== 'builders' || (r.builders as Hit[]).length)
+      .filter(([k]) => (k !== 'builders' || r.builders.length) && (k !== 'store' || r.store.length || p.kind === 'store'))
       .map(([k, g]) => {
         const hits = r[k] as Hit[];
         const body = hits.length ? `<div class="chips">${hits.map((h) => `<span class="chip">${esc(label(h))}</span>`).join('')}</div>` : `<p class="none">${esc(c.notFound)}</p>`;
@@ -144,7 +157,7 @@ if (root && cfgEl) {
 
     // Plan paso a paso, con precio si Mattriz ya lo definió.
     const tools = r.booking.map(label).join(', ');
-    const platform = [...r.platform, ...r.builders].map(label).join(' + ') || '—';
+    const platform = [...r.platform, ...r.builders].map(label).join(' + ') || (cfg.lang === 'es' ? 'tu plataforma actual' : 'your current platform');
     $('[data-scan-steps]').innerHTML = p.steps
       .map((id, i) => {
         const s = c.steps[id];
@@ -170,6 +183,7 @@ if (root && cfgEl) {
       ...groups.map(([k, g]) => `${c.groups[g]}: ${(r[k] as Hit[]).map((h) => h.name).join(', ') || '-'}`),
       `SEO: title "${r.seo.title}", description ${r.seo.description ? 'yes' : 'no'}, H1 ${r.seo.h1}, schema ${r.seo.schema.join(', ') || '-'}`,
       `Weight: ${r.weight.htmlKB} KB HTML, ${r.weight.scripts} scripts (${r.weight.thirdPartyScripts} third-party)`,
+      `Kind: ${p.kind}${p.kind !== r.kind ? ` (detected ${r.kind}, changed by visitor)` : ''}`,
       `Plan: ${p.steps.join(', ')}`,
       `Pages: ${r.pages.join(' | ')}`,
     ].join('\n');
@@ -177,7 +191,7 @@ if (root && cfgEl) {
     $<HTMLInputElement>('[data-lead-report]').value = summary;
 
     results.hidden = false;
-    scrollToEl(results);
+    if (scroll) scrollToEl(results);
 
     // Animaciones: conteo del puntaje y barras.
     const start = performance.now();
