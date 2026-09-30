@@ -243,7 +243,9 @@ const reel = lang === 'es' ? { open: 'Ver reel', close: 'Cerrar' } : { open: 'Vi
     margin: 0;
     padding: clamp(16px, 4vw, 64px);
     border: 0;
-    background: rgba(10, 10, 10, 0.94);
+    background: rgba(13, 13, 13, 0.9);
+    -webkit-backdrop-filter: blur(16px);
+    backdrop-filter: blur(16px);
     color: var(--color-white);
   }
 
@@ -260,6 +262,32 @@ const reel = lang === 'es' ? { open: 'Ver reel', close: 'Cerrar' } : { open: 'Vi
   @keyframes h-reel-in {
     from {
       opacity: 0;
+    }
+  }
+
+  /* Al abrir, el reel entra desenfocado y se va enfocando (el único lugar del sitio con este efecto). */
+  .h-reel-modal[open] .h-reel-modal__frame {
+    animation: h-reel-focus 1.2s cubic-bezier(0.2, 0.7, 0.2, 1) backwards;
+  }
+
+  @keyframes h-reel-focus {
+    from {
+      filter: blur(24px);
+      opacity: 0;
+      transform: scale(0.97);
+    }
+    40% {
+      opacity: 1;
+    }
+    to {
+      filter: blur(0);
+      transform: none;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .h-reel-modal[open] .h-reel-modal__frame {
+      animation: none;
     }
   }
 
