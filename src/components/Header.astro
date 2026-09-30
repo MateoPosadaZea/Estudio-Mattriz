@@ -58,7 +58,15 @@ const t = ui(lang);
   // fondo en el navegador, que en el iPhone a veces se medía antes de que cargaran los estilos.
   const header = document.querySelector<HTMLElement>('[data-site-header]');
   if (header) {
-    const update = () => header.classList.toggle('is-top', window.scrollY < 24);
+    // Con margen (histéresis): pasa a "arriba" por debajo de 8 px y deja de estarlo por encima de
+    // 40 px. Así el rebote del iPhone al llegar arriba no lo prende y apaga varias veces (parpadeo).
+    let top = window.scrollY < 24;
+    const update = () => {
+      const y = window.scrollY;
+      if (top && y > 40) top = false;
+      else if (!top && y < 8) top = true;
+      header.classList.toggle('is-top', top);
+    };
     update();
     window.addEventListener('scroll', update, { passive: true });
     window.addEventListener('pageshow', update);
@@ -114,10 +122,20 @@ const t = ui(lang);
     border-radius: var(--header-radius);
     color: var(--color-black);
     animation: header-entrance 1.5s ease forwards;
+    /* Fondo y texto no cambian a la vez, para que nunca haya un instante de texto blanco sobre la
+       barra blanca: al bajar, primero el texto y luego aparece la barra; al subir, primero se va la
+       barra y luego cambia el texto. */
+    --bg-delay: 0.08s;
+    --fg-delay: 0s;
     transition:
-      background-color 0.4s ease,
-      box-shadow 0.4s ease,
-      color 0.4s ease;
+      background-color 0.35s ease var(--bg-delay),
+      box-shadow 0.35s ease var(--bg-delay),
+      color 0.3s ease var(--fg-delay);
+  }
+
+  .site-header.is-top {
+    --bg-delay: 0s;
+    --fg-delay: 0.22s;
   }
 
   /* Arriba del todo la píldora es transparente y todo se adapta al fondo de la página: blanco sobre
@@ -294,9 +312,9 @@ const t = ui(lang);
       height: var(--header-height-mobile);
       padding: 0 calc(var(--pad) - var(--header-gap-mobile));
       transition:
-        background-color 0.4s ease,
-        box-shadow 0.4s ease,
-        color 0.4s ease,
+        background-color 0.35s ease var(--bg-delay),
+        box-shadow 0.35s ease var(--bg-delay),
+        color 0.3s ease var(--fg-delay),
         padding 0.45s cubic-bezier(0.2, 1, 0.3, 1),
         height 0.45s cubic-bezier(0.2, 1, 0.3, 1);
     }
