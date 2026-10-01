@@ -45,6 +45,18 @@ const t = ui(lang);
     padding: 22.5px 0;
   }
 
+  /* Con el mouse: la fila bajo el cursor queda en primer plano y las demás pasan a segundo plano
+     (como en la lista de proyectos). Se atenúa el color del texto, no las líneas. */
+  @media (hover: hover) {
+    .h-services li {
+      transition: color 0.45s ease;
+    }
+
+    .h-services:hover li:not(:hover) {
+      color: color-mix(in srgb, var(--fg) 18%, transparent);
+    }
+  }
+
   .h-services__body {
     flex: 0 0 66.6667%;
     padding-right: max(5vw, 23px);
