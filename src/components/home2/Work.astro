@@ -179,13 +179,16 @@ const items = PROJECTS.map((p) => ({
       overflow: hidden;
       border-radius: 4px;
       background: color-mix(in srgb, var(--fg) 6%, transparent);
+      /* Fuera: más abajo, más pequeña y girada; al activarse entra a su lugar. */
       opacity: 0;
-      scale: 0.92;
-      translate: var(--px, 0px) calc(var(--py, 0px) + 18px);
+      scale: 0.8;
+      rotate: var(--r0, -4deg);
+      translate: var(--px, 0px) calc(var(--py, 0px) + 60px);
       transition:
-        opacity 0.45s ease,
-        scale 0.8s cubic-bezier(0.2, 1, 0.3, 1),
-        translate 0.8s cubic-bezier(0.2, 1, 0.3, 1);
+        opacity 0.5s ease,
+        scale 0.9s cubic-bezier(0.2, 1, 0.3, 1),
+        rotate 0.9s cubic-bezier(0.2, 1, 0.3, 1),
+        translate 0.9s cubic-bezier(0.2, 1, 0.3, 1);
     }
 
     .h-work__pic :is(img, video) {
@@ -195,6 +198,8 @@ const items = PROJECTS.map((p) => ({
     }
 
     .h-work__pic--a {
+      --r0: -6deg;
+      --dur: 6.5s;
       left: 6%;
       top: -12vw;
       width: 13vw;
@@ -202,6 +207,8 @@ const items = PROJECTS.map((p) => ({
     }
 
     .h-work__pic--b {
+      --r0: 5deg;
+      --dur: 8s;
       right: 5%;
       top: -15vw;
       width: 16vw;
@@ -209,16 +216,58 @@ const items = PROJECTS.map((p) => ({
     }
 
     .h-work__pic--c {
+      --r0: -3deg;
+      --dur: 5.5s;
       right: 22%;
       top: 2vw;
       width: 10vw;
       aspect-ratio: 3 / 4;
     }
 
+    /* Proyectos pares: la composición en espejo, para que no aparezcan siempre en el mismo sitio. */
+    .h-work__set:nth-child(even) .h-work__pic--a {
+      left: auto;
+      right: 6%;
+    }
+
+    .h-work__set:nth-child(even) .h-work__pic--b {
+      right: auto;
+      left: 5%;
+    }
+
+    .h-work__set:nth-child(even) .h-work__pic--c {
+      right: auto;
+      left: 22%;
+    }
+
+    /* Activas: en su lugar, siguiendo al mouse (--px, --py, --rot desde work-list.ts) y flotando
+       suave, cada una a su ritmo. */
     .h-work__set.is-active .h-work__pic {
       opacity: 1;
       scale: 1;
+      rotate: var(--rot, 0deg);
       translate: var(--px, 0px) var(--py, 0px);
+      animation: h-work-float var(--dur, 6s) ease-in-out infinite alternate;
+    }
+
+    .h-work__set.is-active .h-work__pic--b {
+      transition-delay: 0.07s;
+      animation-delay: -2s;
+    }
+
+    .h-work__set.is-active .h-work__pic--c {
+      transition-delay: 0.14s;
+      animation-delay: -4s;
+    }
+
+    @keyframes h-work-float {
+      from {
+        transform: translateY(-10px);
+      }
+
+      to {
+        transform: translateY(10px);
+      }
     }
 
     .h-work__set.is-active .h-work__pic--b {
@@ -267,6 +316,8 @@ const items = PROJECTS.map((p) => ({
     .h-work__pic,
     .h-work__thumb {
       transition: opacity 0.2s ease, filter 0.2s ease !important;
+      animation: none !important;
+      rotate: none !important;
     }
   }
 </style>

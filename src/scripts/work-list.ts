@@ -65,9 +65,9 @@ if (root && stage) {
     });
     stage.addEventListener('pointerleave', () => activate(-1));
 
-    // Movimiento leve: cada pieza se corre un poco hacia el mouse, con distinta intensidad.
+    // Movimiento: cada pieza se corre y gira un poco hacia el mouse, con distinta intensidad.
     if (!reduce) {
-      const K = [28, 44, 18];
+      const K = [70, 110, 45];
       let raf = 0;
       let mx = 0;
       let my = 0;
@@ -80,6 +80,7 @@ if (root && stage) {
           sets[current]?.querySelectorAll<HTMLElement>('.h-work__pic').forEach((p, k) => {
             p.style.setProperty('--px', `${(mx * K[k]).toFixed(1)}px`);
             p.style.setProperty('--py', `${(my * K[k]).toFixed(1)}px`);
+            p.style.setProperty('--rot', `${(mx * K[k] * 0.05).toFixed(2)}deg`);
           });
         });
       });
