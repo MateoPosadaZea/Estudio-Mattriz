@@ -39,6 +39,61 @@ if (root && stage) {
       } else v.pause();
     });
 
+  // Intensidad del seguimiento del mouse de cada pieza (a, b, c), en px.
+  const K = [70, 110, 45];
+
+  // Que ninguna pieza tape un texto (nombres y categorías): si alguna cae sobre texto a su
+  // altura, se corre hacia su lado de la pantalla, dejando espacio para el seguimiento del mouse;
+  // si no cabe, se achica.
+  const place = (set: HTMLElement) => {
+    const st = stage.getBoundingClientRect();
+    const W = st.width;
+    const y0 = parseFloat(set.style.getPropertyValue('--y')) || 0;
+    // El rectángulo del texto en sí (no el de la caja, que en el título ocupa todo el ancho).
+    const range = document.createRange();
+    const obs = [...root.querySelectorAll<HTMLElement>('.h-work__name, .h-work__cats')].map((e) => {
+      range.selectNodeContents(e);
+      const b = range.getBoundingClientRect();
+      return { l: b.left - st.left, r: b.right - st.left, t: b.top - st.top, b: b.bottom - st.top };
+    });
+    set.querySelectorAll<HTMLElement>('.h-work__pic').forEach((p, k) => {
+      p.style.width = '';
+      p.style.transform = '';
+      // Margen: espacio fijo más lo que la pieza se mueve con el mouse.
+      const gap = 24 + K[k] / 2;
+      const vg = 12 + K[k] / 2;
+      let w = p.offsetWidth;
+      const h = p.offsetHeight;
+      const left = p.offsetLeft;
+      const top = y0 + p.offsetTop;
+      const hits = (x: number, y: number, ww: number, hh: number) =>
+        obs.filter((o) => o.r + gap > x && o.l - gap < x + ww && o.b + vg > y && o.t - vg < y + hh);
+      const over = hits(left, top, w, h);
+      if (!over.length) return;
+      // Si apenas roza un texto, basta con subirla o bajarla un poco.
+      const up = top + h / 2 < over[0].t + (over[0].b - over[0].t) / 2;
+      const dy = up ? Math.min(...over.map((o) => o.t - vg - (top + h))) : Math.max(...over.map((o) => o.b + vg - top));
+      if (Math.abs(dy) <= 60 && !hits(left, top + dy, w, h).length) {
+        p.style.transform = `translateY(${dy.toFixed(1)}px)`;
+        return;
+      }
+      // Si no, hacia su lado de la pantalla, y más pequeña si no cabe.
+      const near = obs.filter((o) => o.b + vg > top && o.t - vg < top + h);
+      const minL = Math.min(...near.map((o) => o.l));
+      const maxR = Math.max(...near.map((o) => o.r));
+      const leftSide = left + w / 2 < W / 2;
+      const room = leftSide ? minL - gap - 8 : W - 8 - (maxR + gap);
+      if (room < w) {
+        w = Math.max(room, 96);
+        p.style.width = `${w}px`;
+      }
+      const l2 = p.offsetLeft;
+      const want = leftSide ? Math.min(l2, minL - gap - w) : Math.max(l2, maxR + gap);
+      const x = Math.max(8, Math.min(want, W - 8 - w));
+      if (x !== l2) p.style.transform = `translateX(${(x - l2).toFixed(1)}px)`;
+    });
+  };
+
   let current = -1;
   const activate = (i: number) => {
     if (i === current) return;
@@ -49,10 +104,11 @@ if (root && stage) {
     if (!desktop) return play(rows[i]?.querySelector('.h-work__thumb'), true);
     sets.forEach((s, k) => {
       if (k === i) {
-        // Las piezas se ubican a la altura de la fila activa.
+        // Las piezas se ubican a la altura de la fila activa y se apartan del texto.
         const r = rows[k].getBoundingClientRect();
         const st = stage.getBoundingClientRect();
         s.style.setProperty('--y', `${r.top - st.top + r.height / 2}px`);
+        place(s);
       }
       s.classList.toggle('is-active', k === i);
     });
@@ -60,17 +116,49 @@ if (root && stage) {
   };
 
   if (desktop) {
+    // El proyecto activo es el de la fila bajo el mouse, calculado desde la posición del puntero al
+    // moverlo y al hacer scroll (no con pointerenter/leave, que se pierden si la página se mueve
+    // debajo del cursor o al volver a la página).
+    let px = -1;
+    let py = -1;
+    let hraf = 0;
+    const hit = () => {
+      hraf = 0;
+      if (px < 0) return;
+      const row = document.elementFromPoint(px, py)?.closest<HTMLElement>('[data-work-row]');
+      activate(row ? rows.indexOf(row) : -1);
+    };
+    const schedule = () => (hraf ||= requestAnimationFrame(hit));
+    document.addEventListener(
+      'pointermove',
+      (e) => {
+        if (e.pointerType !== 'mouse') return;
+        px = e.clientX;
+        py = e.clientY;
+        schedule();
+      },
+      { passive: true },
+    );
+    window.addEventListener('scroll', schedule, { passive: true });
+    document.addEventListener('mouseout', (e) => {
+      if (e.relatedTarget) return;
+      px = -1;
+      activate(-1);
+    });
+    // Al volver con el botón atrás la página puede venir de la caché con un proyecto encendido.
+    window.addEventListener('pageshow', (e) => {
+      if (!e.persisted) return;
+      activate(-1);
+      schedule();
+    });
     rows.forEach((r, i) => {
-      r.addEventListener('pointerenter', () => activate(i));
       r.addEventListener('focus', () => activate(i));
       r.addEventListener('blur', () => activate(-1));
     });
-    stage.addEventListener('pointerleave', () => activate(-1));
 
     // Movimiento: cada pieza se corre y gira un poco hacia el mouse, con distinta intensidad. Se
     // interpola cuadro a cuadro (sin transición CSS), así sigue al mouse de forma continua.
     if (!reduce) {
-      const K = [70, 110, 45];
       const pics = sets.map((s) => [...s.querySelectorAll<HTMLElement>('.h-work__pic')]);
       let raf = 0;
       let tx = 0;
