@@ -1,19 +1,16 @@
 ---
 // v2: escáner de sitios para negocios de servicios (/scan/, /es/scan/).
 // La página pide la URL, llama a /api/scan (Worker de Cloudflare; en el preview, función de
-// Netlify), muestra lo que tiene el sitio, un puntaje, el plan paso a paso y la cotización.
+// Netlify), muestra lo que tiene el sitio, un puntaje, el plan paso a paso y el formulario para pedir la cotización (caso por caso, sin precios).
 // Lógica en src/scripts/scan.ts; análisis en src/lib/scan/.
 import Base from '../layouts/Base.astro';
 import { scanCopy } from '../data/scan';
-import { PRICING, CURRENCY } from '../data/scan-pricing';
 import { langOf } from '../i18n';
 
 const lang = langOf(Astro.url);
 const c = scanCopy(lang);
 const turnstileKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
-// Solo los precios de la moneda de este idioma.
-const pricing = Object.fromEntries(Object.entries(PRICING).map(([id, p]) => [id, p ? (lang === 'es' ? p.cop : p.usd) : null]));
-const config = { lang, copy: c, pricing, currency: CURRENCY[lang] };
+const config = { lang, copy: c };
 ---
 
 <Base title={c.metaTitle} description={c.metaDescription} background="var(--bg)" breadcrumb={[{ name: c.title.replace(/\.$/, ''), path: lang === 'es' ? '/es/scan/' : '/scan/' }]}>
@@ -93,11 +90,6 @@ const config = { lang, copy: c, pricing, currency: CURRENCY[lang] };
 
       <section class="scan-quote" id="quote">
         <p class="h-label"><span>(04)</span> {c.quoteTitle}</p>
-        <div class="scan-quote__range" data-scan-range hidden>
-          <p class="scan-quote__label">{c.quoteRange}</p>
-          <p class="scan-quote__value" data-scan-total></p>
-          <p class="scan-quote__note">{c.quoteNote}</p>
-        </div>
         <p class="scan-quote__ask">{c.quoteAsk}</p>
 
         <form class="scan-lead" action="/api/scan-lead" method="post" data-scan-lead data-success={c.form.success} data-error={c.form.error}>
@@ -654,26 +646,6 @@ const config = { lang, copy: c, pricing, currency: CURRENCY[lang] };
 
   .scan-quote :global(.h-label span) {
     color: var(--color-white);
-  }
-
-  .scan-quote__label {
-    font-size: 15px;
-    color: var(--muted);
-  }
-
-  /* Más pequeño que un título: en pesos el rango es largo y debe caber en una o dos líneas. */
-  .scan-quote__value {
-    margin-top: 8px;
-    font-family: var(--font-display);
-    font-size: clamp(36px, 5.2vw, 88px);
-    line-height: 1.05;
-    letter-spacing: -0.03em;
-  }
-
-  .scan-quote__note {
-    margin-top: 12px;
-    font-size: 15px;
-    color: var(--muted);
   }
 
   .scan-quote__ask {

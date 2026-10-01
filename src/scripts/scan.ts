@@ -3,7 +3,7 @@
 // a /api/scan-lead. Con ?url=… en la dirección (desde el home) arranca solo.
 
 import type { ScanResult, Hit, Kind } from '../lib/scan/analyze';
-import { plan as makePlan, type StepId } from '../lib/scan/recommend';
+import { plan as makePlan } from '../lib/scan/recommend';
 import { scrollToEl, scrollToY } from './smooth-scroll';
 
 declare global {
@@ -15,8 +15,6 @@ declare global {
 type Config = {
   lang: 'en' | 'es';
   copy: any;
-  pricing: Record<StepId, { min: number; max: number } | null>;
-  currency: string;
 };
 
 const root = document.querySelector<HTMLElement>('[data-scan]');
@@ -36,7 +34,6 @@ if (root && cfgEl) {
 
   const esc = (s: string) => s.replace(/[&<>"']/g, (ch) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[ch]!);
   const label = (h: Hit) => c.generic[h.name] ?? h.name;
-  const money = (n: number) => new Intl.NumberFormat(cfg.lang === 'es' ? 'es-CO' : 'en-US', { style: 'currency', currency: cfg.currency, maximumFractionDigits: 0 }).format(n);
   const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
 
   const showError = (code: string) => {
@@ -155,7 +152,7 @@ if (root && cfgEl) {
       .join('');
     $('[data-scan-pages]').textContent = `${c.pagesScanned}: ${r.pages.map((u) => u.replace(/^https?:\/\//, '')).join(' · ')}`;
 
-    // Plan paso a paso (sin precio por paso: solo se muestra el total).
+    // Plan paso a paso (sin precios: la cotización se hace caso por caso, por correo).
     const tools = r.booking.map(label).join(', ');
     const platform = [...r.platform, ...r.builders].map(label).join(' + ') || (cfg.lang === 'es' ? 'tu plataforma actual' : 'your current platform');
     $('[data-scan-steps]').innerHTML = p.steps
@@ -166,16 +163,6 @@ if (root && cfgEl) {
       })
       .join('');
 
-    // Cotización: rango total del plan, solo si todos sus pasos tienen precio.
-    const priced = p.steps.map((id) => cfg.pricing[id]);
-    const range = $('[data-scan-range]');
-    if (priced.every(Boolean)) {
-      const min = priced.reduce((s, x) => s + x!.min, 0);
-      const max = priced.reduce((s, x) => s + x!.max, 0);
-      $('[data-scan-total]').textContent = `${money(min)}–${money(max)} ${cfg.currency}`;
-      range.hidden = false;
-    } else range.hidden = true;
-
     // Resumen para el correo del pedido.
     const summary = [
       `Score: ${p.score}/100 (${p.areas.map((a) => `${a.id} ${a.score}/${a.max}`).join(', ')})`,
@@ -184,7 +171,6 @@ if (root && cfgEl) {
       `Weight: ${r.weight.htmlKB} KB HTML, ${r.weight.scripts} scripts (${r.weight.thirdPartyScripts} third-party)`,
       `Kind: ${p.kind}${p.kind !== r.kind ? ` (detected ${r.kind}, changed by visitor)` : ''}`,
       `Plan: ${p.steps.join(', ')}`,
-      `Quote shown: ${range.hidden ? 'none (missing prices)' : $('[data-scan-total]').textContent}`,
       `Pages: ${r.pages.join(' | ')}`,
     ].join('\n');
     $<HTMLInputElement>('[data-lead-url]').value = r.finalUrl;

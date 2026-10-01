@@ -32,8 +32,6 @@ type Copy = {
   planIntro: string;
   steps: Record<StepId, { title: string; text: string }>;
   quoteTitle: string;
-  quoteRange: string;
-  quoteNote: string;
   quoteAsk: string;
   form: { name: string; email: string; phone: string; submit: string; consent: string; success: string; error: string };
   again: string;
@@ -105,9 +103,7 @@ const EN: Copy = {
     proof: { title: 'Proof that builds trust', text: 'Testimonials, reviews and past work shown where visitors decide to contact you.' },
   },
   quoteTitle: 'Your quote',
-  quoteRange: 'Estimated investment',
-  quoteNote: 'A reference range. The final quote depends on your operation.',
-  quoteAsk: 'Get the detailed plan and your quote by email. We reply within one business day.',
+  quoteAsk: 'Every case is different. Leave your details and we’ll send you the detailed plan and a quote for yours within one business day.',
   form: {
     name: 'Name',
     email: 'Email',
@@ -186,9 +182,7 @@ const ES: Copy = {
     proof: { title: 'Pruebas que generan confianza', text: 'Testimonios, reseñas y trabajos anteriores visibles justo donde el visitante decide escribirte.' },
   },
   quoteTitle: 'Tu cotización',
-  quoteRange: 'Inversión estimada',
-  quoteNote: 'Un rango de referencia. La cotización final depende de tu operación.',
-  quoteAsk: 'Recibe el plan detallado y tu cotización por correo. Respondemos en un día hábil.',
+  quoteAsk: 'Cada caso es distinto. Déjanos tus datos y te enviamos el plan detallado y la cotización para el tuyo en un día hábil.',
   form: {
     name: 'Nombre',
     email: 'Correo',

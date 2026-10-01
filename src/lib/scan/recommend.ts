@@ -1,7 +1,7 @@
 // Escáner de sitios: del resultado del análisis a un puntaje y un plan paso a paso, según el tipo de
 // negocio (analyze.ts, "kind"): una tienda no recibe un sistema de reservas, ni un negocio que vende
-// por consultas un checkout. Los textos van en la página (por id), y los precios en
-// src/data/scan-pricing.ts.
+// por consultas un checkout. Los textos van en la página (por id). Sin precios: la cotización se
+// hace caso por caso.
 
 import type { Kind, ScanResult } from './analyze';
 
