@@ -11,8 +11,8 @@ const lang = langOf(Astro.url);
 const { LABELS } = home(lang);
 const t = ui(lang);
 
-// Piezas de cada proyecto (public/media/work/list/<slug>-a|b|c): a vertical 4:5, b horizontal 4:3,
-// c vertical 3:4. Si existe <slug>-x.mp4 la pieza es un loop corto (con su primer cuadro, -poster.webp); si no,
+// Piezas de cada proyecto (public/media/work/list/<slug>-a|b|c): a vertical 4:5 y c vertical 3:4
+// (vistas móviles o piezas gráficas), b horizontal 16:10 (la pantalla completa, sin recortar texto). Si existe <slug>-x.mp4 la pieza es un loop corto (con su primer cuadro, -poster.webp); si no,
 // la imagen fija.
 const LIST: Record<string, string> = {
   '/project/spot-on-mobile-wash-detailing/': 'spot-on',
@@ -51,11 +51,13 @@ const items = PROJECTS.map((p) => ({
           <div class="h-work__set" data-work-set={i}>
             {p.pics.map((pic, k) => (
               <span class={`h-work__pic h-work__pic--${'abc'[k]}`}>
-                {pic.video ? (
-                  <video data-src={pic.video} data-poster={pic.poster} muted loop playsinline webkit-playsinline disablepictureinpicture disableremoteplayback preload="none" />
-                ) : (
-                  <img data-src={pic.img} alt="" decoding="async" />
-                )}
+                <span class="h-work__in">
+                  {pic.video ? (
+                    <video data-src={pic.video} data-poster={pic.poster} muted loop playsinline webkit-playsinline disablepictureinpicture disableremoteplayback preload="none" />
+                  ) : (
+                    <img data-src={pic.img} alt="" decoding="async" />
+                  )}
+                </span>
               </span>
             ))}
           </div>
@@ -71,7 +73,11 @@ const items = PROJECTS.map((p) => ({
               <span class="h-work__name">{p.title}</span>
               <span class="h-work__cats">{p.categories.join(' · ')}</span>
               <span class="h-work__thumb" aria-hidden="true">
-                <img data-src={p.pics[1].img} alt="" decoding="async" />
+                {p.pics[1].video ? (
+                  <video data-src={p.pics[1].video} data-poster={p.pics[1].poster} muted loop playsinline webkit-playsinline disablepictureinpicture disableremoteplayback preload="none" />
+                ) : (
+                  <img data-src={p.pics[1].img} alt="" decoding="async" />
+                )}
               </span>
             </a>
           </li>
@@ -174,8 +180,17 @@ const items = PROJECTS.map((p) => ({
       height: 0;
     }
 
+    /* Dos capas: .h-work__pic lleva la posición y el leve seguimiento del mouse (lo mueve
+       work-list.ts cuadro a cuadro, sin transición, así nunca se queda atrás); .h-work__in lleva la
+       entrada y el flotar. */
     .h-work__pic {
       position: absolute;
+    }
+
+    .h-work__in {
+      display: block;
+      width: 100%;
+      height: 100%;
       overflow: hidden;
       border-radius: 4px;
       background: color-mix(in srgb, var(--fg) 6%, transparent);
@@ -183,7 +198,7 @@ const items = PROJECTS.map((p) => ({
       opacity: 0;
       scale: 0.8;
       rotate: var(--r0, -4deg);
-      translate: var(--px, 0px) calc(var(--py, 0px) + 60px);
+      translate: 0 60px;
       transition:
         opacity 0.5s ease,
         scale 0.9s cubic-bezier(0.2, 1, 0.3, 1),
@@ -191,7 +206,8 @@ const items = PROJECTS.map((p) => ({
         translate 0.9s cubic-bezier(0.2, 1, 0.3, 1);
     }
 
-    .h-work__pic :is(img, video) {
+    .h-work__in :is(img, video) {
+      display: block;
       width: 100%;
       height: 100%;
       object-fit: cover;
@@ -211,8 +227,8 @@ const items = PROJECTS.map((p) => ({
       --dur: 8s;
       right: 5%;
       top: -15vw;
-      width: 16vw;
-      aspect-ratio: 4 / 3;
+      width: 17vw;
+      aspect-ratio: 16 / 10;
     }
 
     .h-work__pic--c {
@@ -240,23 +256,22 @@ const items = PROJECTS.map((p) => ({
       left: 22%;
     }
 
-    /* Activas: en su lugar, siguiendo al mouse (--px, --py, --rot desde work-list.ts) y flotando
-       suave, cada una a su ritmo. */
-    .h-work__set.is-active .h-work__pic {
+    /* Activas: en su lugar y flotando suave, cada una a su ritmo. */
+    .h-work__set.is-active .h-work__in {
       opacity: 1;
       scale: 1;
-      rotate: var(--rot, 0deg);
-      translate: var(--px, 0px) var(--py, 0px);
+      rotate: 0deg;
+      translate: 0 0;
       animation: h-work-float var(--dur, 6s) ease-in-out infinite alternate;
     }
 
-    .h-work__set.is-active .h-work__pic--b {
-      transition-delay: 0.07s;
+    .h-work__set.is-active .h-work__pic--b .h-work__in {
+      transition-delay: 0.06s;
       animation-delay: -2s;
     }
 
-    .h-work__set.is-active .h-work__pic--c {
-      transition-delay: 0.14s;
+    .h-work__set.is-active .h-work__pic--c .h-work__in {
+      transition-delay: 0.12s;
       animation-delay: -4s;
     }
 
@@ -269,14 +284,6 @@ const items = PROJECTS.map((p) => ({
         transform: translateY(10px);
       }
     }
-
-    .h-work__set.is-active .h-work__pic--b {
-      transition-delay: 0.06s;
-    }
-
-    .h-work__set.is-active .h-work__pic--c {
-      transition-delay: 0.12s;
-    }
   }
 
   /* Táctil o pantallas angostas: cada nombre lleva su imagen debajo, siempre en su lugar (así el
@@ -288,8 +295,8 @@ const items = PROJECTS.map((p) => ({
 
     .h-work__thumb {
       display: block;
-      width: min(100%, 420px);
-      aspect-ratio: 4 / 3;
+      width: min(100%, 440px);
+      aspect-ratio: 16 / 10;
       margin-top: 8px;
       overflow: hidden;
       border-radius: 4px;
@@ -300,7 +307,8 @@ const items = PROJECTS.map((p) => ({
         filter 0.5s ease;
     }
 
-    .h-work__thumb img {
+    .h-work__thumb :is(img, video) {
+      display: block;
       width: 100%;
       height: 100%;
       object-fit: cover;
@@ -313,7 +321,7 @@ const items = PROJECTS.map((p) => ({
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .h-work__pic,
+    .h-work__in,
     .h-work__thumb {
       transition: opacity 0.2s ease, filter 0.2s ease !important;
       animation: none !important;
