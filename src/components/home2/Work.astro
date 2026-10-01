@@ -1,7 +1,8 @@
 ---
-// v2: "Selected Work" como lista editorial. En escritorio (con mouse) la pieza de cada proyecto
-// aparece junto al cursor al pasar por encima (src/scripts/work-preview.ts); en táctil cada fila
-// muestra su miniatura. Mismo orden y enlaces que antes.
+// v2: "Selected Work" como índice editorial. Los nombres de los proyectos, grandes y centrados; al
+// pasar el mouse se enciende el activo (el resto se apaga), aparecen sus categorías y tres piezas
+// del proyecto se dispersan alrededor (src/scripts/work-list.ts). En táctil se enciende el nombre
+// que queda en el centro de la pantalla y se muestra su imagen debajo. Mismo orden y enlaces.
 import { PROJECTS, home } from '../../data/home';
 import { langOf, localize, category, ui } from '../../i18n';
 
@@ -9,20 +10,25 @@ const lang = langOf(Astro.url);
 const { LABELS } = home(lang);
 const t = ui(lang);
 
-// Imagen fija en vez del video del proyecto, si hiciera falta (hoy todos usan su video).
-const COVERS: Record<string, { src: string; srcset: string; width: number; height: number; fit?: string }> = {};
+// Piezas de cada proyecto (public/media/work/list/<slug>-a|b|c.webp): a vertical 4:5, b horizontal
+// 4:3, c vertical 3:4.
+const LIST: Record<string, string> = {
+  '/project/spot-on-mobile-wash-detailing/': 'spot-on',
+  '/project/santo-y-sena/': 'santo-y-sena',
+  '/project/the-grid/': 'the-grid',
+  '/project/dr-daniel-de-zubiria/': 'dezubiria',
+  '/project/posada-carcamo-abogados/': 'posada',
+  '/project/aglvanstours/': 'agl',
+  '/project/luciana-cabanas/': 'luciana',
+  '/project/civilus/': 'civilus',
+};
 
-const items = PROJECTS.map((p) => {
-  const cover = COVERS[p.href];
-  return {
-    ...p,
-    href: localize(p.href, lang),
-    categories: p.categories.map((c) => category(c, lang)),
-    video: cover ? undefined : p.video,
-    image: cover ? { ...cover, alt: '' } : p.image,
-    fit: cover?.fit,
-  };
-});
+const items = PROJECTS.map((p) => ({
+  title: p.title,
+  href: localize(p.href, lang),
+  categories: p.categories.map((c) => category(c, lang)),
+  pics: ['a', 'b', 'c'].map((k) => `/media/work/list/${LIST[p.href]}-${k}.webp`),
+}));
 ---
 
 <section class="h-section h-work" id="projects" data-work>
@@ -31,253 +37,241 @@ const items = PROJECTS.map((p) => {
   <p class="h-label" data-case-reveal><span>(03)</span> {t.nav[2]}</p>
   <h2 class="h-heading" data-case-reveal>{LABELS.selectedWork}</h2>
 
-  <ol class="h-work__list">
-    {
-      items.map((p, i) => (
-        <li data-case-reveal>
-          <a class="h-work__row" href={p.href} data-work-row={i}>
-            <span class="h-work__thumb" aria-hidden="true" style={p.fit}>
-              {p.video ? (
-                <>
-                  <img src={p.video.replace(/\.mp4$/, '-poster.webp')} alt="" loading="lazy" decoding="async" />
-                  <video data-src={p.video} data-src-mobile={p.video.replace(/\.mp4$/, '-m.mp4')} muted loop playsinline webkit-playsinline disablepictureinpicture disableremoteplayback preload="none" />
-                </>
-              ) : (
-                p.image && <img src={p.image.src} srcset={p.image.srcset} sizes="(max-width: 999px) 88vw, 1px" width={p.image.width} height={p.image.height} alt="" loading="lazy" decoding="async" />
-              )}
-            </span>
-            <span class="h-work__name">{p.title}</span>
-            <span class="h-work__summary">{p.summary[lang]}</span>
-            <span class="h-work__cats">{p.categories.join(' · ')}</span>
-            <span class="h-work__arrow" aria-hidden="true">↗</span>
-          </a>
-        </li>
-      ))
-    }
-  </ol>
+  <div class="h-work__stage" data-work-stage>
+    <!-- Piezas que se dispersan alrededor del proyecto activo (solo con mouse). -->
+    <div class="h-work__pics" aria-hidden="true">
+      {
+        items.map((p, i) => (
+          <div class="h-work__set" data-work-set={i}>
+            {p.pics.map((src, k) => (
+              <span class={`h-work__pic h-work__pic--${'abc'[k]}`}>
+                <img data-src={src} alt="" decoding="async" />
+              </span>
+            ))}
+          </div>
+        ))
+      }
+    </div>
 
-  <!-- Vista previa que sigue al cursor (solo con mouse, ≥1000px). -->
-  <div class="h-work__preview" aria-hidden="true" data-work-preview>
-    {
-      items.map((p, i) => (
-        <div class="h-work__preview-item" data-work-preview-item={i} style={p.fit}>
-          {p.video ? (
-            <video data-preview-src={p.video} data-poster={p.video.replace(/\.mp4$/, '-poster.webp')} muted loop playsinline webkit-playsinline disablepictureinpicture disableremoteplayback preload="auto" />
-          ) : (
-            p.image && <img data-preview-src={p.image.src} width={p.image.width} height={p.image.height} alt="" />
-          )}
-        </div>
-      ))
-    }
+    <ol class="h-work__list">
+      {
+        items.map((p, i) => (
+          <li data-case-reveal>
+            <a class="h-work__row" href={p.href} data-work-row={i}>
+              <span class="h-work__name">
+                {p.title}
+                <span class="h-work__arrow" aria-hidden="true">↗</span>
+              </span>
+              <span class="h-work__cats">{p.categories.join(' · ')}</span>
+              <span class="h-work__thumb" aria-hidden="true">
+                <img data-src={p.pics[1]} alt="" decoding="async" />
+              </span>
+            </a>
+          </li>
+        ))
+      }
+    </ol>
   </div>
 </section>
 
 <script>
-  import '../../scripts/work-preview';
+  import '../../scripts/work-list';
 </script>
 
 <style>
-  .h-work {
+  .h-work__stage {
     position: relative;
+    margin-top: clamp(24px, 4vw, 56px);
   }
 
   .h-work__list {
+    position: relative;
+    z-index: 1;
     list-style: none;
-    border-top: 1px solid var(--line);
-  }
-
-  .h-work__list li {
-    border-bottom: 1px solid var(--line);
+    text-align: center;
   }
 
   .h-work__row {
     display: grid;
-    grid-template-columns: 1fr auto;
-    gap: 6px 16px;
-    align-items: baseline;
-    padding: 24px 0 28px;
+    justify-items: center;
+    gap: 10px;
+    padding: clamp(12px, 1.3vw, 18px) 0;
   }
 
-  .h-work__thumb {
-    grid-column: 1 / -1;
-    display: block;
-    overflow: hidden;
-    margin-bottom: 14px;
-    border-radius: 10px;
-    aspect-ratio: 16 / 10;
-    background: color-mix(in srgb, var(--fg) 6%, transparent);
-  }
-
-  .h-work__thumb :global(video),
-  .h-work__thumb :global(img) {
-    width: 100%;
-    height: 100%;
-    object-fit: var(--fit, cover);
-  }
-  /* La portada fija queda debajo; el video aparece encima solo cuando ya está reproduciendo,
-     así nunca se ve una caja vacía mientras carga. */
-  .h-work__thumb {
-    position: relative;
-  }
-  .h-work__thumb :global(video) {
-    position: absolute;
-    inset: 0;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-  }
-  .h-work__thumb :global(video.is-playing) {
-    opacity: 1;
-  }
-
-  /* Nombres en Maison Neue ligera, tamaño de la v1 (46px a escritorio). */
+  /* El nombre: Noe Display grande. Apagado mientras otro está activo; encendido el activo. */
   .h-work__name {
-    font-size: clamp(30px, 3.2vw, 46px);
-    font-weight: var(--fw-light);
-    line-height: 1.15;
-    letter-spacing: var(--ls-tight);
-  }
-
-  .h-work__summary {
-    grid-column: 1 / -1;
-    max-width: 58ch;
-    font-size: 16px;
-    line-height: 1.45;
-    color: color-mix(in srgb, var(--fg) 78%, transparent);
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-  }
-
-  .h-work__cats {
-    grid-column: 1 / -1;
-    font-size: 14px;
-    color: var(--muted);
+    position: relative;
+    font-family: var(--font-display);
+    font-size: clamp(34px, 4.6vw, 74px);
+    font-weight: 500;
+    line-height: 1;
+    letter-spacing: -0.03em;
+    text-wrap: balance;
+    transition: color 0.45s ease;
   }
 
   .h-work__arrow {
-    grid-row: 2;
-    grid-column: 2;
-    font-size: 22px;
+    position: absolute;
+    left: 100%;
+    top: 0.08em;
+    margin-left: 0.18em;
+    font-family: var(--font-sans);
+    font-size: 0.32em;
+    letter-spacing: 0;
+    opacity: 0;
+    transform: translate(-6px, 6px);
+    transition:
+      opacity 0.35s ease,
+      transform 0.5s cubic-bezier(0.2, 1, 0.3, 1);
   }
 
-  @media (min-width: 1000px) {
-    .h-work__thumb {
-      display: none;
-    }
-
-    /* Nombre a todo el ancho y, debajo, las categorías; la flecha a la derecha. */
-    .h-work__row {
-      grid-template-columns: 1fr auto;
-      gap: 10px 4vw;
-      padding: 28px 0;
-    }
-
-    .h-work__name {
-      grid-row: 1;
-      grid-column: 1;
-    }
-
-    .h-work__summary {
-      grid-row: 2;
-      grid-column: 1;
-      font-size: 17px;
-    }
-
-    .h-work__cats {
-      grid-row: 3;
-      grid-column: 1;
-      font-size: 15px;
-    }
-
-    .h-work__arrow {
-      grid-row: 1;
-      grid-column: 2;
-      align-self: center;
-    }
-
-    .h-work__name,
-    .h-work__summary,
-    .h-work__cats {
-      transition:
-        transform 0.6s cubic-bezier(0.2, 1, 0.3, 1),
-        opacity 0.4s;
-    }
-
-    .h-work__arrow {
-      transition: transform 0.6s cubic-bezier(0.2, 1, 0.3, 1);
-    }
-
-    /* Al pasar por una fila, el resto se atenúa y la información se corre un poco, toda junta
-       (el mismo desplazamiento en px para el nombre, la descripción y las categorías, así quedan alineados). */
-    .h-work__list:hover :is(.h-work__name, .h-work__summary, .h-work__cats) {
-      opacity: 0.3;
-    }
-
-    .h-work__row:hover :is(.h-work__name, .h-work__summary, .h-work__cats),
-    .h-work__row:focus-visible :is(.h-work__name, .h-work__summary, .h-work__cats) {
-      opacity: 1;
-      transform: translateX(16px);
-    }
-
-    .h-work__row:hover .h-work__arrow {
-      transform: translate(4px, -4px);
-    }
+  .h-work__cats {
+    font-size: 12px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--muted);
+    transition: color 0.45s ease;
   }
 
-  .h-work__preview {
+  .h-work__thumb {
+    display: none;
+  }
+
+  /* Cuando hay un activo (mouse encima o, en táctil, el del centro), el resto se apaga. */
+  .h-work.has-active .h-work__name,
+  .h-work.has-active .h-work__cats {
+    color: color-mix(in srgb, var(--fg) 16%, transparent);
+  }
+
+  .h-work.has-active .is-active .h-work__name {
+    color: var(--fg);
+  }
+
+  .h-work.has-active .is-active .h-work__cats {
+    color: var(--fg);
+  }
+
+  .is-active .h-work__arrow {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* Piezas dispersas: capa detrás de los nombres; cada juego aparece alrededor del activo. */
+  .h-work__pics {
     display: none;
   }
 
   @media (hover: hover) and (min-width: 1000px) {
-    .h-work__preview {
-      position: fixed;
-      top: 0;
-      left: 0;
-      z-index: 50;
+    .h-work__pics {
       display: block;
-      width: min(30vw, 440px);
-      aspect-ratio: 4 / 3;
-      overflow: hidden;
-      border-radius: 12px;
+      position: absolute;
+      inset: 0;
+      z-index: 0;
       pointer-events: none;
-      /* Aparece al instante: la posición la suaviza work-preview.ts (sin transición aquí) y la
-         entrada es un fundido y un escalado cortos. */
-      opacity: 0;
-      transform: translate3d(var(--x, 0), var(--y, 0), 0) translate(-50%, -50%);
-      scale: 0.96;
-      transition:
-        opacity 0.12s,
-        scale 0.25s cubic-bezier(0.2, 1, 0.3, 1);
     }
 
-    .h-work__preview.is-on {
+    .h-work__set {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: var(--y, 0px);
+      height: 0;
+    }
+
+    .h-work__pic {
+      position: absolute;
+      overflow: hidden;
+      border-radius: 4px;
+      background: color-mix(in srgb, var(--fg) 6%, transparent);
+      opacity: 0;
+      scale: 0.92;
+      translate: var(--px, 0px) calc(var(--py, 0px) + 18px);
+      transition:
+        opacity 0.45s ease,
+        scale 0.8s cubic-bezier(0.2, 1, 0.3, 1),
+        translate 0.8s cubic-bezier(0.2, 1, 0.3, 1);
+    }
+
+    .h-work__pic img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .h-work__pic--a {
+      left: 6%;
+      top: -12vw;
+      width: 13vw;
+      aspect-ratio: 4 / 5;
+    }
+
+    .h-work__pic--b {
+      right: 5%;
+      top: -15vw;
+      width: 16vw;
+      aspect-ratio: 4 / 3;
+    }
+
+    .h-work__pic--c {
+      right: 22%;
+      top: 2vw;
+      width: 10vw;
+      aspect-ratio: 3 / 4;
+    }
+
+    .h-work__set.is-active .h-work__pic {
       opacity: 1;
       scale: 1;
+      translate: var(--px, 0px) var(--py, 0px);
+    }
+
+    .h-work__set.is-active .h-work__pic--b {
+      transition-delay: 0.06s;
+    }
+
+    .h-work__set.is-active .h-work__pic--c {
+      transition-delay: 0.12s;
     }
   }
 
-  /* Cambio de portada entre filas: inmediato. */
-  .h-work__preview-item {
-    position: absolute;
-    inset: 0;
-    opacity: 0;
-  }
+  /* Táctil o pantallas angostas: la imagen del activo aparece debajo de su nombre. */
+  @media not ((hover: hover) and (min-width: 1000px)) {
+    .h-work__thumb {
+      display: block;
+      width: min(100%, 420px);
+      aspect-ratio: 4 / 3;
+      overflow: hidden;
+      border-radius: 4px;
+      max-height: 0;
+      opacity: 0;
+      margin-top: 0;
+      transition:
+        max-height 0.6s cubic-bezier(0.2, 1, 0.3, 1),
+        opacity 0.4s ease,
+        margin-top 0.6s cubic-bezier(0.2, 1, 0.3, 1);
+    }
 
-  .h-work__preview-item.is-active {
-    opacity: 1;
-  }
+    .h-work__thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
 
-  .h-work__preview-item :global(video),
-  .h-work__preview-item :global(img) {
-    width: 100%;
-    height: 100%;
-    object-fit: var(--fit, cover);
+    .is-active .h-work__thumb {
+      max-height: 320px;
+      opacity: 1;
+      margin-top: 10px;
+    }
+
+    .h-work__arrow {
+      display: none;
+    }
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .h-work__preview {
-      display: none !important;
+    .h-work__pic,
+    .h-work__thumb {
+      transition: opacity 0.2s ease !important;
     }
   }
 </style>
