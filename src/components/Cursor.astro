@@ -1,23 +1,17 @@
 ---
-// Cursor propio: un punto que invierte los colores de lo que tiene debajo y, sobre enlaces y botones,
-// una mano dibujada pequeña (grabado en puntillismo) que se aprieta al hacer clic. Solo con mouse; en
-// celular y tabletas no existe. En campos de texto vuelve el cursor normal.
-// La mano son dos máscaras (public/media/cursor/hand-*.webp): relleno en el color del fondo y tinta en
-// el color del texto; así se adapta a cada modo de color. Se descargan con el primer movimiento del
-// mouse, no al cargar la página.
+// Cursor propio: un círculo que invierte los colores de lo que tiene debajo y crece sobre enlaces y
+// botones. Solo con mouse; en celular y tabletas no existe. En campos de texto vuelve el cursor normal.
 ---
 
 <div class="mz-cursor" data-cursor aria-hidden="true"></div>
-<div class="mz-hand" data-cursor-hand aria-hidden="true"><i class="mz-hand__fill"></i><i class="mz-hand__ink"></i></div>
 
 <script>
   const el = document.querySelector<HTMLElement>('[data-cursor]');
-  const hand = document.querySelector<HTMLElement>('[data-cursor-hand]');
   const fine = window.matchMedia('(hover: hover) and (pointer: fine)');
-  if (el && hand && fine.matches) {
+  if (el && fine.matches) {
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const root = document.documentElement;
-    const LINK = 'a, button, [role="button"], label, summary, select, [data-cursor-grow]';
+    const GROW = 'a, button, [role="button"], label, summary, select, [data-cursor-grow]';
     const TEXT = 'input:not([type="checkbox"]):not([type="radio"]):not([type="submit"]):not([type="button"]), textarea, [contenteditable="true"]';
     let x = 0;
     let y = 0;
@@ -28,7 +22,7 @@
 
     root.classList.add('has-cursor');
 
-    // El punto sigue al mouse con un poco de retraso (la mano va exacta); el ciclo se detiene cuando llega.
+    // El círculo sigue al mouse con un poco de retraso; el ciclo se detiene cuando llega.
     const frame = () => {
       const k = reduced ? 1 : 0.2;
       cx += (x - cx) * k;
@@ -37,7 +31,7 @@
         cx = x;
         cy = y;
       }
-      // translate (no transform): así el scale del clic encoge en su sitio, sin mover.
+      // translate (no transform): así el scale del clic encoge el círculo en su sitio, sin moverlo.
       el.style.translate = `${cx}px ${cy}px`;
       raf = cx === x && cy === y ? 0 : requestAnimationFrame(frame);
     };
@@ -52,38 +46,26 @@
           cx = x;
           cy = y;
           shown = true;
-          root.classList.add('cursor-ready');
         }
         // Un <dialog> abierto (el reel) va en una capa por encima de todo: el cursor se muda adentro
         // mientras esté abierto, y vuelve al body al cerrarse.
         const modal = document.querySelector('dialog[open]');
         const host = modal && modal.matches(':modal') ? modal : document.body;
-        if (el.parentElement !== host) host.append(el, hand);
+        if (el.parentElement !== host) host.append(el);
         const t = e.target instanceof Element ? e.target : null;
         const text = !!t?.closest(TEXT);
-        const link = !text && !!t?.closest(LINK);
         el.classList.toggle('is-on', !text);
-        el.classList.toggle('is-hidden', link);
-        hand.classList.toggle('is-on', link);
-        hand.style.translate = `${x}px ${y}px`;
+        el.classList.toggle('is-grow', !text && !!t?.closest(GROW));
         raf ||= requestAnimationFrame(frame);
       },
       { passive: true },
     );
     // Al salir de la ventana (o entrar a un iframe) se esconde.
     document.addEventListener('mouseout', (e) => {
-      if (e.relatedTarget) return;
-      el.classList.remove('is-on');
-      hand.classList.remove('is-on');
+      if (!e.relatedTarget) el.classList.remove('is-on');
     });
-    document.addEventListener('pointerdown', () => {
-      el.classList.add('is-down');
-      hand.classList.add('is-down');
-    });
-    document.addEventListener('pointerup', () => {
-      el.classList.remove('is-down');
-      hand.classList.remove('is-down');
-    });
+    document.addEventListener('pointerdown', () => el.classList.add('is-down'));
+    document.addEventListener('pointerup', () => el.classList.remove('is-down'));
   }
 </script>
 
@@ -97,16 +79,10 @@
     cursor: text !important;
   }
 
-  .mz-cursor,
-  .mz-hand {
+  .mz-cursor {
     position: fixed;
     left: 0;
     top: 0;
-    pointer-events: none;
-    opacity: 0;
-  }
-
-  .mz-cursor {
     z-index: 10000;
     width: 14px;
     height: 14px;
@@ -114,11 +90,13 @@
     border-radius: 50%;
     background: #fff;
     mix-blend-mode: difference;
+    pointer-events: none;
+    opacity: 0;
     transition:
       opacity 0.2s ease,
-      width 0.3s cubic-bezier(0.2, 1, 0.3, 1),
-      height 0.3s cubic-bezier(0.2, 1, 0.3, 1),
-      margin 0.3s cubic-bezier(0.2, 1, 0.3, 1),
+      width 0.35s cubic-bezier(0.2, 1, 0.3, 1),
+      height 0.35s cubic-bezier(0.2, 1, 0.3, 1),
+      margin 0.35s cubic-bezier(0.2, 1, 0.3, 1),
       scale 0.2s ease;
   }
 
@@ -126,88 +104,18 @@
     opacity: 1;
   }
 
-  .mz-cursor.is-hidden {
-    width: 0;
-    height: 0;
-    margin: 0;
+  .mz-cursor.is-grow {
+    width: 44px;
+    height: 44px;
+    margin: -22px 0 0 -22px;
   }
 
   .mz-cursor.is-down {
     scale: 0.85;
   }
 
-  /* La mano: la punta del dedo (13,2 % y 9,2 % de la imagen) queda en el puntero. */
-  .mz-hand {
-    --h: 48px;
-    --tx: calc(var(--h) * 0.1323);
-    --ty: calc(var(--h) * 0.0916);
-    z-index: 10001;
-    height: var(--h);
-    aspect-ratio: 380 / 440;
-    margin: calc(var(--ty) * -1) 0 0 calc(var(--tx) * -1);
-    transform-origin: var(--tx) var(--ty);
-    scale: 0.5;
-    rotate: -8deg;
-    transition:
-      opacity 0.18s ease,
-      scale 0.45s cubic-bezier(0.2, 1.4, 0.4, 1),
-      rotate 0.45s cubic-bezier(0.2, 1.4, 0.4, 1);
-  }
-
-  .mz-hand.is-on {
-    opacity: 1;
-    scale: 1;
-    rotate: 0deg;
-  }
-
-  .mz-hand.is-on.is-down {
-    scale: 0.92;
-    transition-duration: 0.1s;
-  }
-
-  .mz-hand i {
-    position: absolute;
-    inset: 0;
-    -webkit-mask: var(--m) 0 0 / 100% 100% no-repeat;
-    mask: var(--m) 0 0 / 100% 100% no-repeat;
-  }
-
-  .cursor-ready .mz-hand__fill {
-    --m: url('/media/cursor/hand-sil.webp');
-  }
-
-  .cursor-ready .mz-hand__ink {
-    --m: url('/media/cursor/hand-ink.webp');
-  }
-
-  .mz-hand__fill {
-    background: var(--bg);
-  }
-
-  .mz-hand__ink {
-    background: var(--fg);
-  }
-
-  /* En el modo oscuro la mano va clara (blanca con el dibujo en negro), para que no se pierda en el fondo. */
-  html:not([data-theme='light']) .mz-hand__fill {
-    background: #fff;
-  }
-
-  html:not([data-theme='light']) .mz-hand__ink {
-    background: #0d0d0d;
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .mz-hand {
-      transition: opacity 0.18s ease;
-      scale: 1;
-      rotate: 0deg;
-    }
-  }
-
   @media (hover: none), (pointer: coarse) {
-    .mz-cursor,
-    .mz-hand {
+    .mz-cursor {
       display: none;
     }
   }
