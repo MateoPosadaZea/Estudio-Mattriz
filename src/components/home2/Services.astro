@@ -46,7 +46,8 @@ const t = ui(lang);
   }
 
   /* Con el mouse: la fila bajo el cursor queda en primer plano y las demás pasan a segundo plano
-     (como en la lista de proyectos). Se atenúa el color del texto, no las líneas. */
+     (como en la lista de proyectos). Se atenúan el texto y las líneas; la fila activa conserva
+     las dos suyas (la de arriba y la de abajo, que es la de arriba de la siguiente). */
   @media (hover: hover) {
     .h-services li {
       transition: color 0.45s ease;
@@ -54,6 +55,10 @@ const t = ui(lang);
 
     .h-services:hover li:not(:hover) {
       color: color-mix(in srgb, var(--fg) 18%, transparent);
+    }
+
+    .h-services:hover li:hover + li::before {
+      background: var(--fg);
     }
   }
 
@@ -71,8 +76,9 @@ const t = ui(lang);
     right: 0;
     top: 0;
     height: 1px;
-    background: var(--fg);
+    background: currentColor;
     transform-origin: left;
+    transition: background-color 0.45s ease;
   }
 
   .h-services li:last-child::after {
@@ -83,11 +89,13 @@ const t = ui(lang);
   :global(html.js) .h-services li::before,
   :global(html.js) .h-services li:last-child::after {
     transform: scaleX(0);
-    transition: transform 1.5s cubic-bezier(0.65, 0, 0.35, 1);
+    transition:
+      transform 1.5s cubic-bezier(0.65, 0, 0.35, 1),
+      background-color 0.45s ease;
   }
 
   :global(html.js) .h-services li:last-child::after {
-    transition-delay: 0.35s;
+    transition-delay: 0.35s, 0s;
   }
 
   :global(html.js) .h-services li.is-in::before,
