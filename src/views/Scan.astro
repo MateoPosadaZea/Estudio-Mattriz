@@ -11,7 +11,9 @@ import { langOf } from '../i18n';
 const lang = langOf(Astro.url);
 const c = scanCopy(lang);
 const turnstileKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
-const config = { lang, copy: c, pricing: PRICING, currency: CURRENCY };
+// Solo los precios de la moneda de este idioma.
+const pricing = Object.fromEntries(Object.entries(PRICING).map(([id, p]) => [id, p ? (lang === 'es' ? p.cop : p.usd) : null]));
+const config = { lang, copy: c, pricing, currency: CURRENCY[lang] };
 ---
 
 <Base title={c.metaTitle} description={c.metaDescription} background="var(--bg)" breadcrumb={[{ name: c.title.replace(/\.$/, ''), path: lang === 'es' ? '/es/scan/' : '/scan/' }]}>
@@ -608,7 +610,7 @@ const config = { lang, copy: c, pricing: PRICING, currency: CURRENCY };
 
   @media (min-width: 1000px) {
     .scan-steps :global(li) {
-      grid-template-columns: 2fr 5fr 5fr 2fr;
+      grid-template-columns: 2fr 5fr 7fr;
       gap: 4vw;
       align-items: baseline;
       padding: 32px 0;
@@ -616,7 +618,7 @@ const config = { lang, copy: c, pricing: PRICING, currency: CURRENCY };
   }
 
   .scan-steps :global(.n) {
-    grid-row: span 3;
+    grid-row: span 2;
     font-size: 15px;
     color: var(--accent-text);
   }
@@ -641,18 +643,6 @@ const config = { lang, copy: c, pricing: PRICING, currency: CURRENCY };
     color: var(--muted);
   }
 
-  .scan-steps :global(.price) {
-    font-size: 15px;
-    color: var(--fg);
-    white-space: nowrap;
-  }
-
-  @media (min-width: 1000px) {
-    .scan-steps :global(.price) {
-      text-align: right;
-    }
-  }
-
   /* Cotización */
   .scan-quote {
     padding: clamp(80px, 12vw, 200px) var(--pad);
@@ -671,11 +661,13 @@ const config = { lang, copy: c, pricing: PRICING, currency: CURRENCY };
     color: var(--muted);
   }
 
+  /* Más pequeño que un título: en pesos el rango es largo y debe caber en una o dos líneas. */
   .scan-quote__value {
+    margin-top: 8px;
     font-family: var(--font-display);
-    font-size: clamp(56px, 9vw, 160px);
-    line-height: 0.95;
-    letter-spacing: -0.04em;
+    font-size: clamp(36px, 5.2vw, 88px);
+    line-height: 1.05;
+    letter-spacing: -0.03em;
   }
 
   .scan-quote__note {

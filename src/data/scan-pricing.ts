@@ -1,13 +1,18 @@
-// Escáner: precios por paso del plan, en USD. PENDIENTE DE MATEO.
-// Mientras un paso no tenga precio (null), la página no muestra cifras: ofrece enviar la
-// cotización por correo. Cuando todos los pasos de un plan tengan precio, muestra el rango total.
+// Escáner: precio de cada paso del plan, mínimo y máximo, en USD (página en inglés) y en COP
+// (página en español). PENDIENTE DE MATEO (hoja mattriz-escaner-precios.xlsx).
+// La página no muestra precios por paso: solo el rango total del plan de cada sitio (suma de los
+// mínimos y de los máximos de sus pasos). Si a un paso del plan le falta el precio (null), no
+// muestra total y ofrece la cotización por correo.
 // No inventar valores aquí: los define Mattriz.
 
 import type { StepId } from '../lib/scan/recommend';
 
-export const CURRENCY = 'USD';
+/** Moneda de cada idioma. */
+export const CURRENCY = { en: 'USD', es: 'COP' } as const;
 
-export const PRICING: Record<StepId, { min: number; max: number } | null> = {
+type Range = { min: number; max: number };
+
+export const PRICING: Record<StepId, { usd: Range; cop: Range } | null> = {
   https: null,
   'booking-new': null,
   'booking-upgrade': null,

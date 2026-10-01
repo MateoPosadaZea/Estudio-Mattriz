@@ -155,25 +155,24 @@ if (root && cfgEl) {
       .join('');
     $('[data-scan-pages]').textContent = `${c.pagesScanned}: ${r.pages.map((u) => u.replace(/^https?:\/\//, '')).join(' · ')}`;
 
-    // Plan paso a paso, con precio si Mattriz ya lo definió.
+    // Plan paso a paso (sin precio por paso: solo se muestra el total).
     const tools = r.booking.map(label).join(', ');
     const platform = [...r.platform, ...r.builders].map(label).join(' + ') || (cfg.lang === 'es' ? 'tu plataforma actual' : 'your current platform');
     $('[data-scan-steps]').innerHTML = p.steps
       .map((id, i) => {
         const s = c.steps[id];
-        const price = cfg.pricing[id];
         const text = s.text.replace('{tools}', esc(tools)).replace('{platform}', esc(platform));
-        return `<li><span class="n">${String(i + 1).padStart(2, '0')}</span><h3>${esc(s.title)}</h3><p>${text}</p><span class="price">${price ? `${money(price.min)}–${money(price.max)}` : ''}</span></li>`;
+        return `<li><span class="n">${String(i + 1).padStart(2, '0')}</span><h3>${esc(s.title)}</h3><p>${text}</p></li>`;
       })
       .join('');
 
-    // Cotización: rango total solo si todos los pasos tienen precio.
+    // Cotización: rango total del plan, solo si todos sus pasos tienen precio.
     const priced = p.steps.map((id) => cfg.pricing[id]);
     const range = $('[data-scan-range]');
     if (priced.every(Boolean)) {
       const min = priced.reduce((s, x) => s + x!.min, 0);
       const max = priced.reduce((s, x) => s + x!.max, 0);
-      $('[data-scan-total]').textContent = `${money(min)}–${money(max)}`;
+      $('[data-scan-total]').textContent = `${money(min)}–${money(max)} ${cfg.currency}`;
       range.hidden = false;
     } else range.hidden = true;
 
@@ -185,6 +184,7 @@ if (root && cfgEl) {
       `Weight: ${r.weight.htmlKB} KB HTML, ${r.weight.scripts} scripts (${r.weight.thirdPartyScripts} third-party)`,
       `Kind: ${p.kind}${p.kind !== r.kind ? ` (detected ${r.kind}, changed by visitor)` : ''}`,
       `Plan: ${p.steps.join(', ')}`,
+      `Quote shown: ${range.hidden ? 'none (missing prices)' : $('[data-scan-total]').textContent}`,
       `Pages: ${r.pages.join(' | ')}`,
     ].join('\n');
     $<HTMLInputElement>('[data-lead-url]').value = r.finalUrl;
