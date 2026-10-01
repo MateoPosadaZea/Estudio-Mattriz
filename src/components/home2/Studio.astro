@@ -29,7 +29,7 @@ const reel = lang === 'es' ? { open: 'Ver reel', close: 'Cerrar' } : { open: 'Vi
         aria-hidden="true"></video>
       <span class="h-reel__btn" aria-hidden="true">
         <svg viewBox="0 0 24 24"><path d="M9 6.5v11l9-5.5z" fill="currentColor" /></svg>
-        <span class="h-reel__track"><span>{reel.open}</span><span>{reel.open}</span></span>
+        <span class="h-reel__track"><span>Play</span><span>Play</span></span>
       </span>
     </button>
   </div>
@@ -152,7 +152,7 @@ const reel = lang === 'es' ? { open: 'Ver reel', close: 'Cerrar' } : { open: 'Vi
     transform: scale(1.04);
   }
 
-  /* Botón de play: una píldora pequeña con el ícono y "View reel", con fondo desenfocado (se lee
+  /* Botón de play: una píldora con el ícono y "Play", con fondo desenfocado (se lee
      sobre cualquier color) y borde fino; al pasar el mouse se llena del rojo de marca. */
   .h-reel__btn {
     position: absolute;
@@ -161,11 +161,11 @@ const reel = lang === 'es' ? { open: 'Ver reel', close: 'Cerrar' } : { open: 'Vi
     z-index: 1;
     display: inline-flex;
     align-items: center;
-    gap: 5px;
-    padding: 6px 13px 6px 9px;
+    gap: 6px;
+    padding: 8px 18px 8px 13px;
     border: 1px solid rgba(255, 255, 255, 0.45);
-    border-radius: var(--btn-radius);
-    font-size: 13px;
+    border-radius: 999px;
+    font-size: 14px;
     line-height: 1.2;
     white-space: nowrap;
     background: rgba(13, 13, 13, 0.22);
@@ -180,7 +180,7 @@ const reel = lang === 'es' ? { open: 'Ver reel', close: 'Cerrar' } : { open: 'Vi
       transform 0.5s cubic-bezier(0.2, 1, 0.3, 1);
   }
 
-  /* "View reel" en marquesina: al pasar el mouse el texto corre en loop dentro del botón. La segunda
+  /* "Play" en marquesina: al pasar el mouse el texto corre en loop dentro del botón. La segunda
      copia va pegada a la derecha de la primera; el margen negativo quita el espacio de sobra. */
   .h-reel__track {
     position: relative;
