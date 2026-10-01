@@ -5,6 +5,8 @@
 // En táctil: se enciende el nombre más cercano al centro de la pantalla (se calcula en cada cuadro
 // del scroll, así no se salta ninguno), su portada deja de estar atenuada y su loop se reproduce.
 // Las imágenes se piden cuando la sección se acerca a la pantalla, no al cargar la página.
+// El modo (mouse o táctil) sigue al tamaño de la ventana: si cambia (ventana que se agranda o
+// achica), se cambia de modo sin recargar.
 
 const root = document.querySelector<HTMLElement>('[data-work]');
 const stage = root?.querySelector<HTMLElement>('[data-work-stage]');
@@ -12,20 +14,27 @@ const stage = root?.querySelector<HTMLElement>('[data-work-stage]');
 if (root && stage) {
   const rows = [...root.querySelectorAll<HTMLElement>('[data-work-row]')];
   const sets = [...root.querySelectorAll<HTMLElement>('[data-work-set]')];
-  const desktop = window.matchMedia('(hover: hover) and (min-width: 1000px)').matches;
+  const mq = window.matchMedia('(hover: hover) and (min-width: 1000px)');
+  let desktop = mq.matches;
   const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  // Imágenes (y pósters de los loops) cuando la sección se acerca.
+  // Imágenes (y pósters de los loops) del modo actual, cuando la sección se acerca.
+  let near = false;
+  const load = () => {
+    if (!near) return;
+    root.querySelectorAll<HTMLImageElement>('img[data-src]').forEach((img) => {
+      if (desktop === !img.closest('.h-work__thumb') && !img.getAttribute('src')) img.src = img.dataset.src!;
+    });
+    root.querySelectorAll<HTMLVideoElement>('video[data-poster]').forEach((v) => {
+      if (desktop === !v.closest('.h-work__thumb') && !v.getAttribute('poster')) v.poster = v.dataset.poster!;
+    });
+  };
   new IntersectionObserver(
     (entries, io) => {
       if (!entries.some((e) => e.isIntersecting)) return;
       io.disconnect();
-      root.querySelectorAll<HTMLImageElement>('img[data-src]').forEach((img) => {
-        if (desktop === !img.closest('.h-work__thumb')) img.src = img.dataset.src!;
-      });
-      root.querySelectorAll<HTMLVideoElement>('video[data-poster]').forEach((v) => {
-        if (desktop === !v.closest('.h-work__thumb')) v.poster = v.dataset.poster!;
-      });
+      near = true;
+      load();
     },
     { rootMargin: '600px 0px' },
   ).observe(root);
@@ -94,29 +103,36 @@ if (root && stage) {
     });
   };
 
+  // Táctil: se recalcula una vez por cuadro al hacer scroll (pick, más abajo).
+  let traf = 0;
+  const onScroll = () => (traf ||= requestAnimationFrame(() => pick()));
+
   let current = -1;
   const activate = (i: number) => {
     if (i === current) return;
-    play(desktop ? sets[current] : rows[current]?.querySelector('.h-work__thumb'), false);
+    play(sets[current], false);
+    play(rows[current]?.querySelector('.h-work__thumb'), false);
     current = i;
     root.classList.toggle('has-active', i >= 0);
     rows.forEach((r, k) => r.classList.toggle('is-active', k === i));
     if (!desktop) return play(rows[i]?.querySelector('.h-work__thumb'), true);
-    sets.forEach((s, k) => {
-      if (k === i) {
-        // Las piezas se ubican a la altura de la fila activa y se apartan del texto.
-        const r = rows[k].getBoundingClientRect();
-        const st = stage.getBoundingClientRect();
-        s.style.setProperty('--y', `${r.top - st.top + r.height / 2}px`);
-        place(s);
-      }
-      s.classList.toggle('is-active', k === i);
-    });
-    play(sets[i], true);
+    sets.forEach((s, k) => s.classList.toggle('is-active', k === i));
+    const s = sets[i];
+    if (!s) return;
+    // Las piezas se ubican a la altura de la fila activa y se apartan del texto.
+    const r = rows[i].getBoundingClientRect();
+    const st = stage.getBoundingClientRect();
+    s.style.setProperty('--y', `${r.top - st.top + r.height / 2}px`);
+    try {
+      place(s);
+    } catch {
+      // Si algo falla al acomodarlas, se quedan en su lugar de siempre.
+    }
+    play(s, true);
   };
 
-  if (desktop) {
-    // El proyecto activo es el de la fila bajo el mouse, calculado desde la posición del puntero al
+  {
+    // Con mouse. El proyecto activo es el de la fila bajo el mouse, calculado desde la posición del puntero al
     // moverlo y al hacer scroll (no con pointerenter/leave, que se pierden si la página se mueve
     // debajo del cursor o al volver a la página).
     let px = -1;
@@ -124,7 +140,7 @@ if (root && stage) {
     let hraf = 0;
     const hit = () => {
       hraf = 0;
-      if (px < 0) return;
+      if (!desktop || px < 0) return;
       const row = document.elementFromPoint(px, py)?.closest<HTMLElement>('[data-work-row]');
       activate(row ? rows.indexOf(row) : -1);
     };
@@ -141,7 +157,7 @@ if (root && stage) {
     );
     window.addEventListener('scroll', schedule, { passive: true });
     document.addEventListener('mouseout', (e) => {
-      if (e.relatedTarget) return;
+      if (!desktop || e.relatedTarget) return;
       px = -1;
       activate(-1);
     });
@@ -149,11 +165,12 @@ if (root && stage) {
     window.addEventListener('pageshow', (e) => {
       if (!e.persisted) return;
       activate(-1);
-      schedule();
+      if (desktop) schedule();
+      else onScroll();
     });
     rows.forEach((r, i) => {
-      r.addEventListener('focus', () => activate(i));
-      r.addEventListener('blur', () => activate(-1));
+      r.addEventListener('focus', () => desktop && activate(i));
+      r.addEventListener('blur', () => desktop && activate(-1));
     });
 
     // Movimiento: cada pieza se corre y gira un poco hacia el mouse, con distinta intensidad. Se
@@ -180,38 +197,46 @@ if (root && stage) {
         raf = done ? 0 : requestAnimationFrame(frame);
       };
       stage.addEventListener('pointermove', (e) => {
+        if (!desktop) return;
         const b = stage.getBoundingClientRect();
         tx = (e.clientX - b.left) / b.width - 0.5;
         ty = (e.clientY - b.top) / b.height - 0.5;
         raf ||= requestAnimationFrame(frame);
       });
     }
-  } else {
-    // Táctil: el nombre cuyo centro queda más cerca del centro de la pantalla. Solo mientras la
-    // lista está a la vista; fuera de ella no queda ninguno encendido.
-    let raf = 0;
-    const pick = () => {
-      raf = 0;
-      const box = stage.getBoundingClientRect();
-      const mid = window.innerHeight / 2;
-      if (box.bottom < mid * 0.6 || box.top > mid * 1.4) return activate(-1);
-      let best = -1;
-      let dist = Infinity;
-      rows.forEach((r, i) => {
-        const b = r.getBoundingClientRect();
-        const d = Math.abs(b.top + b.height / 2 - mid);
-        if (d < dist) {
-          dist = d;
-          best = i;
-        }
-      });
-      activate(best);
-    };
-    const onScroll = () => (raf ||= requestAnimationFrame(pick));
-    window.addEventListener('scroll', onScroll, { passive: true });
-    window.addEventListener('resize', onScroll, { passive: true });
-    pick();
   }
+
+  // Táctil: el nombre cuyo centro queda más cerca del centro de la pantalla. Solo mientras la
+  // lista está a la vista; fuera de ella no queda ninguno encendido.
+  const pick = () => {
+    traf = 0;
+    if (desktop) return;
+    const box = stage.getBoundingClientRect();
+    const mid = window.innerHeight / 2;
+    if (box.bottom < mid * 0.6 || box.top > mid * 1.4) return activate(-1);
+    let best = -1;
+    let dist = Infinity;
+    rows.forEach((r, i) => {
+      const b = r.getBoundingClientRect();
+      const d = Math.abs(b.top + b.height / 2 - mid);
+      if (d < dist) {
+        dist = d;
+        best = i;
+      }
+    });
+    activate(best);
+  };
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', onScroll, { passive: true });
+  pick();
+
+  // Cambio de modo (la ventana cruza los 1000 px, o se conecta/desconecta un mouse).
+  mq.addEventListener('change', () => {
+    activate(-1);
+    desktop = mq.matches;
+    load();
+    if (!desktop) onScroll();
+  });
 }
 
 export {};
