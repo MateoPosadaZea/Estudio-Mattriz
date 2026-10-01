@@ -207,6 +207,28 @@ const pad = (n: number) => String(n).padStart(2, '0');
       grid-template-columns: 6fr 5fr;
       gap: 5vw;
     }
+
+    /* La portada en la proporción de las grabaciones (16:10), completa, sin recortes; su ancho se
+       limita por el alto de la ventana para que título, diapositiva y controles quepan en pantalla. */
+    .h-t:not(.h-t--bare) .h-t__media {
+      justify-self: end;
+      width: min(100%, calc((100svh - 330px) * 1.6));
+      height: auto;
+      aspect-ratio: 16 / 10;
+    }
+
+    .h-t:not(.h-t--bare) .h-t__media video {
+      object-fit: contain;
+    }
+
+    /* La cita también se ajusta al alto de la ventana. */
+    .h-t:not(.h-t--bare) .h-t__quote {
+      font-size: clamp(19px, min(1.9vw, 3.3svh), 30px);
+    }
+
+    .h-t:not(.h-t--bare) .h-t__text {
+      gap: clamp(16px, 3svh, 32px);
+    }
   }
 
   /* Versión en columna (contacto): imagen arriba y cita debajo. */
