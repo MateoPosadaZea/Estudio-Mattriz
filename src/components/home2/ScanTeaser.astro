@@ -42,6 +42,11 @@ const c = scanCopy(lang);
     border-color: var(--color-brand);
   }
 
+  /* Sobre fondo oscuro el borde activo va en blanco. */
+  :global(html:not([data-theme='light'])) .h-scan__form:focus-within {
+    border-color: var(--color-white);
+  }
+
   .h-scan__form input {
     flex: 1;
     min-width: 0;

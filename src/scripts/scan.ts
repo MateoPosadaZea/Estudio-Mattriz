@@ -212,6 +212,12 @@ if (root && cfgEl) {
     scan(input.value);
   });
 
+  // Del diagnóstico al plan, con el mismo desplazamiento suave del resto del sitio.
+  root.querySelector('.scan-next')?.addEventListener('click', (e) => {
+    e.preventDefault();
+    scrollToEl(root.querySelector('#plan')!);
+  });
+
   // "Escanear otro sitio" aparece fijo abajo cuando se llega a la cotización, el final del escáner.
   const again = $('[data-scan-again]');
   const quote = document.getElementById('quote');

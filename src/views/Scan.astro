@@ -79,9 +79,11 @@ const config = { lang, copy: c, pricing: PRICING, currency: CURRENCY };
         <div class="scan-has__grid" data-scan-has></div>
         <dl class="scan-seo" data-scan-seo></dl>
         <p class="scan-pages" data-scan-pages></p>
+        <!-- Puente al plan: después del diagnóstico, el paso siguiente. -->
+        <a class="scan-next" href="#plan"><span class="reveal"><span class="reveal__text" data-text={c.planCta}>{c.planCta}</span></span> <span class="btn-arrow" data-dir="down" aria-hidden="true">↓</span></a>
       </section>
 
-      <section class="h-section scan-plan">
+      <section class="h-section scan-plan" id="plan">
         <p class="h-label"><span>(03)</span> {c.planTitle}</p>
         <h2 class="h-heading">{c.planIntro}</h2>
         <ol class="scan-steps" data-scan-steps></ol>
@@ -192,6 +194,12 @@ const config = { lang, copy: c, pricing: PRICING, currency: CURRENCY };
   .scan-form:focus-within {
     border-color: var(--color-brand);
     background: color-mix(in srgb, var(--color-brand) 6%, transparent);
+  }
+
+  /* Sobre fondo oscuro el borde activo va en blanco. */
+  :global(html:not([data-theme='light'])) .scan-form:focus-within {
+    border-color: var(--color-white);
+    background: rgba(255, 255, 255, 0.06);
   }
 
   .scan-form__prefix {
@@ -567,6 +575,21 @@ const config = { lang, copy: c, pricing: PRICING, currency: CURRENCY };
     overflow-wrap: anywhere;
   }
 
+  .scan-next {
+    display: flex;
+    width: max-content;
+    max-width: 100%;
+    align-items: center;
+    gap: 0.4em;
+    margin: clamp(56px, 8vw, 120px) auto 0;
+    padding: var(--btn-pad);
+    border-radius: var(--btn-radius);
+    background: var(--color-brand);
+    color: var(--color-white);
+    font-size: 17px;
+    white-space: nowrap;
+  }
+
   /* Plan */
   .scan-steps {
     margin: 0;
@@ -699,7 +722,7 @@ const config = { lang, copy: c, pricing: PRICING, currency: CURRENCY };
   }
 
   .scan-field input:focus-visible {
-    outline: 2px solid var(--color-brand);
+    outline: 2px solid var(--color-white);
     outline-offset: 1px;
   }
 

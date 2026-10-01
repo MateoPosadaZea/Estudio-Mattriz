@@ -27,6 +27,7 @@ type Copy = {
   notFound: string;
   seo: { title: string; description: string; h1: string; viewport: string; schema: string; yes: string; no: string; missing: string };
   pagesScanned: string;
+  planCta: string;
   planTitle: string;
   planIntro: string;
   steps: Record<StepId, { title: string; text: string }>;
@@ -75,6 +76,7 @@ const EN: Copy = {
   notFound: 'Not found',
   seo: { title: 'Title', description: 'Meta description', h1: 'Main headings (H1)', viewport: 'Mobile ready', schema: 'Structured data', yes: 'Yes', no: 'No', missing: 'Missing' },
   pagesScanned: 'Pages scanned',
+  planCta: 'See what we can do for you',
   planTitle: 'What we’d build',
   planIntro: 'Step by step, in order of impact.',
   steps: {
@@ -155,6 +157,7 @@ const ES: Copy = {
   notFound: 'No encontrado',
   seo: { title: 'Título', description: 'Meta descripción', h1: 'Títulos principales (H1)', viewport: 'Adaptado a móvil', schema: 'Datos estructurados', yes: 'Sí', no: 'No', missing: 'Falta' },
   pagesScanned: 'Páginas revisadas',
+  planCta: 'Mira lo que podemos hacer por ti',
   planTitle: 'Lo que construiríamos',
   planIntro: 'Paso a paso, en orden de impacto.',
   steps: {
