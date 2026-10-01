@@ -3,6 +3,7 @@
 // pasar el mouse se enciende el activo (el resto se apaga), aparecen sus categorías y tres piezas
 // del proyecto se dispersan alrededor (src/scripts/work-list.ts). En táctil se enciende el nombre
 // que queda en el centro de la pantalla y se muestra su imagen debajo. Mismo orden y enlaces.
+import fs from 'node:fs';
 import { PROJECTS, home } from '../../data/home';
 import { langOf, localize, category, ui } from '../../i18n';
 
@@ -10,8 +11,9 @@ const lang = langOf(Astro.url);
 const { LABELS } = home(lang);
 const t = ui(lang);
 
-// Piezas de cada proyecto (public/media/work/list/<slug>-a|b|c.webp): a vertical 4:5, b horizontal
-// 4:3, c vertical 3:4.
+// Piezas de cada proyecto (public/media/work/list/<slug>-a|b|c): a vertical 4:5, b horizontal 4:3,
+// c vertical 3:4. Si existe <slug>-x.mp4 la pieza es un loop corto (con su primer cuadro, -poster.webp); si no,
+// la imagen fija.
 const LIST: Record<string, string> = {
   '/project/spot-on-mobile-wash-detailing/': 'spot-on',
   '/project/santo-y-sena/': 'santo-y-sena',
@@ -27,7 +29,11 @@ const items = PROJECTS.map((p) => ({
   title: p.title,
   href: localize(p.href, lang),
   categories: p.categories.map((c) => category(c, lang)),
-  pics: ['a', 'b', 'c'].map((k) => `/media/work/list/${LIST[p.href]}-${k}.webp`),
+  pics: ['a', 'b', 'c'].map((k) => {
+    const base = `/media/work/list/${LIST[p.href]}-${k}`;
+    const video = fs.existsSync(`public${base}.mp4`);
+    return { img: `${base}.webp`, video: video ? `${base}.mp4` : undefined, poster: video ? `${base}-poster.webp` : undefined };
+  }),
 }));
 ---
 
@@ -43,9 +49,13 @@ const items = PROJECTS.map((p) => ({
       {
         items.map((p, i) => (
           <div class="h-work__set" data-work-set={i}>
-            {p.pics.map((src, k) => (
+            {p.pics.map((pic, k) => (
               <span class={`h-work__pic h-work__pic--${'abc'[k]}`}>
-                <img data-src={src} alt="" decoding="async" />
+                {pic.video ? (
+                  <video data-src={pic.video} data-poster={pic.poster} muted loop playsinline webkit-playsinline disablepictureinpicture disableremoteplayback preload="none" />
+                ) : (
+                  <img data-src={pic.img} alt="" decoding="async" />
+                )}
               </span>
             ))}
           </div>
@@ -58,13 +68,10 @@ const items = PROJECTS.map((p) => ({
         items.map((p, i) => (
           <li data-case-reveal>
             <a class="h-work__row" href={p.href} data-work-row={i}>
-              <span class="h-work__name">
-                {p.title}
-                <span class="h-work__arrow" aria-hidden="true">↗</span>
-              </span>
+              <span class="h-work__name">{p.title}</span>
               <span class="h-work__cats">{p.categories.join(' · ')}</span>
               <span class="h-work__thumb" aria-hidden="true">
-                <img data-src={p.pics[1]} alt="" decoding="async" />
+                <img data-src={p.pics[1].img} alt="" decoding="async" />
               </span>
             </a>
           </li>
@@ -79,6 +86,15 @@ const items = PROJECTS.map((p) => ({
 </script>
 
 <style>
+  /* En esta sección el encabezado va centrado, como la lista. */
+  .h-work :global(.h-label),
+  .h-work :global(.h-heading) {
+    text-align: center;
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
   .h-work__stage {
     position: relative;
     margin-top: clamp(24px, 4vw, 56px);
@@ -98,31 +114,16 @@ const items = PROJECTS.map((p) => ({
     padding: clamp(12px, 1.3vw, 18px) 0;
   }
 
-  /* El nombre: Noe Display grande. Apagado mientras otro está activo; encendido el activo. */
+  /* El nombre: Maison Neue ligera, grande. Apagado mientras otro está activo; encendido el activo. */
   .h-work__name {
     position: relative;
-    font-family: var(--font-display);
-    font-size: clamp(34px, 4.6vw, 74px);
-    font-weight: 500;
-    line-height: 1;
-    letter-spacing: -0.03em;
+    font-family: var(--font-sans);
+    font-size: clamp(32px, 4.2vw, 68px);
+    font-weight: var(--fw-light, 300);
+    line-height: 1.08;
+    letter-spacing: -0.025em;
     text-wrap: balance;
     transition: color 0.45s ease;
-  }
-
-  .h-work__arrow {
-    position: absolute;
-    left: 100%;
-    top: 0.08em;
-    margin-left: 0.18em;
-    font-family: var(--font-sans);
-    font-size: 0.32em;
-    letter-spacing: 0;
-    opacity: 0;
-    transform: translate(-6px, 6px);
-    transition:
-      opacity 0.35s ease,
-      transform 0.5s cubic-bezier(0.2, 1, 0.3, 1);
   }
 
   .h-work__cats {
@@ -149,11 +150,6 @@ const items = PROJECTS.map((p) => ({
 
   .h-work.has-active .is-active .h-work__cats {
     color: var(--fg);
-  }
-
-  .is-active .h-work__arrow {
-    opacity: 1;
-    transform: none;
   }
 
   /* Piezas dispersas: capa detrás de los nombres; cada juego aparece alrededor del activo. */
@@ -192,7 +188,7 @@ const items = PROJECTS.map((p) => ({
         translate 0.8s cubic-bezier(0.2, 1, 0.3, 1);
     }
 
-    .h-work__pic img {
+    .h-work__pic :is(img, video) {
       width: 100%;
       height: 100%;
       object-fit: cover;
@@ -234,21 +230,25 @@ const items = PROJECTS.map((p) => ({
     }
   }
 
-  /* Táctil o pantallas angostas: la imagen del activo aparece debajo de su nombre. */
+  /* Táctil o pantallas angostas: cada nombre lleva su imagen debajo, siempre en su lugar (así el
+     scroll no salta); la del proyecto activo se enciende y las demás quedan atenuadas. */
   @media not ((hover: hover) and (min-width: 1000px)) {
+    .h-work__row {
+      padding: 22px 0;
+    }
+
     .h-work__thumb {
       display: block;
       width: min(100%, 420px);
       aspect-ratio: 4 / 3;
+      margin-top: 8px;
       overflow: hidden;
       border-radius: 4px;
-      max-height: 0;
-      opacity: 0;
-      margin-top: 0;
+      opacity: 0.28;
+      filter: grayscale(1);
       transition:
-        max-height 0.6s cubic-bezier(0.2, 1, 0.3, 1),
-        opacity 0.4s ease,
-        margin-top 0.6s cubic-bezier(0.2, 1, 0.3, 1);
+        opacity 0.5s ease,
+        filter 0.5s ease;
     }
 
     .h-work__thumb img {
@@ -258,20 +258,15 @@ const items = PROJECTS.map((p) => ({
     }
 
     .is-active .h-work__thumb {
-      max-height: 320px;
       opacity: 1;
-      margin-top: 10px;
-    }
-
-    .h-work__arrow {
-      display: none;
+      filter: none;
     }
   }
 
   @media (prefers-reduced-motion: reduce) {
     .h-work__pic,
     .h-work__thumb {
-      transition: opacity 0.2s ease !important;
+      transition: opacity 0.2s ease, filter 0.2s ease !important;
     }
   }
 </style>
