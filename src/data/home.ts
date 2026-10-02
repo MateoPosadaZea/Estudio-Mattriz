@@ -6,7 +6,7 @@ import type { Lang } from '../i18n';
 
 export const HERO = {
   title: 'Systems that work while you sleep.',
-  subtitle: 'We design and build the websites, online stores, booking and payment systems your business runs on. We also keep them running every month.',
+  subtitle: 'We design and build the websites, online stores, booking and payment systems your business runs on. And we help them grow, month after month.',
   cta: { label: 'See what we offer', href: '#services' },
   scroll: 'Scroll to explore',
 };
@@ -195,7 +195,7 @@ export const TESTIMONIALS = [
 export const HOME_ES = {
   HERO: {
     title: 'Sistemas que trabajan mientras duermes.',
-    subtitle: 'Diseñamos y desarrollamos los sitios web, tiendas en línea y sistemas de reservas y pagos que sostienen tu negocio. También nos encargamos de mantenerlos cada mes.',
+    subtitle: 'Diseñamos y desarrollamos los sitios web, tiendas en línea y sistemas de reservas y pagos que sostienen tu negocio. Y los hacemos crecer mes a mes.',
     cta: { label: 'Lo que hacemos', href: '#services' },
     scroll: 'Desliza para explorar',
   },

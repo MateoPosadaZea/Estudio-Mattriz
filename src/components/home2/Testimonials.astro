@@ -123,13 +123,11 @@ const pad = (n: number) => String(n).padStart(2, '0');
               {project ? (
                 <Fragment>
                   {(() => {
-                    // Grabaciones y capturas de pantalla (no fotos ni mockups): van enmarcadas.
-                    const screen = (src: string) => src.endsWith('.mp4') || /-site-|cu-(desktop|brands|filters)/.test(src);
                     const items = project.reel.map((src, k) =>
                       src.endsWith('.mp4') ? (
-                        <video class:list={{ 'is-on': k === 0, 'is-screen': true }} data-reel-src={src} data-reel-src-mobile={mobileSrc(src)} data-poster={src.replace(/\.mp4$/, '-poster.webp')} muted playsinline webkit-playsinline disablepictureinpicture disableremoteplayback preload="none" />
+                        <video class:list={{ 'is-on': k === 0 }} data-reel-src={src} data-reel-src-mobile={mobileSrc(src)} data-poster={src.replace(/\.mp4$/, '-poster.webp')} muted playsinline webkit-playsinline disablepictureinpicture disableremoteplayback preload="none" />
                       ) : (
-                        <img class:list={{ 'is-on': k === 0, 'is-screen': screen(src) }} data-img-src={src} width="1200" height="750" alt="" decoding="async" />
+                        <img class:list={{ 'is-on': k === 0 }} data-img-src={src} width="1200" height="750" alt="" decoding="async" />
                       ),
                     );
                     return project.href ? (
@@ -220,7 +218,8 @@ const pad = (n: number) => String(n).padStart(2, '0');
     }
 
     .h-t:not(.h-t--bare) .h-t__media video {
-      object-fit: contain;
+      object-fit: cover;
+      object-position: top;
     }
 
     /* La cita también se ajusta al alto de la ventana. */
@@ -270,8 +269,8 @@ const pad = (n: number) => String(n).padStart(2, '0');
     /* Clips completos (sin recorte ni zoom): son grabaciones de pantalla entre 16:9 y 16:10.
        Las capturas ya vienen en 16:10 y las fotos de mockups pueden recortarse. */
     .h-t__slide .h-t__media video {
-      object-fit: contain;
-      transform: none;
+      object-fit: cover;
+      object-position: top;
     }
 
     .h-t__slide .h-t__text {
@@ -382,27 +381,12 @@ const pad = (n: number) => String(n).padStart(2, '0');
     height: 100%;
     object-fit: cover;
     opacity: 0;
-    transform: scale(1.06);
-    transition:
-      opacity 0.3s,
-      transform 2.4s ease-out;
+    transition: opacity 0.4s;
   }
 
   .h-t__media img.is-on,
   .h-t__media video.is-on {
     opacity: 1;
-    transform: scale(1);
-  }
-
-  /* Pantallas (grabaciones y capturas): con margen sobre el fondo gris y esquinas redondeadas,
-     como una pantalla dentro del recuadro. El margen en % mantiene la proporción 16:10. */
-  .h-t__media .is-screen {
-    inset: 5%;
-    width: 90%;
-    height: 90%;
-    border-radius: 8px;
-    object-fit: cover !important;
-    object-position: top;
   }
 
   .h-t__media-tag {
