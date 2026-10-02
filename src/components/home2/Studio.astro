@@ -21,7 +21,7 @@ const reel = lang === 'es' ? { open: 'Ver reel', close: 'Cerrar' } : { open: 'Vi
       <video
         class="h-reel__video"
         data-src="/media/reel/mattriz-reel-thumb.mp4"
-        poster="/media/reel/mattriz-reel-poster.jpg"
+        poster="/media/reel/mattriz-reel-thumb-poster.jpg"
         muted
         loop
         playsinline
@@ -134,7 +134,7 @@ const reel = lang === 'es' ? { open: 'Ver reel', close: 'Cerrar' } : { open: 'Vi
     border-radius: 12px;
     overflow: hidden;
     /* La portada también como fondo: si el video no carga (modo de bajo consumo, datos), se ve igual. */
-    background: #161616 url('/media/reel/mattriz-reel-poster.jpg') center / cover no-repeat;
+    background: #161616 url('/media/reel/mattriz-reel-thumb-poster.jpg') center / cover no-repeat;
     cursor: pointer;
     isolation: isolate;
   }
