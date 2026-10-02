@@ -168,7 +168,8 @@ const items = PROJECTS.map((p) => ({
       display: block;
       position: absolute;
       inset: 0;
-      z-index: 0;
+      /* Encima de los nombres: si una pieza toca un texto, la pieza queda delante. */
+      z-index: 2;
       pointer-events: none;
     }
 

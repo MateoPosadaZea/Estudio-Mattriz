@@ -51,56 +51,18 @@ if (root && stage) {
   // Intensidad del seguimiento del mouse de cada pieza (a, b, c), en px.
   const K = [70, 110, 45];
 
-  // Que ninguna pieza tape un texto (nombres y categorías): si alguna cae sobre texto a su
-  // altura, se corre hacia su lado de la pantalla, dejando espacio para el seguimiento del mouse;
-  // si no cabe, se achica.
-  const place = (set: HTMLElement) => {
-    const st = stage.getBoundingClientRect();
-    const W = st.width;
-    const y0 = parseFloat(set.style.getPropertyValue('--y')) || 0;
-    // El rectángulo del texto en sí (no el de la caja, que en el título ocupa todo el ancho).
-    const range = document.createRange();
-    const obs = [...root.querySelectorAll<HTMLElement>('.h-work__name, .h-work__cats')].map((e) => {
-      range.selectNodeContents(e);
-      const b = range.getBoundingClientRect();
-      return { l: b.left - st.left, r: b.right - st.left, t: b.top - st.top, b: b.bottom - st.top };
-    });
-    set.querySelectorAll<HTMLElement>('.h-work__pic').forEach((p, k) => {
-      p.style.width = '';
-      p.style.transform = '';
-      // Margen: espacio fijo más lo que la pieza se mueve con el mouse.
-      const gap = 24 + K[k] / 2;
-      const vg = 12 + K[k] / 2;
-      let w = p.offsetWidth;
-      const h = p.offsetHeight;
-      const left = p.offsetLeft;
-      const top = y0 + p.offsetTop;
-      const hits = (x: number, y: number, ww: number, hh: number) =>
-        obs.filter((o) => o.r + gap > x && o.l - gap < x + ww && o.b + vg > y && o.t - vg < y + hh);
-      const over = hits(left, top, w, h);
-      if (!over.length) return;
-      // Si apenas roza un texto, basta con subirla o bajarla un poco.
-      const up = top + h / 2 < over[0].t + (over[0].b - over[0].t) / 2;
-      const dy = up ? Math.min(...over.map((o) => o.t - vg - (top + h))) : Math.max(...over.map((o) => o.b + vg - top));
-      if (Math.abs(dy) <= 60 && !hits(left, top + dy, w, h).length) {
-        p.style.transform = `translateY(${dy.toFixed(1)}px)`;
-        return;
-      }
-      // Si no, hacia su lado de la pantalla, y más pequeña si no cabe.
-      const near = obs.filter((o) => o.b + vg > top && o.t - vg < top + h);
-      const minL = Math.min(...near.map((o) => o.l));
-      const maxR = Math.max(...near.map((o) => o.r));
-      const leftSide = left + w / 2 < W / 2;
-      const room = leftSide ? minL - gap - 8 : W - 8 - (maxR + gap);
-      if (room < w) {
-        w = Math.max(room, 96);
-        p.style.width = `${w}px`;
-      }
-      const l2 = p.offsetLeft;
-      const want = leftSide ? Math.min(l2, minL - gap - w) : Math.max(l2, maxR + gap);
-      const x = Math.max(8, Math.min(want, W - 8 - w));
-      if (x !== l2) p.style.transform = `translateX(${(x - l2).toFixed(1)}px)`;
-    });
+  // Que las tres piezas queden completas dentro de la pantalla (debajo del header): si la fila está
+  // muy arriba o muy abajo, el juego se corre en vertical lo necesario.
+  const fit = (set: HTMLElement, y: number) => {
+    const rs = [...set.querySelectorAll<HTMLElement>('.h-work__pic')].map((p) => p.getBoundingClientRect());
+    const top = Math.min(...rs.map((r) => r.top));
+    const bottom = Math.max(...rs.map((r) => r.bottom));
+    const minTop = 96;
+    const maxBottom = window.innerHeight - 24;
+    let dy = 0;
+    if (bottom > maxBottom) dy = maxBottom - bottom;
+    if (top + dy < minTop) dy = minTop - top;
+    if (dy) set.style.setProperty('--y', `${y + dy}px`);
   };
 
   // Táctil: se recalcula una vez por cuadro al hacer scroll (pick, más abajo).
@@ -119,15 +81,12 @@ if (root && stage) {
     sets.forEach((s, k) => s.classList.toggle('is-active', k === i));
     const s = sets[i];
     if (!s) return;
-    // Las piezas se ubican a la altura de la fila activa y se apartan del texto.
+    // Las piezas se ubican a la altura de la fila activa, completas dentro de la pantalla.
     const r = rows[i].getBoundingClientRect();
     const st = stage.getBoundingClientRect();
-    s.style.setProperty('--y', `${r.top - st.top + r.height / 2}px`);
-    try {
-      place(s);
-    } catch {
-      // Si algo falla al acomodarlas, se quedan en su lugar de siempre.
-    }
+    const y = r.top - st.top + r.height / 2;
+    s.style.setProperty('--y', `${y}px`);
+    fit(s, y);
     play(s, true);
   };
 
