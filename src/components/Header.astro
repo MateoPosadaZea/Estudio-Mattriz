@@ -316,14 +316,17 @@ const t = ui(lang);
         box-shadow 0.35s ease var(--bg-delay),
         color 0.3s ease var(--fg-delay),
         padding 0.45s cubic-bezier(0.2, 1, 0.3, 1),
-        height 0.45s cubic-bezier(0.2, 1, 0.3, 1);
+        clip-path 0.45s cubic-bezier(0.2, 1, 0.3, 1);
+      clip-path: inset(0 round var(--header-radius));
     }
 
     /* Al bajar, dentro de la barra blanca: más aire a los lados (el logo y el menú se acercan al
-       centro) y una barra más baja. */
+       centro) y una barra más baja (58px). El alto del header no cambia: se recorta la barra arriba
+       y abajo. Si cambiara el alto, el logo y las líneas del menú pasarían por medios píxeles al
+       volver arriba y se verían parpadear. */
     .site-header:not(.is-top) {
-      height: 58px;
       padding: 0 calc(var(--pad) + 6px);
+      clip-path: inset(calc((var(--header-height-mobile) - 58px) / 2) 0 round var(--header-radius));
     }
 
     .site-nav {
