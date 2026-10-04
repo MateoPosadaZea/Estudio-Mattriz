@@ -60,9 +60,7 @@ const reel = lang === 'es' ? { open: 'Ver reel', close: 'Cerrar' } : { open: 'Vi
     class="h-reel-modal__video"
     data-full="/media/reel/mattriz-reel.mp4"
     data-full-mobile="/media/reel/mattriz-reel-m.mp4"
-    data-full-vertical="/media/reel/mattriz-reel-9x16.mp4"
     data-poster="/media/reel/mattriz-reel-poster.jpg"
-    data-poster-vertical="/media/reel/mattriz-reel-9x16-poster.jpg"
     poster="/media/reel/mattriz-reel-poster.jpg"
     muted
     loop
@@ -299,12 +297,6 @@ const reel = lang === 'es' ? { open: 'Ver reel', close: 'Cerrar' } : { open: 'Vi
     overflow: hidden;
     background: #000;
     isolation: isolate;
-  }
-
-  /* En el celular en vertical: el reel vertical (9:16). */
-  .h-reel-modal__frame.is-vertical {
-    width: min(100%, calc((100dvh - 140px) * 9 / 16));
-    aspect-ratio: 9 / 16;
   }
 
   .h-reel-modal__frame:focus {
