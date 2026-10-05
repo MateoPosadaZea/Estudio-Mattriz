@@ -10,6 +10,13 @@
 # Archivos por tipo de proyecto → sección de proyectos de la home
 /project-type /#projects 301
 /project-type/* /#projects 301
+/es/project-type /es/#projects 301
+/es/project-type/* /es/#projects 301
+
+# /en/ del WordPress viejo: el inglés vive en la raíz
+/en /  301
+/en/ /  301
+/en/* /:splat 301
 
 # Carpeta /work/ (en el vivo daba 403) y enlaces rotos del vivo → proyectos
 /work /#projects 301
