@@ -290,7 +290,7 @@ export const HOME_ES = {
 export const HOME_LABELS = {
   en: {
     metaTitle: 'Mattriz | Systems that work while you sleep',
-    metaDescription: 'Mattriz designs, builds and runs websites, online stores and booking systems for businesses in the US and LATAM. Built in weeks, kept running every month.',
+    metaDescription: 'Mattriz Studio designs and builds websites, online stores and booking and payment systems for businesses in the US and Latin America, and helps them grow.',
     selectedWork: 'Selected work',
     filter: 'Filter',
     all: 'All',
@@ -306,7 +306,7 @@ export const HOME_LABELS = {
   },
   es: {
     metaTitle: 'Mattriz | Sistemas que trabajan mientras duermes',
-    metaDescription: 'Mattriz diseña, construye y mantiene sitios web, tiendas en línea y sistemas de reservas para negocios en EE. UU. y Latinoamérica. En semanas, no en meses.',
+    metaDescription: 'Mattriz Studio diseña y desarrolla sitios web, tiendas en línea y sistemas de reservas y pagos para negocios en EE. UU. y Latinoamérica, y los hace crecer.',
     selectedWork: 'Trabajo seleccionado',
     filter: 'Filtrar',
     all: 'Todos',
