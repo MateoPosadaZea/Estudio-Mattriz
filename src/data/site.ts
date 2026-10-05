@@ -5,7 +5,7 @@ export const SITE = {
   url: 'https://mattriz.com',
   email: 'contacto@mattriz.com',
   calendly: 'https://calendly.com/contacto-mattriz/30min',
-  instagram: 'https://www.instagram.com/estudiomattriz/',
+  instagram: 'https://www.instagram.com/mattrizstudio/',
   linkedin: 'https://www.linkedin.com/company/estudio-mattriz/',
   facebook: 'https://www.facebook.com/EstudioMattriz/',
   // Teléfono publicado en los datos estructurados del vivo (AIOSEO).
