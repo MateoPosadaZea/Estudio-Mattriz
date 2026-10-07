@@ -1,0 +1,198 @@
+---
+// v2: Mattriz Lab (/lab/, /es/lab/). Archivo numerado de exploraciones, proyectos propios y
+// herramientas; contenido en src/data/lab.ts, piezas en public/media/lab/.
+import Base from '../layouts/Base.astro';
+import { lab } from '../data/lab';
+import { langOf, localize } from '../i18n';
+
+const lang = langOf(Astro.url);
+const c = lab(lang);
+---
+
+<Base title={c.metaTitle} description={c.metaDescription} background="var(--bg)" breadcrumb={[{ name: c.title, path: localize('/lab/', lang) }]}>
+  <div class="home lab">
+    <section class="lab-hero">
+      <p class="lab-eyebrow case-in"><span class="lab-dot" aria-hidden="true"></span>{c.eyebrow}</p>
+      <h1 class="lab-title" aria-label={c.title}>
+        <span class="case-mask" aria-hidden="true"><span>{c.title}</span></span>
+      </h1>
+      <p class="lab-intro case-in" style="--d:300ms">{c.intro}</p>
+    </section>
+
+    <section class="h-section lab-list">
+      <ol class="lab-grid">
+        {
+          c.entries.map((e) => (
+            <li class="lab-entry" data-case-reveal>
+              <div class="lab-entry__media">
+                {e.media.video ? (
+                  <video src={e.media.video} poster={e.media.img} muted loop playsinline autoplay preload="metadata" aria-hidden="true" data-lab-video />
+                ) : (
+                  <img src={e.media.img} alt="" width="720" height="900" loading="lazy" decoding="async" />
+                )}
+              </div>
+              <p class="lab-entry__meta">
+                <span>{e.num}</span> {e.kind} · {e.year}
+              </p>
+              <h2 class="lab-entry__title">{e.title}</h2>
+              <p class="lab-entry__text">{e.text}</p>
+              {e.credits && <p class="lab-entry__credits">{e.credits}</p>}
+              {e.url && (
+                <a class="lab-entry__link u-link" href={e.url} target="_blank" rel="noopener">
+                  {e.linkLabel} <span aria-hidden="true">↗</span>
+                </a>
+              )}
+            </li>
+          ))
+        }
+      </ol>
+    </section>
+  </div>
+</Base>
+
+<script>
+  import '../scripts/case';
+
+  // Con movimiento reducido los videos quedan en su primer cuadro.
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    document.querySelectorAll<HTMLVideoElement>('[data-lab-video]').forEach((v) => {
+      v.removeAttribute('autoplay');
+      v.pause();
+    });
+  }
+</script>
+
+<style>
+  .lab-hero {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    min-height: 62vh;
+    min-height: 62svh;
+    padding: calc(var(--header-top) + var(--header-height) + 40px) var(--pad) clamp(24px, 4vw, 48px);
+  }
+
+  .lab-eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: clamp(20px, 2.4vw, 36px);
+    font-size: 15px;
+    color: var(--muted);
+  }
+
+  .lab-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--color-brand);
+  }
+
+  .lab-title {
+    margin-left: -0.04em;
+    font-family: var(--font-display);
+    font-size: clamp(88px, 18vw, 300px);
+    font-weight: 500;
+    line-height: 0.9;
+    letter-spacing: -0.04em;
+  }
+
+  .lab-intro {
+    max-width: 32em;
+    margin-top: clamp(24px, 3vw, 40px);
+    font-size: clamp(18px, 1.6vw, 24px);
+    line-height: 1.4;
+    text-wrap: pretty;
+    color: color-mix(in srgb, var(--fg) 80%, transparent);
+  }
+
+  .lab-list {
+    padding-top: clamp(32px, 5vw, 72px);
+  }
+
+  .lab-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: clamp(56px, 6vw, 88px) clamp(20px, 2.4vw, 36px);
+  }
+
+  @media (min-width: 690px) {
+    .lab-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (min-width: 1100px) {
+    .lab-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+
+  .lab-entry {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+  }
+
+  .lab-entry__media {
+    aspect-ratio: 4 / 5;
+    max-width: 100%;
+    overflow: hidden;
+    background: color-mix(in srgb, var(--fg) 6%, transparent);
+  }
+
+  .lab-entry__media img,
+  .lab-entry__media video {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .lab-entry__meta {
+    margin-top: 20px;
+    padding-top: 14px;
+    border-top: 1px solid var(--line);
+    font-size: 14px;
+    color: var(--muted);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .lab-entry__meta span {
+    margin-right: 0.5em;
+    color: var(--fg);
+  }
+
+  .lab-entry__title {
+    margin-top: 10px;
+    font-family: var(--font-display);
+    font-size: clamp(30px, 2.6vw, 40px);
+    font-weight: 500;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    text-wrap: balance;
+  }
+
+  .lab-entry__text {
+    margin-top: 12px;
+    max-width: 34em;
+    font-size: 16px;
+    line-height: 1.5;
+    text-wrap: pretty;
+    color: color-mix(in srgb, var(--fg) 80%, transparent);
+  }
+
+  .lab-entry__credits {
+    margin-top: 10px;
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--muted);
+    text-wrap: pretty;
+  }
+
+  .lab-entry__link {
+    align-self: flex-start;
+    margin-top: 16px;
+    font-size: 15px;
+  }
+</style>

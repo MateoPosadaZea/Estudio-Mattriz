@@ -47,7 +47,7 @@ export const category = (name: string, lang: Lang) => (lang === 'es' ? CATEGORY_
 // Textos de interfaz (header, menú, footer, botones, etiquetas accesibles).
 export const UI = {
   en: {
-    nav: ['Home', 'How we work', 'Projects', 'Services', 'Contact'],
+    nav: ['Home', 'How we work', 'Projects', 'Lab', 'Services', 'Contact'],
     talk: 'Let’s talk',
     menu: 'Menu',
     closeMenu: 'Close Menu',
@@ -76,7 +76,7 @@ export const UI = {
     notFoundDesc: 'This page doesn’t exist.',
   },
   es: {
-    nav: ['Inicio', 'Cómo trabajamos', 'Proyectos', 'Servicios', 'Contacto'],
+    nav: ['Inicio', 'Cómo trabajamos', 'Proyectos', 'Lab', 'Servicios', 'Contacto'],
     talk: 'Hablemos',
     menu: 'Menú',
     closeMenu: 'Cerrar menú',
