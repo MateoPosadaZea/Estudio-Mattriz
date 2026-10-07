@@ -147,3 +147,15 @@ html[data-palette='rojo'] {
   --color-ink: #ffffff;
   --color-brand: #0d0d0d;
 }
+
+/* Fondo rojo con texto negro (prueba): los botones rojos pasan a negro. */
+html[data-palette='rojo-negro'] {
+  --bg: #e52603;
+  --fg: #000000;
+  --muted: rgba(0, 0, 0, 0.72);
+  --line: rgba(0, 0, 0, 0.22);
+  --line-strong: rgba(0, 0, 0, 0.42);
+  --accent-text: #000000;
+  --color-ink: #000000;
+  --color-brand: #000000;
+}
