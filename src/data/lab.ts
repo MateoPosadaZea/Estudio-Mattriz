@@ -34,7 +34,7 @@ const COPY: Record<Lang, { metaTitle: string; metaDescription: string; title: st
     entries: [
       {
         num: '001', kind: 'Exploration', year: '2026', title: 'Typography',
-        text: 'The Mattriz wordmark built letter by letter on its grid, with the outlines of Noe Display.',
+        text: 'Mattriz on a Swiss grid: scale, rhythm, cropping, and the wordmark built letter by letter on its own module.',
         media: MEDIA.tipografia,
       },
       {
@@ -61,7 +61,7 @@ const COPY: Record<Lang, { metaTitle: string; metaDescription: string; title: st
     entries: [
       {
         num: '001', kind: 'Exploración', year: '2026', title: 'Tipografía',
-        text: 'El logotipo de Mattriz construido letra por letra sobre su retícula, con los trazos de Noe Display.',
+        text: 'Mattriz sobre una retícula suiza: escala, ritmo, recortes y el logotipo construido letra por letra sobre su propio módulo.',
         media: MEDIA.tipografia,
       },
       {
