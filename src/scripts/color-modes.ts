@@ -1,12 +1,12 @@
 // Modos de color (ColorModes.astro). El modo se aplica antes de pintar en Base.astro (localStorage
 // "mz-mode"); aquí se cambia, se guarda y se sincronizan todos los selectores de la página.
 
-type Mode = 'white' | 'red' | 'dark';
+type Mode = 'white' | 'red' | 'poster' | 'dark';
 const KEY = 'mz-mode';
 const root = document.documentElement;
 const groups = [...document.querySelectorAll<HTMLElement>('[data-modes]')];
 
-const current = (): Mode => (root.dataset.theme !== 'light' ? 'dark' : root.dataset.palette === 'blanco-rojo' ? 'red' : 'white');
+const current = (): Mode => (root.dataset.theme !== 'light' ? 'dark' : root.dataset.palette === 'blanco-rojo' ? 'red' : root.dataset.palette === 'rojo-negro' ? 'poster' : 'white');
 
 const apply = (mode: Mode) => {
   // Mientras cambia el modo, sin transiciones: todo (header incluido) cambia de color a la vez.
@@ -15,6 +15,7 @@ const apply = (mode: Mode) => {
   if (mode === 'dark') delete root.dataset.theme;
   else root.dataset.theme = 'light';
   if (mode === 'red') root.dataset.palette = 'blanco-rojo';
+  else if (mode === 'poster') root.dataset.palette = 'rojo-negro';
   else delete root.dataset.palette;
   try {
     localStorage.setItem(KEY, mode);

@@ -1,5 +1,6 @@
 ---
-// Modos de color: blanco (texto negro), rojo (fondo blanco, texto rojo) y oscuro (negro suave,
+// Modos de color: blanco (texto negro), rojo (fondo blanco, texto rojo), afiche (fondo rojo, texto
+// negro) y oscuro (negro suave,
 // texto blanco). En el header es el ícono de contraste, que despliega los tres en una columna al
 // pasar el mouse (o al tocarlo, en pantallas táctiles y con teclado); en
 // el menú móvil van a la vista, en fila. El modo se guarda (src/scripts/color-modes.ts) y se aplica
@@ -14,7 +15,7 @@ interface Props {
 
 const { class: className, open = false } = Astro.props;
 const t = ui(langOf(Astro.url));
-const MODES = ['white', 'red', 'dark'] as const;
+const MODES = ['white', 'red', 'poster', 'dark'] as const;
 ---
 
 <div class:list={['modes', className, { 'is-open': open, 'modes--static': open }]} data-modes>
@@ -64,7 +65,7 @@ const MODES = ['white', 'red', 'dark'] as const;
     background: color-mix(in srgb, currentColor 10%, transparent);
   }
 
-  /* Columna gris claro (el mismo gris del hover) con las tres muestras, debajo del ícono. */
+  /* Columna gris claro (el mismo gris del hover) con las muestras, debajo del ícono. */
   .modes__panel {
     display: flex;
     align-items: center;
@@ -151,6 +152,7 @@ const MODES = ['white', 'red', 'dark'] as const;
 
   .modes__option--white { --a: #0d0d0d; --b: #ffffff; --o: #0d0d0d; }
   .modes__option--red { --a: #e52603; --b: #ffffff; --o: #e52603; }
+  .modes__option--poster { --a: #000000; --b: #e52603; --o: #e52603; }
   .modes__option--dark { --a: #ffffff; --b: #0d0d0d; --o: #0d0d0d; }
 
   /* En el menú móvil del modo oscuro los contornos negros van en blanco para que se vean. */

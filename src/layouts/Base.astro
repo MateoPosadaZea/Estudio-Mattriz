@@ -105,12 +105,13 @@ const jsonLd = {
     <meta charset="utf-8" />
     <script is:inline>
       document.documentElement.classList.add('js');
-      // Modo de color (ColorModes.astro): blanco por defecto; rojo (texto rojo sobre blanco) u
-      // oscuro si el visitante lo eligió.
+      // Modo de color (ColorModes.astro): blanco por defecto; rojo (texto rojo sobre blanco), afiche
+      // (fondo rojo, texto negro) u oscuro si el visitante lo eligió.
       try {
         var mode = localStorage.getItem('mz-mode');
         if (mode !== 'dark') document.documentElement.dataset.theme = 'light';
         if (mode === 'red') document.documentElement.dataset.palette = 'blanco-rojo';
+        if (mode === 'poster') document.documentElement.dataset.palette = 'rojo-negro';
       } catch (e) {
         document.documentElement.dataset.theme = 'light';
       }

@@ -148,7 +148,7 @@ html[data-palette='rojo'] {
   --color-brand: #0d0d0d;
 }
 
-/* Fondo rojo con texto negro (prueba): los botones rojos pasan a negro. */
+/* Modo afiche (ColorModes.astro): fondo rojo con texto negro; los botones rojos pasan a negro. */
 html[data-palette='rojo-negro'] {
   --bg: #e52603;
   --fg: #000000;
