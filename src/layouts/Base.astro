@@ -7,6 +7,8 @@ import ToTop from '../components/ToTop.astro';
 import Loader from '../components/Loader.astro';
 import Analytics from '../components/Analytics.astro';
 import Cursor from '../components/Cursor.astro';
+import fs from 'node:fs';
+import { createHash } from 'node:crypto';
 import { SITE } from '../data/site';
 import { langOf, alternate, ui, LANGS } from '../i18n';
 
@@ -44,7 +46,16 @@ const pageTone = (() => {
 })();
 const hreflangs = LANGS.map((l) => ({ lang: l, href: new URL(alternate(Astro.url, l), SITE.url).href }));
 const canonical = new URL(Astro.url.pathname, SITE.url).href;
-const ogImageUrl = new URL(ogImage, SITE.url).href;
+// ?v= con la huella del archivo: cuando la imagen cambia, cambia su URL y las redes (WhatsApp,
+// LinkedIn, Facebook) la vuelven a descargar en vez de mostrar la que tienen guardada.
+const ogVersion = (() => {
+  try {
+    return createHash('md5').update(fs.readFileSync(`${process.cwd()}/public${ogImage}`)).digest('hex').slice(0, 8);
+  } catch {
+    return '';
+  }
+})();
+const ogImageUrl = new URL(ogImage, SITE.url).href + (ogVersion ? `?v=${ogVersion}` : '');
 const home = `${SITE.url}/`;
 
 // Datos estructurados equivalentes a los de AIOSEO en el vivo: Organization, WebSite, WebPage y BreadcrumbList.
@@ -167,7 +178,7 @@ const jsonLd = {
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
     <meta property="og:image" content={ogImageUrl} />
-    {ogImageUrl.endsWith('.jpg') && [<meta property="og:image:width" content="1200" />, <meta property="og:image:height" content="630" />]}
+    {ogImage.endsWith('.jpg') && [<meta property="og:image:width" content="1200" />, <meta property="og:image:height" content="630" />]}
     <meta property="og:image:alt" content={title} />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
