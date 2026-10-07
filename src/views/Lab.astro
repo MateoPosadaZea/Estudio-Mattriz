@@ -36,7 +36,19 @@ const c = lab(lang);
               </p>
               <h2 class="lab-entry__title">{e.title}</h2>
               <p class="lab-entry__text">{e.text}</p>
-              {e.credits && <p class="lab-entry__credits">{e.credits}</p>}
+              {e.credits && (
+                <p class="lab-entry__credits">
+                  {e.creditsLink && e.credits.includes(e.creditsLink.text) ? (
+                    <>
+                      {e.credits.split(e.creditsLink.text)[0]}
+                      <a class="u-link" href={e.creditsLink.url} target="_blank" rel="noopener">{e.creditsLink.text}</a>
+                      {e.credits.split(e.creditsLink.text).slice(1).join(e.creditsLink.text)}
+                    </>
+                  ) : (
+                    e.credits
+                  )}
+                </p>
+              )}
               {e.url && (
                 <a class="lab-entry__link u-link" href={e.url} target="_blank" rel="noopener">
                   {e.linkLabel} <span aria-hidden="true">↗</span>
