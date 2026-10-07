@@ -1,6 +1,6 @@
 // Mattriz Lab (/lab/, /es/lab/): lo que el estudio hace por iniciativa propia (exploraciones de
 // marca, proyectos independientes y herramientas), numerado como un archivo que crece. Cada
-// entrada lleva su pieza en public/media/lab/ (video en loop con su primer cuadro, o imagen 4:5).
+// entrada lleva en public/media/lab/ un reel corto en loop (720x900) y su imagen fija (póster).
 import type { Lang } from '../i18n';
 
 export interface LabEntry {
@@ -19,8 +19,8 @@ export interface LabEntry {
 
 const MEDIA = {
   tipografia: { img: '/media/lab/001-tipografia-poster.webp', video: '/media/lab/001-tipografia.mp4' },
-  otraLectura: { img: '/media/lab/002-otra-lectura.webp' },
-  calibre: { img: '/media/lab/003-calibre-perpetuo.webp' },
+  otraLectura: { img: '/media/lab/002-otra-lectura.webp', video: '/media/lab/002-otra-lectura.mp4' },
+  calibre: { img: '/media/lab/003-calibre-perpetuo.webp', video: '/media/lab/003-calibre-perpetuo.mp4' },
 };
 
 const MONOESPACIO = { text: 'Monoespacio', url: 'https://monoespacio.com/' };
