@@ -22,9 +22,9 @@ export const SITE = {
 // de la home (enlace roto en /about/, /contact/…); aquí apunta siempre a la home.
 export const NAV = [
   { label: 'Home', href: '/' },
-  { label: 'How we work', href: '/#how-we-work' },
   { label: 'Projects', href: '/#projects' },
-  { label: 'Lab', href: '/lab/' },
   { label: 'Services', href: '/#services' },
+  { label: 'How we work', href: '/#how-we-work' },
+  { label: 'Lab', href: '/lab/' },
   { label: 'Contact', href: '/contact/' },
 ] as const;
