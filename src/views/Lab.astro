@@ -12,7 +12,6 @@ const c = lab(lang);
 <Base title={c.metaTitle} description={c.metaDescription} ogImage={lang === 'es' ? '/og/lab-es.jpg' : '/og/lab.jpg'} background="var(--bg)" breadcrumb={[{ name: c.title, path: localize('/lab/', lang) }]}>
   <div class="home lab">
     <section class="lab-hero">
-      <p class="lab-eyebrow case-in"><span class="lab-dot" aria-hidden="true"></span>{c.eyebrow}</p>
       <h1 class="lab-title" aria-label={c.title}>
         <span class="case-mask" aria-hidden="true"><span>{c.title}</span></span>
       </h1>
@@ -87,22 +86,6 @@ const c = lab(lang);
       min-height: 62vh;
       min-height: 62svh;
     }
-  }
-
-  .lab-eyebrow {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: clamp(20px, 2.4vw, 36px);
-    font-size: 15px;
-    color: var(--muted);
-  }
-
-  .lab-dot {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: var(--color-brand);
   }
 
   .lab-title {

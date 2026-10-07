@@ -25,11 +25,10 @@ const MEDIA = {
 
 const MONOESPACIO = { text: 'Monoespacio', url: 'https://monoespacio.com/' };
 
-const COPY: Record<Lang, { metaTitle: string; metaDescription: string; eyebrow: string; title: string; intro: string; entries: LabEntry[] }> = {
+const COPY: Record<Lang, { metaTitle: string; metaDescription: string; title: string; intro: string; entries: LabEntry[] }> = {
   en: {
     metaTitle: 'Lab | Mattriz Studio',
     metaDescription: 'Mattriz Lab: brand explorations, independent projects and tools the studio makes on its own, numbered as an archive that grows.',
-    eyebrow: 'Mattriz Lab',
     title: 'Lab',
     intro: 'What we make when nobody asks: brand explorations, independent projects and tools. Numbered, as an archive that keeps growing.',
     entries: [
@@ -57,7 +56,6 @@ const COPY: Record<Lang, { metaTitle: string; metaDescription: string; eyebrow: 
   es: {
     metaTitle: 'Laboratorio | Mattriz Studio',
     metaDescription: 'Laboratorio Mattriz: exploraciones de marca, proyectos independientes y herramientas que el estudio hace por iniciativa propia, numerados como un archivo que crece.',
-    eyebrow: 'Mattriz',
     title: 'Laboratorio',
     intro: 'Lo que hacemos cuando nadie nos lo pide: exploraciones de marca, proyectos independientes y herramientas. Numerado, como un archivo que sigue creciendo.',
     entries: [
