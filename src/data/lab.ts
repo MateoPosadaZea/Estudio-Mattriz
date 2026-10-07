@@ -47,7 +47,7 @@ const COPY: Record<Lang, { metaTitle: string; metaDescription: string; eyebrow: 
       {
         num: '003', kind: 'Project', year: '2025', title: 'Calibre Perpetuo',
         text: 'Antique watches and lighters with a story, for people who value them. A shared project, run more to enjoy and learn than to sell fast.',
-        credits: 'Identity: Monoespacio and Mattriz. Store on WooCommerce: Mattriz.',
+        credits: 'Identity: Monoespacio and Mattriz.',
         creditsLink: MONOESPACIO,
         url: 'https://calibreperpetuo.com/', linkLabel: 'calibreperpetuo.com',
         media: MEDIA.calibre,
@@ -75,7 +75,7 @@ const COPY: Record<Lang, { metaTitle: string; metaDescription: string; eyebrow: 
       {
         num: '003', kind: 'Proyecto', year: '2025', title: 'Calibre Perpetuo',
         text: 'Relojes y encendedores antiguos con historia, para quienes los valoran. Un proyecto compartido, más para disfrutar y aprender que para vender rápido.',
-        credits: 'Identidad: Monoespacio y Mattriz. Tienda en WooCommerce: Mattriz.',
+        credits: 'Identidad: Monoespacio y Mattriz.',
         creditsLink: MONOESPACIO,
         url: 'https://calibreperpetuo.com/', linkLabel: 'calibreperpetuo.com',
         media: MEDIA.calibre,
