@@ -169,8 +169,8 @@ const t = ui(lang);
     background: var(--color-brand);
   }
 
-  /* Modo afiche (fondo rojo, texto negro): al bajar la píldora es negra con el texto rojo y el
-     botón rojo con texto negro. Fondo y texto cambian a la vez, sin retraso entre ellos. */
+  /* Modo afiche (fondo rojo, texto negro): al bajar la píldora es negra con el texto blanco y el
+     botón rojo con texto blanco. Fondo y texto cambian a la vez, sin retraso entre ellos. */
   :global(html[data-palette='rojo-negro']) .site-header {
     --bg-delay: 0s;
     --fg-delay: 0s;
@@ -178,11 +178,11 @@ const t = ui(lang);
 
   :global(html[data-palette='rojo-negro']) .site-header:not(.is-top) {
     background: #000000;
-    color: #e52603;
+    color: #ffffff;
   }
 
   :global(html[data-palette='rojo-negro']) .site-header:not(.is-top) .talk-button {
-    color: #000000;
+    color: #ffffff;
   }
 
   :global(html[data-palette='rojo-negro']) .site-header:not(.is-top) .talk-button::before {
