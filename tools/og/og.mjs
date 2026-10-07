@@ -59,13 +59,13 @@ const css = `
   .top { display: flex; justify-content: space-between; align-items: baseline; }
   .logo { font: 700 38px/1 NoeBold, serif; letter-spacing: -0.02em; }
   .url { font-size: 20px; color: rgba(13,13,13,.56); }
-  .dot { color: #e0553f; }
+  .dot { color: #e52603; }
   h1 { font: 500 104px/0.94 Noe, serif; letter-spacing: -0.035em; }
   .home { margin-top: auto; display: grid; gap: 34px; }
   .home p { max-width: 34em; padding-top: 26px; border-top: 1px solid rgba(13,13,13,.16); color: rgba(13,13,13,.72); }
   .case { margin-top: auto; display: grid; grid-template-columns: 1fr 470px; gap: 48px; align-items: end; }
   .case .eyebrow { font-size: 19px; color: rgba(13,13,13,.56); margin-bottom: 20px; display: flex; gap: 10px; align-items: center; }
-  .case .eyebrow i { width: 9px; height: 9px; border-radius: 50%; background: #e0553f; }
+  .case .eyebrow i { width: 9px; height: 9px; border-radius: 50%; background: #e52603; }
   .case h1 { font-size: 76px; line-height: 0.98; max-width: none; margin-bottom: 26px; text-wrap: balance; }
   .case p { font-size: 22px; color: rgba(13,13,13,.72); max-width: 24em; }
   .shot { width: 470px; height: 352px; border-radius: 6px; overflow: hidden; background: #ebebeb; }

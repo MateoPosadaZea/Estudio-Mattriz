@@ -9,7 +9,7 @@
   --color-black: #0d0d0d;           /* el negro de la marca (no negro puro) */
   --color-ink: #0d0d0d;             /* color base del body */
   --color-white: #ffffff;
-  --color-brand: #e0553f;           /* rojo de marca: botones, detalles y el punto del loader */
+  --color-brand: #e52603;           /* rojo de marca: botones, detalles y el punto del loader */
   --color-status-green: #55c91c;    /* punto de estado (ya no se usa en el sitio) */
   --color-hero-overlay: rgba(0, 0, 0, 0.78);
   --color-hero-overlay-opacity: 0.8;
@@ -106,7 +106,7 @@ html[data-theme='light'] {
   --line-strong: rgba(13, 13, 13, 0.3);
   --error: #b3261e;
   /* El rojo de marca como texto pequeño sobre blanco no llega a AA: un tono más oscuro. */
-  --accent-text: #c23f2b;
+  --accent-text: #c91f00;
   color-scheme: light;
 }
 
@@ -138,7 +138,7 @@ html[data-palette='grafito'] {
 
 /* Fondo rojo con texto blanco: los botones rojos pasan a negro para no perderse. */
 html[data-palette='rojo'] {
-  --bg: #e0553f;
+  --bg: #e52603;
   --fg: #ffffff;
   --muted: rgba(255, 255, 255, 0.78);
   --line: rgba(255, 255, 255, 0.3);
