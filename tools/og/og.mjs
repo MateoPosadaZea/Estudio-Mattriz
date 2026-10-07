@@ -2,6 +2,7 @@
 // texto negro #0D0D0D, rojo de marca como detalle, Noe Display y Maison Neue.
 // - home.jpg / home-es.jpg: el titular del home.
 // - <caso>.jpg / <caso>-es.jpg: nombre del caso, resumen y la portada del proyecto.
+// - about, contact, scan, lab (+ -es): el titular de cada página y una línea corta; lab lleva sus portadas.
 // Uso: se copia a tools/capture (que tiene Playwright) y se corre ahí: cp ../og/og.mjs _og.mjs && node _og.mjs
 import { chromium } from 'playwright';
 import fs from 'node:fs';
@@ -49,6 +50,26 @@ const CASES = [
     'Marca y diseño de interfaz para una app para intercambiar y vender la ropa y los libros que ya no se usan.'],
 ];
 
+// Páginas internas: [archivo, { en: [etiqueta, titular, línea], es: [...] }, imágenes opcionales].
+const PAGES = [
+  ['about', {
+    en: ['About', 'We blend design and technology to grow your business.', 'A design and development studio in Bogotá. Websites, online stores and booking systems.'],
+    es: ['Sobre Mattriz', 'Unimos diseño y tecnología para hacer crecer tu negocio.', 'Un estudio de diseño y desarrollo en Bogotá. Sitios web, tiendas en línea y sistemas de reservas.'],
+  }],
+  ['contact', {
+    en: ['Contact', 'Let’s talk about your project.', 'Tell us what you need. We reply within one business day.'],
+    es: ['Contacto', 'Hablemos de tu proyecto.', 'Cuéntanos qué necesitas. Te respondemos en un día hábil.'],
+  }],
+  ['scan', {
+    en: ['Free tool', 'Scan your site.', 'See what your site runs on, what it is missing and what we would build, step by step.'],
+    es: ['Herramienta gratis', 'Escanea tu sitio.', 'Mira en qué está hecho tu sitio, qué le falta y qué construiríamos, paso a paso.'],
+  }],
+  ['lab', {
+    en: ['Mattriz Lab', 'Lab', 'Brand explorations, independent projects and tools.'],
+    es: ['Mattriz', 'Laboratorio', 'Exploraciones de marca, proyectos independientes y herramientas.'],
+  }, ['/media/lab/001-tipografia-poster.webp', '/media/lab/002-otra-lectura.webp', '/media/lab/003-calibre-perpetuo.webp']],
+];
+
 const css = `
   @font-face { font-family: Noe; src: ${font('Noe-Display.woff2')}; font-weight: 500; }
   @font-face { font-family: NoeBold; src: ${font('Noe-Display-Bold.woff2')}; font-weight: 700; }
@@ -68,6 +89,15 @@ const css = `
   .case .eyebrow i { width: 9px; height: 9px; border-radius: 50%; background: #e52603; }
   .case h1 { font-size: 76px; line-height: 0.98; max-width: none; margin-bottom: 26px; text-wrap: balance; }
   .case p { font-size: 22px; color: rgba(13,13,13,.72); max-width: 24em; }
+  .pg { margin-top: auto; display: grid; grid-template-columns: 1fr auto; gap: 40px; align-items: end; }
+  .pg .eyebrow { font-size: 19px; color: rgba(13,13,13,.56); margin-bottom: 20px; display: flex; gap: 10px; align-items: center; }
+  .pg .eyebrow i { width: 9px; height: 9px; border-radius: 50%; background: #e52603; }
+  .pg h1 { font-size: 88px; line-height: 0.96; margin-bottom: 26px; text-wrap: balance; max-width: 11em; }
+  .pg p { font-size: 22px; color: rgba(13,13,13,.72); max-width: 26em; }
+  .pg.has-imgs h1 { font-size: 96px; }
+  .pg.has-imgs p { max-width: 15em; }
+  .covers { display: flex; gap: 12px; }
+  .covers img { width: 172px; height: 215px; object-fit: cover; display: block; }
   .shot { width: 470px; height: 352px; border-radius: 6px; overflow: hidden; background: #ebebeb; }
   .shot img { width: 100%; height: 100%; object-fit: cover; object-position: top center; display: block; }
 `;
@@ -95,6 +125,12 @@ for (const [slug, name, shot, en, es] of CASES) {
   for (const [lang, text] of [['en', en], ['es', es]]) {
     const eyebrow = lang === 'en' ? 'Case study' : 'Caso de estudio';
     await shoot(lang === 'en' ? slug : `${slug}-es`, `${top}<div class="case"><div><div class="eyebrow"><i></i>${eyebrow}</div><h1>${name}</h1><p>${text}</p></div><div class="shot"><img src="${img(shot)}" alt=""></div></div>`);
+  }
+}
+for (const [slug, copy, imgs] of PAGES) {
+  for (const [lang, [eyebrow, title, text]] of Object.entries(copy)) {
+    const covers = imgs ? `<div class="covers">${imgs.map((i) => `<img src="${img(i)}" alt="">`).join('')}</div>` : '';
+    await shoot(lang === 'en' ? slug : `${slug}-es`, `${top}<div class="pg${imgs ? ' has-imgs' : ''}"><div><div class="eyebrow"><i></i>${eyebrow}</div><h1>${title}</h1><p>${text}</p></div>${covers}</div>`);
   }
 }
 await b.close();

@@ -9,7 +9,7 @@ const lang = langOf(Astro.url);
 const c = lab(lang);
 ---
 
-<Base title={c.metaTitle} description={c.metaDescription} background="var(--bg)" breadcrumb={[{ name: c.title, path: localize('/lab/', lang) }]}>
+<Base title={c.metaTitle} description={c.metaDescription} ogImage={lang === 'es' ? '/og/lab-es.jpg' : '/og/lab.jpg'} background="var(--bg)" breadcrumb={[{ name: c.title, path: localize('/lab/', lang) }]}>
   <div class="home lab">
     <section class="lab-hero">
       <p class="lab-eyebrow case-in"><span class="lab-dot" aria-hidden="true"></span>{c.eyebrow}</p>

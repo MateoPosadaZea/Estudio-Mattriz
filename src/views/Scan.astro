@@ -13,7 +13,7 @@ const turnstileKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
 const config = { lang, copy: c };
 ---
 
-<Base title={c.metaTitle} description={c.metaDescription} background="var(--bg)" breadcrumb={[{ name: c.title.replace(/\.$/, ''), path: lang === 'es' ? '/es/scan/' : '/scan/' }]}>
+<Base title={c.metaTitle} description={c.metaDescription} ogImage={lang === 'es' ? '/og/scan-es.jpg' : '/og/scan.jpg'} background="var(--bg)" breadcrumb={[{ name: c.title.replace(/\.$/, ''), path: lang === 'es' ? '/es/scan/' : '/scan/' }]}>
   <div class="home scan" data-scan>
     <script type="application/json" data-scan-config set:html={JSON.stringify(config)} />
 
