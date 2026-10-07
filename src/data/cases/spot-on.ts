@@ -128,10 +128,14 @@ const TEXT = {
       title: 'Built fast. Running in production.',
       intro: 'The system went live in March 2026 and has been in production since, adding capabilities every few weeks without breaking what was already running.',
       stats: [
-        { value: '350+', label: 'Vehicles detailed' },
-        { value: '4.9★', label: 'Customer rating' },
-        { value: '95%', label: 'Repeat clients' },
+        { value: '153', label: 'Bookings through the system in five months' },
+        { value: '$23,770', label: 'Booked and charged through the system' },
+        { value: '86%', label: 'Average occupancy of the corporate program, 8.6 of 10 spots per session' },
+        { value: '2.7×', label: 'Online bookings per month, from 7 in June to 19 in September' },
+        { value: '70', label: 'Employees served by the corporate program; 24% came back for another session' },
+        { value: '118', label: 'Post-service follow-ups sent on their own, with a link to leave a Google review' },
       ],
+      after: '<p>Data as of October 7, 2026, straight from the system’s database: bookings made through the site and the owner’s panel, excluding tests and internal ones. Sales Spot On closes outside the system are not included.</p>',
       quote:
         'The turning point was mid-May. Before then, the digital side was essentially a quote-capture form. After it, a customer could book, pay and schedule with zero human involvement, with automatic charging and refunds built in. That single shift is what took the owner out of the critical path.',
     },
@@ -145,6 +149,8 @@ const TEXT = {
         { date: 'May 2026', title: 'Full self-service booking + payment.', text: 'The turning point: customers close on their own.' },
         { date: 'Jun 2026', title: 'Session & access reminders.', text: 'Manual coordination becomes automatic.' },
         { date: 'Jul 2026', title: 'Self-promoting waitlist.', text: 'Slots that used to move by hand now manage themselves.' },
+        { date: 'Jul 2026', title: 'Online deposit.', text: '25% is charged at booking; the rest on the day of the service.' },
+        { date: 'Sep 2026', title: 'One domain, eight city pages.', text: 'Three versions of the domain consolidated into one, plus a page for each city served.' },
       ],
     },
     cta: {
@@ -206,10 +212,14 @@ const TEXT = {
       title: 'Construido rápido. Funcionando en producción.',
       intro: 'El sistema salió en marzo de 2026 y está en producción desde entonces, sumando funciones cada pocas semanas sin romper lo que ya funcionaba.',
       stats: [
-        { value: '350+', label: 'Vehículos atendidos' },
-        { value: '4.9★', label: 'Calificación de clientes' },
-        { value: '95 %', label: 'Clientes que vuelven' },
+        { value: '153', label: 'Reservas por el sistema en cinco meses' },
+        { value: 'US$23.770', label: 'Reservados y cobrados por el sistema' },
+        { value: '86 %', label: 'Ocupación promedio del programa corporativo: 8,6 de 10 cupos por sesión' },
+        { value: '2,7×', label: 'Reservas en línea al mes, de 7 en junio a 19 en septiembre' },
+        { value: '70', label: 'Empleados atendidos en el programa corporativo; el 24 % volvió a otra sesión' },
+        { value: '118', label: 'Seguimientos después del servicio enviados solos, con enlace para dejar reseña en Google' },
       ],
+      after: '<p>Datos al 7 de octubre de 2026, tomados directo de la base del sistema: reservas hechas por el sitio y por el panel del dueño, sin pruebas ni internas. No incluye las ventas que Spot On cierra por fuera del sistema.</p>',
       quote:
         'El punto de quiebre fue a mediados de mayo. Hasta entonces, lo digital era básicamente un formulario para pedir cotizaciones. Desde ahí, un cliente podía reservar, pagar y agendar sin intervención humana, con cobros y reembolsos automáticos. Ese cambio fue lo que sacó al dueño del camino crítico.',
     },
@@ -223,6 +233,8 @@ const TEXT = {
         { date: 'May 2026', title: 'Reserva y pago 100 % autoservicio.', text: 'El punto de quiebre: los clientes cierran solos.' },
         { date: 'Jun 2026', title: 'Recordatorios de sesión y de acceso.', text: 'La coordinación manual se vuelve automática.' },
         { date: 'Jul 2026', title: 'Lista de espera que se mueve sola.', text: 'Los cupos que antes se movían a mano ahora se manejan solos.' },
+        { date: 'Jul 2026', title: 'Depósito en línea.', text: 'Se cobra el 25 % al reservar; el resto, el día del servicio.' },
+        { date: 'Sep 2026', title: 'Un solo dominio, ocho páginas de ciudad.', text: 'Tres versiones del dominio se consolidan en una, con una página por cada ciudad que atiende.' },
       ],
     },
     cta: {
