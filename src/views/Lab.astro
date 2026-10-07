@@ -67,9 +67,14 @@ const c = lab(lang);
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
-    min-height: 62vh;
-    min-height: 62svh;
     padding: calc(var(--header-top) + var(--header-height) + 40px) var(--pad) clamp(24px, 4vw, 48px);
+  }
+
+  @media (min-width: 690px) {
+    .lab-hero {
+      min-height: 62vh;
+      min-height: 62svh;
+    }
   }
 
   .lab-eyebrow {
@@ -91,7 +96,7 @@ const c = lab(lang);
   .lab-title {
     margin-left: -0.04em;
     font-family: var(--font-display);
-    font-size: clamp(88px, 18vw, 300px);
+    font-size: clamp(56px, 13vw, 220px);
     font-weight: 500;
     line-height: 0.9;
     letter-spacing: -0.04em;

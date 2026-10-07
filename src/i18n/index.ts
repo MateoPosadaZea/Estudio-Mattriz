@@ -76,7 +76,7 @@ export const UI = {
     notFoundDesc: 'This page doesn’t exist.',
   },
   es: {
-    nav: ['Inicio', 'Cómo trabajamos', 'Proyectos', 'Lab', 'Servicios', 'Contacto'],
+    nav: ['Inicio', 'Cómo trabajamos', 'Proyectos', 'Laboratorio', 'Servicios', 'Contacto'],
     talk: 'Hablemos',
     menu: 'Menú',
     closeMenu: 'Cerrar menú',

@@ -50,10 +50,10 @@ const COPY: Record<Lang, { metaTitle: string; metaDescription: string; eyebrow: 
     ],
   },
   es: {
-    metaTitle: 'Lab | Mattriz Studio',
-    metaDescription: 'Mattriz Lab: exploraciones de marca, proyectos independientes y herramientas que el estudio hace por iniciativa propia, numerados como un archivo que crece.',
-    eyebrow: 'Mattriz Lab',
-    title: 'Lab',
+    metaTitle: 'Laboratorio | Mattriz Studio',
+    metaDescription: 'Laboratorio Mattriz: exploraciones de marca, proyectos independientes y herramientas que el estudio hace por iniciativa propia, numerados como un archivo que crece.',
+    eyebrow: 'Mattriz',
+    title: 'Laboratorio',
     intro: 'Lo que hacemos cuando nadie nos lo pide: exploraciones de marca, proyectos independientes y herramientas. Numerado, como un archivo que sigue creciendo.',
     entries: [
       {
