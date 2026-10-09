@@ -21,7 +21,6 @@ const MEDIA = {
   tipografia: { img: '/media/lab/001-tipografia-poster.webp', video: '/media/lab/001-tipografia.mp4' },
   otraLectura: { img: '/media/lab/002-otra-lectura.webp', video: '/media/lab/002-otra-lectura.mp4' },
   calibre: { img: '/media/lab/003-calibre-perpetuo.webp', video: '/media/lab/003-calibre-perpetuo.mp4' },
-  capotte: { img: '/media/lab/004-capotte.webp', video: '/media/lab/004-capotte.mp4' },
 };
 
 const MONOESPACIO = { text: 'Monoespacio', url: 'https://monoespacio.com/' };
@@ -52,12 +51,6 @@ const COPY: Record<Lang, { metaTitle: string; metaDescription: string; title: st
         url: 'https://calibreperpetuo.com/', linkLabel: 'calibreperpetuo.com',
         media: MEDIA.calibre,
       },
-      {
-        num: '004', kind: 'Project · In progress', year: '2026', title: 'Capotte',
-        text: 'Reading and after-dinner glasses from Bogotá. A small house with its own plate, the leopard, its seal and two colors.',
-        credits: 'A shared project. Identity and web: Mattriz.',
-        media: MEDIA.capotte,
-      },
     ],
   },
   es: {
@@ -84,12 +77,6 @@ const COPY: Record<Lang, { metaTitle: string; metaDescription: string; title: st
         creditsLink: MONOESPACIO,
         url: 'https://calibreperpetuo.com/', linkLabel: 'calibreperpetuo.com',
         media: MEDIA.calibre,
-      },
-      {
-        num: '004', kind: 'Proyecto · En proceso', year: '2026', title: 'Capotte',
-        text: 'Gafas para leer y para la sobremesa, desde Bogotá. Una casa pequeña con su lámina, el leopardo, su sello y dos colores.',
-        credits: 'Un proyecto compartido. Identidad y web: Mattriz.',
-        media: MEDIA.capotte,
       },
     ],
   },
