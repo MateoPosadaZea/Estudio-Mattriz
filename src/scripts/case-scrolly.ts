@@ -73,6 +73,7 @@ async function init(el: HTMLElement) {
       end: () => '+=' + window.innerHeight * 5,
       scrub: 0.6,
       invalidateOnRefresh: true,
+      onToggle: (self) => document.querySelector('[data-case-float]')?.classList.toggle('is-away', self.isActive),
     },
   });
   // Cada paso grabado recibe el mismo tramo de scroll, aunque en la grabación duren distinto.

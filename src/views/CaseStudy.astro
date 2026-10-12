@@ -150,12 +150,14 @@ const sizes = { pair: '(max-width: 690px) 100vw, 50vw', trio: '(max-width: 690px
           </div>
         ) : b.kind === 'scrolly' ? (
           <section class="case-scrolly" data-scrolly data-dir={b.frames.dir} data-count={b.frames.count} data-starts={JSON.stringify(b.starts)}>
+            <div class="case-scrolly__head">
+              <p class="case-label" data-case-reveal>
+                <span>{numbered.get(b)}</span> {b.label}
+              </p>
+              {b.title && <h2 class="case-heading" data-case-reveal>{b.title}</h2>}
+            </div>
             <div class="case-scrolly__pin">
               <div class="case-scrolly__copy">
-                <p class="case-label">
-                  <span>{numbered.get(b)}</span> {b.label}
-                </p>
-                {b.title && <h2 class="case-heading">{b.title}</h2>}
                 <ol class="case-scrolly__steps">
                   {b.steps.map((st, i) => (
                     <li class:list={[i === 0 && 'is-on']}>
@@ -541,6 +543,13 @@ const sizes = { pair: '(max-width: 690px) 100vw, 50vw', trio: '(max-width: 690px
     pointer-events: auto;
   }
 
+  /* Mientras la reserva está fija, el botón se aparta para no tapar los pasos. */
+  .case-float.is-shown.is-away {
+    opacity: 0;
+    transform: translateY(12px);
+    pointer-events: none;
+  }
+
   @media (hover: hover) {
     .case-float:hover {
       background: var(--fg);
@@ -599,11 +608,15 @@ const sizes = { pair: '(max-width: 690px) 100vw, 50vw', trio: '(max-width: 690px
 
   /* Reserva contada con el scroll (src/scripts/case-scrolly.ts). Sin JS o con movimiento reducido
      se ve fija: el primer cuadro y todos los pasos. */
+  .case-scrolly__head {
+    padding: clamp(80px, 12vw, 200px) var(--pad) 0;
+  }
+
   .case-scrolly__pin {
     display: grid;
     grid-template-columns: 1fr;
     gap: 40px;
-    padding: clamp(80px, 12vw, 200px) var(--pad);
+    padding: 48px var(--pad) clamp(80px, 12vw, 200px);
   }
 
   .case-scrolly__copy {
@@ -612,11 +625,11 @@ const sizes = { pair: '(max-width: 690px) 100vw, 50vw', trio: '(max-width: 690px
 
   .case-scrolly .case-heading {
     margin-top: 18px;
-    max-width: 12ch;
+    max-width: 18ch;
   }
 
   .case-scrolly__steps {
-    margin-top: 40px;
+    margin: 0;
     padding: 0;
     list-style: none;
   }
@@ -646,6 +659,7 @@ const sizes = { pair: '(max-width: 690px) 100vw, 50vw', trio: '(max-width: 690px
     font-size: 16px;
     line-height: 1.4;
     color: var(--muted);
+    transition: opacity 0.35s, max-height 0.45s var(--ease-out), margin-top 0.45s var(--ease-out);
   }
 
   .case-scrolly__bar {
@@ -692,11 +706,14 @@ const sizes = { pair: '(max-width: 690px) 100vw, 50vw', trio: '(max-width: 690px
   }
 
   /* Con la animación activa: la sección se fija y solo el paso actual queda encendido. */
+  /* La parte fija ocupa la pantalla bajo el header y deja todo a la vista, incluso en ventanas bajas. */
   .case-scrolly.is-live .case-scrolly__pin {
-    min-height: 100vh;
-    min-height: 100svh;
+    --top: calc(var(--header-top, 16px) + var(--header-height, 56px) + 24px);
+    height: 100vh;
+    height: 100svh;
     align-content: center;
-    padding-block: clamp(56px, 8vh, 96px);
+    padding-top: var(--top);
+    padding-bottom: 24px;
   }
 
   .case-scrolly.is-live canvas {
@@ -722,19 +739,12 @@ const sizes = { pair: '(max-width: 690px) 100vw, 50vw', trio: '(max-width: 690px
     .case-scrolly.is-live .case-scrolly__phone {
       order: -1;
       width: auto;
-      height: 46svh;
-    }
-
-    .case-scrolly.is-live .case-heading {
-      font-size: 30px;
-      line-height: 1.08;
-      max-width: none;
+      height: min(56svh, calc(100svh - var(--top) - 150px));
     }
 
     .case-scrolly.is-live .case-scrolly__steps {
       position: relative;
       min-height: 96px;
-      margin-top: 32px;
     }
 
     .case-scrolly.is-live .case-scrolly__steps li {
@@ -758,7 +768,34 @@ const sizes = { pair: '(max-width: 690px) 100vw, 50vw', trio: '(max-width: 690px
 
     .case-scrolly.is-live .case-scrolly__phone {
       width: auto;
-      height: min(82vh, 860px);
+      height: min(860px, calc(100svh - var(--top) - 24px));
+    }
+
+    /* Los pasos apagados muestran solo el nombre; el encendido abre su descripción. */
+    /* En ventanas bajas los pasos se compactan con el alto disponible para que quepan los seis. */
+    .case-scrolly.is-live .case-scrolly__steps li {
+      padding: clamp(6px, 1.4vh, 14px) 0;
+    }
+
+    .case-scrolly.is-live .case-scrolly__term {
+      font-size: clamp(16px, 2.6vh, 22px);
+    }
+
+    .case-scrolly.is-live .case-scrolly__desc {
+      font-size: clamp(14px, 1.9vh, 16px);
+    }
+
+    .case-scrolly.is-live .case-scrolly__desc {
+      max-height: 0;
+      margin-top: 0;
+      overflow: hidden;
+      opacity: 0;
+    }
+
+    .case-scrolly.is-live li.is-on .case-scrolly__desc {
+      max-height: 4.5em;
+      margin-top: 6px;
+      opacity: 1;
     }
 
     .case-scrolly.is-live .case-scrolly__bar {
