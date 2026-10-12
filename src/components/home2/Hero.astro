@@ -46,19 +46,20 @@ const TRAIL = ['spot-on', 'santo-y-sena', 'the-grid', 'civilus', 'posada', 'agl'
 </section>
 
 <script>
-  // Estela de portadas al pasar el cursor por el titular: cada cierto trecho aparece una portada
-  // donde está el cursor, se apila sobre las anteriores y se va sola. Solo con mouse o trackpad y
-  // sin movimiento reducido; las imágenes se piden la primera vez que el cursor entra.
+  // Estela de portadas al mover el cursor por el bloque del titular (todo el hero menos la franja del
+  // subtítulo y los enlaces): cada cierto trecho aparece una portada donde está el cursor, se apila
+  // sobre las anteriores y se va sola. Solo con mouse o trackpad y sin movimiento reducido; las
+  // imágenes se piden la primera vez que el cursor entra.
   const trail = document.querySelector<HTMLElement>('[data-trail]');
-  const title = document.querySelector<HTMLElement>('.h-hero__title');
+  const block = document.querySelector<HTMLElement>('.h-hero');
   const fine = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
   const still = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (trail && title && fine && !still) {
+  if (trail && block && fine && !still) {
     const srcs: string[] = JSON.parse(trail.dataset.trail!);
     let imgs: HTMLImageElement[] = [];
     let n = 0;
     let last: { x: number; y: number } | null = null;
-    const GAP = 42; // corto: las portadas salen pegadas, como un mazo que sigue al cursor
+    const GAP = 64; // las portadas salen seguidas pero sin amontonarse; pocas a la vez para no tapar el texto
     const load = () => {
       if (imgs.length) return;
       imgs = srcs.map((src) => Object.assign(new Image(), { src, decoding: 'async' }));
@@ -71,13 +72,14 @@ const TRAIL = ['spot-on', 'santo-y-sena', 'the-grid', 'civilus', 'posada', 'agl'
       el.style.left = `${x}px`;
       el.style.top = `${y}px`;
       trail.append(el);
-      while (trail.children.length > 9) trail.firstElementChild!.remove();
+      while (trail.children.length > 5) trail.firstElementChild!.remove();
       const ease = 'cubic-bezier(0.2, 1, 0.3, 1)';
-      el.animate([{ opacity: 0, transform: 'translate(-50%, -50%) scale(0.6)' }, { opacity: 1, transform: 'translate(-50%, -50%) scale(1)' }], { duration: 600, easing: ease, fill: 'forwards' });
-      el.animate([{ opacity: 1, transform: 'translate(-50%, -50%) scale(1)' }, { opacity: 0, transform: 'translate(-50%, -50%) scale(0.85)' }], { duration: 650, delay: 900, easing: 'ease-in-out', fill: 'forwards' }).onfinish = () => el.remove();
+      el.animate([{ opacity: 0, transform: 'translate(-50%, -50%) scale(0.92)' }, { opacity: 0.9, transform: 'translate(-50%, -50%) scale(1)' }], { duration: 500, easing: ease, fill: 'forwards' });
+      el.animate([{ opacity: 0.9, transform: 'translate(-50%, -50%) scale(1)' }, { opacity: 0, transform: 'translate(-50%, -50%) scale(0.96)' }], { duration: 600, delay: 450, easing: 'ease-in-out', fill: 'forwards' }).onfinish = () => el.remove();
     };
-    title.addEventListener('pointerenter', load);
-    title.addEventListener('pointermove', (e) => {
+    block.addEventListener('pointerenter', load);
+    block.addEventListener('pointermove', (e) => {
+      if ((e.target as Element).closest('a, button, .h-hero__foot')) return void (last = null);
       const r = trail.getBoundingClientRect();
       const x = e.clientX - r.left, y = e.clientY - r.top;
       if (!last || Math.hypot(x - last.x, y - last.y) > GAP) {
@@ -85,7 +87,7 @@ const TRAIL = ['spot-on', 'santo-y-sena', 'the-grid', 'civilus', 'posada', 'agl'
         spawn(x, y);
       }
     });
-    title.addEventListener('pointerleave', () => (last = null));
+    block.addEventListener('pointerleave', () => (last = null));
   }
 
   // Solo en celular, y con tiempo: primero se lee, y si en 15 s nadie ha bajado, aparece el ícono.
@@ -139,7 +141,7 @@ const TRAIL = ['spot-on', 'santo-y-sena', 'the-grid', 'civilus', 'posada', 'agl'
 
   .h-trail :global(.h-trail__img) {
     position: absolute;
-    width: clamp(96px, 8vw, 150px);
+    width: clamp(72px, 5.5vw, 104px);
     aspect-ratio: 4 / 5;
     object-fit: cover;
     border-radius: var(--btn-radius);
