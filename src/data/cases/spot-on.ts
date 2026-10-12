@@ -25,22 +25,6 @@ const HERO = img('spot-on-hero', 1600, 787, [1600, 1200, 700], {
   es: 'El sitio de Spot On: más de 350 vehículos atendidos, calificación de 4.9★ y 95 % de clientes que vuelven.',
 });
 
-const BOOKING = img('spot-on-booking', 1600, 782, [1600, 1200, 700], {
-  en: 'Spot On booking flow: customers pick a service and see live pricing',
-  es: 'Flujo de reserva de Spot On: el cliente elige un servicio y ve el precio en vivo',
-}, {
-  en: 'Step-by-step booking: service, vehicle, add-ons, date and payment, with the price calculated live.',
-  es: 'Reserva paso a paso: servicio, vehículo, adicionales, fecha y pago, con el precio calculado en vivo.',
-});
-
-const CALENDAR = img('spot-on-calendar', 1600, 1053, [1600, 1200, 700], {
-  en: 'Spot On availability calendar with real-time slots',
-  es: 'Calendario de disponibilidad de Spot On con horarios en tiempo real',
-}, {
-  en: 'Customers pick from real available slots. No back-and-forth, no phone tag.',
-  es: 'El cliente elige entre horarios realmente disponibles. Sin idas y vueltas, sin llamadas perdidas.',
-});
-
 const CORPORATE = img('spot-on-corporate', 1396, 1232, [1396, 1200, 700], {
   en: 'Spot On corporate program landing page for on-site office detailing',
   es: 'Página del programa corporativo de Spot On para detailing en la oficina',
@@ -297,8 +281,8 @@ export function spotOn(lang: Lang): CaseDoc {
         starts: [0, 16, 33, 88, 150, 175],
         end: { src: `${DIR}/scrolly/pago.webp`, alt: t.scrolly.endAlt },
       },
-      { kind: 'media', layout: 'pair', items: [HERO(lang), BOOKING(lang)] },
-      { kind: 'media', layout: 'inset', items: [CALENDAR(lang)] },
+      // La reserva y el calendario ya se cuentan en la sección con scroll; aquí queda solo la portada del sitio.
+      { kind: 'media', layout: 'wide', items: [HERO(lang)] },
       { kind: 'list', ...t.corporate },
       { kind: 'media', layout: 'wide', items: [CORPORATE_FLOW(lang)] },
       { kind: 'media', layout: 'inset', items: [CORPORATE(lang)] },
