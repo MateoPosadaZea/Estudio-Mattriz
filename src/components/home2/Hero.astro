@@ -58,7 +58,7 @@ const TRAIL = ['spot-on', 'santo-y-sena', 'the-grid', 'civilus', 'posada', 'agl'
     let imgs: HTMLImageElement[] = [];
     let n = 0;
     let last: { x: number; y: number } | null = null;
-    const GAP = 90;
+    const GAP = 42; // corto: las portadas salen pegadas, como un mazo que sigue al cursor
     const load = () => {
       if (imgs.length) return;
       imgs = srcs.map((src) => Object.assign(new Image(), { src, decoding: 'async' }));
@@ -71,10 +71,10 @@ const TRAIL = ['spot-on', 'santo-y-sena', 'the-grid', 'civilus', 'posada', 'agl'
       el.style.left = `${x}px`;
       el.style.top = `${y}px`;
       trail.append(el);
-      while (trail.children.length > 8) trail.firstElementChild!.remove();
+      while (trail.children.length > 6) trail.firstElementChild!.remove();
       const ease = 'cubic-bezier(0.2, 1, 0.3, 1)';
       el.animate([{ opacity: 0, transform: 'translate(-50%, -50%) scale(0.6)' }, { opacity: 1, transform: 'translate(-50%, -50%) scale(1)' }], { duration: 420, easing: ease, fill: 'forwards' });
-      el.animate([{ opacity: 1, transform: 'translate(-50%, -50%) scale(1)' }, { opacity: 0, transform: 'translate(-50%, -50%) scale(0.85)' }], { duration: 420, delay: 650, easing: 'ease-in', fill: 'forwards' }).onfinish = () => el.remove();
+      el.animate([{ opacity: 1, transform: 'translate(-50%, -50%) scale(1)' }, { opacity: 0, transform: 'translate(-50%, -50%) scale(0.85)' }], { duration: 380, delay: 420, easing: 'ease-in', fill: 'forwards' }).onfinish = () => el.remove();
     };
     title.addEventListener('pointerenter', load);
     title.addEventListener('pointermove', (e) => {
@@ -139,7 +139,7 @@ const TRAIL = ['spot-on', 'santo-y-sena', 'the-grid', 'civilus', 'posada', 'agl'
 
   .h-trail :global(.h-trail__img) {
     position: absolute;
-    width: clamp(120px, 11vw, 190px);
+    width: clamp(96px, 8vw, 150px);
     aspect-ratio: 4 / 5;
     object-fit: cover;
     border-radius: 12px;
