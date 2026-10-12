@@ -7,9 +7,12 @@ import { langOf, ui } from '../../i18n';
 const lang = langOf(Astro.url);
 const { HERO } = home(lang);
 const t = ui(lang);
+// Portadas de proyectos para la estela del titular (solo trabajo de Mattriz, del listado de proyectos).
+const TRAIL = ['spot-on', 'santo-y-sena', 'the-grid', 'civilus', 'posada', 'agl', 'luciana', 'dezubiria'].map((p) => `/media/work/list/${p}-a.webp`);
 ---
 
 <section class="h-hero">
+  <div class="h-trail" aria-hidden="true" data-trail={JSON.stringify(TRAIL)}></div>
   <div class="h-hero__inner">
     <div class="h-hero__head">
     <h1 class="h-hero__title" aria-label={HERO.title} style={`--em:${lang === 'es' ? 9.2 : 7.7}`}>
@@ -43,6 +46,48 @@ const t = ui(lang);
 </section>
 
 <script>
+  // Estela de portadas al pasar el cursor por el titular: cada cierto trecho aparece una portada
+  // donde está el cursor, se apila sobre las anteriores y se va sola. Solo con mouse o trackpad y
+  // sin movimiento reducido; las imágenes se piden la primera vez que el cursor entra.
+  const trail = document.querySelector<HTMLElement>('[data-trail]');
+  const title = document.querySelector<HTMLElement>('.h-hero__title');
+  const fine = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+  const still = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (trail && title && fine && !still) {
+    const srcs: string[] = JSON.parse(trail.dataset.trail!);
+    let imgs: HTMLImageElement[] = [];
+    let n = 0;
+    let last: { x: number; y: number } | null = null;
+    const GAP = 90;
+    const load = () => {
+      if (imgs.length) return;
+      imgs = srcs.map((src) => Object.assign(new Image(), { src, decoding: 'async' }));
+    };
+    const spawn = (x: number, y: number) => {
+      const src = imgs[n++ % imgs.length];
+      if (!src.complete || !src.naturalWidth) return;
+      const el = src.cloneNode() as HTMLImageElement;
+      el.className = 'h-trail__img';
+      el.style.left = `${x}px`;
+      el.style.top = `${y}px`;
+      trail.append(el);
+      while (trail.children.length > 8) trail.firstElementChild!.remove();
+      const ease = 'cubic-bezier(0.2, 1, 0.3, 1)';
+      el.animate([{ opacity: 0, transform: 'translate(-50%, -50%) scale(0.6)' }, { opacity: 1, transform: 'translate(-50%, -50%) scale(1)' }], { duration: 420, easing: ease, fill: 'forwards' });
+      el.animate([{ opacity: 1, transform: 'translate(-50%, -50%) scale(1)' }, { opacity: 0, transform: 'translate(-50%, -50%) scale(0.85)' }], { duration: 420, delay: 650, easing: 'ease-in', fill: 'forwards' }).onfinish = () => el.remove();
+    };
+    title.addEventListener('pointerenter', load);
+    title.addEventListener('pointermove', (e) => {
+      const r = trail.getBoundingClientRect();
+      const x = e.clientX - r.left, y = e.clientY - r.top;
+      if (!last || Math.hypot(x - last.x, y - last.y) > GAP) {
+        last = { x, y };
+        spawn(x, y);
+      }
+    });
+    title.addEventListener('pointerleave', () => (last = null));
+  }
+
   // Solo en celular, y con tiempo: primero se lee, y si en 15 s nadie ha bajado, aparece el ícono.
   const hint = document.querySelector<HTMLElement>('[data-scroll-hint]');
   if (hint && window.matchMedia('(max-width: 699px)').matches) {
@@ -81,6 +126,25 @@ const t = ui(lang);
 
   .h-hero__head {
     position: relative;
+    z-index: 2;
+  }
+
+  /* La estela va detrás del titular: las letras quedan siempre encima de las portadas. */
+  .h-trail {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  .h-trail :global(.h-trail__img) {
+    position: absolute;
+    width: clamp(120px, 11vw, 190px);
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    border-radius: 12px;
+    opacity: 0;
+    transform: translate(-50%, -50%);
   }
 
   /* Pequeño y sutil, a la derecha del titular, alineado con su última línea: el texto y una línea
