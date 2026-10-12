@@ -23,6 +23,9 @@ export type CaseBlock =
   | { kind: 'details'; cols: { title: string; html: string }[] }
   /** Llamado final con enlace. */
   | { kind: 'cta'; title: string; text: string; link: { href: string; label: string } }
+  /** Sección fija: una secuencia de cuadros (la reserva real en el celular) avanza con el scroll y
+   *  enciende cada paso; el último paso muestra una imagen final (el resumen del pago). */
+  | { kind: 'scrolly'; label: string; title?: string; steps: Item[]; frames: { dir: string; count: number; width: number; height: number }; starts: number[]; end: { src: string; alt: string } }
   | { kind: 'media'; layout: 'full' | 'pair' | 'trio' | 'inset' | 'wide'; items: CaseMedia[]; parallax?: boolean };
 
 export type CaseDoc = {

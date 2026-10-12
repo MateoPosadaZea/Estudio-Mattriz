@@ -112,6 +112,19 @@ const TEXT = {
         { term: 'Owner dashboard', desc: 'A private, secure panel to see every booking, manage cancellations, charge extras, run promos and pull reports: the whole operation in one place.' },
       ],
     },
+    scrolly: {
+      label: 'The booking',
+      title: 'Six steps. The price changes with every choice.',
+      steps: [
+        { term: 'Service', desc: 'Every service shows its price from the first tap.' },
+        { term: 'Vehicle', desc: 'The vehicle size adjusts the price.' },
+        { term: 'Add-ons', desc: 'Every add-on adds up live.' },
+        { term: 'Date & time', desc: 'Only open slots show up.' },
+        { term: 'Details', desc: 'Address and contact, in a single step.' },
+        { term: 'Payment', desc: '25% is charged at booking. The rest, on the day of the service.' },
+      ],
+      endAlt: 'Booking summary with the service, add-ons and total, paid securely through Square',
+    },
     corporate: {
       label: 'The differentiator',
       title: 'A recurring corporate fleet contract, running on autopilot.',
@@ -196,6 +209,19 @@ const TEXT = {
         { term: 'Panel del dueño', desc: 'Un panel privado y seguro para ver cada reserva, gestionar cancelaciones, cobrar adicionales, lanzar promociones y sacar reportes: toda la operación en un solo lugar.' },
       ],
     },
+    scrolly: {
+      label: 'La reserva',
+      title: 'Seis pasos. El precio cambia con cada elección.',
+      steps: [
+        { term: 'Servicio', desc: 'Cada servicio con su precio desde el primer toque.' },
+        { term: 'Vehículo', desc: 'El tamaño del vehículo ajusta el precio.' },
+        { term: 'Extras', desc: 'Cada extra suma en vivo.' },
+        { term: 'Fecha y hora', desc: 'Solo aparecen los cupos libres.' },
+        { term: 'Datos', desc: 'Dirección y contacto, en un solo paso.' },
+        { term: 'Pago', desc: 'Queda pagada al 25 % al reservar. El resto, el día del servicio.' },
+      ],
+      endAlt: 'Resumen de la reserva con el servicio, los extras y el total, con pago seguro por Square',
+    },
     corporate: {
       label: 'El diferencial',
       title: 'Un contrato corporativo recurrente, en piloto automático.',
@@ -264,6 +290,13 @@ export function spotOn(lang: Lang): CaseDoc {
     blocks: [
       { kind: 'text', style: 'lead', ...t.problem },
       { kind: 'cards', ...t.built },
+      {
+        kind: 'scrolly', label: t.scrolly.label, title: t.scrolly.title, steps: t.scrolly.steps,
+        // La reserva real grabada en el celular (sin llenar datos ni pagar): 176 cuadros a 8 por segundo.
+        frames: { dir: `${DIR}/scrolly`, count: 176, width: 540, height: 1168 },
+        starts: [0, 16, 33, 88, 150, 175],
+        end: { src: `${DIR}/scrolly/pago.webp`, alt: t.scrolly.endAlt },
+      },
       { kind: 'media', layout: 'pair', items: [HERO(lang), BOOKING(lang)] },
       { kind: 'media', layout: 'inset', items: [CALENDAR(lang)] },
       { kind: 'list', ...t.corporate },

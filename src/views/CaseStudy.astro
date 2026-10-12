@@ -148,6 +148,34 @@ const sizes = { pair: '(max-width: 690px) 100vw, 50vw', trio: '(max-width: 690px
               </figure>
             ))}
           </div>
+        ) : b.kind === 'scrolly' ? (
+          <section class="case-scrolly" data-scrolly data-dir={b.frames.dir} data-count={b.frames.count} data-starts={JSON.stringify(b.starts)}>
+            <div class="case-scrolly__pin">
+              <div class="case-scrolly__copy">
+                <p class="case-label">
+                  <span>{numbered.get(b)}</span> {b.label}
+                </p>
+                {b.title && <h2 class="case-heading">{b.title}</h2>}
+                <ol class="case-scrolly__steps">
+                  {b.steps.map((st, i) => (
+                    <li class:list={[i === 0 && 'is-on']}>
+                      <span class="case-scrolly__n">{String(i + 1).padStart(2, '0')}</span>
+                      <span class="case-scrolly__term">{st.term}</span>
+                      <span class="case-scrolly__desc">{st.desc}</span>
+                    </li>
+                  ))}
+                </ol>
+                <span class="case-scrolly__bar" aria-hidden="true"><i /></span>
+              </div>
+              <div class="case-scrolly__phone">
+                <img src={`${b.frames.dir}/001.webp`} width={b.frames.width} height={b.frames.height} alt="" loading="lazy" decoding="async" />
+                <canvas width={b.frames.width} height={b.frames.height} aria-hidden="true" />
+                <div class="case-scrolly__end">
+                  <img src={b.end.src} alt={b.end.alt} loading="lazy" decoding="async" />
+                </div>
+              </div>
+            </div>
+          </section>
         ) : b.kind === 'text' ? (
           <section class="case-block">
             <p class="case-label" data-case-reveal>
@@ -314,6 +342,7 @@ const sizes = { pair: '(max-width: 690px) 100vw, 50vw', trio: '(max-width: 690px
 <script>
   import '../scripts/case';
   import '../scripts/lazy-video';
+  import '../scripts/case-scrolly';
 </script>
 
 <style>
@@ -567,6 +596,189 @@ const sizes = { pair: '(max-width: 690px) 100vw, 50vw', trio: '(max-width: 690px
   }
 
   /* ---------- Bloques de texto ---------- */
+
+  /* Reserva contada con el scroll (src/scripts/case-scrolly.ts). Sin JS o con movimiento reducido
+     se ve fija: el primer cuadro y todos los pasos. */
+  .case-scrolly__pin {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 40px;
+    padding: clamp(80px, 12vw, 200px) var(--pad);
+  }
+
+  .case-scrolly__copy {
+    position: relative;
+  }
+
+  .case-scrolly .case-heading {
+    margin-top: 18px;
+    max-width: 12ch;
+  }
+
+  .case-scrolly__steps {
+    margin-top: 40px;
+    padding: 0;
+    list-style: none;
+  }
+
+  .case-scrolly__steps li {
+    display: grid;
+    grid-template-columns: 44px 1fr;
+    padding: 14px 0;
+    border-top: 1px solid var(--line);
+    transition: opacity 0.35s;
+  }
+
+  .case-scrolly__n {
+    grid-row: span 2;
+    padding-top: 5px;
+    font-size: 14px;
+    color: var(--muted);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .case-scrolly__term {
+    font-size: 22px;
+  }
+
+  .case-scrolly__desc {
+    margin-top: 6px;
+    font-size: 16px;
+    line-height: 1.4;
+    color: var(--muted);
+  }
+
+  .case-scrolly__bar {
+    display: none;
+  }
+
+  .case-scrolly__phone {
+    position: relative;
+    justify-self: center;
+    width: min(100%, 360px);
+    aspect-ratio: 540 / 1168;
+    border-radius: 12px;
+    overflow: hidden;
+    background: #fff;
+  }
+
+  .case-scrolly__phone > img,
+  .case-scrolly__phone canvas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .case-scrolly__phone canvas,
+  .case-scrolly__end {
+    opacity: 0;
+  }
+
+  .case-scrolly__end {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #0a1628;
+  }
+
+  .case-scrolly__end img {
+    width: 92%;
+    height: auto;
+    border-radius: 8px;
+  }
+
+  /* Con la animación activa: la sección se fija y solo el paso actual queda encendido. */
+  .case-scrolly.is-live .case-scrolly__pin {
+    min-height: 100vh;
+    min-height: 100svh;
+    align-content: center;
+    padding-block: clamp(56px, 8vh, 96px);
+  }
+
+  .case-scrolly.is-live canvas {
+    opacity: 1;
+  }
+
+  .case-scrolly.is-live .case-scrolly__steps li {
+    opacity: 0.22;
+  }
+
+  .case-scrolly.is-live .case-scrolly__steps li.is-on {
+    opacity: 1;
+  }
+
+  @media (max-width: 999px) {
+    .case-scrolly.is-live .case-scrolly__pin {
+      grid-template-rows: auto 1fr;
+      align-content: start;
+      gap: 32px;
+      padding-top: calc(var(--header-top, 16px) + var(--header-height, 56px) + 16px);
+    }
+
+    .case-scrolly.is-live .case-scrolly__phone {
+      order: -1;
+      width: auto;
+      height: 46svh;
+    }
+
+    .case-scrolly.is-live .case-heading {
+      font-size: 30px;
+      line-height: 1.08;
+      max-width: none;
+    }
+
+    .case-scrolly.is-live .case-scrolly__steps {
+      position: relative;
+      min-height: 96px;
+      margin-top: 32px;
+    }
+
+    .case-scrolly.is-live .case-scrolly__steps li {
+      position: absolute;
+      inset: 0 0 auto 0;
+      border: 0;
+      opacity: 0;
+    }
+
+    .case-scrolly.is-live .case-scrolly__steps li.is-on {
+      opacity: 1;
+    }
+  }
+
+  @media (min-width: 1000px) {
+    .case-scrolly__pin {
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      gap: 4vw;
+    }
+
+    .case-scrolly.is-live .case-scrolly__phone {
+      width: auto;
+      height: min(82vh, 860px);
+    }
+
+    .case-scrolly.is-live .case-scrolly__bar {
+      display: block;
+      position: absolute;
+      left: -18px;
+      bottom: 0;
+      width: 2px;
+      height: var(--steps-h, 0px);
+      background: var(--line);
+    }
+
+    .case-scrolly__bar i {
+      position: absolute;
+      inset: 0;
+      background: var(--fg);
+      transform: scaleY(0);
+      transform-origin: top;
+    }
+  }
 
   .case-block {
     display: grid;
