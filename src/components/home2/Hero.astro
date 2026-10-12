@@ -52,6 +52,7 @@ const TRAIL = ['spot-on', 'santo-y-sena', 'the-grid', 'civilus', 'posada', 'agl'
   // imágenes se piden la primera vez que el cursor entra.
   const trail = document.querySelector<HTMLElement>('[data-trail]');
   const block = document.querySelector<HTMLElement>('.h-hero');
+  const header = document.querySelector<HTMLElement>('[data-site-header]');
   const fine = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
   const still = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (trail && block && fine && !still) {
@@ -72,6 +73,8 @@ const TRAIL = ['spot-on', 'santo-y-sena', 'the-grid', 'civilus', 'posada', 'agl'
       el.style.left = `${x}px`;
       el.style.top = `${y}px`;
       trail.append(el);
+      // Nunca sobre la navegación: si la portada alcanzaría el header, no sale.
+      if (header && el.getBoundingClientRect().top < header.getBoundingClientRect().bottom + 16) return el.remove();
       while (trail.children.length > 5) trail.firstElementChild!.remove();
       const ease = 'cubic-bezier(0.2, 1, 0.3, 1)';
       el.animate([{ opacity: 0, transform: 'translate(-50%, -50%) scale(0.92)' }, { opacity: 0.9, transform: 'translate(-50%, -50%) scale(1)' }], { duration: 500, easing: ease, fill: 'forwards' });
