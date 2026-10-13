@@ -12,9 +12,11 @@ import { langOf, ui } from '../i18n';
 interface Props {
   /** Formulario en frase; en /contact/ no va porque la página ya lo muestra. */
   form?: boolean;
+  /** Interruptor Humano / Máquina; no en páginas sin versión en Markdown (404). */
+  machine?: boolean;
 }
 
-const { form = true } = Astro.props;
+const { form = true, machine = true } = Astro.props;
 const lang = langOf(Astro.url);
 const t = ui(lang);
 const year = new Date().getFullYear();
@@ -60,7 +62,7 @@ const year = new Date().getFullYear();
 
     <div class="ft__bottom">
       <p class="ft__copyright">© <span data-year>{year}</span>. Mattriz Studio.</p>
-      <MachineMode />
+      {machine && <MachineMode />}
     </div>
   </div>
 </footer>
