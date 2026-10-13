@@ -11,6 +11,9 @@
 //                                       que el navegador seguía mostrando) y una cookie marca que ya se hizo.
 //                                       Si el pedido trae Accept: text/markdown (agentes de IA), responde
 //                                       con la versión en Markdown de la página (modo Machine).
+//   *.md, /llms.txt                     Versiones para máquinas. Cada lectura de Markdown, cada pedido con
+//                                       Accept: text/markdown y cada visita de un agente de IA conocido
+//                                       queda en los registros del Worker como {"event":"machine",…}.
 //   /robots.txt                         En dominios que no son mattriz.com (el *.workers.dev de prueba)
 //                                       bloquea todo, para que Google no indexe una copia del sitio.
 //
@@ -39,9 +42,35 @@ const CANONICAL_HOST = 'mattriz.com';
 // Cookie que marca que ya se limpió la caché del sitio viejo en este navegador.
 const PURGE_COOKIE = 'mz_v2';
 
+// Agentes y buscadores de IA, por su User-Agent (el nombre corto es el que queda en el registro).
+const AI_AGENTS: [string, RegExp][] = [
+  ['ChatGPT', /ChatGPT-User|OAI-SearchBot|GPTBot/i],
+  ['Claude', /Claude-User|Claude-SearchBot|ClaudeBot|anthropic-ai/i],
+  ['Perplexity', /Perplexity/i],
+  ['Google AI', /Google-Extended|GoogleAgent|Gemini/i],
+  ['Meta AI', /meta-externalagent|meta-externalfetcher/i],
+  ['Apple', /Applebot/i],
+  ['Amazon', /Amazonbot/i],
+  ['DuckDuckGo AI', /DuckAssistBot/i],
+  ['Mistral', /MistralAI/i],
+  ['Common Crawl', /CCBot/i],
+  ['ByteDance', /Bytespider/i],
+];
+
+function logMachine(request: Request, url: URL) {
+  const ua = request.headers.get('User-Agent') || '';
+  const agent = AI_AGENTS.find(([, re]) => re.test(ua))?.[0];
+  const md = url.pathname.endsWith('.md') || url.pathname === '/llms.txt';
+  const accept = (request.headers.get('Accept') || '').includes('text/markdown');
+  if (!md && !accept && !agent) return;
+  const cf = (request as Request & { cf?: { country?: string } }).cf;
+  console.log(JSON.stringify({ event: 'machine', path: url.pathname, via: md ? 'file' : accept ? 'accept' : 'html', agent: agent ?? 'other', country: cf?.country, ua: ua.slice(0, 160) }));
+}
+
 export default {
   async fetch(request: Request, env: Env): Promise<Response> {
     const url = new URL(request.url);
+    if (request.method === 'GET') logMachine(request, url);
 
     if (url.pathname === '/robots.txt' && url.hostname !== CANONICAL_HOST) {
       return new Response('User-agent: *\nDisallow: /\n', { headers: { 'Content-Type': 'text/plain; charset=utf-8' } });
