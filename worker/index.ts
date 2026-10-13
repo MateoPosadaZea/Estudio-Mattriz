@@ -101,6 +101,12 @@ export default {
     }
 
     const res = await env.ASSETS.fetch(request);
+    // Las versiones para máquinas, declaradas en UTF-8: sin eso el navegador muestra mal las tildes.
+    if (res.ok && (url.pathname.endsWith('.md') || url.pathname === '/llms.txt')) {
+      const out = new Response(res.body, res);
+      out.headers.set('Content-Type', `${url.pathname.endsWith('.md') ? 'text/markdown' : 'text/plain'}; charset=utf-8`);
+      return out;
+    }
     if (request.method === 'GET' && !(request.headers.get('Cookie') || '').includes(`${PURGE_COOKIE}=1`) && (res.headers.get('Content-Type') || '').includes('text/html')) {
       const out = new Response(res.body, res);
       out.headers.set('Clear-Site-Data', '"cache"');
