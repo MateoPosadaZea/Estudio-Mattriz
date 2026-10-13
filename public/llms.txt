@@ -5,6 +5,7 @@
 - Site in English: https://mattriz.com/ · in Spanish: https://mattriz.com/es/
 - Contact: contacto@mattriz.com · https://mattriz.com/contact/
 - Free website scanner: https://mattriz.com/scan/
+- Every page is also available as Markdown: add .md to its path (https://mattriz.com/about.md, https://mattriz.com/project/santo-y-sena.md; the home pages are https://mattriz.com/index.md and https://mattriz.com/es/index.md). The home pages and the case studies also answer `Accept: text/markdown` with that version.
 
 ## Case studies
 

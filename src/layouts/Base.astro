@@ -11,6 +11,7 @@ import fs from 'node:fs';
 import { createHash } from 'node:crypto';
 import { SITE } from '../data/site';
 import { langOf, alternate, ui, LANGS } from '../i18n';
+import { machinePath } from '../lib/machine';
 
 interface Props {
   title: string;
@@ -153,6 +154,8 @@ const jsonLd = {
     <title>{title}</title>
     <meta name="description" content={description} />
     {!noindex && <link rel="canonical" href={canonical} />}
+    {/* La misma página en Markdown, para agentes y buscadores con IA (modo Machine del footer). */}
+    {!noindex && <link rel="alternate" type="text/markdown" href={machinePath(Astro.url.pathname)} />}
     {
       alternates &&
         !noindex && [

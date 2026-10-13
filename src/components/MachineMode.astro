@@ -1,0 +1,184 @@
+---
+// Modo Machine: interruptor Humano / Máquina en el footer. En "Máquina" la página se cubre con su
+// versión en Markdown (la misma que leen los agentes de IA: /about.md, /project/x.md…), con copiar y
+// abrir el archivo. Se recuerda durante la visita (sessionStorage). Lógica en src/scripts/machine.ts.
+import { langOf, ui } from '../i18n';
+import { machinePath } from '../lib/machine';
+
+const t = ui(langOf(Astro.url)).machine;
+const md = machinePath(Astro.url.pathname);
+---
+
+<div class="mm-switch" role="group" aria-label={t.group}>
+  <button type="button" class="mm-switch__opt" data-machine-set="human" aria-pressed="true">{t.human}</button>
+  <button type="button" class="mm-switch__opt" data-machine-set="machine" aria-pressed="false">{t.machine}</button>
+</div>
+
+<div class="mm" data-machine data-src={md} hidden>
+  <div class="mm__bar">
+    <p class="mm__file">{md}</p>
+    <div class="mm__actions">
+      <button type="button" class="mm__btn" data-machine-copy data-copied={`${ui(langOf(Astro.url)).copied} ✓`}>{t.copy}</button>
+      <a class="mm__btn" href={md} target="_blank" rel="noopener">{t.open}</a>
+      <div class="mm-switch" role="group" aria-label={t.group}>
+        <button type="button" class="mm-switch__opt" data-machine-set="human" aria-pressed="true">{t.human}</button>
+        <button type="button" class="mm-switch__opt" data-machine-set="machine" aria-pressed="false">{t.machine}</button>
+      </div>
+    </div>
+  </div>
+  <div class="mm__scroll" data-lenis-prevent tabindex="-1">
+    <div class="mm__page">
+      <p class="mm__hint">{t.hint}</p>
+      <pre class="mm__text" data-machine-text></pre>
+    </div>
+  </div>
+</div>
+
+<script>
+  import '../scripts/machine';
+</script>
+
+<style>
+  .mm-switch {
+    display: inline-flex;
+    border: 1px solid var(--line-strong);
+    border-radius: var(--btn-radius);
+    padding: 2px;
+    gap: 2px;
+  }
+
+  .mm-switch__opt {
+    appearance: none;
+    border: 0;
+    background: none;
+    color: var(--muted);
+    font: inherit;
+    font-size: 13px;
+    line-height: 1;
+    padding: 7px 11px;
+    border-radius: calc(var(--btn-radius) - 1px);
+    cursor: pointer;
+    transition: color 0.2s, background-color 0.2s;
+  }
+
+  .mm-switch__opt:hover {
+    color: var(--fg);
+  }
+
+  .mm-switch__opt[aria-pressed='true'] {
+    background: var(--fg);
+    color: var(--bg);
+  }
+
+  .mm {
+    position: fixed;
+    inset: 0;
+    z-index: 500;
+    display: flex;
+    flex-direction: column;
+    background: var(--bg);
+    color: var(--fg);
+  }
+
+  .mm[hidden] {
+    display: none;
+  }
+
+  .mm__bar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px 24px;
+    padding: 16px var(--pad);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .mm__file,
+  .mm__text {
+    font-family: ui-monospace, 'SFMono-Regular', Menlo, Consolas, monospace;
+  }
+
+  .mm__file {
+    font-size: 13px;
+    color: var(--muted);
+    overflow-wrap: anywhere;
+  }
+
+  .mm__actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .mm__btn {
+    font-size: 13px;
+    line-height: 1;
+    padding: 9px 12px;
+    border: 1px solid var(--line-strong);
+    border-radius: var(--btn-radius);
+    background: none;
+    color: var(--fg);
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  .mm__btn:hover {
+    border-color: var(--fg);
+  }
+
+  .mm__scroll {
+    flex: 1;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    padding: clamp(24px, 4vw, 56px) var(--pad) 96px;
+    outline: none;
+  }
+
+  /* Ancho de lectura medido en la letra monoespaciada; la nota de arriba alinea con el texto. */
+  .mm__page {
+    max-width: 88ch;
+    margin: 0 auto;
+    font-family: ui-monospace, 'SFMono-Regular', Menlo, Consolas, monospace;
+  }
+
+  .mm__hint {
+    margin: 0 0 32px;
+    font-family: var(--font-sans);
+    font-size: 14px;
+    color: var(--muted);
+  }
+
+  .mm__text {
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.7;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+  }
+
+  .mm__text :global(b) {
+    font-weight: 700;
+  }
+
+  .mm__text :global(.mm-meta) {
+    color: var(--muted);
+  }
+
+  .mm__text :global(a) {
+    color: inherit;
+    text-decoration: underline;
+    text-decoration-color: var(--line-strong);
+    text-underline-offset: 3px;
+  }
+
+  .mm__text :global(a:hover) {
+    text-decoration-color: currentColor;
+  }
+
+  :global(html.is-machine),
+  :global(html.is-machine body) {
+    overflow: hidden;
+  }
+</style>

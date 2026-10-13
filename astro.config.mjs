@@ -1,6 +1,7 @@
 import { defineConfig } from 'astro/config';
 import { rename, rm } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
+import { writeMachineMarkdown } from './scripts/machine-md.mjs';
 
 // Cloudflare sirve el 404.html más cercano a la ruta pedida. Astro solo genera /404.html en la raíz;
 // la versión en español sale como /es/404/index.html y aquí se mueve a /es/404.html.
@@ -15,10 +16,20 @@ const spanish404 = {
   },
 };
 
+// Modo Machine: al final del build, cada página queda también en Markdown (scripts/machine-md.mjs).
+const machine = {
+  name: 'mattriz-machine-md',
+  hooks: {
+    'astro:build:done': async ({ dir, logger }) => {
+      logger.info(`${await writeMachineMarkdown(fileURLToPath(dir))} páginas en Markdown`);
+    },
+  },
+};
+
 export default defineConfig({
   site: 'https://mattriz.com',
   // WordPress sirve todas las páginas con barra final (/about/). Se conserva igual.
   build: { format: 'directory' },
   trailingSlash: 'ignore',
-  integrations: [spanish404],
+  integrations: [spanish404, machine],
 });

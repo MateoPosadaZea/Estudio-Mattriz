@@ -9,6 +9,8 @@
 //   /, /es/, /project/*, /es/project/*  Una sola vez por navegador: Clear-Site-Data "cache" borra lo que
 //                                       quedó en caché del WordPress anterior (páginas viejas de proyectos
 //                                       que el navegador seguía mostrando) y una cookie marca que ya se hizo.
+//                                       Si el pedido trae Accept: text/markdown (agentes de IA), responde
+//                                       con la versión en Markdown de la página (modo Machine).
 //   /robots.txt                         En dominios que no son mattriz.com (el *.workers.dev de prueba)
 //                                       bloquea todo, para que Google no indexe una copia del sitio.
 //
@@ -30,6 +32,7 @@ interface Env {
 
 import { handleScan, handleLead } from '../src/lib/scan/http';
 import { renderLeadEmail, renderAutoReply, bogotaNow, whatsappLink } from '../src/lib/email';
+import { machinePath } from '../src/lib/machine';
 
 const CASE_STUDY = '/work/spot-on/case-study.html';
 const CANONICAL_HOST = 'mattriz.com';
@@ -56,6 +59,16 @@ export default {
     if (url.pathname === '/api/contact') {
       if (request.method !== 'POST') return new Response('Method Not Allowed', { status: 405, headers: { Allow: 'POST' } });
       return handleContact(request, env);
+    }
+
+    if (request.method === 'GET' && !url.pathname.endsWith('.md') && (request.headers.get('Accept') || '').includes('text/markdown')) {
+      const md = await env.ASSETS.fetch(new Request(new URL(machinePath(url.pathname), url), request));
+      if (md.ok) {
+        const out = new Response(md.body, md);
+        out.headers.set('Content-Type', 'text/markdown; charset=utf-8');
+        out.headers.set('Vary', 'Accept');
+        return out;
+      }
     }
 
     const res = await env.ASSETS.fetch(request);
