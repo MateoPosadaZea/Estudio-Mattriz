@@ -65,6 +65,42 @@ if (root && stage) {
     if (dy) set.style.setProperty('--y', `${y + dy}px`);
   };
 
+  // Las piezas nunca tapan el nombre ni las categorías del proyecto activo. Con nombres largos el texto
+  // llega a la zona de las piezas: cada pieza que lo tocaría se corre al lado libre (achicándose si
+  // hace falta) o, si a los lados no hay espacio, arriba o abajo del texto. El margen incluye lo que
+  // la pieza se mueve siguiendo al mouse.
+  const GAP = 24;
+  const clear = (set: HTMLElement, row: HTMLElement) => {
+    const box = stage.getBoundingClientRect();
+    const rs = [row.querySelector('.h-work__name'), row.querySelector('.h-work__cats')].map((el) => el!.getBoundingClientRect());
+    const t = { left: Math.min(...rs.map((r) => r.left)), right: Math.max(...rs.map((r) => r.right)), top: Math.min(...rs.map((r) => r.top)), bottom: Math.max(...rs.map((r) => r.bottom)) };
+    const cx = (t.left + t.right) / 2;
+    const cy = (t.top + t.bottom) / 2;
+    [...set.querySelectorAll<HTMLElement>('.h-work__pic')].forEach((p, k) => {
+      p.style.transform = '';
+      p.style.width = '';
+      p.style.translate = '';
+      p.style.rotate = '';
+      const m = K[k] / 2 + GAP;
+      let r = p.getBoundingClientRect();
+      const hits = (q: DOMRect) => q.right > t.left - m && q.left < t.right + m && q.bottom > t.top - m && q.top < t.bottom + m;
+      if (!hits(r)) return;
+      const left = r.left + r.width / 2 < cx;
+      const free = left ? t.left - m - (box.left + 8) : box.right - 8 - (t.right + m);
+      if (free >= r.width * 0.55) {
+        if (free < r.width) {
+          p.style.width = `${free}px`;
+          r = p.getBoundingClientRect();
+        }
+        const dx = left ? Math.min(0, t.left - m - r.right) : Math.max(0, t.right + m - r.left);
+        p.style.transform = `translate(${dx}px, 0)`;
+      } else {
+        const dy = r.top + r.height / 2 < cy ? t.top - m - r.bottom : t.bottom + m - r.top;
+        p.style.transform = `translate(0, ${dy}px)`;
+      }
+    });
+  };
+
   // Táctil: se recalcula una vez por cuadro al hacer scroll (pick, más abajo).
   let traf = 0;
   const onScroll = () => (traf ||= requestAnimationFrame(() => pick()));
@@ -87,6 +123,7 @@ if (root && stage) {
     const y = r.top - st.top + r.height / 2;
     s.style.setProperty('--y', `${y}px`);
     fit(s, y);
+    clear(s, rows[i]);
     play(s, true);
   };
 
