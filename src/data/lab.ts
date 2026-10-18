@@ -22,6 +22,7 @@ const MEDIA = {
   otraLectura: { img: '/media/lab/002-otra-lectura.webp', video: '/media/lab/002-otra-lectura.mp4' },
   calibre: { img: '/media/lab/003-calibre-perpetuo.webp', video: '/media/lab/003-calibre-perpetuo.mp4' },
   capotte: { img: '/media/lab/004-capotte.webp', video: '/media/lab/004-capotte.mp4' },
+  posadaZea: { img: '/media/lab/005-posada-zea.webp', video: '/media/lab/005-posada-zea.mp4' },
 };
 
 const MONOESPACIO = { text: 'Monoespacio', url: 'https://monoespacio.com/' };
@@ -58,6 +59,13 @@ const COPY: Record<Lang, { metaTitle: string; metaDescription: string; title: st
         credits: 'A shared project. Identity and web: Mattriz.',
         media: MEDIA.capotte,
       },
+      {
+        num: '005', kind: 'Personal project', year: '2026', title: 'Mateo Posada Zea',
+        text: 'Photography and music. An archive of travels and home, from Berlin and Prague to Antigua and the Colombian Caribbean: nine series, 189 photos, to explore by dragging.',
+        credits: 'A personal project by the founder of Mattriz.',
+        url: 'https://posadazea.com/', linkLabel: 'posadazea.com',
+        media: MEDIA.posadaZea,
+      },
     ],
   },
   es: {
@@ -90,6 +98,13 @@ const COPY: Record<Lang, { metaTitle: string; metaDescription: string; title: st
         text: 'Gafas para leer y para la sobremesa, desde Bogotá. Una casa pequeña con su lámina, el leopardo, su sello y dos colores.',
         credits: 'Un proyecto compartido. Identidad y web: Mattriz.',
         media: MEDIA.capotte,
+      },
+      {
+        num: '005', kind: 'Proyecto personal', year: '2026', title: 'Mateo Posada Zea',
+        text: 'Fotografía y música. Un archivo de viajes y de casa, de Berlín y Praga a Antigua y el Caribe colombiano: nueve series, 189 fotos, para recorrer arrastrando.',
+        credits: 'Un proyecto personal del fundador de Mattriz.',
+        url: 'https://posadazea.com/', linkLabel: 'posadazea.com',
+        media: MEDIA.posadaZea,
       },
     ],
   },

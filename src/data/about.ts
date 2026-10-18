@@ -27,6 +27,8 @@ export const TEAM = {
       links: [
         { type: 'linkedin', href: 'https://www.linkedin.com/in/mateo-posada-zea/' },
         { type: 'instagram', href: 'https://www.instagram.com/mateoposadazea/' },
+        // Su sitio personal (fotografía y música); también está en el Laboratorio.
+        { type: 'web', href: 'https://posadazea.com/' },
       ],
     },
     {
