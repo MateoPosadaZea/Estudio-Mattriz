@@ -7,12 +7,9 @@ import { langOf, ui } from '../../i18n';
 const lang = langOf(Astro.url);
 const { HERO } = home(lang);
 const t = ui(lang);
-// Portadas de proyectos para la estela del titular (solo trabajo de Mattriz, del listado de proyectos).
-const TRAIL = ['spot-on', 'santo-y-sena', 'the-grid', 'civilus', 'posada', 'agl', 'luciana', 'dezubiria'].map((p) => `/media/work/list/${p}-a.webp`);
 ---
 
 <section class="h-hero">
-  <div class="h-trail" aria-hidden="true" data-trail={JSON.stringify(TRAIL)}></div>
   <div class="h-hero__inner">
     <div class="h-hero__head">
     <h1 class="h-hero__title" aria-label={HERO.title} style={`--em:${lang === 'es' ? 9.2 : 7.7}`}>
@@ -46,53 +43,6 @@ const TRAIL = ['spot-on', 'santo-y-sena', 'the-grid', 'civilus', 'posada', 'agl'
 </section>
 
 <script>
-  // Estela de portadas al mover el cursor por el bloque del titular (todo el hero menos la franja del
-  // subtítulo y los enlaces): cada cierto trecho aparece una portada donde está el cursor, se apila
-  // sobre las anteriores y se va sola. Solo con mouse o trackpad y sin movimiento reducido; las
-  // imágenes se piden la primera vez que el cursor entra.
-  const trail = document.querySelector<HTMLElement>('[data-trail]');
-  const block = document.querySelector<HTMLElement>('.h-hero');
-  const header = document.querySelector<HTMLElement>('[data-site-header]');
-  const fine = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
-  const still = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (trail && block && fine && !still) {
-    const srcs: string[] = JSON.parse(trail.dataset.trail!);
-    let imgs: HTMLImageElement[] = [];
-    let n = 0;
-    let last: { x: number; y: number } | null = null;
-    const GAP = 64; // las portadas salen seguidas pero sin amontonarse; pocas a la vez para no tapar el texto
-    const load = () => {
-      if (imgs.length) return;
-      imgs = srcs.map((src) => Object.assign(new Image(), { src, decoding: 'async' }));
-    };
-    const spawn = (x: number, y: number) => {
-      const src = imgs[n++ % imgs.length];
-      if (!src.complete || !src.naturalWidth) return;
-      const el = src.cloneNode() as HTMLImageElement;
-      el.className = 'h-trail__img';
-      el.style.left = `${x}px`;
-      el.style.top = `${y}px`;
-      trail.append(el);
-      // Nunca sobre la navegación: si la portada alcanzaría el header, no sale.
-      if (header && el.getBoundingClientRect().top < header.getBoundingClientRect().bottom + 16) return el.remove();
-      while (trail.children.length > 5) trail.firstElementChild!.remove();
-      const ease = 'cubic-bezier(0.2, 1, 0.3, 1)';
-      el.animate([{ opacity: 0, transform: 'translate(-50%, -50%) scale(0.92)' }, { opacity: 0.9, transform: 'translate(-50%, -50%) scale(1)' }], { duration: 500, easing: ease, fill: 'forwards' });
-      el.animate([{ opacity: 0.9, transform: 'translate(-50%, -50%) scale(1)' }, { opacity: 0, transform: 'translate(-50%, -50%) scale(0.96)' }], { duration: 600, delay: 450, easing: 'ease-in-out', fill: 'forwards' }).onfinish = () => el.remove();
-    };
-    block.addEventListener('pointerenter', load);
-    block.addEventListener('pointermove', (e) => {
-      if ((e.target as Element).closest('a, button, .h-hero__foot')) return void (last = null);
-      const r = trail.getBoundingClientRect();
-      const x = e.clientX - r.left, y = e.clientY - r.top;
-      if (!last || Math.hypot(x - last.x, y - last.y) > GAP) {
-        last = { x, y };
-        spawn(x, y);
-      }
-    });
-    block.addEventListener('pointerleave', () => (last = null));
-  }
-
   // Solo en celular, y con tiempo: primero se lee, y si en 15 s nadie ha bajado, aparece el ícono.
   const hint = document.querySelector<HTMLElement>('[data-scroll-hint]');
   if (hint && window.matchMedia('(max-width: 699px)').matches) {
@@ -131,25 +81,6 @@ const TRAIL = ['spot-on', 'santo-y-sena', 'the-grid', 'civilus', 'posada', 'agl'
 
   .h-hero__head {
     position: relative;
-    z-index: 2;
-  }
-
-  /* La estela va detrás del titular: las letras quedan siempre encima de las portadas. */
-  .h-trail {
-    position: absolute;
-    inset: 0;
-    z-index: 1;
-    pointer-events: none;
-  }
-
-  .h-trail :global(.h-trail__img) {
-    position: absolute;
-    width: clamp(72px, 5.5vw, 104px);
-    aspect-ratio: 4 / 5;
-    object-fit: cover;
-    border-radius: var(--btn-radius);
-    opacity: 0;
-    transform: translate(-50%, -50%);
   }
 
   /* Pequeño y sutil, a la derecha del titular, alineado con su última línea: el texto y una línea
