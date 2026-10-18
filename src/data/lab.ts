@@ -61,7 +61,7 @@ const COPY: Record<Lang, { metaTitle: string; metaDescription: string; title: st
       },
       {
         num: '005', kind: 'Personal project', year: '2026', title: 'Mateo Posada Zea',
-        text: 'Photography and music. An archive of travels and home, from Berlin and Prague to Antigua and the Colombian Caribbean: nine series, 189 photos, to explore by dragging.',
+        text: 'A portfolio, my hobby, one of my escapes: my travels, my photos, my music.',
         credits: 'A personal project by the founder of Mattriz.',
         url: 'https://posadazea.com/', linkLabel: 'posadazea.com',
         media: MEDIA.posadaZea,
@@ -101,7 +101,7 @@ const COPY: Record<Lang, { metaTitle: string; metaDescription: string; title: st
       },
       {
         num: '005', kind: 'Proyecto personal', year: '2026', title: 'Mateo Posada Zea',
-        text: 'Fotografía y música. Un archivo de viajes y de casa, de Berlín y Praga a Antigua y el Caribe colombiano: nueve series, 189 fotos, para recorrer arrastrando.',
+        text: 'Un portafolio, mi hobby, uno de mis escapes: mis viajes, mis fotos, mi música.',
         credits: 'Un proyecto personal del fundador de Mattriz.',
         url: 'https://posadazea.com/', linkLabel: 'posadazea.com',
         media: MEDIA.posadaZea,
