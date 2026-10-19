@@ -17,21 +17,20 @@ const img = (base: string, width: number, height: number, widths: number[], alt:
   caption: caption[lang],
 });
 
-const HERO = img('spot-on-hero', 1600, 787, [1600, 1200, 700], {
-  en: 'Spot On Mobile Detailing website, premium mobile detailing in the San Francisco Bay Area',
-  es: 'Sitio web de Spot On Mobile Detailing, detailing premium a domicilio en el Área de la Bahía de San Francisco',
-}, {
-  en: 'The Spot On site: 350+ vehicles detailed, 4.9★ rating, 95% repeat clients.',
-  es: 'El sitio de Spot On: más de 350 vehículos atendidos, calificación de 4.9★ y 95 % de clientes que vuelven.',
-});
-
-const CORPORATE = img('spot-on-corporate', 1396, 1232, [1396, 1200, 700], {
-  en: 'Spot On corporate program landing page for on-site office detailing',
-  es: 'Página del programa corporativo de Spot On para detailing en la oficina',
-}, {
-  en: 'A dedicated landing for the corporate program: employees book on-site office detailing in a fixed biweekly window.',
-  es: 'Una página dedicada al programa corporativo: los empleados reservan el detailing en la oficina en una franja fija cada dos semanas.',
-});
+// Pantallas del sitio en el celular (octubre de 2026), para el bloque "una web que trae clientes".
+const SCREEN = (base: string, alt: Record<Lang, string>, caption: Record<Lang, string>) => img(base, 780, 1400, [780, 500], alt, caption);
+const CITY = SCREEN('spot-on-city', {
+  en: 'Spot On city page for Danville, with its own booking button and real work',
+  es: 'Página de ciudad de Spot On para Danville, con su propio botón de reserva y trabajos reales',
+}, { en: 'A page for every city on the route.', es: 'Una página para cada ciudad de la ruta.' });
+const BLOG = SCREEN('spot-on-blog', {
+  en: 'Spot On blog with guides on detailing',
+  es: 'Blog de Spot On con guías sobre detailing',
+}, { en: 'Seven guides that answer what customers ask before booking.', es: 'Siete guías que responden lo que el cliente pregunta antes de reservar.' });
+const GIFT = SCREEN('spot-on-gift', {
+  en: 'Spot On eGift card, from $50 and delivered by email',
+  es: 'Tarjeta de regalo de Spot On, desde US$50 y enviada por correo',
+}, { en: 'Gift cards: delivered by email, no expiration, for any service.', es: 'Tarjetas de regalo: llegan por correo, no vencen y sirven para cualquier servicio.' });
 
 const video = (base: string, alt: Record<Lang, string>, caption: Record<Lang, string>) => (lang: Lang): CaseMedia => ({
   type: 'video',
@@ -40,21 +39,37 @@ const video = (base: string, alt: Record<Lang, string>, caption: Record<Lang, st
   caption: caption[lang],
 });
 
-// Videos de la navegación real del sitio (regrabados el 29 de septiembre de 2026 a doble resolución, sin llenar datos ni pagar).
-const FLOW = video('spot-on-flow', {
-  en: 'Browsing the Spot On site and booking a detail step by step',
-  es: 'Navegación por el sitio de Spot On y reserva paso a paso',
+// Videos del sitio nuevo (grabados el 19 de octubre de 2026 a 1920x1200, sin llenar datos ni pagar).
+const HOME = video('spot-on-home-v2', {
+  en: 'The new Spot On site: the hero with real work, the stats and the booking on the home page',
+  es: 'El sitio nuevo de Spot On: la portada con trabajos reales, las cifras y la reserva en la misma página',
 }, {
-  en: 'The real site: home, then booking in five steps (service, vehicle, add-ons, date and time, details) with the price calculated live.',
-  es: 'El sitio real: la portada y la reserva en cinco pasos (servicio, vehículo, adicionales, fecha y hora, datos), con el precio calculado en vivo.',
+  en: 'The new site: real work in the hero, the booking right on the home page, recent jobs and reviews.',
+  es: 'El sitio nuevo: trabajos reales en la portada, la reserva en la misma página, trabajos recientes y reseñas.',
 });
 
-const CORPORATE_FLOW = video('spot-on-corporate-flow', {
-  en: 'Spot On corporate program page in motion',
-  es: 'Página del programa corporativo de Spot On en movimiento',
+const ROUTE = video('spot-on-route', {
+  en: 'The route map on the Spot On site, drawn stop by stop as you scroll',
+  es: 'El mapa de la ruta en el sitio de Spot On, que se dibuja parada por parada al bajar',
 }, {
-  en: 'The corporate program page: how it works, what the company provides, the schedule and the discovery-call form.',
-  es: 'La página del programa corporativo: cómo funciona, qué pone la empresa, la frecuencia y el formulario para agendar una llamada.',
+  en: 'The route as you scroll: Livermore, Pleasanton, Dublin, San Ramon, Danville, Blackhawk, Diablo, Alamo and Walnut Creek, each with a real job.',
+  es: 'La ruta al bajar: Livermore, Pleasanton, Dublin, San Ramon, Danville, Blackhawk, Diablo, Alamo y Walnut Creek, cada una con un trabajo real.',
+});
+
+const PLANS = video('spot-on-plans', {
+  en: 'Spot On membership plans, with prices that change by vehicle type',
+  es: 'Los planes de membresía de Spot On, con precios que cambian según el vehículo',
+}, {
+  en: 'Choosing the vehicle changes the price of every plan, live.',
+  es: 'Al elegir el vehículo, el precio de cada plan cambia en vivo.',
+});
+
+const CORPORATE_FLOW = video('spot-on-corporate-v2', {
+  en: 'The new Spot On corporate program page in motion',
+  es: 'La página nueva del programa corporativo de Spot On en movimiento',
+}, {
+  en: 'The new corporate page: why companies keep it running, the four steps, what the company provides and the program’s numbers.',
+  es: 'La página corporativa nueva: por qué las empresas lo mantienen, los cuatro pasos, lo que pone la empresa y las cifras del programa.',
 });
 
 const TEXT = {
@@ -90,7 +105,7 @@ const TEXT = {
       items: [
         { term: 'Self-service booking', desc: 'Customers pick a service, vehicle size, add-ons, date and time, and pay by card, all in one guided flow. The price is calculated live, and the appointment is scheduled automatically.' },
         { term: 'Payments that just work', desc: 'Cards are charged the moment a booking is confirmed. If a charge goes through but the slot can’t be scheduled, the system refunds automatically, so no customer ever pays without an appointment.' },
-        { term: 'Recurring memberships', desc: 'Customers can subscribe to a maintenance plan instead of booking one-off, turning one-time jobs into predictable recurring revenue.' },
+        { term: 'Recurring memberships', desc: 'Customers can subscribe to a monthly plan instead of booking one-off, turning one-time jobs into predictable recurring revenue.' },
         { term: 'Tips & reviews, automated', desc: 'After each service, the system asks for a tip and a review through its own link, capturing revenue and reputation that were slipping through before.' },
         { term: 'Automatic follow-ups', desc: 'Confirmations, reminders and review requests all send themselves on schedule. Nobody has to remember to chase anyone.' },
         { term: 'Owner dashboard', desc: 'A private, secure panel to see every booking, manage cancellations, charge extras, run promos and pull reports: the whole operation in one place.' },
@@ -109,10 +124,31 @@ const TEXT = {
       ],
       endAlt: 'Booking summary with the service, add-ons and total, paid securely through Square',
     },
+    route: {
+      label: 'The route',
+      title: 'Nine stops, one route. And a page for every city.',
+      html: '<p>Spot On doesn’t serve “the Bay Area”: it drives a route. From Livermore to Walnut Creek, along the 580 and the 680, with Dublin as home base. The new site draws that route as you scroll, stop by stop, each one with its coordinates, a real job done there and a link to its own page.</p><p>Each of the eight cities has a page of its own, with its services, prices, recent work and local questions. So Spot On shows up when someone searches for detailing in Danville or Pleasanton, not only when they search for its name.</p>',
+    },
+    plans: {
+      label: 'Memberships',
+      title: 'Three plans, one price a month.',
+      html: '<p>Memberships went from a feature to a product with its own place on the site. Three plans (Signature, Refresh and Elite Double), from $95 a month, and the price adjusts to the vehicle as you choose it. Sign-up and card in a single step, billed automatically on the 1st of every month, cancel anytime.</p>',
+    },
+    growth: {
+      label: 'A site that brings clients',
+      title: 'The site stopped being a brochure. It sells.',
+      intro: 'Around the booking, the new site does the work a salesperson would: it answers, it shows proof and it gives people more than one way to buy.',
+      items: [
+        { term: 'A page for every city', desc: 'Eight city pages along the route, each with its services, prices, recent work and the questions people ask there.' },
+        { term: 'A blog that answers', desc: 'Seven guides on what customers ask before booking: whether ceramic coating is worth it, how often to detail, how to prepare the car, detailing before selling or returning a lease.' },
+        { term: 'Real work, real reviews', desc: 'Recent jobs with the car, the city and the service, and Google reviews, on the home page and on every city page.' },
+        { term: 'Gift cards', desc: 'eGift cards from $50, delivered by email right away, with no expiration and redeemable for any service.' },
+      ],
+    },
     corporate: {
       label: 'The differentiator',
       title: 'A recurring corporate fleet contract, running on autopilot.',
-      intro: 'The biggest win wasn’t the website. It was landing a recurring contract with a corporate legal firm and building the entire program to run itself. Scheduled sessions, fixed program pricing, and a waitlist that manages its own slots.',
+      intro: 'The biggest win wasn’t the website. It was landing a recurring contract with a law firm in Palo Alto and building the entire program to run itself. Scheduled sessions, fixed program pricing, and a waitlist that manages its own slots.',
       items: [
         { term: 'Scheduled sessions with limited slots', desc: 'Each session runs on a fixed capacity (10 confirmed spots plus 3 on standby), booked against a specific date at a set program rate.' },
         { term: 'A waitlist that promotes itself', desc: 'When a spot frees up, the system sends a payment link and promotes the next person to a confirmed slot on its own. Unpaid holds expire automatically. No manual slot-shuffling.' },
@@ -127,12 +163,12 @@ const TEXT = {
       stats: [
         { value: '153', label: 'Bookings through the system in five months' },
         { value: '$23,770', label: 'Booked and charged through the system' },
-        { value: '86%', label: 'Average occupancy of the corporate program, 8.6 of 10 spots per session' },
+        { value: '93%', label: 'Slot occupancy in the corporate program, 9.3 vehicles per session' },
         { value: '2.7×', label: 'Online bookings per month, from 7 in June to 19 in September' },
-        { value: '70', label: 'Employees served by the corporate program; 24% came back for another session' },
+        { value: '65', label: 'Vehicles serviced in 7 corporate sessions, every two weeks since May' },
         { value: '118', label: 'Post-service follow-ups sent on their own, with a link to leave a Google review' },
       ],
-      after: '<p>Data as of October 7, 2026, straight from the system’s database: bookings made through the site and the owner’s panel, excluding tests and internal ones. Sales Spot On closes outside the system are not included.</p>',
+      after: '<p>Bookings, revenue and follow-ups: data as of October 7, 2026, straight from the system’s database, counting bookings made through the site and the owner’s panel, excluding tests and internal ones. Sales Spot On closes outside the system are not included. Corporate program: the figures published on its page in October 2026.</p>',
       quote:
         'The turning point was mid-May. Before then, the digital side was essentially a quote-capture form. After it, a customer could book, pay and schedule with zero human involvement, with automatic charging and refunds built in. That single shift is what took the owner out of the critical path.',
     },
@@ -148,6 +184,7 @@ const TEXT = {
         { date: 'Jul 2026', title: 'Self-promoting waitlist.', text: 'Slots that used to move by hand now manage themselves.' },
         { date: 'Jul 2026', title: 'Online deposit.', text: '25% is charged at booking; the rest on the day of the service.' },
         { date: 'Sep 2026', title: 'One domain, eight city pages.', text: 'Three versions of the domain consolidated into one, plus a page for each city served.' },
+        { date: 'Oct 2026', title: 'A new site.', text: 'The route map, memberships with live prices, gift cards, a blog and a redesigned corporate page.' },
       ],
     },
     cta: {
@@ -187,7 +224,7 @@ const TEXT = {
       items: [
         { term: 'Reserva autoservicio', desc: 'El cliente elige el servicio, el tamaño del vehículo, los adicionales, la fecha y la hora, y paga con tarjeta, todo en un solo flujo guiado. El precio se calcula en vivo y la cita se agenda automáticamente.' },
         { term: 'Pagos que simplemente funcionan', desc: 'La tarjeta se cobra en el momento en que se confirma la reserva. Si el cobro pasa pero el horario no se puede agendar, el sistema reembolsa automáticamente, así que ningún cliente paga sin tener cita.' },
-        { term: 'Membresías recurrentes', desc: 'El cliente puede suscribirse a un plan de mantenimiento en vez de reservar una sola vez, y los trabajos puntuales se convierten en ingresos recurrentes y predecibles.' },
+        { term: 'Membresías recurrentes', desc: 'El cliente puede suscribirse a un plan mensual en vez de reservar una sola vez, y los trabajos puntuales se convierten en ingresos recurrentes y predecibles.' },
         { term: 'Propinas y reseñas, automáticas', desc: 'Después de cada servicio, el sistema pide una propina y una reseña con su propio enlace, y así captura ingresos y reputación que antes se perdían.' },
         { term: 'Seguimiento automático', desc: 'Las confirmaciones, los recordatorios y las solicitudes de reseña se envían solos a tiempo. Nadie tiene que acordarse de perseguir a nadie.' },
         { term: 'Panel del dueño', desc: 'Un panel privado y seguro para ver cada reserva, gestionar cancelaciones, cobrar adicionales, lanzar promociones y sacar reportes: toda la operación en un solo lugar.' },
@@ -206,10 +243,31 @@ const TEXT = {
       ],
       endAlt: 'Resumen de la reserva con el servicio, los extras y el total, con pago seguro por Square',
     },
+    route: {
+      label: 'La ruta',
+      title: 'Nueve paradas, una ruta. Y una página para cada ciudad.',
+      html: '<p>Spot On no atiende “el Área de la Bahía”: recorre una ruta. De Livermore a Walnut Creek, por la 580 y la 680, con Dublin como base. El sitio nuevo dibuja esa ruta mientras bajas, parada por parada, cada una con sus coordenadas, un trabajo real hecho ahí y un enlace a su propia página.</p><p>Cada una de las ocho ciudades tiene su página, con sus servicios, precios, trabajos recientes y las preguntas de la zona. Así Spot On aparece cuando alguien busca detailing en Danville o en Pleasanton, no solo cuando busca su nombre.</p>',
+    },
+    plans: {
+      label: 'Membresías',
+      title: 'Tres planes, un precio al mes.',
+      html: '<p>Las membresías pasaron de ser una función a ser un producto con su propio lugar en el sitio. Tres planes (Signature, Refresh y Elite Double), desde US$95 al mes, y el precio se ajusta al vehículo mientras lo eliges. Inscripción y tarjeta en un solo paso, cobro automático el 1.º de cada mes y se cancela cuando quieras.</p>',
+    },
+    growth: {
+      label: 'Una web que trae clientes',
+      title: 'El sitio dejó de ser un folleto. Vende.',
+      intro: 'Alrededor de la reserva, el sitio nuevo hace el trabajo de un vendedor: responde, muestra pruebas y da más de una forma de comprar.',
+      items: [
+        { term: 'Una página por ciudad', desc: 'Ocho páginas de ciudad a lo largo de la ruta, cada una con sus servicios, precios, trabajos recientes y las preguntas que se hacen ahí.' },
+        { term: 'Un blog que responde', desc: 'Siete guías sobre lo que el cliente pregunta antes de reservar: si vale la pena el recubrimiento cerámico, cada cuánto hacer detailing, cómo preparar el carro, el detailing antes de vender o devolver un leasing.' },
+        { term: 'Trabajos y reseñas reales', desc: 'Trabajos recientes con el carro, la ciudad y el servicio, y reseñas de Google, en la portada y en cada página de ciudad.' },
+        { term: 'Tarjetas de regalo', desc: 'Tarjetas de regalo desde US$50, que llegan por correo al instante, no vencen y sirven para cualquier servicio.' },
+      ],
+    },
     corporate: {
       label: 'El diferencial',
       title: 'Un contrato corporativo recurrente, en piloto automático.',
-      intro: 'El mayor logro no fue el sitio web. Fue cerrar un contrato recurrente con una firma de abogados corporativa y construir todo el programa para que funcionara solo. Sesiones programadas, precio fijo del programa y una lista de espera que maneja sus propios cupos.',
+      intro: 'El mayor logro no fue el sitio web. Fue cerrar un contrato recurrente con una firma de abogados en Palo Alto y construir todo el programa para que funcionara solo. Sesiones programadas, precio fijo del programa y una lista de espera que maneja sus propios cupos.',
       items: [
         { term: 'Sesiones programadas con cupos limitados', desc: 'Cada sesión tiene una capacidad fija (10 cupos confirmados y 3 en espera) y se reserva para una fecha específica con una tarifa fija del programa.' },
         { term: 'Una lista de espera que se mueve sola', desc: 'Cuando se libera un cupo, el sistema envía un enlace de pago y pasa a la siguiente persona a un cupo confirmado por su cuenta. Las reservas sin pagar vencen solas. Nada de mover cupos a mano.' },
@@ -224,12 +282,12 @@ const TEXT = {
       stats: [
         { value: '153', label: 'Reservas por el sistema en cinco meses' },
         { value: 'US$23.770', label: 'Reservados y cobrados por el sistema' },
-        { value: '86 %', label: 'Ocupación promedio del programa corporativo: 8,6 de 10 cupos por sesión' },
+        { value: '93 %', label: 'Ocupación de cupos del programa corporativo: 9,3 vehículos por sesión' },
         { value: '2,7×', label: 'Reservas en línea al mes, de 7 en junio a 19 en septiembre' },
-        { value: '70', label: 'Empleados atendidos en el programa corporativo; el 24 % volvió a otra sesión' },
+        { value: '65', label: 'Vehículos atendidos en 7 sesiones corporativas, cada dos semanas desde mayo' },
         { value: '118', label: 'Seguimientos después del servicio enviados solos, con enlace para dejar reseña en Google' },
       ],
-      after: '<p>Datos al 7 de octubre de 2026, tomados directo de la base del sistema: reservas hechas por el sitio y por el panel del dueño, sin pruebas ni internas. No incluye las ventas que Spot On cierra por fuera del sistema.</p>',
+      after: '<p>Reservas, ingresos y seguimientos: datos al 7 de octubre de 2026, tomados directo de la base del sistema, con las reservas hechas por el sitio y por el panel del dueño, sin pruebas ni internas. No incluye las ventas que Spot On cierra por fuera del sistema. Programa corporativo: las cifras publicadas en su página en octubre de 2026.</p>',
       quote:
         'El punto de quiebre fue a mediados de mayo. Hasta entonces, lo digital era básicamente un formulario para pedir cotizaciones. Desde ahí, un cliente podía reservar, pagar y agendar sin intervención humana, con cobros y reembolsos automáticos. Ese cambio fue lo que sacó al dueño del camino crítico.',
     },
@@ -245,6 +303,7 @@ const TEXT = {
         { date: 'Jul 2026', title: 'Lista de espera que se mueve sola.', text: 'Los cupos que antes se movían a mano ahora se manejan solos.' },
         { date: 'Jul 2026', title: 'Depósito en línea.', text: 'Se cobra el 25 % al reservar; el resto, el día del servicio.' },
         { date: 'Sep 2026', title: 'Un solo dominio, ocho páginas de ciudad.', text: 'Tres versiones del dominio se consolidan en una, con una página por cada ciudad que atiende.' },
+        { date: 'Oct 2026', title: 'Un sitio nuevo.', text: 'El mapa de la ruta, membresías con precios en vivo, tarjetas de regalo, un blog y la página corporativa rehecha.' },
       ],
     },
     cta: {
@@ -269,7 +328,7 @@ export function spotOn(lang: Lang): CaseDoc {
     tagline: t.tagline,
     intro: t.intro,
     facts: t.facts,
-    hero: FLOW(lang),
+    hero: HOME(lang),
     site: 'https://www.mobilespotoncalifornia.com/',
     blocks: [
       { kind: 'text', style: 'lead', ...t.problem },
@@ -281,11 +340,15 @@ export function spotOn(lang: Lang): CaseDoc {
         starts: [0, 16, 33, 88, 150, 175],
         end: { src: `${DIR}/scrolly/pago.webp`, alt: t.scrolly.endAlt },
       },
-      // La reserva y el calendario ya se cuentan en la sección con scroll; aquí queda solo la portada del sitio.
-      { kind: 'media', layout: 'wide', items: [HERO(lang)] },
+      // La ruta, al centro del caso: el mapa del sitio nuevo y una página por ciudad.
+      { kind: 'text', style: 'lead', ...t.route },
+      { kind: 'media', layout: 'wide', items: [ROUTE(lang)] },
+      { kind: 'text', style: 'lead', ...t.plans },
+      { kind: 'media', layout: 'wide', items: [PLANS(lang)] },
+      { kind: 'cards', ...t.growth },
+      { kind: 'media', layout: 'trio', items: [CITY(lang), BLOG(lang), GIFT(lang)] },
       { kind: 'list', ...t.corporate },
       { kind: 'media', layout: 'wide', items: [CORPORATE_FLOW(lang)] },
-      { kind: 'media', layout: 'inset', items: [CORPORATE(lang)] },
       { kind: 'stats', ...t.results },
       { kind: 'timeline', ...t.timeline },
       { kind: 'cta', ...t.cta, link: { href: 'mailto:contacto@mattriz.com', label: 'contacto@mattriz.com' } },
