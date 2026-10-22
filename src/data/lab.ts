@@ -55,7 +55,7 @@ const COPY: Record<Lang, { metaTitle: string; metaDescription: string; title: st
       },
       {
         num: '004', kind: 'Project · In progress', year: '2026', title: 'Capotte',
-        text: 'Reading and after-dinner glasses from Bogotá. A small house with its own plate, the leopard, its seal and two colors.',
+        text: 'Night glasses, for working and for going out, from Bogotá. A small house with its own plate, the leopard, its seal and two colors.',
         credits: 'A shared project. Identity and web: Mattriz.',
         media: MEDIA.capotte,
       },
@@ -95,7 +95,7 @@ const COPY: Record<Lang, { metaTitle: string; metaDescription: string; title: st
       },
       {
         num: '004', kind: 'Proyecto · En proceso', year: '2026', title: 'Capotte',
-        text: 'Gafas para leer y para la sobremesa, desde Bogotá. Una casa pequeña con su lámina, el leopardo, su sello y dos colores.',
+        text: 'Gafas para la noche, para trabajar y para salir, desde Bogotá. Una casa pequeña con su lámina, el leopardo, su sello y dos colores.',
         credits: 'Un proyecto compartido. Identidad y web: Mattriz.',
         media: MEDIA.capotte,
       },
